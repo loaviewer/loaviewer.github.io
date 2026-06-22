@@ -3006,10 +3006,10 @@ document.getElementById("openClassWinBtn").addEventListener("click", (e) => {
     return;
   }
   classWinModal.classList.add("show");
-document.body.classList.add("class-win-modal-open");
-cwCurrentClass = "워로드";
-cwCurrentGroup = "전사";
-cwCurrentType = "op";
+  document.body.classList.add("class-win-modal-open");
+  cwCurrentClass = "워로드";
+  cwCurrentGroup = "전사";
+  cwCurrentType = "op";
 
   const opBtn = document.getElementById("cwTypeOpBtn");
   const favorBtn = document.getElementById("cwTypeFavorBtn");
@@ -3024,14 +3024,8 @@ cwCurrentType = "op";
   const label = document.getElementById("cwSelectLabel");
   if(label) label.textContent = "워로드";
 
-cwInitEvents();
-
-const label = document.getElementById("cwSelectLabel");
-  if(label) label.textContent = "워로드";
- 
- cwInitEvents();
-
-
+  cwInitEvents();
+  cwAnimateRender();
 });
 /* ===== 클래스별 우승 분석 차트 끝 ===== */
 
