@@ -2818,8 +2818,6 @@ function cwAnimateEntry(data){
 
   const canvas = document.getElementById("cwPieCanvas");
   if(!canvas) return;
- canvas.width = 1000;
- canvas.height = 1000;
   const ctx = canvas.getContext("2d");
   const w = canvas.width, h = canvas.height;
   const cx = w/2, cy = h/2;
@@ -3026,10 +3024,12 @@ cwCurrentType = "op";
   const label = document.getElementById("cwSelectLabel");
   if(label) label.textContent = "워로드";
 
-  cwInitEvents();
-setTimeout(() => {        // ← 살짝 지연
-  cwAnimateRender();
-}, 50);
+cwInitEvents();
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    cwAnimateRender();
+  });
+});
 });
 /* ===== 클래스별 우승 분석 차트 끝 ===== */
 
