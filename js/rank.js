@@ -3026,27 +3026,27 @@ cwCurrentType = "op";
 
 cwInitEvents();
 
+const label = document.getElementById("cwSelectLabel");
+  if(label) label.textContent = "워로드";
+ 
+ cwInitEvents();
 
-// 모달이 열릴 때 캔버스 크기를 확보한 후 그래프를 다시 그리는 안전 장치 (변수명 충돌 해결 버전)
- const fixPieChartBtn = document.getElementById("openClassWinBtn");
- const fixPieChartModal = document.getElementById("classWinModal");
-
- if (fixPieChartBtn && fixPieChartModal) {
-  fixPieChartBtn.addEventListener("click", () => {
-   // 1. 먼저 숨겨진 모달을 화면에 띄워 캔버스 픽셀 크기를 확보합니다.
-   fixPieChartModal.style.display = "flex"; 
-   
-   // 2. 브라우저가 크기 변화를 완전히 인지한 직후 캔버스에 차트를 그립니다.
-   requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-     if (typeof cwAnimateRender === "function") {
-      cwAnimateRender();
-     }
-    });
-   });
+ // ====== [최종 해결책] 중복 충돌 없는 차트 강제 재생성 안전장치 ======
+ const finalChartBtn = document.getElementById("openClassWinBtn");
+ if (finalChartBtn) {
+  finalChartBtn.addEventListener("click", () => {
+   // 브라우저가 모달 창을 다 열고 캔버스 크기를 100% 인지할 때까지 미세한 타이밍(50ms)을 줍니다.
+   setTimeout(() => {
+    if (typeof cwAnimateRender === "function") {
+     cwAnimateRender(); // 이제 정상 크기가 된 캔버스 위에 그래프를 강제로 새로 그립니다!
+    }
+   }, 50);
   });
  }
+ // ==================================================================
 
+ });
+ /* ===== 클래스별 우승 분석 차트 끝 ===== */
 
 
 });
