@@ -3027,16 +3027,16 @@ cwCurrentType = "op";
 cwInitEvents();
 
 
-// 모달이 열릴 때 캔버스 크기를 확보한 후 그래프를 다시 그리는 안전 장치
- const openClassWinBtn = document.getElementById("openClassWinBtn"); // 실제 모달 여는 버튼 ID
- const classWinModal = document.getElementById("classWinModal");     // 모달 창 ID
+// 모달이 열릴 때 캔버스 크기를 확보한 후 그래프를 다시 그리는 안전 장치 (변수명 충돌 해결 버전)
+ const fixPieChartBtn = document.getElementById("openClassWinBtn");
+ const fixPieChartModal = document.getElementById("classWinModal");
 
- if (openClassWinBtn && classWinModal) {
-  openClassWinBtn.addEventListener("click", () => {
-   // 1. 먼저 숨겨진 모달을 화면에 띄워 캔버스 픽셀 크기(width, height)를 확보합니다.
-   classWinModal.style.display = "flex"; 
+ if (fixPieChartBtn && fixPieChartModal) {
+  fixPieChartBtn.addEventListener("click", () => {
+   // 1. 먼저 숨겨진 모달을 화면에 띄워 캔버스 픽셀 크기를 확보합니다.
+   fixPieChartModal.style.display = "flex"; 
    
-   // 2. 브라우저가 변경된 크기를 완전히 인지한 직후 캔버스에 차트를 그립니다.
+   // 2. 브라우저가 크기 변화를 완전히 인지한 직후 캔버스에 차트를 그립니다.
    requestAnimationFrame(() => {
     requestAnimationFrame(() => {
      if (typeof cwAnimateRender === "function") {
@@ -3046,7 +3046,6 @@ cwInitEvents();
    });
   });
  }
-
 
 
 
