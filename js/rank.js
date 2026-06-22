@@ -3031,23 +3031,6 @@ const label = document.getElementById("cwSelectLabel");
  
  cwInitEvents();
 
- // ====== [최종 해결책] 중복 충돌 없는 차트 강제 재생성 안전장치 ======
- const finalChartBtn = document.getElementById("openClassWinBtn");
- if (finalChartBtn) {
-  finalChartBtn.addEventListener("click", () => {
-   // 브라우저가 모달 창을 다 열고 캔버스 크기를 100% 인지할 때까지 미세한 타이밍(50ms)을 줍니다.
-   setTimeout(() => {
-    if (typeof cwAnimateRender === "function") {
-     cwAnimateRender(); // 이제 정상 크기가 된 캔버스 위에 그래프를 강제로 새로 그립니다!
-    }
-   }, 50);
-  });
- }
- // ==================================================================
-
- });
- /* ===== 클래스별 우승 분석 차트 끝 ===== */
-
 
 });
 /* ===== 클래스별 우승 분석 차트 끝 ===== */
