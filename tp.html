@@ -21,13 +21,11 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6403244403995841"
      crossorigin="anonymous"></script>
 
-
   <!-- favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="https://loaviewer.github.io/img/favicon.png" />
   <link rel="apple-touch-icon" href="https://loaviewer.github.io/img/favicon.png" />
 
-<link rel="stylesheet" href="css/rank.css">
-
+  <link rel="stylesheet" href="css/rank.css">
 
 </head>
 <body>
@@ -116,13 +114,11 @@
               <button class="ac-toggle-btn" data-m="16">16인</button>
             </div>
           </div>
-         
-<label class="ac-input-label" for="ac-price">거래소 가격</label>
-<div class="ac-input-wrap">
-  <input class="ac-input" type="text" id="ac-price" placeholder="골드 입력" />
-  <span class="ac-input-suffix">G</span>
-</div>
-
+          <label class="ac-input-label" for="ac-price">거래소 가격</label>
+          <div class="ac-input-wrap">
+            <input class="ac-input" type="text" id="ac-price" placeholder="골드 입력" />
+            <span class="ac-input-suffix">G</span>
+          </div>
           <div class="ac-breakeven">
             <div class="ac-breakeven-top">
               <div class="ac-breakeven-label">손익 분기점</div>
@@ -244,7 +240,7 @@
                 <button class="mini-tab disabled" id="modeFavorBtn">호감 직각</button>
               </div>
             </div>
-                        <div class="period-tabs" style="margin-bottom:18px;">
+            <div class="period-tabs" style="margin-bottom:18px;">
               <button class="mini-tab" id="periodWeekBtn">
                 <span>주간</span>
                 <span class="tab-date" id="weekTabDate"></span>
@@ -285,10 +281,11 @@
     </div>
   </div>
   <!-- 배틀 모달 -->
-    <div class="flow-modal" id="battleModal">
+  <div class="flow-modal" id="battleModal">
     <div class="flow-card" style="width:min(980px,100%); text-align:center;">
       <div class="battle-sound-wrap">
         <div class="battle-sound-icon" id="battleSoundIcon">🔊</div>
+        <label for="battleVolumeSlider" class="sr-only">볼륨 조절</label>
         <input class="battle-sound-slider" type="range" id="battleVolumeSlider" min="0" max="100" step="1" value="50">
         <div class="battle-sound-value" id="battleVolumeValue">50%</div>
       </div>
@@ -320,7 +317,7 @@
             <path d="M54 210 L72 210" class="gold-thin"/><path d="M226 210 L208 210" class="gold-thin"/>
           </svg>
           <div class="choice-gloss"></div>
-                      <div class="battle-choice-content">
+          <div class="battle-choice-content">
             <div class="battle-aura-outer" id="leftAuraOuter">
               <div class="battle-aura-glow"></div>
               <div class="battle-aura-box">
@@ -331,7 +328,7 @@
             </div>
             <div class="battle-choice-name" id="leftChoiceName">직각명</div>
             <div class="battle-choice-class" id="leftChoiceClass">직업명</div>
-          </div> 
+          </div>
         </button>
         <button id="rightChoiceBtn" class="battle-choice">
           <svg class="card-frame-svg" viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg">
@@ -346,7 +343,7 @@
             <path d="M54 210 L72 210" class="gold-thin"/><path d="M226 210 L208 210" class="gold-thin"/>
           </svg>
           <div class="choice-gloss"></div>
-                      <div class="battle-choice-content">
+          <div class="battle-choice-content">
             <div class="battle-aura-outer" id="rightAuraOuter">
               <div class="battle-aura-glow"></div>
               <div class="battle-aura-box">
@@ -567,13 +564,13 @@
   <div class="history-modal-card">
     <button class="modal-close" id="closeHistoryRateBtn">×</button>
     <div class="history-modal-header">
-  <div class="history-modal-header-left">
-    <span class="history-modal-header-icon">📊</span>
-    <span class="history-modal-header-title">승률 변화 그래프</span>
-    <span class="history-modal-header-sep">:</span>
-    <span class="history-modal-header-desc">선택한 직업 각인의 일별 승률 추이를 비교할 수 있습니다.</span>
-  </div>
-</div>
+      <div class="history-modal-header-left">
+        <span class="history-modal-header-icon">📊</span>
+        <span class="history-modal-header-title">승률 변화 그래프</span>
+        <span class="history-modal-header-sep">:</span>
+        <span class="history-modal-header-desc">선택한 직업 각인의 일별 승률 추이를 비교할 수 있습니다.</span>
+      </div>
+    </div>
     <div class="history-modal-inner">
       <aside class="history-left-panel">
         <div class="history-left-head">
@@ -582,9 +579,10 @@
           <div class="history-selected-tags" id="historySelectedTags"></div>
         </div>
         <div class="history-search-box">
-  <input type="text" id="historySearchInput" placeholder="각인 검색...">
-  <button type="button" class="history-reset-btn" id="historyResetBtn" aria-label="선택 초기화">↺</button>
-</div>
+          <label for="historySearchInput" class="sr-only">각인 검색</label>
+          <input type="text" id="historySearchInput" placeholder="각인 검색...">
+          <button type="button" class="history-reset-btn" id="historyResetBtn" aria-label="선택 초기화">↺</button>
+        </div>
         <div class="history-engraving-list" id="historyEngravingList">
           <div style="padding:20px; text-align:center; color:#7a8a9f;">로딩 중...</div>
         </div>
@@ -592,28 +590,28 @@
       <section class="history-main-panel">
         <div class="history-controls">
           <div class="history-field">
-            <label>모드</label>
+            <label for="historyModeSelect">모드</label>
             <select id="historyModeSelect">
               <option value="op">OP</option>
               <option value="favor">호감</option>
             </select>
           </div>
           <div class="history-field">
-            <label>시작일</label>
+            <label for="historyStartDate">시작일</label>
             <input type="date" id="historyStartDate" min="2026-04-07">
           </div>
           <div class="history-field">
-            <label>종료일</label>
+            <label for="historyEndDate">종료일</label>
             <input type="date" id="historyEndDate" min="2026-04-07">
           </div>
-            <div class="history-field">
-  <label>단위</label>
-  <div class="history-unit-tabs" id="historyUnitTabs">
-    <button class="history-unit-btn active" data-unit="1">1일</button>
-    <button class="history-unit-btn" data-unit="2">2일</button>
-    <button class="history-unit-btn" data-unit="3">3일</button>
-  </div>
-</div>
+          <div class="history-field">
+            <label>단위</label>
+            <div class="history-unit-tabs" id="historyUnitTabs">
+              <button class="history-unit-btn active" data-unit="1">1일</button>
+              <button class="history-unit-btn" data-unit="2">2일</button>
+              <button class="history-unit-btn" data-unit="3">3일</button>
+            </div>
+          </div>
           <button class="history-confirm-btn" id="historyApplyBtn">확인</button>
         </div>
         <div class="history-notice" id="historyNoticeText">
@@ -634,16 +632,16 @@
             <p>기간 내 승률 변화</p>
             <div class="history-mini-table-wrap">
               <table>
-               <thead>
-  <tr>
-    <th>각인</th>
-    <th>클래스</th>
-    <th>시작 승률</th>
-    <th>종료 승률</th>
-    <th>승률 순위</th>
-    <th>경기 횟수</th>
-  </tr>
-</thead>
+                <thead>
+                  <tr>
+                    <th>각인</th>
+                    <th>클래스</th>
+                    <th>시작 승률</th>
+                    <th>종료 승률</th>
+                    <th>승률 순위</th>
+                    <th>경기 횟수</th>
+                  </tr>
+                </thead>
                 <tbody id="historySummaryBody">
                   <tr><td colspan="7" style="color:#7a8a9f;">조회 결과가 여기에 표시됩니다.</td></tr>
                 </tbody>
@@ -674,18 +672,19 @@
       <div class="modal-title" style="color:#fff;">문의 게시판</div>
       <div class="modal-sub" style="color:#8a7fae;">비밀번호를 설정하면 나중에 답변을 확인할 수 있습니다.</div>
       <div class="modal-divider"></div>
-  <!-- 문의 비밀번호 팝업 -->
-  <div class="modal-backdrop" id="inqPwPopup">
-    <div class="inq-pw-popup-card">
-      <div class="inq-pw-popup-title">🔒 비밀번호 입력</div>
-      <div class="inq-pw-popup-sub">이 글의 비밀번호를 입력하세요</div>
-      <input class="inq-pw-popup-input" type="text" id="inqPwPopupInput" placeholder="비밀번호" autocomplete="off" style="-webkit-text-security:disc;" />
-      <div class="inq-pw-popup-actions">
-        <button class="inq-pw-popup-cancel" id="inqPwPopupCancel">취소</button>
-        <button class="inq-pw-popup-confirm" id="inqPwPopupConfirm">확인</button>
+      <!-- 문의 비밀번호 팝업 -->
+      <div class="modal-backdrop" id="inqPwPopup">
+        <div class="inq-pw-popup-card">
+          <div class="inq-pw-popup-title">🔒 비밀번호 입력</div>
+          <div class="inq-pw-popup-sub">이 글의 비밀번호를 입력하세요</div>
+          <label for="inqPwPopupInput" class="sr-only">비밀번호</label>
+          <input class="inq-pw-popup-input" type="text" id="inqPwPopupInput" placeholder="비밀번호" autocomplete="off" style="-webkit-text-security:disc;" />
+          <div class="inq-pw-popup-actions">
+            <button class="inq-pw-popup-cancel" id="inqPwPopupCancel">취소</button>
+            <button class="inq-pw-popup-confirm" id="inqPwPopupConfirm">확인</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
       <!-- 탭: 목록 / 작성 -->
       <div class="inquiry-tabs">
         <button class="inquiry-tab active" data-tab="list">문의 목록</button>
@@ -696,14 +695,13 @@
         <div id="inquiryListContent">
           <div class="loading-text">불러오는 중...</div>
         </div>
-        <!-- 비밀번호 확인 후 내용 표시 -->
         <div id="inquiryReadResult" style="display:none;"></div>
       </div>
       <!-- 작성 탭 -->
       <div class="inquiry-panel" id="inquiryWritePanel" style="display:none;">
-                <div class="inq-secret-notice">🔒 해당 글은 자동으로 비밀글 상태가 됩니다</div>
+        <div class="inq-secret-notice">🔒 해당 글은 자동으로 비밀글 상태가 됩니다</div>
         <div class="inq-form-group">
-          <label class="inq-form-label">문의 유형</label>
+          <label class="inq-form-label" for="inqType">문의 유형</label>
           <select class="inq-form-select" id="inqType">
             <option value="오류제보">오류제보</option>
             <option value="질문하기">질문하기</option>
@@ -711,21 +709,21 @@
           </select>
         </div>
         <div class="inq-form-group">
-          <label class="inq-form-label">제목</label>
+          <label class="inq-form-label" for="inqTitle">제목</label>
           <input class="inq-form-input" type="text" id="inqTitle" placeholder="제목을 입력하세요" />
         </div>
         <div class="inq-form-group">
-          <label class="inq-form-label">내용</label>
+          <label class="inq-form-label" for="inqContent">내용</label>
           <textarea class="inq-form-textarea" id="inqContent" placeholder="문의 내용을 작성해 주세요"></textarea>
         </div>
         <div class="inq-form-row">
           <div class="inq-form-group">
-            <label class="inq-form-label">비밀번호 🔒</label>
-                        <input class="inq-form-input" type="text" id="inqPw1" placeholder="4~8자리" autocomplete="off" style="-webkit-text-security:disc;" />
+            <label class="inq-form-label" for="inqPw1">비밀번호 🔒</label>
+            <input class="inq-form-input" type="text" id="inqPw1" placeholder="4~8자리" autocomplete="off" style="-webkit-text-security:disc;" />
             <div class="inq-form-hint">답변 확인 시 필요합니다</div>
           </div>
           <div class="inq-form-group">
-            <label class="inq-form-label">비밀번호 확인</label>
+            <label class="inq-form-label" for="inqPw2">비밀번호 확인</label>
             <input class="inq-form-input" type="text" id="inqPw2" placeholder="다시 입력" autocomplete="off" style="-webkit-text-security:disc;" />
           </div>
         </div>
@@ -737,7 +735,7 @@
       </div>
     </div>
   </div>
-   <!-- OP 승률표 모달 -->
+  <!-- OP 승률표 모달 -->
   <div class="modal-backdrop" id="opRateModal">
     <div class="modal-card oprate-modal-card">
       <div class="oprate-royal-ornament">
@@ -774,7 +772,7 @@
       </div>
       <div class="modal-top-label">OP TOURNAMENT</div>
       <div class="modal-title" style="color:#4bd3ff;">OP직각 승률표 변화 📈</div>
-            <div class="modal-sub" id="opRateSub">최근 10일간 1:1 승률 순위</div>
+      <div class="modal-sub" id="opRateSub">최근 10일간 1:1 승률 순위</div>
       <div class="oprate-compare-wrap">
         <div class="oprate-compare-base">밸패전 데이터 · 26.04.12 ~ 26.04.22</div>
         <div class="oprate-compare-vs">VS</div>
