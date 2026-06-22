@@ -6823,8 +6823,7 @@ body.class-win-modal-open{
       border: 0;
     }
 
-
-/* ===== classWin 강제 보정 ===== */
+/* ===== classWin 최종 고정 ===== */
 #classWinModal .cw-body{
   display:grid !important;
   grid-template-columns:minmax(0,1fr) 280px !important;
@@ -6864,10 +6863,11 @@ body.class-win-modal-open{
 }
 
 #classWinModal .cw-select-dropdown{
-  display:none;
+  display:none !important;
 }
+
 #classWinModal .cw-select-dropdown.show{
-  display:block;
+  display:block !important;
 }
 
 @media (max-width:980px){
@@ -6879,7 +6879,7 @@ body.class-win-modal-open{
     width:360px !important;
     height:360px !important;
     max-width:360px !important;
-    flex-basis:360px !important;
+    flex:0 0 360px !important;
   }
 }
 
@@ -6888,6 +6888,6 @@ body.class-win-modal-open{
     width:300px !important;
     height:300px !important;
     max-width:300px !important;
-    flex-basis:300px !important;
+    flex:0 0 300px !important;
   }
 }
