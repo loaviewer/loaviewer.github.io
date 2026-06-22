@@ -2818,6 +2818,8 @@ function cwAnimateEntry(data){
 
   const canvas = document.getElementById("cwPieCanvas");
   if(!canvas) return;
+ canvas.width = 1000;
+ canvas.height = 1000;
   const ctx = canvas.getContext("2d");
   const w = canvas.width, h = canvas.height;
   const cx = w/2, cy = h/2;
