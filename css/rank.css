@@ -34,45 +34,56 @@
       border-right: 1px solid rgba(255,255,255,0.06);
     }
 
-    .switch-wrap {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 999px;
-      padding: 4px;
-      gap: 2px;
-      margin-bottom: 20px;
-    }
-
-    .switch-wrap a {
-  flex: 1;
-  text-decoration: none;
-  text-align: center;
-  padding: 10px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 900;
-  transition: 0.2s ease;
-  color: #7a8da8;
-
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
+   
+.switch-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #1a1c24;
+    border: 1px solid #252836;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 2px;
+    margin-bottom: 20px;
 }
 
-    .switch-wrap a.active {
-  background: linear-gradient(135deg, #7a8cff, #4bd3ff);
-  color: #08111e;
-  box-shadow: 0 4px 14px rgba(78,168,255,0.28);
-  animation: switchActiveAura 5s ease-in-out infinite;
+.switch-wrap a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    text-decoration: none;
+    text-align: center;
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 900;
+    color: #5a6178;
+    transition: .2s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
 }
 
-    .switch-wrap a:not(.active):hover {
-      color: #c6d4e8;
-      background: rgba(255,255,255,0.06);
-    }
+.switch-wrap a:not(.active):hover {
+    color: #c6d4e8;
+    background: rgba(255,255,255,0.06);
+}
+
+.switch-wrap a.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(99,102,241,.30);
+    animation: switchActiveAura 5s ease-in-out infinite;
+}
+
+
+
+
+
 
     .mini-label {
       font-size: 12px;
@@ -5233,37 +5244,7 @@ body {
     background: #0d0e13 !important;
 }
 
-/* 3) 상단 토글 버튼 */
-.switch-wrap {
-    display: flex !important;
-    gap: 4px !important;
-    padding: 4px !important;
-    border-radius: 10px !important;
-    background: #1a1c24 !important;
-    border: 1px solid #252836 !important;
-}
 
-.switch-wrap a {
-    flex: 1 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 36px !important;
-    text-decoration: none !important;
-    border-radius: 8px !important;
-    font-size: 12px !important;
-    font-weight: 900 !important;
-    color: #5a6178 !important;
-    background: transparent !important;
-    transition: .2s !important;
-    white-space: nowrap !important;
-}
-
-.switch-wrap a.active {
-    background: linear-gradient(135deg, #3b82f6, #6366f1) !important;
-    color: #fff !important;
-    box-shadow: 0 2px 12px rgba(99,102,241,.25) !important;
-}
 
 /* 4) 좌측 상단 텍스트 */
 .mini-label {
@@ -5956,10 +5937,6 @@ body {
     gap: 0 !important;
 }
 
-/* 2. 상단 토글 버튼 래퍼 */
-.switch-wrap {
-    margin-bottom: 20px !important;
-}
 
 /* 3. 미니 라벨 */
 .mini-label {
