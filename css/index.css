@@ -28,6 +28,9 @@
     border-right: 1px solid #1e2030;
 }
 
+/* =========================================
+   상단 토글 버튼 최종본 - index
+   ========================================= */
 .switch-wrap {
     display: flex;
     align-items: center;
@@ -40,10 +43,7 @@
     margin-bottom: 20px;
 }
 
-
-
-
-     .switch-wrap a {
+.switch-wrap a {
     flex: 1;
     display: flex;
     align-items: center;
@@ -57,17 +57,116 @@
     line-height: 1;
     font-weight: 900;
     color: #5a6178;
-    transition: .2s;
+    transition: .2s ease;
     white-space: nowrap;
     position: relative;
     overflow: hidden;
     isolation: isolate;
 }
 
-        .switch-wrap a.active {
-            background: linear-gradient(135deg, #3b82f6, #6366f1);
-            color: #fff; box-shadow: 0 2px 12px rgba(99,102,241,.3);
-        }
+.switch-wrap a:not(.active):hover {
+    color: #c6d4e8;
+    background: rgba(255,255,255,0.06);
+}
+
+.switch-wrap a.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(99,102,241,.30);
+    animation: switchActiveAura 5s ease-in-out infinite;
+}
+
+/* ===== active 버튼 유리빛 강조 ===== */
+.switch-wrap a.active::before {
+    content: "";
+    position: absolute;
+    inset: -45%;
+    border-radius: 999px;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at center,
+            rgba(255,255,255,0.22) 0%,
+            rgba(255,255,255,0.10) 18%,
+            rgba(75,211,255,0.10) 34%,
+            transparent 62%);
+    opacity: 0;
+    transform: scale(0.55);
+    animation: switchGlowPulse 5s ease-in-out infinite;
+}
+
+.switch-wrap a.active::after {
+    content: "";
+    position: absolute;
+    top: -35%;
+    left: -130%;
+    width: 72%;
+    height: 190%;
+    border-radius: 999px;
+    pointer-events: none;
+    background: linear-gradient(
+        115deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.05) 25%,
+        rgba(255,255,255,0.22) 48%,
+        rgba(255,255,255,0.06) 68%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: rotate(18deg);
+    opacity: 0;
+    animation: switchGlassSweep 5s linear infinite;
+}
+
+@keyframes switchGlowPulse {
+    0%, 80%, 100% {
+        opacity: 0;
+        transform: scale(0.55);
+    }
+    86% {
+        opacity: 0.28;
+        transform: scale(1.02);
+    }
+    92% {
+        opacity: 0.10;
+        transform: scale(1.25);
+    }
+}
+
+@keyframes switchGlassSweep {
+    0%, 80% {
+        left: -130%;
+        opacity: 0;
+    }
+    84% {
+        opacity: 0.75;
+    }
+    96% {
+        left: 145%;
+        opacity: 0.35;
+    }
+    100% {
+        left: 145%;
+        opacity: 0;
+    }
+}
+
+@keyframes switchActiveAura {
+    0%, 80%, 100% {
+        box-shadow: 0 2px 12px rgba(99,102,241,.30);
+    }
+    88% {
+        box-shadow:
+            0 2px 12px rgba(99,102,241,.34),
+            0 0 10px rgba(120,210,255,0.16),
+            0 0 18px rgba(120,210,255,0.08);
+    }
+    94% {
+        box-shadow:
+            0 2px 12px rgba(99,102,241,.30),
+            0 0 6px rgba(120,210,255,0.10),
+            0 0 12px rgba(120,210,255,0.05);
+    }
+}
+
 
         .mini-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #4a7cff; margin-bottom: 8px; }
 
@@ -1725,8 +1824,4 @@
     .hero {
         font-size: 24px;
     }
-}
-
-
-
-   
+}  
