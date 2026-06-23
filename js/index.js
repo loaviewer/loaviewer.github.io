@@ -1706,10 +1706,9 @@ blood_dps: "9.29억",
         });
 
         // 가이드 모달
-        openGuideBtn.addEventListener("click", () => {
-            trackEvent("/이벤트/가이드/DPS보는방법", "가이드 클릭 - DPS 보는 방법");
-            openGuideModal();
-        });
+     openGuideBtn.addEventListener("click", () => {
+    openGuideModal();
+});
 
         closeGuideBtn.addEventListener("click", closeGuideModal);
 
