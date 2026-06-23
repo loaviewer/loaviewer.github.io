@@ -1160,9 +1160,9 @@ blood_dps: "9.29억",
         /* =============================================
            EX 전용 카드 HTML
            ============================================= */
-        function toggleExAccordion(card) {
-            card.classList.toggle("ex-active");
-        }
+        window.toggleExAccordion = function(card) {
+    card.classList.toggle("ex-active");
+};
 
         function makeExCard(opt) {
             return `
