@@ -5388,7 +5388,6 @@ body {
 
 /* history / op rate 래퍼 안쪽도 카드처럼 */
 .historyrate-btn-wrap {
-.historyrate-btn-wrap {
     border-top: none !important;
 }
 
@@ -6318,18 +6317,8 @@ body {
 body.class-win-modal-open{
   overflow:hidden !important;
 }
-  
-#classWinModal .modal-card{
-  width:min(1100px,100%);
-  max-height:none;
-  overflow:visible !important;
-  padding:24px 24px 20px;
-  background:#13151c!important;
-  border:1px solid #252836!important;
-  border-radius:24px!important;
-  box-shadow:0 30px 80px rgba(0,0,0,.45)!important;
-  position:relative;
-}
+
+
 
   #classWinModal{
   overflow-y:auto;
@@ -6656,213 +6645,14 @@ body.class-win-modal-open{
   }
 }
 
-/* ===== 클래스 선택 대형 패널 드롭다운 ===== */
-.cw-select-dropdown{
-  position:absolute;
-  top:calc(100% + 8px);
-  left:0;
-  right:auto;
-  width:100% !important;
-  min-width:100%;
-  max-width:none !important;
-  border-radius:16px;
-  border:1px solid #2b3145;
-  background:linear-gradient(180deg,#171b25 0%,#11151d 100%);
-  box-shadow:0 18px 48px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.03) inset;
-  z-index:999;
-  display:none;
-  max-height:360px;
-  overflow-y:auto;
-  overflow-x:hidden;
-  padding:14px;
-  overscroll-behavior:contain;
-}
 
-.cw-select-dropdown.show{
-  display:block;
-}
-
-.cw-job-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
-
-.cw-job-group{
-  border-radius:14px;
-  background:rgba(255,255,255,.025);
-  border:1px solid rgba(255,255,255,.06);
-  overflow:hidden;
-  min-width:0;
-}
-
-.cw-job-group-title{
-  padding:10px 12px;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:#c4b5fd;
-  background:linear-gradient(180deg,rgba(167,139,250,.14),rgba(167,139,250,.05));
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-.cw-job-list{
-  padding:8px;
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.cw-select-option{
-  position:relative;
-  padding:9px 12px 9px 20px;
-  font-size:13px;
-  font-weight:800;
-  color:#9ca3af;
-  cursor:pointer;
-  border-radius:10px;
-  transition:.14s ease;
-  line-height:1.35;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.cw-select-option::before{
-  content:"•";
-  position:absolute;
-  left:8px;
-  top:50%;
-  transform:translateY(-50%);
-  color:rgba(255,255,255,.18);
-  font-size:11px;
-  font-weight:900;
-}
-
-.cw-select-option:hover{
-  background:#1e2030;
-  color:#fff;
-}
-
-.cw-select-option.cw-active{
-  color:#60a5fa;
-  background:rgba(59,130,246,.10);
-  box-shadow:0 0 0 1px rgba(59,130,246,.18) inset;
-}
-
-.cw-select-option.cw-active::before{
-  color:#60a5fa;
-}
-
-.cw-select-dropdown::-webkit-scrollbar{
-  width:6px;
-}
-
-.cw-select-dropdown::-webkit-scrollbar-thumb{
-  background:rgba(255,255,255,.10);
-  border-radius:999px;
-}
-
-.cw-select-dropdown::-webkit-scrollbar-track{
-  background:transparent;
-}
-
-@media (max-width:980px){
-  .cw-select-dropdown{
-       max-height:400px;
-  }
-
-  .cw-job-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-@media (max-width:520px){
-  .cw-select-dropdown{
-        padding:10px;
-    max-height:360px;
-    border-radius:14px;
-  }
-
-  .cw-job-grid{
-    gap:10px;
-  }
-
-  .cw-job-group-title{
-    padding:9px 11px;
-    font-size:10px;
-  }
-
-  .cw-select-option{
-    padding:9px 12px 9px 18px;
-    font-size:12px;
-  }
-}
-
-
-@media (max-width:768px){
-  #classWinModal{
-    align-items:flex-start !important;
-    padding-top:calc(env(safe-area-inset-top, 0px) + 18px) !important;
-    padding-bottom:16px !important;
-  }
-
-  #classWinModal .modal-card{
-    margin-top:0 !important;
-  }
-
-  #classWinModal #classWinContent{
-    padding-top:10px !important;
-  }
-
-  .cw-chart-header{
-    padding-top:4px;
-  }
-}
-
-
-
-/* 분리 사이트 오류 강제 덮어쓰기 */
-#classWinModal .cw-pie-container {
-  width: 500px !important;
-  height: 500px !important;
-  max-width: 500px !important;
-  flex: 0 0 500px !important;
-}
-
-#classWinModal .cw-pie-container canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
-}
-
-/* 드롭다운 숨김 강제 */
-#classWinModal .cw-select-dropdown {
-  display: none !important;
-}
-
-/* 드롭다운 열림 강제 */
-#classWinModal .cw-select-dropdown.show {
-  display: block !important;
-}
-
-/* 모바일 크기 강제 */
-@media (max-width: 980px) {
-  #classWinModal .cw-pie-container {
-    width: 360px !important;
-    height: 360px !important;
-    max-width: 360px !important;
-    flex: 0 0 360px !important;
-  }
-}
-@media (max-width: 520px) {
-  #classWinModal .cw-pie-container {
-    width: 300px !important;
-    height: 300px !important;
-    max-width: 300px !important;
-    flex: 0 0 300px !important;
-  }
-}
-
-    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
