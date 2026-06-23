@@ -1,3 +1,26 @@
+// 개인정보처리방침 팝업 제어
+const privacyModal = document.getElementById('privacyModal');
+const openPrivacyBtn = document.getElementById('openPrivacy');
+const closePrivacyBtn = document.getElementById('closePrivacy');
+
+if(openPrivacyBtn && privacyModal) {
+    openPrivacyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        privacyModal.style.display = 'flex';
+    });
+}
+if(closePrivacyBtn && privacyModal) {
+    closePrivacyBtn.addEventListener('click', () => {
+        privacyModal.style.display = 'none';
+    });
+}
+window.addEventListener('click', (e) => {
+    if (e.target === privacyModal) {
+        privacyModal.style.display = 'none';
+    }
+});
+
+
 
 
 
@@ -1727,26 +1750,3 @@ blood_dps: "9.29억",
         initCalendar();
         loadCSV();
         acUpdate();
-    
-       
-// 개인정보처리방침 팝업 제어
-const privacyModal = document.getElementById('privacyModal');
-const openPrivacyBtn = document.getElementById('openPrivacy');
-const closePrivacyBtn = document.getElementById('closePrivacy');
-
-if(openPrivacyBtn && privacyModal) {
-    openPrivacyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        privacyModal.style.display = 'flex';
-    });
-}
-if(closePrivacyBtn && privacyModal) {
-    closePrivacyBtn.addEventListener('click', () => {
-        privacyModal.style.display = 'none';
-    });
-}
-window.addEventListener('click', (e) => {
-    if (e.target === privacyModal) {
-        privacyModal.style.display = 'none';
-    }
-});
