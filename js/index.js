@@ -238,8 +238,8 @@ window.addEventListener('click', (e) => {
                     {
                         theme: "b-gold", title: "종막 하드", node: "1730",
                         rows: [
-                            { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2370 - 3170" },
-                            { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "4200 - 5625" }
+                            { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
+                            { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
                         ],
                         gold: "52,000", bindGold: "", total: ""
                     },
@@ -277,8 +277,8 @@ window.addEventListener('click', (e) => {
                     {
                         theme: "b-gold", title: "종막 하드", node: "1730",
                         rows: [
-                            { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2370 - 3170" },
-                            { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "4200 - 5625" }
+                            { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
+                            { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
                         ],
                         gold: "52,000", bindGold: "", total: ""
                     },
@@ -316,8 +316,8 @@ window.addEventListener('click', (e) => {
                     {
                         theme: "b-gold", title: "종막 하드", node: "1730",
                         rows: [
-                            { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2370 - 3170" },
-                            { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "4200 - 5625" }
+                            { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
+                            { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
                         ],
                         gold: "52,000", bindGold: "", total: ""
                     },
