@@ -186,11 +186,23 @@
             </p>
 
             <div class="link-row">
-                <a class="link-btn" href="./">메인으로 돌아가기</a>
+               <a class="link-btn" href="#" onclick="goBackSmart(); return false;">이전 페이지로 돌아가기</a>
                 <a class="link-btn" href="./about">사이트 소개</a>
                 <a class="link-btn" href="./guide">이용 가이드</a>
             </div>
         </div>
     </div>
+    <script>
+function goBackSmart() {
+    const ref = document.referrer;
+    const sameSite = ref && ref.startsWith(window.location.origin);
+
+    if (sameSite) {
+        window.history.back();
+    } else {
+        window.location.href = "./";
+    }
+}
+</script>
 </body>
 </html>
