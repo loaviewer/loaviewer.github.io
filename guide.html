@@ -1,1 +1,203 @@
-123
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용 가이드 | 로아뷰</title>
+    <meta name="description" content="로아뷰 이용 가이드입니다. 강투컷, 1인분, 잔혈컷, 클리어 타임 입력 방식과 DPS 계산 기준을 안내합니다.">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0b0d12;
+            color: #d7deea;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            line-height: 1.8;
+        }
+
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .card {
+            background: #111320;
+            border: 1px solid #1a1d2e;
+            border-radius: 18px;
+            padding: 28px 24px;
+            box-shadow: 0 16px 36px rgba(0,0,0,.24);
+        }
+
+        .top-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #4a7cff;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin: 0 0 18px;
+            font-size: 30px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        h2 {
+            margin: 28px 0 10px;
+            font-size: 18px;
+            font-weight: 900;
+            color: #f3f6fb;
+        }
+
+        p {
+            margin: 0 0 14px;
+            color: #97a4ba;
+            font-size: 14px;
+        }
+
+        ul, ol {
+            margin: 0 0 16px 20px;
+            padding: 0;
+            color: #97a4ba;
+            font-size: 14px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .point {
+            color: #f7ca54;
+            font-weight: 800;
+        }
+
+        .subpoint {
+            color: #7aa2ff;
+            font-weight: 800;
+        }
+
+        .link-row {
+            margin-top: 28px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+            padding: 0 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 800;
+            border: 1px solid #283146;
+            background: #171b27;
+            color: #d7deea;
+        }
+
+        .link-btn:hover {
+            background: #1c2130;
+        }
+
+        @media (max-width: 768px) {
+            .wrap {
+                padding: 20px 14px 40px;
+            }
+
+            .card {
+                padding: 22px 18px;
+                border-radius: 14px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 16px;
+            }
+
+            p, li {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="card">
+            <div class="top-label">LOA VIEWER · GUIDE</div>
+            <h1>이용 가이드</h1>
+
+            <p>
+                로아뷰는 로스트아크 레이드에서 본인의 딜지분과 DPS를 보다 쉽게 확인할 수 있도록 도와주는 계산 사이트입니다.
+                아래 안내를 참고하면 세르카, 지평의 성당, 가디언 토벌 페이지를 더욱 정확하게 활용할 수 있습니다.
+            </p>
+
+            <h2>1. 강투컷, 1인분, 잔혈컷이란?</h2>
+            <p>
+                사이트에서 제공하는 기준은 파티 내 딜지분을 바탕으로 계산됩니다.
+                일반적으로 <span class="point">강투컷</span>은 높은 기여도를 보여주는 기준선,
+                <span class="point">1인분</span>은 파티 내 평균적인 역할 수행 기준,
+                <span class="point">잔혈컷</span>은 매우 높은 딜지분을 달성한 기준으로 이해하면 됩니다.
+            </p>
+
+            <h2>2. 클리어 타임 입력이 중요한 이유</h2>
+            <p>
+                세르카와 지평의 성당은 기본적으로 광폭 시간 기준을 참고하지만,
+                실제 전투에서는 더 빠르게 클리어하는 경우가 많습니다.
+                로아뷰의 <span class="subpoint">CLEAR TIME</span> 입력 기능은
+                사용자가 실제 클리어 시간을 직접 반영할 수 있도록 설계되어 있습니다.
+            </p>
+
+            <p>
+                클리어 타임이 짧아질수록 같은 딜지분이라도 요구되는 DPS는 올라가므로,
+                실제 전투 체감과 가장 가까운 값을 보려면 가능한 한 실전 클리어 시간을 입력하는 것이 좋습니다.
+            </p>
+
+            <h2>3. 정밀 계산 사용 방법</h2>
+            <ol>
+                <li>세르카, 지평의 성당, 가디언 토벌 중 원하는 콘텐츠를 선택합니다.</li>
+                <li>난이도와 관문, 또는 보스를 선택합니다.</li>
+                <li>우측 또는 상단의 클리어 시간 영역에 분과 초를 입력합니다.</li>
+                <li>표에 표시되는 딜지분별 피해량과 DPS를 확인합니다.</li>
+                <li>강투컷, 1인분, 잔혈컷 요약 카드를 통해 빠르게 기준을 비교합니다.</li>
+            </ol>
+
+            <h2>4. 간편보기 페이지 안내</h2>
+            <p>
+                레벨별 잔혈컷 간편보기는 1710부터 1750까지의 주요 레이드 정보를 빠르게 훑어볼 수 있는 요약형 페이지입니다.
+                이 페이지에서는 입장 가능한 레이드, 관문별 기준, 보상 정보를 한눈에 확인할 수 있으며,
+                세부 계산보다 빠른 참고를 목적으로 사용할 수 있습니다.
+            </p>
+
+            <h2>5. 경매 계산기 사용 방법</h2>
+            <p>
+                경매 계산기는 거래소 가격을 기준으로 손익 분기점과 추천 입찰가를 계산하는 보조 기능입니다.
+                4인, 8인, 16인 기준을 선택한 뒤 가격을 입력하면,
+                현재 입찰이 이득인지 손해인지 빠르게 판단할 수 있습니다.
+            </p>
+
+            <h2>6. 참고 사항</h2>
+            <ul>
+                <li>일부 보상 정보와 수치는 업데이트 시점에 따라 변경될 수 있습니다.</li>
+                <li>데이터는 실제 플레이 기록과 관리 중인 시트 기반 정보에 따라 갱신됩니다.</li>
+                <li>보스 체력, 에스더 데미지, 일부 EX 콘텐츠 수치는 추정값이 포함될 수 있습니다.</li>
+            </ul>
+
+            <div class="link-row">
+                <a class="link-btn" href="./index.html">메인으로 돌아가기</a>
+                <a class="link-btn" href="./about.html">사이트 소개</a>
+                <a class="link-btn" href="./privacy.html">개인정보처리방침</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
