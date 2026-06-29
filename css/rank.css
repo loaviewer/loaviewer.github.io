@@ -6642,3 +6642,159 @@ body.class-win-modal-open{
       clip: rect(0,0,0,0);
       border: 0;
     }
+
+
+/* ===== DPS 계산기 기준 가이드 버튼 통일 ===== */
+.guide-trigger-wrap {
+    margin-top: 10px !important;
+}
+
+.guide-trigger {
+    width: 100% !important;
+    border: 1px solid #252836 !important;
+    background: #1a1c24 !important;
+    border-radius: 14px !important;
+    padding: 15px 16px !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    transition: .2s !important;
+    color: #e5e7eb !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    font-size: 15px !important;
+}
+
+.guide-trigger:hover {
+    border-color: #3b82f6 !important;
+    background: #1d2130 !important;
+}
+
+.guide-small {
+    display: block !important;
+    font-size: 10px !important;
+    letter-spacing: 1.5px !important;
+    color: #4a7cff !important;
+    text-transform: uppercase !important;
+    margin-bottom: 6px !important;
+    font-weight: 800 !important;
+}
+
+.guide-main {
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+}
+
+.guide-accent {
+    color: #f7ca54 !important;
+}
+
+
+
+
+/* ========================================================
+   DPS 계산기(메인)와 외곽/사이드바 100% 동기화 (최종 오버라이드)
+======================================================== */
+
+/* 1. 기본 폰트 & 배경 */
+body {
+    background: #0b0d12 !important;
+    color: #e5e7eb !important;
+    font-family: 'Inter', 'Malgun Gothic', sans-serif !important;
+    min-height: 100vh !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+}
+
+/* 2. 바깥쪽 큰 사각형 틀 */
+.app {
+    width: min(1480px, calc(100% - 20px)) !important;
+    margin: 20px auto !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+    border: 1px solid #1a1d2e !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .5) !important;
+    background: transparent !important;
+}
+
+/* 3. 사이드바와 메인을 나누는 비율 (300px) */
+.workspace {
+    display: grid !important;
+    grid-template-columns: 300px 1fr !important;
+    min-height: 100vh !important;
+}
+
+/* 4. 사이드바 배경 및 여백 */
+.sidebar {
+    background: #0f1019 !important;
+    border-right: 1px solid #1a1d2e !important;
+    padding: 28px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+}
+
+/* 5. 사이드바 텍스트 폰트/크기 동기화 */
+.sidebar .mini-label {
+    font-size: 10px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    color: #4a7cff !important;
+    font-weight: 800 !important;
+    margin-bottom: 6px !important;
+}
+
+.sidebar .hero {
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+    line-height: 1.15 !important;
+    margin-bottom: 8px !important;
+}
+
+.sidebar .muted {
+    font-size: 12px !important;
+    color: #4a5568 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important; /* DPS처럼 여백 제거 */
+}
+
+/* 6. 안내 버튼 (가이드 트리거) 동기화 */
+.guide-trigger,
+#openGuideBtn {
+    width: 100% !important;
+    border: 1px solid #252836 !important;
+    background: #1a1c24 !important;
+    border-radius: 14px !important;
+    padding: 15px 16px !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    transition: .2s !important;
+    color: #e5e7eb !important;
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+}
+
+.guide-trigger:hover,
+#openGuideBtn:hover {
+    border-color: #3b82f6 !important;
+    background: #1d2130 !important;
+}
+
+.guide-trigger .guide-small,
+#openGuideBtn .guide-small {
+    display: block !important;
+    font-size: 10px !important;
+    letter-spacing: 1.5px !important;
+    color: #4a7cff !important;
+    text-transform: uppercase !important;
+    margin-bottom: 6px !important;
+    font-weight: 800 !important;
+}
+
+/* 버튼 안의 메인 글씨 */
+#openGuideBtn > span:last-child {
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+}
