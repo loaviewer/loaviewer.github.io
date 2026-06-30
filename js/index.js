@@ -1,25 +1,3 @@
-// 개인정보처리방침 팝업 제어
-const privacyModal = document.getElementById('privacyModal');
-const openPrivacyBtn = document.getElementById('openPrivacy');
-const closePrivacyBtn = document.getElementById('closePrivacy');
-
-if (openPrivacyBtn && privacyModal) {
-    openPrivacyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        privacyModal.style.display = 'flex';
-    });
-}
-if (closePrivacyBtn && privacyModal) {
-    closePrivacyBtn.addEventListener('click', () => {
-        privacyModal.style.display = 'none';
-    });
-}
-window.addEventListener('click', (e) => {
-    if (e.target === privacyModal) {
-        privacyModal.style.display = 'none';
-    }
-});
-
 /* =============================================
    전역 변수 & 상수
    ============================================= */
@@ -2660,6 +2638,11 @@ document.getElementById("ac-price").addEventListener("input", e => {
    ============================================= */
 setBaseTimeByMenu("simple");
 applyMenuFromQuery();
+
+if (currentMenu === "simple") {
+    renderTabs();
+    renderTable();
+}
+
 loadCSV();
 acUpdate();
-
