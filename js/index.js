@@ -5,8 +5,8 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsij
 
 let currentMenu = "simple";
 let currentCombo = "hard_gate1";
-let currentGatoBoss = "쿤겔라니움";
-let currentGato1750Boss = "쿤겔라니움";
+let currentGatoBoss = "하누마탄";
+let currentGato1750Boss = "하누마탄";
 let currentSimpleLevel = "1750";
 let currentGuardianTier = "1750";
 let acMembers = 4;
@@ -818,11 +818,11 @@ const gato1750Bosses = [
 
 const gato1730AvailableBosses = [
     "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움"
+    "쿤겔라니움","하누마탄"
 ];
 const gato1750AvailableBosses = [
     "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움"
+    "쿤겔라니움","하누마탄"
 ];
 
 function isGato1730Available(boss) {
@@ -1108,8 +1108,8 @@ function applyMenuFromQuery() {
             currentCombo = "hard_gate1";
         } else if (currentMenu === "guardian") {
             currentGuardianTier = "1750";
-            currentGatoBoss = "쿤겔라니움";
-            currentGato1750Boss = "쿤겔라니움";
+            currentGatoBoss = "하누마탄";
+            currentGato1750Boss = "하누마탄";
         } else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
             currentSimpleLevel = "1750";
         }
@@ -2572,8 +2572,8 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         else if (menu === "guardian") {
             currentMenu = "guardian";
             currentGuardianTier = "1750";
-            currentGatoBoss = "쿤겔라니움";
-            currentGato1750Boss = "쿤겔라니움";
+            currentGatoBoss = "하누마탄";
+            currentGato1750Boss = "하누마탄";
         }
 
         setBaseTimeByMenu(currentMenu);
