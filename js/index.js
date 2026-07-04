@@ -10,6 +10,7 @@ let currentGato1750Boss = "하누마탄";
 let currentSimpleLevel = "1750";
 let currentGuardianTier = "1750";
 let acMembers = 4;
+let currentSimpleRaid = "cathedral";
 
 /* =============================================
    파싱 데이터 저장소
@@ -302,6 +303,47 @@ const simpleData = {
         ]
     }
 };
+
+
+
+
+/* =============================================
+   레이드별 간편보기 메타
+   ============================================= */
+const simpleRaidMeta = {
+    cathedral: {
+        label: "지평의 성당",
+        sub: "4인 레이드",
+        icon: "⛪",
+        summary: "어비스 레이드",
+        titles: ["성당 3단계", "성당 2단계", "성당 1단계"]
+    },
+    serka: {
+        label: "세르카",
+        sub: "4인 레이드",
+        icon: "🧹",
+        summary: "그림자 레이드",
+        titles: ["세르카 나메", "세르카 하드", "세르카 노말"]
+    },
+    finale: {
+        label: "종막",
+        sub: "8인 레이드",
+        icon: "👑",
+        summary: "카제로스 레이드",
+        titles: ["종막 하드", "종막 노말"]
+    },
+    act4: {
+        label: "4막",
+        sub: "8인 레이드",
+        icon: "🛡️",
+        summary: "카제로스 레이드",
+        titles: ["4막 하드", "4막 노말"]
+    }
+};
+
+
+
+
 
 /* =============================================
    EX 레이드 UI 데이터
@@ -1037,7 +1079,7 @@ function getTotalSeconds() {
 }
 
 function changeTimeValue(target, step) {
-    if (currentMenu === "simple") return;
+   if (currentMenu === "simple" || currentMenu === "raid-simple") return;
 
     const input = document.getElementById(target);
     let value = parseInt(input.value || 0, 10);
@@ -1055,6 +1097,9 @@ function changeTimeValue(target, step) {
    제목 / 메뉴 관련
    ============================================= */
 function getContentName() {
+if (currentMenu === "raid-simple") {
+    return "레이드별 잔혈컷 👀";
+}
     if (currentMenu === "simple") {
         if (currentSimpleLevel === "egir-ex") return "에기르 EX 레이드 💠";
         if (currentSimpleLevel === "abr-ex") return "아브렐슈드 EX 레이드 ⚡";
@@ -1075,7 +1120,12 @@ function getContentName() {
 }
 
 function getTableTitle() {
-    if (currentMenu === "simple") {
+   
+if (currentMenu === "raid-simple") {
+    return simpleRaidMeta[currentSimpleRaid]?.label || "레이드별 잔혈컷";
+}
+
+ if (currentMenu === "simple") {
         if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
             return "DPS컷은 딱클 정도의 수치로 표기되었습니다.";
         }
@@ -1094,25 +1144,27 @@ function applyMenuFromQuery() {
     const menu = new URLSearchParams(window.location.search).get("menu");
     if (!menu) return;
 
-    if (["serka", "cathedral", "guardian", "simple", "egir-ex", "abr-ex"].includes(menu)) {
+  if (["serka", "cathedral", "guardian", "simple", "raid-simple", "egir-ex", "abr-ex"].includes(menu)) {
         if (menu === "egir-ex" || menu === "abr-ex") {
             currentMenu = "simple";
             currentSimpleLevel = menu;
         } else {
             currentMenu = menu;
         }
-
-        if (currentMenu === "serka") {
-            currentCombo = "hard_gate1";
-        } else if (currentMenu === "cathedral") {
-            currentCombo = "hard_gate1";
-        } else if (currentMenu === "guardian") {
-            currentGuardianTier = "1750";
-            currentGatoBoss = "하누마탄";
-            currentGato1750Boss = "하누마탄";
-        } else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
-            currentSimpleLevel = "1750";
-        }
+    
+if (currentMenu === "serka") {
+    currentCombo = "hard_gate1";
+} else if (currentMenu === "cathedral") {
+    currentCombo = "hard_gate1";
+} else if (currentMenu === "guardian") {
+    currentGuardianTier = "1750";
+    currentGatoBoss = "하누마탄";
+    currentGato1750Boss = "하누마탄";
+} else if (currentMenu === "raid-simple") {
+    currentSimpleRaid = "cathedral";
+} else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
+    currentSimpleLevel = "1750";
+}
 
         document.querySelectorAll(".menu-item").forEach(btn => {
             btn.classList.toggle("active", btn.dataset.menu === menu || (menu === "simple" && btn.dataset.menu === "simple"));
@@ -1125,10 +1177,10 @@ function applyMenuFromQuery() {
 function renderTitleMeta() {
     const box = document.getElementById("titleMeta");
 
-    if (currentMenu === "simple") {
-        box.innerHTML = "";
-        return;
-    }
+   if (currentMenu === "simple" || currentMenu === "raid-simple") {
+    box.innerHTML = "";
+    return;
+}
 
     if (currentMenu === "guardian") {
         const boss = currentGuardianTier === "1730" ? currentGatoBoss : currentGato1750Boss;
@@ -1162,7 +1214,7 @@ function simpleHeroHtml() {
 
                         <div class="simple-hero-title-row">
                             <div class="simple-hero-title-icon">💠</div>
-                            <h2 class="simple-hero-title">잔혈컷 간편보기</h2>
+                            <h2 class="simple-hero-title">레벨별 잔혈컷</h2>
                         </div>
 
                         <p class="simple-hero-desc">
@@ -1198,9 +1250,84 @@ function simpleHeroHtml() {
 
 
 /* =============================================
-   탭 렌더링
+  헬퍼 함수
    ============================================= */
 
+function getSimpleCardMapByTitle() {
+    const orderedLevels = ["1710", "1720", "1730", "1740", "1750"];
+    const map = {};
+
+    orderedLevels.forEach(level => {
+        const cards = simpleData[level]?.cards || [];
+        cards.forEach(card => {
+            if (!map[card.title]) {
+                map[card.title] = card;
+            }
+        });
+    });
+
+    return map;
+}
+
+function getSimpleRaidCards(raidKey) {
+    const meta = simpleRaidMeta[raidKey];
+    if (!meta) return [];
+
+    const cardMap = getSimpleCardMapByTitle();
+    return meta.titles.map(title => cardMap[title]).filter(Boolean);
+}
+
+function simpleRaidHeroHtml() {
+    const meta = simpleRaidMeta[currentSimpleRaid];
+    if (!meta) return "";
+
+    return `
+        <section class="simple-hero">
+            <div class="simple-hero-top">
+                <div class="simple-hero-left">
+                    <div class="simple-hero-copy">
+                        <div class="simple-hero-kicker">LOA VIEWER · RAID MODE</div>
+
+                        <div class="simple-hero-title-row">
+                            <div class="simple-hero-title-icon">${meta.icon}</div>
+                            <h2 class="simple-hero-title">레이드별 잔혈컷</h2>
+                        </div>
+
+                        <p class="simple-hero-desc">
+                          난이도별 강투 · 1인분 · 잔혈 컷을 한 번에 비교하고,
+                            각 관문의 수치를 빠르게 확인할 수 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="simple-hero-pills">
+                        <span class="simple-hero-pill pill-level">레이드별 정리</span>
+                        <span class="simple-hero-pill pill-compare">간편 비교</span>
+                        <span class="simple-hero-pill pill-cut">강투 · 1인분 · 잔혈</span>
+                    </div>
+                </div>
+
+                <div class="simple-hero-right">
+                    <div class="simple-hero-stat">
+                        <div class="simple-hero-stat-label">현재 선택</div>
+                        <div class="simple-hero-stat-value">${meta.label}</div>
+                        <div class="simple-hero-stat-sub">${meta.sub}</div>
+                    </div>
+
+                    <div class="simple-hero-stat">
+                        <div class="simple-hero-stat-label">RAID INFO</div>
+                        <div class="simple-hero-stat-value">${meta.summary}</div>
+                        <div class="simple-hero-stat-sub">난이도 / 관문 기준 보기</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+
+/* =============================================
+   탭 렌더링
+   ============================================= */
 function renderTabs() {
     const el = document.getElementById("tabs");
     el.classList.remove("simple-tabs");
@@ -1230,6 +1357,38 @@ function renderTabs() {
         el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
             btn.addEventListener("click", () => {
                 currentSimpleLevel = btn.dataset.simpleLevel;
+                renderTabs();
+                renderTable();
+            });
+        });
+
+        return;
+    }
+
+    if (currentMenu === "raid-simple") {
+        el.classList.add("simple-tabs");
+
+        const raids = ["cathedral", "serka", "finale", "act4"];
+
+        el.innerHTML = `
+            ${simpleRaidHeroHtml()}
+
+            <div class="simple-level-tabs">
+                ${raids.map(key => {
+                    const meta = simpleRaidMeta[key];
+                    return `
+                        <button class="simple-level-tab simple-raid-tab ${currentSimpleRaid === key ? "active" : ""}" data-simple-raid="${key}">
+                            <span class="simple-level-tab-main">${meta.label}</span>
+                            <span class="simple-level-tab-sub">${meta.sub}</span>
+                        </button>
+                    `;
+                }).join("")}
+            </div>
+        `;
+
+        el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentSimpleRaid = btn.dataset.simpleRaid;
                 renderTabs();
                 renderTable();
             });
@@ -1445,6 +1604,68 @@ function goldBarHtml(card) {
 }
 
 /* =============================================
+   칸분리형 HTML
+   ============================================= */
+
+function getSimpleRaidShareConfig(title = "") {
+    // 4인 레이드
+    if (title.includes("세르카") || title.includes("성당")) {
+        return {
+            bloodShare: 0.40,
+            oneShare: 1 / 3
+        };
+    }
+
+    // 8인 레이드 (4막, 종막)
+    return {
+        bloodShare: 0.20,
+        oneShare: 1 / 6
+    };
+}
+
+function parseSimpleRangeParts(rangeText, cardTitle) {
+    if (!rangeText || rangeText === "준비중") return null;
+
+    const parts = String(rangeText)
+        .split("-")
+        .map(v => v.trim())
+        .filter(Boolean);
+
+    // 이미 3개 값을 직접 적어둔 경우
+    if (parts.length === 3) {
+        const nums = parts.map(v => Number(String(v).replace(/,/g, "")));
+        if (nums.some(n => Number.isNaN(n))) return null;
+
+        return {
+            tank: Math.round(nums[0]),
+            one: Math.round(nums[1]),
+            blood: Math.round(nums[2])
+        };
+    }
+
+    // 기존처럼 2개만 적혀있는 경우: 강투 - 잔혈
+    if (parts.length === 2) {
+        const nums = parts.map(v => Number(String(v).replace(/,/g, "")));
+        if (nums.some(n => Number.isNaN(n))) return null;
+
+        const [tank, blood] = nums;
+        const config = getSimpleRaidShareConfig(cardTitle);
+
+        const total = blood / config.bloodShare;
+        const one = Math.round((total * config.oneShare) / 10) * 10; // 끝자리 0으로 정리
+
+        return {
+            tank: Math.round(tank),
+            one,
+            blood: Math.round(blood)
+        };
+    }
+
+    return null;
+}
+
+
+/* =============================================
    간편보기 카드 HTML
    ============================================= */
 function simpleCardHtml(card) {
@@ -1456,16 +1677,37 @@ function simpleCardHtml(card) {
         }).join("");
 
         const isPreparing = r.range === "준비중";
+        const rangeParts = parseSimpleRangeParts(r.range, card.title);
+        const hasTripleRange = !!rangeParts && !isPreparing;
+
+        const rangeHtml = hasTripleRange
+            ? `
+                <div class="triple-range">
+                    <div class="triple-part tank">
+                        <span class="t-label">강투</span>
+                        <span class="t-value">${rangeParts.tank}</span>
+                    </div>
+                    <div class="triple-part one">
+                        <span class="t-label">1인분</span>
+                        <span class="t-value">${rangeParts.one}</span>
+                    </div>
+                    <div class="triple-part blood">
+                        <span class="t-label">잔혈</span>
+                        <span class="t-value">${rangeParts.blood}</span>
+                    </div>
+                </div>
+            `
+            : `<span class="range-b ${isPreparing ? "preparing" : ""}">${r.range}</span>`;
 
         return `
-            <div class="simple-row" style="${isPreparing ? "min-height:56px;align-items:center;" : ""}">
+            <div class="simple-row ${hasTripleRange ? "has-triple-range" : ""}" style="${isPreparing ? "min-height:56px;align-items:center;" : ""}">
                 <div class="simple-row-left">
                     <span class="gate-b">${r.gate}</span>
                     <span class="boss-b">${r.boss}</span>
                     <span class="simple-badges">${badges}</span>
                 </div>
                 <div style="text-align:right;">
-                    <span class="range-b ${isPreparing ? "preparing" : ""}">${r.range}</span>
+                    ${rangeHtml}
                     ${r.dpscut ? `<div style="font-size:14px;color:#d4bf8a;font-style:italic;margin-top:3px;">${r.dpscut}</div>` : ""}
                 </div>
             </div>
@@ -1480,7 +1722,7 @@ function simpleCardHtml(card) {
             <div class="simple-right">
                 <div class="simple-head">
                     <h3 class="simple-title">${card.title}</h3>
-                    <div class="simple-kind">강투 · 잔혈</div>
+                    <div class="simple-kind">강투 · 1인분 · 잔혈</div>
                 </div>
                 <div class="simple-rows">${rows}</div>
                 ${goldBarHtml(card)}
@@ -1488,7 +1730,6 @@ function simpleCardHtml(card) {
         </article>
     `;
 }
-
 
 /* =============================================
    EX 전용 카드 HTML
@@ -1698,7 +1939,26 @@ function renderExView(exKey) {
     `;
 }
 
+function renderRaidSimpleView() {
+    const meta = simpleRaidMeta[currentSimpleRaid];
+    const cards = getSimpleRaidCards(currentSimpleRaid);
 
+    if (!meta) {
+        document.getElementById("mainContent").innerHTML =
+            '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>';
+        return;
+    }
+
+    document.getElementById("mainContent").innerHTML = `
+        <div class="simple-view">
+            <div class="simple-stack">
+                ${cards.length > 0
+                    ? cards.map(simpleCardHtml).join("")
+                    : "<div class='coming-soon'><h3>준비중</h3><p>곧 업데이트 예정입니다.</p></div>"}
+            </div>
+        </div>
+    `;
+}
 
 function renderSimpleView() {
     if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
@@ -2108,15 +2368,18 @@ function renderTable() {
 
     
     const isSimpleQuickView =
-        currentMenu === "simple" &&
-        currentSimpleLevel !== "egir-ex" &&
-        currentSimpleLevel !== "abr-ex";
+    currentMenu === "simple" &&
+    currentSimpleLevel !== "egir-ex" &&
+    currentSimpleLevel !== "abr-ex";
+
+const isRaidSimpleQuickView = currentMenu === "raid-simple";
 
     const shouldHideTopline =
-        isSimpleQuickView ||
-        currentMenu === "guardian" ||
-        currentMenu === "serka" ||
-        currentMenu === "cathedral";
+    isSimpleQuickView ||
+    isRaidSimpleQuickView ||
+    currentMenu === "guardian" ||
+    currentMenu === "serka" ||
+    currentMenu === "cathedral";
 
     const topline = document.querySelector(".topline");
     if (topline) {
@@ -2128,10 +2391,10 @@ function renderTable() {
 
 
     if (mainEl) {
-        mainEl.classList.toggle("simple-quick-mode", isSimpleQuickView);
+       mainEl.classList.toggle("simple-quick-mode", isSimpleQuickView || isRaidSimpleQuickView);
     }
 
-    if (isSimpleQuickView) {
+   if (isSimpleQuickView || isRaidSimpleQuickView) {
 
         document.getElementById("contentTitle").textContent = "";
         document.getElementById("tableTitle").textContent = "";
@@ -2153,12 +2416,20 @@ function renderTable() {
     renderTitleMeta();
     document.getElementById("infoHint").innerHTML = getInfoHintText();
 
-    if (currentMenu === "simple") {
-        setClearTimeDisabled(true);
-        document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+    
+
+if (currentMenu === "simple" || currentMenu === "raid-simple") {
+    setClearTimeDisabled(true);
+    document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+
+    if (currentMenu === "raid-simple") {
+        renderRaidSimpleView();
+    } else {
         renderSimpleView();
-        return;
     }
+    return;
+}
+
 
     setClearTimeDisabled(false);
 
@@ -2515,6 +2786,10 @@ function closeGuideModal() {
 
 
 function getInfoHintText() {
+
+if (currentMenu === "raid-simple") {
+    return "레이드 기준으로 난이도별 강투 / 1인분 / 잔혈 컷을 비교할 수 있습니다.";
+}
     if (currentMenu === "simple") {
         if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
             return "에스더가 포함된 추정 기준표입니다. 실전 오차가 있을 수 있습니다.";
@@ -2536,8 +2811,6 @@ function getInfoHintText() {
 
 
 // 사이드바 메뉴
-
-
 document.querySelectorAll(".menu-item").forEach(btn => {
     btn.addEventListener("click", () => {
         if (btn.classList.contains("disabled")) return;
@@ -2551,7 +2824,11 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         // 메뉴별 상태 초기화
         if (menu === "simple") {
             currentMenu = "simple";
-            currentSimpleLevel = "1750";   // ← 레벨별 잔혈컷 누르면 무조건 기본으로 복귀
+            currentSimpleLevel = "1750";
+        } 
+        else if (menu === "raid-simple") {
+            currentMenu = "raid-simple";
+            currentSimpleRaid = "cathedral";
         } 
         else if (menu === "egir-ex") {
             currentMenu = "simple";
@@ -2632,6 +2909,63 @@ document.getElementById("ac-price").addEventListener("input", e => {
     e.target.value = val ? Number(val).toLocaleString("ko-KR") : "";
     acUpdate();
 });
+
+
+/* =============================================
+   패치노트 미니 팝업
+   ============================================= */
+const patchModal = document.getElementById("patchModal");
+const closePatchModalBtn = document.getElementById("closePatchModal");
+const patchModalDate = document.getElementById("patchModalDate");
+const patchModalTitle = document.getElementById("patchModalTitle");
+const patchModalDesc = document.getElementById("patchModalDesc");
+const patchModalBody = document.getElementById("patchModalBody");
+
+function openPatchModal(data) {
+    if (!patchModal) return;
+
+    patchModalDate.textContent = data.date || "";
+    patchModalTitle.textContent = data.title || "";
+    patchModalDesc.textContent = data.desc || "";
+    patchModalBody.innerHTML = data.body || "";
+
+    patchModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closePatchModal() {
+    if (!patchModal) return;
+    patchModal.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".patch-item[data-patch-title]").forEach(item => {
+    item.addEventListener("click", () => {
+        openPatchModal({
+            date: item.dataset.patchDate,
+            title: item.dataset.patchTitle,
+            desc: item.dataset.patchDesc,
+            body: item.dataset.patchBody
+        });
+    });
+});
+
+if (closePatchModalBtn) {
+    closePatchModalBtn.addEventListener("click", closePatchModal);
+}
+
+if (patchModal) {
+    patchModal.addEventListener("click", e => {
+        if (e.target === patchModal) closePatchModal();
+    });
+}
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && patchModal && patchModal.classList.contains("show")) {
+        closePatchModal();
+    }
+});
+
 
 /* =============================================
    초기화 실행
