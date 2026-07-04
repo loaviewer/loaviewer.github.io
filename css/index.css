@@ -495,27 +495,39 @@ body {
     border-color: #252836;
 }
 
+
+
+
 .patch-date {
     flex-shrink: 0;
-    width: 46px;
+    width: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
     text-align: center;
 }
 
 .patch-date-month {
-    font-size: 9px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 900;
     color: #4a7cff;
-    letter-spacing: .5px;
-    text-transform: uppercase;
+    letter-spacing: 0;
     line-height: 1;
+    white-space: nowrap;
 }
 
 .patch-date-day {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
     color: #fff;
-    line-height: 1.2;
+    line-height: 1;
+    white-space: nowrap;
 }
+
+
+
 
 .patch-content {
     flex: 1;
@@ -4230,4 +4242,236 @@ tbody tr:hover td {
 
 .menu-btn-off .menu-btn-sub {
     color: #f87171;
+}
+
+
+/* =============================================
+   간편보기 3칸 분리형 딜컷
+   ============================================= */
+.simple-row.has-triple-range {
+    align-items: center;
+}
+
+.triple-range {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.triple-part {
+    min-width: 62px;
+    padding: 6px 8px 5px;
+    border-radius: 10px;
+    border: 1px solid #262c3d;
+    background: #121622;
+    text-align: center;
+}
+
+.triple-part .t-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    margin-bottom: 3px;
+    color: #667085;
+}
+
+.triple-part .t-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.triple-part.tank {
+    background: rgba(247,202,84,.04);
+    border-color: rgba(247,202,84,.12);
+}
+
+.triple-part.tank .t-value {
+    color: #f7ca54;
+}
+
+.triple-part.one {
+    background: rgba(59,130,246,.05);
+    border-color: rgba(59,130,246,.14);
+}
+
+.triple-part.one .t-value {
+    color: #8db8ff;
+}
+
+.triple-part.blood {
+    background: rgba(167,139,250,.05);
+    border-color: rgba(167,139,250,.14);
+}
+
+.triple-part.blood .t-value {
+    color: #c4b5fd;
+}
+
+@media (max-width: 768px) {
+    .simple-row.has-triple-range {
+        grid-template-columns: 1fr;
+        align-items: flex-start;
+    }
+
+    .triple-range {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}
+
+
+/* =============================================
+   빠른 보기 - 레이드별 잔혈컷
+   ============================================= */
+.badge-new {
+    background: rgba(59, 130, 246, .12);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, .25);
+    font-size: 9px;
+    letter-spacing: .5px;
+}
+
+.simple-raid-tab {
+    min-width: 132px;
+}
+
+.simple-raid-tab .simple-level-tab-main {
+    font-size: 14px;
+}
+
+.simple-raid-tab .simple-level-tab-sub {
+    font-size: 10px;
+}
+
+@media (max-width: 768px) {
+    .simple-raid-tab {
+        min-width: calc(50% - 4px);
+        flex: 1 1 calc(50% - 4px);
+    }
+
+    .simple-raid-tab .simple-level-tab-main {
+        font-size: 13px;
+    }
+
+    .simple-raid-tab .simple-level-tab-sub {
+        font-size: 9px;
+    }
+}
+
+/* =============================================
+   패치노트 미니 팝업
+   ============================================= */
+.patch-item {
+    cursor: pointer;
+}
+
+.patch-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 8, 16, .62);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1100;
+}
+
+.patch-modal-backdrop.show {
+    display: flex;
+}
+
+.patch-modal-card {
+    width: min(440px, 100%);
+    background: #13151c;
+    border: 1px solid #252836;
+    border-radius: 18px;
+    padding: 22px 20px 18px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.45);
+    position: relative;
+}
+
+.patch-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #252836;
+    background: #1a1c24;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .18s ease;
+}
+
+.patch-modal-close:hover {
+    background: #1e2030;
+    transform: rotate(90deg);
+}
+
+.patch-modal-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #22d3ee;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.patch-modal-date {
+    font-size: 12px;
+    color: #60a5fa;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.patch-modal-title {
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.patch-modal-desc {
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.6;
+}
+
+.patch-modal-divider {
+    height: 1px;
+    background: #1e2030;
+    margin: 16px 0 14px;
+}
+
+.patch-modal-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #d1d5db;
+    word-break: keep-all;
+}
+
+@media (max-width: 768px) {
+    .patch-modal-card {
+        width: min(100%, 420px);
+        padding: 20px 16px 16px;
+    }
+
+    .patch-modal-title {
+        font-size: 20px;
+    }
+
+    .patch-modal-body {
+        font-size: 13px;
+    }
 }
