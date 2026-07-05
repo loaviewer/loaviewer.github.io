@@ -3361,9 +3361,11 @@ tbody tr:hover td {
     }
 }
 
+
+
 @media (max-width: 768px) {
     body {
-        padding: 12px;
+        padding: 0;
     }
 
     .app {
@@ -3512,6 +3514,10 @@ tbody tr:hover td {
         display: flex;
     }
 }
+
+
+
+
 
 @media (max-width: 560px) {
     .simple-hero-right {
