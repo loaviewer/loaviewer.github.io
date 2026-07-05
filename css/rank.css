@@ -7085,3 +7085,54 @@ body {
         margin-top: 10px;
     }
 }
+
+
+
+
+/* =============================================
+   직각 토너먼트 모바일 대응
+   ============================================= */
+@media (max-width: 1024px) {
+    .workspace {
+        grid-template-columns: 1fr !important;
+        min-height: auto;
+    }
+
+    .sidebar {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .sidebar,
+    .main {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .app {
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+    }
+
+    .sidebar,
+    .main {
+        padding: 16px !important;
+    }
+
+    .main {
+        min-width: 0 !important;
+        overflow-x: hidden;
+    }
+
+    .hero,
+    .title,
+    h1,
+    h2 {
+        white-space: normal !important;
+        word-break: keep-all;
+    }
+}
