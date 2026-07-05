@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Do+Hyeon&display=swap');
+
 
 * {
     box-sizing: border-box;
@@ -4473,5 +4474,169 @@ tbody tr:hover td {
 
     .patch-modal-body {
         font-size: 13px;
+    }
+}
+
+/* =============================================
+   사이드바 브랜드 영역 - 심플 게임 사이트형
+   ============================================= */
+.brand-game {
+    display: grid;
+    gap: 0;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.brand-game::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 12px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(247,202,84,.18) 20%,
+        rgba(59,130,246,.18) 50%,
+        rgba(167,139,250,.18) 80%,
+        transparent 100%
+    );
+}
+
+.brand-game .brand-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4a7cff;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.brand-game .brand-main-title {
+    font-size: 31px;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -.7px;
+    margin-bottom: 6px;
+}
+
+.brand-game .brand-sub-title {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    color: #dbe7ff;
+    letter-spacing: .2px;
+    margin-bottom: 12px;
+}
+
+.brand-game .brand-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #8691a6;
+    margin: 0;
+}
+
+.brand-game .brand-tag-band {
+    position: relative;
+    margin-top: 12px;
+    padding: 0 0 14px 0;
+}
+
+.brand-game .brand-cut-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.brand-game .brand-cut-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.brand-game .brand-cut-tag.tag-tank {
+    background: rgba(247,202,84,.10);
+    color: #f7ca54;
+    border-color: rgba(247,202,84,.18);
+}
+
+.brand-game .brand-cut-tag.tag-one {
+    background: rgba(59,130,246,.10);
+    color: #8db8ff;
+    border-color: rgba(59,130,246,.18);
+}
+
+.brand-game .brand-cut-tag.tag-blood {
+    background: rgba(167,139,250,.12);
+    color: #c4b5fd;
+    border-color: rgba(167,139,250,.20);
+}
+
+.brand-game .brand-tag-band::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-top: 12px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(247,202,84,.18) 20%,
+        rgba(59,130,246,.18) 50%,
+        rgba(167,139,250,.18) 80%,
+        transparent 100%
+    );
+}
+
+@media (max-width: 768px) {
+    .brand-game::before {
+        margin-bottom: 10px;
+    }
+
+    .brand-game .brand-label {
+        margin-bottom: 10px;
+    }
+
+    .brand-game .brand-main-title {
+        font-size: 28px;
+    }
+
+    .brand-game .brand-sub-title {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    .brand-game .brand-desc {
+        font-size: 12px;
+    }
+
+    .brand-game .brand-tag-band {
+        margin-top: 10px;
+        padding: 0 0 12px 0;
+    }
+
+    .brand-game .brand-cut-tags {
+        gap: 6px;
+        justify-content: flex-start;
+    }
+
+    .brand-game .brand-cut-tag {
+        font-size: 10px;
+        height: 24px;
+        padding: 0 9px;
+    }
+
+    .brand-game .brand-tag-band::after {
+        margin-top: 10px;
     }
 }
