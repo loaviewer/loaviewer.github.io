@@ -2154,7 +2154,7 @@ function makeRewardWidget(menu, comboKey) {
 
     const shardLine = (shard) => shard ? `
         <div class="rw-currency">
-            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://static.inven.co.kr/image_2011/site_image/lostark/itemicon/money_15.png?v=231024a"><span>운명의 파편</span></div>
+            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png"><span>운명의 파편</span></div>
             <span class="rw-shard">${shard}</span>
         </div>` : "";
 
@@ -2206,7 +2206,7 @@ function makeRewardWidgetMobile(menu, comboKey) {
     const shardLine = (shard) => shard ? `
         <div class="rw-currency">
             <div class="rw-currency-left">
-                <img class="rw-currency-icon" src="https://static.inven.co.kr/image_2011/site_image/lostark/itemicon/money_15.png?v=231024a">
+                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png">
                 <span>운명의 파편</span>
             </div>
             <span class="rw-shard">${shard}</span>
