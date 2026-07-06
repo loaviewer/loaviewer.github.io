@@ -5318,3 +5318,40 @@ body.mobile-home-mode .sidebar > :not(.switch-wrap):not(.mobile-home):not(.patch
         display: flex !important;
     }
 }
+
+/* =============================================
+   모바일 - 간편보기 골드바 축소
+   ============================================= */
+@media (max-width: 768px) {
+    .simple-goldbar {
+        gap: 6px;
+        padding: 10px;
+        flex-wrap: nowrap;
+    }
+
+    .gold-item,
+    .gold-total {
+        min-width: 64px;
+        gap: 2px;
+    }
+
+    .gold-item-label,
+    .gold-total-label {
+        font-size: 9px;
+    }
+
+    .gold-item-value,
+    .gold-total-value {
+        font-size: 13px;
+    }
+
+    .gold-operator {
+        font-size: 12px;
+        padding-bottom: 1px;
+    }
+
+    .icon {
+        width: 12px;
+        height: 12px;
+    }
+}
