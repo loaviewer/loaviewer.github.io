@@ -1668,6 +1668,10 @@ function parseSimpleRangeParts(rangeText, cardTitle) {
 /* =============================================
    간편보기 카드 HTML
    ============================================= */
+
+/* =============================================
+   간편보기 카드 HTML
+   ============================================= */
 function simpleCardHtml(card) {
     const rows = card.rows.map(r => {
         const badges = (r.badges || []).map(b => {
@@ -1701,11 +1705,17 @@ function simpleCardHtml(card) {
 
         return `
             <div class="simple-row ${hasTripleRange ? "has-triple-range" : ""}" style="${isPreparing ? "min-height:56px;align-items:center;" : ""}">
+             
+
+             
                 <div class="simple-row-left">
                     <span class="gate-b">${r.gate}</span>
                     <span class="boss-b">${r.boss}</span>
                     <span class="simple-badges">${badges}</span>
                 </div>
+
+
+
                 <div style="text-align:right;">
                     ${rangeHtml}
                     ${r.dpscut ? `<div style="font-size:14px;color:#d4bf8a;font-style:italic;margin-top:3px;">${r.dpscut}</div>` : ""}
@@ -1719,17 +1729,25 @@ function simpleCardHtml(card) {
             <div class="simple-left">
                 <div class="simple-node">${card.node}</div>
             </div>
+
             <div class="simple-right">
                 <div class="simple-head">
+                    <div class="simple-mobile-title-pack">
+                        <span class="simple-mobile-node">${card.node}</span>
+                        <span class="simple-mobile-name">${card.title}</span>
+                    </div>
+
                     <h3 class="simple-title">${card.title}</h3>
-                    <div class="simple-kind">강투 · 1인분 · 잔혈</div>
+                    <div class="simple-kind">강투 / 1인분 / 잔혈</div>
                 </div>
+
                 <div class="simple-rows">${rows}</div>
                 ${goldBarHtml(card)}
             </div>
         </article>
     `;
 }
+
 
 /* =============================================
    EX 전용 카드 HTML
@@ -2160,6 +2178,88 @@ function makeRewardWidget(menu, comboKey) {
     `;
 }
 
+
+
+
+
+function makeRewardWidgetMobile(menu, comboKey) {
+    const dataSource = menu === "serka" ? serkaRewardData : cathedralRewardData;
+    const data = dataSource[comboKey];
+    if (!data) return "";
+
+    const moreId = `mobileRewardMore_${menu}`;
+    const moreBtnId = `mobileRewardMoreBtn_${menu}`;
+
+    const itemSlots = (items) => items.map(item =>
+        `<div class="rw-slot" title="${item.name}"><img src="${item.src}"><span class="rw-count">${item.count}</span></div>`
+    ).join("");
+
+    const goldLine = (gold) => gold ? `
+        <div class="rw-currency">
+            <div class="rw-currency-left">
+                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png">
+                <span>골드</span>
+            </div>
+            <span class="rw-gold">${gold}</span>
+        </div>` : "";
+
+    const shardLine = (shard) => shard ? `
+        <div class="rw-currency">
+            <div class="rw-currency-left">
+                <img class="rw-currency-icon" src="https://static.inven.co.kr/image_2011/site_image/lostark/itemicon/money_15.png?v=231024a">
+                <span>운명의 파편</span>
+            </div>
+            <span class="rw-shard">${shard}</span>
+        </div>` : "";
+
+    return `
+        <div class="rw-widget mobile-rw-widget">
+            <div class="rw-title">클리어 보상</div>
+            <div class="rw-grid">${itemSlots(data.clearItems)}</div>
+            ${goldLine(data.gold)}
+            ${shardLine(data.shard)}
+
+            <div class="rw-more-area">
+                <button class="rw-more-btn" id="${moreBtnId}" type="button">더보기 보상 열기 ▼</button>
+                <div class="rw-more-content" id="${moreId}">
+                    <div class="rw-more-label">더보기 고정보상</div>
+                    <div class="rw-grid">${itemSlots(data.moreItems)}</div>
+                    ${goldLine(data.moreGold)}
+                    ${shardLine(data.moreShard)}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
+
+function makeMobilePrecisionTools(menu, comboKey) {
+    const timeBtnId = `openMobileTimeBtn_${menu}`;
+    const rewardToggleId = `mobileRewardToggle_${menu}`;
+    const rewardBoxId = `mobileRewardBox_${menu}`;
+
+    return `
+        <div class="mobile-precision-tools">
+            <button class="mobile-precision-tool-btn" id="${timeBtnId}" type="button">
+                ⏱ 클리어 타임 입력
+            </button>
+
+            <button class="mobile-precision-tool-btn" id="${rewardToggleId}" type="button">
+                📦 클리어 보상 확대하기
+            </button>
+        </div>
+
+        <div class="mobile-reward-collapse" id="${rewardBoxId}">
+            ${makeRewardWidgetMobile(menu, comboKey)}
+        </div>
+    `;
+}
+
+
+
+
+
 function bindRewardMoreToggle(menu) {
     const moreId = `rewardMore_${menu}`;
     const moreBtnId = `rewardMoreBtn_${menu}`;
@@ -2252,12 +2352,12 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
    가디언 컨트롤
    ============================================= */
 
+
 function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
     const oldBosses = ["루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼"];
 
     const tierChecks = ["1730", "1750"].map(t => {
         const isActive = tier === t;
-        
 
         return `
             <div class="guardian-tier-chip ${isActive ? "active" : ""}" data-tier="${t}">
@@ -2298,8 +2398,14 @@ function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
     return `
         <div class="precision-control guardian-inline-control">
             <div class="guardian-inline-row">
-                <div class="guardian-tier-inline">
-                    ${tierChecks}
+                <div class="guardian-top-tools">
+                    <div class="guardian-tier-inline">
+                        ${tierChecks}
+                    </div>
+
+                    <button class="guardian-mobile-time-btn" id="guardianMobileTimeBtn" type="button">
+                        ⏱ 클리어 타임 입력
+                    </button>
                 </div>
 
                 <div class="guardian-select-inline">
@@ -2330,6 +2436,8 @@ function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
         </div>
     `;
 }
+
+
 
 /* =============================================
    공통 요약 카드 HTML
@@ -2373,6 +2481,10 @@ function renderTable() {
     currentSimpleLevel !== "abr-ex";
 
 const isRaidSimpleQuickView = currentMenu === "raid-simple";
+    const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral";
+    document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
+
+
 
     const shouldHideTopline =
     isSimpleQuickView ||
@@ -2457,6 +2569,8 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
             document.getElementById("mainContent").innerHTML = `
                 ${makeGuardianHero(tier, boss, bossInfo)}
                 ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
+
+
                 <div class="coming-soon"><h3>${boss} 준비중</h3><p>해당 보스의 가디언 토벌 데이터는 순차적으로 공개됩니다.</p></div>
             `;
         } else {
@@ -2488,7 +2602,9 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
                 <div class="precision-table-panel">
                     <div class="precision-table-head">
                         <div class="precision-table-title">${boss} (${tier}) 상세 딜지분</div>
-                        <div class="precision-table-badge">LIVE · 실시간 반영</div>
+                        
+<div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
+
                     </div>
                     <div class="table-wrap">
                         <table id="dataTable">
@@ -2535,6 +2651,11 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
             });
         });
 
+
+    const guardianMobileTimeBtn = document.getElementById("guardianMobileTimeBtn");
+    if (guardianMobileTimeBtn) {
+        guardianMobileTimeBtn.addEventListener("click", openMobileTimeModal);
+    }
         updatePartyDpsDisplay();
         return;
     }
@@ -2639,6 +2760,11 @@ if (currentMenu === "serka" || currentMenu === "cathedral") {
                  
                     </div>
                 </div>
+
+
+                ${makeMobilePrecisionTools(currentMenu, currentDiff + "_" + meta.gateKey)}
+
+
             </div>
 
             <div class="precision-reward-standalone">
@@ -2653,7 +2779,7 @@ if (currentMenu === "serka" || currentMenu === "cathedral") {
         <div class="precision-table-panel">
             <div class="precision-table-head">
                 <div class="precision-table-title">${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName} 상세 딜지분</div>
-                <div class="precision-table-badge">LIVE · 실시간 반영</div>
+                <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
             </div>
             <div class="table-wrap">
                 <table id="dataTable">
@@ -2685,6 +2811,36 @@ if (currentMenu === "serka" || currentMenu === "cathedral") {
     });
 
     bindRewardMoreToggle(currentMenu);
+
+    const mobileTimeBtn = document.getElementById(`openMobileTimeBtn_${currentMenu}`);
+    const mobileRewardToggleBtn = document.getElementById(`mobileRewardToggle_${currentMenu}`);
+    const mobileRewardBox = document.getElementById(`mobileRewardBox_${currentMenu}`);
+
+    if (mobileTimeBtn) {
+        mobileTimeBtn.addEventListener("click", openMobileTimeModal);
+    }
+
+    if (mobileRewardToggleBtn && mobileRewardBox) {
+        mobileRewardToggleBtn.addEventListener("click", () => {
+            const isOpen = mobileRewardBox.classList.toggle("open");
+            mobileRewardToggleBtn.textContent = isOpen
+                ? "📦 클리어 보상 닫기"
+                : "📦 클리어 보상 확대하기";
+        });
+    }
+
+
+    const mobileRewardMoreBtn = document.getElementById(`mobileRewardMoreBtn_${currentMenu}`);
+    const mobileRewardMoreContent = document.getElementById(`mobileRewardMore_${currentMenu}`);
+
+    if (mobileRewardMoreBtn && mobileRewardMoreContent) {
+        mobileRewardMoreBtn.addEventListener("click", () => {
+            const isOpen = mobileRewardMoreContent.classList.toggle("rw-open");
+            mobileRewardMoreBtn.textContent = isOpen ? "더보기 보상 닫기 ▲" : "더보기 보상 열기 ▼";
+        });
+    }
+
+
 
     updatePartyDpsDisplay();
     return;
@@ -2816,6 +2972,7 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         if (btn.classList.contains("disabled")) return;
 
         const menu = btn.dataset.menu;
+        if (!menu) return;
 
         // active 처리
         document.querySelectorAll(".menu-item").forEach(b => b.classList.remove("active"));
@@ -2856,8 +3013,15 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         setBaseTimeByMenu(currentMenu);
         renderTabs();
         renderTable();
+
+        // 모바일 홈 버튼으로 들어온 경우 콘텐츠 모드로 전환
+        if (isMobileViewport() && btn.classList.contains("mobile-launch-btn")) {
+            enterMobileContentMode();
+            window.scrollTo({ top: 0, behavior: "auto" });
+        }
     });
 });
+
 
 
 // 시간 스텝 버튼
@@ -2892,6 +3056,136 @@ document.addEventListener("keydown", e => {
         closeGuideModal();
     }
 });
+
+
+/* =============================================
+   모바일 홈 / 콘텐츠 전환
+   ============================================= */
+const mobileGuideBtn = document.getElementById("mobileGuideBtn");
+const mobileBackBtn = document.getElementById("mobileBackBtn");
+
+function isMobileViewport() {
+    return window.innerWidth <= 768;
+}
+
+function enterMobileHomeMode() {
+    if (!isMobileViewport()) return;
+    document.body.classList.add("mobile-home-mode");
+    document.body.classList.remove("mobile-content-mode");
+}
+
+function enterMobileContentMode() {
+    if (!isMobileViewport()) return;
+    document.body.classList.add("mobile-content-mode");
+    document.body.classList.remove("mobile-home-mode");
+}
+
+function syncMobileShellMode() {
+    if (isMobileViewport()) {
+        if (
+            !document.body.classList.contains("mobile-home-mode") &&
+            !document.body.classList.contains("mobile-content-mode")
+        ) {
+            document.body.classList.add("mobile-home-mode");
+        }
+    } else {
+        document.body.classList.remove("mobile-home-mode", "mobile-content-mode");
+    }
+}
+
+if (mobileGuideBtn) {
+    mobileGuideBtn.addEventListener("click", openGuideModal);
+}
+
+if (mobileBackBtn) {
+    mobileBackBtn.addEventListener("click", () => {
+        enterMobileHomeMode();
+        window.scrollTo({ top: 0, behavior: "auto" });
+    });
+}
+
+
+window.addEventListener("resize", syncMobileShellMode);
+syncMobileShellMode();
+
+
+
+/* =============================================
+   모바일 클리어 타임 팝업
+   ============================================= */
+const mobileTimeModal = document.getElementById("mobileTimeModal");
+const closeMobileTimeModalBtn = document.getElementById("closeMobileTimeModal");
+const applyMobileTimeBtn = document.getElementById("applyMobileTimeBtn");
+const mobileTimeMinutes = document.getElementById("mobileTimeMinutes");
+const mobileTimeSeconds = document.getElementById("mobileTimeSeconds");
+const mobileTimePreview = document.getElementById("mobileTimePreview");
+
+function updateMobileTimePreview() {
+    let m = parseInt(mobileTimeMinutes.value || 0, 10);
+    let s = parseInt(mobileTimeSeconds.value || 0, 10);
+
+    if (isNaN(m) || m < 0) m = 0;
+    if (isNaN(s) || s < 0) s = 0;
+    if (s > 59) s = 59;
+
+    mobileTimeMinutes.value = m;
+    mobileTimeSeconds.value = s;
+    mobileTimePreview.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function openMobileTimeModal() {
+    if (!mobileTimeModal) return;
+
+    const mainMinutes = document.getElementById("minutes");
+    const mainSeconds = document.getElementById("seconds");
+
+    mobileTimeMinutes.value = mainMinutes ? mainMinutes.value || 0 : 0;
+    mobileTimeSeconds.value = mainSeconds ? mainSeconds.value || 0 : 0;
+    updateMobileTimePreview();
+
+    mobileTimeModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeMobileTimeModal() {
+    if (!mobileTimeModal) return;
+    mobileTimeModal.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+if (mobileTimeMinutes) {
+    mobileTimeMinutes.addEventListener("input", updateMobileTimePreview);
+}
+
+if (mobileTimeSeconds) {
+    mobileTimeSeconds.addEventListener("input", updateMobileTimePreview);
+}
+
+if (closeMobileTimeModalBtn) {
+    closeMobileTimeModalBtn.addEventListener("click", closeMobileTimeModal);
+}
+
+if (applyMobileTimeBtn) {
+    applyMobileTimeBtn.addEventListener("click", () => {
+        const mainMinutes = document.getElementById("minutes");
+        const mainSeconds = document.getElementById("seconds");
+
+        if (mainMinutes) mainMinutes.value = mobileTimeMinutes.value;
+        if (mainSeconds) mainSeconds.value = mobileTimeSeconds.value;
+
+        closeMobileTimeModal();
+        renderTable();
+    });
+}
+
+if (mobileTimeModal) {
+    mobileTimeModal.addEventListener("click", e => {
+        if (e.target === mobileTimeModal) closeMobileTimeModal();
+    });
+}
+
+
+
 
 // 경매 계산기 토글
 document.querySelectorAll(".ac-toggle-btn").forEach(btn => {
