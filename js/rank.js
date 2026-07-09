@@ -381,7 +381,7 @@ function renderOpRateContent(rows, prevRows) {
     var prevRate = prevRateMap[engName];
 
     if (prevRank === undefined || prevRate === undefined) {
-      return '<div class="delta-wrap"><span class="delta-new">🆕 신규</span></div>';
+      return '<div class="delta-wrap"><span class="delta-new">🌱​ 신규</span></div>';
     }
 
     var rankDiff = prevRank - currentRank;
