@@ -17,7 +17,7 @@ body {
 
 .app {
     width: min(1480px, calc(100% - 20px));
-    margin: 20px auto;
+    margin: 10px auto;
     border-radius: 24px;
     overflow: hidden;
     border: 1px solid #1a1d2e;
@@ -5354,4 +5354,27 @@ body.mobile-home-mode .sidebar > :not(.switch-wrap):not(.mobile-home):not(.patch
         width: 12px;
         height: 12px;
     }
+}
+
+/* 아크 그리드 모드: 우측 사이드 숨기기 & 메인 풀 와이드 */
+body.arc-grid-mode .right-column {
+    display: none !important;
+}
+
+body.arc-grid-mode .content-grid {
+    grid-template-columns: 1fr !important;
+}
+
+body.arc-grid-mode .main-col {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+body.arc-grid-mode #mainContent {
+    width: 100% !important;
+}
+
+
+.dot-purple {
+    background: #a78bfa;
 }
