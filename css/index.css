@@ -439,30 +439,41 @@ body {
     letter-spacing: 1px;
 }
 
+
+
+
+
 /* =============================================
-   패치노트
+   패치노트 - 미니 게시판형
    ============================================= */
 .patch-section {
-    margin-top: 4px;
+    margin-top: 6px;
+    border: 1px solid #1a1d2e;
+    border-radius: 12px;
+    background: #11131b;
+    overflow: hidden;
 }
 
 .patch-header {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 0 12px;
-    margin-bottom: 10px;
+    padding: 12px 14px;
+    background: #151824;
+    border-bottom: 1px solid #1d2231;
+    margin-bottom: 0;
 }
 
 .patch-icon {
     width: 18px;
     height: 18px;
     border-radius: 6px;
-    background: rgba(34, 211, 238, .12);
+    background: rgba(34, 211, 238, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
+    flex-shrink: 0;
 }
 
 .patch-title {
@@ -471,74 +482,81 @@ body {
     color: #22d3ee;
     letter-spacing: 1px;
     text-transform: uppercase;
+    line-height: 1;
 }
 
 .patch-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 0 4px;
+    gap: 0;
+    padding: 0;
 }
 
 .patch-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 10px;
-    background: #141620;
-    border: 1px solid #1a1d2e;
-    transition: .15s;
+    display: grid;
+    grid-template-columns: 54px 1fr auto;
+    align-items: center;
+    column-gap: 10px;
+    min-height: 54px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #1a1d2e;
+    border-radius: 0;
+    box-sizing: border-box;
+    transition: background 0.15s ease;
+    cursor: pointer;
+}
+
+.patch-item:last-child {
+    border-bottom: none;
 }
 
 .patch-item:hover {
-    background: #181a28;
-    border-color: #252836;
+    background: #171a25;
+    transform: none;
 }
 
-
-
-
 .patch-date {
-    flex-shrink: 0;
-    width: 56px;
+    width: 54px;
+    min-width: 54px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    gap: 2px;
     text-align: center;
+    flex-shrink: 0;
 }
 
 .patch-date-month {
-    font-size: 11px;
-    font-weight: 900;
+    font-size: 10px;
+    font-weight: 800;
     color: #4a7cff;
-    letter-spacing: 0;
     line-height: 1;
     white-space: nowrap;
 }
 
 .patch-date-day {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 900;
-    color: #fff;
+    color: #ffffff;
     line-height: 1;
     white-space: nowrap;
 }
 
-
-
-
 .patch-content {
-    flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .patch-content-title {
     font-size: 12px;
     font-weight: 700;
-    color: #c0c7d6;
+    color: #d7deeb;
+    line-height: 1.25;
     margin-bottom: 2px;
     white-space: nowrap;
     overflow: hidden;
@@ -547,33 +565,87 @@ body {
 
 .patch-content-desc {
     font-size: 10px;
-    color: #4a5568;
+    color: #667085;
+    line-height: 1.25;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .patch-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 999px;
     font-size: 8px;
     font-weight: 800;
-    padding: 1px 5px;
-    border-radius: 4px;
     white-space: nowrap;
     flex-shrink: 0;
-    align-self: center;
 }
 
 .ptag-new {
-    background: rgba(52, 211, 153, .12);
+    background: rgba(52, 211, 153, 0.12);
     color: #34d399;
-    border: 1px solid rgba(52, 211, 153, .2);
+    border: 1px solid rgba(52, 211, 153, 0.2);
 }
 
 .ptag-update {
-    background: rgba(247, 202, 84, .12);
+    background: rgba(247, 202, 84, 0.12);
     color: #f7ca54;
-    border: 1px solid rgba(247, 202, 84, .2);
+    border: 1px solid rgba(247, 202, 84, 0.2);
 }
+
+@media (max-width: 768px) {
+    .patch-header {
+        padding: 10px 12px;
+    }
+
+    .patch-list {
+        padding: 0;
+    }
+
+    .patch-item {
+        grid-template-columns: 48px 1fr auto;
+        column-gap: 8px;
+        min-height: 50px;
+        padding: 7px 10px;
+    }
+
+    .patch-date {
+        width: 48px;
+        min-width: 48px;
+    }
+
+    .patch-date-month {
+        font-size: 9px;
+    }
+
+    .patch-date-day {
+        font-size: 13px;
+    }
+
+    .patch-content-title {
+        font-size: 11px;
+    }
+
+    .patch-content-desc {
+        font-size: 9px;
+    }
+
+    .patch-tag {
+        min-width: 32px;
+        height: 17px;
+        font-size: 7px;
+        padding: 0 5px;
+    }
+}
+
+
+
+
 
 /* =============================================
    경매 계산기
