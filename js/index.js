@@ -1668,10 +1668,6 @@ function parseSimpleRangeParts(rangeText, cardTitle) {
 /* =============================================
    간편보기 카드 HTML
    ============================================= */
-
-/* =============================================
-   간편보기 카드 HTML
-   ============================================= */
 function simpleCardHtml(card) {
     const rows = card.rows.map(r => {
         const badges = (r.badges || []).map(b => {
@@ -2491,7 +2487,15 @@ const isRaidSimpleQuickView = currentMenu === "raid-simple";
     isRaidSimpleQuickView ||
     currentMenu === "guardian" ||
     currentMenu === "serka" ||
-    currentMenu === "cathedral";
+    currentMenu === "cathedral" ||
+    currentMenu === "arc-grid";
+
+
+const tabsEl = document.getElementById("tabs");
+if (tabsEl) {
+    tabsEl.style.display = currentMenu === "arc-grid" ? "none" : "";
+}
+
 
     const topline = document.querySelector(".topline");
     if (topline) {
@@ -2529,6 +2533,24 @@ const isRaidSimpleQuickView = currentMenu === "raid-simple";
     document.getElementById("infoHint").innerHTML = getInfoHintText();
 
     
+
+if (currentMenu === "arc-grid") {
+    setClearTimeDisabled(true);
+    document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+
+    document.getElementById("contentTitle").textContent = "";
+    document.getElementById("tableTitle").textContent = "";
+    document.getElementById("titleMeta").innerHTML = "";
+
+    if (typeof ArcGrid !== "undefined") {
+        ArcGrid.init(document.getElementById("mainContent"));
+    }
+
+    return;
+}
+
+
+
 
 if (currentMenu === "simple" || currentMenu === "raid-simple") {
     setClearTimeDisabled(true);
@@ -2974,6 +2996,9 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         const menu = btn.dataset.menu;
         if (!menu) return;
 
+        // 다른 메뉴로 이동할 때 아크 그리드 모드 해제
+        document.body.classList.remove("arc-grid-mode");
+
         // active 처리
         document.querySelectorAll(".menu-item").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
@@ -3009,10 +3034,19 @@ document.querySelectorAll(".menu-item").forEach(btn => {
             currentGatoBoss = "데스칼루다";
             currentGato1750Boss = "데스칼루다";
         }
+        else if (menu === "arc-grid") {
+            currentMenu = "arc-grid";
+            document.body.classList.add("arc-grid-mode");
+        }
 
         setBaseTimeByMenu(currentMenu);
         renderTabs();
         renderTable();
+
+if (menu === "arc-grid") {
+    window.scrollTo({ top: 0, behavior: "auto" });
+}
+
 
         // 모바일 홈 버튼으로 들어온 경우 콘텐츠 모드로 전환
         if (isMobileViewport() && btn.classList.contains("mobile-launch-btn")) {
