@@ -2032,28 +2032,55 @@ body {
 
     .grade-stamp-wrap { position: relative; z-index: 1; display: flex; justify-content: center; margin: 18px 0 10px; }
 
-    .grade-stamp {
-      width: 140px; height: 140px; border-radius: 50%;
-      border: 5px solid rgba(255,88,88,0.95);
-      color: rgba(255,118,118,0.95);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      transform: rotate(-12deg); text-align: center; font-weight: 900;
-      box-shadow: 0 0 22px rgba(255,80,80,0.30), 0 0 44px rgba(255,80,80,0.18), inset 0 0 0 2px rgba(255,255,255,0.03);
-      background: radial-gradient(circle at center, rgba(255,70,70,0.06), rgba(255,70,70,0.01));
-      opacity: 0.95; animation: stampAppear 0.4s ease 0.2s both;
-    }
+ 
 
-  
+/* ===== 우승 모달 도장 공통 스타일 새 버전 ===== */
+.grade-stamp {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 900;
+  transform: rotate(-6deg);
+  position: relative;
+  overflow: visible;
+  opacity: 1;
+}
 
-    .grade-stamp .gs-date  { font-size: 13px; letter-spacing: 1px; position: relative; z-index: 1; }
-    .grade-stamp .gs-grade { font-size: 26px; font-weight: 900; line-height: 1.1; position: relative; z-index: 1; }
-    .grade-stamp .gs-done  { font-size: 14px; position: relative; z-index: 1; }
+.grade-stamp .gs-date {
+  font-size: 10px;
+  letter-spacing: 1px;
+  opacity: 0.72;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 3;
+}
 
-    @keyframes stampAppear {
-      0%   { transform: rotate(-12deg) scale(0.5); opacity: 0; }
-      70%  { transform: rotate(-12deg) scale(1.1); opacity: 1; }
-      100% { transform: rotate(-12deg) scale(1);   opacity: 0.95; }
-    }
+.grade-stamp .gs-grade {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 3;
+}
+
+.grade-stamp .gs-done {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1.15;
+  opacity: 0.78;
+  position: relative;
+  z-index: 3;
+}
+
+
+
 
     .grade-comment { position: relative; z-index: 1; margin-top: 6px; font-size: 14px; color: #ffd3d3; line-height: 1.7; font-style: italic; }
 
@@ -7410,3 +7437,77 @@ body {
     letter-spacing: 2px;
   }
 }
+
+
+/* ===== 메인 OP 도장 등급별 색상 ===== */
+#opStamp.stamp-ss {
+  border-color: #ffd700;
+  color: #ffd700;
+  background: radial-gradient(circle, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+  box-shadow: 0 0 30px rgba(255,215,0,0.20);
+}
+#opStamp.stamp-ss::before { border-color: rgba(255,215,0,0.35); }
+#opStamp.stamp-ss::after  { border-color: rgba(255,215,0,0.15); }
+
+#opStamp.stamp-s {
+  border-color: #7fc6ff;
+  color: #7fc6ff;
+  background: radial-gradient(circle, rgba(127,198,255,0.15), rgba(127,198,255,0.05));
+  box-shadow: 0 0 30px rgba(127,198,255,0.20);
+}
+#opStamp.stamp-s::before { border-color: rgba(127,198,255,0.35); }
+#opStamp.stamp-s::after  { border-color: rgba(127,198,255,0.15); }
+
+#opStamp.stamp-a {
+  border-color: #ff7755;
+  color: #ff7755;
+  background: radial-gradient(circle, rgba(255,119,85,0.15), rgba(255,119,85,0.05));
+  box-shadow: 0 0 30px rgba(255,119,85,0.20);
+}
+#opStamp.stamp-a::before { border-color: rgba(255,119,85,0.35); }
+#opStamp.stamp-a::after  { border-color: rgba(255,119,85,0.15); }
+
+#opStamp.stamp-b {
+  border-color: #ffb060;
+  color: #ffb060;
+  background: radial-gradient(circle, rgba(255,176,96,0.15), rgba(255,176,96,0.05));
+  box-shadow: 0 0 30px rgba(255,176,96,0.20);
+}
+#opStamp.stamp-b::before { border-color: rgba(255,176,96,0.35); }
+#opStamp.stamp-b::after  { border-color: rgba(255,176,96,0.15); }
+
+#opStamp.stamp-c {
+  border-color: #c79cff;
+  color: #c79cff;
+  background: radial-gradient(circle, rgba(199,156,255,0.15), rgba(199,156,255,0.05));
+  box-shadow: 0 0 30px rgba(199,156,255,0.20);
+}
+#opStamp.stamp-c::before { border-color: rgba(199,156,255,0.35); }
+#opStamp.stamp-c::after  { border-color: rgba(199,156,255,0.15); }
+
+#opStamp.stamp-d {
+  border-color: #a9dfff;
+  color: #a9dfff;
+  background: radial-gradient(circle, rgba(169,223,255,0.15), rgba(169,223,255,0.05));
+  box-shadow: 0 0 30px rgba(169,223,255,0.20);
+}
+#opStamp.stamp-d::before { border-color: rgba(169,223,255,0.35); }
+#opStamp.stamp-d::after  { border-color: rgba(169,223,255,0.15); }
+
+#opStamp.stamp-e {
+  border-color: #8ee8b0;
+  color: #8ee8b0;
+  background: radial-gradient(circle, rgba(142,232,176,0.15), rgba(142,232,176,0.05));
+  box-shadow: 0 0 30px rgba(142,232,176,0.20);
+}
+#opStamp.stamp-e::before { border-color: rgba(142,232,176,0.35); }
+#opStamp.stamp-e::after  { border-color: rgba(142,232,176,0.15); }
+
+#opStamp.stamp-f {
+  border-color: #999999;
+  color: #999999;
+  background: radial-gradient(circle, rgba(153,153,153,0.15), rgba(153,153,153,0.05));
+  box-shadow: 0 0 30px rgba(153,153,153,0.15);
+}
+#opStamp.stamp-f::before { border-color: rgba(153,153,153,0.35); }
+#opStamp.stamp-f::after  { border-color: rgba(153,153,153,0.15); }
