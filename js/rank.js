@@ -2084,49 +2084,20 @@ async function finalizeTournamentSave() {
     }
 
 
-
 async function handleStart(type) {
   const clientIP = await getClientIP();
-  const cClassIP = clientIP ? clientIP.split(".").slice(0, 3).join(".") : null;
-
-  // 1. visitor_key 체크
-  const { data: keyCheck, error: keyError } = await supabase
+  const {data, error} = await supabase
     .from("sessions")
     .select("id")
     .eq("date_key", getDateKey())
     .eq("tournament_type", type)
-    .eq("visitor_key", visitorKey);
+    .or(`visitor_key.eq.${visitorKey},client_ip.eq.${clientIP}`);
 
-  if (keyError) {
-    alert("참여 체크 실패: " + keyError.message);
-    return;
-  }
-
-  if (keyCheck && keyCheck.length > 0) {
+  if (error) { alert("참여 체크 실패: " + error.message); return; }
+  if (data.length > 0) {
     alert(`${type==="op"?"OP":"호감"} 토너먼트는 오늘 이미 완료했습니다.`);
     return;
   }
-
-  // 2. C-Class IP 체크 (비행기 모드 어뷰징 차단)
-  if (cClassIP) {
-    const { data: ipCheck, error: ipError } = await supabase
-      .from("sessions")
-      .select("id")
-      .eq("date_key", getDateKey())
-      .eq("tournament_type", type)
-      .like("client_ip", `${cClassIP}.%`);
-
-    if (ipError) {
-      alert("참여 체크 실패: " + ipError.message);
-      return;
-    }
-
-    if (ipCheck && ipCheck.length > 0) {
-      alert(`${type==="op"?"OP":"호감"} 토너먼트는 오늘 이미 완료했습니다.`);
-      return;
-    }
-  }
-
   openClassModal(type);
 }
 
