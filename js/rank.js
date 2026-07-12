@@ -1,9 +1,26 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    async function getClientIP() {
-      try { const res=await fetch('https://api.ipify.org?format=json'); const data=await res.json(); return data.ip; }
-      catch { return null; }
-    }
+async function getClientIP() {
+  const sources = [
+    () => fetch("https://api.ipify.org?format=json", { signal: AbortSignal.timeout(3000) })
+          .then(r => r.json()).then(d => d.ip),
+
+    () => fetch("https://api64.ipify.org?format=json", { signal: AbortSignal.timeout(3000) })
+          .then(r => r.json()).then(d => d.ip),
+
+    () => fetch("https://ipapi.co/json/", { signal: AbortSignal.timeout(3000) })
+          .then(r => r.json()).then(d => d.ip),
+  ];
+
+  for (const source of sources) {
+    try {
+      const ip = await source();
+      if (ip && typeof ip === "string" && ip.includes(".")) return ip;
+    } catch {}
+  }
+
+  return null;
+}
 
     const SUPABASE_URL = "https://khszfukekudyripouifm.supabase.co";
     const SUPABASE_KEY = "sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb";
@@ -118,6 +135,75 @@ if (battleVolumeSlider && battleVolumeValue && battleSoundIcon) {
       "F":  ["많이 아쉬운 결과입니다. 선택이 꽤 엇갈렸어요.","토너먼트 흐름을 따라가기가 어려웠던 판정입니다.","다음 도전이 기대되는 결과입니다. 지금은 감을 다시 잡아야 해요."],
       "F-": ["가장 낮은 판정입니다. 이번엔 흐름이 전혀 맞지 않았어요.","많이 아쉬운 결과지만, 처음엔 이런 날도 있습니다.","다시 시작해볼 시간입니다. 다음엔 더 좋은 선택을 기대할게요."],
     };
+
+let gradeDistStatsCache = null;
+
+async function loadGradeDistStats() {
+  if (gradeDistStatsCache) return gradeDistStatsCache;
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_grade_distribution`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`
+      },
+      body: JSON.stringify({
+        p_type: "op",
+        p_start_date: "2026-04-07"
+      })
+    });
+
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    const counts = {};
+    let total = 0;
+
+    GRADE_TABLE.forEach(g => {
+      counts[g.grade] = 0;
+    });
+
+    if (Array.isArray(data)) {
+      data.forEach(row => {
+        const c = parseInt(row.grade_count, 10) || 0;
+        counts[row.grade] = c;
+        total += c;
+      });
+    }
+
+    gradeDistStatsCache = { counts, total };
+    return gradeDistStatsCache;
+  } catch {
+    return null;
+  }
+}
+
+function getGradeDistributionInfo(grade, stats) {
+  if (!stats || !stats.total) return null;
+
+  const counts = stats.counts;
+  const total = stats.total;
+
+  const idx = GRADE_TABLE.findIndex(g => g.grade === grade);
+  if (idx === -1) return null;
+
+  let cumulative = 0;
+  for (let i = 0; i <= idx; i++) {
+    cumulative += counts[GRADE_TABLE[i].grade] || 0;
+  }
+
+  const sameCount = counts[grade] || 0;
+
+  return {
+    topPct: Number(((cumulative / total) * 100).toFixed(1)),
+    samePct: Number(((sameCount / total) * 100).toFixed(1)),
+    sameCount,
+    total
+  };
+}
+
 function getStampClass(grade) {
   if (!grade) return "";
   const g = grade.replace("+","").replace("-","");
@@ -381,7 +467,7 @@ function renderOpRateContent(rows, prevRows) {
     var prevRate = prevRateMap[engName];
 
     if (prevRank === undefined || prevRate === undefined) {
-      return '<div class="delta-wrap"><span class="delta-new">🌱​ 신규</span></div>';
+      return '<div class="delta-wrap"><span class="delta-new">🆕 신규</span></div>';
     }
 
     var rankDiff = prevRank - currentRank;
@@ -606,6 +692,7 @@ let opRatePreloadPromise = null;
     let totalMatches=0, completedMatches=0, battleLogs=[], pendingWinner=null;
     let opScore=0, opMaxScore=0, isChoosing=false;
     let isFinalizingTournament = false;
+    let currentIsDuplicate = false; 
 
    const classColorMap = {
   "워로드":"engr-warrior","버서커":"engr-warrior","디스트로이어":"engr-warrior","홀리나이트":"engr-warrior","슬레이어":"engr-warrior","발키리":"engr-warrior",
@@ -1756,19 +1843,28 @@ function playWinnerSound() {
       updateRankingLockState();
     }
 
-    function openClassModal(type) {
-      currentTournamentType=type;
-      classFlowLabel.textContent=type==="op"?"OP TOURNAMENT":"FAVOR TOURNAMENT";
-      classTable.innerHTML=Object.entries(classGroups).map(([groupName,classes])=>`
-        <div class="class-row">
-          <div class="class-group">${groupName}</div>
-          <div class="class-buttons">${classes.map(cls=>`<button class="secondary-btn class-select-btn" data-class="${cls}" style="padding:10px 14px;">${cls}</button>`).join("")}</div>
-        </div>`).join("");
-      classModal.classList.add("show");
-      classTable.querySelectorAll(".class-select-btn").forEach(btn=>{
-        btn.addEventListener("click",()=>{ selectedClass=btn.dataset.class; classModal.classList.remove("show"); startBattle(type,selectedClass); });
-      });
-    }
+function openClassModal(type, isDuplicate = false) {
+  currentTournamentType = type;
+  currentIsDuplicate = isDuplicate;
+  classFlowLabel.textContent = type==="op" ? "OP TOURNAMENT" : "FAVOR TOURNAMENT";
+  classTable.innerHTML = Object.entries(classGroups).map(([groupName, classes]) => `
+    <div class="class-row">
+      <div class="class-group">${groupName}</div>
+      <div class="class-buttons">${classes.map(cls =>
+        `<button class="secondary-btn class-select-btn" data-class="${cls}" style="padding:10px 14px;">${cls}</button>`
+      ).join("")}</div>
+    </div>`).join("");
+  classModal.classList.add("show");
+  classTable.querySelectorAll(".class-select-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      selectedClass = btn.dataset.class;
+      classModal.classList.remove("show");
+      startBattle(type, selectedClass);
+    });
+  });
+}
+
+
 
     function closeClassModal() { classModal.classList.remove("show"); }
 
@@ -1871,30 +1967,97 @@ function playWinnerSound() {
   }, 500);
 }
 
-    function showWinnerModal(winner) {
-      battleModal.classList.remove("show"); playWinnerSound();
-      winnerModeLabel.textContent=currentTournamentType==="op"?"OP TOURNAMENT COMPLETE":"FAVOR TOURNAMENT COMPLETE";
-      winnerTitleText.textContent=getShortName(winner.engraving_name);
-      winnerSubText.textContent=`우승 직각 · ${winner.class_name}`;
-      winnerDescText.textContent="토너먼트가 완료되었습니다. 확인을 누르면 저장 후 참여 완료 도장이 표시되고 랭킹이 해제됩니다.";
-      if (currentTournamentType==="op") {
-        const grade=calcGrade(opScore,opMaxScore);
-        gsDate.textContent=formatStampDate(getDateKey()); gsGrade.textContent=grade;
-gradeComment.textContent=getRandomComment(grade); gradeStampWrap.style.display="flex";
-const gradeStampEl=document.getElementById("gradeStamp");
-gradeStampEl.classList.remove("stamp-ss","stamp-s","stamp-a","stamp-b","stamp-c","stamp-d","stamp-e","stamp-f");
-gradeStampEl.classList.add(getStampClass(grade));
-      } else { gradeStampWrap.style.display="none"; gradeComment.textContent=""; }
-      winnerModal.classList.add("show"); createConfetti();
+function showWinnerModal(winner) {
+  battleModal.classList.remove("show");
+  playWinnerSound();
+
+  winnerModeLabel.textContent = currentTournamentType === "op"
+    ? "OP TOURNAMENT COMPLETE"
+    : "FAVOR TOURNAMENT COMPLETE";
+
+  winnerTitleText.textContent = getShortName(winner.engraving_name);
+  winnerSubText.textContent = `우승 직각 · ${winner.class_name}`;
+  winnerDescText.textContent = "토너먼트가 완료되었습니다. 확인을 누르면 저장 후 참여 완료 도장이 표시되고 랭킹이 해제됩니다.";
+
+
+
+
+if (currentTournamentType === "op") {
+  const grade = calcGrade(opScore, opMaxScore);
+  const color = GRADE_COLORS[grade] || "#ccc";
+
+  gsDate.textContent = formatStampDate(getDateKey());
+  gsGrade.textContent = grade;
+  gradeStampWrap.style.display = "flex";
+
+  const gradeStampEl = document.getElementById("gradeStamp");
+  gradeStampEl.classList.remove("stamp-ss","stamp-s","stamp-a","stamp-b","stamp-c","stamp-d","stamp-e","stamp-f");
+  gradeStampEl.classList.add(getStampClass(grade));
+
+  gradeComment.innerHTML = `
+    <div class="percentile-line" style="color:${color}; font-weight:700; font-size:15px; margin-bottom:8px;">
+      📊 실제 유저 분포를 계산 중입니다...
+    </div>
+    <div style="color:#8fa3bf; font-size:13px; line-height:1.7;">
+      ${getRandomComment(grade)}
+    </div>
+  `;
+
+  loadGradeDistStats().then(stats => {
+    if (!winnerModal.classList.contains("show")) return;
+
+    const info = getGradeDistributionInfo(grade, stats);
+
+    if (!info) {
+      gradeComment.innerHTML = `
+        <div class="percentile-line" style="color:${color}; font-weight:700; font-size:15px; margin-bottom:8px;">
+          📊 실제 유저 분포 데이터가 아직 부족합니다
+        </div>
+        <div style="color:#8fa3bf; font-size:13px; line-height:1.7;">
+          ${getRandomComment(grade)}
+        </div>
+      `;
+      return;
     }
 
-    async function finalizeTournamentSave() {
+    gradeComment.innerHTML = `
+      <div class="percentile-line" style="color:${color}; font-weight:700; font-size:15px; margin-bottom:8px;">
+        📊 전체 유저 중 <span style="font-size:18px; font-weight:900;">상위 ${info.topPct}%</span> 수준의 선택입니다
+      </div>
+      <div style="color:#8fa3bf; font-size:13px; line-height:1.7;">
+        같은 등급(<strong style="color:${color};">${grade}</strong>)을 받은 유저는 전체의 <strong>${info.samePct}%</strong>입니다.<br>
+        ${getRandomComment(grade)}
+      </div>
+    `;
+  });
+} else {
+  gradeStampWrap.style.display = "none";
+  gradeComment.textContent = "";
+}
+
+
+
+  winnerModal.classList.add("show");
+  createConfetti();
+}
+
+async function finalizeTournamentSave() {
   if (!pendingWinner) return;
   if (isFinalizingTournament) return;
-
   isFinalizingTournament = true;
   winnerConfirmBtn.disabled = true;
-      const clientIP=await getClientIP();
+
+  // 중복 참여자면 저장 없이 조용히 완료 처리
+  if (currentIsDuplicate) {
+    winnerModal.classList.remove("show");
+    isFinalizingTournament = false;
+    winnerConfirmBtn.disabled = false;
+    currentIsDuplicate = false;
+    return;
+  }
+
+  const clientIP=await getClientIP();
+
       const grade=currentTournamentType==="op"?calcGrade(opScore,opMaxScore):null;
       const score=currentTournamentType==="op"?opScore:0;
       const maxScore=currentTournamentType==="op"?opMaxScore:0;
@@ -1935,12 +2098,37 @@ gradeStampEl.classList.add(getStampClass(grade));
     }
 
     async function handleStart(type) {
-      const clientIP=await getClientIP();
-      const {data,error}=await supabase.from("sessions").select("id").eq("date_key",getDateKey()).eq("tournament_type",type).or(`visitor_key.eq.${visitorKey},client_ip.eq.${clientIP}`);
-      if (error) { alert("참여 체크 실패: "+error.message); return; }
-      if (data.length>0) { alert(`${type==="op"?"OP":"호감"} 토너먼트는 오늘 이미 완료했습니다.`); return; }
-      openClassModal(type);
-    }
+  const clientIP = await getClientIP();
+  const cClassIP = clientIP ? clientIP.split(".").slice(0, 3).join(".") : null;
+
+  let isDuplicate = false;
+
+  // 1. visitor_key 체크
+  const { data: keyCheck, error: keyError } = await supabase
+    .from("sessions")
+    .select("id")
+    .eq("date_key", getDateKey())
+    .eq("tournament_type", type)
+    .eq("visitor_key", visitorKey);
+
+  if (keyError) { alert("참여 체크 실패: " + keyError.message); return; }
+  if (keyCheck && keyCheck.length > 0) isDuplicate = true;
+
+  // 2. C-Class IP 체크 (비행기 모드 무력화)
+  if (!isDuplicate && cClassIP) {
+    const { data: ipCheck } = await supabase
+      .from("sessions")
+      .select("id")
+      .eq("date_key", getDateKey())
+      .eq("tournament_type", type)
+      .like("client_ip", `${cClassIP}.%`);
+
+    if (ipCheck && ipCheck.length > 0) isDuplicate = true;
+  }
+
+  // 중복이어도 모달은 정상으로 열어줌 (어뷰저가 모름)
+  openClassModal(type, isDuplicate);
+}
 
     function createConfetti() {
       const colors=["#ff7070","#ffb36b","#ffd76b","#8bd0ff","#c48bff"];
