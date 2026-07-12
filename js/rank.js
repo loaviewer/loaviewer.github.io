@@ -2521,7 +2521,7 @@ classWinModal.addEventListener("click", e => {
           });
           statusHTML =
             '<div class="inq-reply-section">' +
-              '<div class="inq-reply-label">✅ 관리자 답변</div>' +
+              '<div class="inq-reply-label">✅ 관리자 답변.</div>' +
               '<div class="inq-reply-text">' + row.admin_reply + '</div>' +
               '<div class="inq-reply-date">' + replyDate + '</div>' +
             '</div>';
