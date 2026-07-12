@@ -692,7 +692,7 @@ let opRatePreloadPromise = null;
     let totalMatches=0, completedMatches=0, battleLogs=[], pendingWinner=null;
     let opScore=0, opMaxScore=0, isChoosing=false;
     let isFinalizingTournament = false;
-    let currentIsDuplicate = false; 
+    
 
    const classColorMap = {
   "워로드":"engr-warrior","버서커":"engr-warrior","디스트로이어":"engr-warrior","홀리나이트":"engr-warrior","슬레이어":"engr-warrior","발키리":"engr-warrior",
@@ -1843,27 +1843,20 @@ function playWinnerSound() {
       updateRankingLockState();
     }
 
-function openClassModal(type, isDuplicate = false) {
-  currentTournamentType = type;
-  currentIsDuplicate = isDuplicate;
-  classFlowLabel.textContent = type==="op" ? "OP TOURNAMENT" : "FAVOR TOURNAMENT";
-  classTable.innerHTML = Object.entries(classGroups).map(([groupName, classes]) => `
+
+function openClassModal(type) {
+  currentTournamentType=type;
+  classFlowLabel.textContent=type==="op"?"OP TOURNAMENT":"FAVOR TOURNAMENT";
+  classTable.innerHTML=Object.entries(classGroups).map(([groupName,classes])=>`
     <div class="class-row">
       <div class="class-group">${groupName}</div>
-      <div class="class-buttons">${classes.map(cls =>
-        `<button class="secondary-btn class-select-btn" data-class="${cls}" style="padding:10px 14px;">${cls}</button>`
-      ).join("")}</div>
+      <div class="class-buttons">${classes.map(cls=>`<button class="secondary-btn class-select-btn" data-class="${cls}" style="padding:10px 14px;">${cls}</button>`).join("")}</div>
     </div>`).join("");
   classModal.classList.add("show");
-  classTable.querySelectorAll(".class-select-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      selectedClass = btn.dataset.class;
-      classModal.classList.remove("show");
-      startBattle(type, selectedClass);
-    });
+  classTable.querySelectorAll(".class-select-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{ selectedClass=btn.dataset.class; classModal.classList.remove("show"); startBattle(type,selectedClass); });
   });
 }
-
 
 
     function closeClassModal() { classModal.classList.remove("show"); }
@@ -2047,14 +2040,7 @@ async function finalizeTournamentSave() {
   isFinalizingTournament = true;
   winnerConfirmBtn.disabled = true;
 
-  // 중복 참여자면 저장 없이 조용히 완료 처리
-  if (currentIsDuplicate) {
-    winnerModal.classList.remove("show");
-    isFinalizingTournament = false;
-    winnerConfirmBtn.disabled = false;
-    currentIsDuplicate = false;
-    return;
-  }
+
 
   const clientIP=await getClientIP();
 
@@ -2097,11 +2083,11 @@ async function finalizeTournamentSave() {
       winnerConfirmBtn.disabled = false;
     }
 
-    async function handleStart(type) {
+
+
+async function handleStart(type) {
   const clientIP = await getClientIP();
   const cClassIP = clientIP ? clientIP.split(".").slice(0, 3).join(".") : null;
-
-  let isDuplicate = false;
 
   // 1. visitor_key 체크
   const { data: keyCheck, error: keyError } = await supabase
@@ -2111,24 +2097,40 @@ async function finalizeTournamentSave() {
     .eq("tournament_type", type)
     .eq("visitor_key", visitorKey);
 
-  if (keyError) { alert("참여 체크 실패: " + keyError.message); return; }
-  if (keyCheck && keyCheck.length > 0) isDuplicate = true;
+  if (keyError) {
+    alert("참여 체크 실패: " + keyError.message);
+    return;
+  }
 
-  // 2. C-Class IP 체크 (비행기 모드 무력화)
-  if (!isDuplicate && cClassIP) {
-    const { data: ipCheck } = await supabase
+  if (keyCheck && keyCheck.length > 0) {
+    alert(`${type==="op"?"OP":"호감"} 토너먼트는 오늘 이미 완료했습니다.`);
+    return;
+  }
+
+  // 2. C-Class IP 체크 (비행기 모드 어뷰징 차단)
+  if (cClassIP) {
+    const { data: ipCheck, error: ipError } = await supabase
       .from("sessions")
       .select("id")
       .eq("date_key", getDateKey())
       .eq("tournament_type", type)
       .like("client_ip", `${cClassIP}.%`);
 
-    if (ipCheck && ipCheck.length > 0) isDuplicate = true;
+    if (ipError) {
+      alert("참여 체크 실패: " + ipError.message);
+      return;
+    }
+
+    if (ipCheck && ipCheck.length > 0) {
+      alert(`${type==="op"?"OP":"호감"} 토너먼트는 오늘 이미 완료했습니다.`);
+      return;
+    }
   }
 
-  // 중복이어도 모달은 정상으로 열어줌 (어뷰저가 모름)
-  openClassModal(type, isDuplicate);
+  openClassModal(type);
 }
+
+
 
     function createConfetti() {
       const colors=["#ff7070","#ffb36b","#ffd76b","#8bd0ff","#c48bff"];
@@ -2521,7 +2523,7 @@ classWinModal.addEventListener("click", e => {
           });
           statusHTML =
             '<div class="inq-reply-section">' +
-              '<div class="inq-reply-label">✅ 관리자 답변.</div>' +
+              '<div class="inq-reply-label">✅ 관리자 답변</div>' +
               '<div class="inq-reply-text">' + row.admin_reply + '</div>' +
               '<div class="inq-reply-date">' + replyDate + '</div>' +
             '</div>';
