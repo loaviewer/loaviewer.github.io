@@ -98,6 +98,7 @@ if (battleVolumeSlider && battleVolumeValue && battleSoundIcon) {
       {grade:"F+",min:10,max:14},{grade:"F",min:5,max:9},{grade:"F-",min:0,max:4},
     ];
 
+
     const GRADE_COLORS = {
   "SS+": "#ffd700", "SS": "#ffd700", "SS-": "#ffd700",
   "S+": "#7fc6ff", "S": "#7fc6ff", "S-": "#7fc6ff",
@@ -189,20 +190,29 @@ function getGradeDistributionInfo(grade, stats) {
   const idx = GRADE_TABLE.findIndex(g => g.grade === grade);
   if (idx === -1) return null;
 
-  let cumulative = 0;
-  for (let i = 0; i <= idx; i++) {
-    cumulative += counts[GRADE_TABLE[i].grade] || 0;
+  // 1. 나보다 '높은' 등급을 받은 사람들의 누적 (<= 가 아니라 < 로 변경)
+  let betterCount = 0;
+  for (let i = 0; i < idx; i++) {
+    betterCount += counts[GRADE_TABLE[i].grade] || 0;
   }
 
+  // 2. 나와 같은 등급을 받은 사람
   const sameCount = counts[grade] || 0;
 
+  // 상위 % 계산
+  let topPct = Number(((betterCount / total) * 100).toFixed(1));
+  
+  // 만약 최고 등급(SS+)이라 나보다 높은 사람이 없으면 0%가 되므로 0.1%로 뽀대나게 보정
+  if (idx === 0) topPct = 0.1;
+
   return {
-    topPct: Number(((cumulative / total) * 100).toFixed(1)),
+    topPct: topPct,
     samePct: Number(((sameCount / total) * 100).toFixed(1)),
     sameCount,
     total
   };
 }
+
 
 function getStampClass(grade) {
   if (!grade) return "";
@@ -277,6 +287,82 @@ function getStampClass(grade) {
       for (let i=c.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [c[i],c[j]]=[c[j],c[i]]; }
       return c;
     }
+
+const OP_BATTLE_LINES = [
+  "어느 직각이 더 강할까?",
+  "최강 직각 월드컵",
+  "현재 메타의 승자는?",
+  "당신의 파워 픽은?",
+  "더 높은 티어를 골라주세요",
+  "성능으로 압도하라",
+  "진검승부",
+  "밸런스의 정점은?",
+  "어느 쪽이 더 딜이 쌜까?",
+  "최고의 실전 성능은?",
+  "메타 최강자는 누구?",
+  "레이드의 지배자는?",
+  "딜킹을 가려보자",
+  "압도적인 화력 대결",
+  "실전에서 더 강한 직각은?",
+  "최종 승자는 누구일까?",
+  "티어표 최상단은?",
+  "누가 보스의 체력을 더 빨리 녹일까?",
+  "한계를 뛰어넘는 성능",
+  "최고의 OP 직각은?"
+];
+
+const FAVOR_BATTLE_LINES = [
+  "어느 직각이 더 끌릴까?",
+  "최애 직각 월드컵",
+  "당신의 취향 저격은?",
+  "낭만으로 승부하라",
+  "더 재밌어 보이는 직각은?",
+  "마음이 가는 쪽을 골라주세요",
+  "애정 픽 매치",
+  "어느 쪽이 더 플레이하고 싶나요?",
+  "취향의 정점은?",
+  "당신의 로망 픽은?",
+  "가장 애정하는 직각은?",
+  "파티 신청시 바로 받을 직각은?",
+  "손이 더 자주 가는 직각은?",
+  "보는 것만으로도 설레는 직각은?",
+  "가장 정이 가는 직각은?",
+  "내 스타일은 어느 쪽?",
+  "성능보다 마음이 먼저",
+  "가슴이 시키는 선택",
+  "나만의 원픽 직각은?",
+  "추억이 담긴 최고의 직각은?"
+];
+
+function getBattleLine(type) {
+  try {
+    const key = type === "op"
+      ? "loa_battle_line_pool_op"
+      : "loa_battle_line_pool_favor";
+
+    const source = type === "op" ? OP_BATTLE_LINES : FAVOR_BATTLE_LINES;
+
+    let pool = [];
+    try {
+      pool = JSON.parse(localStorage.getItem(key) || "[]");
+    } catch {
+      pool = [];
+    }
+
+    if (!Array.isArray(pool) || pool.length === 0) {
+      pool = shuffle([...source]);
+    }
+
+    const picked = pool.pop();
+    localStorage.setItem(key, JSON.stringify(pool));
+    return picked || source[0];
+  } catch (e) {
+    console.error("getBattleLine error:", e);
+    return type === "op" ? "어느 직각이 더 강할까?" : "어느 직각이 더 끌릴까?";
+  }
+}
+
+
 
     async function loadTierData(type) {
   const {data, error} = await supabase.rpc("get_tier_data", {
@@ -645,6 +731,8 @@ function renderOpRateContent(rows, prevRows) {
     const battleTopKorTitle  = document.getElementById("battleTopKorTitle");
     const battleRoundTitle   = document.getElementById("battleRoundTitle");
     const battleSubText      = document.getElementById("battleSubText");
+   const battleCenterRound  = document.getElementById("battleCenterRound");
+
     const battleProgressText = document.getElementById("battleProgressText");
     const battleProgressFill = document.getElementById("battleProgressFill");
     const leftChoiceBtn      = document.getElementById("leftChoiceBtn");
@@ -1882,6 +1970,9 @@ function openClassModal(type) {
       battleModeLabel.textContent=type==="op"?"OP TOURNAMENT":"FAVOR TOURNAMENT";
       battleTopKorTitle.textContent=type==="op"?"OP 직각 토너먼트":"호감 직각 토너먼트";
       battleTopKorTitle.style.color=type==="op"?"#8ef0c9":"#ffd48a";
+     battleModal.classList.remove("mode-op","mode-favor");
+     battleModal.classList.add(type==="op" ? "mode-op" : "mode-favor");
+
       battleModal.classList.add("show"); renderNextBattle();
     }
 
@@ -1899,8 +1990,13 @@ function openClassModal(type) {
       resetBattleCardEffects();
       const sc=getStageClass(currentRoundCandidates.length);
       leftChoiceBtn.classList.add(sc); rightChoiceBtn.classList.add(sc);
-      battleRoundTitle.textContent=`${getShortName(currentLeft.engraving_name)} vs ${getShortName(currentRight.engraving_name)}`;
-      battleSubText.textContent=`${selectedClass} 제외 상태 · ${getRoundLabel(currentRoundCandidates.length)} 진행 중`;
+      
+battleRoundTitle.textContent = getBattleLine(currentTournamentType);
+
+     battleSubText.textContent = `${selectedClass} 제외`;
+if (battleCenterRound) {
+  battleCenterRound.textContent = getRoundLabel(currentRoundCandidates.length);
+}
             setBattleCardVisuals("left", currentLeft);
       setBattleCardVisuals("right", currentRight);
       updateBattleProgress();
