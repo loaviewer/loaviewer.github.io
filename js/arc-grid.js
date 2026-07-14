@@ -189,11 +189,15 @@ target.innerHTML = `
             <button class="m-arc-tab" data-core="별" type="button">⭐</button>
         </div>
 
-        <div class="m-arc-core-select" id="mobileCoreSelectWrap">
-            <select id="mobileCoreSel" class="m-arc-select">
-                <option value="">코어를 선택하세요</option>
-            </select>
-        </div>
+     
+<div class="m-arc-core-select" id="mobileCoreSelectWrap">
+    <div class="m-custom-core-select" id="mobileCoreDropdown">
+        <button type="button" class="m-custom-core-trigger" id="mobileCoreTrigger">코어를 선택하세요</button>
+        <div class="m-custom-core-menu" id="mobileCoreMenu"></div>
+        <input type="hidden" id="mobileCoreSel" value="">
+    </div>
+</div>
+
 
         <div class="m-arc-card-wrap">
             <div class="m-arc-grade-float" id="mobileGradeBar">
@@ -253,17 +257,30 @@ bindMobileEvents(target);
                     <div id="styleToggleTabs"></div>
                 </div>
 
-                <div id="coreSelectRow">
-                    <select id="selectHae" data-type="해">
-                        <option value="">🌞 해 코어를 선택하세요</option>
-                    </select>
-                    <select id="selectDal" data-type="달">
-                        <option value="">🌙 달 코어를 선택하세요</option>
-                    </select>
-                    <select id="selectByeol" data-type="별">
-                        <option value="">⭐ 별 코어를 선택하세요</option>
-                    </select>
-                </div>
+             
+
+
+<div id="coreSelectRow">
+    <div class="custom-core-select" id="customHae" data-type="해">
+        <button type="button" class="custom-core-trigger" id="triggerHae" disabled><span class="custom-core-trigger-icon">🌞</span> 해 코어를 선택하세요</button>
+        <div class="custom-core-menu" id="menuHae"></div>
+        <input type="hidden" id="selectHae" data-type="해" value="">
+    </div>
+
+    <div class="custom-core-select" id="customDal" data-type="달">
+        <button type="button" class="custom-core-trigger" id="triggerDal" disabled><span class="custom-core-trigger-icon">🌙</span> 달 코어를 선택하세요</button>
+        <div class="custom-core-menu" id="menuDal"></div>
+        <input type="hidden" id="selectDal" data-type="달" value="">
+    </div>
+
+    <div class="custom-core-select" id="customByeol" data-type="별">
+        <button type="button" class="custom-core-trigger" id="triggerByeol" disabled><span class="custom-core-trigger-icon">⭐</span> 별 코어를 선택하세요</button>
+        <div class="custom-core-menu" id="menuByeol"></div>
+        <input type="hidden" id="selectByeol" data-type="별" value="">
+    </div>
+</div>
+
+
 
                 <hr class="divider">
 
@@ -301,8 +318,9 @@ bindMobileEvents(target);
         `;
 
         renderJobGrid();
-        bindGradeButtons();
-        bindSelectEvents();
+bindGradeButtons();
+bindSelectEvents();
+bindCustomCoreDropdown();
     }
 }
 
@@ -320,10 +338,20 @@ function bindMobileEvents(target) {
         "별": { coreIndex: "", grade: "relic" }
     };
 window._arcSaved = savedSelections;
-    const jobSel = target.querySelector("#mobileJobSelect");
-    const coreSel = target.querySelector("#mobileCoreSel");
-    const card = target.querySelector("#mobileCard");
-    const tabs = target.querySelectorAll(".m-arc-tab");
+    
+const jobSel = target.querySelector("#mobileJobSelect");
+const coreSel = target.querySelector("#mobileCoreSel");
+const coreTrigger = target.querySelector("#mobileCoreTrigger");
+const coreMenu = target.querySelector("#mobileCoreMenu");
+const coreDropdown = target.querySelector("#mobileCoreDropdown");
+const card = target.querySelector("#mobileCard");
+const tabs = target.querySelectorAll(".m-arc-tab");
+
+
+
+
+
+
 
     // 직업 선택
     jobSel.addEventListener("change", () => {
@@ -393,19 +421,48 @@ if (mobileTitle2) mobileTitle2.textContent = jobName;
         });
     });
 
-    // 코어 셀렉트 변경
-    coreSel.addEventListener("change", () => {
-        const val = coreSel.value;
-        savedSelections[mobileCurrentCore].coreIndex = val;
+   
+// 커스텀 코어 드롭다운 열기/닫기
+coreTrigger.addEventListener("click", (e) => {
+    e.stopPropagation();
 
-        if (val === "") {
-            clearMobileCard();
-            updateAllTabLabels();
-            return;
-        }
-        renderMobileCard(val);
-        updateAllTabLabels();
+    if (!currentJob || !currentStyle) return;
+
+    const isOpen = coreDropdown.classList.contains("open");
+    closeMobileCoreMenu();
+
+    if (!isOpen) {
+        coreDropdown.classList.add("open");
+    }
+});
+
+// 커스텀 코어 옵션 선택
+coreMenu.addEventListener("click", (e) => {
+    const option = e.target.closest(".m-custom-core-option");
+    if (!option) return;
+
+    const val = option.dataset.value;
+    const name = option.dataset.name;
+    const icon = option.dataset.icon;
+
+    coreSel.value = val;
+    savedSelections[mobileCurrentCore].coreIndex = val;
+
+    coreTrigger.innerHTML = `${icon} <span class="core-badge">${Number(val) + 1}</span> ${name}`;
+
+    closeMobileCoreMenu();
+    renderMobileCard(val);
+    updateAllTabLabels();
+});
+
+// 바깥 클릭 시 닫기
+if (!document._arcMobileCoreMenuBound) {
+    document.addEventListener("click", () => {
+        closeMobileCoreMenu();
     });
+    document._arcMobileCoreMenuBound = true;
+}
+
 
     // 등급 버튼
     target.querySelectorAll("#mobileGradeBar .grade-btn").forEach(btn => {
@@ -446,36 +503,74 @@ if (mobileTitle2) mobileTitle2.textContent = jobName;
         });
     }
 
-    function resetMobileCore() {
-        mobileCurrentCore = "해";
-        tabs.forEach(t => t.classList.remove("active"));
-        tabs[0].classList.add("active");
-        coreSel.innerHTML = `<option value="">코어를 선택하세요</option>`;
-        clearMobileCard();
-        updateAllTabLabels();
-    }
+  
+function resetMobileCore() {
+    mobileCurrentCore = "해";
+    tabs.forEach(t => t.classList.remove("active"));
+    if (tabs[0]) tabs[0].classList.add("active");
+
+    coreSel.value = "";
+    coreTrigger.textContent = "코어를 선택하세요";
+    coreMenu.innerHTML = "";
+
+    closeMobileCoreMenu();
+    clearMobileCard();
+    updateAllTabLabels();
+}
+
+
 
     function clearMobileCard() {
         card.classList.add("empty");
         card.innerHTML = "코어를 선택하세요";
     }
 
-    function fillMobileCoreSelect() {
-        if (!currentJob || !currentStyle) {
-            coreSel.innerHTML = `<option value="">코어를 선택하세요</option>`;
-            return;
-        }
 
-        const data = coreData[currentJob]?.[currentStyle];
-        if (!data) return;
-
-        const arr = data[mobileCurrentCore] || [];
-        const typeEmojis = { "해": "🌞", "달": "🌙", "별": "⭐" };
-
-        coreSel.innerHTML =
-            `<option value="">${typeEmojis[mobileCurrentCore]} ${mobileCurrentCore} 코어를 선택하세요</option>` +
-           arr.map((core, i) => `<option value="${i}">${typeEmojis[mobileCurrentCore]}${i + 1} ${core.name}</option>`).join("");
+function closeMobileCoreMenu() {
+    if (coreDropdown) {
+        coreDropdown.classList.remove("open");
     }
+}
+
+function fillMobileCoreSelect() {
+    if (!currentJob || !currentStyle) {
+        coreSel.value = "";
+        coreTrigger.textContent = "코어를 선택하세요";
+        coreMenu.innerHTML = "";
+        return;
+    }
+
+    const data = coreData[currentJob]?.[currentStyle];
+    if (!data) return;
+
+    const arr = data[mobileCurrentCore] || [];
+    const typeEmojis = { "해": "🌞", "달": "🌙", "별": "⭐" };
+
+    coreMenu.innerHTML = arr.map((core, i) => {
+        const activeClass = savedSelections[mobileCurrentCore].coreIndex === String(i) ? " active" : "";
+        return `
+            <button type="button" class="m-custom-core-option${activeClass}" data-value="${i}" data-name="${core.name}" data-icon="${typeEmojis[mobileCurrentCore]}">
+                <span class="m-custom-core-option-icon">${typeEmojis[mobileCurrentCore]}</span>
+                <span class="core-badge">${i + 1}</span>
+                <span class="m-custom-core-option-name">${core.name}</span>
+            </button>
+        `;
+    }).join("");
+
+    const savedIdx = savedSelections[mobileCurrentCore].coreIndex;
+
+    if (savedIdx !== "" && arr[savedIdx]) {
+        coreSel.value = savedIdx;
+        coreTrigger.innerHTML = `${typeEmojis[mobileCurrentCore]} <span class="core-badge">${Number(savedIdx) + 1}</span> ${arr[savedIdx].name}`;
+    } else {
+        coreSel.value = "";
+        coreTrigger.textContent = `${typeEmojis[mobileCurrentCore]} ${mobileCurrentCore} 코어를 선택하세요`;
+    }
+
+    closeMobileCoreMenu();
+}
+
+
 
     function updateAllTabLabels() {
         if (!currentJob || !currentStyle) {
@@ -501,9 +596,9 @@ if (mobileTitle2) mobileTitle2.textContent = jobName;
                 const core = data[type]?.[savedIdx];
                 const num = parseInt(savedIdx) + 1;
                 if (isActive) {
-                    tab.innerHTML = `${icons[type]}${num} ${core?.name || ""}`;
+                    tab.innerHTML = `${icons[type]} <span class="core-badge">${num}</span> ${core?.name || ""}`;
                 } else {
-                    tab.innerHTML = `${icons[type]}${num}`;
+                  tab.innerHTML = `${icons[type]} <span class="core-badge">${num}</span>`;
                 }
                 tab.classList.add("has-selection");
             } else {
@@ -577,7 +672,15 @@ if (mobileTitle2) mobileTitle2.textContent = jobName;
             </div>
         `;
     }
+
+    window._arcResetMobileCoreUI = function () {
+        resetAllSelections();
+        resetMobileCore();
+        fillMobileCoreSelect();
+        updateGradeButtons();
+    };
 }
+
 
 
 
@@ -667,53 +770,17 @@ btn.addEventListener("click", () => {
     btn.classList.add("active");
     currentStyle = styleName;
 
+  
+
+
     if (isMobile) {
-        // 모바일: savedSelections 초기화 + UI 리셋
-        const tabs = document.querySelectorAll(".m-arc-tab");
-        const coreSel = document.getElementById("mobileCoreSel");
-        const card = document.getElementById("mobileCard");
-
-        // savedSelections 초기화
-        ["해", "달", "별"].forEach(type => {
-            if (window._arcSaved) {
-                window._arcSaved[type] = { coreIndex: "", grade: "relic" };
-            }
-        });
-
-        // 탭 초기화
-        tabs.forEach(t => t.classList.remove("active"));
-        if (tabs[0]) tabs[0].classList.add("active");
-
-        // 등급 초기화
-        document.querySelectorAll("#mobileGradeBar .grade-btn").forEach(b => {
-            b.classList.remove("active");
-            if (b.classList.contains("relic")) b.classList.add("active");
-        });
-
-        // 코어 셀렉트 리셋
-        if (coreSel) {
-            const data = coreData[currentJob]?.[currentStyle];
-            const arr = data?.["해"] || [];
-            coreSel.innerHTML =
-                `<option value="">🌞 해 코어를 선택하세요</option>` +
-                arr.map((core, i) => `<option value="${i}">&lt;해${i + 1}&gt; ${core.name}</option>`).join("");
+        if (typeof window._arcResetMobileCoreUI === "function") {
+            window._arcResetMobileCoreUI();
         }
-
-        // 카드 초기화
-        if (card) {
-            card.classList.add("empty");
-            card.innerHTML = "코어를 선택하세요";
-        }
-
-        // 탭 라벨 초기화
-        tabs.forEach(tab => {
-            const type = tab.dataset.core;
-            const icons = { "해": "🌞", "달": "🌙", "별": "⭐" };
-            tab.innerHTML = icons[type];
-            tab.classList.remove("has-selection");
-        });
-
     } else {
+
+
+
         resetSelects();
         populateSelects();
         clearCards();
@@ -730,14 +797,30 @@ btn.addEventListener("click", () => {
 }
 
 
-function resetSelects() {
-    const typeEmojis = { "해": "🌞", "달": "🌙", "별": "⭐" };
 
-    document.querySelectorAll("#coreSelectRow select").forEach(sel => {
-        const type = sel.getAttribute("data-type");
-        sel.innerHTML = `<option value="">${typeEmojis[type]} ${type} 코어를 선택하세요</option>`;
+function resetSelects() {
+    const map = {
+        "해": { inputId: "selectHae", triggerId: "triggerHae", menuId: "menuHae", label: "🌞 해 코어를 선택하세요" },
+        "달": { inputId: "selectDal", triggerId: "triggerDal", menuId: "menuDal", label: "🌙 달 코어를 선택하세요" },
+        "별": { inputId: "selectByeol", triggerId: "triggerByeol", menuId: "menuByeol", label: "⭐ 별 코어를 선택하세요" }
+    };
+
+    Object.values(map).forEach(cfg => {
+        const input = document.getElementById(cfg.inputId);
+        const trigger = document.getElementById(cfg.triggerId);
+        const menu = document.getElementById(cfg.menuId);
+
+        if (input) input.value = "";
+        if (trigger) trigger.textContent = cfg.label;
+        if (menu) menu.innerHTML = "";
     });
+
+    closeCustomCoreMenus();
 }
+
+
+
+
 
 function clearCards() {
     ["Hae", "Dal", "Byeol"].forEach((slot, idx) => {
@@ -775,12 +858,15 @@ function populateSelects() {
     const data = coreData[currentJob]?.[currentStyle];
     if (!data) return;
 
-    fillSelect("selectHae", "해", data.해 || []);
-    fillSelect("selectDal", "달", data.달 || []);
-    fillSelect("selectByeol", "별", data.별 || []);
+    fillCustomCoreDropdown("해", data.해 || []);
+    fillCustomCoreDropdown("달", data.달 || []);
+    fillCustomCoreDropdown("별", data.별 || []);
+
+document.getElementById("triggerHae")?.removeAttribute("disabled");
+document.getElementById("triggerDal")?.removeAttribute("disabled");
+document.getElementById("triggerByeol")?.removeAttribute("disabled");
+
 }
-
-
 
 function parseSlashValue(str, grade) {
     if (!str.includes("/")) return str;
@@ -790,6 +876,7 @@ function parseSlashValue(str, grade) {
     });
 }
 
+
 function fillSelect(id, type, arr) {
     const typeEmojis = { "해": "🌞", "달": "🌙", "별": "⭐" };
     const sel = document.getElementById(id);
@@ -797,7 +884,142 @@ function fillSelect(id, type, arr) {
 
     sel.innerHTML =
         `<option value="">${typeEmojis[type]} ${type} 코어를 선택하세요</option>` +
-        arr.map((core, i) => `<option value="${i}">${typeEmojis[type]}${i + 1} ${core.name}</option>`).join("");
+        arr.map((core, i) => `<option value="${i}">${typeEmojis[type]} [${i + 1}] ${core.name}</option>`).join("");
+}
+
+
+
+
+function closeCustomCoreMenus() {
+    document.querySelectorAll(".custom-core-select.open").forEach(el => {
+        el.classList.remove("open");
+    });
+}
+
+function bindCustomCoreDropdown() {
+    const configs = [
+        {
+            type: "해",
+            wrapId: "customHae",
+            triggerId: "triggerHae",
+            menuId: "menuHae",
+            inputId: "selectHae",
+            cardId: "cardHae",
+            icon: "🌞"
+        },
+        {
+            type: "달",
+            wrapId: "customDal",
+            triggerId: "triggerDal",
+            menuId: "menuDal",
+            inputId: "selectDal",
+            cardId: "cardDal",
+            icon: "🌙"
+        },
+        {
+            type: "별",
+            wrapId: "customByeol",
+            triggerId: "triggerByeol",
+            menuId: "menuByeol",
+            inputId: "selectByeol",
+            cardId: "cardByeol",
+            icon: "⭐"
+        }
+    ];
+
+    configs.forEach(cfg => {
+        const wrap = document.getElementById(cfg.wrapId);
+        const trigger = document.getElementById(cfg.triggerId);
+        const menu = document.getElementById(cfg.menuId);
+        const hidden = document.getElementById(cfg.inputId);
+
+        if (!wrap || !trigger || !menu || !hidden) return;
+
+       
+
+
+trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    if (!currentJob || !currentStyle) return;
+    if (menu.children.length === 0) return;
+
+    const isOpen = wrap.classList.contains("open");
+    closeCustomCoreMenus();
+
+    if (!isOpen) {
+        wrap.classList.add("open");
+    }
+});
+
+
+
+
+        menu.addEventListener("click", (e) => {
+            const option = e.target.closest(".custom-core-option");
+            if (!option) return;
+
+            const value = option.dataset.value;
+            const name = option.dataset.name;
+
+            hidden.value = value;
+           trigger.innerHTML = `<span class="custom-core-trigger-icon">${cfg.icon}</span> <span class="core-badge">${Number(value) + 1}</span> ${name}`;
+
+            closeCustomCoreMenus();
+            renderCard(cfg.cardId, cfg.type, value);
+        });
+    });
+
+    if (!document._arcCustomCoreMenuBound) {
+        document.addEventListener("click", () => {
+            closeCustomCoreMenus();
+        });
+        document._arcCustomCoreMenuBound = true;
+    }
+}
+
+
+function fillCustomCoreDropdown(type, arr) {
+    const map = {
+        "해": { wrapId: "customHae", menuId: "menuHae", triggerId: "triggerHae", inputId: "selectHae", icon: "🌞", label: "🌞 해 코어를 선택하세요" },
+        "달": { wrapId: "customDal", menuId: "menuDal", triggerId: "triggerDal", inputId: "selectDal", icon: "🌙", label: "🌙 달 코어를 선택하세요" },
+        "별": { wrapId: "customByeol", menuId: "menuByeol", triggerId: "triggerByeol", inputId: "selectByeol", icon: "⭐", label: "⭐ 별 코어를 선택하세요" }
+    };
+
+    const cfg = map[type];
+    if (!cfg) return;
+
+    const wrap = document.getElementById(cfg.wrapId);
+    const menu = document.getElementById(cfg.menuId);
+    const trigger = document.getElementById(cfg.triggerId);
+    const hidden = document.getElementById(cfg.inputId);
+
+    if (!wrap || !menu || !trigger || !hidden) return;
+
+    menu.innerHTML = arr.map((core, i) => {
+        const activeClass = hidden.value === String(i) ? " active" : "";
+        return `
+            <button type="button" class="custom-core-option${activeClass}" data-value="${i}" data-name="${core.name}">
+                <span class="custom-core-option-icon">${cfg.icon}</span>
+                <span class="core-badge">${i + 1}</span>
+                <span class="custom-core-option-name">${core.name}</span>
+            </button>
+        `;
+    }).join("");
+
+    if (hidden.value !== "" && arr[hidden.value]) {
+        
+
+
+trigger.innerHTML = `<span class="custom-core-trigger-icon">${cfg.icon}</span> <span class="core-badge">${Number(hidden.value) + 1}</span> ${arr[hidden.value].name}`;
+
+
+    } else {
+        hidden.value = "";
+       trigger.innerHTML = `<span class="custom-core-trigger-icon">${cfg.icon}</span> ${type} 코어를 선택하세요`;
+    }
+
+    wrap.classList.remove("open");
 }
 
 
