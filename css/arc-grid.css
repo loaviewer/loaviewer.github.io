@@ -590,7 +590,7 @@
     border-color: #334155;
     border-bottom: 2px solid #161925;
     z-index: 2;
-    font-size: 14px;
+
     padding: 10px 18px;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
 }
@@ -604,9 +604,6 @@
     color: #94a3b8;
 }
 
-.m-arc-tab:active {
-    transform: scale(0.96);
-}
 
 .m-arc-core-select {
     background: #161925;
@@ -1047,6 +1044,12 @@
         grid-template-columns: repeat(2, 1fr) !important;
         min-height: 46px;
     }
+
+
+.custom-core-select {
+    display: none !important;
+}
+
 }
 
 #coreSelectRow select,
@@ -1057,4 +1060,275 @@
 #coreSelectRow select option,
 .m-arc-select option {
     font-size: 16px;
+}
+
+/* 코어 번호 배지 */
+.core-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #1a1d29;
+    border: 1px solid #2c3244;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    vertical-align: middle;
+    margin: 0 4px 0 2px;
+}
+
+/* ========================================
+   PC 해 코어 커스텀 드롭다운
+   ======================================== */
+.custom-core-select {
+    position: relative;
+    width: 100%;
+}
+
+.custom-core-trigger {
+    width: 100%;
+    background: #11131e;
+    border: 1px solid #1e293b;
+    color: #cbd5e1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
+    cursor: pointer;
+    box-sizing: border-box;
+    min-height: 46px;
+    transition: all 0.2s ease;
+}
+
+.custom-core-trigger::after {
+    content: "▼";
+    margin-left: auto;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.custom-core-select.open .custom-core-trigger {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.12);
+}
+
+.custom-core-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #11131e;
+    border: 1px solid #263247;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    padding: 6px;
+    display: none;
+    z-index: 30;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.custom-core-select.open .custom-core-menu {
+    display: block;
+}
+
+.custom-core-option {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.custom-core-option:hover {
+    background: rgba(56, 189, 248, 0.08);
+    color: #ffffff;
+}
+
+.custom-core-option.active {
+    background: rgba(56, 189, 248, 0.12);
+    color: #ffffff;
+}
+
+.custom-core-option-icon {
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 1.5em;
+    line-height: 1;
+}
+
+.custom-core-option-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.core-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #1a1d29;
+    border: 1px solid #2c3244;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   모바일 커스텀 코어 드롭다운
+   ======================================== */
+@media (max-width: 768px) {
+    .m-custom-core-select {
+        position: relative;
+        width: 100%;
+    }
+
+    .m-custom-core-trigger {
+        width: 100%;
+        background: #0d0f17;
+        border: 1px solid #334155;
+        color: #cbd5e1;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: flex-start;
+        min-height: 46px;
+        cursor: pointer;
+        box-sizing: border-box;
+        transition: all 0.2s ease;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .m-custom-core-trigger::after {
+        content: "▼";
+        margin-left: auto;
+        font-size: 11px;
+        color: #64748b;
+    }
+
+    .m-custom-core-select.open .m-custom-core-trigger {
+        border-color: #38bdf8;
+        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
+    }
+
+    .m-custom-core-menu {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        background: #11131e;
+        border: 1px solid #263247;
+        border-radius: 10px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        padding: 6px;
+        display: none;
+        z-index: 40;
+        max-height: 260px;
+        overflow-y: auto;
+    }
+
+    .m-custom-core-select.open .m-custom-core-menu {
+        display: block;
+    }
+
+    .m-custom-core-option {
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: #cbd5e1;
+        padding: 10px 12px;
+        border-radius: 8px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.18s ease;
+    }
+
+    .m-custom-core-option:hover {
+        background: rgba(56, 189, 248, 0.08);
+        color: #ffffff;
+    }
+
+    .m-custom-core-option.active {
+        background: rgba(56, 189, 248, 0.12);
+        color: #ffffff;
+    }
+
+   .m-custom-core-option-icon {
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 1.5em;
+    line-height: 1;
+}
+
+.m-custom-core-trigger .custom-core-trigger-icon {
+    font-size: 1.7em;
+    line-height: 1;
+}
+
+    .m-custom-core-option-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.custom-core-trigger-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    line-height: 1;
+}
+
+.custom-core-trigger:disabled {
+    background: #0d0f17;
+    border-color: #1a2230;
+    color: #475569;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+
+.custom-core-trigger:disabled::after {
+    color: #3b4454;
+}
+
+@media (max-width: 768px) {
+    .m-arc-tab,
+    .m-arc-tab.active,
+    .m-arc-tab:active {
+        transform: none !important;
+        font-size: 16px !important;
+        line-height: 1 !important;
+    }
 }
