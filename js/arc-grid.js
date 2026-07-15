@@ -106,7 +106,7 @@ const ArcGrid = (() => {
                                             <div class="p-hero-subtitle">코어 간편보기</div>
                                         </div>
                                     </div>
-                                    <p class="p-hero-desc">직업별 코어 옵션을 빠르게 비교할 수 있습니다.</p>
+                                    <p class="p-hero-desc">아크그리드 코어 DB정보 : 2026/07/15</p>
                                     <div class="p-hero-pills">
                                         <span class="p-pill">빠른 비교</span>
                                         <span class="p-pill">정밀 탐색</span>
@@ -225,7 +225,7 @@ const ArcGrid = (() => {
                                             <div class="p-hero-subtitle">코어 간편보기</div>
                                         </div>
                                     </div>
-                                    <p class="p-hero-desc">직업별 코어 옵션을 빠르게 비교할 수 있습니다.</p>
+                                    <p class="p-hero-desc">아크그리드 코어 DB정보 : 2026/07/15</p>
                                     <div class="p-hero-pills">
                                         <span class="p-pill">빠른 비교</span>
                                         <span class="p-pill">정밀 탐색</span>
