@@ -1734,7 +1734,7 @@ function simpleCardHtml(card) {
                     </div>
 
                     <h3 class="simple-title">${card.title}</h3>
-                    <div class="simple-kind">강투 / 1인분 / 잔혈</div>
+                    <div class="simple-kind">피해/억</div>
                 </div>
 
                 <div class="simple-rows">${rows}</div>
