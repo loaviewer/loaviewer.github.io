@@ -2613,7 +2613,7 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
                     if (r.share === 30) cls = "row-30";
                     if (r.share === 33) cls = "row-33";
                     if (r.share === 40) cls = "row-40";
-                    return `<tr class="${cls}">${renderShareCell(r.share)}<td>${fmt(r.damage)}</td><td class="dps-cell"><span class="dps-pill">${(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
+                    return `<tr class="${cls}">${renderShareCell(r.share)}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
                 }).join("")
                 : '<tr><td colspan="3">데이터 없음</td></tr>';
 
@@ -2726,7 +2726,7 @@ if (currentMenu === "serka" || currentMenu === "cathedral") {
             if (r.share === 33) cls = "row-33";
             if (r.share === 40) cls = "row-40";
             const dmg = getDamage(r);
-            return `<tr class="${cls}">${renderShareCell(r.share)}<td>${fmt(dmg)}</td><td class="dps-cell"><span class="dps-pill">${(dmg / totalSec).toFixed(1)}억</span></td></tr>`;
+            return `<tr class="${cls}">${renderShareCell(r.share)}<td><span class="damage-wrap"><span class="damage-num">${fmt(dmg)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${(dmg / totalSec).toFixed(1)}억</span></td></tr>`;
         }).join("")
         : '<tr><td colspan="3">데이터 없음</td></tr>';
 
