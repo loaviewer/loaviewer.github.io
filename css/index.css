@@ -5450,3 +5450,35 @@ body.arc-grid-mode #mainContent {
 .dot-purple {
     background: #a78bfa;
 }
+
+
+.damage-unit {
+    font-size: 11px;
+    color: #4a5568;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.damage-wrap {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.damage-num {
+    display: inline-block;
+    min-width: 56px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.damage-unit {
+    display: inline-block;
+    width: 20px;
+    font-size: 11px;
+    color: #4a5568;
+    font-weight: 500;
+    margin-left: 2px;
+    text-align: left;
+}
+
