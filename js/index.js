@@ -5,8 +5,8 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsij
 
 let currentMenu = "simple";
 let currentCombo = "hard_gate1";
-let currentGatoBoss = "데스칼루다";
-let currentGato1750Boss = "데스칼루다";
+let currentGatoBoss = "이그렉시온";
+let currentGato1750Boss = "이그렉시온";
 let currentSimpleLevel = "1750";
 let currentGuardianTier = "1750";
 let acMembers = 4;
@@ -860,11 +860,11 @@ const gato1750Bosses = [
 
 const gato1730AvailableBosses = [
     "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다"
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온"
 ];
 const gato1750AvailableBosses = [
     "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다"
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온"
 ];
 
 function isGato1730Available(boss) {
@@ -1158,8 +1158,8 @@ if (currentMenu === "serka") {
     currentCombo = "hard_gate1";
 } else if (currentMenu === "guardian") {
     currentGuardianTier = "1750";
-    currentGatoBoss = "데스칼루다";
-    currentGato1750Boss = "데스칼루다";
+    currentGatoBoss = "이그렉시온";
+    currentGato1750Boss = "이그렉시온";
 } else if (currentMenu === "raid-simple") {
     currentSimpleRaid = "cathedral";
 } else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
@@ -3031,8 +3031,8 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         else if (menu === "guardian") {
             currentMenu = "guardian";
             currentGuardianTier = "1750";
-            currentGatoBoss = "데스칼루다";
-            currentGato1750Boss = "데스칼루다";
+            currentGatoBoss = "이그렉시온";
+            currentGato1750Boss = "이그렉시온";
         }
         else if (menu === "arc-grid") {
             currentMenu = "arc-grid";
