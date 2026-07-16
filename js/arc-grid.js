@@ -924,8 +924,6 @@ function removeZeroEffectSentence(str, grade) {
         .trim();
 }
 
-
-
     function fillSelect(id, type, arr) {
         const typeEmojis = { "해": "🌞", "달": "🌙", "별": "⭐" };
         const sel = document.getElementById(id);
