@@ -569,7 +569,7 @@ const ArcGrid = (() => {
                 ${stickerHtml}
                 <div class="card-title-row ${mobileCurrentGrade}">${gradeLabels[mobileCurrentGrade]}의 ${slotLabel} 코어 : ${selectedCore.name}</div>
                 <div class="card-icon-row">
-                    <div class="card-icon-box"><img src="${slotIcons[slotLabel]}" alt="${slotLabel}코어"></div>
+                    <div class="card-icon-box ${mobileCurrentGrade}"><img src="${slotIcons[slotLabel]}" alt="${slotLabel}코어"></div>
                     <span class="card-icon-label">${gradeLabels[mobileCurrentGrade]} 아크 그리드 코어</span>
                 </div>
                 <div class="card-basic-info">${selectedCore.chaos ? "공용 코어" : `${currentJob} 전용`}<br>획득 시 캐릭터 귀속</div>
@@ -1511,7 +1511,7 @@ const colored = colorizeText(cleaned);
             ${stickerHtml}
             <div class="card-title-row ${currentGrade}">${gradeLabels[currentGrade]}의 ${slotLabel} 코어 : ${selectedCore.name}</div>
             <div class="card-icon-row">
-                <div class="card-icon-box"><img src="${slotIcons[slotLabel]}" alt="${slotLabel}코어"></div>
+              <div class="card-icon-box ${currentGrade}"><img src="${slotIcons[slotLabel]}" alt="${slotLabel}코어"></div>
                 <span class="card-icon-label">${gradeLabels[currentGrade]} 아크 그리드 코어</span>
             </div>
             <div class="card-basic-info">${selectedCore.chaos ? "공용 코어" : `${currentJob} 전용`}<br>획득 시 캐릭터 귀속</div>
