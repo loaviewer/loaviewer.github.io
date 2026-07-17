@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보처리방침 | 로아뷰</title>
+    <meta name="description" content="로아뷰 개인정보처리방침 페이지입니다. 쿠키, 접속 기록, 토너먼트 중복 참여 방지, 외부 서비스 사용, 문의 방법을 안내합니다.">
+    <meta name="keywords" content="로아뷰 개인정보, 로아뷰 쿠키, 로아뷰 접속기록, 개인정보처리방침">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon.png">
     <link rel="apple-touch-icon" href="./img/favicon.png">
-    <title>개인정보처리방침 | 로아뷰</title>
-    <meta name="description" content="로아뷰 개인정보처리방침 페이지입니다. 광고, 쿠키, 접속 기록, 토너먼트 중복 참여 방지, 문의 방법을 안내합니다.">
     <style>
         body {
             margin: 0;
             padding: 0;
             background: #0b0d12;
             color: #d7deea;
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
             line-height: 1.8;
         }
 
         .wrap {
-            max-width: 920px;
+            max-width: 980px;
             margin: 0 auto;
-            padding: 40px 20px 60px;
+            padding: 42px 20px 70px;
+            box-sizing: border-box;
         }
 
         .card {
             background: #111320;
             border: 1px solid #1a1d2e;
             border-radius: 18px;
-            padding: 28px 24px;
-            box-shadow: 0 16px 36px rgba(0,0,0,.24);
+            padding: 30px 26px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
         }
 
         .top-label {
@@ -44,15 +46,16 @@
             margin: 0 0 18px;
             font-size: 30px;
             font-weight: 900;
-            color: #fff;
+            color: #ffffff;
             line-height: 1.2;
         }
 
         h2 {
-            margin: 28px 0 10px;
+            margin: 30px 0 10px;
             font-size: 18px;
             font-weight: 900;
             color: #f3f6fb;
+            line-height: 1.35;
         }
 
         p {
@@ -61,8 +64,56 @@
             font-size: 14px;
         }
 
+        ul {
+            margin: 0 0 16px 20px;
+            padding: 0;
+            color: #97a4ba;
+            font-size: 14px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .accent {
+            color: #7aa2ff;
+            font-weight: 800;
+        }
+
+        .muted {
+            color: #7f8ca3;
+        }
+
+        .info-box {
+            margin: 22px 0 10px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: #151929;
+            border: 1px solid #232a41;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(122,162,255,0.0) 0%, rgba(122,162,255,0.22) 50%, rgba(122,162,255,0.0) 100%);
+            margin: 26px 0 4px;
+        }
+
+        a.inline-link {
+            color: #7aa2ff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(122,162,255,.35);
+        }
+
+        a.inline-link:hover {
+            color: #a3c4ff;
+        }
+
         .link-row {
-            margin-top: 28px;
+            margin-top: 30px;
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
@@ -81,16 +132,18 @@
             border: 1px solid #283146;
             background: #171b27;
             color: #d7deea;
+            transition: background .15s ease, border-color .15s ease;
         }
 
         .link-btn:hover {
-            background: #1c2130;
+            background: #1d2232;
+            border-color: #34405c;
         }
 
-        a.inline-link {
-            color: #7aa2ff;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(122,162,255,.35);
+        .foot-note {
+            margin-top: 22px;
+            font-size: 12px;
+            color: #6f7b90;
         }
 
         @media (max-width: 768px) {
@@ -111,8 +164,12 @@
                 font-size: 16px;
             }
 
-            p {
+            p, li {
                 font-size: 13px;
+            }
+
+            .foot-note {
+                font-size: 11px;
             }
         }
     </style>
@@ -124,85 +181,174 @@
             <h1>개인정보처리방침</h1>
 
             <p>
-                로아뷰(LOA VIEWER)는 이용자의 개인정보와 기술적 정보를 중요하게 생각하며,
+                <span class="accent">로아뷰(LOA VIEWER)</span>는 이용자의 개인정보와 기술적 정보를 중요하게 생각하며,
                 관련 법령과 서비스 운영 목적에 맞춰 아래와 같은 개인정보처리방침을 안내합니다.
             </p>
 
+            <div class="info-box">
+                <p>
+                    본 사이트는 별도의 회원가입 없이 이용할 수 있으며,
+                    이용자 개인을 직접 식별할 수 있는 정보(이름, 이메일, 전화번호 등)는 수집하지 않습니다.
+                </p>
+            </div>
+
+            <div class="section-divider"></div>
+
             <h2>1. 수집하거나 처리될 수 있는 정보</h2>
             <p>
-                본 웹사이트는 별도의 회원가입 없이 이용할 수 있습니다.
-                다만 서비스 운영 과정에서 기능 제공, 중복 참여 방지, 보안 확인, 방문 통계 분석, 비정상 이용 방지 등을 위해
-                IP 주소, 접속 기록, 브라우저 정보, 이용 일시와 같은 기술적 정보가 자동으로 처리될 수 있습니다.
+                서비스 운영 과정에서 기능 제공, 중복 참여 방지, 보안 확인, 방문 통계 분석, 비정상 이용 방지 등을 위해
+                아래와 같은 기술적 정보가 자동으로 처리될 수 있습니다.
+            </p>
+
+            <ul>
+                <li>IP 주소</li>
+                <li>접속 기록 및 이용 일시</li>
+                <li>브라우저 종류 및 버전</li>
+                <li>운영체제 정보</li>
+                <li>접속 경로(리퍼러)</li>
+                <li>화면 해상도 및 기기 유형</li>
+            </ul>
+
+            <p>
+                위 정보는 이용자 개인을 직접 식별하기 위한 목적이 아니라,
+                서비스의 안정적 운영과 품질 개선을 위해 사용됩니다.
             </p>
 
             <h2>2. 정보 처리 목적</h2>
             <p>
                 처리되는 정보는 다음 목적에 한해 사용될 수 있습니다.
             </p>
-            <p>
-                - 사이트 보안 및 비정상 접근 방지<br>
-                - 서비스 안정성 유지 및 오류 확인<br>
-                - 방문 통계 확인 및 서비스 개선<br>
-                - 직각 토너먼트 기능에서 동일 이용자의 반복 참여 제한 및 중복 참여 방지<br>
-                - 운영상 필요한 최소한의 기록 확인
-            </p>
+
+            <ul>
+                <li>사이트 보안 및 비정상 접근 방지</li>
+                <li>서비스 안정성 유지 및 오류 확인</li>
+                <li>방문 통계 확인 및 서비스 개선</li>
+                <li>직업 각인 토너먼트 기능에서 동일 이용자의 반복 참여 제한 및 중복 참여 방지</li>
+                <li>운영상 필요한 최소한의 기록 확인</li>
+            </ul>
 
             <h2>3. 보관 기간</h2>
             <p>
                 기술적 정보와 접속 관련 정보는 목적 달성에 필요한 최소 범위와 최소 기간 동안만 보관되며,
                 이후 삭제되거나 식별이 어려운 형태로 처리될 수 있습니다.
-                직각 토너먼트의 중복 참여 제한과 관련된 정보 역시 동일한 목적 범위 내에서만 사용됩니다.
-            </p>
-
-            <h2>4. 광고 및 쿠키 사용 안내</h2>
-            <p>
-                본 사이트는 Google AdSense 등 제3자 광고 서비스를 사용할 수 있으며,
-                이 과정에서 Google 및 제3자 제공업체는 쿠키를 활용하여 이용자의 이전 방문 기록을 기반으로 맞춤형 광고를 제공할 수 있습니다.
             </p>
 
             <p>
-                이용자는 Google 광고 설정 페이지를 통해 맞춤형 광고를 관리하거나 거부할 수 있습니다.
-                관련 내용은
-                <a class="inline-link" href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer">Google 광고 설정</a>
-                에서 확인할 수 있습니다.
+                직업 각인 토너먼트의 중복 참여 제한과 관련된 정보 역시
+                동일한 목적 범위 내에서만 사용되며,
+                불필요해진 시점에 삭제 처리됩니다.
+            </p>
+
+            <div class="section-divider"></div>
+
+            <h2>4. 쿠키(Cookie) 사용 안내</h2>
+            <p>
+                본 사이트는 기능 제공, 중복 참여 방지, 사용자 환경 유지 등을 위해
+                브라우저 쿠키(Cookie) 또는 로컬 스토리지를 사용할 수 있습니다.
+            </p>
+
+            <p>
+                쿠키는 이용자의 브라우저에 저장되는 작은 텍스트 파일로,
+                사이트 재방문 시 일부 설정이 유지되거나, 중복 참여 여부를 확인하는 데 사용됩니다.
+                이용자는 브라우저 설정을 통해 쿠키 저장을 거부하거나 삭제할 수 있으며,
+                이 경우 일부 기능이 정상적으로 작동하지 않을 수 있습니다.
             </p>
 
             <h2>5. 외부 서비스 사용</h2>
             <p>
-                본 사이트는 서비스 운영을 위해 GitHub Pages, Google Sheets, GoatCounter, Supabase 등 외부 서비스를 사용할 수 있습니다.
+                본 사이트는 서비스 운영을 위해 아래 외부 서비스를 사용할 수 있습니다.
+            </p>
+
+            <ul>
+                <li><span class="accent">GitHub Pages</span> — 웹사이트 호스팅</li>
+                <li><span class="accent">Google Sheets</span> — 일부 데이터 관리</li>
+                <li><span class="accent">GoatCounter</span> — 방문 통계 분석 (개인 식별 없는 경량 분석 도구)</li>
+                <li><span class="accent">Supabase</span> — 데이터 저장 및 관리</li>
+            </ul>
+
+            <p>
                 이 과정에서 기능 제공에 필요한 최소한의 기술적 정보가 처리될 수 있으며,
-                각 서비스의 정책은 해당 제공자의 기준을 따릅니다.
+                각 서비스의 개인정보 처리 정책은 해당 제공자의 기준을 따릅니다.
             </p>
 
-            <h2>6. 문의</h2>
+            <div class="info-box">
+                <p>
+                    GoatCounter는 이용자 개인을 식별하지 않는 방식의 분석 도구이며,
+                    쿠키를 사용하지 않는 것을 기본 원칙으로 합니다.
+                    자세한 내용은
+                    <a class="inline-link" href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">GoatCounter 개인정보 정책</a>에서
+                    확인할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>6. 이용자의 권리</h2>
             <p>
-                개인정보처리방침 또는 사이트 이용과 관련한 문의는 아래 이메일을 통해 연락할 수 있습니다.<br>
-                이메일: dnjswjd10041@gmail.com
+                이용자는 언제든지 아래의 권리를 행사할 수 있습니다.
             </p>
 
-            <h2>7. 시행일</h2>
+            <ul>
+                <li>브라우저 설정을 통해 쿠키 및 로컬 스토리지 데이터를 삭제할 수 있습니다.</li>
+                <li>사이트 이용을 중단함으로써 추가적인 기술 정보 수집을 방지할 수 있습니다.</li>
+                <li>개인정보 관련 문의, 삭제 요청, 정정 요청 등은 아래 이메일을 통해 연락하실 수 있습니다.</li>
+            </ul>
+
+            <h2>7. 아동의 개인정보 보호</h2>
             <p>
-                본 개인정보처리방침은 2026년 6월 28일부터 적용됩니다.
+                본 사이트는 만 14세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다.
+                만약 만 14세 미만 아동의 개인정보가 수집된 것으로 확인될 경우,
+                해당 정보는 즉시 삭제 조치됩니다.
+            </p>
+
+            <h2>8. 개인정보처리방침의 변경</h2>
+            <p>
+                본 개인정보처리방침은 서비스 운영 상황, 법령 변경, 기능 추가 등에 따라
+                변경될 수 있으며, 변경 시 본 페이지를 통해 공지합니다.
+            </p>
+
+            <div class="section-divider"></div>
+
+            <h2>9. 문의</h2>
+            <p>
+                개인정보처리방침 또는 사이트 이용과 관련한 문의는 아래 이메일을 통해 연락할 수 있습니다.
+            </p>
+
+            <p>
+                <span class="accent">이메일:</span> dnjswjd10041@gmail.com
+            </p>
+
+            <h2>10. 시행일</h2>
+            <p>
+                본 개인정보처리방침은 <span class="accent">2026년 6월 28일</span>부터 적용됩니다.
             </p>
 
             <div class="link-row">
-               <a class="link-btn" href="#" onclick="goBackSmart(); return false;">이전 페이지로 돌아가기</a>
+                <a class="link-btn" href="#" onclick="goBackSmart(); return false;">이전 페이지로 돌아가기</a>
+                <a class="link-btn" href="./">메인으로 이동</a>
                 <a class="link-btn" href="./about">사이트 소개</a>
                 <a class="link-btn" href="./guide">이용 가이드</a>
+                <a class="link-btn" href="mailto:dnjswjd10041@gmail.com">이메일 문의</a>
+            </div>
+
+            <div class="foot-note">
+                로아뷰는 로스트아크 이용자를 위한 비공식 정보형 도구 사이트입니다.
+                본 개인정보처리방침은 서비스 운영 상황에 따라 변경될 수 있습니다.
             </div>
         </div>
     </div>
-    <script>
-function goBackSmart() {
-    const ref = document.referrer;
-    const sameSite = ref && ref.startsWith(window.location.origin);
 
-    if (sameSite) {
-        window.history.back();
-    } else {
-        window.location.href = "./";
-    }
-}
-</script>
+    <script>
+        function goBackSmart() {
+            const ref = document.referrer;
+            const sameSite = ref && ref.startsWith(window.location.origin);
+
+            if (sameSite) {
+                window.history.back();
+            } else {
+                window.location.href = "./";
+            }
+        }
+    </script>
 </body>
 </html>
