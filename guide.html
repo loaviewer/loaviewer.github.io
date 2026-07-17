@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용 가이드 | 로아뷰</title>
+    <meta name="description" content="로아뷰 이용 가이드입니다. DPS 계산기, 정밀 계산, 아크 그리드, 직업 각인 토너먼트 등 각 기능의 사용 방법과 참고 사항을 안내합니다.">
+    <meta name="keywords" content="로아뷰 가이드, 로스트아크 dps 계산기 사용법, 잔혈컷 보는법, 강투컷 기준, 아크 그리드 사용법">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon.png">
     <link rel="apple-touch-icon" href="./img/favicon.png">
-    <title>이용 가이드 | 로아뷰</title>
-    <meta name="description" content="로아뷰 이용 가이드입니다. DPS 계산기 사용 방법과 직업 각인 토너먼트 이용 방법을 안내합니다.">
- 
     <style>
         body {
             margin: 0;
             padding: 0;
             background: #0b0d12;
             color: #d7deea;
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
             line-height: 1.8;
         }
 
         .wrap {
-            max-width: 920px;
+            max-width: 980px;
             margin: 0 auto;
-            padding: 40px 20px 60px;
+            padding: 42px 20px 70px;
+            box-sizing: border-box;
         }
 
         .card {
             background: #111320;
             border: 1px solid #1a1d2e;
             border-radius: 18px;
-            padding: 28px 24px;
-            box-shadow: 0 16px 36px rgba(0,0,0,.24);
+            padding: 30px 26px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
         }
 
         .top-label {
@@ -45,15 +46,16 @@
             margin: 0 0 18px;
             font-size: 30px;
             font-weight: 900;
-            color: #fff;
+            color: #ffffff;
             line-height: 1.2;
         }
 
         h2 {
-            margin: 28px 0 10px;
+            margin: 30px 0 10px;
             font-size: 18px;
             font-weight: 900;
             color: #f3f6fb;
+            line-height: 1.35;
         }
 
         p {
@@ -83,8 +85,30 @@
             font-weight: 800;
         }
 
+        .muted {
+            color: #7f8ca3;
+        }
+
+        .info-box {
+            margin: 22px 0 10px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: #151929;
+            border: 1px solid #232a41;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(122,162,255,0.0) 0%, rgba(122,162,255,0.22) 50%, rgba(122,162,255,0.0) 100%);
+            margin: 26px 0 4px;
+        }
+
         .link-row {
-            margin-top: 28px;
+            margin-top: 30px;
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
@@ -103,10 +127,18 @@
             border: 1px solid #283146;
             background: #171b27;
             color: #d7deea;
+            transition: background .15s ease, border-color .15s ease;
         }
 
         .link-btn:hover {
-            background: #1c2130;
+            background: #1d2232;
+            border-color: #34405c;
+        }
+
+        .foot-note {
+            margin-top: 22px;
+            font-size: 12px;
+            color: #6f7b90;
         }
 
         @media (max-width: 768px) {
@@ -130,6 +162,10 @@
             p, li {
                 font-size: 13px;
             }
+
+            .foot-note {
+                font-size: 11px;
+            }
         }
     </style>
 </head>
@@ -140,89 +176,251 @@
             <h1>이용 가이드</h1>
 
             <p>
-                로아뷰는 레이드 전투 분석용 DPS 계산기와 직업 각인 토너먼트 기능을 제공하는 사이트입니다.
-                아래 안내를 참고하면 각 기능을 보다 정확하고 편하게 사용할 수 있습니다.
+                로아뷰는 로스트아크 이용자를 위한 <span class="subpoint">DPS 계산기</span>,
+                <span class="subpoint">직업 각인 토너먼트</span>,
+                <span class="subpoint">아크 그리드 간편 보기</span> 기능을 제공하는 정보형 도구 사이트입니다.
+                아래 가이드를 참고하시면 각 기능을 보다 정확하고 편리하게 활용할 수 있습니다.
             </p>
 
-            <h2>1. DPS 계산기 이용 방법</h2>
+            <div class="info-box">
+                <p>
+                    이 가이드는 로아뷰의 주요 기능별 사용 방법과 참고 사항을 정리한 페이지입니다.
+                    사이트의 전체 소개는 <span class="subpoint">사이트 소개</span> 페이지에서 확인할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>1. DPS 계산기란?</h2>
+            <p>
+                DPS 계산기는 로스트아크 레이드에서 자주 확인하는
+                <span class="point">딜지분, 피해량, DPS</span>를 빠르게 비교하기 위한 도구입니다.
+                세르카, 지평의 성당, 가디언 토벌 등 주요 콘텐츠를 기준으로
+                강투컷, 1인분, 잔혈컷 수치를 확인할 수 있습니다.
+            </p>
+
+            <p>
+                같은 피해량이라도 클리어 시간이 다르면 DPS는 달라지고,
+                관문과 난이도에 따라 기대되는 기준 수치도 달라집니다.
+                로아뷰는 이런 차이를 반영하여,
+                <span class="subpoint">현재 나의 딜 기여도가 어느 정도 위치에 있는지</span>
+                쉽게 확인할 수 있도록 설계되어 있습니다.
+            </p>
+
+            <h2>2. DPS 계산기 기본 사용 방법</h2>
             <ol>
-                <li>세르카, 지평의 성당, 가디언 토벌 중 원하는 콘텐츠를 선택합니다.</li>
-                <li>난이도, 관문, 또는 보스를 선택합니다.</li>
-                <li><span class="subpoint">CLEAR TIME</span>에서 실제 클리어 시간을 입력합니다.</li>
-                <li>표에 표시되는 딜지분별 피해량과 DPS를 확인합니다.</li>
-                <li>강투컷, 1인분, 잔혈컷 기준을 요약 카드와 상세 표에서 비교합니다.</li>
+                <li>좌측 메뉴에서 <span class="subpoint">세르카</span>, <span class="subpoint">지평의 성당</span>, 또는 <span class="subpoint">가디언 토벌</span>을 선택합니다.</li>
+                <li>난이도와 관문(또는 보스)을 선택합니다.</li>
+                <li>우측 <span class="subpoint">CLEAR TIME</span> 영역에서 실제 클리어 시간을 입력합니다.</li>
+                <li>표에 딜지분별 피해량과 DPS가 표시됩니다.</li>
+                <li>상단 요약 카드에서 <span class="point">강투컷</span>, <span class="point">1인분</span>, <span class="point">잔혈컷</span> 기준 수치를 한눈에 비교합니다.</li>
             </ol>
 
-            <h2>2. 강투컷 / 1인분 / 잔혈컷 의미</h2>
+            <h2>3. 강투컷 · 1인분 · 잔혈컷이란?</h2>
             <p>
-                로아뷰에서는 파티 내 딜지분을 기준으로 전투 기여도를 나누어 보여줍니다.
-                일반적으로 <span class="point">강투컷</span>은 높은 기여도 기준,
-                <span class="point">1인분</span>은 평균적인 역할 수행 기준,
-                <span class="point">잔혈컷</span>은 매우 높은 딜지분을 달성한 기준으로 이해할 수 있습니다.
+                로아뷰에서는 파티 내 딜지분을 기준으로 전투 기여도를 세 가지로 나누어 보여줍니다.
             </p>
 
-            <h2>3. 클리어 타임 입력이 중요한 이유</h2>
+            <ul>
+                <li><span class="point">강투컷</span> — 파티 내에서 높은 기여도를 보인 기준선입니다. 이 수치 이상이면 "잘 했다"로 볼 수 있습니다.</li>
+                <li><span class="point">1인분</span> — 파티 내에서 평균적인 역할 수행 기준입니다. 파티원 수 기준의 균등 기여도에 가깝습니다.</li>
+                <li><span class="point">잔혈컷</span> — 매우 높은 딜지분을 달성한 기준으로, 이 이상이면 압도적인 기여를 한 것으로 볼 수 있습니다.</li>
+            </ul>
+
             <p>
-                같은 딜지분이라도 클리어 시간이 짧으면 요구 DPS는 더 높아집니다.
-                따라서 실전과 가장 가까운 결과를 보려면 레이드 종료 후 실제 클리어 시간을 입력하는 것이 좋습니다.
-                세르카와 지평의 성당은 광폭 시간 기준으로도 참고할 수 있지만,
-                로아뷰는 실전 기록 기준 확인을 더 편하게 하기 위해 시간 입력 기능을 제공합니다.
+                이 기준은 로아뷰 내부에서 관리하는 데이터와 딜지분 비율을 바탕으로 산출됩니다.
+                절대적인 정답은 아니며, 실전에서 참고용으로 활용하시기 바랍니다.
             </p>
 
-            <h2>4. 레벨별 잔혈컷 간편보기</h2>
+            <h2>4. 클리어 타임 입력이 중요한 이유</h2>
             <p>
-                간편보기 페이지는 1710부터 1750까지 주요 레이드 정보를 한눈에 빠르게 확인하기 위한 기능입니다.
-                이 페이지에서는 레이드별 기준 수치, 관문 정보, 일부 보상 정보를 요약 형태로 볼 수 있습니다.
-                정밀 계산보다 빠른 참고용으로 사용하면 좋습니다.
+                같은 딜지분이라도 <span class="subpoint">클리어 시간이 짧으면 요구 DPS는 더 높아집니다.</span>
+                따라서 실전과 가장 가까운 결과를 보려면,
+                레이드 종료 후 실제 클리어 시간을 입력하는 것이 좋습니다.
             </p>
 
-            <h2>5. 경매 계산기</h2>
             <p>
-                경매 계산기는 거래소 가격을 기준으로 손익 분기점과 추천 입찰가를 계산하는 보조 기능입니다.
+                세르카와 지평의 성당은 <span class="point">광폭 시간 10분(600초)</span>을 기본값으로 사용합니다.
+                이 값은 단순한 예시가 아니라,
+                <span class="subpoint">광폭 전까지 클리어하기 위한 최소 DPS 기준선</span>에 가장 가까운 설정입니다.
+            </p>
+
+            <p>
+                실제 전투에서 더 빠르게 클리어했다면 시간을 직접 조절하여
+                내가 낸 실제 DPS와 그 시간대의 딜지분 컷을 더 정확하게 확인할 수 있습니다.
+            </p>
+
+            <div class="info-box">
+                <p>
+                    <span class="subpoint">파티 DPS</span>도 입력한 클리어 타임에 맞춰 함께 변경됩니다.
+                    간단히 보면, <span class="point">파티 DPS − 내 DPS</span>는
+                    다른 딜러들이 만든 DPS의 합에 가깝다고 이해하시면 됩니다.
+                </p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>5. 레벨별 잔혈컷 간편 보기</h2>
+            <p>
+                간편 보기 페이지는 <span class="subpoint">1710~1750 레벨</span> 범위의 주요 레이드 정보를
+                한눈에 빠르게 확인하기 위한 기능입니다.
+                레이드별 기준 수치, 관문 정보, 일부 보상 정보를 요약 형태로 볼 수 있습니다.
+            </p>
+
+            <p>
+                정밀 계산보다 빠른 참고가 필요할 때 사용하면 좋습니다.
+                자세한 딜지분별 수치를 보고 싶다면 정밀 계산 메뉴를 이용하세요.
+            </p>
+
+            <h2>6. 레이드별 잔혈컷 보기</h2>
+            <p>
+                레이드별 잔혈컷 보기는 <span class="subpoint">지평의 성당, 세르카, 종막, 4막</span> 등
+                특정 레이드 기준의 난이도별, 관문별 강투컷/1인분/잔혈컷을 한 번에 비교하는 기능입니다.
+                레벨별 보기와 달리 <span class="subpoint">레이드 단위로 묶어서 비교</span>하기에 편리합니다.
+            </p>
+
+            <h2>7. 정밀 계산 페이지 특징</h2>
+            <p>
+                정밀 계산 영역은 간편 보기보다 조금 더 실제 전투 조건에 가깝게 계산할 수 있도록 구성되어 있습니다.
+                사용자는 <span class="subpoint">난이도, 관문, 보스, 클리어 시간</span>을 직접 조절할 수 있으며,
+                이에 따라 피해량과 DPS 기준이 즉시 반영됩니다.
+            </p>
+
+            <ul>
+                <li>클리어 시간 입력에 따른 실시간 수치 변경</li>
+                <li>관문별 · 난이도별 데이터 분리 제공</li>
+                <li>딜지분별 요구 피해량 및 DPS 확인</li>
+                <li>모바일에서도 사용 가능한 간소화 UI 지원</li>
+            </ul>
+
+            <div class="section-divider"></div>
+
+            <h2>8. 경매 계산기</h2>
+            <p>
+                경매 계산기는 거래소 가격을 기준으로
+                <span class="subpoint">손익 분기점</span>과 <span class="subpoint">추천 입찰가</span>를 계산하는 보조 기능입니다.
                 4인, 8인, 16인 기준을 선택하고 가격을 입력하면,
                 현재 입찰이 유리한지 빠르게 확인할 수 있습니다.
             </p>
 
-            <h2>6. 직업 각인 토너먼트 이용 방법</h2>
-            <ol>
-                <li>직각 토너먼트 페이지로 이동합니다.</li>
-                <li>제공되는 각인 후보를 비교하며 선호하는 직업 각인을 선택합니다.</li>
-                <li>토너먼트가 끝나면 결과를 통해 우승 각인과 선택 흐름을 확인할 수 있습니다.</li>
-                <li>누적 데이터는 랭킹, 티어표, 우승 기록, 선택 성향 등의 형태로 정리될 수 있습니다.</li>
-            </ol>
-
-            <h2>7. 토너먼트 이용 시 참고 사항</h2>
             <p>
-                직업 각인 토너먼트는 동일한 이용자의 반복 참여나 비정상적인 이용을 줄이기 위해
-                일부 제한이 적용될 수 있습니다.
-                이 기능은 유저 참여 기반의 결과를 보다 공정하게 유지하기 위한 목적을 가지고 있습니다.
+                수수료 5%를 포함한 분기점 계산과 함께,
+                +5% 이득, +10% 이득 기준의 추천가를 시각적으로 확인할 수 있습니다.
             </p>
 
-            <h2>8. 참고 사항</h2>
+            <div class="section-divider"></div>
+
+            <h2>9. 아크 그리드 간편 보기</h2>
+            <p>
+                아크 그리드 기능은 <span class="subpoint">질서 코어</span>와 <span class="subpoint">혼돈 코어</span>를
+                보다 쉽게 비교하기 위한 코어 열람 도구입니다.
+            </p>
+
+            <ul>
+                <li>직업을 선택한 뒤 해당 직업의 각인별 질서 코어를 확인할 수 있습니다.</li>
+                <li>혼돈 코어는 모든 직업 공용이며, 같은 드롭다운 안에서 함께 확인할 수 있습니다.</li>
+                <li>전설 · 유물 · 고대 등급별로 코어 효과가 다르며, 등급 전환 버튼을 통해 즉시 비교할 수 있습니다.</li>
+                <li>PC에서는 해 · 달 · 별 코어를 동시에 3장 비교할 수 있습니다.</li>
+                <li>모바일에서는 해 · 달 · 별 탭을 전환하며 1장씩 확인할 수 있습니다.</li>
+            </ul>
+
+            <p>
+                이 기능은 빌드 시뮬레이터 전체를 대체하기보다는,
+                코어 효과를 빠르게 열람하고 비교하는
+                <span class="subpoint">간편 조회형 보조 도구</span>로 운영되고 있습니다.
+            </p>
+
+            <div class="section-divider"></div>
+
+            <h2>10. 직업 각인 토너먼트 이용 방법</h2>
+            <ol>
+                <li>직각 토너먼트 페이지로 이동합니다.</li>
+                <li>제시되는 두 직업 각인 후보 중 선호하는 쪽을 선택합니다.</li>
+                <li>토너먼트가 끝나면 결과를 통해 우승 각인과 선택 흐름을 확인할 수 있습니다.</li>
+                <li>누적 데이터는 랭킹, 티어표, 우승 기록, 선택 성향 등의 형태로 정리됩니다.</li>
+            </ol>
+
+            <p>
+                직업 각인 토너먼트는 공식 밸런스 지표가 아니라,
+                <span class="subpoint">유저 참여 기반의 취향과 인식 흐름을 가볍게 확인하는 부가 콘텐츠</span>입니다.
+                동일 이용자의 반복 참여나 비정상적인 이용을 줄이기 위해
+                일부 제한이 적용될 수 있습니다.
+            </p>
+
+            <div class="section-divider"></div>
+
+            <h2>11. 자주 묻는 질문 (FAQ)</h2>
+
+            <p><span class="point">Q. 계산 결과가 실제 레이드와 다를 수 있나요?</span></p>
+            <p>
+                네. 로아뷰의 수치는 내부 데이터와 기준을 바탕으로 출력되며,
+                실제 레이드에서는 파티 구성, 시너지, 생존 시간, 기믹 숙련도 등 다양한 변수가 작용합니다.
+                사이트 결과는 절대적인 정답이 아니라 <span class="subpoint">실전 비교를 돕는 참고용 기준값</span>으로 활용해 주세요.
+            </p>
+
+            <p><span class="point">Q. 데이터는 어디서 가져오나요?</span></p>
+            <p>
+                로아뷰의 계산 결과는 사이트 내부에서 관리하는 데이터를 기반으로 출력됩니다.
+                일부 수치는 Google Sheets 기반 관리 데이터, 사이트 내 저장 기준, 수동 검수된 정리 데이터를 활용하며,
+                패치와 메타 변화에 따라 지속적으로 보정됩니다.
+            </p>
+
+            <p><span class="point">Q. 모바일에서도 사용할 수 있나요?</span></p>
+            <p>
+                네. 모든 주요 기능은 모바일에서도 사용할 수 있도록 별도의 UI를 적용하고 있습니다.
+                정밀 계산의 클리어 타임 입력, 아크 그리드 코어 보기, 경매 계산기 등도
+                모바일 화면에 맞춰 제공됩니다.
+            </p>
+
+            <p><span class="point">Q. 아크 그리드에서 혼돈 코어를 선택하면 직업 전용이 아닌가요?</span></p>
+            <p>
+                혼돈 코어는 직업에 무관하게 모든 클래스가 공통으로 사용하는 코어입니다.
+                질서 코어만 직업 각인에 따라 내용이 달라지며,
+                혼돈 코어는 전설 · 유물 · 고대 등급에 따라 효과 수치만 차이가 있습니다.
+            </p>
+
+            <p><span class="point">Q. 사이트 오류나 건의를 어디서 하나요?</span></p>
+            <p>
+                하단 또는 사이트 소개 페이지에 있는 <span class="subpoint">이메일 문의</span> 링크를 통해 연락하실 수 있습니다.
+                사용자 피드백은 계산 기준 보완과 UI 개선에 적극 반영하고 있습니다.
+            </p>
+
+            <div class="section-divider"></div>
+
+            <h2>12. 참고 사항</h2>
             <ul>
                 <li>일부 보상 정보와 수치는 패치에 따라 변경될 수 있습니다.</li>
-                <li>레이드 데이터와 보상 정보는 운영 중인 기준에 따라 수정 및 보완될 수 있습니다.</li>
-                <li>사이트 내 일부 콘텐츠는 테스트 또는 추정치가 포함될 수 있습니다.</li>
+                <li>레이드 데이터와 보상 정보는 운영 기준에 따라 수정 및 보완될 수 있습니다.</li>
+                <li>사이트 내 일부 콘텐츠에는 테스트 또는 추정치가 포함될 수 있습니다.</li>
+                <li>로아뷰는 비공식 팬사이트이며, Smilegate RPG 및 Smilegate Stove와 직접적인 관련이 없습니다.</li>
             </ul>
 
             <div class="link-row">
-               <a class="link-btn" href="#" onclick="goBackSmart(); return false;">이전 페이지로 돌아가기</a>
+                <a class="link-btn" href="#" onclick="goBackSmart(); return false;">이전 페이지로 돌아가기</a>
+                <a class="link-btn" href="./">메인으로 이동</a>
                 <a class="link-btn" href="./about">사이트 소개</a>
                 <a class="link-btn" href="./privacy">개인정보처리방침</a>
+                <a class="link-btn" href="mailto:dnjsjd10041@gmail.com">이메일 문의</a>
+            </div>
+
+            <div class="foot-note">
+                로아뷰는 로스트아크 이용자를 위한 비공식 정보형 도구 사이트입니다.
+                게임 내 실제 수치 및 효과는 패치 및 콘텐츠 환경에 따라 달라질 수 있습니다.
             </div>
         </div>
     </div>
-    <script>
-function goBackSmart() {
-    const ref = document.referrer;
-    const sameSite = ref && ref.startsWith(window.location.origin);
 
-    if (sameSite) {
-        window.history.back();
-    } else {
-        window.location.href = "./";
-    }
-}
-</script>
+    <script>
+        function goBackSmart() {
+            const ref = document.referrer;
+            const sameSite = ref && ref.startsWith(window.location.origin);
+
+            if (sameSite) {
+                window.history.back();
+            } else {
+                window.location.href = "./";
+            }
+        }
+    </script>
 </body>
 </html>
