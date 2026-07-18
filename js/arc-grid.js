@@ -106,7 +106,13 @@ const ArcGrid = (() => {
                                             <div class="p-hero-subtitle">코어 간편보기</div>
                                         </div>
                                     </div>
-                                    <p class="p-hero-desc">아크그리드 코어 DB정보 : 2026/07/15</p>
+                                    
+
+<p class="p-hero-desc">아크그리드 코어 DB정보 : 2026/07/15</p>
+                                    <p class="p-hero-desc" style="margin-top:6px;">
+                                        직업과 각성 각인을 선택하면 해·달·별 코어별 옵션을 등급(전설/유물/고대)에 따라
+                                        비교할 수 있는 간편 조회 도구입니다.
+                                    </p>
                                     <div class="p-hero-pills">
                                         <span class="p-pill">빠른 비교</span>
                                         <span class="p-pill">정밀 탐색</span>
@@ -118,6 +124,8 @@ const ArcGrid = (() => {
                     </div>
 
                     <div class="m-arc-section">
+
+
                         <div class="m-arc-label">클래스 선택</div>
                         <div class="m-arc-job-row">
                             <div class="m-arc-job-thumb" id="mobileJobThumb">
@@ -225,7 +233,13 @@ const ArcGrid = (() => {
                                             <div class="p-hero-subtitle">코어 간편보기</div>
                                         </div>
                                     </div>
-                                    <p class="p-hero-desc">아크그리드 코어 DB정보 : 2026/07/15</p>
+                                   
+
+<p class="p-hero-desc">아크그리드 코어 DB정보 : 2026/07/15</p>
+                                    <p class="p-hero-desc" style="margin-top:6px;">
+                                        직업과 각성 각인을 선택하면 해·달·별 코어별 옵션을 등급(전설/유물/고대)에 따라
+                                        비교할 수 있는 간편 조회 도구입니다.
+                                    </p>
                                     <div class="p-hero-pills">
                                         <span class="p-pill">빠른 비교</span>
                                         <span class="p-pill">정밀 탐색</span>
@@ -237,6 +251,8 @@ const ArcGrid = (() => {
                     </div>
 
                     <div id="jobGrid"></div>
+
+
 
                     <div id="classHeaderPanel">
                         <div id="selectedJobTitle">직업을 선택하세요</div>
@@ -923,6 +939,8 @@ function removeZeroEffectSentence(str, grade) {
         .join("\n")
         .trim();
 }
+
+
 
     function fillSelect(id, type, arr) {
         const typeEmojis = { "해": "🌞", "달": "🌙", "별": "⭐" };
