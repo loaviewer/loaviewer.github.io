@@ -13,6 +13,28 @@ let acMembers = 4;
 let currentSimpleRaid = "cathedral";
 
 /* =============================================
+   URL / canonical 갱신
+   ============================================= */
+function updateCanonicalAndUrl(menu) {
+    const canonicalTag = document.querySelector('link[rel="canonical"]');
+    const baseUrl = "https://loaviewer.github.io/";
+    const newUrl = (menu === "simple" || !menu)
+        ? baseUrl
+        : `${baseUrl}?menu=${menu}`;
+
+    if (canonicalTag) {
+        canonicalTag.setAttribute("href", newUrl);
+    }
+
+    const currentPath = window.location.pathname + window.location.search;
+    const targetPath = (menu === "simple" || !menu) ? "/" : `/?menu=${menu}`;
+
+    if (currentPath !== targetPath) {
+        history.pushState({}, "", targetPath);
+    }
+}
+
+/* =============================================
    파싱 데이터 저장소
    ============================================= */
 const parsedData = {
@@ -2101,6 +2123,10 @@ function makeGuardianHero(tier, boss, bossInfo) {
                         <p class="p-hero-desc">
                             레벨과 보스를 선택하면 해당 가디언의 딜지분과 DPS를 실시간으로 확인할 수 있습니다.
                         </p>
+                        <p class="p-hero-desc" style="margin-top:6px;">
+                            가디언 토벌은 잔영 단계에 따라 요구 DPS가 크게 달라지며, 강투컷·1인분·잔혈컷 기준으로
+                            자신의 딜 기여도를 빠르게 비교할 수 있습니다.
+                        </p>
                     </div>
 
                     <div class="p-hero-pills">
@@ -2315,12 +2341,20 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
                             <span class="p-badge b-attr">${attrEmoji ? `${attrEmoji} ` : ""}${meta.attr.text}</span>
                         </div>
 
-                        <p class="p-hero-desc">
+                        
+<p class="p-hero-desc">
                             클리어 시간을 직접 입력해 딜지분에 따른 DPS를 실시간으로 확인할 수 있습니다.
+                        </p>
+                        <p class="p-hero-desc" style="margin-top:6px;">
+                            강투컷은 파티 내 상위 기여도, 1인분은 인원수 기준 균등 분배, 잔혈컷은 압도적 기여 기준입니다.
+                            같은 딜지분이라도 클리어 시간이 짧을수록 요구되는 DPS는 높아집니다.
                         </p>
                     </div>
                   
                                       <div class="p-hero-pills">
+
+
+
                         ${pills.map(p => `
                             <span class="p-pill ${currentDiff === p.key ? "active" : ""}">${p.text}</span>
                         `).join("")}
@@ -3042,6 +3076,7 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         setBaseTimeByMenu(currentMenu);
         renderTabs();
         renderTable();
+       updateCanonicalAndUrl(currentMenu);
 
 if (menu === "arc-grid") {
     window.scrollTo({ top: 0, behavior: "auto" });
@@ -3300,6 +3335,7 @@ document.addEventListener("keydown", e => {
    ============================================= */
 setBaseTimeByMenu("simple");
 applyMenuFromQuery();
+updateCanonicalAndUrl(currentMenu);
 
 if (currentMenu === "simple") {
     renderTabs();
