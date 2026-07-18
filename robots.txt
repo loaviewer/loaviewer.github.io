@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://loaviewer.github.io/sitemap.xml
+Sitemap: https://loaviewer.github.io/sitemap.txt
