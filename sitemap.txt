@@ -1,10 +1,10 @@
 https://loaviewer.github.io/
-https://loaviewer.github.io/rank
 https://loaviewer.github.io/about
 https://loaviewer.github.io/guide
-https://loaviewer.github.io/privacy
 https://loaviewer.github.io/?menu=serka
 https://loaviewer.github.io/?menu=cathedral
 https://loaviewer.github.io/?menu=guardian
 https://loaviewer.github.io/?menu=arc-grid
 https://loaviewer.github.io/?menu=raid-simple
+https://loaviewer.github.io/rank
+https://loaviewer.github.io/privacy
