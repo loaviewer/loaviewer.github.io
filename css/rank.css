@@ -7984,3 +7984,118 @@ body {
   color: #ffd48a !important;
   text-shadow: 0 0 10px rgba(255,196,90,0.18);
 }
+
+
+
+/* ===== 우승 참여율 느낌표 툴팁 ===== */
+
+.participation-info-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.participation-info-btn {
+  width: 17px;
+  height: 17px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: help;
+  user-select: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #dbe7f8;
+  transform: translateY(-1px);
+}
+
+.participation-info-btn.pr-good {
+  color: #3edc7d;
+  border-color: rgba(62,220,125,0.28);
+  background: rgba(62,220,125,0.08);
+}
+
+.participation-info-btn.pr-mid {
+  color: #ffb060;
+  border-color: rgba(255,176,96,0.28);
+  background: rgba(255,176,96,0.08);
+}
+
+.participation-info-btn.pr-bad {
+  color: #ff6b6b;
+  border-color: rgba(255,107,107,0.28);
+  background: rgba(255,107,107,0.08);
+}
+
+.participation-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  top: auto;
+  transform: translateX(-50%);
+  width: 250px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(20,26,40,0.98), rgba(13,18,30,0.98));
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.36);
+  opacity: 0;
+  visibility: hidden;
+  transition: .16s ease;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.participation-info-wrap:hover .participation-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.participation-tooltip-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.participation-tooltip-main {
+  font-size: 15px;
+  font-weight: 900;
+  color: #e5ecff;
+  margin-bottom: 8px;
+}
+
+.participation-tooltip-desc {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #b9c6d8;
+  margin-bottom: 10px;
+}
+
+.participation-tooltip-guide {
+  display: grid;
+  gap: 4px;
+  font-size: 11px;
+  color: #c6d4e8;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .participation-tooltip {
+    left: 0;
+    transform: none;
+    width: 220px;
+  }
+}
+
+.participation-info-btn.pr-zero {
+  color: #9ca3af;
+  border-color: rgba(156,163,175,0.28);
+  background: rgba(156,163,175,0.08);
+}
