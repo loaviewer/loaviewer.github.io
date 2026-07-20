@@ -266,9 +266,9 @@ function getStampClass(grade) {
   "분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
   "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자",
   "초심":"초심","오의 강화":"오의","충격 단련":"충단","체술":"체술",
-  "세맥타통":"세맥","역천지체":"역천","절정":"절정","절제":"절제",
+  "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제",
   "오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
-  "강화 무기":"강무","핸드거너":"핸드","화력 강화":"화강","포격 강화":"포강",
+  "전술 탄환":"전탄","핸건거너":"핸건","화력 강화":"화강","포격 강화":"포강",
   "죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
   "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시",
   "상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
@@ -1647,6 +1647,64 @@ if (gradeDistModal) {
       });
     }
 
+function getParticipationIconClass(ratio, championCount) {
+  const r = Number(ratio || 0);
+  const c = Number(championCount || 0);
+
+  if (c === 0) return "pr-zero";
+  if (r >= 75) return "pr-good";
+  if (r >= 50) return "pr-mid";
+  return "pr-bad";
+}
+
+function getParticipationTooltipText(ratio, championCount) {
+  const r = Number(ratio || 0).toFixed(1);
+  const c = Number(championCount || 0);
+
+  if (c === 0) {
+    return `
+      <div class="participation-tooltip-title">우승 참여율</div>
+      <div class="participation-tooltip-main">기록 없음</div>
+      <div class="participation-tooltip-desc">
+        아직 우승 기록이 없습니다.<br>
+        참여율은 우승 데이터가 쌓이면 계산됩니다.
+      </div>
+      <div class="participation-tooltip-guide">
+        <div>🟢 75~100% : 자연스러운 기록</div>
+        <div>🟠 50~74% : 일부 반복 가능성</div>
+        <div>🔴 1~49% : 집중 우승 의심</div>
+      </div>
+    `;
+  }
+
+  let desc = "";
+  if (Number(r) >= 75) {
+    desc = "다양한 유저가 고르게 우승시킨 자연스러운 기록입니다.";
+  } else if (Number(r) >= 50) {
+    desc = "일부 반복 참여 가능성이 있지만 비교적 안정적인 기록입니다.";
+  } else {
+    desc = "특정 유저 집중 우승 가능성이 높은 기록입니다.";
+  }
+
+  return `
+    <div class="participation-tooltip-title">우승 참여율</div>
+    <div class="participation-tooltip-main">참여율 : ${r}%</div>
+    <div class="participation-tooltip-desc">${desc}</div>
+    <div class="participation-tooltip-guide">
+      <div>🟢 75~100% : 자연스러운 기록</div>
+      <div>🟠 50~74% : 일부 반복 가능성</div>
+      <div>🔴 1~49% : 집중 우승 의심</div>
+    </div>
+  `;
+}
+
+
+function hasParticipationData(row) {
+  return row.participant_ratio !== undefined && row.participant_ratio !== null;
+}
+
+
+
     function renderBoardFromRows(rows,mode) {
       currentBoardMode=mode;
       let filteredRows=rows;
@@ -1769,21 +1827,41 @@ if (gradeDistModal) {
             <div class="rank-job">${row.class_name}</div>
           </div>
 
-          <div class="rank-col metric-block">
-            <div class="metric-title">우승 횟수</div>
-            <div class="metric-main">${row.champion_count}회</div>
-            <div class="meter">
-              <div class="meter-fill win" style="width:${Math.min(100,row.champion_count*12)}%;"></div>
-            </div>
-          </div>
+<div class="rank-col metric-block">
+  <div class="metric-title">우승 횟수</div>
+  
+<div class="metric-main">
+  ${row.champion_count}회
+  ${
+    hasParticipationData(row)
+      ? `
+        <span class="participation-info-wrap">
+          <span class="participation-info-btn ${getParticipationIconClass(row.participant_ratio, row.champion_count) }">!</span>
+          <span class="participation-tooltip">
+            ${getParticipationTooltipText(row.participant_ratio, row.champion_count) }
+          </span>
+        </span>
+      `
+      : ``
+  }
+</div>
 
+
+
+  <div class="meter">
+    <div class="meter-fill win" style="width:${Math.min(100,row.champion_count*12)}%;"></div>
+  </div>
+</div>
+          
           <div class="rank-col metric-block">
             <div class="metric-title">1:1 승률</div>
             <div class="metric-main">${Number(row.win_rate).toFixed(2)}%</div>
+            
             <div class="meter">
               <div class="meter-fill rate" style="width:${Math.min(100,Number(row.win_rate))}%;"></div>
             </div>
           </div>
+         
 
           <div class="rank-col metric-block">
             <div class="metric-title">설명</div>
@@ -1813,7 +1891,7 @@ if (gradeDistModal) {
     return;
   }
 
-  const {data,error}=await supabase.from("ranking_overall").select("tournament_type,class_name,engraving_name,champion_count,win_count,lose_count,total_matches,win_rate,updated_at").eq("tournament_type",mode);
+  const {data,error}=await supabase.from("ranking_overall").select("tournament_type,class_name,engraving_name,champion_count,unique_winner_count,participant_ratio,win_count,lose_count,total_matches,win_rate,updated_at").eq("tournament_type",mode);
   if (error) { alert("랭킹 조회 실패: "+error.message); return; }
 
   rankingCache[cacheKey] = data;
