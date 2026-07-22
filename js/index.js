@@ -5,8 +5,8 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsij
 
 let currentMenu = "simple";
 let currentCombo = "hard_gate1";
-let currentGatoBoss = "이그렉시온";
-let currentGato1750Boss = "이그렉시온";
+let currentGatoBoss = "벨가누스";
+let currentGato1750Boss = "벨가누스;
 let currentSimpleLevel = "1750";
 let currentGuardianTier = "1750";
 let acMembers = 4;
@@ -882,11 +882,11 @@ const gato1750Bosses = [
 
 const gato1730AvailableBosses = [
     "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온"
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스"
 ];
 const gato1750AvailableBosses = [
     "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온"
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스"
 ];
 
 function isGato1730Available(boss) {
@@ -1180,8 +1180,8 @@ if (currentMenu === "serka") {
     currentCombo = "hard_gate1";
 } else if (currentMenu === "guardian") {
     currentGuardianTier = "1750";
-    currentGatoBoss = "이그렉시온";
-    currentGato1750Boss = "이그렉시온";
+    currentGatoBoss = "벨가누스";
+    currentGato1750Boss = "벨가누스";
 } else if (currentMenu === "raid-simple") {
     currentSimpleRaid = "cathedral";
 } else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
@@ -1996,7 +1996,12 @@ function renderRaidSimpleView() {
     `;
 }
 
+
 function renderSimpleView() {
+    // ★ HTML에 정적으로 삽입된 기본 콘텐츠 제거
+    const defaultContent = document.getElementById("defaultSimpleContent");
+    if (defaultContent) defaultContent.remove();
+
     if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
         document.getElementById("mainContent").innerHTML = renderExView(currentSimpleLevel);
         return;
@@ -2911,7 +2916,6 @@ if (currentMenu === "serka" || currentMenu === "cathedral") {
    CSV 로드
    ============================================= */
 async function loadCSV() {
-    document.getElementById("status").textContent = "시트 불러오는 중...";
     try {
         const resp = await fetch(CSV_URL);
         const lines = (await resp.text()).split(/\r?\n/);
@@ -2922,13 +2926,15 @@ async function loadCSV() {
         parseGato1750(lines);
         renderTabs();
         renderTable();
-        document.getElementById("status").textContent = "연동 완료";
+        const statusEl = document.getElementById("status");
+        statusEl.textContent = "연동 완료";
+        statusEl.style.display = "block";
+        setTimeout(() => { statusEl.style.display = "none"; }, 2000);
     } catch (err) {
         console.error(err);
-        document.getElementById("status").textContent = "불러오기 실패";
+        document.getElementById("status").style.display = "none";
     }
 }
-
 /* =============================================
    경매 계산기
    ============================================= */
@@ -3065,8 +3071,8 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         else if (menu === "guardian") {
             currentMenu = "guardian";
             currentGuardianTier = "1750";
-            currentGatoBoss = "이그렉시온";
-            currentGato1750Boss = "이그렉시온";
+            currentGatoBoss = "벨가누스";
+            currentGato1750Boss = "벨가누스";
         }
         else if (menu === "arc-grid") {
             currentMenu = "arc-grid";
