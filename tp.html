@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>로아뷰 🚧공사중🚧 | 메인 홈</title>
+<title>로아뷰 | 메인 홈</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -303,7 +303,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter','Malgun Gothic',s
 <div class="aurora-seam"></div>
 <div class="page">
 
-<header class="gnb"><div class="gnb-shell"><div class="gnb-bar"><div class="gnb-brand"><div class="gnb-brand-name">로아뷰 🚧공사중🚧</div></div><nav class="gnb-nav"><ul class="gnb-nav-list"><li class="gnb-nav-item"><div class="gnb-link active">홈</div></li><li class="gnb-nav-item"><div class="gnb-trigger">잔혈컷 간편보기<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">정밀 계산<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">직업별 DPS컷<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">아크그리드<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">직각 토너먼트<span class="gnb-caret">▼</span></div></li></ul></nav><div class="gnb-cta-group"><div class="gnb-cta op">🏆 OP 토너먼트 참여</div><div class="gnb-cta like">💗 호감 토너먼트 참여</div></div></div></div></header>
+<header class="gnb"><div class="gnb-shell"><div class="gnb-bar"><div class="gnb-brand"><div class="gnb-brand-name">로아뷰</div></div><nav class="gnb-nav"><ul class="gnb-nav-list"><li class="gnb-nav-item"><div class="gnb-link active">홈</div></li><li class="gnb-nav-item"><div class="gnb-trigger">잔혈컷 간편보기<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">정밀 계산<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">직업별 DPS컷<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">아크그리드<span class="gnb-caret">▼</span></div></li><li class="gnb-nav-item"><div class="gnb-trigger">직각 토너먼트<span class="gnb-caret">▼</span></div></li></ul></nav><div class="gnb-cta-group"><div class="gnb-cta op">🏆 OP 토너먼트 참여</div><div class="gnb-cta like">💗 호감 토너먼트 참여</div></div></div></div></header>
 
 <div class="divider"><hr class="divider-line"></div>
 
@@ -360,7 +360,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter','Malgun Gothic',s
 
 <script src="config.js"></script>
 <script>
-const API_KEY = typeof LOSTARK_API_KEY !== 'undefined' ? LOSTARK_API_KEY : '';
+const PROXY_URL = typeof PROXY_BASE_URL !== 'undefined' ? PROXY_BASE_URL : '';
 const nextTimes = {'chaos-gate':null,'field-boss':null,'island':null};
 const isTodayOpen = {'chaos-gate':false,'field-boss':false,'island':true};
 const todayIslands = [];
@@ -441,10 +441,9 @@ function toggleAllIslandsSection(){
 }
 
 async function fetchCalendar(){
-    if(!API_KEY)return;
+    if(!PROXY_URL)return;
     try{
-        const res=await fetch('https://developer-lostark.game.onstove.com/gamecontents/calendar',{
-            headers:{'accept':'application/json','authorization':`Bearer ${API_KEY}`}
+        const res=await fetch(`${PROXY_URL}/gamecontents/calendar`);
         });
         if(!res.ok)return;
         const data=await res.json();
@@ -526,9 +525,9 @@ async function fetchCalendar(){
 }
 
 async function fetchNewsAndEvents(){
-    if(!API_KEY)return;
-    try{const r=await fetch('https://developer-lostark.game.onstove.com/news/events',{headers:{'accept':'application/json','authorization':`Bearer ${API_KEY}`}});if(r.ok){const d=await r.json();renderEvents(d.slice(0,5));}}catch(e){console.error(e);}
-    try{const r=await fetch('https://developer-lostark.game.onstove.com/news/notices',{headers:{'accept':'application/json','authorization':`Bearer ${API_KEY}`}});if(r.ok){const d=await r.json();renderNotices(d.slice(0,5));}}catch(e){console.error(e);}
+    if(!PROXY_URL)return;
+    try{const r=await fetch(`${PROXY_URL}/news/events`);if(r.ok){const d=await r.json();renderEvents(d.slice(0,5));}}catch(e){console.error(e);}
+    try{const r=await fetch(`${PROXY_URL}/news/notices`);if(r.ok){const d=await r.json();renderNotices(d.slice(0,5));}}catch(e){console.error(e);}
 }
 
 function formatDateToMMDD(s){if(!s)return'';const d=new Date(s);if(isNaN(d.getTime()))return'';return`${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;}
