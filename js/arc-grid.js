@@ -108,7 +108,7 @@ const ArcGrid = (() => {
                                     </div>
                                     
 
-<p class="p-hero-desc">아크그리드 코어 DB정보 : 2026/07/15</p>
+<p class="p-hero-desc">코어 DB 업데이트 : 2026/07/22</p>
                                     <p class="p-hero-desc" style="margin-top:6px;">
                                         직업과 각성 각인을 선택하면 해·달·별 코어별 옵션을 등급(전설/유물/고대)에 따라
                                         비교할 수 있는 간편 조회 도구입니다.
