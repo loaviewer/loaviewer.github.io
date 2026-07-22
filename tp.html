@@ -415,6 +415,18 @@ function processAndGroupRewards(rawItems){
     });return grouped;
 }
 
+
+
+function sortGoldFirst(items){
+    return items.sort((a,b)=>{
+        const aGold = a.name.includes('골드') ? 0 : 1;
+        const bGold = b.name.includes('골드') ? 0 : 1;
+        return aGold - bGold;
+    });
+}
+
+
+
 function sortRewardsByPriority(items,key){
     let p=[];
     if(key==='chaos-gate')p=['골드','귀속 골드','전투 각인서','지도','미술품','비밀지도'];
@@ -422,11 +434,25 @@ function sortRewardsByPriority(items,key){
     return items.sort((a,b)=>{const iA=p.findIndex(x=>a.name.includes(x));const iB=p.findIndex(x=>b.name.includes(x));if(iA!==-1&&iB!==-1)return iA-iB;if(iA!==-1)return-1;if(iB!==-1)return 1;return 0;});
 }
 
+
+
 function parseRewards(data){
     if(!data||!Array.isArray(data))return[];
+    const now = new Date();
     const sorted=[...data].sort((a,b)=>(b.ItemLevel||0)-(a.ItemLevel||0));
-    if(sorted[0]&&sorted[0].Items)return processAndGroupRewards(sorted[0].Items);return[];
+    if(sorted[0]&&sorted[0].Items){
+        // StartTimes가 null이면 항상 지급, 날짜가 있으면 그중 오늘 날짜가 있을 때만 포함
+        const filtered = sorted[0].Items.filter(item => {
+            if(!item.StartTimes) return true; // 상시 지급 보상
+            return item.StartTimes.some(t => isSameLoaDay(new Date(t), now)); // 오늘 지급되는 보상만
+        });
+        return processAndGroupRewards(filtered);
+    }
+    return[];
 }
+
+
+
 
 function sortIslandsInOrder(islands){
     const m={'잔혹한 장난감 성':1,'스노우팡 아일랜드':2,'포르페':3};
@@ -465,11 +491,16 @@ async function fetchCalendar(){
 
             if(id==='island'){
                 const hasToday=item.StartTimes&&item.StartTimes.some(t=>isSameLoaDay(new Date(t),now));
-                if(hasToday&&!todayIslands.some(i=>i.name===item.ContentsName)){
-                    let rw=item.RewardItems?parseRewards(item.RewardItems):[];
-                    rw=rw.filter(r=>!r.name.includes('섬의 마음'));
-                    todayIslands.push({name:item.ContentsName,icon:item.ContentsIcon,rewards:rw});
-                }
+               
+
+
+if(hasToday&&!todayIslands.some(i=>i.name===item.ContentsName)){
+    let rw=item.RewardItems?parseRewards(item.RewardItems):[];
+    rw=rw.filter(r=>!r.name.includes('섬의 마음'));
+    rw=sortGoldFirst(rw);
+    todayIslands.push({name:item.ContentsName,icon:item.ContentsIcon,rewards:rw});
+
+}
             }
 
             if(id==='normal-island'||id==='island'){
@@ -492,10 +523,14 @@ async function fetchCalendar(){
                 }
             }
 
-            if(id!=='island'&&id!=='normal-island'&&item.RewardItems){
-                const rw=parseRewards(item.RewardItems);
-                rw.forEach(r=>{if(!apiRewardData[id].items.some(x=>x.name===r.name))apiRewardData[id].items.push(r);});
-            }
+          if(id!=='island'&&id!=='normal-island'&&item.RewardItems){
+    // 오늘 실제로 열리는 항목인지 확인
+    const opensToday = item.StartTimes && item.StartTimes.some(t=>isSameLoaDay(new Date(t), now));
+    if(opensToday){
+        const rw=parseRewards(item.RewardItems);
+        rw.forEach(r=>{if(!apiRewardData[id].items.some(x=>x.name===r.name))apiRewardData[id].items.push(r);});
+    }
+}
 
             if(item.StartTimes&&id!=='normal-island'){
                 item.StartTimes.forEach(t=>{
@@ -585,11 +620,11 @@ function renderIslands(){
         return;
     }
 
-    const display=todayIslands.slice(0,3);
-    c.innerHTML=display.map((island,idx)=>{
-        const rw=island.rewards||[];
-        const vis=rw.slice(0,2);
-        const rem=rw.length-2;
+   const display=todayIslands.slice(0,3);
+c.innerHTML=display.map((island,idx)=>{
+    const rw=island.rewards||[];
+    const vis=rw.slice(0,4);
+    const rem=rw.length-4;
         let html=vis.map(r=>`<div class="icon-box" title="${r.name}"><img src="${r.icon}" alt="${r.name}"></div>`).join('');
         if(rem>0)html+=`<div class="more-btn" onclick="openIslandPopup(${idx})">+${rem}</div>`;
         return`<div class="island-card-unit"><div class="island-item" style="background-image:url('${island.icon||'https://cdn-lostark.game.onstove.com/efui_iconatlas/island_icon/island_icon_106.png'}');"><div class="island-overlay"></div><span class="island-name">${island.name}</span></div><div class="reward-icons-wrapper">${html}</div></div>`;
