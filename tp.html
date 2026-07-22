@@ -440,11 +440,11 @@ function toggleAllIslandsSection(){
     else{s.classList.add('active');b.textContent='모든 섬 보기 ▲';}
 }
 
+
 async function fetchCalendar(){
     if(!PROXY_URL)return;
     try{
         const res=await fetch(`${PROXY_URL}/gamecontents/calendar`);
-        });
         if(!res.ok)return;
         const data=await res.json();
         const now=new Date();
@@ -523,6 +523,9 @@ async function fetchCalendar(){
         updateTimers();
     }catch(e){console.error(e);}
 }
+
+
+
 
 async function fetchNewsAndEvents(){
     if(!PROXY_URL)return;
