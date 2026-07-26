@@ -389,7 +389,7 @@ async function loadTierDataDays(type, days) {
     
 
 async function loadOpRateData() {
-  const start = new Date("2026-06-24T00:00:00+09:00");
+  const start = new Date("2026-07-22T00:00:00+09:00");
   const now = new Date();
   const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
 
@@ -404,8 +404,8 @@ async function loadOpRateData() {
 async function loadOpRatePrevData() {
   const {data, error} = await supabase.rpc("get_tier_data_range", {
     p_type: "op",
-    p_start: "2026-05-24",
-    p_end: "2026-06-23"
+    p_start: "2026-06-22",
+    p_end: "2026-07-21"
   });
   if (error || !data) return null;
   return data.filter(r => !SUPPORT_ENGRAVINGS.includes(r.engraving_name));
@@ -465,7 +465,7 @@ async function refreshOpRateModal(mode = "postpatch") {
   } else if (mode === "recent5") {
     opRateSub.textContent = `OP 직각 1:1 승률 · 최근 5일 비교 🕔 ${stamp}`;
   } else {
-    opRateSub.textContent = `OP 직각 1:1 승률 · 6/24 ~ 현재 비교 🕙 ${stamp}`;
+    opRateSub.textContent = `OP 직각 1:1 승률 · 7/22 ~ 현재 비교 🕙 ${stamp}`;
   }
 
   if (!opRateCache["postpatch"] || !opRateCache["recent10"] || !opRateCache["recent5"]) {
@@ -3368,5 +3368,4 @@ document.getElementById("openClassWinBtn").addEventListener("click", (e) => {
 
     
     acUpdate();
-    init();
- 
+    init(); 
