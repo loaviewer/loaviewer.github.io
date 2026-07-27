@@ -1898,26 +1898,62 @@ function hasParticipationData(row) {
   renderBoardFromRows(data,mode);
 }
 
+
+
+
+
+
+function getRecentRangeDays(days = 7) {
+  const end = new Date();
+  const start = new Date();
+  start.setDate(end.getDate() - (days - 1));
+
+  const toKey = (d) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${dd}`;
+  };
+
+  return {
+    start,
+    end,
+    startKey: toKey(start),
+    endKey: toKey(end)
+  };
+}
+
 async function loadRankingDataByPeriod(mode, period) {
-  const cacheKey = "week_" + mode;
+  if (period !== "week") {
+    await loadRankingData(mode);
+    return;
+  }
+
+  const range = getRecentRangeDays(7);
+  const cacheKey = `recent7_${mode}_${range.startKey}_${range.endKey}`;
 
   if (rankingCache[cacheKey]) {
     renderBoardFromRows(rankingCache[cacheKey], mode);
     return;
   }
 
-  const weekKey = getWeekKey();
-
-  const {data, error} = await supabase.rpc("get_weekly_ranking", {
+  const {data, error} = await supabase.rpc("get_recent_ranking", {
     p_type: mode,
-    p_week: weekKey
+    p_start: range.startKey,
+    p_end: range.endKey
   });
 
-  if (error) { alert("주간 랭킹 조회 실패: " + error.message); return; }
+  if (error) {
+    alert("최근 7일 랭킹 조회 실패: " + error.message);
+    return;
+  }
 
   rankingCache[cacheKey] = data;
   renderBoardFromRows(data, mode);
 }
+
+
+
 
 async function loadRankingDataByMonth(mode) {
   const cacheKey = "month_" + mode;
@@ -2884,13 +2920,17 @@ classWinModal.addEventListener("click", e => {
   await loadTodayParticipation();
      preloadAllOpRateModes();
      
-  // 주간 탭 날짜 세팅
+ 
+
+// 주간 탭 날짜 세팅
 const now = new Date();
-const weekAgo = new Date(now);
-weekAgo.setDate(weekAgo.getDate() - 7);
+const recent7Start = new Date(now);
+recent7Start.setDate(recent7Start.getDate() - 6);
 const fmt = d => `${String(d.getFullYear()).slice(2)}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;
-document.getElementById("weekTabDate").textContent = `${fmt(weekAgo)} ~ 오늘`;
-     document.getElementById("monthTabDate").textContent = `${now.getFullYear()}년 ${now.getMonth()+1}월`;
+document.getElementById("weekTabDate").textContent = `${fmt(recent7Start)} ~ 오늘`;
+document.getElementById("monthTabDate").textContent = `${now.getFullYear()}년 ${now.getMonth()+1}월`;
+
+
 }
     // ===== 경매 계산기 =====
     function acFmt(n) { return Math.round(n).toLocaleString("ko-KR"); }
