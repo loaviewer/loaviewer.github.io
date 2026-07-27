@@ -2367,10 +2367,10 @@ document.getElementById("periodMonthBtn").addEventListener("click", async () => 
   }
   opTierModal.classList.add("show");
   document.getElementById("opTierContent").innerHTML=`<div class="loading-text">데이터 불러오는 중...</div>`;
-  const entries=await loadTierDataDays("op", 10);
+  const entries=await loadTierDataDays("op", 5);
   if (entries&&entries.length>0) { const now = new Date();
 const stamp = `${String(now.getFullYear()).slice(2)}.${String(now.getMonth()+1).padStart(2,"0")}.${String(now.getDate()).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
-document.getElementById("opTierSub").textContent=`최근 10일간 OP 1:1 승률 통합 기준 🕖 ${stamp}`; renderTierContent(calcTiers(entries),"opTierContent"); }
+document.getElementById("opTierSub").textContent=`최근 5일간 OP 1:1 승률 통합 기준 🕖 ${stamp}`; renderTierContent(calcTiers(entries),"opTierContent"); }
   else { document.getElementById("opTierContent").innerHTML=`<div class="loading-text">데이터를 불러오지 못했어요 😢</div>`; }
 });
 
