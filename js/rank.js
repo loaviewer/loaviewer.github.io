@@ -484,7 +484,7 @@ async function refreshOpRateModal(mode = "postpatch") {
       const total=sorted.length;
       const tier6=total>10?sorted.slice(total-10):[];
       const rest=total>10?sorted.slice(0,total-10):sorted;
-      const tier1=rest.slice(0,6),tier2=rest.slice(6,15),tier3=rest.slice(15,27);
+      const tier1=rest.slice(0,4),tier2=rest.slice(4,15),tier3=rest.slice(15,27);
       const rem=rest.slice(27),half=Math.ceil(rem.length/2);
       return [tier1,tier2,tier3,rem.slice(0,half),rem.slice(half),tier6];
     }
