@@ -4,331 +4,364 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사이트 소개 | 로아뷰</title>
-    <meta name="description" content="로아뷰는 로스트아크 이용자를 위한 DPS 계산기, 레이드 딜지분 분석, 직업 각인 토너먼트 기능을 제공하는 정보형 도구 사이트입니다.">
-    <meta name="keywords" content="로아뷰, 로스트아크 dps 계산기, 로아 dps 계산기, 로스트아크 잔혈컷, 강투컷, 직업 각인 토너먼트">
+    <meta name="description" content="로아뷰는 로스트아크 이용자를 위한 DPS 계산기, 레이드 딜지분 분석, 아크 그리드, 아크패시브, 시너지표, 직업 각인 토너먼트 기능을 제공하는 정보형 도구 사이트입니다.">
+    <meta name="keywords" content="로아뷰, 로스트아크 dps 계산기, 로아 dps 계산기, 로스트아크 잔혈컷, 강투컷, 직업 각인 토너먼트, 아크패시브, 시너지표">
+
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon.png">
     <link rel="apple-touch-icon" href="./img/favicon.png">
+
+    <link rel="stylesheet" href="./css/common.css">
+    <script defer src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #0b0d12;
-            color: #d7deea;
-            font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-            line-height: 1.8;
+        .doc-page .doc-wrap{
+            max-width:980px;
+            margin:0 auto;
+            padding:42px 20px 70px;
+            box-sizing:border-box;
         }
 
-        .wrap {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 42px 20px 70px;
-            box-sizing: border-box;
+        .doc-page .doc-card{
+            background:#111320;
+            border:1px solid #1a1d2e;
+            border-radius:18px;
+            padding:30px 26px;
+            box-shadow:0 18px 40px rgba(0,0,0,.26);
+            color:#d7deea;
+            line-height:1.8;
+            font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
         }
 
-        .card {
-            background: #111320;
-            border: 1px solid #1a1d2e;
-            border-radius: 18px;
-            padding: 30px 26px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+        .doc-page .doc-top-label{
+            font-size:11px;
+            font-weight:800;
+            letter-spacing:2px;
+            color:#4a7cff;
+            text-transform:uppercase;
+            margin-bottom:10px;
         }
 
-        .top-label {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #4a7cff;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        .doc-page .doc-card h1{
+            margin:0 0 18px;
+            font-size:30px;
+            font-weight:900;
+            color:#fff;
+            line-height:1.2;
         }
 
-        h1 {
-            margin: 0 0 18px;
-            font-size: 30px;
-            font-weight: 900;
-            color: #ffffff;
-            line-height: 1.2;
+        .doc-page .doc-card h2{
+            margin:30px 0 10px;
+            font-size:18px;
+            font-weight:900;
+            color:#f3f6fb;
+            line-height:1.35;
         }
 
-        h2 {
-            margin: 30px 0 10px;
-            font-size: 18px;
-            font-weight: 900;
-            color: #f3f6fb;
-            line-height: 1.35;
+        .doc-page .doc-card p{
+            margin:0 0 14px;
+            color:#97a4ba;
+            font-size:14px;
         }
 
-        p {
-            margin: 0 0 14px;
-            color: #97a4ba;
-            font-size: 14px;
+        .doc-page .doc-card ul{
+            margin:0 0 16px 20px;
+            padding:0;
+            color:#97a4ba;
+            font-size:14px;
         }
 
-        ul {
-            margin: 0 0 16px 20px;
-            padding: 0;
-            color: #97a4ba;
-            font-size: 14px;
+        .doc-page .doc-card li{
+            margin-bottom:8px;
         }
 
-        li {
-            margin-bottom: 8px;
+        .doc-page .doc-accent{
+            color:#7aa2ff;
+            font-weight:800;
         }
 
-        .accent {
-            color: #7aa2ff;
-            font-weight: 800;
+        .doc-page .doc-info-box{
+            margin:22px 0 10px;
+            padding:16px 18px;
+            border-radius:14px;
+            background:#151929;
+            border:1px solid #232a41;
         }
 
-        .muted {
-            color: #7f8ca3;
+        .doc-page .doc-info-box p:last-child{
+            margin-bottom:0;
         }
 
-        .info-box {
-            margin: 22px 0 10px;
-            padding: 16px 18px;
-            border-radius: 14px;
-            background: #151929;
-            border: 1px solid #232a41;
+        .doc-page .doc-section-divider{
+            height:1px;
+            background:linear-gradient(90deg, rgba(122,162,255,0) 0%, rgba(122,162,255,.22) 50%, rgba(122,162,255,0) 100%);
+            margin:26px 0 4px;
         }
 
-        .info-box p:last-child {
-            margin-bottom: 0;
+        .doc-page .doc-link-row{
+            margin-top:30px;
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
         }
 
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, rgba(122,162,255,0.0) 0%, rgba(122,162,255,0.22) 50%, rgba(122,162,255,0.0) 100%);
-            margin: 26px 0 4px;
+        .doc-page .doc-link-btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-height:38px;
+            padding:0 14px;
+            border-radius:10px;
+            text-decoration:none;
+            font-size:13px;
+            font-weight:800;
+            border:1px solid #283146;
+            background:#171b27;
+            color:#d7deea;
+            transition:background .15s ease,border-color .15s ease;
         }
 
-        .link-row {
-            margin-top: 30px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+        .doc-page .doc-link-btn:hover{
+            background:#1d2232;
+            border-color:#34405c;
         }
 
-        .link-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 38px;
-            padding: 0 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 800;
-            border: 1px solid #283146;
-            background: #171b27;
-            color: #d7deea;
-            transition: background .15s ease, border-color .15s ease;
+        .doc-page .doc-foot-note{
+            margin-top:22px;
+            font-size:12px;
+            color:#6f7b90;
         }
 
-        .link-btn:hover {
-            background: #1d2232;
-            border-color: #34405c;
-        }
-
-        .foot-note {
-            margin-top: 22px;
-            font-size: 12px;
-            color: #6f7b90;
-        }
-
-        @media (max-width: 768px) {
-            .wrap {
-                padding: 20px 14px 40px;
+        @media (max-width:768px){
+            .doc-page .doc-wrap{
+                padding:20px 14px 40px;
             }
 
-            .card {
-                padding: 22px 18px;
-                border-radius: 14px;
+            .doc-page .doc-card{
+                padding:22px 18px;
+                border-radius:14px;
             }
 
-            h1 {
-                font-size: 24px;
+            .doc-page .doc-card h1{
+                font-size:24px;
             }
 
-            h2 {
-                font-size: 16px;
+            .doc-page .doc-card h2{
+                font-size:16px;
             }
 
-            p,
-            li {
-                font-size: 13px;
+            .doc-page .doc-card p,
+            .doc-page .doc-card li{
+                font-size:13px;
             }
 
-            .foot-note {
-                font-size: 11px;
+            .doc-page .doc-foot-note{
+                font-size:11px;
             }
         }
     </style>
 </head>
-<body>
-    <div class="wrap">
-        <div class="card">
-            <div class="top-label">LOA VIEWER · ABOUT</div>
-            <h1>로아뷰 소개</h1>
+<body class="mobile-content-mode">
+    <div id="common-shell"></div>
 
-            <p>
-                <span class="accent">로아뷰(LOA VIEWER)</span>는 로스트아크 이용자를 위한
-                정보형 계산 도구 사이트입니다.
-                레이드 전투에서 자주 확인하는 <span class="accent">DPS, 딜지분, 잔혈컷, 강투컷, 1인분 기준</span>을
-                보다 빠르고 직관적으로 확인할 수 있도록 구성되어 있으며,
-                계산 기능뿐 아니라 참여형 비교 콘텐츠도 함께 제공하고 있습니다.
-            </p>
+    <div class="page doc-page">
+        <div class="doc-wrap">
+            <div class="doc-card">
+                <div class="doc-top-label">LOA VIEWER · ABOUT</div>
+                <h1>로아뷰 소개</h1>
 
-            <p>
-                이 사이트는 단순히 수치를 나열하는 페이지가 아니라,
-                사용자가 자신의 전투 기록이나 클리어 시간을 기준으로
-                현재 어느 정도의 딜 기여를 했는지 가늠할 수 있도록 돕는 것을 목표로 합니다.
-                특히 세르카, 지평의 성당, 가디언 토벌처럼 반복적으로 비교 수요가 높은 콘텐츠를 중심으로
-                실사용 관점의 도구를 제공하고 있습니다.
-            </p>
-
-            <div class="info-box">
                 <p>
-                    <span class="accent">로아뷰는 비공식 팬사이트이며, Smilegate RPG 및 Smilegate Stove와 직접적인 관련이 없습니다.</span>
+                    <span class="doc-accent">로아뷰(LOA VIEWER)</span>는 로스트아크 이용자를 위한
+                    정보형 계산 도구 사이트입니다.
+                    레이드 전투에서 자주 확인하는 <span class="doc-accent">DPS, 딜지분, 잔혈컷, 강투컷, 1인분 기준</span>을
+                    보다 빠르고 직관적으로 확인할 수 있도록 구성되어 있으며,
+                    계산 기능뿐 아니라 참여형 비교 콘텐츠도 함께 제공하고 있습니다.
+                </p>
+
+                <p>
+                    이 사이트는 단순히 수치를 나열하는 페이지가 아니라,
+                    사용자가 자신의 전투 기록이나 클리어 시간을 기준으로
+                    현재 어느 정도의 딜 기여를 했는지 가늠할 수 있도록 돕는 것을 목표로 합니다.
+                    특히 세르카, 지평의 성당, 가디언 토벌처럼 반복적으로 비교 수요가 높은 콘텐츠를 중심으로
+                    실사용 관점의 도구를 제공하고 있습니다.
+                </p>
+
+                <div class="doc-info-box">
+                    <p>
+                        <span class="doc-accent">로아뷰는 비공식 팬사이트이며, Smilegate RPG 및 Smilegate Stove와 직접적인 관련이 없습니다.</span>
+                    </p>
+                    <p>
+                        사이트에 사용되는 데이터, 계산 결과, 설명 텍스트는
+                        운영 기준과 공개된 게임 정보, 직접 정리한 내부 기준을 바탕으로 제공됩니다.
+                        따라서 실제 패치 상황이나 전투 환경에 따라 일부 수치는 달라질 수 있습니다.
+                    </p>
+                </div>
+
+                <div class="doc-section-divider"></div>
+
+                <h2>로아뷰에서 제공하는 주요 기능</h2>
+                <p>
+                    로아뷰는 현재 크게 <span class="doc-accent">DPS 계산기</span>,
+                    <span class="doc-accent">클래스 정보</span>,
+                    <span class="doc-accent">편의 도구</span>,
+                    <span class="doc-accent">직업 각인 토너먼트(Rank)</span> 네 축으로 운영됩니다.
+                    계산기 영역은 실전 기준 수치 확인에 집중되어 있고,
+                    클래스 정보 영역은 직업 빌드와 시너지 확인에,
+                    토너먼트 영역은 유저 참여형 비교 콘텐츠에 집중되어 있습니다.
+                </p>
+
+                <ul>
+                    <li>레벨별 잔혈컷 간편 보기</li>
+                    <li>세르카, 지평의 성당, 가디언 토벌 정밀 계산</li>
+                    <li>클리어 시간 입력 기반 DPS 및 딜지분 계산</li>
+                    <li>강투컷, 1인분, 잔혈컷 기준 비교</li>
+                    <li>직업별 시너지표 확인</li>
+                    <li>아크 그리드 코어 간편 보기</li>
+                    <li>아크패시브 포인트별 효과 확인</li>
+                    <li>레이드 보상 및 경매 계산 보조 기능</li>
+                    <li>주요 아이템 시세 정보 확인</li>
+                    <li>직업 각인 1:1 토너먼트 및 결과 페이지</li>
+                </ul>
+
+                <h2>DPS 계산기 페이지는 무엇을 위한 도구인가요?</h2>
+                <p>
+                    DPS 계산기 페이지는 로스트아크 전투에서 흔히 쓰이는
+                    <span class="doc-accent">"내 딜이 어느 정도였는가?"</span>를 빠르게 확인하기 위한 도구입니다.
+                    단순히 총 피해량만 보여주는 것이 아니라,
+                    전분 시간, 관문, 난이도, 보스별 조건을 반영해
+                    상대적으로 의미 있는 수치로 비교할 수 있도록 설계되어 있습니다.
+                </p>
+
+                <p>
+                    예를 들어 같은 피해량이라도 클리어 시간이 다르면 DPS는 달라지고,
+                    관문에 따라 기대되는 컷 기준도 달라집니다.
+                    로아뷰는 이런 차이를 반영하여
+                    <span class="doc-accent">현재 딜지분 기준에서 어느 정도 위치인지</span>,
+                    그리고 <span class="doc-accent">강투컷 또는 잔혈컷과의 차이</span>를 더 쉽게 확인할 수 있게 돕습니다.
+                </p>
+
+                <h2>정밀 계산 페이지의 특징</h2>
+                <p>
+                    정밀 계산 영역은 간편 보기보다 조금 더 실제 전투 조건에 가깝게 계산할 수 있도록 구성되어 있습니다.
+                    사용자는 난이도, 관문, 보스, 클리어 시간을 조절할 수 있으며,
+                    이에 따라 피해량과 DPS 기준이 즉시 반영됩니다.
+                </p>
+
+                <ul>
+                    <li>클리어 시간 입력에 따른 실시간 수치 변경</li>
+                    <li>관문별/난이도별 데이터 분리 제공</li>
+                    <li>딜지분별 요구 피해량 및 DPS 확인</li>
+                    <li>모바일에서도 사용 가능한 간소화 UI 지원</li>
+                </ul>
+
+                <h2>클래스 정보(시너지표 · 아크 그리드 · 아크패시브)</h2>
+                <p>
+                    클래스 정보 메뉴는 직업 빌드를 검토할 때 참고할 수 있는 열람형 정보를 모아둔 영역입니다.
+                </p>
+
+                <ul>
+                    <li><span class="doc-accent">시너지표</span> — 직업별 파티 시너지 효과, 지속시간, 발동 조건을 정리하여 파티 조합 시 참고할 수 있습니다.</li>
+                    <li><span class="doc-accent">아크 그리드</span> — 직업별 질서 코어와 공용 혼돈 코어를 등급별로 비교할 수 있는 간편 조회 도구입니다.</li>
+                    <li><span class="doc-accent">아크패시브</span> — 진화, 깨달음, 도약 포인트 배분에 따른 효과 변화를 확인할 수 있습니다.</li>
+                </ul>
+
+                <p>
+                    이 기능들은 빌드 시뮬레이터 전체를 대체하기보다는,
+                    직업 관련 정보를 빠르게 열람하고 비교하는 <span class="doc-accent">간편 조회형 보조 도구</span>로 운영되고 있습니다.
+                </p>
+
+                <h2>편의 도구(경매 계산기 · 시세 정보)</h2>
+                <p>
+                    편의 도구 메뉴는 거래소 활용을 돕기 위한 보조 기능을 모아둔 영역입니다.
+                    거래소 가격을 기준으로 손익 분기점과 추천 입찰가를 계산하는
+                    <span class="doc-accent">경매 계산기</span>와, 각인서·재련 재료·보석 등 주요 아이템의
+                    가격 흐름을 확인할 수 있는 <span class="doc-accent">시세 정보</span>를 함께 제공합니다.
+                </p>
+
+                <h2>직업 각인 토너먼트는 어떤 콘텐츠인가요?</h2>
+                <p>
+                    직업 각인 토너먼트는 로스트아크 각인을 이용자 관점에서 비교해볼 수 있는 참여형 콘텐츠입니다.
+                    이용자는 1:1 형태로 각인을 선택하고,
+                    누적 결과를 통해 어떤 각인이 선호되는지, 어떤 조합이 많이 선택되는지 확인할 수 있습니다.
+                </p>
+
+                <p>
+                    이 기능은 공식 티어표가 아니라,
+                    <span class="doc-accent">유저 참여 기반의 취향, 인식, 선호 흐름을 시각적으로 확인하는 부가 기능</span>에 가깝습니다.
+                    계산기와는 결이 다르지만, 로스트아크 이용자가 자주 찾는 정보라는 점에서 함께 제공하고 있습니다.
+                </p>
+
+                <h2>누가 로아뷰를 사용하면 좋은가요?</h2>
+                <ul>
+                    <li>내 전투 기록이 강투컷, 잔혈컷 기준에서 어느 정도인지 빠르게 보고 싶은 유저</li>
+                    <li>세르카, 성당, 가디언 토벌의 요구 DPS를 기준별로 비교하고 싶은 유저</li>
+                    <li>클리어 시간 기준으로 내 딜량을 검토하고 싶은 유저</li>
+                    <li>직업 시너지, 아크 그리드, 아크패시브 등 빌드 관련 정보를 빠르게 확인하고 싶은 유저</li>
+                    <li>거래소 입찰가와 시세 흐름을 참고하고 싶은 유저</li>
+                    <li>직업 각인 선호도와 유저 인식을 재미있게 비교해보고 싶은 유저</li>
+                </ul>
+
+                <h2>데이터 출처</h2>
+                <p>
+                    로아뷰는 <span class="doc-accent">로스트아크 오픈 API(Lost Ark Open API)</span>를 통해
+                    ㈜스마일게이트가 공식 제공하는 공지사항, 이벤트, 콘텐츠 일정 등의 데이터를 가져와 표시합니다.
+                    API 호출은 Cloudtype에 호스팅된 자체 백엔드 서버를 경유하며,
+                    이 서버는 API 키가 외부에 노출되지 않도록 보호하면서
+                    오픈 API로 제공되는 데이터를 가공 없이 중계하는 역할만 수행합니다.
+                    이 외 딜지분, DPS 계산 기준 등은 사이트 자체적으로 정리·관리하는 데이터입니다.
                 </p>
                 <p>
-                    사이트에 사용되는 데이터, 계산 결과, 설명 텍스트는
-                    운영 기준과 공개된 게임 정보, 직접 정리한 내부 기준을 바탕으로 제공됩니다.
-                    따라서 실제 패치 상황이나 전투 환경에 따라 일부 수치는 달라질 수 있습니다.
+                    오픈 API를 통해 제공되는 정보는 실시간 동기화, 정확성, 서비스 연속성이 보장되지 않으므로,
+                    표시되는 정보가 실제 게임 내용과 차이가 있을 수 있습니다.
                 </p>
-            </div>
 
-            <div class="section-divider"></div>
+                <h2>데이터와 계산 기준에 대해</h2>
+                <p>
+                    로아뷰의 계산 결과는 사이트 내부에서 관리하는 데이터와 기준을 바탕으로 출력됩니다.
+                    일부 수치는 Google Sheets 기반 관리 데이터, 사이트 내 저장 기준, 수동 검수된 정리 데이터를 활용하며,
+                    패치 상황과 전투 메타에 따라 지속적으로 조정될 수 있습니다.
+                </p>
 
-            <h2>로아뷰에서 제공하는 주요 기능</h2>
-            <p>
-                로아뷰는 현재 크게 <span class="accent">DPS 계산기</span>와
-                <span class="accent">직업 각인 토너먼트(Rank)</span> 두 축으로 운영됩니다.
-                계산기 영역은 실전 기준 수치 확인에 집중되어 있고,
-                토너먼트 영역은 유저 참여형 비교 콘텐츠에 집중되어 있습니다.
-            </p>
+                <p>
+                    계산기는 참고용 도구이며,
+                    실제 레이드 환경에서는 파티 구성, 시너지, 생존 시간, 패턴 대응, 기믹 숙련도 등
+                    다양한 요소가 함께 작용합니다.
+                    따라서 사이트의 수치는 <span class="doc-accent">절대적인 정답이라기보다 실전 비교를 돕는 기준값</span>으로 이해하는 것이 좋습니다.
+                </p>
 
-            <ul>
-                <li>레벨별 잔혈컷 간편 보기</li>
-                <li>세르카, 지평의 성당, 가디언 토벌 정밀 계산</li>
-                <li>클리어 시간 입력 기반 DPS 및 딜지분 계산</li>
-                <li>강투컷, 1인분, 잔혈컷 기준 비교</li>
-                <li>레이드 보상 및 경매 계산 보조 기능</li>
-                <li>직업 각인 1:1 토너먼트 및 결과 페이지</li>
-                <li>아크 그리드 코어 간편 보기 기능</li>
-            </ul>
+                <h2>사이트 운영 방향</h2>
+                <p>
+                    로아뷰는 앞으로도 로스트아크 이용자가 자주 찾는
+                    계산 기능과 비교형 정보를 중심으로 기능을 확장할 계획입니다.
+                    신규 레이드 추가, 수치 기준 보완, UI 개선, 모바일 최적화, 클래스 정보 보강 등
+                    실제 사용 빈도가 높은 방향으로 업데이트를 이어가고 있습니다.
+                </p>
 
-            <h2>DPS 계산기 페이지는 무엇을 위한 도구인가요?</h2>
-            <p>
-                DPS 계산기 페이지는 로스트아크 전투에서 흔히 쓰이는
-                <span class="accent">“내 딜이 어느 정도였는가?”</span>를 빠르게 확인하기 위한 도구입니다.
-                단순히 총 피해량만 보여주는 것이 아니라,
-                전분 시간, 관문, 난이도, 보스별 조건을 반영해
-                상대적으로 의미 있는 수치로 비교할 수 있도록 설계되어 있습니다.
-            </p>
+                <p>
+                    목표는 단순한 계산 페이지를 넘어서,
+                    <span class="doc-accent">로스트아크 전투 수치 확인과 비교에 특화된 정보형 웹 도구</span>로
+                    계속 발전시키는 것입니다.
+                </p>
 
-            <p>
-                예를 들어 같은 피해량이라도 클리어 시간이 다르면 DPS는 달라지고,
-                관문에 따라 기대되는 컷 기준도 달라집니다.
-                로아뷰는 이런 차이를 반영하여
-                <span class="accent">현재 딜지분 기준에서 어느 정도 위치인지</span>,
-                그리고 <span class="accent">강투컷 또는 잔혈컷과의 차이</span>를 더 쉽게 확인할 수 있게 돕습니다.
-            </p>
+                <h2>문의 및 안내</h2>
+                <p>
+                    사이트 이용 중 오류 제보, 기능 제안, 문구 수정 요청 등이 있다면
+                    아래 링크 또는 이메일을 통해 문의할 수 있습니다.
+                    사용자 피드백은 계산 기준 보완과 UI 개선에 적극 반영하고 있습니다.
+                </p>
 
-            <h2>정밀 계산 페이지의 특징</h2>
-            <p>
-                정밀 계산 영역은 간편 보기보다 조금 더 실제 전투 조건에 가깝게 계산할 수 있도록 구성되어 있습니다.
-                사용자는 난이도, 관문, 보스, 클리어 시간을 조절할 수 있으며,
-                이에 따라 피해량과 DPS 기준이 즉시 반영됩니다.
-            </p>
+                <div class="doc-link-row">
+                    <a class="doc-link-btn" href="#" onclick="goBackSmart(); return false;">이전 페이지로 돌아가기</a>
+                    <a class="doc-link-btn" href="./index.html">메인으로 이동</a>
+                    <a class="doc-link-btn" href="./guide.html">이용 가이드</a>
+                    <a class="doc-link-btn" href="./privacy.html">개인정보처리방침</a>
+                    <a class="doc-link-btn" href="mailto:dnjswjd10041@gmail.com">이메일 문의</a>
+                </div>
 
-            <ul>
-                <li>클리어 시간 입력에 따른 실시간 수치 변경</li>
-                <li>관문별/난이도별 데이터 분리 제공</li>
-                <li>딜지분별 요구 피해량 및 DPS 확인</li>
-                <li>모바일에서도 사용 가능한 간소화 UI 지원</li>
-            </ul>
-
-            <h2>직업 각인 토너먼트는 어떤 콘텐츠인가요?</h2>
-            <p>
-                직업 각인 토너먼트는 로스트아크 각인을 이용자 관점에서 비교해볼 수 있는 참여형 콘텐츠입니다.
-                이용자는 1:1 형태로 각인을 선택하고,
-                누적 결과를 통해 어떤 각인이 선호되는지, 어떤 조합이 많이 선택되는지 확인할 수 있습니다.
-            </p>
-
-            <p>
-                이 기능은 공식 티어표가 아니라,
-                <span class="accent">유저 참여 기반의 취향, 인식, 선호 흐름을 시각적으로 확인하는 부가 기능</span>에 가깝습니다.
-                계산기와는 결이 다르지만, 로스트아크 이용자가 자주 찾는 정보라는 점에서 함께 제공하고 있습니다.
-            </p>
-
-            <h2>아크 그리드 기능은 무엇인가요?</h2>
-            <p>
-                아크 그리드 기능은 질서 코어와 혼돈 코어를 보다 쉽게 비교하기 위한 보기 도구입니다.
-                직업별 질서 코어, 공용 혼돈 코어, 전설·유물·고대 등급별 효과를 빠르게 확인할 수 있으며,
-                모바일과 PC 환경 모두에서 보기 편하도록 UI를 별도로 구성하고 있습니다.
-            </p>
-
-            <p>
-                이 기능은 빌드 시뮬레이터 전체를 대체하기보다는,
-                코어 효과를 빠르게 열람하고 비교하는 <span class="accent">간편 조회형 보조 도구</span>로 운영되고 있습니다.
-            </p>
-
-            <h2>누가 로아뷰를 사용하면 좋은가요?</h2>
-            <ul>
-                <li>내 전투 기록이 강투컷, 잔혈컷 기준에서 어느 정도인지 빠르게 보고 싶은 유저</li>
-                <li>세르카, 성당, 가디언 토벌의 요구 DPS를 기준별로 비교하고 싶은 유저</li>
-                <li>클리어 시간 기준으로 내 딜량을 검토하고 싶은 유저</li>
-                <li>직업 각인 선호도와 유저 인식을 재미있게 비교해보고 싶은 유저</li>
-                <li>아크 그리드 코어 옵션을 간단히 확인하고 싶은 유저</li>
-            </ul>
-
-            <h2>데이터와 계산 기준에 대해</h2>
-            <p>
-                로아뷰의 계산 결과는 사이트 내부에서 관리하는 데이터와 기준을 바탕으로 출력됩니다.
-                일부 수치는 Google Sheets 기반 관리 데이터, 사이트 내 저장 기준, 수동 검수된 정리 데이터를 활용하며,
-                패치 상황과 전투 메타에 따라 지속적으로 조정될 수 있습니다.
-            </p>
-
-            <p>
-                계산기는 참고용 도구이며,
-                실제 레이드 환경에서는 파티 구성, 시너지, 생존 시간, 패턴 대응, 기믹 숙련도 등
-                다양한 요소가 함께 작용합니다.
-                따라서 사이트의 수치는 <span class="accent">절대적인 정답이라기보다 실전 비교를 돕는 기준값</span>으로 이해하는 것이 좋습니다.
-            </p>
-
-            <h2>사이트 운영 방향</h2>
-            <p>
-                로아뷰는 앞으로도 로스트아크 이용자가 자주 찾는
-                계산 기능과 비교형 정보를 중심으로 기능을 확장할 계획입니다.
-                신규 레이드 추가, 수치 기준 보완, UI 개선, 모바일 최적화, 아크 그리드 보강 등
-                실제 사용 빈도가 높은 방향으로 업데이트를 이어가고 있습니다.
-            </p>
-
-            <p>
-                목표는 단순한 계산 페이지를 넘어서,
-                <span class="accent">로스트아크 전투 수치 확인과 비교에 특화된 정보형 웹 도구</span>로
-                계속 발전시키는 것입니다.
-            </p>
-
-            <h2>문의 및 안내</h2>
-            <p>
-                사이트 이용 중 오류 제보, 기능 제안, 문구 수정 요청 등이 있다면
-                아래 링크 또는 이메일을 통해 문의할 수 있습니다.
-                사용자 피드백은 계산 기준 보완과 UI 개선에 적극 반영하고 있습니다.
-            </p>
-
-            <div class="link-row">
-                <a class="link-btn" href="#" onclick="goBackSmart(); return false;">이전 페이지로 돌아가기</a>
-                <a class="link-btn" href="./">메인으로 이동</a>
-                <a class="link-btn" href="./guide">이용 가이드</a>
-                <a class="link-btn" href="./privacy">개인정보처리방침</a>
-                <a class="link-btn" href="mailto:dnjsjd10041@gmail.com">이메일 문의</a>
-            </div>
-
-            <div class="foot-note">
-                로아뷰는 로스트아크 이용자를 위한 비공식 정보형 도구 사이트입니다.
-                게임 내 실제 수치 및 효과는 패치 및 콘텐츠 환경에 따라 달라질 수 있습니다.
+                <div class="doc-foot-note">
+                    로아뷰는 로스트아크 이용자를 위한 비공식 정보형 도구 사이트입니다.
+                    게임 내 실제 수치 및 효과는 패치 및 콘텐츠 환경에 따라 달라질 수 있습니다.
+                </div>
             </div>
         </div>
     </div>
@@ -341,7 +374,7 @@
             if (sameSite) {
                 window.history.back();
             } else {
-                window.location.href = "./";
+                window.location.href = "./index.html";
             }
         }
     </script>
