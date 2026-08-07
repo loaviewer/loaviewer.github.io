@@ -1,1 +1,4008 @@
-const _0x21de44=_0x36f0;(function(_0x1ae1ff,_0x5cdf6d){const _0x3f1073=_0x36f0,_0x3005a5=_0x1ae1ff();while(!![]){try{const _0x481ba2=-parseInt(_0x3f1073(0x515))/0x1*(parseInt(_0x3f1073(0x4ca))/0x2)+parseInt(_0x3f1073(0x417))/0x3*(-parseInt(_0x3f1073(0x498))/0x4)+parseInt(_0x3f1073(0x1d1))/0x5+parseInt(_0x3f1073(0x1f3))/0x6+-parseInt(_0x3f1073(0x559))/0x7+-parseInt(_0x3f1073(0x3f0))/0x8*(-parseInt(_0x3f1073(0x2e9))/0x9)+-parseInt(_0x3f1073(0x30e))/0xa;if(_0x481ba2===_0x5cdf6d)break;else _0x3005a5['push'](_0x3005a5['shift']());}catch(_0x36f630){_0x3005a5['push'](_0x3005a5['shift']());}}}(_0x615b,0x66834));const CSV_URL=_0x21de44(0x226);let currentMenu=_0x21de44(0x2bb),currentCombo=_0x21de44(0x201),currentGatoBoss=_0x21de44(0x23c),currentGato1750Boss=_0x21de44(0x23c),currentGato1770Boss='엘버하스틱',currentSimpleLevel='1750',currentGuardianTier=_0x21de44(0x23d),acMembers=0x4,currentSimpleRaid=_0x21de44(0x462);const currentPathname=window['location'][_0x21de44(0x1ed)],isStandaloneLevelPage=currentPathname[_0x21de44(0x21f)](_0x21de44(0x1e2))||currentPathname[_0x21de44(0x32a)](_0x21de44(0x504)),isStandaloneRaidPage=currentPathname[_0x21de44(0x21f)](_0x21de44(0x48a))||currentPathname['endsWith']('/dps/raid.html'),isStandaloneSerkaPage=currentPathname[_0x21de44(0x32a)](_0x21de44(0x38e)),isStandaloneCathedralPage=currentPathname['endsWith']('/dps/cathedral.html'),isStandaloneGuardianPage=currentPathname['endsWith']('/dps/guardian.html'),isStandaloneBelgardinPage=currentPathname[_0x21de44(0x32a)](_0x21de44(0x443));function updateCanonicalAndUrl(_0x20f0bf){const _0x319635=_0x21de44;if(isStandaloneLevelPage||isStandaloneRaidPage||isStandaloneSerkaPage||isStandaloneCathedralPage||isStandaloneGuardianPage||isStandaloneBelgardinPage)return;const _0x48b875=document[_0x319635(0x3ba)]('link[rel=\x22canonical\x22]'),_0x56e9d2=_0x319635(0x3b9),_0x1dec07=_0x20f0bf===_0x319635(0x2bb)||!_0x20f0bf?_0x56e9d2:_0x56e9d2+_0x319635(0x54b)+_0x20f0bf;_0x48b875&&_0x48b875[_0x319635(0x428)](_0x319635(0x271),_0x1dec07);const _0x1050ee=window['location'][_0x319635(0x1ed)]+window[_0x319635(0x258)][_0x319635(0x1b7)],_0x567cba=_0x20f0bf===_0x319635(0x2bb)||!_0x20f0bf?'/':'/?menu='+_0x20f0bf;_0x1050ee!==_0x567cba&&history[_0x319635(0x1c2)]({},'',_0x567cba);}const parsedData={'serka':{'normal':[],'hard':[],'nightmare':[]},'cathedral':{'normal':[],'hard':[],'nightmare':[]},'belgardin':{'normal':[],'hard':[],'nightmare':[]},'gato1730':{},'gato1750':{},'gato1770':{}},raidMeta={'serka':{'normal_gate1':{'diffKey':_0x21de44(0x210),'gateKey':_0x21de44(0x4a4),'title':'노말\x20(1710)','gateName':'1관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':'속성\x20없음','cls':'attr-none'}},'normal_gate2':{'diffKey':_0x21de44(0x210),'gateKey':'gate2','title':'노말\x20(1710)','gateName':'2관','type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}},'hard_gate1':{'diffKey':_0x21de44(0x379),'gateKey':_0x21de44(0x4a4),'title':_0x21de44(0x3e3),'gateName':'1관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x3dd),'cls':_0x21de44(0x415)}},'hard_gate2':{'diffKey':_0x21de44(0x379),'gateKey':_0x21de44(0x3b0),'title':_0x21de44(0x3e3),'gateName':'2관','type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':'성속성\x20취약','cls':_0x21de44(0x450)}},'nightmare_gate1':{'diffKey':_0x21de44(0x4f6),'gateKey':'gate1','title':'나메\x20(1740)','gateName':'1관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x3dd),'cls':_0x21de44(0x415)}},'nightmare_gate2':{'diffKey':_0x21de44(0x4f6),'gateKey':_0x21de44(0x3b0),'title':_0x21de44(0x310),'gateName':'2관','type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':'성속성\x20취약','cls':_0x21de44(0x450)}}},'cathedral':{'normal_gate1':{'diffKey':'normal','gateKey':_0x21de44(0x4a4),'title':'1단계\x20(1700)','gateName':'1관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}},'normal_gate2':{'diffKey':'normal','gateKey':_0x21de44(0x3b0),'title':_0x21de44(0x44d),'gateName':'2관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x2ba),'cls':'attr-dark'}},'hard_gate1':{'diffKey':_0x21de44(0x379),'gateKey':_0x21de44(0x4a4),'title':_0x21de44(0x3cb),'gateName':'1관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}},'hard_gate2':{'diffKey':_0x21de44(0x379),'gateKey':_0x21de44(0x3b0),'title':'2단계\x20(1720)','gateName':'2관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x2ba),'cls':'attr-dark'}},'nightmare_gate1':{'diffKey':_0x21de44(0x4f6),'gateKey':'gate1','title':_0x21de44(0x516),'gateName':'1관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}},'nightmare_gate2':{'diffKey':_0x21de44(0x4f6),'gateKey':_0x21de44(0x3b0),'title':_0x21de44(0x516),'gateName':'2관','type':{'text':'인간','cls':'type-human'},'attr':{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}}},'belgardin':{'normal_gate1':{'diffKey':_0x21de44(0x210),'gateKey':_0x21de44(0x4a4),'title':_0x21de44(0x321),'gateName':'1관','type':{'text':'인간','cls':'type-human'},'attr':{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}},'normal_gate2':{'diffKey':_0x21de44(0x210),'gateKey':_0x21de44(0x3b0),'title':_0x21de44(0x321),'gateName':'2관','type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':'성속성\x20취약','cls':'attr-holy'}},'hard_gate1':{'diffKey':_0x21de44(0x379),'gateKey':_0x21de44(0x4a4),'title':'하드\x20(1770)','gateName':'1관','type':{'text':'인간','cls':_0x21de44(0x52e)},'attr':{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}},'hard_gate2':{'diffKey':_0x21de44(0x379),'gateKey':'gate2','title':_0x21de44(0x4bb),'gateName':'2관','type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}},'nightmare_gate1':{'diffKey':_0x21de44(0x4f6),'gateKey':_0x21de44(0x4a4),'title':_0x21de44(0x45b),'gateName':'1관','type':{'text':'인간','cls':'type-human'},'attr':{'text':_0x21de44(0x314),'cls':'attr-holy'}},'nightmare_gate2':{'diffKey':'nightmare','gateKey':'gate2','title':_0x21de44(0x45b),'gateName':'2관','type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}}}},simpleData={0x6ae:{'sectionTitle':_0x21de44(0x3bc),'intro':_0x21de44(0x296),'cards':[{'theme':_0x21de44(0x440),'title':_0x21de44(0x222),'node':_0x21de44(0x36c),'rows':[{'gate':'1관','boss':'카제로스','badges':[{'text':_0x21de44(0x514),'cls':_0x21de44(0x1da)}],'range':_0x21de44(0x467)},{'gate':'2관','boss':_0x21de44(0x536),'badges':[{'text':_0x21de44(0x514),'cls':'type-archdemon'}],'range':_0x21de44(0x4eb)}],'gold':_0x21de44(0x374),'bindGold':_0x21de44(0x21a),'total':_0x21de44(0x2f2)},{'theme':'b-green','title':_0x21de44(0x3de),'node':_0x21de44(0x36c),'rows':[{'gate':'1관','boss':_0x21de44(0x496),'badges':[{'text':'인간','cls':_0x21de44(0x52e)}],'range':_0x21de44(0x2b7)},{'gate':'2관','boss':'코르부스','badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':_0x21de44(0x199)}],'gold':_0x21de44(0x374),'bindGold':'16,000','total':_0x21de44(0x2f2)},{'theme':'b-green','title':_0x21de44(0x1c7),'node':_0x21de44(0x552),'rows':[{'gate':'1관','boss':_0x21de44(0x384),'badges':[{'text':'악마','cls':_0x21de44(0x430)}],'range':_0x21de44(0x480)},{'gate':'2관','boss':_0x21de44(0x490),'badges':[{'text':'고대','cls':'type-ancient'},{'text':_0x21de44(0x268),'cls':_0x21de44(0x1cf)}],'range':'950\x20-\x201270'}],'gold':_0x21de44(0x4ae),'bindGold':_0x21de44(0x3d5),'total':_0x21de44(0x544)},{'theme':_0x21de44(0x36f),'title':_0x21de44(0x394),'node':_0x21de44(0x552),'rows':[{'gate':'1관','boss':_0x21de44(0x42e),'badges':[{'text':'인간','cls':'type-human'},{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}],'range':_0x21de44(0x49a)},{'gate':'2관','boss':'광신의\x20인도자','badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x2ba),'cls':'attr-dark'}],'range':_0x21de44(0x416)}],'gold':'','bindGold':_0x21de44(0x446),'total':''}]},0x6b8:{'sectionTitle':_0x21de44(0x4a2),'intro':_0x21de44(0x296),'cards':[{'theme':_0x21de44(0x483),'title':_0x21de44(0x48f),'node':'1720','rows':[{'gate':'1관','boss':_0x21de44(0x384),'badges':[{'text':'악마','cls':_0x21de44(0x430)}],'range':_0x21de44(0x1fa)},{'gate':'2관','boss':_0x21de44(0x490),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x268),'cls':_0x21de44(0x1cf)}],'range':_0x21de44(0x202)}],'gold':_0x21de44(0x4c7),'bindGold':'','total':''},{'theme':_0x21de44(0x483),'title':'성당\x202단계','node':_0x21de44(0x1ef),'rows':[{'gate':'1관','boss':_0x21de44(0x42e),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}],'range':'2161\x20-\x202882'},{'gate':'2관','boss':_0x21de44(0x1f0),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}],'range':'2089\x20-\x202786'}],'gold':'','bindGold':_0x21de44(0x4a1),'total':''},{'theme':_0x21de44(0x440),'title':_0x21de44(0x222),'node':_0x21de44(0x36c),'rows':[{'gate':'1관','boss':'카제로스','badges':[{'text':_0x21de44(0x514),'cls':'type-archdemon'}],'range':_0x21de44(0x467)},{'gate':'2관','boss':'카제로스','badges':[{'text':_0x21de44(0x514),'cls':_0x21de44(0x1da)}],'range':'1050\x20-\x201400'}],'gold':_0x21de44(0x374),'bindGold':_0x21de44(0x21a),'total':_0x21de44(0x2f2)},{'theme':_0x21de44(0x36f),'title':_0x21de44(0x3de),'node':'1710','rows':[{'gate':'1관','boss':_0x21de44(0x496),'badges':[{'text':'인간','cls':'type-human'}],'range':'1100\x20-\x201480'},{'gate':'2관','boss':_0x21de44(0x1b8),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':_0x21de44(0x199)}],'gold':_0x21de44(0x374),'bindGold':_0x21de44(0x21a),'total':_0x21de44(0x2f2)}]},0x6c2:{'sectionTitle':_0x21de44(0x49e),'intro':_0x21de44(0x296),'cards':[{'theme':'b-gold','title':'세르카\x20하드','node':_0x21de44(0x3a4),'rows':[{'gate':'1관','boss':_0x21de44(0x496),'badges':[{'text':'인간','cls':_0x21de44(0x52e)}],'range':_0x21de44(0x1b5)},{'gate':'2관','boss':_0x21de44(0x1b8),'badges':[{'text':'고대','cls':'type-ancient'},{'text':'성속성\x20취약','cls':_0x21de44(0x450)}],'range':'2980\x20-\x203970'}],'gold':_0x21de44(0x19c),'bindGold':'','total':''},{'theme':_0x21de44(0x483),'title':_0x21de44(0x2b2),'node':_0x21de44(0x3a4),'rows':[{'gate':'1관','boss':'카제로스','badges':[{'text':_0x21de44(0x514),'cls':_0x21de44(0x1da)}],'range':_0x21de44(0x3b6)},{'gate':'2관','boss':_0x21de44(0x536),'badges':[{'text':'대악마','cls':_0x21de44(0x1da)},{'text':'신','cls':_0x21de44(0x3a9)}],'range':_0x21de44(0x1ec)}],'gold':'48,000','bindGold':'','total':''},{'theme':_0x21de44(0x483),'title':_0x21de44(0x48f),'node':_0x21de44(0x1ef),'rows':[{'gate':'1관','boss':'에키드나','badges':[{'text':'악마','cls':_0x21de44(0x430)}],'range':_0x21de44(0x1fa)},{'gate':'2관','boss':_0x21de44(0x490),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x268),'cls':'attr-fire'}],'range':_0x21de44(0x202)}],'gold':_0x21de44(0x4c7),'bindGold':'','total':''},{'theme':_0x21de44(0x36f),'title':'성당\x202단계','node':'1720','rows':[{'gate':'1관','boss':_0x21de44(0x42e),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x2ba),'cls':'attr-dark'}],'range':_0x21de44(0x488)},{'gate':'2관','boss':_0x21de44(0x1f0),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':'암속성\x20취약','cls':'attr-dark'}],'range':'2089\x20-\x202786'}],'gold':'','bindGold':_0x21de44(0x4a1),'total':''}]},0x6cc:{'sectionTitle':_0x21de44(0x523),'intro':'<i>해당\x20레벨대에\x20입장할수있는\x20레이드를\x20나열하였습니다.</i>','cards':[{'theme':_0x21de44(0x4a7),'title':_0x21de44(0x327),'node':_0x21de44(0x207),'rows':[{'gate':'1관','boss':_0x21de44(0x496),'badges':[{'text':'인간','cls':_0x21de44(0x52e)}],'range':'3580\x20-\x204770'},{'gate':'2관','boss':_0x21de44(0x1b8),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':'4620\x20-\x206160'}],'gold':_0x21de44(0x47e),'bindGold':'','total':''},{'theme':'b-gold','title':_0x21de44(0x2b2),'node':'1730','rows':[{'gate':'1관','boss':_0x21de44(0x536),'badges':[{'text':_0x21de44(0x514),'cls':'type-archdemon'}],'range':_0x21de44(0x3b6)},{'gate':'2관','boss':_0x21de44(0x536),'badges':[{'text':_0x21de44(0x514),'cls':_0x21de44(0x1da)},{'text':'신','cls':_0x21de44(0x3a9)}],'range':_0x21de44(0x1ec)}],'gold':_0x21de44(0x2f2),'bindGold':'','total':''},{'theme':_0x21de44(0x483),'title':_0x21de44(0x48f),'node':_0x21de44(0x1ef),'rows':[{'gate':'1관','boss':_0x21de44(0x384),'badges':[{'text':'악마','cls':_0x21de44(0x430)}],'range':'1425\x20-\x201900'},{'gate':'2관','boss':_0x21de44(0x490),'badges':[{'text':'고대','cls':'type-ancient'},{'text':'화속성\x20취약','cls':'attr-fire'}],'range':'1575\x20-\x202100'}],'gold':_0x21de44(0x4c7),'bindGold':'','total':''},{'theme':_0x21de44(0x36f),'title':'성당\x202단계','node':_0x21de44(0x1ef),'rows':[{'gate':'1관','boss':_0x21de44(0x42e),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x2ba),'cls':'attr-dark'}],'range':_0x21de44(0x488)},{'gate':'2관','boss':'광신의\x20인도자','badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}],'range':_0x21de44(0x28a)}],'gold':'','bindGold':'40,000','total':''}]},0x6d6:{'sectionTitle':_0x21de44(0x235),'intro':_0x21de44(0x296),'cards':[{'theme':_0x21de44(0x4a7),'title':'세르카\x20나메','node':_0x21de44(0x207),'rows':[{'gate':'1관','boss':_0x21de44(0x496),'badges':[{'text':'인간','cls':_0x21de44(0x52e)}],'range':_0x21de44(0x224)},{'gate':'2관','boss':_0x21de44(0x1b8),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':_0x21de44(0x4b3)}],'gold':_0x21de44(0x47e),'bindGold':'','total':''},{'theme':'b-gold','title':'종막\x20하드','node':_0x21de44(0x3a4),'rows':[{'gate':'1관','boss':_0x21de44(0x536),'badges':[{'text':_0x21de44(0x514),'cls':_0x21de44(0x1da)}],'range':_0x21de44(0x3b6)},{'gate':'2관','boss':_0x21de44(0x536),'badges':[{'text':_0x21de44(0x514),'cls':_0x21de44(0x1da)},{'text':'신','cls':'type-divine'}],'range':_0x21de44(0x1ec)}],'gold':_0x21de44(0x2f2),'bindGold':'','total':''},{'theme':'b-orange','title':_0x21de44(0x55c),'node':_0x21de44(0x23d),'rows':[{'gate':'1관','boss':_0x21de44(0x42e),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':'암속성\x20취약','cls':'attr-dark'}],'range':_0x21de44(0x217)},{'gate':'2관','boss':'광신의\x20인도자','badges':[{'text':'인간','cls':'type-human'},{'text':'암속성\x20취약','cls':'attr-dark'}],'range':_0x21de44(0x267)}],'gold':'','bindGold':_0x21de44(0x47d),'total':''},{'theme':_0x21de44(0x440),'title':'벨가르딘\x20노말','node':_0x21de44(0x23d),'rows':[{'gate':'1관','boss':_0x21de44(0x22c),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':_0x21de44(0x4b9)},{'gate':'2관','boss':_0x21de44(0x25d),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':'2917\x20-\x203228\x20-\x203889'}],'gold':_0x21de44(0x47d),'bindGold':'','total':''},{'theme':'b-gray','title':'4막\x20하드','node':'1720','rows':[{'gate':'1관','boss':_0x21de44(0x384),'badges':[{'text':'악마','cls':_0x21de44(0x430)}],'range':'1425\x20-\x201900'},{'gate':'2관','boss':'아르모체','badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x268),'cls':_0x21de44(0x1cf)}],'range':_0x21de44(0x202)}],'gold':'38,000','bindGold':'','total':''}]},0x6ea:{'sectionTitle':_0x21de44(0x4c0),'intro':_0x21de44(0x2da),'cards':[{'theme':_0x21de44(0x444),'title':'벨가르딘\x20하드','node':'1770','rows':[{'gate':'1관','boss':'벨가르딘','badges':[{'text':'인간','cls':'type-human'},{'text':'성속성\x20취약','cls':_0x21de44(0x450)}],'range':_0x21de44(0x2e0)},{'gate':'2관','boss':_0x21de44(0x25d),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':_0x21de44(0x4d5)}],'gold':_0x21de44(0x513),'bindGold':'','total':''},{'theme':_0x21de44(0x4a7),'title':_0x21de44(0x327),'node':_0x21de44(0x207),'rows':[{'gate':'1관','boss':_0x21de44(0x496),'badges':[{'text':'인간','cls':_0x21de44(0x52e)}],'range':'3580\x20-\x204770'},{'gate':'2관','boss':'코르부스','badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':_0x21de44(0x4b3)}],'gold':_0x21de44(0x47e),'bindGold':'','total':''},{'theme':_0x21de44(0x444),'title':'성당\x203단계','node':_0x21de44(0x23d),'rows':[{'gate':'1관','boss':_0x21de44(0x42e),'badges':[{'text':'인간','cls':'type-human'},{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}],'range':_0x21de44(0x217)},{'gate':'2관','boss':_0x21de44(0x1f0),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}],'range':'3594\x20-\x204792'}],'gold':'','bindGold':'50,000','total':''}]},0x6f4:{'sectionTitle':'1780\x20레이드','intro':_0x21de44(0x1f2),'cards':[{'theme':_0x21de44(0x4a7),'title':'벨가르딘\x20나메','node':'1780','rows':[{'gate':'1관','boss':'벨가르딘','badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':'7412\x20-\x208203\x20-\x209883'},{'gate':'2관','boss':_0x21de44(0x25d),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':'attr-holy'}],'range':'8391\x20-\x209286\x20-\x2011188'}],'gold':'75,000','bindGold':'','total':''},{'theme':_0x21de44(0x444),'title':_0x21de44(0x4e7),'node':_0x21de44(0x2c4),'rows':[{'gate':'1관','boss':_0x21de44(0x22c),'badges':[{'text':'인간','cls':_0x21de44(0x52e)},{'text':'성속성\x20취약','cls':_0x21de44(0x450)}],'range':'4142\x20-\x204584\x20-\x205523'},{'gate':'2관','boss':_0x21de44(0x25d),'badges':[{'text':'고대','cls':_0x21de44(0x421)},{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}],'range':_0x21de44(0x4d5)}],'gold':_0x21de44(0x239),'bindGold':'','total':''}]}},simpleRaidMeta={'cathedral':{'label':_0x21de44(0x503),'sub':_0x21de44(0x49c),'icon':'⛪','summary':'어비스\x20레이드','titles':[_0x21de44(0x55c),_0x21de44(0x308),_0x21de44(0x394)]},'serka':{'label':'세르카','sub':'4인\x20레이드','icon':'🧹','summary':'그림자\x20레이드','titles':[_0x21de44(0x327),_0x21de44(0x315),_0x21de44(0x3de)]},'belgardin':{'label':_0x21de44(0x22c),'sub':_0x21de44(0x38c),'icon':'🧛','summary':'그림자\x20레이드','titles':[_0x21de44(0x38d),'벨가르딘\x20하드',_0x21de44(0x3ce)]},'finale':{'label':'종막','sub':_0x21de44(0x38c),'icon':'👑','summary':_0x21de44(0x2b4),'titles':[_0x21de44(0x2b2),'종막\x20노말']},'act4':{'label':'4막','sub':'8인\x20레이드','icon':_0x21de44(0x408),'summary':_0x21de44(0x2b4),'titles':[_0x21de44(0x48f),'4막\x20노말']}},exRaidData={'egir-ex':{'sectionTitle':_0x21de44(0x1eb),'intro':_0x21de44(0x25f),'cards':[{'tier':_0x21de44(0x210),'level':_0x21de44(0x1ef),'name':_0x21de44(0x49d),'tags':[{'text':_0x21de44(0x543)},{'text':'고대'}],'tank_dmg':_0x21de44(0x2de),'tank_dps':_0x21de44(0x46a),'one_dmg':_0x21de44(0x1ee),'one_dps':_0x21de44(0x33e),'blood_dmg':'2,900','blood_dps':_0x21de44(0x3e6),'phases':[{'label':_0x21de44(0x52d),'sub':_0x21de44(0x1b0),'t_d':'1,804억','t_s':_0x21de44(0x3fb),'o_d':'2,091억','o_s':_0x21de44(0x288),'b_d':_0x21de44(0x44e),'b_s':_0x21de44(0x4d4)},{'label':_0x21de44(0x295),'sub':_0x21de44(0x1fe),'t_d':_0x21de44(0x282),'t_s':'2.68억','o_d':'2,550억','o_s':_0x21de44(0x301),'b_d':_0x21de44(0x1fc),'b_s':_0x21de44(0x37b)},{'label':_0x21de44(0x25a),'sub':_0x21de44(0x445),'t_d':_0x21de44(0x282),'t_s':_0x21de44(0x46a),'o_d':_0x21de44(0x3ae),'o_s':_0x21de44(0x33e),'b_d':_0x21de44(0x1fc),'b_s':'2.28억','total':!![]}]},{'tier':_0x21de44(0x379),'level':_0x21de44(0x23d),'name':_0x21de44(0x3ab),'tags':[{'text':'1관\x20에기르'},{'text':'고대'}],'tank_dmg':_0x21de44(0x31a),'tank_dps':_0x21de44(0x4e8),'one_dmg':'5,120','one_dps':_0x21de44(0x4b2),'blood_dmg':'5,850','blood_dps':_0x21de44(0x45e),'phases':[{'label':_0x21de44(0x52d),'sub':_0x21de44(0x1b0),'t_d':'3,608억','t_s':_0x21de44(0x38a),'o_d':_0x21de44(0x246),'o_s':_0x21de44(0x2e1),'b_d':'4,797억','b_s':'11.16억'},{'label':_0x21de44(0x295),'sub':_0x21de44(0x1fe),'t_d':_0x21de44(0x53c),'t_s':'5.37억','o_d':_0x21de44(0x34b),'o_s':_0x21de44(0x2d3),'b_d':_0x21de44(0x4ad),'b_s':_0x21de44(0x506)},{'label':_0x21de44(0x25a),'sub':_0x21de44(0x48e),'t_d':_0x21de44(0x53c),'t_s':_0x21de44(0x4e8),'o_d':_0x21de44(0x34b),'o_s':_0x21de44(0x4b2),'b_d':'5,850억','b_s':_0x21de44(0x45e),'total':!![]}]},{'tier':_0x21de44(0x4f6),'level':_0x21de44(0x2c4),'name':_0x21de44(0x4f2),'tags':[{'text':_0x21de44(0x543)},{'text':'고대'}],'tank_dmg':_0x21de44(0x43c),'tank_dps':_0x21de44(0x2f5),'one_dmg':_0x21de44(0x22b),'one_dps':_0x21de44(0x4ff),'blood_dmg':_0x21de44(0x52b),'blood_dps':_0x21de44(0x527),'phases':[{'label':_0x21de44(0x52d),'sub':'165실드\x20/\x20누적\x207분\x2010초','t_d':'6,483억','t_s':_0x21de44(0x337),'o_d':_0x21de44(0x4b5),'o_s':_0x21de44(0x51f),'b_d':'8,615억','b_s':_0x21de44(0x1a7)},{'label':_0x21de44(0x295),'sub':_0x21de44(0x1fe),'t_d':_0x21de44(0x4da),'t_s':_0x21de44(0x323),'o_d':_0x21de44(0x287),'o_s':_0x21de44(0x53e),'b_d':'10,500억','b_s':_0x21de44(0x233)},{'label':_0x21de44(0x25a),'sub':_0x21de44(0x2e7),'t_d':_0x21de44(0x4da),'t_s':_0x21de44(0x2f5),'o_d':_0x21de44(0x287),'o_s':_0x21de44(0x4ff),'b_d':_0x21de44(0x1ab),'b_s':_0x21de44(0x527),'total':!![]}]}],'bossSection':{'headerColor':_0x21de44(0x362),'estherBar':'#a78bfa','colName1':_0x21de44(0x4a0),'colName2':'하드','colName3':'노말','col1':_0x21de44(0x362),'col2':_0x21de44(0x205),'col3':_0x21de44(0x280),'bosses':[{'name':_0x21de44(0x4a0),'color':_0x21de44(0x362),'totalHp':_0x21de44(0x2eb),'parts':[{'name':'체력','pct':82.1,'color':_0x21de44(0x362),'legend':'기본체력\x20(300줄)','hp':_0x21de44(0x477)},{'name':'실드','pct':0x6,'color':_0x21de44(0x247),'legend':_0x21de44(0x431),'hp':_0x21de44(0x534)},{'name':'0줄','pct':11.9,'color':'#f87171','legend':'0줄\x20발악\x20(44줄)','hp':_0x21de44(0x1ea)}]},{'name':'하드','color':'#f7ca54','totalHp':'3조\x203,576억','parts':[{'name':'체력','pct':81.9,'color':_0x21de44(0x205),'legend':_0x21de44(0x1f8),'hp':_0x21de44(0x299)},{'name':'실드','pct':0x6,'color':_0x21de44(0x247),'legend':_0x21de44(0x431),'hp':_0x21de44(0x398)},{'name':'0줄','pct':11.9,'color':_0x21de44(0x382),'legend':_0x21de44(0x293),'hp':_0x21de44(0x4be)}]},{'name':'노말','color':_0x21de44(0x280),'totalHp':_0x21de44(0x3fa),'parts':[{'name':'체력','pct':82.1,'color':_0x21de44(0x280),'legend':_0x21de44(0x1f8),'hp':_0x21de44(0x253)},{'name':'실드','pct':6.1,'color':_0x21de44(0x247),'legend':'165실드\x20(22줄)','hp':_0x21de44(0x25e)},{'name':'0줄','pct':11.9,'color':_0x21de44(0x382),'legend':_0x21de44(0x293),'hp':_0x21de44(0x505)}]}],'esther':[[_0x21de44(0x422),'약\x203,690억',_0x21de44(0x370),_0x21de44(0x1c3)],[_0x21de44(0x2a1),_0x21de44(0x307),_0x21de44(0x492),_0x21de44(0x54a)],[_0x21de44(0x555),_0x21de44(0x40e),'약\x20387억',_0x21de44(0x305)],[_0x21de44(0x1d7),_0x21de44(0x393),'약\x20747억',_0x21de44(0x4f5)]]}},'abr-ex':{'sectionTitle':_0x21de44(0x507),'intro':_0x21de44(0x1d9),'cards':[{'tier':_0x21de44(0x210),'level':_0x21de44(0x1ef),'name':_0x21de44(0x48b),'tags':[{'text':_0x21de44(0x34d)},{'text':'악마'},{'text':_0x21de44(0x1f4),'weak':!![]}],'tank_dmg':_0x21de44(0x1d6),'tank_dps':'1.13억','one_dmg':_0x21de44(0x1cc),'one_dps':_0x21de44(0x4cf),'blood_dmg':'2,003','blood_dps':_0x21de44(0x27c),'phases':[{'label':'1페이즈\x20종료','sub':_0x21de44(0x493),'t_d':'215억','t_s':_0x21de44(0x34a),'o_d':_0x21de44(0x37d),'o_s':_0x21de44(0x486),'b_d':_0x21de44(0x2ec),'b_s':_0x21de44(0x531)},{'label':_0x21de44(0x295),'sub':_0x21de44(0x24d),'t_d':_0x21de44(0x252),'t_s':'1.15억','o_d':'844억','o_s':_0x21de44(0x2f8),'b_d':'1,013억','b_s':_0x21de44(0x466)},{'label':'3페이즈\x20종료','sub':_0x21de44(0x3fc),'t_d':_0x21de44(0x3d0),'t_s':_0x21de44(0x1a8),'o_d':_0x21de44(0x4f9),'o_s':'1.20억','b_d':_0x21de44(0x2ce),'b_s':'1.44억'},{'label':_0x21de44(0x25a),'sub':_0x21de44(0x3f8),'t_d':'1,502억','t_s':_0x21de44(0x39d),'o_d':'1,669억','o_s':_0x21de44(0x4cf),'b_d':_0x21de44(0x2f4),'b_s':_0x21de44(0x27c),'total':!![]}]},{'tier':_0x21de44(0x379),'level':_0x21de44(0x23d),'name':_0x21de44(0x38f),'tags':[{'text':'1관\x20아브렐슈드'},{'text':'악마'},{'text':_0x21de44(0x1f4),'weak':!![]}],'tank_dmg':_0x21de44(0x43d),'tank_dps':_0x21de44(0x26c),'one_dmg':'4,515','one_dps':_0x21de44(0x206),'blood_dmg':_0x21de44(0x383),'blood_dps':_0x21de44(0x3e9),'phases':[{'label':'1페이즈\x20종료','sub':_0x21de44(0x493),'t_d':_0x21de44(0x4cc),'t_s':_0x21de44(0x261),'o_d':_0x21de44(0x1dc),'o_s':'4.59억','b_d':'772억','b_s':_0x21de44(0x541)},{'label':_0x21de44(0x295),'sub':_0x21de44(0x24d),'t_d':_0x21de44(0x257),'t_s':'3.11억','o_d':_0x21de44(0x4ed),'o_s':_0x21de44(0x3d4),'b_d':_0x21de44(0x361),'b_s':'4.15억'},{'label':_0x21de44(0x22d),'sub':_0x21de44(0x3fc),'t_d':_0x21de44(0x1df),'t_s':_0x21de44(0x221),'o_d':_0x21de44(0x244),'o_s':_0x21de44(0x461),'b_d':_0x21de44(0x4e5),'b_s':_0x21de44(0x550)},{'label':'🏆\x20최종\x20토벌\x20완료','sub':_0x21de44(0x3f8),'t_d':_0x21de44(0x463),'t_s':'3.07억','o_d':_0x21de44(0x411),'o_s':_0x21de44(0x206),'b_d':_0x21de44(0x3a8),'b_s':_0x21de44(0x3e9),'total':!![]}]},{'tier':_0x21de44(0x4f6),'level':_0x21de44(0x2c4),'name':_0x21de44(0x4e0),'tags':[{'text':_0x21de44(0x34d)},{'text':'악마'},{'text':_0x21de44(0x1f4),'weak':!![]}],'tank_dmg':_0x21de44(0x474),'tank_dps':_0x21de44(0x1de),'one_dmg':_0x21de44(0x4df),'one_dps':'7.73억','blood_dmg':_0x21de44(0x392),'blood_dps':_0x21de44(0x347),'phases':[{'label':_0x21de44(0x52d),'sub':_0x21de44(0x493),'t_d':_0x21de44(0x453),'t_s':_0x21de44(0x51d),'o_d':_0x21de44(0x2f3),'o_s':_0x21de44(0x341),'b_d':_0x21de44(0x3f1),'b_s':_0x21de44(0x44c)},{'label':'2페이즈\x20종료','sub':'145줄\x20/\x20누적\x2011분\x2000초','t_d':_0x21de44(0x21b),'t_s':_0x21de44(0x45f),'o_d':'5,186.5억','o_s':_0x21de44(0x2e3),'b_d':_0x21de44(0x262),'b_s':_0x21de44(0x51d)},{'label':_0x21de44(0x22d),'sub':_0x21de44(0x3fc),'t_d':_0x21de44(0x49b),'t_s':_0x21de44(0x1cd),'o_d':_0x21de44(0x216),'o_s':'7.38억','b_d':_0x21de44(0x519),'b_s':_0x21de44(0x2fd)},{'label':_0x21de44(0x25a),'sub':_0x21de44(0x3f8),'t_d':'9,228.0억','t_s':_0x21de44(0x1de),'o_d':_0x21de44(0x355),'o_s':_0x21de44(0x40d),'b_d':'12,304.0억','b_s':_0x21de44(0x347),'total':!![]}]}],'bossSection':{'headerColor':_0x21de44(0x362),'estherBar':_0x21de44(0x205),'colName1':_0x21de44(0x4a0),'colName2':'하드','colName3':'노말','col1':_0x21de44(0x362),'col2':'#f7ca54','col3':'#34d399','bosses':[{'name':_0x21de44(0x4a0),'color':_0x21de44(0x362),'totalHp':_0x21de44(0x2a7),'parts':[{'name':'체력','pct':73.5,'color':_0x21de44(0x362),'legend':_0x21de44(0x290),'hp':'5조\x204,168억'},{'name':'0줄','pct':26.5,'color':_0x21de44(0x382),'legend':'0줄\x20발악\x20(152줄)','hp':_0x21de44(0x197)}]},{'name':'하드','color':_0x21de44(0x205),'totalHp':'3조\x202,449억','parts':[{'name':'체력','pct':73.5,'color':_0x21de44(0x205),'legend':_0x21de44(0x290),'hp':_0x21de44(0x332)},{'name':'0줄','pct':26.5,'color':_0x21de44(0x382),'legend':_0x21de44(0x3f9),'hp':'8,589억'}]},{'name':'노말','color':_0x21de44(0x280),'totalHp':'1조\x201,966억','parts':[{'name':'체력','pct':73.5,'color':_0x21de44(0x280),'legend':_0x21de44(0x290),'hp':_0x21de44(0x1ac)},{'name':'0줄','pct':26.5,'color':'#f87171','legend':_0x21de44(0x3f9),'hp':_0x21de44(0x3e8)}]}],'esther':[[_0x21de44(0x3a3),_0x21de44(0x2ff),'약\x20451억',_0x21de44(0x198)],['아제나\x201칸',_0x21de44(0x243),_0x21de44(0x4c9),_0x21de44(0x551)],[_0x21de44(0x1bf),'약\x204,539억',_0x21de44(0x1bc),'약\x20729억'],[_0x21de44(0x1e8),_0x21de44(0x279),_0x21de44(0x2aa),_0x21de44(0x401)],[_0x21de44(0x37c),_0x21de44(0x2c2),_0x21de44(0x49f),_0x21de44(0x209)],[_0x21de44(0x1aa),_0x21de44(0x485),_0x21de44(0x3ed),'약\x20159억']]}}},serkaRewardData={'normal_gate1':{'clearItems':[{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png','count':'8','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'3','name':'4티어\x20팔찌'},{'src':_0x21de44(0x1f1),'count':_0x21de44(0x4fb),'name':'운명의\x20파괴석'},{'src':_0x21de44(0x1c4),'count':_0x21de44(0x346),'name':_0x21de44(0x497)},{'src':_0x21de44(0x2ea),'count':'12','name':_0x21de44(0x3f5)},{'src':_0x21de44(0x556),'count':'4','name':_0x21de44(0x539)},{'src':_0x21de44(0x3f7),'count':'1,300','name':_0x21de44(0x234)}],'gold':_0x21de44(0x4b7),'shard':'6,200','moreItems':[{'src':_0x21de44(0x40a),'count':'8','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'3','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x1f1),'count':_0x21de44(0x2d0),'name':'운명의\x20파괴석'},{'src':_0x21de44(0x1c4),'count':'3,000','name':'운명의\x20수호석'},{'src':_0x21de44(0x2ea),'count':'47','name':_0x21de44(0x3f5)},{'src':_0x21de44(0x556),'count':'4','name':'고통의\x20가시'}],'moreGold':'','moreShard':_0x21de44(0x338)},'normal_gate2':{'clearItems':[{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png','count':'9','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'5','name':'4티어\x20팔찌'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png','count':'1,100','name':_0x21de44(0x3bf)},{'src':_0x21de44(0x1c4),'count':_0x21de44(0x2de),'name':'운명의\x20수호석'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png','count':'15','name':_0x21de44(0x3f5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png','count':'6','name':'고통의\x20가시'},{'src':_0x21de44(0x3f7),'count':'2,100','name':_0x21de44(0x234)},{'src':_0x21de44(0x30c),'count':'17','name':_0x21de44(0x50f)},{'src':_0x21de44(0x2bd),'count':'8','name':_0x21de44(0x51c)}],'gold':'19,000','shard':'7,900','moreItems':[{'src':_0x21de44(0x40a),'count':'9','name':'4티어\x20비상의\x20돌'},{'src':_0x21de44(0x278),'count':'5','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x1f1),'count':_0x21de44(0x4ef),'name':_0x21de44(0x3bf)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png','count':'4,500','name':'운명의\x20수호석'},{'src':_0x21de44(0x2ea),'count':'75','name':'운명의\x20돌파석'},{'src':_0x21de44(0x556),'count':'6','name':'고통의\x20가시'},{'src':_0x21de44(0x30c),'count':'12','name':_0x21de44(0x50f)}],'moreGold':'','moreShard':_0x21de44(0x3cd)},'hard_gate1':{'clearItems':[{'src':_0x21de44(0x40a),'count':'10','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'2','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x228),'count':_0x21de44(0x429),'name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':_0x21de44(0x39c),'name':_0x21de44(0x482)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png','count':'7','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x556),'count':'10','name':'고통의\x20가시'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png','count':_0x21de44(0x25b),'name':'클리어\x20메달'}],'gold':_0x21de44(0x4d8),'shard':_0x21de44(0x1e4),'moreItems':[{'src':_0x21de44(0x40a),'count':'10','name':'4티어\x20비상의\x20돌'},{'src':_0x21de44(0x278),'count':'2','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x228),'count':'750','name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':_0x21de44(0x2d0),'name':_0x21de44(0x482)},{'src':_0x21de44(0x459),'count':'30','name':_0x21de44(0x4a3)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png','count':'10','name':_0x21de44(0x539)}],'moreGold':'','moreShard':_0x21de44(0x4d8)},'hard_gate2':{'clearItems':[{'src':_0x21de44(0x40a),'count':'10','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'3','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x228),'count':_0x21de44(0x26b),'name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':_0x21de44(0x2a9),'name':'운명의\x20수호석\x20결정'},{'src':_0x21de44(0x459),'count':'10','name':_0x21de44(0x4a3)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png','count':'15','name':_0x21de44(0x539)},{'src':_0x21de44(0x3f7),'count':'2,100','name':_0x21de44(0x234)},{'src':_0x21de44(0x484),'count':'5','name':_0x21de44(0x4b8)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png','count':'10','name':_0x21de44(0x51c)}],'gold':_0x21de44(0x39a),'shard':_0x21de44(0x1fb),'moreItems':[{'src':_0x21de44(0x40a),'count':'10','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'3','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x228),'count':_0x21de44(0x494),'name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':_0x21de44(0x2c9),'name':_0x21de44(0x482)},{'src':_0x21de44(0x459),'count':'45','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x556),'count':'15','name':'고통의\x20가시'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png','count':'4','name':_0x21de44(0x4b8)}],'moreGold':'','moreShard':_0x21de44(0x4c3)},'nightmare_gate1':{'clearItems':[{'src':_0x21de44(0x40a),'count':'10','name':_0x21de44(0x4e1)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png','count':'3','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x228),'count':_0x21de44(0x365),'name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':'810','name':_0x21de44(0x482)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png','count':'8','name':_0x21de44(0x4a3)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png','count':'10','name':_0x21de44(0x539)},{'src':_0x21de44(0x3f7),'count':'1,300','name':_0x21de44(0x234)}],'gold':_0x21de44(0x1ca),'shard':_0x21de44(0x2fb),'moreItems':[{'src':_0x21de44(0x40a),'count':'10','name':'4티어\x20비상의\x20돌'},{'src':_0x21de44(0x278),'count':'3','name':_0x21de44(0x2d5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png','count':'860','name':_0x21de44(0x302)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png','count':_0x21de44(0x377),'name':_0x21de44(0x482)},{'src':_0x21de44(0x459),'count':'36','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x556),'count':'10','name':'고통의\x20가시'}],'moreGold':'','moreShard':_0x21de44(0x2bf)},'nightmare_gate2':{'clearItems':[{'src':_0x21de44(0x40a),'count':'10','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'4','name':'4티어\x20팔찌'},{'src':_0x21de44(0x438),'count':'1','name':_0x21de44(0x509)},{'src':_0x21de44(0x228),'count':_0x21de44(0x1d8),'name':_0x21de44(0x302)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png','count':_0x21de44(0x318),'name':_0x21de44(0x482)},{'src':_0x21de44(0x459),'count':'12','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x556),'count':'15','name':_0x21de44(0x539)},{'src':_0x21de44(0x3f7),'count':_0x21de44(0x511),'name':_0x21de44(0x234)},{'src':_0x21de44(0x484),'count':'6','name':_0x21de44(0x4b8)},{'src':_0x21de44(0x2bd),'count':'10','name':_0x21de44(0x51c)}],'gold':'33,000','shard':'11,000','moreItems':[{'src':_0x21de44(0x40a),'count':'10','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'4','name':_0x21de44(0x2d5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png','count':'1,430','name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':_0x21de44(0x367),'name':'운명의\x20수호석\x20결정'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png','count':'60','name':_0x21de44(0x4a3)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png','count':'15','name':_0x21de44(0x539)},{'src':_0x21de44(0x484),'count':'4','name':_0x21de44(0x4b8)}],'moreGold':'','moreShard':_0x21de44(0x557)}},cathedralRewardData={'normal_gate1':{'clearItems':[{'src':_0x21de44(0x40a),'count':'7','name':_0x21de44(0x4e1)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png','count':'2','name':_0x21de44(0x2d5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png','count':'820','name':_0x21de44(0x3bf)},{'src':_0x21de44(0x1c4),'count':_0x21de44(0x19f),'name':'운명의\x20수호석'},{'src':_0x21de44(0x2ea),'count':'9','name':'운명의\x20돌파석'},{'src':_0x21de44(0x3af),'count':'4','name':_0x21de44(0x437)}],'gold':_0x21de44(0x3d5),'shard':_0x21de44(0x2c5),'moreItems':[{'src':_0x21de44(0x40a),'count':'7','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'2','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x1f1),'count':'1,400','name':_0x21de44(0x3bf)},{'src':_0x21de44(0x1c4),'count':'2,800','name':_0x21de44(0x497)},{'src':_0x21de44(0x2ea),'count':'44','name':_0x21de44(0x3f5)},{'src':_0x21de44(0x3af),'count':'4','name':_0x21de44(0x437)}],'moreGold':'','moreShard':_0x21de44(0x2f0)},'normal_gate2':{'clearItems':[{'src':_0x21de44(0x40a),'count':'8','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'4','name':_0x21de44(0x2d5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png','count':_0x21de44(0x336),'name':_0x21de44(0x3bf)},{'src':_0x21de44(0x1c4),'count':_0x21de44(0x34e),'name':_0x21de44(0x497)},{'src':_0x21de44(0x2ea),'count':'12','name':'운명의\x20돌파석'},{'src':_0x21de44(0x3af),'count':'6','name':'은총의\x20파편'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png','count':'15','name':'3티어\x20순환\x20돌파석'},{'src':_0x21de44(0x2bd),'count':'8','name':_0x21de44(0x51c)}],'gold':_0x21de44(0x2b0),'shard':_0x21de44(0x457),'moreItems':[{'src':_0x21de44(0x40a),'count':'8','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'4','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x1f1),'count':_0x21de44(0x1d4),'name':'운명의\x20파괴석'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png','count':_0x21de44(0x237),'name':_0x21de44(0x497)},{'src':_0x21de44(0x2ea),'count':'78','name':_0x21de44(0x3f5)},{'src':_0x21de44(0x3af),'count':'6','name':_0x21de44(0x437)},{'src':_0x21de44(0x30c),'count':'10','name':_0x21de44(0x50f)}],'moreGold':'','moreShard':'6,800'},'hard_gate1':{'clearItems':[{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png','count':'8','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'1','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x1f1),'count':'980','name':_0x21de44(0x3bf)},{'src':_0x21de44(0x1c4),'count':_0x21de44(0x1e1),'name':'운명의\x20수호석'},{'src':_0x21de44(0x2ea),'count':'11','name':_0x21de44(0x3f5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png','count':'12','name':_0x21de44(0x437)}],'gold':'16,000','shard':'6,800','moreItems':[{'src':_0x21de44(0x40a),'count':'8','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'1','name':'4티어\x20팔찌'},{'src':_0x21de44(0x1f1),'count':_0x21de44(0x386),'name':_0x21de44(0x3bf)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png','count':_0x21de44(0x1f5),'name':'운명의\x20수호석'},{'src':_0x21de44(0x2ea),'count':'53','name':'운명의\x20돌파석'},{'src':_0x21de44(0x3af),'count':'12','name':'은총의\x20파편'}],'moreGold':'','moreShard':_0x21de44(0x4f8)},'hard_gate2':{'clearItems':[{'src':_0x21de44(0x40a),'count':'9','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'2','name':_0x21de44(0x2d5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png','count':_0x21de44(0x28e),'name':_0x21de44(0x3bf)},{'src':_0x21de44(0x1c4),'count':_0x21de44(0x402),'name':_0x21de44(0x497)},{'src':_0x21de44(0x2ea),'count':'16','name':'운명의\x20돌파석'},{'src':_0x21de44(0x3af),'count':'18','name':_0x21de44(0x437)},{'src':_0x21de44(0x30c),'count':'17','name':_0x21de44(0x50f)},{'src':_0x21de44(0x2bd),'count':'10','name':_0x21de44(0x51c)}],'gold':'24,000','shard':_0x21de44(0x220),'moreItems':[{'src':_0x21de44(0x40a),'count':'9','name':'4티어\x20비상의\x20돌'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png','count':'2','name':_0x21de44(0x2d5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png','count':_0x21de44(0x357),'name':_0x21de44(0x3bf)},{'src':_0x21de44(0x1c4),'count':'5,760','name':'운명의\x20수호석'},{'src':_0x21de44(0x2ea),'count':'94','name':_0x21de44(0x3f5)},{'src':_0x21de44(0x3af),'count':'18','name':'은총의\x20파편'},{'src':_0x21de44(0x30c),'count':'13','name':_0x21de44(0x50f)}],'moreGold':'','moreShard':_0x21de44(0x29d)},'nightmare_gate1':{'clearItems':[{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png','count':'10','name':_0x21de44(0x4e1)},{'src':_0x21de44(0x278),'count':'3','name':_0x21de44(0x2d5)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png','count':_0x21de44(0x365),'name':_0x21de44(0x302)},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png','count':'810','name':_0x21de44(0x482)},{'src':_0x21de44(0x459),'count':'8','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x3af),'count':'24','name':_0x21de44(0x437)}],'gold':_0x21de44(0x491),'shard':'9,100','moreItems':[{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png','count':'10','name':'4티어\x20비상의\x20돌'},{'src':_0x21de44(0x278),'count':'3','name':'4티어\x20팔찌'},{'src':_0x21de44(0x228),'count':_0x21de44(0x26e),'name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':_0x21de44(0x377),'name':_0x21de44(0x482)},{'src':_0x21de44(0x459),'count':'36','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x3af),'count':'24','name':'은총의\x20파편'}],'moreGold':'','moreShard':_0x21de44(0x2bf)},'nightmare_gate2':{'clearItems':[{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png','count':'10','name':'4티어\x20비상의\x20돌'},{'src':_0x21de44(0x278),'count':'4','name':'4티어\x20팔찌'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png','count':'500','name':_0x21de44(0x302)},{'src':_0x21de44(0x340),'count':_0x21de44(0x318),'name':_0x21de44(0x482)},{'src':_0x21de44(0x459),'count':'12','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x3af),'count':'36','name':_0x21de44(0x437)},{'src':_0x21de44(0x484),'count':'6','name':'4티어\x20전이\x20돌파석'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png','count':'10','name':'운명의\x20돌'}],'gold':_0x21de44(0x446),'shard':_0x21de44(0x439),'moreItems':[{'src':_0x21de44(0x40a),'count':'10','name':'4티어\x20비상의\x20돌'},{'src':_0x21de44(0x278),'count':'4','name':_0x21de44(0x2d5)},{'src':_0x21de44(0x228),'count':_0x21de44(0x3c9),'name':'운명의\x20파괴석\x20결정'},{'src':_0x21de44(0x340),'count':_0x21de44(0x367),'name':'운명의\x20수호석\x20결정'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png','count':'60','name':_0x21de44(0x4a3)},{'src':_0x21de44(0x3af),'count':'36','name':'은총의\x20파편'},{'src':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png','count':'5','name':'4티어\x20전이\x20돌파석'}],'moreGold':'','moreShard':_0x21de44(0x557)}},BG_ICON={'destroy':_0x21de44(0x228),'guard':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png','bracelet':_0x21de44(0x278),'stone':_0x21de44(0x40a),'breakGreat':_0x21de44(0x459),'transfer':_0x21de44(0x484),'fateStone':_0x21de44(0x2bd),'gold':'https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png','shard':'https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png','shadowOfCommand':'https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_46.png','handOfDeath':_0x21de44(0x2dc)},belgardinRewardData={'normal_gate1':{'clearItems':[{'src':BG_ICON[_0x21de44(0x4c2)],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'3','name':_0x21de44(0x2d5)},{'src':BG_ICON['destroy'],'count':_0x21de44(0x365),'name':_0x21de44(0x302)},{'src':BG_ICON['guard'],'count':_0x21de44(0x4ab),'name':'운명의\x20수호석\x20결정'},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'8','name':_0x21de44(0x4a3)},{'src':BG_ICON[_0x21de44(0x53d)],'count':'12','name':_0x21de44(0x22f)}],'gold':_0x21de44(0x491),'shard':'9,100','moreItems':[{'src':BG_ICON['stone'],'count':'10','name':'4티어\x20비상의\x20돌'},{'src':BG_ICON[_0x21de44(0x532)],'count':'3','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':_0x21de44(0x26e),'name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':'1,720','name':_0x21de44(0x482)},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'36','name':_0x21de44(0x4a3)},{'src':BG_ICON['shadowOfCommand'],'count':'12','name':_0x21de44(0x22f)}],'moreGold':'','moreShard':_0x21de44(0x2bf)},'normal_gate2':{'clearItems':[{'src':BG_ICON['stone'],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON['bracelet'],'count':'4','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':'500','name':_0x21de44(0x302)},{'src':BG_ICON['guard'],'count':_0x21de44(0x318),'name':'운명의\x20수호석\x20결정'},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'12','name':'위대한\x20운명의\x20돌파석'},{'src':BG_ICON[_0x21de44(0x53d)],'count':'18','name':_0x21de44(0x22f)},{'src':BG_ICON[_0x21de44(0x3cf)],'count':'6','name':_0x21de44(0x4b8)},{'src':BG_ICON['fateStone'],'count':'10','name':_0x21de44(0x51c)}],'gold':_0x21de44(0x446),'shard':_0x21de44(0x439),'moreItems':[{'src':BG_ICON['stone'],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'4','name':_0x21de44(0x2d5)},{'src':BG_ICON['destroy'],'count':'1,430','name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':_0x21de44(0x367),'name':'운명의\x20수호석\x20결정'},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'60','name':'위대한\x20운명의\x20돌파석'},{'src':BG_ICON[_0x21de44(0x53d)],'count':'18','name':_0x21de44(0x22f)},{'src':BG_ICON['transfer'],'count':'5','name':_0x21de44(0x4b8)}],'moreGold':'','moreShard':_0x21de44(0x557)},'hard_gate1':{'clearItems':[{'src':BG_ICON[_0x21de44(0x4c2)],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'4','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':_0x21de44(0x260),'name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':_0x21de44(0x55a),'name':_0x21de44(0x482)},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'10','name':_0x21de44(0x4a3)},{'src':BG_ICON[_0x21de44(0x3c7)],'count':'12','name':_0x21de44(0x272)}],'gold':'25,000','shard':_0x21de44(0x2ac),'moreItems':[{'src':BG_ICON[_0x21de44(0x4c2)],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'4','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':'1,130','name':'운명의\x20파괴석\x20결정'},{'src':BG_ICON['guard'],'count':'2,260','name':'운명의\x20수호석\x20결정'},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'43','name':_0x21de44(0x4a3)},{'src':BG_ICON['handOfDeath'],'count':'12','name':_0x21de44(0x272)}],'moreGold':'','moreShard':'22,800'},'hard_gate2':{'clearItems':[{'src':BG_ICON[_0x21de44(0x4c2)],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'5','name':_0x21de44(0x2d5)},{'src':BG_ICON['destroy'],'count':_0x21de44(0x522),'name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':'1,200','name':'운명의\x20수호석\x20결정'},{'src':BG_ICON['breakGreat'],'count':'15','name':_0x21de44(0x4a3)},{'src':BG_ICON[_0x21de44(0x3c7)],'count':'18','name':_0x21de44(0x272)},{'src':BG_ICON[_0x21de44(0x3cf)],'count':'9','name':_0x21de44(0x4b8)},{'src':BG_ICON[_0x21de44(0x465)],'count':'10','name':_0x21de44(0x51c)}],'gold':_0x21de44(0x35d),'shard':_0x21de44(0x229),'moreItems':[{'src':BG_ICON[_0x21de44(0x4c2)],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'5','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':_0x21de44(0x377),'name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':_0x21de44(0x4ce),'name':'운명의\x20수호석\x20결정'},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'72','name':'위대한\x20운명의\x20돌파석'},{'src':BG_ICON[_0x21de44(0x3c7)],'count':'18','name':_0x21de44(0x272)},{'src':BG_ICON[_0x21de44(0x3cf)],'count':'6','name':'4티어\x20전이\x20돌파석'}],'moreGold':'','moreShard':_0x21de44(0x530)},'nightmare_gate1':{'clearItems':[{'src':BG_ICON['stone'],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'5','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':_0x21de44(0x1b1),'name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':'1,130','name':_0x21de44(0x482)},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'12','name':_0x21de44(0x4a3)},{'src':BG_ICON[_0x21de44(0x3c7)],'count':'12','name':_0x21de44(0x272)}],'gold':_0x21de44(0x446),'shard':_0x21de44(0x2c1),'moreItems':[{'src':BG_ICON[_0x21de44(0x4c2)],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'5','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':_0x21de44(0x25b),'name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':'2,600','name':_0x21de44(0x482)},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'49','name':_0x21de44(0x4a3)},{'src':BG_ICON[_0x21de44(0x3c7)],'count':'12','name':_0x21de44(0x272)}],'moreGold':'','moreShard':_0x21de44(0x36d)},'nightmare_gate2':{'clearItems':[{'src':BG_ICON['stone'],'count':'10','name':_0x21de44(0x4e1)},{'src':BG_ICON[_0x21de44(0x532)],'count':'6','name':'4티어\x20팔찌'},{'src':BG_ICON[_0x21de44(0x3e1)],'count':'690','name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':_0x21de44(0x3c2),'name':_0x21de44(0x482)},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'18','name':_0x21de44(0x4a3)},{'src':BG_ICON[_0x21de44(0x3c7)],'count':'18','name':_0x21de44(0x272)},{'src':BG_ICON[_0x21de44(0x3cf)],'count':'10','name':'4티어\x20전이\x20돌파석'},{'src':BG_ICON[_0x21de44(0x465)],'count':'10','name':_0x21de44(0x51c)}],'gold':_0x21de44(0x27f),'shard':_0x21de44(0x1e6),'moreItems':[{'src':BG_ICON['stone'],'count':'10','name':'4티어\x20비상의\x20돌'},{'src':BG_ICON[_0x21de44(0x532)],'count':'6','name':_0x21de44(0x2d5)},{'src':BG_ICON[_0x21de44(0x3e1)],'count':_0x21de44(0x510),'name':_0x21de44(0x302)},{'src':BG_ICON[_0x21de44(0x36e)],'count':_0x21de44(0x1ff),'name':'운명의\x20수호석\x20결정'},{'src':BG_ICON[_0x21de44(0x1a2)],'count':'83','name':'위대한\x20운명의\x20돌파석'},{'src':BG_ICON[_0x21de44(0x3c7)],'count':'18','name':_0x21de44(0x272)},{'src':BG_ICON[_0x21de44(0x3cf)],'count':'7','name':_0x21de44(0x4b8)}],'moreGold':'','moreShard':_0x21de44(0x27a)}},gato1730Bosses=['루멘칼리고','가르가디스',_0x21de44(0x33c),'크라티오스',_0x21de44(0x525),_0x21de44(0x371),_0x21de44(0x2cf),_0x21de44(0x3be),_0x21de44(0x240),_0x21de44(0x373),_0x21de44(0x2f7),_0x21de44(0x407),'벨가누스',_0x21de44(0x375),_0x21de44(0x23c)],gato1750Bosses=[_0x21de44(0x23a),_0x21de44(0x50e),_0x21de44(0x33c),_0x21de44(0x20e),'아게오로스','드렉탈라스','소나벨',_0x21de44(0x3be),_0x21de44(0x240),_0x21de44(0x373),_0x21de44(0x2f7),'이그렉시온',_0x21de44(0x1a4),_0x21de44(0x375),_0x21de44(0x23c)],gato1770Bosses=[_0x21de44(0x23a),'가르가디스',_0x21de44(0x33c),'크라티오스',_0x21de44(0x525),_0x21de44(0x371),_0x21de44(0x2cf),'베스칼','쿤겔라니움',_0x21de44(0x373),_0x21de44(0x2f7),_0x21de44(0x407),'벨가누스','아카테스',_0x21de44(0x23c)],gato1730AvailableBosses=['루멘칼리고','가르가디스','스콜라키아',_0x21de44(0x20e),_0x21de44(0x525),_0x21de44(0x371),_0x21de44(0x2cf),_0x21de44(0x3be),_0x21de44(0x240),'하누마탄','데스칼루다',_0x21de44(0x407),'벨가누스',_0x21de44(0x375),'엘버하스틱'],gato1750AvailableBosses=[_0x21de44(0x23a),_0x21de44(0x50e),_0x21de44(0x33c),'크라티오스','아게오로스',_0x21de44(0x371),_0x21de44(0x2cf),_0x21de44(0x3be),_0x21de44(0x240),_0x21de44(0x373),_0x21de44(0x2f7),'이그렉시온',_0x21de44(0x1a4),'아카테스',_0x21de44(0x23c)],gato1770AvailableBosses=[_0x21de44(0x23a),'가르가디스',_0x21de44(0x33c),_0x21de44(0x20e),_0x21de44(0x525),'드렉탈라스',_0x21de44(0x2cf),_0x21de44(0x3be),_0x21de44(0x240),_0x21de44(0x373),_0x21de44(0x2f7),_0x21de44(0x407),'벨가누스',_0x21de44(0x375),_0x21de44(0x23c)];function isGato1730Available(_0x4e37e){const _0x516289=_0x21de44;return gato1730AvailableBosses[_0x516289(0x21f)](_0x4e37e);}function isGato1750Available(_0x3d431b){return gato1750AvailableBosses['includes'](_0x3d431b);}function isGato1770Available(_0x36b1f3){const _0x37da71=_0x21de44;return gato1770AvailableBosses[_0x37da71(0x21f)](_0x36b1f3);}const gato1730Layout=[{'boss':'루멘칼리고','startRow':0x42,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x50e),'startRow':0x42,'shareCol':0x9,'damageCol':0xb},{'boss':'스콜라키아','startRow':0x42,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x20e),'startRow':0x62,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x525),'startRow':0x62,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x371),'startRow':0x62,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x2cf),'startRow':0x82,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x3be),'startRow':0x82,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x240),'startRow':0x10a,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x373),'startRow':0x10a,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x2f7),'startRow':0x10a,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x407),'startRow':0x12a,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x1a4),'startRow':0x12a,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x375),'startRow':0x12a,'shareCol':0x11,'damageCol':0x13},{'boss':'엘버하스틱','startRow':0x14a,'shareCol':0x1,'damageCol':0x3}],gato1750Layout=[{'boss':_0x21de44(0x23a),'startRow':0xa7,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x50e),'startRow':0xa7,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x33c),'startRow':0xa7,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x20e),'startRow':0xc7,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x525),'startRow':0xc7,'shareCol':0x9,'damageCol':0xb},{'boss':'드렉탈라스','startRow':0xc7,'shareCol':0x11,'damageCol':0x13},{'boss':'소나벨','startRow':0xe7,'shareCol':0x1,'damageCol':0x3},{'boss':'베스칼','startRow':0xe7,'shareCol':0x9,'damageCol':0xb},{'boss':'쿤겔라니움','startRow':0x16f,'shareCol':0x1,'damageCol':0x3},{'boss':'하누마탄','startRow':0x16f,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x2f7),'startRow':0x16f,'shareCol':0x11,'damageCol':0x13},{'boss':'이그렉시온','startRow':0x18f,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x1a4),'startRow':0x18f,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x375),'startRow':0x18f,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x23c),'startRow':0x1af,'shareCol':0x1,'damageCol':0x3}],gato1770Layout=[{'boss':_0x21de44(0x23a),'startRow':0x1d4,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x50e),'startRow':0x1d4,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x33c),'startRow':0x1d4,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x20e),'startRow':0x1f4,'shareCol':0x1,'damageCol':0x3},{'boss':'아게오로스','startRow':0x1f4,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x371),'startRow':0x1f4,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x2cf),'startRow':0x214,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x3be),'startRow':0x214,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x240),'startRow':0x235,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x373),'startRow':0x235,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x2f7),'startRow':0x235,'shareCol':0x11,'damageCol':0x13},{'boss':_0x21de44(0x407),'startRow':0x255,'shareCol':0x1,'damageCol':0x3},{'boss':_0x21de44(0x1a4),'startRow':0x255,'shareCol':0x9,'damageCol':0xb},{'boss':_0x21de44(0x375),'startRow':0x255,'shareCol':0x11,'damageCol':0x13},{'boss':'엘버하스틱','startRow':0x275,'shareCol':0x1,'damageCol':0x3}],gatoMeta={'루멘칼리고':{'type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}},'가르가디스':{'type':{'text':'야수','cls':'type-beast'},'attr':{'text':_0x21de44(0x31b),'cls':'attr-earth'}},'스콜라키아':{'type':{'text':'곤충','cls':'type-insect'},'attr':{'text':_0x21de44(0x31b),'cls':'attr-earth'}},'크라티오스':{'type':{'text':'야수','cls':_0x21de44(0x4ba)},'attr':{'text':_0x21de44(0x1f4),'cls':_0x21de44(0x1e3)}},'아게오로스':{'type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':_0x21de44(0x314),'cls':_0x21de44(0x450)}},'드렉탈라스':{'type':{'text':'야수','cls':_0x21de44(0x4ba)},'attr':{'text':_0x21de44(0x268),'cls':_0x21de44(0x1cf)}},'소나벨':{'type':{'text':'정령','cls':'type-spirit'},'attr':{'text':_0x21de44(0x2ba),'cls':_0x21de44(0x4d3)}},'베스칼':{'type':{'text':'야수','cls':'type-beast'},'attr':{'text':_0x21de44(0x268),'cls':_0x21de44(0x1cf)}},'쿤겔라니움':{'type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':'뇌속성\x20취약','cls':_0x21de44(0x1e3)}},'하누마탄':{'type':{'text':'고대','cls':'type-ancient'},'attr':{'text':_0x21de44(0x30d),'cls':'attr-none'}},'데스칼루다':{'type':{'text':'야수','cls':_0x21de44(0x4ba)},'attr':{'text':'수속성\x20취약','cls':'attr-water'}},'이그렉시온':{'type':{'text':'고대','cls':'type-ancient'},'attr':{'text':_0x21de44(0x268),'cls':_0x21de44(0x1cf)}},'벨가누스':{'type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':'성속성\x20취약','cls':'attr-holy'}},'아카테스':{'type':{'text':'고대','cls':_0x21de44(0x421)},'attr':{'text':'암속성\x20취약','cls':_0x21de44(0x4d3)}},'엘버하스틱':{'type':{'text':'고대','cls':'type-ancient'},'attr':{'text':_0x21de44(0x353),'cls':_0x21de44(0x263)}}};function getCurrentGuardianBoss(){const _0xa527da=_0x21de44;if(currentGuardianTier===_0xa527da(0x3a4))return currentGatoBoss;if(currentGuardianTier==='1750')return currentGato1750Boss;return currentGato1770Boss;}function setCurrentGuardianBoss(_0x109dcb){const _0x10b3c8=_0x21de44;if(currentGuardianTier===_0x10b3c8(0x3a4))currentGatoBoss=_0x109dcb;else{if(currentGuardianTier==='1750')currentGato1750Boss=_0x109dcb;else currentGato1770Boss=_0x109dcb;}}function getGuardianBossListByTier(_0x292402){const _0xca682b=_0x21de44;if(_0x292402==='1730')return gato1730Bosses;if(_0x292402===_0xca682b(0x23d))return gato1750Bosses;return gato1770Bosses;}function _0x36f0(_0x3e4c8e,_0x55be57){_0x3e4c8e=_0x3e4c8e-0x195;const _0x615b22=_0x615b();let _0x36f0d3=_0x615b22[_0x3e4c8e];return _0x36f0d3;}function getGuardianAvailListByTier(_0x1c9d38){const _0x3c8afc=_0x21de44;if(_0x1c9d38===_0x3c8afc(0x3a4))return gato1730AvailableBosses;if(_0x1c9d38==='1750')return gato1750AvailableBosses;return gato1770AvailableBosses;}function isGuardianBossAvailable(_0x122ce0,_0xf5e1d7){const _0x3408d3=_0x21de44;if(_0x122ce0===_0x3408d3(0x3a4))return isGato1730Available(_0xf5e1d7);if(_0x122ce0===_0x3408d3(0x23d))return isGato1750Available(_0xf5e1d7);return isGato1770Available(_0xf5e1d7);}function getGuardianParsedRows(_0x443f4f,_0x518100){const _0x2288ed=_0x21de44;if(_0x443f4f==='1730')return parsedData[_0x2288ed(0x3c1)][_0x518100]||[];if(_0x443f4f===_0x2288ed(0x23d))return parsedData[_0x2288ed(0x500)][_0x518100]||[];return parsedData[_0x2288ed(0x4b4)][_0x518100]||[];}function makeBadge(_0x14edff,_0x12bf1e){const _0x1bc34e=_0x21de44,_0x19feb8=getAttrEmoji(_0x14edff,_0x12bf1e),_0x2551c8=_0x19feb8?_0x19feb8+'\x20'+_0x14edff:_0x14edff;return _0x1bc34e(0x390)+_0x12bf1e+'\x22>'+_0x2551c8+_0x1bc34e(0x1b3);}function fmt(_0x32f659){const _0x435a96=_0x21de44;return Number(_0x32f659||0x0)[_0x435a96(0x436)](_0x435a96(0x43f));}function fmtPartyDps(_0x1c8662){const _0x25df8a=_0x21de44;return Number(_0x1c8662||0x0)[_0x25df8a(0x436)]('ko-KR',{'minimumFractionDigits':0x1,'maximumFractionDigits':0x1})+'억';}function toNum(_0x28f55e){const _0x5c698b=_0x21de44;if(_0x28f55e==null)return 0x0;const _0x2184bf=String(_0x28f55e)[_0x5c698b(0x354)](/,/g,'')[_0x5c698b(0x354)](/"/g,'')[_0x5c698b(0x395)](),_0xaba39f=Number(_0x2184bf);return isNaN(_0xaba39f)?0x0:_0xaba39f;}function parseCSVLine(_0x5e7a31){const _0x107d08=_0x21de44,_0x3c8270=[];let _0x231768='',_0x5e34e4=![];for(let _0xed1f2=0x0;_0xed1f2<_0x5e7a31[_0x107d08(0x3bd)];_0xed1f2++){const _0x4cd63a=_0x5e7a31[_0xed1f2];if(_0x4cd63a==='\x22')_0x5e34e4&&_0x5e7a31[_0xed1f2+0x1]==='\x22'?(_0x231768+='\x22',_0xed1f2++):_0x5e34e4=!_0x5e34e4;else _0x4cd63a===','&&!_0x5e34e4?(_0x3c8270['push'](_0x231768),_0x231768=''):_0x231768+=_0x4cd63a;}return _0x3c8270[_0x107d08(0x538)](_0x231768),_0x3c8270;}function percentNum(_0xb76e6f){const _0x42a931=_0x21de44,_0x416404=String(_0xb76e6f||'')[_0x42a931(0x1bb)](/(\d+(?:\.\d+)?)%/);return _0x416404?Number(_0x416404[0x1]):null;}const PRECISION_SHARE_BY_MENU={'default':{'tank':0x1e,'one':0x21,'blood':0x28},'belgardin':{'tank':0xf,'one':16.6,'blood':0x14}};function getPrecisionShares(_0x25a43f){return PRECISION_SHARE_BY_MENU[_0x25a43f]||PRECISION_SHARE_BY_MENU['default'];}function getAttrEmoji(_0x12d3d0,_0x3fcff1){const _0x266f6c=_0x21de44;if(!_0x3fcff1||!_0x3fcff1[_0x266f6c(0x39b)](_0x266f6c(0x33b)))return'';if(_0x12d3d0[_0x266f6c(0x21f)]('속성\x20없음')||_0x12d3d0[_0x266f6c(0x21f)](_0x266f6c(0x30d)))return'🔘';if(_0x12d3d0[_0x266f6c(0x21f)](_0x266f6c(0x3b7)))return _0x266f6c(0x4c6);if(_0x12d3d0[_0x266f6c(0x21f)](_0x266f6c(0x359)))return _0x266f6c(0x372);if(_0x12d3d0['includes'](_0x266f6c(0x249)))return'🔥';if(_0x12d3d0['includes']('뇌속성'))return'⚡';if(_0x12d3d0[_0x266f6c(0x21f)]('토속성'))return _0x266f6c(0x41c);if(_0x12d3d0[_0x266f6c(0x21f)](_0x266f6c(0x3f4)))return _0x266f6c(0x3db);return'🔘';}function getWeakAttrEmojiOnly(_0x4a8e4b,_0x5517e0){const _0x38bddc=_0x21de44;if(!_0x5517e0||!_0x5517e0['startsWith'](_0x38bddc(0x33b)))return'';if(_0x4a8e4b[_0x38bddc(0x21f)](_0x38bddc(0x3dd))||_0x4a8e4b[_0x38bddc(0x21f)](_0x38bddc(0x30d)))return'';return getAttrEmoji(_0x4a8e4b,_0x5517e0);}function getGuardianElementEmojiFromWeakness(_0xff1905){const _0x4c6c71=_0x21de44;if(!_0xff1905)return'🔘';if(_0xff1905[_0x4c6c71(0x21f)](_0x4c6c71(0x30d))||_0xff1905[_0x4c6c71(0x21f)](_0x4c6c71(0x3dd)))return'🔘';if(_0xff1905[_0x4c6c71(0x21f)](_0x4c6c71(0x3b7)))return _0x4c6c71(0x372);if(_0xff1905[_0x4c6c71(0x21f)](_0x4c6c71(0x359)))return _0x4c6c71(0x4c6);if(_0xff1905['includes'](_0x4c6c71(0x50a)))return _0x4c6c71(0x3db);if(_0xff1905['includes'](_0x4c6c71(0x3f4)))return'🔥';if(_0xff1905[_0x4c6c71(0x21f)](_0x4c6c71(0x529)))return'⚡';if(_0xff1905[_0x4c6c71(0x21f)](_0x4c6c71(0x249)))return'🧱​';return'🔘';}function getRaidElementEmojiFromAttr(_0x2646c3){const _0x576062=_0x21de44;if(!_0x2646c3)return'🔘';if(_0x2646c3['includes'](_0x576062(0x3dd))||_0x2646c3[_0x576062(0x21f)](_0x576062(0x30d)))return'🔘';if(_0x2646c3[_0x576062(0x21f)](_0x576062(0x3b7)))return'☀️​';if(_0x2646c3[_0x576062(0x21f)](_0x576062(0x359)))return _0x576062(0x4c6);if(_0x2646c3[_0x576062(0x21f)](_0x576062(0x50a)))return _0x576062(0x3db);if(_0x2646c3[_0x576062(0x21f)]('수속성'))return'🔥';if(_0x2646c3[_0x576062(0x21f)](_0x576062(0x529)))return'⚡';if(_0x2646c3[_0x576062(0x21f)](_0x576062(0x249)))return'🧱​';return'🔘';}function updateTimeDisplay(){const _0x14073f=_0x21de44;let _0xb57103=parseInt(document['getElementById'](_0x14073f(0x2b5))['value']||0x0,0xa),_0xf12ffa=parseInt(document[_0x14073f(0x230)]('seconds')[_0x14073f(0x42a)]||0x0,0xa);if(isNaN(_0xb57103)||_0xb57103<0x0)_0xb57103=0x0;if(isNaN(_0xf12ffa)||_0xf12ffa<0x0)_0xf12ffa=0x0;if(_0xf12ffa>0x3b)_0xf12ffa=0x3b;document['getElementById']('minutes')[_0x14073f(0x42a)]=_0xb57103,document[_0x14073f(0x230)](_0x14073f(0x35c))[_0x14073f(0x42a)]=_0xf12ffa,document[_0x14073f(0x230)](_0x14073f(0x4bf))['textContent']=String(_0xb57103)[_0x14073f(0x2a3)](0x2,'0')+':'+String(_0xf12ffa)[_0x14073f(0x2a3)](0x2,'0');}function setBaseTimeByMenu(_0x5943b,_0x279847){const _0x25d715=_0x21de44,_0x40936f=document[_0x25d715(0x230)](_0x25d715(0x2b5)),_0x2b9d3f=document['getElementById'](_0x25d715(0x35c)),_0x2d2fab=document['getElementById']('timeBaseLabel');if(_0x5943b==='guardian')_0x40936f[_0x25d715(0x42a)]=0x1,_0x2b9d3f['value']=0x32,_0x2d2fab[_0x25d715(0x274)]=_0x25d715(0x2a4);else _0x5943b===_0x25d715(0x4bd)&&_0x279847==='gate2'?(_0x40936f['value']=0xd,_0x2b9d3f[_0x25d715(0x42a)]=0x0,_0x2d2fab[_0x25d715(0x274)]=_0x25d715(0x1d2)):(_0x40936f['value']=0xa,_0x2b9d3f['value']=0x0,_0x2d2fab['textContent']='기본값:\x2010분(600초)');updateTimeDisplay();}function getTotalSeconds(){const _0x33afae=_0x21de44;let _0x39d14c=parseInt(document['getElementById'](_0x33afae(0x2b5))[_0x33afae(0x42a)]||0x0,0xa),_0x27acbe=parseInt(document[_0x33afae(0x230)](_0x33afae(0x35c))[_0x33afae(0x42a)]||0x0,0xa);if(isNaN(_0x39d14c)||_0x39d14c<0x0)_0x39d14c=0x0;if(isNaN(_0x27acbe)||_0x27acbe<0x0)_0x27acbe=0x0;if(_0x27acbe>0x3b)_0x27acbe=0x3b;return document[_0x33afae(0x230)](_0x33afae(0x2b5))[_0x33afae(0x42a)]=_0x39d14c,document[_0x33afae(0x230)](_0x33afae(0x35c))[_0x33afae(0x42a)]=_0x27acbe,Math['max'](0x1,0x3c*_0x39d14c+_0x27acbe);}function changeTimeValue(_0x49b4fc,_0x1164da){const _0x35ff37=_0x21de44;if(currentMenu===_0x35ff37(0x2bb)||currentMenu===_0x35ff37(0x426))return;const _0x2b674a=document[_0x35ff37(0x230)](_0x49b4fc);let _0x53e873=parseInt(_0x2b674a[_0x35ff37(0x42a)]||0x0,0xa);if(isNaN(_0x53e873))_0x53e873=0x0;_0x53e873+=_0x1164da;if(_0x49b4fc===_0x35ff37(0x2b5))_0x53e873=Math['max'](0x0,_0x53e873);if(_0x49b4fc==='seconds')_0x53e873=Math[_0x35ff37(0x41e)](0x0,Math['min'](0x3b,_0x53e873));_0x2b674a['value']=_0x53e873,renderTable();}function getRaidDisplayName(_0x208e4a){const _0x77eb49=_0x21de44;if(_0x208e4a===_0x77eb49(0x300))return _0x77eb49(0x496);if(_0x208e4a===_0x77eb49(0x462))return _0x77eb49(0x503);if(_0x208e4a===_0x77eb49(0x4bd))return _0x77eb49(0x22c);return'';}function getContentName(){const _0x6adf2c=_0x21de44;if(currentMenu===_0x6adf2c(0x426))return _0x6adf2c(0x4ec);if(currentMenu===_0x6adf2c(0x2bb)){if(currentSimpleLevel==='egir-ex')return'에기르\x20EX\x20레이드\x20💠';if(currentSimpleLevel===_0x6adf2c(0x46d))return _0x6adf2c(0x1cb);return _0x6adf2c(0x1ad);}if(currentMenu===_0x6adf2c(0x3a6)){const _0x15eb9f=getCurrentGuardianBoss();return _0x6adf2c(0x518)+_0x15eb9f;}if(currentMenu===_0x6adf2c(0x300)||currentMenu===_0x6adf2c(0x462)||currentMenu===_0x6adf2c(0x4bd)){const _0x51e332=raidMeta[currentMenu][currentCombo];return getRaidDisplayName(currentMenu)+'\x20:\x20'+_0x51e332[_0x6adf2c(0x2e6)][_0x6adf2c(0x354)](/\s*\(.+\)/,'')+'\x20'+_0x51e332[_0x6adf2c(0x1c8)];}return _0x6adf2c(0x3c8);}function getTableTitle(){const _0x13b1fb=_0x21de44;if(currentMenu==='raid-simple')return simpleRaidMeta[currentSimpleRaid]?.['label']||'레이드별\x20잔혈컷';if(currentMenu==='simple'){if(currentSimpleLevel==='egir-ex'||currentSimpleLevel===_0x13b1fb(0x46d))return _0x13b1fb(0x298);return simpleData[currentSimpleLevel]?.[_0x13b1fb(0x43b)]||_0x13b1fb(0x47a);}if(currentMenu==='serka'||currentMenu===_0x13b1fb(0x462)||currentMenu===_0x13b1fb(0x4bd)){const _0x567b65=raidMeta[currentMenu][currentCombo][_0x13b1fb(0x2e6)][_0x13b1fb(0x1bb)](/\((\d+)\)/);return _0x13b1fb(0x2e4)+(_0x567b65?_0x567b65[0x1]:'-');}return'';}function applyMenuFromQuery(){const _0x5f3373=_0x21de44;if(isStandaloneLevelPage){currentMenu=_0x5f3373(0x2bb),currentSimpleLevel=_0x5f3373(0x23d),document[_0x5f3373(0x227)]('.menu-item')['forEach'](_0x4e31b5=>_0x4e31b5[_0x5f3373(0x4de)]['remove'](_0x5f3373(0x276))),document[_0x5f3373(0x3ba)](_0x5f3373(0x208))?.[_0x5f3373(0x4de)][_0x5f3373(0x553)](_0x5f3373(0x276)),setBaseTimeByMenu(currentMenu);return;}if(isStandaloneRaidPage){currentMenu=_0x5f3373(0x426),currentSimpleRaid=_0x5f3373(0x462),document[_0x5f3373(0x227)]('.menu-item')[_0x5f3373(0x2be)](_0x4e8712=>_0x4e8712[_0x5f3373(0x4de)][_0x5f3373(0x3aa)](_0x5f3373(0x276))),document['querySelector']('.menu-item[data-menu=\x22raid-simple\x22]')?.['classList'][_0x5f3373(0x553)](_0x5f3373(0x276)),setBaseTimeByMenu(currentMenu);return;}if(isStandaloneSerkaPage){currentMenu=_0x5f3373(0x300),currentCombo='hard_gate1',document[_0x5f3373(0x227)](_0x5f3373(0x473))['forEach'](_0x5991a5=>_0x5991a5[_0x5f3373(0x4de)][_0x5f3373(0x3aa)](_0x5f3373(0x276))),document[_0x5f3373(0x3ba)](_0x5f3373(0x2a0))?.['classList'][_0x5f3373(0x553)](_0x5f3373(0x276)),setBaseTimeByMenu(currentMenu);return;}if(isStandaloneCathedralPage){currentMenu=_0x5f3373(0x462),currentCombo=_0x5f3373(0x201),document['querySelectorAll'](_0x5f3373(0x473))[_0x5f3373(0x2be)](_0x6611b8=>_0x6611b8['classList'][_0x5f3373(0x3aa)]('active')),document[_0x5f3373(0x3ba)](_0x5f3373(0x51a))?.[_0x5f3373(0x4de)][_0x5f3373(0x553)](_0x5f3373(0x276)),setBaseTimeByMenu(currentMenu);return;}if(isStandaloneBelgardinPage){currentMenu=_0x5f3373(0x4bd),currentCombo=_0x5f3373(0x201),document['querySelectorAll'](_0x5f3373(0x473))[_0x5f3373(0x2be)](_0x27c3b6=>_0x27c3b6[_0x5f3373(0x4de)][_0x5f3373(0x3aa)](_0x5f3373(0x276))),document[_0x5f3373(0x3ba)](_0x5f3373(0x2af))?.[_0x5f3373(0x4de)]['add'](_0x5f3373(0x276)),setBaseTimeByMenu(currentMenu);return;}if(isStandaloneGuardianPage){currentMenu=_0x5f3373(0x3a6),currentGuardianTier=_0x5f3373(0x23d),currentGatoBoss=_0x5f3373(0x23c),currentGato1750Boss='엘버하스틱',currentGato1770Boss=_0x5f3373(0x23c),document[_0x5f3373(0x227)](_0x5f3373(0x473))[_0x5f3373(0x2be)](_0x451678=>_0x451678[_0x5f3373(0x4de)]['remove'](_0x5f3373(0x276))),document[_0x5f3373(0x3ba)](_0x5f3373(0x433))?.[_0x5f3373(0x4de)][_0x5f3373(0x553)](_0x5f3373(0x276)),setBaseTimeByMenu(currentMenu);return;}const _0x5a5f65=new URLSearchParams(window[_0x5f3373(0x258)][_0x5f3373(0x1b7)])['get'](_0x5f3373(0x3c3));if(!_0x5a5f65)return;if([_0x5f3373(0x300),'cathedral',_0x5f3373(0x4bd),_0x5f3373(0x3a6),'simple',_0x5f3373(0x426),'egir-ex',_0x5f3373(0x46d)][_0x5f3373(0x21f)](_0x5a5f65)){_0x5a5f65===_0x5f3373(0x3b8)||_0x5a5f65===_0x5f3373(0x46d)?(currentMenu=_0x5f3373(0x2bb),currentSimpleLevel=_0x5a5f65):currentMenu=_0x5a5f65;if(currentMenu===_0x5f3373(0x300))currentCombo=_0x5f3373(0x201);else{if(currentMenu===_0x5f3373(0x462))currentCombo='hard_gate1';else{if(currentMenu===_0x5f3373(0x4bd))currentCombo=_0x5f3373(0x201);else{if(currentMenu===_0x5f3373(0x3a6))currentGuardianTier=_0x5f3373(0x23d),currentGatoBoss='엘버하스틱',currentGato1750Boss=_0x5f3373(0x23c),currentGato1770Boss=_0x5f3373(0x23c);else{if(currentMenu===_0x5f3373(0x426))currentSimpleRaid=_0x5f3373(0x462);else currentMenu===_0x5f3373(0x2bb)&&currentSimpleLevel!==_0x5f3373(0x3b8)&&currentSimpleLevel!==_0x5f3373(0x46d)&&(currentSimpleLevel=_0x5f3373(0x23d));}}}}document[_0x5f3373(0x227)](_0x5f3373(0x473))['forEach'](_0x3b48e4=>{const _0xf2fbb1=_0x5f3373;_0x3b48e4[_0xf2fbb1(0x4de)][_0xf2fbb1(0x28f)](_0xf2fbb1(0x276),_0x3b48e4[_0xf2fbb1(0x2c0)][_0xf2fbb1(0x3c3)]===_0x5a5f65||_0x5a5f65===_0xf2fbb1(0x2bb)&&_0x3b48e4[_0xf2fbb1(0x2c0)][_0xf2fbb1(0x3c3)]===_0xf2fbb1(0x2bb));}),setBaseTimeByMenu(currentMenu);}}function renderTitleMeta(){const _0x4598dc=_0x21de44,_0x5e9e38=document[_0x4598dc(0x230)](_0x4598dc(0x1dd));if(currentMenu===_0x4598dc(0x2bb)||currentMenu==='raid-simple'){_0x5e9e38['innerHTML']='';return;}if(currentMenu===_0x4598dc(0x3a6)){const _0x4d724a=getCurrentGuardianBoss(),_0x5a87ef=gatoMeta[_0x4d724a];_0x5e9e38['innerHTML']=makeBadge(_0x5a87ef['type'][_0x4598dc(0x31f)],_0x5a87ef[_0x4598dc(0x4e6)][_0x4598dc(0x1c6)])+'\x20'+makeBadge(_0x5a87ef[_0x4598dc(0x286)]['text'],_0x5a87ef['attr'][_0x4598dc(0x1c6)]);return;}if(currentMenu===_0x4598dc(0x300)||currentMenu===_0x4598dc(0x462)||currentMenu===_0x4598dc(0x4bd)){const _0x5ef0a2=raidMeta[currentMenu][currentCombo];_0x5e9e38['innerHTML']=makeBadge(_0x5ef0a2[_0x4598dc(0x4e6)][_0x4598dc(0x31f)],_0x5ef0a2['type'][_0x4598dc(0x1c6)])+'\x20'+makeBadge(_0x5ef0a2[_0x4598dc(0x286)][_0x4598dc(0x31f)],_0x5ef0a2[_0x4598dc(0x286)][_0x4598dc(0x1c6)]);return;}_0x5e9e38[_0x4598dc(0x37e)]='';}function simpleHeroHtml(){const _0x3bf59b=_0x21de44;return _0x3bf59b(0x4c8)+currentSimpleLevel+_0x3bf59b(0x476);}function getSimpleCardMapByTitle(){const _0x57c00a=_0x21de44,_0x5cb774=[_0x57c00a(0x36c),_0x57c00a(0x1ef),_0x57c00a(0x3a4),_0x57c00a(0x207),'1750',_0x57c00a(0x2c4),_0x57c00a(0x3e7)],_0x488240={};return _0x5cb774[_0x57c00a(0x2be)](_0x48cb1c=>{const _0x4c1dcf=_0x57c00a,_0x235457=simpleData[_0x48cb1c]?.[_0x4c1dcf(0x283)]||[];_0x235457[_0x4c1dcf(0x2be)](_0x1775c9=>{const _0x19a4ec=_0x4c1dcf;!_0x488240[_0x1775c9[_0x19a4ec(0x2e6)]]&&(_0x488240[_0x1775c9[_0x19a4ec(0x2e6)]]=_0x1775c9);});}),_0x488240;}function parseSimpleGoldValue(_0x42c37a){const _0x178576=_0x21de44;return Number(String(_0x42c37a||'')[_0x178576(0x354)](/,/g,'')['trim']())||0x0;}function getSimpleCardRewardValue(_0x1b96e1){const _0xcecc7=_0x21de44;if(!_0x1b96e1)return 0x0;const _0x47c35b=parseSimpleGoldValue(_0x1b96e1[_0xcecc7(0x420)]);if(_0x47c35b>0x0)return _0x47c35b;return parseSimpleGoldValue(_0x1b96e1[_0xcecc7(0x3a1)])+parseSimpleGoldValue(_0x1b96e1[_0xcecc7(0x3e2)]);}function getSimpleCardNodeLevel(_0x2a2ad1){const _0x561d4f=_0x21de44;return Number(String(_0x2a2ad1?.[_0x561d4f(0x3c4)]||'')[_0x561d4f(0x354)](/[^0-9]/g,''))||0x0;}function getSimpleCardGroupKey(_0x1c9f4e){const _0x4fb8c9=_0x21de44,_0x494906=_0x1c9f4e?.[_0x4fb8c9(0x2e6)]||'';if(_0x494906[_0x4fb8c9(0x21f)]('벨가르딘'))return _0x4fb8c9(0x4bd);if(_0x494906['includes'](_0x4fb8c9(0x496)))return _0x4fb8c9(0x300);if(_0x494906[_0x4fb8c9(0x21f)]('성당'))return _0x4fb8c9(0x462);if(_0x494906['includes']('종막'))return _0x4fb8c9(0x343);if(_0x494906[_0x4fb8c9(0x21f)]('4막'))return'act4';return _0x494906;}function getSimpleAllBaseCards(){return Object['values'](getSimpleCardMapByTitle());}function pickBetterSimpleCard(_0x334225,_0x3535e9){if(!_0x334225)return _0x3535e9;if(!_0x3535e9)return _0x334225;const _0x563fa4=getSimpleCardNodeLevel(_0x334225),_0x2369f9=getSimpleCardNodeLevel(_0x3535e9);if(_0x2369f9!==_0x563fa4)return _0x2369f9>_0x563fa4?_0x3535e9:_0x334225;const _0x1b0429=getSimpleCardRewardValue(_0x334225),_0x327171=getSimpleCardRewardValue(_0x3535e9);if(_0x327171!==_0x1b0429)return _0x327171>_0x1b0429?_0x3535e9:_0x334225;return _0x334225;}function getSimpleLevelCardsByAccess(_0x23cf66){const _0x97a9a4=_0x21de44,_0x24a0fe=Number(_0x23cf66),_0x3a7548=getSimpleAllBaseCards()[_0x97a9a4(0x423)](_0x42d0b4=>getSimpleCardNodeLevel(_0x42d0b4)<=_0x24a0fe),_0x109f95={};return _0x3a7548[_0x97a9a4(0x2be)](_0x4825f2=>{const _0x473e76=getSimpleCardGroupKey(_0x4825f2);_0x109f95[_0x473e76]=pickBetterSimpleCard(_0x109f95[_0x473e76],_0x4825f2);}),Object['values'](_0x109f95)[_0x97a9a4(0x358)]((_0x5d1e3f,_0x12b120)=>{const _0x5455c8=getSimpleCardRewardValue(_0x12b120)-getSimpleCardRewardValue(_0x5d1e3f);if(_0x5455c8!==0x0)return _0x5455c8;const _0x393e4c=getSimpleCardNodeLevel(_0x12b120)-getSimpleCardNodeLevel(_0x5d1e3f);if(_0x393e4c!==0x0)return _0x393e4c;return 0x0;});}function getSimpleLevelCardSections(_0x239746){const _0x306ba4=getSimpleLevelCardsByAccess(_0x239746);return{'goldCards':_0x306ba4['slice'](0x0,0x3),'extraCards':_0x306ba4['slice'](0x3)};}function bindSimpleExtraToggle(){const _0x42887a=_0x21de44,_0x472808=document[_0x42887a(0x230)]('simpleExtraToggleBtn'),_0x1f4f46=document['getElementById'](_0x42887a(0x48c)),_0x579e6=document['getElementById']('simpleExtraToggleText'),_0x57a69e=document[_0x42887a(0x230)]('simpleExtraToggleArrow');if(!_0x472808||!_0x1f4f46||!_0x579e6||!_0x57a69e)return;_0x472808[_0x42887a(0x3ea)]('click',()=>{const _0x2f3902=_0x42887a,_0x5c46f9=_0x1f4f46[_0x2f3902(0x4de)][_0x2f3902(0x28f)]('open');_0x472808['classList'][_0x2f3902(0x28f)](_0x2f3902(0x215),_0x5c46f9),_0x579e6['textContent']=_0x5c46f9?_0x2f3902(0x250):_0x2f3902(0x1f7),_0x57a69e[_0x2f3902(0x274)]=_0x5c46f9?'▲':'▼';});}function getSimpleRaidCards(_0x58bb85){const _0x51e147=_0x21de44,_0x4273fc=simpleRaidMeta[_0x58bb85];if(!_0x4273fc)return[];const _0x13592a=getSimpleCardMapByTitle();return _0x4273fc[_0x51e147(0x458)][_0x51e147(0x304)](_0x3f3052=>_0x13592a[_0x3f3052])['filter'](Boolean);}function simpleRaidHeroHtml(){const _0x20cc15=_0x21de44,_0x4e6875=simpleRaidMeta[currentSimpleRaid];if(!_0x4e6875)return'';return _0x20cc15(0x4a9)+_0x4e6875[_0x20cc15(0x3cc)]+_0x20cc15(0x360)+_0x4e6875[_0x20cc15(0x4fe)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-sub\x22>'+_0x4e6875[_0x20cc15(0x25c)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-label\x22>RAID\x20INFO</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-value\x22>'+_0x4e6875[_0x20cc15(0x312)]+_0x20cc15(0x547);}function renderTabs(){const _0x4f1f34=_0x21de44,_0x159f81=document[_0x4f1f34(0x230)](_0x4f1f34(0x35e));_0x159f81[_0x4f1f34(0x4de)][_0x4f1f34(0x3aa)](_0x4f1f34(0x470));if(currentMenu===_0x4f1f34(0x2bb)){_0x159f81[_0x4f1f34(0x4de)][_0x4f1f34(0x553)](_0x4f1f34(0x470));if(currentSimpleLevel==='egir-ex'||currentSimpleLevel===_0x4f1f34(0x46d)){_0x159f81['innerHTML']='';return;}const _0x3add18=[_0x4f1f34(0x36c),'1720',_0x4f1f34(0x3a4),_0x4f1f34(0x207),_0x4f1f34(0x23d),_0x4f1f34(0x2c4),_0x4f1f34(0x3e7)];_0x159f81[_0x4f1f34(0x37e)]=_0x4f1f34(0x3eb)+simpleHeroHtml()+_0x4f1f34(0x3d8)+_0x3add18[_0x4f1f34(0x304)](_0x59f598=>'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22simple-level-tab\x20'+(currentSimpleLevel===_0x59f598?'active':'')+_0x4f1f34(0x2fc)+_0x59f598+_0x4f1f34(0x4ea)+_0x59f598+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-level-tab-sub\x22>레이드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')['join']('')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x159f81[_0x4f1f34(0x227)](_0x4f1f34(0x409))[_0x4f1f34(0x2be)](_0x230c2b=>{const _0x239201=_0x4f1f34;_0x230c2b[_0x239201(0x3ea)](_0x239201(0x1a0),()=>{const _0x403673=_0x239201;currentSimpleLevel=_0x230c2b['dataset'][_0x403673(0x55e)],renderTabs(),renderTable();});});return;}if(currentMenu===_0x4f1f34(0x426)){_0x159f81[_0x4f1f34(0x4de)][_0x4f1f34(0x553)](_0x4f1f34(0x470));const _0x323dc2=[_0x4f1f34(0x462),_0x4f1f34(0x300),_0x4f1f34(0x4bd),_0x4f1f34(0x343),_0x4f1f34(0x29f)];_0x159f81[_0x4f1f34(0x37e)]=_0x4f1f34(0x3eb)+simpleRaidHeroHtml()+_0x4f1f34(0x3d8)+_0x323dc2[_0x4f1f34(0x304)](_0x4c14ca=>{const _0x55d5da=_0x4f1f34,_0x39a0d3=simpleRaidMeta[_0x4c14ca];return _0x55d5da(0x35a)+(currentSimpleRaid===_0x4c14ca?'active':'')+'\x22\x20data-simple-raid=\x22'+_0x4c14ca+_0x55d5da(0x1d0)+_0x39a0d3[_0x55d5da(0x4fe)]+_0x55d5da(0x4a5)+_0x39a0d3[_0x55d5da(0x25c)]+_0x55d5da(0x4e2);})['join']('')+_0x4f1f34(0x297),_0x159f81[_0x4f1f34(0x227)]('.simple-raid-tab[data-simple-raid]')[_0x4f1f34(0x2be)](_0x51f12b=>{const _0x2db8df=_0x4f1f34;_0x51f12b[_0x2db8df(0x3ea)](_0x2db8df(0x1a0),()=>{currentSimpleRaid=_0x51f12b['dataset']['simpleRaid'],renderTabs(),renderTable();});});return;}_0x159f81[_0x4f1f34(0x37e)]='';}function clearAllData(){const _0x3ca3a0=_0x21de44;parsedData[_0x3ca3a0(0x300)]={'normal':[],'hard':[],'nightmare':[]},parsedData[_0x3ca3a0(0x462)]={'normal':[],'hard':[],'nightmare':[]},parsedData[_0x3ca3a0(0x4bd)]={'normal':[],'hard':[],'nightmare':[]},parsedData[_0x3ca3a0(0x3c1)]={},parsedData['gato1750']={},parsedData[_0x3ca3a0(0x4b4)]={};}function parseBlock(_0x2039be,_0xebaa33,_0x35bcd8){const _0x1c54b0=_0x21de44;for(let _0xcb2a5b=_0xebaa33+0x3;_0xcb2a5b<_0xebaa33+0x1d;_0xcb2a5b++){const _0x53eda5=parseCSVLine(_0x2039be[_0xcb2a5b]||''),_0x62de58=percentNum(_0x53eda5[0x1]);_0x62de58&&(parsedData[_0x35bcd8][_0x1c54b0(0x210)][_0x1c54b0(0x538)]({'share':_0x62de58,'g1':toNum(_0x53eda5[0x3]),'g2':toNum(_0x53eda5[0x6])}),parsedData[_0x35bcd8]['hard'][_0x1c54b0(0x538)]({'share':_0x62de58,'g1':toNum(_0x53eda5[0xb]),'g2':toNum(_0x53eda5[0xe])}),parsedData[_0x35bcd8][_0x1c54b0(0x4f6)][_0x1c54b0(0x538)]({'share':_0x62de58,'g1':toNum(_0x53eda5[0x13]),'g2':toNum(_0x53eda5[0x16])}));}}function parseCathedral(_0x14c74e){const _0x35af28=_0x21de44;for(let _0x22e9e3=0x0;_0x22e9e3<_0x14c74e[_0x35af28(0x3bd)];_0x22e9e3++){if((_0x14c74e[_0x22e9e3]||'')['includes'](_0x35af28(0x2c7))){parseBlock(_0x14c74e,_0x22e9e3+0x1,_0x35af28(0x462));return;}}}function parseSerka(_0x135dbe){const _0x4f12f8=_0x21de44;for(let _0x383860=0x0;_0x383860<_0x135dbe[_0x4f12f8(0x3bd)];_0x383860++){if((_0x135dbe[_0x383860]||'')[_0x4f12f8(0x21f)](_0x4f12f8(0x32d))){parseBlock(_0x135dbe,_0x383860+0x1,_0x4f12f8(0x300));return;}}}function parseBelgardin(_0x5042f5){const _0x3801e1=_0x21de44,_0x467580=/벨가르딘\s*딜지분\s*상세/;for(let _0x4c6c3a=0x0;_0x4c6c3a<_0x5042f5['length'];_0x4c6c3a++){if(_0x467580[_0x3801e1(0x42f)](_0x5042f5[_0x4c6c3a]||'')){const _0x3fbbcb=_0x4c6c3a+0x1,_0x384413=_0x3fbbcb+0x3;for(let _0x23d273=_0x384413;_0x23d273<_0x384413+0x16;_0x23d273++){const _0x37d7f7=parseCSVLine(_0x5042f5[_0x23d273]||''),_0x8c91fb=percentNum(_0x37d7f7[0x1]);_0x8c91fb&&parsedData['belgardin'][_0x3801e1(0x210)][_0x3801e1(0x538)]({'share':_0x8c91fb,'g1':toNum(_0x37d7f7[0x3]),'g2':toNum(_0x37d7f7[0x6])});const _0x4a3180=percentNum(_0x37d7f7[0x9]);_0x4a3180&&parsedData['belgardin'][_0x3801e1(0x379)]['push']({'share':_0x4a3180,'g1':toNum(_0x37d7f7[0xb]),'g2':toNum(_0x37d7f7[0xe])});const _0x827978=percentNum(_0x37d7f7[0x11]);_0x827978&&parsedData[_0x3801e1(0x4bd)][_0x3801e1(0x4f6)][_0x3801e1(0x538)]({'share':_0x827978,'g1':toNum(_0x37d7f7[0x13]),'g2':toNum(_0x37d7f7[0x16])});}!parsedData[_0x3801e1(0x4bd)][_0x3801e1(0x210)][_0x3801e1(0x3bd)]&&!parsedData[_0x3801e1(0x4bd)]['hard'][_0x3801e1(0x3bd)]&&!parsedData['belgardin']['nightmare']['length']&&console[_0x3801e1(0x30a)]('[벨가르딘\x20파싱]\x20제목은\x20찾았지만(줄\x20'+_0x4c6c3a+_0x3801e1(0x1be)+(_0x3801e1(0x31c)+_0x384413+_0x3801e1(0x255))+(_0x3801e1(0x456)+(_0x5042f5[_0x384413]||_0x3801e1(0x520))+'\x22'));return;}}console[_0x3801e1(0x30a)](_0x3801e1(0x3b4));}function parseGato1730(_0x44d7e6){const _0x1b1bda=_0x21de44;gato1730Bosses[_0x1b1bda(0x2be)](_0x1873a=>{const _0x3f0967=_0x1b1bda;parsedData[_0x3f0967(0x3c1)][_0x1873a]=[];}),gato1730Layout[_0x1b1bda(0x2be)](_0x56150b=>{const _0x58a680=_0x1b1bda;for(let _0x569ace=_0x56150b[_0x58a680(0x27d)]+0x3;_0x569ace<=_0x56150b[_0x58a680(0x27d)]+0x1c;_0x569ace++){const _0x764b21=parseCSVLine(_0x44d7e6[_0x569ace]||''),_0x34e00a=percentNum(_0x764b21[_0x56150b[_0x58a680(0x44f)]]);_0x34e00a&&parsedData[_0x58a680(0x3c1)][_0x56150b[_0x58a680(0x366)]]['push']({'share':_0x34e00a,'damage':toNum(_0x764b21[_0x56150b[_0x58a680(0x464)]])});}});}function parseGato1750(_0x4def12){const _0x37660e=_0x21de44;gato1750Bosses[_0x37660e(0x2be)](_0x49ecc9=>{const _0x28cc8b=_0x37660e;parsedData[_0x28cc8b(0x500)][_0x49ecc9]=[];}),gato1750Layout[_0x37660e(0x2be)](_0x353ca5=>{const _0x521e2e=_0x37660e;for(let _0x57a398=_0x353ca5[_0x521e2e(0x27d)]+0x3;_0x57a398<=_0x353ca5[_0x521e2e(0x27d)]+0x1c;_0x57a398++){const _0xc94b3e=parseCSVLine(_0x4def12[_0x57a398]||''),_0x4e08d7=percentNum(_0xc94b3e[_0x353ca5[_0x521e2e(0x44f)]]);_0x4e08d7&&parsedData[_0x521e2e(0x500)][_0x353ca5[_0x521e2e(0x366)]][_0x521e2e(0x538)]({'share':_0x4e08d7,'damage':toNum(_0xc94b3e[_0x353ca5[_0x521e2e(0x464)]])});}});}function parseGato1770(_0x54d635){const _0x11bcaa=_0x21de44;gato1770Bosses[_0x11bcaa(0x2be)](_0x5cc79c=>{const _0x25a89c=_0x11bcaa;parsedData[_0x25a89c(0x4b4)][_0x5cc79c]=[];}),gato1770Layout[_0x11bcaa(0x2be)](_0x49ed24=>{const _0x27e702=_0x11bcaa;for(let _0x45c6d3=_0x49ed24['startRow']+0x3;_0x45c6d3<=_0x49ed24[_0x27e702(0x27d)]+0x1c;_0x45c6d3++){const _0x46eb6a=parseCSVLine(_0x54d635[_0x45c6d3]||''),_0x3263ab=percentNum(_0x46eb6a[_0x49ed24['shareCol']]);_0x3263ab&&parsedData[_0x27e702(0x4b4)][_0x49ed24[_0x27e702(0x366)]][_0x27e702(0x538)]({'share':_0x3263ab,'damage':toNum(_0x46eb6a[_0x49ed24[_0x27e702(0x464)]])});}});}function renderShareCell(_0x5bb40c,_0x4aae68){const _0x5b432c=_0x21de44,_0x4878ca=getPrecisionShares(_0x4aae68),_0x5c4fa5={[_0x4878ca[_0x5b432c(0x1b4)]]:{'tag':'강투','cls':_0x5b432c(0x54d)},[_0x4878ca[_0x5b432c(0x1ba)]]:{'tag':_0x5b432c(0x330),'cls':'tag-33'},[_0x4878ca['blood']]:{'tag':'잔혈','cls':_0x5b432c(0x245)}},_0x3b849f=_0x5c4fa5[_0x5bb40c],_0x1abd80=_0x3b849f?'<div\x20class=\x22share-tag-area\x22><span\x20class=\x22share-tag\x20'+_0x3b849f['cls']+'\x22>'+_0x3b849f['tag']+_0x5b432c(0x225):'<div\x20class=\x22share-tag-area\x22></div>',_0x50d35a=Number[_0x5b432c(0x53a)](_0x5bb40c)?_0x5bb40c+'%':_0x5bb40c['toFixed'](0x2)['replace'](/0$/,'')+'%';return _0x5b432c(0x211)+(_0x3b849f?_0x5b432c(0x24c):'')+_0x5b432c(0x3da)+_0x1abd80+_0x5b432c(0x3d7)+_0x50d35a+_0x5b432c(0x333);}function renderHead(){const _0x2f0d43=_0x21de44;document[_0x2f0d43(0x230)](_0x2f0d43(0x33f))[_0x2f0d43(0x37e)]=_0x2f0d43(0x434);}function renderComingSoon(_0x110b5e,_0x5f4128){const _0xdef0ee=_0x21de44;document[_0xdef0ee(0x230)](_0xdef0ee(0x1a1))[_0xdef0ee(0x37e)]=_0xdef0ee(0x396)+_0x110b5e+_0xdef0ee(0x45a)+_0x5f4128+_0xdef0ee(0x4f1);}function ensureTableWrap(){const _0xdbaa57=_0x21de44;document['getElementById'](_0xdbaa57(0x1a1))[_0xdbaa57(0x37e)]=_0xdbaa57(0x342);}function setClearTimeDisabled(_0x305398){const _0x4d45ff=_0x21de44,_0x1fa6da=document[_0x4d45ff(0x230)]('timeCard');if(!_0x1fa6da)return;_0x1fa6da[_0x4d45ff(0x4de)][_0x4d45ff(0x28f)](_0x4d45ff(0x2db),_0x305398),_0x1fa6da['querySelectorAll']('input,\x20button')[_0x4d45ff(0x2be)](_0x84e21c=>{const _0x5e6cf4=_0x4d45ff;_0x84e21c[_0x5e6cf4(0x3c0)]=_0x305398;});const _0x17e77=_0x1fa6da[_0x4d45ff(0x3ba)]('.side-hint');_0x17e77&&(_0x17e77[_0x4d45ff(0x274)]=_0x305398?_0x4d45ff(0x404):_0x4d45ff(0x42c));}function goldBarHtml(_0x44a7a2){const _0xb12780=_0x21de44;if(!_0x44a7a2['gold']&&!_0x44a7a2[_0xb12780(0x3e2)])return'';if(_0x44a7a2['bindGold']&&!_0x44a7a2[_0xb12780(0x3a1)])return _0xb12780(0x449)+_0x44a7a2[_0xb12780(0x3e2)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';if(currentSimpleLevel===_0xb12780(0x3b8)||currentSimpleLevel===_0xb12780(0x46d)){let _0x369ac6=0x0;if(_0x44a7a2[_0xb12780(0x2e6)]&&_0x44a7a2[_0xb12780(0x2e6)][_0xb12780(0x21f)]('노말'))_0x369ac6=0x96;else{if(_0x44a7a2[_0xb12780(0x2e6)])_0x369ac6=0xc8;}return _0xb12780(0x292)+_0x44a7a2[_0xb12780(0x3a1)]+_0xb12780(0x546)+_0x369ac6+_0xb12780(0x348);}if(_0x44a7a2[_0xb12780(0x3e2)])return _0xb12780(0x292)+_0x44a7a2['gold']+_0xb12780(0x2ca)+_0x44a7a2[_0xb12780(0x3e2)]+_0xb12780(0x34c)+_0x44a7a2['total']+_0xb12780(0x348);return _0xb12780(0x344)+_0x44a7a2[_0xb12780(0x3a1)]+_0xb12780(0x472);}function getSimpleRaidShareConfig(_0xc30a5b=''){const _0xb5daa9=_0x21de44;if(_0xc30a5b[_0xb5daa9(0x21f)]('세르카')||_0xc30a5b[_0xb5daa9(0x21f)]('성당'))return{'bloodShare':0.4,'oneShare':0x1/0x3};return{'bloodShare':0.2,'oneShare':0x1/0x6};}function parseSimpleRangeParts(_0x19de89,_0x1a57e2){const _0x44bf69=_0x21de44;if(!_0x19de89||_0x19de89===_0x44bf69(0x29c))return null;const _0x5b753c=String(_0x19de89)[_0x44bf69(0x37a)]('-')[_0x44bf69(0x304)](_0x4ce7a6=>_0x4ce7a6[_0x44bf69(0x395)]())['filter'](Boolean);if(_0x5b753c['length']===0x3){const _0x3a636c=_0x5b753c['map'](_0x24bbc2=>Number(String(_0x24bbc2)[_0x44bf69(0x354)](/,/g,'')));if(_0x3a636c[_0x44bf69(0x548)](_0x1ce355=>Number[_0x44bf69(0x3d3)](_0x1ce355)))return null;return{'tank':Math[_0x44bf69(0x3fe)](_0x3a636c[0x0]),'one':Math[_0x44bf69(0x3fe)](_0x3a636c[0x1]),'blood':Math[_0x44bf69(0x3fe)](_0x3a636c[0x2])};}if(_0x5b753c[_0x44bf69(0x3bd)]===0x2){const _0x48378b=_0x5b753c[_0x44bf69(0x304)](_0x459eb4=>Number(String(_0x459eb4)[_0x44bf69(0x354)](/,/g,'')));if(_0x48378b[_0x44bf69(0x548)](_0x39108d=>Number['isNaN'](_0x39108d)))return null;const [_0x7abcf5,_0x4d4cc2]=_0x48378b,_0x41d23d=getSimpleRaidShareConfig(_0x1a57e2),_0x2632bd=_0x4d4cc2/_0x41d23d[_0x44bf69(0x558)],_0x35e48b=Math[_0x44bf69(0x3fe)](_0x2632bd*_0x41d23d[_0x44bf69(0x1ae)]/0xa)*0xa;return{'tank':Math[_0x44bf69(0x3fe)](_0x7abcf5),'one':_0x35e48b,'blood':Math[_0x44bf69(0x3fe)](_0x4d4cc2)};}return null;}function simpleCardHtml(_0x105d4b){const _0xdf6245=_0x21de44,_0x46f5df=_0x105d4b[_0xdf6245(0x499)][_0xdf6245(0x304)](_0x4a523b=>{const _0x469646=_0xdf6245,_0x34f933=(_0x4a523b[_0x469646(0x376)]||[])['map'](_0x11016e=>{const _0x790e2b=_0x469646,_0x1e4886=getAttrEmoji(_0x11016e['text'],_0x11016e['cls']),_0x3abf9e=_0x1e4886?_0x1e4886+'\x20'+_0x11016e['text']:_0x11016e[_0x790e2b(0x31f)];return _0x790e2b(0x390)+_0x11016e[_0x790e2b(0x1c6)]+'\x22>'+_0x3abf9e+_0x790e2b(0x1b3);})[_0x469646(0x378)](''),_0x40545f=_0x4a523b['range']===_0x469646(0x29c),_0x5a8d93=parseSimpleRangeParts(_0x4a523b[_0x469646(0x320)],_0x105d4b[_0x469646(0x2e6)]),_0x57ac02=!!_0x5a8d93&&!_0x40545f,_0x15bf15=_0x57ac02?_0x469646(0x4e4)+_0x5a8d93['tank']+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22triple-part\x20one\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22t-label\x22>1인분</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22t-value\x22>'+_0x5a8d93[_0x469646(0x1ba)]+_0x469646(0x424)+_0x5a8d93[_0x469646(0x3a2)]+_0x469646(0x269):'<span\x20class=\x22range-b\x20'+(_0x40545f?_0x469646(0x28d):'')+'\x22>'+_0x4a523b[_0x469646(0x320)]+_0x469646(0x1b3);return _0x469646(0x4d9)+(_0x57ac02?_0x469646(0x1a3):'')+_0x469646(0x47b)+(_0x40545f?_0x469646(0x1c0):'')+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-row-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gate-b\x22>'+_0x4a523b['gate']+_0x469646(0x4c4)+_0x4a523b[_0x469646(0x366)]+_0x469646(0x28b)+_0x34f933+_0x469646(0x41a)+_0x15bf15+_0x469646(0x32b)+(_0x4a523b['dpscut']?_0x469646(0x3f6)+_0x4a523b[_0x469646(0x351)]+'</div>':'')+_0x469646(0x2e5);})[_0xdf6245(0x378)]('');return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<article\x20class=\x22simple-card\x20'+_0x105d4b[_0xdf6245(0x248)]+_0xdf6245(0x266)+_0x105d4b[_0xdf6245(0x3c4)]+_0xdf6245(0x4a8)+_0x105d4b['node']+_0xdf6245(0x265)+_0x105d4b[_0xdf6245(0x2e6)]+_0xdf6245(0x1fd)+_0x105d4b[_0xdf6245(0x2e6)]+_0xdf6245(0x419)+_0x46f5df+_0xdf6245(0x31e)+goldBarHtml(_0x105d4b)+_0xdf6245(0x46c);}window[_0x21de44(0x2d8)]=function(_0x492494){const _0xe31faa=_0x21de44;_0x492494[_0xe31faa(0x4de)][_0xe31faa(0x28f)](_0xe31faa(0x34f));};function makeExCard(_0x38887a){const _0x2908e8=_0x21de44;return _0x2908e8(0x4f4)+_0x38887a[_0x2908e8(0x3d9)]+'\x22\x20onclick=\x22toggleExAccordion(this)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-card-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-left-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-level-badge\x22>'+_0x38887a[_0x2908e8(0x540)]+_0x2908e8(0x51b)+_0x38887a[_0x2908e8(0x2f1)]+_0x2908e8(0x2b6)+_0x38887a[_0x2908e8(0x1f6)][_0x2908e8(0x304)](_0x389534=>_0x2908e8(0x322)+(_0x389534[_0x2908e8(0x3ee)]?'\x20ex-weakness':'')+'\x22>'+_0x389534[_0x2908e8(0x31f)]+_0x2908e8(0x1b3))[_0x2908e8(0x378)]('')+_0x2908e8(0x4fd)+_0x38887a[_0x2908e8(0x468)]+_0x2908e8(0x2c6)+_0x38887a[_0x2908e8(0x30f)]+_0x2908e8(0x328)+_0x38887a[_0x2908e8(0x399)]+_0x2908e8(0x2c6)+_0x38887a[_0x2908e8(0x22e)]+_0x2908e8(0x24e)+_0x38887a[_0x2908e8(0x43e)]+_0x2908e8(0x2c6)+_0x38887a[_0x2908e8(0x4db)]+_0x2908e8(0x4b6)+_0x38887a['phases'][_0x2908e8(0x304)](_0x503744=>_0x2908e8(0x414)+(_0x503744['total']?_0x2908e8(0x475):'')+_0x2908e8(0x256)+_0x503744[_0x2908e8(0x4fe)]+_0x2908e8(0x4f3)+_0x503744[_0x2908e8(0x25c)]+_0x2908e8(0x19e)+_0x503744[_0x2908e8(0x46e)]+'</span><span\x20class=\x22ex-dps-text\x22>'+_0x503744[_0x2908e8(0x479)]+_0x2908e8(0x19e)+_0x503744[_0x2908e8(0x2a6)]+_0x2908e8(0x4fc)+_0x503744[_0x2908e8(0x38b)]+_0x2908e8(0x2ab)+_0x503744[_0x2908e8(0x455)]+_0x2908e8(0x4fc)+_0x503744['b_s']+'</span></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')[_0x2908e8(0x378)]('')+_0x2908e8(0x2f6)+_0x38887a[_0x2908e8(0x3df)][_0x2908e8(0x304)](_0xd16882=>_0x2908e8(0x219)+(_0xd16882['total']?'\x20ex-m-total':'')+_0x2908e8(0x1ce)+(_0xd16882[_0x2908e8(0x420)]?_0x2908e8(0x55b)+_0x38887a[_0x2908e8(0x345)]+';\x22':'')+'>'+_0xd16882[_0x2908e8(0x4fe)]+_0x2908e8(0x502)+(_0xd16882[_0x2908e8(0x420)]?_0x2908e8(0x55b)+_0x38887a[_0x2908e8(0x345)]+';\x22':'')+'>'+_0xd16882[_0x2908e8(0x25c)]+_0x2908e8(0x1a9)+_0xd16882[_0x2908e8(0x46e)]+'<span\x20class=\x22ex-m-dps\x22>'+_0xd16882[_0x2908e8(0x479)]+'</span></span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-m-grid-row\x22><span\x20class=\x22ex-m-label\x22>1인분\x20(16.6%)</span><span\x20class=\x22ex-m-values\x22>'+_0xd16882[_0x2908e8(0x2a6)]+_0x2908e8(0x3a5)+_0xd16882['o_s']+_0x2908e8(0x2f9)+_0xd16882['b_d']+_0x2908e8(0x3a5)+_0xd16882['b_s']+_0x2908e8(0x4d1))[_0x2908e8(0x378)]('')+_0x2908e8(0x3ff);}function makeBossSection(_0x130a71){const _0x1bf7c4=_0x21de44,_0x5a09b9=_0x130a71['bosses']['map'](_0x27b77d=>{const _0x405944=_0x36f0,_0x1082fd=_0x27b77d[_0x405944(0x29e)][_0x405944(0x2fa)]((_0x1059ba,_0xdf5786)=>_0x1059ba+_0xdf5786[_0x405944(0x413)],0x0);let _0x30f2c8=0x0;const _0x5dc01d=_0x27b77d['parts']['map'](_0x2e30f3=>{const _0x4fb00d=_0x405944,_0x4901d6=_0x30f2c8/_0x1082fd*0x64;_0x30f2c8+=_0x2e30f3[_0x4fb00d(0x413)];const _0x52975e=_0x30f2c8/_0x1082fd*0x64;return _0x2e30f3[_0x4fb00d(0x524)]+'\x20'+_0x4901d6+'%\x20'+_0x52975e+'%';})[_0x405944(0x378)](',\x20'),_0x3dcde8=_0x27b77d[_0x405944(0x29e)][_0x405944(0x304)](_0x1d0403=>_0x405944(0x517)+_0x1d0403['color']+';\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-label-name\x22>'+_0x1d0403[_0x405944(0x2f1)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-label-pct\x22\x20style=\x22color:'+_0x1d0403[_0x405944(0x524)]+_0x405944(0x35b)+_0x1d0403[_0x405944(0x413)]+'%</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20')[_0x405944(0x378)](''),_0x16cf7a=_0x27b77d[_0x405944(0x29e)]['map'](_0xedafa0=>'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-legend-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-legend-dot\x22\x20style=\x22background:'+_0xedafa0[_0x405944(0x524)]+_0x405944(0x36b)+_0xedafa0[_0x405944(0x285)]+_0x405944(0x4b0)+_0xedafa0['hp']+_0x405944(0x54c))[_0x405944(0x378)]('');return _0x405944(0x334)+_0x27b77d[_0x405944(0x524)]+_0x405944(0x47f)+_0x27b77d[_0x405944(0x524)]+';\x22></div>'+_0x27b77d['name']+_0x405944(0x29a)+_0x3dcde8+_0x405944(0x52c)+_0x5dc01d+_0x405944(0x20a)+_0x27b77d['totalHp']+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-legend\x22>'+_0x16cf7a+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-total-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22boss-total-label\x22>총\x20체력</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22boss-total-val\x22\x20style=\x22color:'+_0x27b77d[_0x405944(0x524)]+_0x405944(0x35b)+_0x27b77d[_0x405944(0x526)]+_0x405944(0x277);})['join'](''),_0x2c118e=_0x130a71[_0x1bf7c4(0x54e)][_0x1bf7c4(0x304)](_0x4a3a63=>_0x1bf7c4(0x42b)+_0x4a3a63[0x0]+_0x1bf7c4(0x2a2)+_0x130a71['col1']+_0x1bf7c4(0x35b)+_0x4a3a63[0x1]+_0x1bf7c4(0x2a2)+_0x130a71[_0x1bf7c4(0x23b)]+_0x1bf7c4(0x35b)+_0x4a3a63[0x2]+_0x1bf7c4(0x2a2)+_0x130a71[_0x1bf7c4(0x2df)]+_0x1bf7c4(0x35b)+_0x4a3a63[0x3]+_0x1bf7c4(0x435))[_0x1bf7c4(0x378)]('');return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22section-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22dot\x22\x20style=\x22background:'+_0x130a71['headerColor']+_0x1bf7c4(0x1af)+_0x5a09b9+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22esther-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22esther-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bar\x22\x20style=\x22background:'+_0x130a71['estherBar']+';\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>에스더\x20데미지\x20기대값</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22esther-cols\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>에스더\x20스킬</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:'+_0x130a71[_0x1bf7c4(0x364)]+_0x1bf7c4(0x35b)+_0x130a71[_0x1bf7c4(0x403)]+_0x1bf7c4(0x41b)+_0x130a71[_0x1bf7c4(0x23b)]+';\x22>'+_0x130a71[_0x1bf7c4(0x21d)]+_0x1bf7c4(0x41b)+_0x130a71[_0x1bf7c4(0x2df)]+';\x22>'+_0x130a71['colName3']+_0x1bf7c4(0x3d1)+_0x2c118e+_0x1bf7c4(0x20f);}function renderExView(_0x1adf86){const _0x9c9466=_0x21de44,_0x15add3=exRaidData[_0x1adf86];if(!_0x15add3)return'<div\x20class=\x27coming-soon\x27><h3>준비중</h3></div>';const _0x3e98e2={'normal':'#34d399','hard':_0x9c9466(0x205),'nightmare':_0x9c9466(0x362)},_0x107428=_0x15add3['cards'][_0x9c9466(0x304)](_0x1025b4=>makeExCard({..._0x1025b4,'tierColor':_0x3e98e2[_0x1025b4['tier']]||_0x9c9466(0x352)}))[_0x9c9466(0x378)](''),_0x3a9fd6=_0x15add3[_0x9c9466(0x48d)]?makeBossSection(_0x15add3[_0x9c9466(0x48d)]):'',_0x1b7241=_0x1adf86===_0x9c9466(0x3b8)?_0x9c9466(0x4f7):_0x9c9466(0x471);return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-view\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-intro-box\x20'+_0x1b7241+_0x9c9466(0x380)+_0x15add3[_0x9c9466(0x43b)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-intro-desc\x22>'+_0x15add3['intro']+_0x9c9466(0x487)+_0x107428+_0x9c9466(0x1c1)+_0x3a9fd6+_0x9c9466(0x368);}function renderRaidSimpleView(){const _0x2b18dd=_0x21de44,_0x2d2a9f=simpleRaidMeta[currentSimpleRaid],_0x2d4db6=getSimpleRaidCards(currentSimpleRaid);if(!_0x2d2a9f){document[_0x2b18dd(0x230)]('mainContent')['innerHTML']=_0x2b18dd(0x3ef);return;}document[_0x2b18dd(0x230)]('mainContent')[_0x2b18dd(0x37e)]=_0x2b18dd(0x309)+(_0x2d4db6[_0x2b18dd(0x3bd)]>0x0?_0x2d4db6[_0x2b18dd(0x304)](simpleCardHtml)['join'](''):_0x2b18dd(0x350))+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function renderSimpleView(){const _0x5ac55d=_0x21de44,_0x420a5c=document['getElementById'](_0x5ac55d(0x306));if(_0x420a5c)_0x420a5c[_0x5ac55d(0x3aa)]();if(currentSimpleLevel==='egir-ex'||currentSimpleLevel===_0x5ac55d(0x46d)){document[_0x5ac55d(0x230)](_0x5ac55d(0x1a1))[_0x5ac55d(0x37e)]=renderExView(currentSimpleLevel);return;}const _0x32d28e=simpleData[currentSimpleLevel];if(!_0x32d28e){document[_0x5ac55d(0x230)]('mainContent')[_0x5ac55d(0x37e)]=_0x5ac55d(0x3ef);return;}const {goldCards:_0x5ec2e6,extraCards:_0x22cc24}=getSimpleLevelCardSections(currentSimpleLevel);document['getElementById'](_0x5ac55d(0x1a1))[_0x5ac55d(0x37e)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-view\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-stack\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x5ec2e6['length']>0x0?_0x5ec2e6[_0x5ac55d(0x304)](simpleCardHtml)[_0x5ac55d(0x378)](''):'<div\x20class=\x27coming-soon\x27><h3>준비중</h3><p>곧\x20업데이트\x20예정입니다.</p></div>')+_0x5ac55d(0x2bc)+(_0x22cc24['length']>0x0?_0x5ac55d(0x4ac)+_0x22cc24[_0x5ac55d(0x304)](simpleCardHtml)[_0x5ac55d(0x378)]('')+_0x5ac55d(0x489):'')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20',bindSimpleExtraToggle();}function getCurrentRowsForPartyDps(){const _0x358dea=_0x21de44;if(currentMenu==='simple')return[];if(currentMenu===_0x358dea(0x3a6)){const _0xbf8d30=currentGuardianTier,_0x27ad8f=getCurrentGuardianBoss(),_0x156d58=isGuardianBossAvailable(_0xbf8d30,_0x27ad8f);if(!_0x156d58)return[];return getGuardianParsedRows(_0xbf8d30,_0x27ad8f);}if(currentMenu===_0x358dea(0x300)||currentMenu===_0x358dea(0x462)||currentMenu===_0x358dea(0x4bd)){const _0x1380dc=raidMeta[currentMenu][currentCombo];return parsedData[currentMenu]?.[_0x1380dc['diffKey']]||[];}return[];}function getDamageFromRow(_0x4d01ee){const _0x480bad=_0x21de44;if(!_0x4d01ee)return 0x0;if(currentMenu===_0x480bad(0x3a6))return _0x4d01ee[_0x480bad(0x43a)]||0x0;if(currentMenu===_0x480bad(0x300)||currentMenu===_0x480bad(0x462)||currentMenu===_0x480bad(0x4bd))return raidMeta[currentMenu][currentCombo]['gateKey']===_0x480bad(0x4a4)?_0x4d01ee['g1']||0x0:_0x4d01ee['g2']||0x0;return _0x4d01ee[_0x480bad(0x43a)]||0x0;}function getPartyDpsValue(){const _0x466733=_0x21de44,_0x3791f5=getCurrentRowsForPartyDps();if(!_0x3791f5['length'])return null;const _0x5ea442=getPrecisionShares(currentMenu);let _0x2d368b=null;for(const _0x20bcfc of[_0x5ea442[_0x466733(0x1ba)],_0x5ea442[_0x466733(0x1b4)],_0x5ea442[_0x466733(0x3a2)]]){_0x2d368b=_0x3791f5[_0x466733(0x42d)](_0x35a6f3=>_0x35a6f3[_0x466733(0x2cd)]===_0x20bcfc&&getDamageFromRow(_0x35a6f3)>0x0);if(_0x2d368b)break;}if(!_0x2d368b)_0x2d368b=_0x3791f5[_0x466733(0x42d)](_0x4fc65e=>getDamageFromRow(_0x4fc65e)>0x0)||null;if(!_0x2d368b)return null;const _0x31a366=getDamageFromRow(_0x2d368b),_0x1a5bf3=(_0x2d368b[_0x466733(0x2cd)]||0x0)/0x64;return _0x31a366&&_0x1a5bf3?_0x31a366/_0x1a5bf3/getTotalSeconds():null;}function _0x615b(){const _0x5427ab=['b-green','\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20📦\x20클리어\x20보상\x20확대하기\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mobile-reward-collapse\x22\x20id=\x22','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-title-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22p-hero-title\x22>','/dps/belgardin.html','b-orange','레이드\x20종료\x20/\x20총\x2021분\x2020초','30,000','show','keydown','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-goldbar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-label\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png\x22\x20class=\x22icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gold-bind-label\x22>귀속\x20골드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-value\x20gold-bind-value\x22>','resize','toFixed','12.57억','1단계\x20(1700)','2,379억','shareCol','attr-holy','applyMobileTimeBtn','</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-subtitle\x22>','1,320.2억','<div\x20class=\x22rw-slot\x22\x20title=\x22','b_d','해당\x20행\x20원문:\x20\x22','6,800','titles','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png','</h3><p>','나메\x20(1780)','arc-grid-mode','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20class=\x22rw-currency-icon\x22\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>골드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22rw-gold\x22>','4.65억','7.08억','\x20입찰\x20시\x20','3.24억','cathedral','4,065억','damageCol','fateStone','1.53억','1190\x20-\x201590','tank_dmg','rewardWidget_','1.72억','mobileRewardMore_','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</article>\x0a\x20\x20\x20\x20','abr-ex','t_d','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22guardian-tier-chip-text\x22>','simple-tabs','ex-intro-gold','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','.menu-item','9,228','\x20class=\x22ex-row-total\x22','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-sub\x22>골드\x20획득\x20우선\x203개</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-label\x22>LEVEL\x20RANGE</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-value\x22>1710\x20~\x201780</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-sub\x22>추가\x20레이드는\x20아래\x20펼치기</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20','4조\x209,436억','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','t_s','잔혈컷\x20간편보기','\x22\x20style=\x22','\x22\x20data-boss=\x22','50,000','54,000',';\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bar\x22\x20style=\x22background:','740\x20-\x20990','partyDpsDisplay','운명의\x20수호석\x20결정','b-gold','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png','약\x20995억','1.71억','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-dash-container\x22>','2161\x20-\x202882','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','/dps/raid/','아브\x20EX\x20노말','simpleExtraPanel','bossSection','레이드\x20종료\x20/\x20총\x2020분\x2055초','4막\x20하드','아르모체','20,000','약\x20514억','335줄\x20/\x20누적\x202분\x2020초','1,130','\x22\x20data-tier=\x22','세르카','운명의\x20수호석','785272lLgESM','rows','994\x20-\x201326','7,141.2억','4인\x20레이드','에기르\x20EX\x20노말','1730\x20레이드','약\x20530억','나이트메어','40,000','1720\x20레이드','위대한\x20운명의\x20돌파석','gate1','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-level-tab-sub\x22>','mobile-home-mode','b-purple','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-right\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-head\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-mobile-title-pack\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-mobile-node\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<section\x20class=\x22simple-hero\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-top\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-copy\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-kicker\x22>LOA\x20VIEWER\x20·\x20RAID\x20MODE</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-title-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-title-icon\x22>','openGuideBtn','810','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-extra-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22simple-extra-toggle\x22\x20id=\x22simpleExtraToggleBtn\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22simpleExtraToggleText\x22>골드\x20미획득\x20레이드\x20펼치기</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22simpleExtraToggleArrow\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-extra-panel\x22\x20id=\x22simpleExtraPanel\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-extra-stack\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','5,850억','27,000','display','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22boss-legend-val\x22>','step','4.07억','4620\x20-\x206160','gato1770','7,549억','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-detail-bar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>상세보기</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ex-detail-arrow\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-accordion-content\x22\x20onclick=\x22event.stopPropagation();\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-pc-table-view\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22ex-dps-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22text-align:left;width:31%;\x22>구간\x20(누적\x20기준)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22width:23%;\x22>강투\x20(15%)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22width:23%;\x22>1인분\x20(16.66%)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22width:23%;\x22\x20class=\x22ex-col-highlight\x22>잔혈\x20(20%)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','13,000','4티어\x20전이\x20돌파석','2601\x20-\x202879\x20-\x203469','type-beast','하드\x20(1770)','ac-bar','belgardin','3,992억','timeDisplay','1770\x20레이드','\x20준비중</h3><p>해당\x20보스의\x20가디언\x20토벌\x20데이터는\x20순차적으로\x20공개됩니다.</p></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','stone','26,820','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22boss-b\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gd-trigger-arrow\x22>▼</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-dropdown-list\x22\x20style=\x22display:none;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gd-group-label\x22>기존\x20가디언</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','👥​','38,000','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<section\x20class=\x22simple-hero\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-top\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-copy\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-kicker\x22>LOA\x20VIEWER\x20·\x20SIMPLE\x20MODE</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-title-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-title-icon\x22>💠</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22simple-hero-title\x22>레벨별\x20잔혈컷</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22simple-hero-desc\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20해당\x20레벨에서\x20입장\x20가능한\x20레이드\x20중\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20골드\x20획득\x20우선순위\x203개를\x20먼저\x20보여주고,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20나머지\x20레이드는\x20아래에서\x20펼쳐서\x20확인할\x20수\x20있습니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-pills\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-hero-pill\x20pill-level\x22>주간\x20골드\x203개</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-hero-pill\x20pill-compare\x22>빠른\x20비교</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-hero-pill\x20pill-cut\x22>추가\x20레이드\x20펼치기</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-right\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-label\x22>현재\x20선택</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-value\x22>','약\x20508억','4qWLlxI','.patch-item[data-patch-title]','579억','auto','3,440','1.26억','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20class=\x22rw-currency-icon\x22\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>운명의\x20파편</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22rw-shard\x22>','</span></span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','벨가르딘은\x208인\x20레이드로\x20강투\x2015%\x20·\x201인분\x2016.6%\x20·\x20잔혈\x2020%\x20기준입니다.\x20클리어\x20타임을\x20입력하면\x20실시간\x20반영됩니다.','attr-dark','5.53억','4689\x20-\x205189\x20-\x206252','mobileTimePreview','count','17,500','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-row\x20','7,900억','blood_dps','width','key','classList','10,249','아브\x20EX\x20나이트메어','4티어\x20비상의\x20돌','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','clearItems','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22triple-range\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22triple-part\x20tank\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22t-label\x22>강투</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22t-value\x22>','4,185억','type','벨가르딘\x20하드','3.50억','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-level-tab-main\x22>','1050\x20-\x201400','레이드별\x20잔혈컷\x20👀','2,280억','.guardian-dropdown-trigger','2,250','잔영\x20:\x201단계','</p></div>','에기르\x20EX\x20나이트메어','<span>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-raid-card\x20ex-card-','약\x20365억','nightmare','ex-intro-purple','14,250','1,291억','어비스\x20던전','880','</span><span\x20class=\x22ex-dps-text\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-right-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stats-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-col\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-label\x20l-tank\x22>강투</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-dmg\x22>','label','7.30억','gato1750','\x20이득','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ex-m-phase-info\x22','지평의\x20성당','/dps/level.html','1,959억','7.13억','아브렐슈드\x20EX','status','마녀의\x20빗자루','뇌속성','patchModalDate','patchModalDesc','에스더가\x20포함된\x20추정\x20기준표입니다.\x20실전\x20오차가\x20있을\x20수\x20있습니다.','가르가디스','3티어\x20순환\x20돌파석','1,980','2,100','hero-belgardin','62,000','대악마','63416TfmTvy','3단계\x20(1750)','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-label-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-label-dot\x22\x20style=\x22background:','가디언\x20토벌\x20:\x20','9,521.6억','.menu-item[data-menu=\x22cathedral\x22]','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-raid-info-title\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>','운명의\x20돌','9.43억','mobileRewardBox_','17.56억','(없음)','PRECISION\x20·\x20BELGARDIN','600','1740\x20레이드','color','아게오로스','totalHp','8.33억','<tr><td\x20colspan=\x223\x22>데이터\x20없음</td></tr>','토속성','.topline','10,500','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-donut-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-donut\x22\x20style=\x22background:conic-gradient(from\x20-90deg,\x20','1페이즈\x20종료','type-human','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','38,640','2.05억','bracelet','.ac-toggle-btn','3,604억','강투컷은\x20파티\x20내\x20상위\x20기여도,\x201인분은\x20인원수\x20기준\x20균등\x20분배,\x20잔혈컷은\x20압도적\x20기여\x20기준입니다.','카제로스','레이드\x20기준으로\x20난이도별\x20강투\x20/\x201인분\x20/\x20잔혈\x20컷을\x20비교할\x20수\x20있습니다.','push','고통의\x20가시','isInteger','<span\x20style=\x22background:linear-gradient(90deg,#FFD60A\x200%,#7E57C2\x2025%,#FFD60A\x2050%,#7E57C2\x2075%,#FFD60A\x20100%);background-size:250%\x20auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer\x202s\x20linear\x20infinite;filter:drop-shadow(0\x200\x207px\x20rgba(255,214,10,0.85));\x22>아브렐슈드\x20EX\x20레이드</span>','4,400억','shadowOfCommand','11.25억','row-30','level','5.51억','precision-dps-blood','1관\x20에기르','40,500','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-summary-label\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-label\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22../img/wing_orb.png\x22\x20class=\x22icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gold-bind-label\x22>재료</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-value\x20gold-bind-value\x22>x','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-sub\x22>난이도\x20/\x20관문\x20기준\x20보기</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20','some','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-panel\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-head\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-title\x22>','약\x20251억','?menu=','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','tag-30','esther','precision-dps-one','3.89억','약\x20182억','1700','add','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-label\x22>보스명</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-value\x22>','아델\x201칸','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png','32,200','bloodShare','950880CENOGi','980','\x20style=\x22color:','성당\x203단계','ac-d','simpleLevel','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>','src','1조\x209,500억','약\x20162억','1430\x20-\x201900','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-more-label\x22>더보기\x20고정보상</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-grid\x22>','closePatchModal','44,000','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22p-hero-desc\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20클리어\x20시간을\x20직접\x20입력해\x20딜지분에\x20따른\x20DPS를\x20실시간으로\x20확인할\x20수\x20있습니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22p-hero-desc\x22\x20style=\x22margin-top:6px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</span></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><span\x20class=\x22ex-val-text\x22>','1,640','click','mainContent','breakGreat','has-triple-range','벨가누스','잔혈컷','해당\x20레벨에서\x20골드\x20획득\x20우선순위\x203개를\x20먼저\x20보여주고,\x20나머지\x20입장\x20가능\x20레이드는\x20아래에서\x20펼쳐\x20볼\x20수\x20있습니다.','20.03억','1.08억','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-m-grid-row\x22><span\x20class=\x22ex-m-label\x22>강투\x20(15%)</span><span\x20class=\x22ex-m-values\x22>','구스토\x201칸','10,500억','8,799억','잔혈컷\x20간편보기\x20👀','oneShare',';\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22section-title\x22>보스\x20체력\x20정보</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22warning-bar\x22>⚠\x20보스\x20체력정보\x20/\x20에스더\x20데미지는\x20직접\x20수작업으로\x20체크한\x20부분이라\x20정확하지\x20않을\x20수\x20있습니다.</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-grid\x22>','165실드\x20/\x20누적\x207분\x2010초','565','더보기\x20보상\x20열기\x20▼','</span>','tank','2300\x20-\x203070','hero-cathedral','search','코르부스','_gate1','one','match','약\x201,946억','closeGuideBtn',')\x20데이터가\x20비어있습니다.\x20','히든\x20아제나','min-height:56px;align-items:center;','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','pushState','약\x20997.5억','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png','<td><span\x20class=\x22damage-wrap\x22><span\x20class=\x22damage-num\x22>','cls','4막\x20노말','gateName','.precision-diff-chip[data-diff]','21,000','아브렐슈드\x20EX\x20레이드\x20⚡','1,669','6.64억','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-m-phase-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ex-m-phase-name\x20ex-phase-title\x22','attr-fire','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-level-tab-main\x22>','2947985pJbyup','기본값:\x2013분(780초)','\x22>1770\x20가디언</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-right\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-label\x22>입장\x20레벨</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-value\x22>','2,400','\x20active','1,502','에아달린\x201칸','500','<i>아브렐슈드\x20EX\x20레이드\x2026.05.20\x20~\x2026.06.17\x20패치전\x20까지</i>','type-archdemon','row-40','643억','titleMeta','6.96억','3,139억','\x22\x20type=\x22button\x22>더보기\x20보상\x20열기\x20▼</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-more-content\x22\x20id=\x22','1,960','/dps/level/','attr-lightning','8,300','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20같은\x20딜지분이라도\x20클리어\x20시간이\x20짧을수록\x20요구되는\x20DPS는\x20높아집니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-pills\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','15,180','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22p-badge\x20b-attr\x22>','니나브\x203칸','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-tier-chip\x20','7,163억','에기르\x20EX','3375\x20-\x204490','pathname','2,550','1720','광신의\x20인도자','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png','<i>해당\x20레벨대에\x20입장할수있는\x20레이드를\x20나열하였습니다.\x20(벨가르딘\x20나메\x20딜컷은\x20확인\x20후\x20업데이트\x20예정)</i>','3172632jNTYHP','뇌속성\x20취약','3,360','tags','골드\x20미획득\x20레이드\x20펼치기','기본체력\x20(300줄)','pending','1425\x20-\x201900','10,100','2,900억','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22simple-title\x22>','0줄\x20진입\x20/\x20누적\x2013분\x2040초','3,960','가격\x20입력\x20시\x20표시','hard_gate1','1575\x20-\x202100','<span\x20class=\x22precision-summary-unit\x22>\x20억</span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-summary-dps\x20','하드\x20·\x201730','#f7ca54','3.41억','1740','.menu-item[data-menu=\x22simple\x22]','약\x20190억',');\x20box-shadow:0\x200\x200\x203px\x20rgba(255,255,255,.03),\x200\x204px\x2014px\x20rgba(0,0,0,.4);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-donut-inner\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-donut-title\x22>총\x20체력</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-donut-val\x22>','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22p-hero-desc\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20레벨과\x20보스를\x20선택하면\x20해당\x20가디언의\x20딜지분과\x20DPS를\x20실시간으로\x20확인할\x20수\x20있습니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22p-hero-desc\x22\x20style=\x22margin-top:6px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20가디언\x20토벌은\x20잔영\x20단계에\x20따라\x20요구\x20DPS가\x20크게\x20달라지며,\x20강투컷·1인분·잔혈컷\x20기준으로\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20자신의\x20딜\x20기여도를\x20빠르게\x20비교할\x20수\x20있습니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-pills\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22p-pill\x20','row-33','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','크라티오스','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','normal','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22share-cell\x20','1단계\x20·\x201700','none','mobileTimeSeconds','open','7,931.5억','3650\x20-\x204866','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22p-pill\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-m-phase-card','16,000','4,669.7억','.precision-gate-chip[data-gate]','colName2','\x22>1750\x20가디언</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22p-pill\x20','includes','8,600','2.92억','종막\x20노말','pd-purple','3580\x20-\x204770','</span></div>','https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsijdMziekQaZ-wBTWrobncY/export?format=csv&gid=0','querySelectorAll','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png','13,200','precision-card-blood','9,200','벨가르딘','3페이즈\x20종료','one_dps','사령의\x20잔영','getElementById','moreItems','getItem','12.84억','클리어\x20메달','1750\x20레이드','target','4,800','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','25,000','루멘칼리고','col2','엘버하스틱','1750',')\x20상세\x20딜지분</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-badge\x22\x20id=\x22precisionTimeBadge\x22>전분시간\x20:\x20','클리어\x20타임을\x20입력하면\x20피해량과\x20DPS가\x20실시간으로\x20반영됩니다.','쿤겔라니움','억</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','파티\x20DPS\x20:\x20<span\x20class=\x22party-dps-value\x22>','약\x201,135억','3,488억','tag-40','4,198억','#d1d5db','theme','화속성','그림자\x20레이드','pd-green','has-badge','145줄\x20/\x20누적\x2011분\x2000초','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-col\x20col-blood\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-label\x20l-blood\x22>잔혈</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-dmg\x22>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-label\x22>난이도\x20·\x20관문</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-value\x22>','골드\x20미획득\x20레이드\x20접기','closeMobileTimeModal','760억','1조\x203,523억','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-inline-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-control-label\x22>관문\x20선택</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-inline\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-chip\x20','행\x20부근을\x20시트에서\x20직접\x20확인해보세요.\x20','>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22ex-phase-title\x22>','2,052억','location','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-summary-cards\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','🏆\x20최종\x20토벌\x20완료','1,300','sub','페투스','998억','<i>에기르\x20EX\x20레이드\x2026.04.22\x20~\x2026.05.20\x20패치전\x20까지</i>','490','4.14억','6,226.3억','attr-water','scrollTo','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-mobile-name\x22>','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-node\x22>','3594\x20-\x204792','화속성\x20취약','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','style','475','3.07억','mobileRewardToggle_','860','overflow','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','href','죽음의\x20손','하드\x20·\x201770','textContent','<tr\x20class=\x22','active','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png','약\x20743억','44,440','ac-v5','1.51억','startRow','_gate2','45,000','#34d399','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22guardian-tier-chip-check\x22>','2,200억','cards','Escape','legend','attr','9,200억','4.86억','\x20상세\x20딜지분</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-badge\x22\x20id=\x22precisionTimeBadge\x22>전분시간\x20:\x20','2089\x20-\x202786','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-badges\x22>','patchBody','preparing','1,150','toggle','기본\x20체력\x20(420줄)','contentTitle','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-goldbar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-label\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png\x22\x20class=\x22icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gold-clear-label\x22>클리어\x20골드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-value\x20gold-clear-value\x22>','0줄\x20발악\x20(44줄)','body','2페이즈\x20종료','<i>해당\x20레벨대에\x20입장할수있는\x20레이드를\x20나열하였습니다.</i>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','DPS컷은\x20딱클\x20정도의\x20수치로\x20표기되었습니다.','2조\x207,551억','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-chart-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-labels\x22>','\x20·\x20','준비중','24,200','parts','act4','.menu-item[data-menu=\x22serka\x22]','아델\x203칸','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:','padStart','기본값:\x201분\x2050초(110초)','guideModal','o_d','7조\x203,669억','simple-quick-mode','950','약\x20320억','</span></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22ex-col-highlight\x22><span\x20class=\x22ex-val-text\x22>','10,920','ac-be','ac-v','.menu-item[data-menu=\x22belgardin\x22]','16,500','%</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-summary-dmg\x22>','종막\x20하드','연동\x20완료','카제로스\x20레이드','minutes','</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-tags\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','1100\x20-\x201480','patchModal','ac-be-desc','암속성\x20취약','simple','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png','forEach','19,000','dataset','12,550','약\x201,185억','precision-card-tank','1770','5,400','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-dps\x22>','지평의\x20성당\x201~3단계\x20딜지분\x20상세','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-summary-card\x20','2,260','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-operator\x22>+</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-label\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png\x22\x20class=\x22icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gold-bind-label\x22>귀속\x20골드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-value\x20gold-bind-value\x22>','\x22\x20data-gate=\x22gate2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-chip-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-chip-line\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22precision-gate-chip-gate\x22>2관</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22precision-gate-chip-boss\x22>','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22coming-soon\x22><h3>','share','1,549억','소나벨','1,500','잔영\x20:\x203단계','floor','6.24억','파티\x20DPS\x20:\x20<span\x20class=\x22party-dps-value\x22>-</span>','4티어\x20팔찌','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero\x20hero-guardian\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-inner\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-copy\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-kicker\x22>PRECISION\x20·\x20GUARDIAN\x20RAID</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-title-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-icon\x22>🐉</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-title-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22p-hero-title\x22>가디언\x20토벌</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-subtitle\x22>','\x22\x20data-diff=\x22','toggleExAccordion','%,\x20잔혈컷은\x2020%\x20딜지분\x20기준입니다\x20(8인\x20레이드\x20기준).','<i>해당\x20레벨대에\x20입장할수있는\x20레이드를\x20나열하였습니다.\x20(벨가르딘\x20하드\x20딜컷은\x20확인\x20후\x20업데이트\x20예정)</i>','simple-disabled','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_55.png','input','2,200','col3','4142\x20-\x204584\x20-\x205523','9.76억','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency-left\x22><img\x20class=\x22rw-currency-icon\x22\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png\x22><span>골드</span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22rw-gold\x22>','7.86억','입장레벨\x20:\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','title','레이드\x20종료\x20/\x20총\x2021분\x2000초','더보기\x20보상\x20닫기\x20▲','1422oBQVmH','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png','6조\x20204억','287억','ac-bar10','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-more-area\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22rw-more-btn\x22\x20id=\x22','error','11,880','name','48,000','1,466.2억','2,003억','6.27억','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-mobile-list-view\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','데스칼루다','1.28억','</span></span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-m-grid-row\x20ex-m-highlight\x22><span\x20class=\x22ex-m-label\x22>잔혈\x20(20%)</span><span\x20class=\x22ex-m-values\x22>','reduce','9,100','\x22\x20data-simple-level=\x22','8.86억','diff','약\x201,009억','serka','3.11억','운명의\x20파괴석\x20결정','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-chip-badges\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','map','약\x20189억','defaultSimpleContent','약\x20930억','성당\x202단계','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-view\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-stack\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','warn','arc-grid','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png','취약\x20없음','5990950sXKblx','tank_dps','나메\x20(1740)','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','summary','tableTitle','성속성\x20취약','세르카\x20하드','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-diff-chip\x20','patchDate','1,000','</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','4,400','토속성\x20취약','dataStart=','1단계','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','text','range','노말\x20(1750)','<span\x20class=\x22ex-tag','9.65억','.guardian-dropdown-list','hidden','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20','세르카\x20나메','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-col\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-label\x20l-one\x22>1인분</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-stat-dmg\x22>','pd-gold','endsWith','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','3단계\x20·\x201750','세르카\x20딜지분\x20상세','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22precision-diff-chip-sub\x22>','강투컷은\x2015%,\x201인분은\x20','1인분','diffKey','2조\x203,859억','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22boss-card-title\x22\x20style=\x22color:','</span><span\x20class=\x22damage-unit\x22>억</span></span></td><td\x20class=\x22dps-cell\x22><span\x20class=\x22dps-pill\x22>','960','15.08억','12,680','2단계\x20·\x201720','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','attr-','스콜라키아','precision-dps-tank','2.00억','tableHead','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png','10.47억','<div\x20class=\x22table-wrap\x22\x20id=\x22tableWrap\x22><table\x20id=\x22dataTable\x22><thead\x20id=\x22tableHead\x22></thead><tbody\x20id=\x22tableBody\x22></tbody></table></div>','finale','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-goldbar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-label\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png\x22\x20class=\x22icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gold-clear-label\x22>클리어\x20골드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-item-value\x20gold-clear-value\x22>','tierColor','1,760','9.29억','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','.guardian-tier-chip[data-tier]','1.54억','5,120억','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-operator\x22>=</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-total\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-total-label\x22>합계</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gold-total-value\x22>','1관\x20아브렐슈드','1,920','ex-active','<div\x20class=\x27coming-soon\x27><h3>준비중</h3><p>곧\x20업데이트\x20예정입니다.</p></div>','dpscut','#fff','수속성\x20취약','replace','10,249.2억','block','2,880','sort','성속성','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22simple-level-tab\x20simple-raid-tab\x20',';\x22>','seconds','37,000','tabs','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-widget\x22\x20id=\x22','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22simple-hero-title\x22>레이드별\x20잔혈컷</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22simple-hero-desc\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20난이도별\x20강투\x20·\x201인분\x20·\x20잔혈\x20컷을\x20한\x20번에\x20비교하고,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20각\x20관문의\x20수치를\x20빠르게\x20확인할\x20수\x20있습니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-pills\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-hero-pill\x20pill-level\x22>레이드별\x20정리</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-hero-pill\x20pill-compare\x22>간편\x20비교</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22simple-hero-pill\x20pill-cut\x22>강투\x20·\x201인분\x20·\x20잔혈</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-right\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-label\x22>현재\x20선택</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-hero-stat-value\x22>','2,737억','#a78bfa','guardianMobileTimeBtn','col1','405','boss','2,860','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','contains','ac-d10',';\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','1710','26,220','guard','b-gray','약\x202,043억','드렉탈라스','☀️​','하누마탄','32,000','아카테스','badges','1,720','join','hard','split','3.54억','니나브\x201칸','239억','innerHTML','rewardMoreBtn_','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ex-intro-title-box\x22>','shard','#f87171','5,420','에키드나','gd-active','1,680','patchModalBody','강투컷','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gd-item-badges\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','8.39억','o_s','8인\x20레이드','벨가르딘\x20나메','/dps/serka.html','아브\x20EX\x20하드','<span\x20class=\x22badge\x20','patchDesc','12,304','약\x201,350억','성당\x201단계','trim','<div\x20class=\x22coming-soon\x22><h3>','moreShard','2,033억','one_dmg','26,500','startsWith','770','1.13억','나메\x20·\x201780','gateKey','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-summary-share\x22>딜지분\x20','gold','blood','아제나\x203칸','1730','<span\x20class=\x22ex-m-dps\x22>','guardian','desc','5,420억','type-divine','remove','에기르\x20EX\x20하드','patchModalTitle','.guardian-dropdown-item[data-boss]','2,550억','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png','gate2','\x22><img\x20src=\x22','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-inner\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-copy\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-kicker\x22>','precision-label-one','[벨가르딘\x20파싱]\x20CSV에서\x20\x22벨가르딘\x20딜지분\x20상세\x22\x20제목을\x20찾지\x20못했습니다.\x20시트\x20문구\x20또는\x20gid(탭)를\x20확인해주세요.','init','2025\x20-\x202700','암속성','egir-ex','https://loaviewer.github.io/','querySelector','60%','1710\x20레이드','length','베스칼','운명의\x20파괴석','disabled','gato1730','1,380','menu','node','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-badges\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22p-badge\x20b-type\x22>','억</span></td></tr>','handOfDeath','콘텐츠','1,430','ac-v10','2단계\x20(1720)','icon','18,900','벨가르딘\x20노말','transfer','1,162억','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero\x20','isNaN','3.45억','13,500','ac-d5','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22share-pct\x22>','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-level-tabs\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','tier','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22share-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','❄️​','gate','속성\x20없음','세르카\x20노말','phases','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','destroy','bindGold','하드\x20(1730)','patchTitle','rw-open','2.28억','1780','3,167억','4.09억','addEventListener','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','mobile-content-mode','약\x20445억','weak','<div\x20class=\x22coming-soon\x22><h3>준비중</h3><p>데이터\x20준비중입니다.</p></div>','18208TFlMlm','1,760.2억','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','innerWidth','수속성','운명의\x20돌파석','<div\x20style=\x22font-size:14px;color:#d4bf8a;font-style:italic;margin-top:3px;\x22>','https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png','레이드\x20종료\x20/\x20총\x2022분\x2005초','0줄\x20발악\x20(152줄)','1조\x206,481억','4.19억','0줄\x20진입\x20/\x20누적\x2017분\x2055초','📦\x20클리어\x20보상\x20확대하기','round','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','openMobileTimeBtn_','약\x20119억','2,300','colName1','간편보기\x20상태에서는\x20비활성화','ac-bar5','📦\x20클리어\x20보상\x20닫기','이그렉시온','🛡️','.simple-level-tab[data-simple-level]','https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png','mobileRewardMoreBtn_','rewardMore_','7.73억','약\x20700억','\x22><span\x20class=\x22rw-count\x22>','2단계','4,515억','hero-serka','pct','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr','attr-none','937\x20-\x201250','3SJbnUc','mobileTimeMinutes','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-kind\x22>피해/억</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22simple-rows\x22>','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22text-align:right;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:','🧱​','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','max','\x22>1730\x20가디언</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22p-pill\x20','total','type-ancient','에아달린\x20히든\x203칸','filter','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22triple-part\x20blood\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22t-label\x22>잔혈</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22t-value\x22>','.time-step-btn','raid-simple','infoHint','setAttribute','385','value','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22esther-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>','시간\x20변경\x20시\x20즉시\x20반영','find','대주교','test','type-demon','165실드\x20(22줄)','구글\x20시트\x20데이터를\x20읽어\x20옵니다.','.menu-item[data-menu=\x22guardian\x22]','<tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','toLocaleString','은총의\x20파편','https://cdn-lostark.game.onstove.com/efui_iconatlas/newvehicle/newvehicle_151.png','11,000','damage','sectionTitle','7,900','4,065','blood_dmg','ko-KR'];_0x615b=function(){return _0x5427ab;};return _0x615b();}function updatePartyDpsDisplay(){const _0x19017b=_0x21de44,_0x245b26=document[_0x19017b(0x230)](_0x19017b(0x481)),_0x18eede=currentMenu===_0x19017b(0x3a6)&&!isGuardianBossAvailable(currentGuardianTier,getCurrentGuardianBoss());if(currentMenu===_0x19017b(0x2bb)||_0x18eede){_0x245b26[_0x19017b(0x37e)]=_0x19017b(0x2d4);return;}const _0x4752e5=getPartyDpsValue();_0x245b26[_0x19017b(0x37e)]=_0x4752e5!==null?_0x19017b(0x242)+fmtPartyDps(_0x4752e5)+_0x19017b(0x1b3):_0x19017b(0x2d4);}function makeGuardianHero(_0x149bca,_0x2ce87b,_0x8bb11b){const _0x2c206f=_0x21de44,_0x4f157a=getGuardianElementEmojiFromWeakness(_0x8bb11b[_0x2c206f(0x286)][_0x2c206f(0x31f)]),_0x398952=getAttrEmoji(_0x8bb11b[_0x2c206f(0x286)][_0x2c206f(0x31f)],_0x8bb11b[_0x2c206f(0x286)]['cls']),_0x21f94b=_0x149bca===_0x2c206f(0x3a4)?_0x2c206f(0x4f0):_0x149bca===_0x2c206f(0x23d)?'잔영\x20:\x202단계':_0x2c206f(0x2d1);return _0x2c206f(0x2d6)+_0x21f94b+_0x2c206f(0x3c5)+_0x8bb11b[_0x2c206f(0x4e6)]['text']+_0x2c206f(0x1e7)+(_0x398952?_0x398952+'\x20':'')+_0x8bb11b[_0x2c206f(0x286)][_0x2c206f(0x31f)]+_0x2c206f(0x20b)+(_0x149bca===_0x2c206f(0x3a4)?_0x2c206f(0x276):'')+_0x2c206f(0x41f)+(_0x149bca===_0x2c206f(0x23d)?_0x2c206f(0x276):'')+_0x2c206f(0x21e)+(_0x149bca===_0x2c206f(0x2c4)?_0x2c206f(0x276):'')+_0x2c206f(0x1d3)+_0x149bca+_0x2c206f(0x554)+_0x4f157a+'\x20'+_0x2ce87b+_0x2c206f(0x311);}function getRewardDataSource(_0x4e1e28){const _0x3e888a=_0x21de44;if(_0x4e1e28==='serka')return serkaRewardData;if(_0x4e1e28==='cathedral')return cathedralRewardData;if(_0x4e1e28===_0x3e888a(0x4bd))return belgardinRewardData;return null;}function makeRewardWidget(_0x416769,_0x2cccb0){const _0x3ae42a=_0x21de44,_0x1cdc9b=getRewardDataSource(_0x416769),_0xc702ff=_0x1cdc9b?_0x1cdc9b[_0x2cccb0]:null;if(!_0xc702ff)return'';const _0x1f0e48=_0x3ae42a(0x469)+_0x416769,_0xbd3a43=_0x3ae42a(0x40c)+_0x416769,_0x134bcb='rewardMoreBtn_'+_0x416769,_0x4970eb=_0x1149a4=>_0x1149a4[_0x3ae42a(0x304)](_0x5d3797=>_0x3ae42a(0x454)+_0x5d3797[_0x3ae42a(0x2f1)]+_0x3ae42a(0x3b1)+_0x5d3797[_0x3ae42a(0x196)]+_0x3ae42a(0x40f)+_0x5d3797[_0x3ae42a(0x4d7)]+_0x3ae42a(0x225))[_0x3ae42a(0x378)](''),_0x2ffe74=_0x41a3f8=>_0x41a3f8?_0x3ae42a(0x2e2)+_0x41a3f8+_0x3ae42a(0x195):'',_0x54c7db=_0x5c5759=>_0x5c5759?'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-currency-left\x22><img\x20class=\x22rw-currency-icon\x22\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png\x22><span>운명의\x20파편</span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22rw-shard\x22>'+_0x5c5759+_0x3ae42a(0x195):'';return _0x3ae42a(0x35f)+_0x1f0e48+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-title\x22>클리어\x20보상</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-grid\x22>'+_0x4970eb(_0xc702ff['clearItems'])+_0x3ae42a(0x1c1)+_0x2ffe74(_0xc702ff[_0x3ae42a(0x3a1)])+_0x3ae42a(0x3eb)+_0x54c7db(_0xc702ff[_0x3ae42a(0x381)])+'\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-more-area\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22rw-more-btn\x22\x20id=\x22'+_0x134bcb+_0x3ae42a(0x1e0)+_0xbd3a43+_0x3ae42a(0x19a)+_0x4970eb(_0xc702ff['moreItems'])+_0x3ae42a(0x41d)+_0x2ffe74(_0xc702ff['moreGold'])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x54c7db(_0xc702ff[_0x3ae42a(0x397)])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function makeRewardWidgetMobile(_0x544972,_0x4a1b5f){const _0x2e6148=_0x21de44,_0x565bfd=getRewardDataSource(_0x544972),_0x30ffd5=_0x565bfd?_0x565bfd[_0x4a1b5f]:null;if(!_0x30ffd5)return'';const _0x43ef12=_0x2e6148(0x46b)+_0x544972,_0x5d4767=_0x2e6148(0x40b)+_0x544972,_0x1790ee=_0x22227c=>_0x22227c[_0x2e6148(0x304)](_0x66c112=>'<div\x20class=\x22rw-slot\x22\x20title=\x22'+_0x66c112[_0x2e6148(0x2f1)]+_0x2e6148(0x3b1)+_0x66c112['src']+_0x2e6148(0x40f)+_0x66c112[_0x2e6148(0x4d7)]+_0x2e6148(0x225))[_0x2e6148(0x378)](''),_0x5d67b3=_0x2d84dc=>_0x2d84dc?_0x2e6148(0x45d)+_0x2d84dc+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>':'',_0x455b02=_0x440790=>_0x440790?_0x2e6148(0x4d0)+_0x440790+_0x2e6148(0x195):'';return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-widget\x20mobile-rw-widget\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-title\x22>클리어\x20보상</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-grid\x22>'+_0x1790ee(_0x30ffd5[_0x2e6148(0x4e3)])+_0x2e6148(0x1c1)+_0x5d67b3(_0x30ffd5[_0x2e6148(0x3a1)])+_0x2e6148(0x3eb)+_0x455b02(_0x30ffd5[_0x2e6148(0x381)])+_0x2e6148(0x2ee)+_0x5d4767+'\x22\x20type=\x22button\x22>더보기\x20보상\x20열기\x20▼</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rw-more-content\x22\x20id=\x22'+_0x43ef12+_0x2e6148(0x19a)+_0x1790ee(_0x30ffd5[_0x2e6148(0x231)])+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x5d67b3(_0x30ffd5['moreGold'])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x455b02(_0x30ffd5['moreShard'])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function makeMobilePrecisionTools(_0x59889e,_0x3e83d2){const _0x322963=_0x21de44,_0x50be6f='openMobileTimeBtn_'+_0x59889e,_0x15565b=_0x322963(0x26d)+_0x59889e,_0x4e95ab='mobileRewardBox_'+_0x59889e;return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mobile-precision-tools\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22mobile-precision-tool-btn\x22\x20id=\x22'+_0x50be6f+'\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20⏱\x20클리어\x20타임\x20입력\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22mobile-precision-tool-btn\x22\x20id=\x22'+_0x15565b+_0x322963(0x441)+_0x4e95ab+_0x322963(0x238)+makeRewardWidgetMobile(_0x59889e,_0x3e83d2)+_0x322963(0x368);}function bindRewardMoreToggle(_0x4f87d6){const _0x23fca6=_0x21de44,_0x5a48bc=_0x23fca6(0x40c)+_0x4f87d6,_0x25ec11=_0x23fca6(0x37f)+_0x4f87d6,_0x24d5a3=document[_0x23fca6(0x230)](_0x25ec11),_0x2f7690=document[_0x23fca6(0x230)](_0x5a48bc);if(!_0x24d5a3||!_0x2f7690)return;_0x24d5a3[_0x23fca6(0x3ea)](_0x23fca6(0x1a0),()=>{const _0x5d9136=_0x23fca6,_0xe707b4=_0x2f7690['classList'][_0x5d9136(0x28f)](_0x5d9136(0x3e5));_0x24d5a3[_0x5d9136(0x274)]=_0xe707b4?'더보기\x20보상\x20닫기\x20▲':'더보기\x20보상\x20열기\x20▼';});}function makeRaidPrecisionHero(_0x5d116b,_0x38a0fa,_0xc19f74){const _0x4bee1e=_0x21de44,_0x3aad09=_0x5d116b===_0x4bee1e(0x300),_0x50cad6=_0x5d116b==='cathedral',_0x1e6eec=getRaidDisplayName(_0x5d116b),_0x369190=_0x3aad09?_0x4bee1e(0x412):_0x50cad6?_0x4bee1e(0x1b6):_0x4bee1e(0x512),_0x18e5f7=_0x3aad09?'PRECISION\x20·\x20SERKA':_0x50cad6?'PRECISION\x20·\x20CATHEDRAL':_0x4bee1e(0x521),_0x53ad44=_0x3aad09?'🧹':_0x50cad6?'⛪':'🧛',_0x30aba1=_0x3aad09?_0x4bee1e(0x24a):_0x50cad6?_0x4bee1e(0x4fa):_0x4bee1e(0x24a),_0x4081a6=_0x38a0fa['title']['match'](/\((\d+)\)/),_0x44f33b=_0x4081a6?_0x4081a6[0x1]:'-',_0x47e9db=_0x38a0fa['title'][_0x4bee1e(0x354)](/\s*\(.+\)/,''),_0x57a93a=_0x38a0fa['gateName'],_0x308c09=getAttrEmoji(_0x38a0fa[_0x4bee1e(0x286)][_0x4bee1e(0x31f)],_0x38a0fa[_0x4bee1e(0x286)][_0x4bee1e(0x1c6)]),_0x2209a2=_0x3aad09?[{'key':_0x4bee1e(0x210),'text':'노말\x20·\x201710'},{'key':_0x4bee1e(0x379),'text':_0x4bee1e(0x204)},{'key':'nightmare','text':'나메\x20·\x201740'}]:_0x50cad6?[{'key':_0x4bee1e(0x210),'text':_0x4bee1e(0x212)},{'key':_0x4bee1e(0x379),'text':_0x4bee1e(0x339)},{'key':_0x4bee1e(0x4f6),'text':_0x4bee1e(0x32c)}]:[{'key':'normal','text':'노말\x20·\x201750'},{'key':'hard','text':_0x4bee1e(0x273)},{'key':_0x4bee1e(0x4f6),'text':_0x4bee1e(0x39e)}],_0xb92018=getPrecisionShares(_0x5d116b),_0x266830=_0x5d116b===_0x4bee1e(0x4bd)?_0x4bee1e(0x32f)+_0xb92018[_0x4bee1e(0x1ba)]+_0x4bee1e(0x2d9):_0x4bee1e(0x535);return _0x4bee1e(0x3d2)+_0x369190+_0x4bee1e(0x3b2)+_0x18e5f7+'</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-title-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-icon\x22>'+_0x53ad44+_0x4bee1e(0x442)+_0x1e6eec+_0x4bee1e(0x452)+_0x30aba1+_0x4bee1e(0x3c5)+_0x38a0fa['type'][_0x4bee1e(0x31f)]+_0x4bee1e(0x1e7)+(_0x308c09?_0x308c09+'\x20':'')+_0x38a0fa['attr'][_0x4bee1e(0x31f)]+_0x4bee1e(0x19d)+_0x266830+_0x4bee1e(0x1e5)+_0x2209a2[_0x4bee1e(0x304)](_0x36a7a9=>_0x4bee1e(0x218)+(_0xc19f74===_0x36a7a9['key']?_0x4bee1e(0x276):'')+'\x22>'+_0x36a7a9[_0x4bee1e(0x31f)]+_0x4bee1e(0x4e9))['join']('')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-hero-right\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-label\x22>입장\x20레벨</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-stat-value\x22>'+_0x44f33b+_0x4bee1e(0x24f)+_0x47e9db+_0x4bee1e(0x29b)+_0x57a93a+_0x4bee1e(0x311);}function makeGuardianControl(_0x3703e4,_0x445a55,_0x36859d,_0x277d93,_0x1c4d99){const _0x1ea634=_0x21de44,_0x8f963d=[_0x1ea634(0x23a),_0x1ea634(0x50e),_0x1ea634(0x33c),_0x1ea634(0x20e),_0x1ea634(0x525),'드렉탈라스','소나벨',_0x1ea634(0x3be)],_0x227e48=[_0x1ea634(0x3a4),_0x1ea634(0x23d),_0x1ea634(0x2c4)][_0x1ea634(0x304)](_0x217148=>{const _0x1dbc82=_0x1ea634,_0x16996a=_0x3703e4===_0x217148;return _0x1dbc82(0x1e9)+(_0x16996a?_0x1dbc82(0x276):'')+_0x1dbc82(0x495)+_0x217148+_0x1dbc82(0x281)+(_0x16996a?'✓':'')+_0x1dbc82(0x46f)+_0x217148+_0x1dbc82(0x54c);})[_0x1ea634(0x378)](''),_0x122f3b=_0x18affe=>{const _0x5729d1=_0x1ea634,_0x47fcad=gatoMeta[_0x18affe],_0x257dee=_0x18affe===_0x445a55,_0x5e9ac9=_0x277d93[_0x5729d1(0x21f)](_0x18affe),_0x3e2fa0=getGuardianElementEmojiFromWeakness(_0x47fcad['attr'][_0x5729d1(0x31f)]);return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-dropdown-item\x20'+(_0x257dee?_0x5729d1(0x385):'')+'\x20'+(_0x5e9ac9?'':_0x5729d1(0x1f9))+_0x5729d1(0x47c)+_0x18affe+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gd-item-name\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gd-item-name-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22element-emoji\x22>'+_0x3e2fa0+_0x5729d1(0x33a)+_0x18affe+_0x5729d1(0x389)+makeBadge(_0x47fcad[_0x5729d1(0x4e6)][_0x5729d1(0x31f)],_0x47fcad[_0x5729d1(0x4e6)][_0x5729d1(0x1c6)])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+makeBadge(_0x47fcad[_0x5729d1(0x286)][_0x5729d1(0x31f)],_0x47fcad[_0x5729d1(0x286)]['cls'])+_0x5729d1(0x478)+(_0x257dee?'<div\x20class=\x22gd-item-check\x22>✓</div>':'')+_0x5729d1(0x3e0)+(_0x5e9ac9?'':'<span\x20class=\x22gd-pending-tag\x22>준비중</span>')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';},_0x4dd0fb=_0x36859d[_0x1ea634(0x423)](_0xf2447a=>_0x8f963d[_0x1ea634(0x21f)](_0xf2447a))[_0x1ea634(0x304)](_0x122f3b)[_0x1ea634(0x378)](''),_0x2aa061=_0x36859d['filter'](_0x2da20b=>!_0x8f963d[_0x1ea634(0x21f)](_0x2da20b))[_0x1ea634(0x304)](_0x122f3b)[_0x1ea634(0x378)](''),_0x1ce561=getGuardianElementEmojiFromWeakness(_0x1c4d99[_0x1ea634(0x286)]['text']);return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-control\x20guardian-inline-control\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-inline-row\x22\x20style=\x22display:grid;grid-template-columns:1fr;gap:12px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-top-tools\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-tier-inline\x22\x20style=\x22display:grid;grid-template-columns:repeat(3,\x20minmax(0,1fr));gap:8px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x227e48+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22guardian-mobile-time-btn\x22\x20id=\x22guardianMobileTimeBtn\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20⏱\x20클리어\x20타임\x20입력\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-select-inline\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guardian-dropdown-trigger\x20compact\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gd-trigger-name\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gd-trigger-name-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22element-emoji\x22>'+_0x1ce561+_0x1ea634(0x20d)+_0x445a55+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gd-trigger-badges\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+makeBadge(_0x1c4d99[_0x1ea634(0x4e6)][_0x1ea634(0x31f)],_0x1c4d99[_0x1ea634(0x4e6)][_0x1ea634(0x1c6)])+_0x1ea634(0x270)+makeBadge(_0x1c4d99[_0x1ea634(0x286)][_0x1ea634(0x31f)],_0x1c4d99[_0x1ea634(0x286)][_0x1ea634(0x1c6)])+_0x1ea634(0x4c5)+_0x4dd0fb+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gd-group-label\x22>신규\x20가디언</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x2aa061+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function makePrecisionSummary(_0x66e197,_0x5743e0,_0x101f10,_0x58ccb8,_0xfe7a0f,_0x10a4b6){const _0x8345ad=_0x21de44,_0x5b9736=getPrecisionShares(_0x10a4b6),_0x2c3e2a=_0x5df801=>Number[_0x8345ad(0x53a)](_0x5df801)?_0x5df801:_0x5df801[_0x8345ad(0x44b)](0x1),_0x3b29d6=(_0x1f68ab,_0x1ee85c,_0x3c0d0f,_0xab0599,_0x12756f,_0x582cd9)=>{const _0x2866da=_0x8345ad,_0x1f3467=_0x582cd9?_0x58ccb8(_0x582cd9):0x0,_0x531b16=_0x582cd9?(_0x1f3467/_0xfe7a0f)[_0x2866da(0x44b)](0x1):'-';return _0x2866da(0x2c8)+_0x3c0d0f+_0x2866da(0x545)+_0x1ee85c+'\x22>'+_0x1f68ab+_0x2866da(0x3a0)+_0x2c3e2a(_0x12756f)+_0x2866da(0x2b1)+fmt(_0x1f3467)+_0x2866da(0x203)+_0xab0599+'\x22>DPS\x20'+_0x531b16+_0x2866da(0x241);};return _0x8345ad(0x259)+_0x3b29d6(_0x8345ad(0x388),'precision-label-tank',_0x8345ad(0x2c3),_0x8345ad(0x33d),_0x5b9736[_0x8345ad(0x1b4)],_0x66e197)+_0x8345ad(0x3eb)+_0x3b29d6(_0x8345ad(0x330),_0x8345ad(0x3b3),'precision-card-one',_0x8345ad(0x54f),_0x5b9736[_0x8345ad(0x1ba)],_0x5743e0)+_0x8345ad(0x3eb)+_0x3b29d6(_0x8345ad(0x1a5),'precision-label-blood',_0x8345ad(0x22a),_0x8345ad(0x542),_0x5b9736[_0x8345ad(0x3a2)],_0x101f10)+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function renderTable(){const _0x2bc61f=_0x21de44;updateTimeDisplay();const _0x277fb7=getTotalSeconds(),_0x514b36=currentMenu===_0x2bc61f(0x2bb)&&currentSimpleLevel!==_0x2bc61f(0x3b8)&&currentSimpleLevel!==_0x2bc61f(0x46d),_0x246bdd=currentMenu===_0x2bc61f(0x426),_0x56361d=currentMenu==='serka'||currentMenu==='cathedral'||currentMenu===_0x2bc61f(0x4bd);document[_0x2bc61f(0x294)][_0x2bc61f(0x4de)][_0x2bc61f(0x28f)]('mobile-precision-view',_0x56361d);const _0x322a86=_0x514b36||_0x246bdd||currentMenu==='guardian'||currentMenu===_0x2bc61f(0x300)||currentMenu==='cathedral'||currentMenu===_0x2bc61f(0x4bd)||currentMenu===_0x2bc61f(0x30b),_0x444e2c=document[_0x2bc61f(0x230)](_0x2bc61f(0x35e));_0x444e2c&&(_0x444e2c[_0x2bc61f(0x26a)][_0x2bc61f(0x4af)]=currentMenu===_0x2bc61f(0x30b)?_0x2bc61f(0x213):'');const _0xc0122c=document[_0x2bc61f(0x3ba)](_0x2bc61f(0x52a));_0xc0122c&&(_0xc0122c[_0x2bc61f(0x26a)][_0x2bc61f(0x4af)]=_0x322a86?_0x2bc61f(0x213):'');const _0xbf4442=document[_0x2bc61f(0x3ba)]('.main');_0xbf4442&&_0xbf4442[_0x2bc61f(0x4de)][_0x2bc61f(0x28f)](_0x2bc61f(0x2a8),_0x514b36||_0x246bdd);(_0x514b36||_0x246bdd)&&(document['getElementById']('contentTitle')['textContent']='',document['getElementById'](_0x2bc61f(0x313))[_0x2bc61f(0x274)]='',document[_0x2bc61f(0x230)](_0x2bc61f(0x1dd))[_0x2bc61f(0x37e)]='');if(currentMenu===_0x2bc61f(0x2bb)&&currentSimpleLevel===_0x2bc61f(0x3b8))document[_0x2bc61f(0x230)](_0x2bc61f(0x291))['innerHTML']='<span\x20style=\x22background:linear-gradient(90deg,#ff6b6b\x200%,#ffd700\x2015%,#fffacd\x2030%,#6bcb77\x2045%,#ffd700\x2060%,#fffacd\x2075%,#ff9ff3\x2090%,#ffd700\x20100%);background-size:250%\x20auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer\x202s\x20linear\x20infinite;filter:drop-shadow(0\x200\x207px\x20rgba(255,215,0,0.85));\x22>에기르\x20EX\x20레이드</span>';else{if(currentMenu===_0x2bc61f(0x2bb)&&currentSimpleLevel===_0x2bc61f(0x46d))document[_0x2bc61f(0x230)](_0x2bc61f(0x291))['innerHTML']=_0x2bc61f(0x53b);else!_0x514b36&&(document['getElementById']('contentTitle')[_0x2bc61f(0x274)]=getContentName());}document['getElementById'](_0x2bc61f(0x313))[_0x2bc61f(0x274)]=getTableTitle(),renderTitleMeta(),document[_0x2bc61f(0x230)](_0x2bc61f(0x427))[_0x2bc61f(0x37e)]=getInfoHintText();if(currentMenu===_0x2bc61f(0x30b)){setClearTimeDisabled(!![]),document[_0x2bc61f(0x230)](_0x2bc61f(0x481))[_0x2bc61f(0x37e)]='파티\x20DPS\x20:\x20<span\x20class=\x22party-dps-value\x22>-</span>',document[_0x2bc61f(0x230)](_0x2bc61f(0x291))[_0x2bc61f(0x274)]='',document[_0x2bc61f(0x230)](_0x2bc61f(0x313))[_0x2bc61f(0x274)]='',document['getElementById'](_0x2bc61f(0x1dd))[_0x2bc61f(0x37e)]='';typeof ArcGrid!=='undefined'&&ArcGrid[_0x2bc61f(0x3b5)](document[_0x2bc61f(0x230)](_0x2bc61f(0x1a1)));return;}if(currentMenu==='simple'||currentMenu===_0x2bc61f(0x426)){setClearTimeDisabled(!![]),document[_0x2bc61f(0x230)](_0x2bc61f(0x481))[_0x2bc61f(0x37e)]=_0x2bc61f(0x2d4);currentMenu===_0x2bc61f(0x426)?renderRaidSimpleView():renderSimpleView();return;}setClearTimeDisabled(![]);if(currentMenu===_0x2bc61f(0x3a6)){document[_0x2bc61f(0x230)](_0x2bc61f(0x291))[_0x2bc61f(0x274)]='',document[_0x2bc61f(0x230)](_0x2bc61f(0x313))[_0x2bc61f(0x274)]='',document[_0x2bc61f(0x230)](_0x2bc61f(0x1dd))[_0x2bc61f(0x37e)]='';const _0x3af34c=currentGuardianTier,_0x3f94a3=getCurrentGuardianBoss(),_0x5d7d75=gatoMeta[_0x3f94a3],_0x2e9bbd=isGuardianBossAvailable(_0x3af34c,_0x3f94a3),_0x572f54=getGuardianBossListByTier(_0x3af34c),_0x1e64d1=getGuardianAvailListByTier(_0x3af34c);if(!_0x2e9bbd)document['getElementById'](_0x2bc61f(0x1a1))[_0x2bc61f(0x37e)]=_0x2bc61f(0x3e0)+makeGuardianHero(_0x3af34c,_0x3f94a3,_0x5d7d75)+_0x2bc61f(0x3e0)+makeGuardianControl(_0x3af34c,_0x3f94a3,_0x572f54,_0x1e64d1,_0x5d7d75)+_0x2bc61f(0x2cc)+_0x3f94a3+_0x2bc61f(0x4c1);else{const _0x1244d8=getGuardianParsedRows(_0x3af34c,_0x3f94a3),_0x10f1a7=_0x3607cf=>_0x3607cf['damage']||0x0,_0x2a52ba=_0x31ebb6=>_0x1244d8['find'](_0x31bffc=>_0x31bffc[_0x2bc61f(0x2cd)]===_0x31ebb6&&_0x10f1a7(_0x31bffc)>0x0),_0x5744f6=_0x2a52ba(0x1e),_0x4a23e5=_0x2a52ba(0x21),_0x3f14af=_0x2a52ba(0x28),_0x48fd5a=_0x1244d8[_0x2bc61f(0x3bd)]?_0x1244d8[_0x2bc61f(0x304)](_0xa6df94=>{const _0xeb72e1=_0x2bc61f;let _0x48b22c='';if(_0xa6df94[_0xeb72e1(0x2cd)]===0x1e)_0x48b22c=_0xeb72e1(0x53f);if(_0xa6df94[_0xeb72e1(0x2cd)]===0x21)_0x48b22c=_0xeb72e1(0x20c);if(_0xa6df94['share']===0x28)_0x48b22c=_0xeb72e1(0x1db);return _0xeb72e1(0x275)+_0x48b22c+'\x22>'+renderShareCell(_0xa6df94['share'],'guardian')+_0xeb72e1(0x1c5)+fmt(_0xa6df94[_0xeb72e1(0x43a)])+_0xeb72e1(0x335)+(_0xa6df94[_0xeb72e1(0x43a)]/_0x277fb7)[_0xeb72e1(0x44b)](0x1)+_0xeb72e1(0x3c6);})['join'](''):'<tr><td\x20colspan=\x223\x22>데이터\x20없음</td></tr>';document['getElementById']('mainContent')[_0x2bc61f(0x37e)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+makeGuardianHero(_0x3af34c,_0x3f94a3,_0x5d7d75)+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+makeGuardianControl(_0x3af34c,_0x3f94a3,_0x572f54,_0x1e64d1,_0x5d7d75)+_0x2bc61f(0x3e0)+makePrecisionSummary(_0x5744f6,_0x4a23e5,_0x3f14af,_0x10f1a7,_0x277fb7,_0x2bc61f(0x3a6))+_0x2bc61f(0x549)+_0x3f94a3+'\x20('+_0x3af34c+_0x2bc61f(0x23e)+String(Math[_0x2bc61f(0x2d2)](_0x277fb7/0x3c))[_0x2bc61f(0x2a3)](0x2,'0')+'분\x20'+String(_0x277fb7%0x3c)[_0x2bc61f(0x2a3)](0x2,'0')+'초</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22table-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20id=\x22dataTable\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>'+_0x48fd5a+'</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';}document[_0x2bc61f(0x227)](_0x2bc61f(0x349))['forEach'](_0x21c011=>{_0x21c011['addEventListener']('click',()=>{const _0x33b13d=_0x36f0;currentGuardianTier=_0x21c011[_0x33b13d(0x2c0)]['tier'],renderTable();});});const _0x2114d8=document[_0x2bc61f(0x3ba)](_0x2bc61f(0x4ee)),_0x442f00=document[_0x2bc61f(0x3ba)](_0x2bc61f(0x324));_0x2114d8&&_0x442f00&&_0x2114d8[_0x2bc61f(0x3ea)]('click',()=>{const _0x3cffac=_0x2bc61f,_0x493a72=_0x442f00[_0x3cffac(0x26a)][_0x3cffac(0x4af)]==='block';_0x442f00[_0x3cffac(0x26a)][_0x3cffac(0x4af)]=_0x493a72?_0x3cffac(0x213):_0x3cffac(0x356),_0x2114d8[_0x3cffac(0x4de)][_0x3cffac(0x28f)](_0x3cffac(0x215),!_0x493a72);});document['querySelectorAll'](_0x2bc61f(0x3ad))[_0x2bc61f(0x2be)](_0x326274=>{_0x326274['addEventListener']('click',()=>{const _0x475b8c=_0x36f0;if(_0x326274[_0x475b8c(0x4de)][_0x475b8c(0x369)](_0x475b8c(0x1f9)))return;const _0xcd32c2=_0x326274['dataset'][_0x475b8c(0x366)];setCurrentGuardianBoss(_0xcd32c2),renderTable();});});const _0x12b5fd=document[_0x2bc61f(0x230)](_0x2bc61f(0x363));_0x12b5fd&&_0x12b5fd['addEventListener'](_0x2bc61f(0x1a0),openMobileTimeModal);updatePartyDpsDisplay();return;}if(currentMenu===_0x2bc61f(0x300)||currentMenu===_0x2bc61f(0x462)||currentMenu==='belgardin'){document[_0x2bc61f(0x230)](_0x2bc61f(0x291))[_0x2bc61f(0x274)]='',document[_0x2bc61f(0x230)]('tableTitle')[_0x2bc61f(0x274)]='',document[_0x2bc61f(0x230)](_0x2bc61f(0x1dd))[_0x2bc61f(0x37e)]='';const _0x3a6e01=raidMeta[currentMenu][currentCombo],_0x459a57=parsedData[currentMenu]?.[_0x3a6e01[_0x2bc61f(0x331)]]||[],_0x5c3dbf=getRaidDisplayName(currentMenu),_0x5967d6=getPrecisionShares(currentMenu),_0x56658c=_0x584ac6=>_0x3a6e01[_0x2bc61f(0x39f)]===_0x2bc61f(0x4a4)?_0x584ac6['g1']:_0x584ac6['g2'],_0xebd737=_0x3cf334=>_0x459a57[_0x2bc61f(0x42d)](_0x112818=>_0x112818['share']===_0x3cf334&&_0x56658c(_0x112818)>0x0),_0x4da78e=_0xebd737(_0x5967d6[_0x2bc61f(0x1b4)]),_0x4ee0a2=_0xebd737(_0x5967d6[_0x2bc61f(0x1ba)]),_0x3c4ef3=_0xebd737(_0x5967d6[_0x2bc61f(0x3a2)]),_0x9b2674=currentMenu==='serka'?{'gate1':'세르카','gate2':_0x2bc61f(0x1b8)}:currentMenu===_0x2bc61f(0x462)?{'gate1':_0x2bc61f(0x42e),'gate2':_0x2bc61f(0x1f0)}:{'gate1':_0x2bc61f(0x22c),'gate2':'페투스'},_0x365406=currentMenu==='serka'?[{'diffKey':_0x2bc61f(0x210),'label':'노말','level':_0x2bc61f(0x36c),'cls':_0x2bc61f(0x24b)},{'diffKey':'hard','label':'하드','level':_0x2bc61f(0x3a4),'cls':'pd-gold'},{'diffKey':'nightmare','label':'나메','level':'1740','cls':_0x2bc61f(0x223)}]:currentMenu===_0x2bc61f(0x462)?[{'diffKey':_0x2bc61f(0x210),'label':_0x2bc61f(0x31d),'level':'1700','cls':_0x2bc61f(0x24b)},{'diffKey':'hard','label':_0x2bc61f(0x410),'level':_0x2bc61f(0x1ef),'cls':_0x2bc61f(0x329)},{'diffKey':_0x2bc61f(0x4f6),'label':'3단계','level':_0x2bc61f(0x23d),'cls':_0x2bc61f(0x223)}]:[{'diffKey':_0x2bc61f(0x210),'label':'노말','level':'1750','cls':'pd-green'},{'diffKey':'hard','label':'하드','level':_0x2bc61f(0x2c4),'cls':_0x2bc61f(0x329)},{'diffKey':'nightmare','label':'나메','level':_0x2bc61f(0x3e7),'cls':_0x2bc61f(0x223)}],_0x8e390f=currentCombo[_0x2bc61f(0x37a)]('_')[0x0],_0x39095a=currentCombo[_0x2bc61f(0x37a)]('_')[0x1],_0x545588=_0x459a57[_0x2bc61f(0x3bd)]?_0x459a57[_0x2bc61f(0x304)](_0x1883f2=>{const _0x303d61=_0x2bc61f;let _0x586e99='';if(_0x1883f2['share']===_0x5967d6[_0x303d61(0x1b4)])_0x586e99='row-30';if(_0x1883f2[_0x303d61(0x2cd)]===_0x5967d6[_0x303d61(0x1ba)])_0x586e99=_0x303d61(0x20c);if(_0x1883f2['share']===_0x5967d6[_0x303d61(0x3a2)])_0x586e99=_0x303d61(0x1db);const _0x5d1866=_0x56658c(_0x1883f2);return'<tr\x20class=\x22'+_0x586e99+'\x22>'+renderShareCell(_0x1883f2[_0x303d61(0x2cd)],currentMenu)+_0x303d61(0x1c5)+fmt(_0x5d1866)+_0x303d61(0x335)+(_0x5d1866/_0x277fb7)[_0x303d61(0x44b)](0x1)+'억</span></td></tr>';})['join'](''):_0x2bc61f(0x528);document[_0x2bc61f(0x230)](_0x2bc61f(0x1a1))[_0x2bc61f(0x37e)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20'+makeRaidPrecisionHero(currentMenu,_0x3a6e01,_0x8e390f)+'\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-layout-split\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-control\x20compact-precision-control\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-inline-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-control-label\x22>난이도\x20선택</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-diff-inline\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x365406['map'](_0x62c57e=>{const _0x459136=_0x2bc61f,_0x508f06=_0x8e390f===_0x62c57e[_0x459136(0x331)];return _0x459136(0x316)+(_0x508f06?_0x62c57e[_0x459136(0x1c6)]+_0x459136(0x1d5):'')+_0x459136(0x2d7)+_0x62c57e[_0x459136(0x331)]+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22precision-diff-chip-check\x22>'+(_0x508f06?'✓':'')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22precision-diff-chip-main\x22>'+_0x62c57e[_0x459136(0x4fe)]+_0x459136(0x32e)+_0x62c57e[_0x459136(0x540)]+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';})[_0x2bc61f(0x378)]('')+_0x2bc61f(0x254)+(_0x39095a===_0x2bc61f(0x4a4)?'active':'')+'\x22\x20data-gate=\x22gate1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-chip-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-chip-line\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22precision-gate-chip-gate\x22>1관</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22precision-gate-chip-boss\x22>'+_0x9b2674[_0x2bc61f(0x4a4)]+_0x2bc61f(0x303)+makeBadge(raidMeta[currentMenu][_0x8e390f+_0x2bc61f(0x1b9)][_0x2bc61f(0x4e6)][_0x2bc61f(0x31f)],raidMeta[currentMenu][_0x8e390f+_0x2bc61f(0x1b9)][_0x2bc61f(0x4e6)][_0x2bc61f(0x1c6)])+_0x2bc61f(0x52f)+makeBadge(raidMeta[currentMenu][_0x8e390f+'_gate1']['attr']['text'],raidMeta[currentMenu][_0x8e390f+_0x2bc61f(0x1b9)][_0x2bc61f(0x286)][_0x2bc61f(0x1c6)])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-gate-chip\x20'+(_0x39095a===_0x2bc61f(0x3b0)?_0x2bc61f(0x276):'')+_0x2bc61f(0x2cb)+_0x9b2674[_0x2bc61f(0x3b0)]+_0x2bc61f(0x303)+makeBadge(raidMeta[currentMenu][_0x8e390f+_0x2bc61f(0x27e)]['type'][_0x2bc61f(0x31f)],raidMeta[currentMenu][_0x8e390f+_0x2bc61f(0x27e)][_0x2bc61f(0x4e6)]['cls'])+_0x2bc61f(0x52f)+makeBadge(raidMeta[currentMenu][_0x8e390f+_0x2bc61f(0x27e)][_0x2bc61f(0x286)]['text'],raidMeta[currentMenu][_0x8e390f+_0x2bc61f(0x27e)][_0x2bc61f(0x286)][_0x2bc61f(0x1c6)])+_0x2bc61f(0x3f2)+makeMobilePrecisionTools(currentMenu,_0x8e390f+'_'+_0x3a6e01[_0x2bc61f(0x39f)])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-reward-standalone\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+makeRewardWidget(currentMenu,_0x8e390f+'_'+_0x3a6e01[_0x2bc61f(0x39f)])+_0x2bc61f(0x326)+makePrecisionSummary(_0x4da78e,_0x4ee0a2,_0x3c4ef3,_0x56658c,_0x277fb7,currentMenu)+'\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-panel\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-head\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22precision-table-title\x22>'+_0x5c3dbf+'\x20'+_0x3a6e01[_0x2bc61f(0x2e6)][_0x2bc61f(0x354)](/\s*\(.+\)/,'')+'\x20'+_0x3a6e01[_0x2bc61f(0x1c8)]+_0x2bc61f(0x289)+String(Math['floor'](_0x277fb7/0x3c))[_0x2bc61f(0x2a3)](0x2,'0')+'분\x20'+String(_0x277fb7%0x3c)[_0x2bc61f(0x2a3)](0x2,'0')+'초</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22table-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20id=\x22dataTable\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>'+_0x545588+_0x2bc61f(0x319),document[_0x2bc61f(0x227)](_0x2bc61f(0x1c9))[_0x2bc61f(0x2be)](_0x4fe7f0=>{const _0x52977d=_0x2bc61f;_0x4fe7f0['addEventListener'](_0x52977d(0x1a0),()=>{const _0x142f3=_0x52977d,_0x34ff72=currentCombo[_0x142f3(0x37a)]('_')[0x1];currentCombo=_0x4fe7f0[_0x142f3(0x2c0)][_0x142f3(0x2fe)]+'_'+_0x34ff72,renderTable();});}),document['querySelectorAll'](_0x2bc61f(0x21c))['forEach'](_0x4bbf61=>{const _0x58f7bf=_0x2bc61f;_0x4bbf61[_0x58f7bf(0x3ea)](_0x58f7bf(0x1a0),()=>{const _0x5d1515=_0x58f7bf,_0x470083=currentCombo[_0x5d1515(0x37a)]('_')[0x0];currentCombo=_0x470083+'_'+_0x4bbf61[_0x5d1515(0x2c0)][_0x5d1515(0x3dc)],currentMenu===_0x5d1515(0x4bd)&&setBaseTimeByMenu(currentMenu,_0x4bbf61[_0x5d1515(0x2c0)]['gate']),renderTable();});}),bindRewardMoreToggle(currentMenu);const _0x55a19c=document[_0x2bc61f(0x230)](_0x2bc61f(0x400)+currentMenu),_0x57459f=document[_0x2bc61f(0x230)]('mobileRewardToggle_'+currentMenu),_0x5785f5=document[_0x2bc61f(0x230)](_0x2bc61f(0x51e)+currentMenu);_0x55a19c&&_0x55a19c[_0x2bc61f(0x3ea)](_0x2bc61f(0x1a0),openMobileTimeModal);_0x57459f&&_0x5785f5&&_0x57459f[_0x2bc61f(0x3ea)]('click',()=>{const _0x306f70=_0x2bc61f,_0x1fefff=_0x5785f5[_0x306f70(0x4de)][_0x306f70(0x28f)](_0x306f70(0x215));_0x57459f['textContent']=_0x1fefff?_0x306f70(0x406):_0x306f70(0x3fd);});const _0x1a6cc6=document[_0x2bc61f(0x230)](_0x2bc61f(0x40b)+currentMenu),_0x28e186=document[_0x2bc61f(0x230)](_0x2bc61f(0x46b)+currentMenu);_0x1a6cc6&&_0x28e186&&_0x1a6cc6[_0x2bc61f(0x3ea)](_0x2bc61f(0x1a0),()=>{const _0x3a1057=_0x2bc61f,_0x8dbdcc=_0x28e186[_0x3a1057(0x4de)][_0x3a1057(0x28f)](_0x3a1057(0x3e5));_0x1a6cc6[_0x3a1057(0x274)]=_0x8dbdcc?_0x3a1057(0x2e8):_0x3a1057(0x1b2);});updatePartyDpsDisplay();return;}}async function loadCSV(){const _0x1514dd=_0x21de44,_0x447d97=document[_0x1514dd(0x230)](_0x1514dd(0x508)),_0x553f02='loa_dps_csv_cache_v1';try{const _0x1b428a=localStorage[_0x1514dd(0x232)](_0x553f02);if(_0x1b428a){const _0x3bfadf=_0x1b428a[_0x1514dd(0x37a)](/\r?\n/);clearAllData(),parseCathedral(_0x3bfadf),parseSerka(_0x3bfadf),parseBelgardin(_0x3bfadf),parseGato1730(_0x3bfadf),parseGato1750(_0x3bfadf),parseGato1770(_0x3bfadf),currentMenu!==_0x1514dd(0x2bb)&&currentMenu!==_0x1514dd(0x426)&&(renderTabs(),renderTable());}const _0x1dbc80=await fetch(CSV_URL),_0x5d6639=await _0x1dbc80['text'](),_0x3b4076=_0x5d6639[_0x1514dd(0x37a)](/\r?\n/);localStorage['setItem'](_0x553f02,_0x5d6639),clearAllData(),parseCathedral(_0x3b4076),parseSerka(_0x3b4076),parseBelgardin(_0x3b4076),parseGato1730(_0x3b4076),parseGato1750(_0x3b4076),parseGato1770(_0x3b4076),currentMenu!==_0x1514dd(0x2bb)&&currentMenu!==_0x1514dd(0x426)?(renderTabs(),renderTable(),_0x447d97&&(_0x447d97[_0x1514dd(0x274)]=_0x1514dd(0x2b3),_0x447d97[_0x1514dd(0x26a)]['display']=_0x1514dd(0x356),setTimeout(()=>{const _0x32ac61=_0x1514dd;_0x447d97[_0x32ac61(0x26a)][_0x32ac61(0x4af)]=_0x32ac61(0x213);},0x7d0))):_0x447d97&&(_0x447d97[_0x1514dd(0x26a)][_0x1514dd(0x4af)]='none');}catch(_0x3eda0f){console[_0x1514dd(0x2ef)](_0x3eda0f),_0x447d97&&(_0x447d97[_0x1514dd(0x26a)][_0x1514dd(0x4af)]=_0x1514dd(0x213));}}function acFmt(_0xafe36b){const _0x1d1f9a=_0x21de44;return Math[_0x1d1f9a(0x3fe)](_0xafe36b)[_0x1d1f9a(0x436)]('ko-KR');}function calcBreakeven(_0x33abc3,_0x1f3b6d){return 0.95*_0x33abc3*(_0x1f3b6d-0x1)/_0x1f3b6d;}function calcRecommend(_0x1933a6,_0x41aa31){return _0x1933a6/(0x1+_0x41aa31);}function acUpdate(){const _0x6c92d3=_0x21de44,_0x3e49c3=document[_0x6c92d3(0x230)]('ac-price');if(!_0x3e49c3)return;const _0x53430b=(_0x3e49c3[_0x6c92d3(0x42a)]||'')['replace'](/,/g,''),_0x3d2f09=parseInt(_0x53430b)||0x0;if(!_0x3d2f09){document['getElementById']('ac-be')[_0x6c92d3(0x274)]='-',document[_0x6c92d3(0x230)](_0x6c92d3(0x2b9))['textContent']='거래소\x20가격을\x20입력하세요',[0x5,0xa]['forEach'](_0x578135=>{const _0x1e94fc=_0x6c92d3;document[_0x1e94fc(0x230)](_0x1e94fc(0x2ae)+_0x578135)[_0x1e94fc(0x274)]='-',document['getElementById'](_0x1e94fc(0x55d)+_0x578135)[_0x1e94fc(0x274)]=_0x1e94fc(0x200),document[_0x1e94fc(0x230)](_0x1e94fc(0x4bc)+_0x578135)[_0x1e94fc(0x26a)][_0x1e94fc(0x4dc)]='0%';});return;}const _0x2b6219=calcBreakeven(_0x3d2f09,acMembers);document[_0x6c92d3(0x230)](_0x6c92d3(0x2ad))[_0x6c92d3(0x274)]=acFmt(_0x2b6219),document[_0x6c92d3(0x230)](_0x6c92d3(0x2b9))['textContent']='이\x20금액\x20이하로\x20입찰하면\x20이득';const _0x2d294c=calcRecommend(_0x2b6219,0.05),_0x40888e=calcRecommend(_0x2b6219,0.1);document[_0x6c92d3(0x230)](_0x6c92d3(0x27b))[_0x6c92d3(0x274)]=acFmt(_0x2d294c),document[_0x6c92d3(0x230)](_0x6c92d3(0x3d6))['textContent']=acFmt(_0x2d294c)+_0x6c92d3(0x460)+acFmt(_0x2b6219-_0x2d294c)+_0x6c92d3(0x501),document[_0x6c92d3(0x230)](_0x6c92d3(0x405))[_0x6c92d3(0x26a)][_0x6c92d3(0x4dc)]=_0x6c92d3(0x3bb),document[_0x6c92d3(0x230)](_0x6c92d3(0x3ca))[_0x6c92d3(0x274)]=acFmt(_0x40888e),document[_0x6c92d3(0x230)](_0x6c92d3(0x36a))[_0x6c92d3(0x274)]=acFmt(_0x40888e)+_0x6c92d3(0x460)+acFmt(_0x2b6219-_0x40888e)+_0x6c92d3(0x501),document[_0x6c92d3(0x230)](_0x6c92d3(0x2ed))[_0x6c92d3(0x26a)]['width']='100%';}const guideModal=document[_0x21de44(0x230)](_0x21de44(0x2a5)),openGuideBtn=document[_0x21de44(0x230)](_0x21de44(0x4aa)),closeGuideBtn=document[_0x21de44(0x230)](_0x21de44(0x1bd));function openGuideModal(){const _0x50d1b4=_0x21de44;if(!guideModal)return;guideModal[_0x50d1b4(0x4de)][_0x50d1b4(0x553)](_0x50d1b4(0x447)),document['body'][_0x50d1b4(0x26a)][_0x50d1b4(0x26f)]=_0x50d1b4(0x325);}function closeGuideModal(){const _0xb5238f=_0x21de44;if(!guideModal)return;guideModal[_0xb5238f(0x4de)][_0xb5238f(0x3aa)]('show'),document[_0xb5238f(0x294)][_0xb5238f(0x26a)]['overflow']='';}function getInfoHintText(){const _0x4ad130=_0x21de44;if(currentMenu===_0x4ad130(0x426))return _0x4ad130(0x537);if(currentMenu==='simple'){if(currentSimpleLevel===_0x4ad130(0x3b8)||currentSimpleLevel==='abr-ex')return _0x4ad130(0x50d);return _0x4ad130(0x1a6);}if(currentMenu===_0x4ad130(0x300)||currentMenu===_0x4ad130(0x462))return _0x4ad130(0x23f);if(currentMenu===_0x4ad130(0x4bd))return _0x4ad130(0x4d2);if(currentMenu===_0x4ad130(0x3a6))return'레벨과\x20보스를\x20선택하면\x20해당\x20가디언의\x20딜지분과\x20DPS를\x20확인할\x20수\x20있습니다.';return _0x4ad130(0x432);}document[_0x21de44(0x227)]('.menu-item')[_0x21de44(0x2be)](_0x172d58=>{const _0x2292c8=_0x21de44;_0x172d58[_0x2292c8(0x3ea)]('click',()=>{const _0x4c8110=_0x2292c8;if(_0x172d58[_0x4c8110(0x4de)][_0x4c8110(0x369)](_0x4c8110(0x3c0)))return;const _0x44845a=_0x172d58['dataset']['menu'];if(!_0x44845a)return;document[_0x4c8110(0x294)][_0x4c8110(0x4de)][_0x4c8110(0x3aa)](_0x4c8110(0x45c)),document['querySelectorAll']('.menu-item')[_0x4c8110(0x2be)](_0x194af7=>_0x194af7['classList'][_0x4c8110(0x3aa)](_0x4c8110(0x276))),_0x172d58[_0x4c8110(0x4de)][_0x4c8110(0x553)](_0x4c8110(0x276));if(_0x44845a===_0x4c8110(0x2bb))currentMenu='simple',currentSimpleLevel='1750';else{if(_0x44845a===_0x4c8110(0x426))currentMenu='raid-simple',currentSimpleRaid=_0x4c8110(0x462);else{if(_0x44845a===_0x4c8110(0x3b8))currentMenu=_0x4c8110(0x2bb),currentSimpleLevel=_0x4c8110(0x3b8);else{if(_0x44845a===_0x4c8110(0x46d))currentMenu='simple',currentSimpleLevel=_0x4c8110(0x46d);else{if(_0x44845a===_0x4c8110(0x300))currentMenu=_0x4c8110(0x300),currentCombo=_0x4c8110(0x201);else{if(_0x44845a===_0x4c8110(0x462))currentMenu=_0x4c8110(0x462),currentCombo=_0x4c8110(0x201);else{if(_0x44845a===_0x4c8110(0x4bd))currentMenu=_0x4c8110(0x4bd),currentCombo=_0x4c8110(0x201);else{if(_0x44845a==='guardian')currentMenu=_0x4c8110(0x3a6),currentGuardianTier='1750',currentGatoBoss=_0x4c8110(0x23c),currentGato1750Boss=_0x4c8110(0x23c),currentGato1770Boss='엘버하스틱';else _0x44845a==='arc-grid'&&(currentMenu='arc-grid',document[_0x4c8110(0x294)][_0x4c8110(0x4de)][_0x4c8110(0x553)]('arc-grid-mode'));}}}}}}}setBaseTimeByMenu(currentMenu),renderTabs(),renderTable(),updateCanonicalAndUrl(currentMenu),_0x44845a===_0x4c8110(0x30b)&&window[_0x4c8110(0x264)]({'top':0x0,'behavior':'auto'}),isMobileViewport()&&_0x172d58[_0x4c8110(0x4de)]['contains']('mobile-launch-btn')&&(enterMobileContentMode(),window['scrollTo']({'top':0x0,'behavior':'auto'}));});}),document[_0x21de44(0x227)](_0x21de44(0x425))[_0x21de44(0x2be)](_0x2393e4=>{const _0x18ae43=_0x21de44;_0x2393e4[_0x18ae43(0x3ea)](_0x18ae43(0x1a0),()=>{const _0xc1d7d5=_0x18ae43;changeTimeValue(_0x2393e4[_0xc1d7d5(0x2c0)]['stepTarget'],parseInt(_0x2393e4[_0xc1d7d5(0x2c0)][_0xc1d7d5(0x4b1)],0xa));});}),document[_0x21de44(0x230)](_0x21de44(0x2b5))[_0x21de44(0x3ea)](_0x21de44(0x2dd),()=>{const _0x1a1e1b=_0x21de44;if(currentMenu!==_0x1a1e1b(0x2bb))renderTable();}),document[_0x21de44(0x230)](_0x21de44(0x35c))[_0x21de44(0x3ea)](_0x21de44(0x2dd),()=>{const _0x46f46f=_0x21de44;if(currentMenu!==_0x46f46f(0x2bb))renderTable();});openGuideBtn&&openGuideBtn['addEventListener'](_0x21de44(0x1a0),()=>{openGuideModal();});closeGuideBtn&&closeGuideBtn[_0x21de44(0x3ea)]('click',closeGuideModal);guideModal&&guideModal[_0x21de44(0x3ea)]('click',_0x44c226=>{const _0x535c97=_0x21de44;if(_0x44c226[_0x535c97(0x236)]===guideModal)closeGuideModal();});document[_0x21de44(0x3ea)](_0x21de44(0x448),_0xa9f389=>{const _0x51bc5a=_0x21de44;_0xa9f389[_0x51bc5a(0x4dd)]===_0x51bc5a(0x284)&&guideModal&&guideModal[_0x51bc5a(0x4de)][_0x51bc5a(0x369)](_0x51bc5a(0x447))&&closeGuideModal();});const mobileGuideBtn=document[_0x21de44(0x230)]('mobileGuideBtn'),mobileBackBtn=document['getElementById']('mobileBackBtn');function isMobileViewport(){const _0x1d6ecd=_0x21de44;return window[_0x1d6ecd(0x3f3)]<=0x300;}function enterMobileHomeMode(){const _0x4f6650=_0x21de44;if(!isMobileViewport())return;document[_0x4f6650(0x294)][_0x4f6650(0x4de)][_0x4f6650(0x553)](_0x4f6650(0x4a6)),document['body']['classList'][_0x4f6650(0x3aa)](_0x4f6650(0x3ec));}function enterMobileContentMode(){const _0x4a0999=_0x21de44;if(!isMobileViewport())return;document[_0x4a0999(0x294)][_0x4a0999(0x4de)][_0x4a0999(0x553)](_0x4a0999(0x3ec)),document['body'][_0x4a0999(0x4de)][_0x4a0999(0x3aa)](_0x4a0999(0x4a6));}function syncMobileShellMode(){const _0x1e5c82=_0x21de44;isMobileViewport()?!document[_0x1e5c82(0x294)]['classList'][_0x1e5c82(0x369)](_0x1e5c82(0x4a6))&&!document[_0x1e5c82(0x294)][_0x1e5c82(0x4de)][_0x1e5c82(0x369)](_0x1e5c82(0x3ec))&&document[_0x1e5c82(0x294)][_0x1e5c82(0x4de)]['add'](_0x1e5c82(0x4a6)):document[_0x1e5c82(0x294)]['classList'][_0x1e5c82(0x3aa)](_0x1e5c82(0x4a6),_0x1e5c82(0x3ec));}mobileGuideBtn&&mobileGuideBtn[_0x21de44(0x3ea)](_0x21de44(0x1a0),openGuideModal);mobileBackBtn&&mobileBackBtn[_0x21de44(0x3ea)](_0x21de44(0x1a0),()=>{const _0x379a65=_0x21de44;enterMobileHomeMode(),window[_0x379a65(0x264)]({'top':0x0,'behavior':_0x379a65(0x4cd)});});window['addEventListener'](_0x21de44(0x44a),syncMobileShellMode),syncMobileShellMode();const mobileTimeModal=document[_0x21de44(0x230)]('mobileTimeModal'),closeMobileTimeModalBtn=document[_0x21de44(0x230)](_0x21de44(0x251)),applyMobileTimeBtn=document[_0x21de44(0x230)](_0x21de44(0x451)),mobileTimeMinutes=document[_0x21de44(0x230)](_0x21de44(0x418)),mobileTimeSeconds=document[_0x21de44(0x230)](_0x21de44(0x214)),mobileTimePreview=document[_0x21de44(0x230)](_0x21de44(0x4d6));function updateMobileTimePreview(){const _0xa628b6=_0x21de44;let _0x2d47dd=parseInt(mobileTimeMinutes['value']||0x0,0xa),_0x12491a=parseInt(mobileTimeSeconds[_0xa628b6(0x42a)]||0x0,0xa);if(isNaN(_0x2d47dd)||_0x2d47dd<0x0)_0x2d47dd=0x0;if(isNaN(_0x12491a)||_0x12491a<0x0)_0x12491a=0x0;if(_0x12491a>0x3b)_0x12491a=0x3b;mobileTimeMinutes[_0xa628b6(0x42a)]=_0x2d47dd,mobileTimeSeconds['value']=_0x12491a,mobileTimePreview[_0xa628b6(0x274)]=String(_0x2d47dd)[_0xa628b6(0x2a3)](0x2,'0')+':'+String(_0x12491a)[_0xa628b6(0x2a3)](0x2,'0');}function openMobileTimeModal(){const _0x1dad9a=_0x21de44;if(!mobileTimeModal)return;const _0xb93d97=document[_0x1dad9a(0x230)](_0x1dad9a(0x2b5)),_0xc34012=document[_0x1dad9a(0x230)](_0x1dad9a(0x35c));mobileTimeMinutes[_0x1dad9a(0x42a)]=_0xb93d97?_0xb93d97[_0x1dad9a(0x42a)]||0x0:0x0,mobileTimeSeconds['value']=_0xc34012?_0xc34012[_0x1dad9a(0x42a)]||0x0:0x0,updateMobileTimePreview(),mobileTimeModal[_0x1dad9a(0x4de)][_0x1dad9a(0x553)](_0x1dad9a(0x447)),document[_0x1dad9a(0x294)]['style'][_0x1dad9a(0x26f)]=_0x1dad9a(0x325);}function closeMobileTimeModal(){const _0x474224=_0x21de44;if(!mobileTimeModal)return;mobileTimeModal[_0x474224(0x4de)][_0x474224(0x3aa)](_0x474224(0x447)),document['body'][_0x474224(0x26a)]['overflow']='';}mobileTimeMinutes&&mobileTimeMinutes[_0x21de44(0x3ea)](_0x21de44(0x2dd),updateMobileTimePreview);mobileTimeSeconds&&mobileTimeSeconds[_0x21de44(0x3ea)](_0x21de44(0x2dd),updateMobileTimePreview);closeMobileTimeModalBtn&&closeMobileTimeModalBtn[_0x21de44(0x3ea)]('click',closeMobileTimeModal);applyMobileTimeBtn&&applyMobileTimeBtn['addEventListener']('click',()=>{const _0x4c334a=_0x21de44,_0x2250e6=document['getElementById'](_0x4c334a(0x2b5)),_0x432a50=document['getElementById'](_0x4c334a(0x35c));if(_0x2250e6)_0x2250e6[_0x4c334a(0x42a)]=mobileTimeMinutes[_0x4c334a(0x42a)];if(_0x432a50)_0x432a50[_0x4c334a(0x42a)]=mobileTimeSeconds[_0x4c334a(0x42a)];closeMobileTimeModal(),renderTable();});mobileTimeModal&&mobileTimeModal[_0x21de44(0x3ea)](_0x21de44(0x1a0),_0x542e1d=>{const _0x2a1bbe=_0x21de44;if(_0x542e1d[_0x2a1bbe(0x236)]===mobileTimeModal)closeMobileTimeModal();});document['querySelectorAll']('.ac-toggle-btn')['forEach'](_0x26e59a=>{_0x26e59a['addEventListener']('click',()=>{const _0x15d865=_0x36f0;document[_0x15d865(0x227)](_0x15d865(0x533))[_0x15d865(0x2be)](_0x5479fa=>_0x5479fa[_0x15d865(0x4de)][_0x15d865(0x3aa)](_0x15d865(0x276))),_0x26e59a[_0x15d865(0x4de)]['add']('active'),acMembers=parseInt(_0x26e59a[_0x15d865(0x2c0)]['m']),acUpdate();});});const acPriceInput=document[_0x21de44(0x230)]('ac-price');acPriceInput&&acPriceInput['addEventListener'](_0x21de44(0x2dd),_0x5e51df=>{const _0x323096=_0x21de44;let _0x4185d9=_0x5e51df[_0x323096(0x236)][_0x323096(0x42a)]['replace'](/,/g,'')[_0x323096(0x354)](/[^0-9]/g,'');_0x5e51df[_0x323096(0x236)][_0x323096(0x42a)]=_0x4185d9?Number(_0x4185d9)['toLocaleString']('ko-KR'):'',acUpdate();});const patchModal=document[_0x21de44(0x230)](_0x21de44(0x2b8)),closePatchModalBtn=document[_0x21de44(0x230)](_0x21de44(0x19b)),patchModalDate=document[_0x21de44(0x230)](_0x21de44(0x50b)),patchModalTitle=document[_0x21de44(0x230)](_0x21de44(0x3ac)),patchModalDesc=document[_0x21de44(0x230)](_0x21de44(0x50c)),patchModalBody=document[_0x21de44(0x230)](_0x21de44(0x387));function openPatchModal(_0x582601){const _0x2df4a6=_0x21de44;if(!patchModal)return;patchModalDate['textContent']=_0x582601['date']||'',patchModalTitle[_0x2df4a6(0x274)]=_0x582601[_0x2df4a6(0x2e6)]||'',patchModalDesc[_0x2df4a6(0x274)]=_0x582601[_0x2df4a6(0x3a7)]||'',patchModalBody['innerHTML']=_0x582601[_0x2df4a6(0x294)]||'',patchModal[_0x2df4a6(0x4de)][_0x2df4a6(0x553)](_0x2df4a6(0x447)),document[_0x2df4a6(0x294)][_0x2df4a6(0x26a)][_0x2df4a6(0x26f)]=_0x2df4a6(0x325);}function closePatchModal(){const _0x39ff27=_0x21de44;if(!patchModal)return;patchModal[_0x39ff27(0x4de)][_0x39ff27(0x3aa)](_0x39ff27(0x447)),document[_0x39ff27(0x294)][_0x39ff27(0x26a)][_0x39ff27(0x26f)]='';}document[_0x21de44(0x227)](_0x21de44(0x4cb))[_0x21de44(0x2be)](_0xc5a8dc=>{const _0x2d6aa4=_0x21de44;_0xc5a8dc['addEventListener'](_0x2d6aa4(0x1a0),()=>{const _0x207cfb=_0x2d6aa4;openPatchModal({'date':_0xc5a8dc['dataset'][_0x207cfb(0x317)],'title':_0xc5a8dc[_0x207cfb(0x2c0)][_0x207cfb(0x3e4)],'desc':_0xc5a8dc[_0x207cfb(0x2c0)][_0x207cfb(0x391)],'body':_0xc5a8dc[_0x207cfb(0x2c0)][_0x207cfb(0x28c)]});});});closePatchModalBtn&&closePatchModalBtn['addEventListener']('click',closePatchModal);patchModal&&patchModal[_0x21de44(0x3ea)](_0x21de44(0x1a0),_0x114e86=>{const _0xc767b8=_0x21de44;if(_0x114e86[_0xc767b8(0x236)]===patchModal)closePatchModal();});document[_0x21de44(0x3ea)](_0x21de44(0x448),_0x58f0e5=>{const _0x1c9d3b=_0x21de44;_0x58f0e5[_0x1c9d3b(0x4dd)]==='Escape'&&patchModal&&patchModal[_0x1c9d3b(0x4de)][_0x1c9d3b(0x369)](_0x1c9d3b(0x447))&&closePatchModal();}),setBaseTimeByMenu(_0x21de44(0x2bb)),applyMenuFromQuery(),updateCanonicalAndUrl(currentMenu);(currentMenu===_0x21de44(0x2bb)||currentMenu===_0x21de44(0x426))&&(renderTabs(),renderTable());loadCSV(),acUpdate();
+/* =============================================
+   전역 변수 & 상수
+   ============================================= */
+const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsijdMziekQaZ-wBTWrobncY/export?format=csv&gid=0";
+
+let currentMenu = "simple";
+let currentCombo = "hard_gate1";
+let currentGatoBoss = "엘버하스틱";
+let currentGato1750Boss = "엘버하스틱";
+let currentGato1770Boss = "엘버하스틱";
+let currentSimpleLevel = "1750";
+let currentGuardianTier = "1750";
+let acMembers = 4;
+let currentSimpleRaid = "cathedral";
+
+
+
+
+const currentPathname = window.location.pathname;
+const isStandaloneLevelPage =
+    currentPathname.includes("/dps/level/") ||
+    currentPathname.endsWith("/dps/level.html");
+
+const isStandaloneRaidPage =
+    currentPathname.includes("/dps/raid/") ||
+    currentPathname.endsWith("/dps/raid.html");
+
+const isStandaloneSerkaPage =
+    currentPathname.endsWith("/dps/serka.html");
+
+const isStandaloneCathedralPage =
+    currentPathname.endsWith("/dps/cathedral.html");
+
+const isStandaloneGuardianPage =
+    currentPathname.endsWith("/dps/guardian.html");
+
+const isStandaloneBelgardinPage =
+    currentPathname.endsWith("/dps/belgardin.html");
+
+
+
+/* =============================================
+   URL / canonical 갱신
+   ============================================= */
+
+function updateCanonicalAndUrl(menu) {
+    if (
+        isStandaloneLevelPage ||
+        isStandaloneRaidPage ||
+        isStandaloneSerkaPage ||
+        isStandaloneCathedralPage ||
+        isStandaloneGuardianPage ||
+        isStandaloneBelgardinPage
+    ) return;
+
+    const canonicalTag = document.querySelector('link[rel="canonical"]');
+    const baseUrl = "https://loaviewer.github.io/";
+    const newUrl = (menu === "simple" || !menu)
+        ? baseUrl
+        : `${baseUrl}?menu=${menu}`;
+
+    if (canonicalTag) {
+        canonicalTag.setAttribute("href", newUrl);
+    }
+
+    const currentPath = window.location.pathname + window.location.search;
+    const targetPath = (menu === "simple" || !menu) ? "/" : `/?menu=${menu}`;
+
+    if (currentPath !== targetPath) {
+        history.pushState({}, "", targetPath);
+    }
+}
+
+
+/* =============================================
+   파싱 데이터 저장소
+   ============================================= */
+const parsedData = {
+    serka: { normal: [], hard: [], nightmare: [] },
+    cathedral: { normal: [], hard: [], nightmare: [] },
+    belgardin: { normal: [], hard: [], nightmare: [] },
+    gato1730: {},
+    gato1750: {},
+    gato1770: {}
+};
+
+/* =============================================
+   레이드 메타 정보
+   ============================================= */
+const raidMeta = {
+    serka: {
+        normal_gate1: {
+            diffKey: "normal", gateKey: "gate1",
+            title: "노말 (1710)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "속성 없음", cls: "attr-none" }
+        },
+        normal_gate2: {
+            diffKey: "normal", gateKey: "gate2",
+            title: "노말 (1710)", gateName: "2관",
+            type: { text: "고대", cls: "type-ancient" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        },
+        hard_gate1: {
+            diffKey: "hard", gateKey: "gate1",
+            title: "하드 (1730)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "속성 없음", cls: "attr-none" }
+        },
+        hard_gate2: {
+            diffKey: "hard", gateKey: "gate2",
+            title: "하드 (1730)", gateName: "2관",
+            type: { text: "고대", cls: "type-ancient" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        },
+        nightmare_gate1: {
+            diffKey: "nightmare", gateKey: "gate1",
+            title: "나메 (1740)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "속성 없음", cls: "attr-none" }
+        },
+        nightmare_gate2: {
+            diffKey: "nightmare", gateKey: "gate2",
+            title: "나메 (1740)", gateName: "2관",
+            type: { text: "고대", cls: "type-ancient" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        }
+    },
+    cathedral: {
+        normal_gate1: {
+            diffKey: "normal", gateKey: "gate1",
+            title: "1단계 (1700)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "암속성 취약", cls: "attr-dark" }
+        },
+        normal_gate2: {
+            diffKey: "normal", gateKey: "gate2",
+            title: "1단계 (1700)", gateName: "2관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "암속성 취약", cls: "attr-dark" }
+        },
+        hard_gate1: {
+            diffKey: "hard", gateKey: "gate1",
+            title: "2단계 (1720)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "암속성 취약", cls: "attr-dark" }
+        },
+        hard_gate2: {
+            diffKey: "hard", gateKey: "gate2",
+            title: "2단계 (1720)", gateName: "2관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "암속성 취약", cls: "attr-dark" }
+        },
+        nightmare_gate1: {
+            diffKey: "nightmare", gateKey: "gate1",
+            title: "3단계 (1750)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "암속성 취약", cls: "attr-dark" }
+        },
+        nightmare_gate2: {
+            diffKey: "nightmare", gateKey: "gate2",
+            title: "3단계 (1750)", gateName: "2관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "암속성 취약", cls: "attr-dark" }
+        }
+    },
+    belgardin: {
+        normal_gate1: {
+            diffKey: "normal", gateKey: "gate1",
+            title: "노말 (1750)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        },
+        normal_gate2: {
+            diffKey: "normal", gateKey: "gate2",
+            title: "노말 (1750)", gateName: "2관",
+            type: { text: "고대", cls: "type-ancient" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        },
+        hard_gate1: {
+            diffKey: "hard", gateKey: "gate1",
+            title: "하드 (1770)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        },
+        hard_gate2: {
+            diffKey: "hard", gateKey: "gate2",
+            title: "하드 (1770)", gateName: "2관",
+            type: { text: "고대", cls: "type-ancient" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        },
+        nightmare_gate1: {
+            diffKey: "nightmare", gateKey: "gate1",
+            title: "나메 (1780)", gateName: "1관",
+            type: { text: "인간", cls: "type-human" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        },
+        nightmare_gate2: {
+            diffKey: "nightmare", gateKey: "gate2",
+            title: "나메 (1780)", gateName: "2관",
+            type: { text: "고대", cls: "type-ancient" },
+            attr: { text: "성속성 취약", cls: "attr-holy" }
+        }
+    }
+};
+
+/* =============================================
+   간편보기 기본 데이터
+   ============================================= */
+const simpleData = {
+    1710: {
+        sectionTitle: "1710 레이드",
+        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
+        cards: [
+            {
+                theme: "b-green", title: "종막 노말", node: "1710",
+                rows: [
+                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1190 - 1590" },
+                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1050 - 1400" }
+                ],
+                gold: "32,000", bindGold: "16,000", total: "48,000"
+            },
+            {
+                theme: "b-green", title: "세르카 노말", node: "1710",
+                rows: [
+                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "1100 - 1480" },
+                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "1430 - 1900" }
+                ],
+                gold: "32,000", bindGold: "16,000", total: "48,000"
+            },
+            {
+                theme: "b-green", title: "4막 노말", node: "1700",
+                rows: [
+                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "740 - 990" },
+                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "950 - 1270" }
+                ],
+                gold: "27,000", bindGold: "13,500", total: "40,500"
+            },
+            {
+                theme: "b-gray", title: "성당 1단계", node: "1700",
+                rows: [
+                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "994 - 1326" },
+                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "937 - 1250" }
+                ],
+                gold: "", bindGold: "30,000", total: ""
+            }
+        ]
+    },
+
+    1720: {
+        sectionTitle: "1720 레이드",
+        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
+        cards: [
+            {
+                theme: "b-gold", title: "4막 하드", node: "1720",
+                rows: [
+                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
+                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
+                ],
+                gold: "38,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gold", title: "성당 2단계", node: "1720",
+                rows: [
+                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2161 - 2882" },
+                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2089 - 2786" }
+                ],
+                gold: "", bindGold: "40,000", total: ""
+            },
+            {
+                theme: "b-green", title: "종막 노말", node: "1710",
+                rows: [
+                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1190 - 1590" },
+                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1050 - 1400" }
+                ],
+                gold: "32,000", bindGold: "16,000", total: "48,000"
+            },
+            {
+                theme: "b-gray", title: "세르카 노말", node: "1710",
+                rows: [
+                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "1100 - 1480" },
+                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "1430 - 1900" }
+                ],
+                gold: "32,000", bindGold: "16,000", total: "48,000"
+            }
+        ]
+    },
+
+    1730: {
+        sectionTitle: "1730 레이드",
+        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
+        cards: [
+            {
+                theme: "b-gold", title: "세르카 하드", node: "1730",
+                rows: [
+                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "2300 - 3070" },
+                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "2980 - 3970" }
+                ],
+                gold: "44,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gold", title: "종막 하드", node: "1730",
+                rows: [
+                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
+                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
+                ],
+                gold: "48,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gold", title: "4막 하드", node: "1720",
+                rows: [
+                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
+                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
+                ],
+                gold: "38,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gray", title: "성당 2단계", node: "1720",
+                rows: [
+                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2161 - 2882" },
+                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2089 - 2786" }
+                ],
+                gold: "", bindGold: "40,000", total: ""
+            }
+        ]
+    },
+
+    1740: {
+        sectionTitle: "1740 레이드",
+        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
+        cards: [
+            {
+                theme: "b-purple", title: "세르카 나메", node: "1740",
+                rows: [
+                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "3580 - 4770" },
+                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4620 - 6160" }
+                ],
+                gold: "54,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gold", title: "종막 하드", node: "1730",
+                rows: [
+                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
+                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
+                ],
+                gold: "48,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gold", title: "4막 하드", node: "1720",
+                rows: [
+                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
+                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
+                ],
+                gold: "38,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gray", title: "성당 2단계", node: "1720",
+                rows: [
+                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2161 - 2882" },
+                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2089 - 2786" }
+                ],
+                gold: "", bindGold: "40,000", total: ""
+            }
+        ]
+    },
+
+    1750: {
+        sectionTitle: "1750 레이드",
+        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
+        cards: [
+            {
+                theme: "b-purple", title: "세르카 나메", node: "1740",
+                rows: [
+                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "3580 - 4770" },
+                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4620 - 6160" }
+                ],
+                gold: "54,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gold", title: "종막 하드", node: "1730",
+                rows: [
+                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
+                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
+                ],
+                gold: "48,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-orange", title: "성당 3단계", node: "1750",
+                rows: [
+                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3650 - 4866" },
+                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3594 - 4792" }
+                ],
+                gold: "", bindGold: "50,000", total: ""
+            },
+            {
+                theme: "b-green", title: "벨가르딘 노말", node: "1750",
+                rows: [
+                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "2601 - 2879 - 3469" },
+                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "2917 - 3228 - 3889" }
+                ],
+                gold: "50,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-gray", title: "4막 하드", node: "1720",
+                rows: [
+                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
+                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
+                ],
+                gold: "38,000", bindGold: "", total: ""
+            }
+        ]
+    },
+
+    1770: {
+        sectionTitle: "1770 레이드",
+        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다. (벨가르딘 하드 딜컷은 확인 후 업데이트 예정)</i>",
+        cards: [
+            {
+                theme: "b-orange", title: "벨가르딘 하드", node: "1770",
+                rows: [
+                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4142 - 4584 - 5523" },
+                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4689 - 5189 - 6252" }
+                ],
+                gold: "62,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-purple", title: "세르카 나메", node: "1740",
+                rows: [
+                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "3580 - 4770" },
+                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4620 - 6160" }
+                ],
+                gold: "54,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-orange", title: "성당 3단계", node: "1750",
+                rows: [
+                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3650 - 4866" },
+                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3594 - 4792" }
+                ],
+                gold: "", bindGold: "50,000", total: ""
+            }
+        ]
+    },
+
+    1780: {
+        sectionTitle: "1780 레이드",
+        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다. (벨가르딘 나메 딜컷은 확인 후 업데이트 예정)</i>",
+        cards: [
+            {
+                theme: "b-purple", title: "벨가르딘 나메", node: "1780",
+                rows: [
+                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "7412 - 8203 - 9883" },
+                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "8391 - 9286 - 11188" }
+                ],
+                gold: "75,000", bindGold: "", total: ""
+            },
+            {
+                theme: "b-orange", title: "벨가르딘 하드", node: "1770",
+                rows: [
+                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4142 - 4584 - 5523" },
+                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4689 - 5189 - 6252" }
+                ],
+                gold: "25,000", bindGold: "", total: ""
+            }
+        ]
+    }
+};
+
+
+
+
+/* =============================================
+   레이드별 간편보기 메타
+   ============================================= */
+const simpleRaidMeta = {
+    cathedral: {
+        label: "지평의 성당",
+        sub: "4인 레이드",
+        icon: "⛪",
+        summary: "어비스 레이드",
+        titles: ["성당 3단계", "성당 2단계", "성당 1단계"]
+    },
+    serka: {
+        label: "세르카",
+        sub: "4인 레이드",
+        icon: "🧹",
+        summary: "그림자 레이드",
+        titles: ["세르카 나메", "세르카 하드", "세르카 노말"]
+    },
+    belgardin: {
+        label: "벨가르딘",
+        sub: "8인 레이드",
+        icon: "🧛",
+        summary: "그림자 레이드",
+        titles: ["벨가르딘 나메", "벨가르딘 하드", "벨가르딘 노말"]
+    },
+    finale: {
+        label: "종막",
+        sub: "8인 레이드",
+        icon: "👑",
+        summary: "카제로스 레이드",
+        titles: ["종막 하드", "종막 노말"]
+    },
+    act4: {
+        label: "4막",
+        sub: "8인 레이드",
+        icon: "🛡️",
+        summary: "카제로스 레이드",
+        titles: ["4막 하드", "4막 노말"]
+    }
+};
+
+
+
+/* =============================================
+   EX 레이드 UI 데이터
+   ============================================= */
+const exRaidData = {
+    "egir-ex": {
+        sectionTitle: "에기르 EX",
+        intro: "<i>에기르 EX 레이드 26.04.22 ~ 26.05.20 패치전 까지</i>",
+        cards: [
+            {
+                tier: "normal",
+                level: "1720",
+                name: "에기르 EX 노말",
+                tags: [{ text: "1관 에기르" }, { text: "고대" }],
+                tank_dmg: "2,200",
+                tank_dps: "1.72억",
+                one_dmg: "2,550",
+                one_dps: "2.00억",
+                blood_dmg: "2,900",
+                blood_dps: "2.28억",
+                phases: [
+                    { label: "1페이즈 종료", sub: "165실드 / 누적 7분 10초", t_d: "1,804억", t_s: "4.19억", o_d: "2,091억", o_s: "4.86억", b_d: "2,379억", b_s: "5.53억" },
+                    { label: "2페이즈 종료", sub: "0줄 진입 / 누적 13분 40초", t_d: "2,200억", t_s: "2.68억", o_d: "2,550억", o_s: "3.11억", b_d: "2,900억", b_s: "3.54억" },
+                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 21분 20초", t_d: "2,200억", t_s: "1.72억", o_d: "2,550억", o_s: "2.00억", b_d: "2,900억", b_s: "2.28억", total: true }
+                ]
+            },
+            {
+                tier: "hard",
+                level: "1750",
+                name: "에기르 EX 하드",
+                tags: [{ text: "1관 에기르" }, { text: "고대" }],
+                tank_dmg: "4,400",
+                tank_dps: "3.50억",
+                one_dmg: "5,120",
+                one_dps: "4.07억",
+                blood_dmg: "5,850",
+                blood_dps: "4.65억",
+                phases: [
+                    { label: "1페이즈 종료", sub: "165실드 / 누적 7분 10초", t_d: "3,608억", t_s: "8.39억", o_d: "4,198억", o_s: "9.76억", b_d: "4,797억", b_s: "11.16억" },
+                    { label: "2페이즈 종료", sub: "0줄 진입 / 누적 13분 40초", t_d: "4,400억", t_s: "5.37억", o_d: "5,120억", o_s: "6.24억", b_d: "5,850억", b_s: "7.13억" },
+                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 20분 55초", t_d: "4,400억", t_s: "3.50억", o_d: "5,120억", o_s: "4.07억", b_d: "5,850억", b_s: "4.65억", total: true }
+                ]
+            },
+            {
+                tier: "nightmare",
+                level: "1770",
+                name: "에기르 EX 나이트메어",
+                tags: [{ text: "1관 에기르" }, { text: "고대" }],
+                tank_dmg: "7,900",
+                tank_dps: "6.27억",
+                one_dmg: "9,200",
+                one_dps: "7.30억",
+                blood_dmg: "10,500",
+                blood_dps: "8.33억",
+                phases: [
+                    { label: "1페이즈 종료", sub: "165실드 / 누적 7분 10초", t_d: "6,483억", t_s: "15.08억", o_d: "7,549억", o_s: "17.56억", b_d: "8,615억", b_s: "20.03억" },
+                    { label: "2페이즈 종료", sub: "0줄 진입 / 누적 13분 40초", t_d: "7,900억", t_s: "9.65억", o_d: "9,200억", o_s: "11.25억", b_d: "10,500억", b_s: "12.84억" },
+                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 21분 00초", t_d: "7,900억", t_s: "6.27억", o_d: "9,200억", o_s: "7.30억", b_d: "10,500억", b_s: "8.33억", total: true }
+                ]
+            }
+        ],
+        bossSection: {
+            headerColor: "#a78bfa",
+            estherBar: "#a78bfa",
+            colName1: "나이트메어",
+            colName2: "하드",
+            colName3: "노말",
+            col1: "#a78bfa",
+            col2: "#f7ca54",
+            col3: "#34d399",
+            bosses: [
+                {
+                    name: "나이트메어",
+                    color: "#a78bfa",
+                    totalHp: "6조 204억",
+                    parts: [
+                        { name: "체력", pct: 82.1, color: "#a78bfa", legend: "기본체력 (300줄)", hp: "4조 9,436억" },
+                        { name: "실드", pct: 6.0, color: "#d1d5db", legend: "165실드 (22줄)", hp: "3,604억" },
+                        { name: "0줄", pct: 11.9, color: "#f87171", legend: "0줄 발악 (44줄)", hp: "7,163억" }
+                    ]
+                },
+                {
+                    name: "하드",
+                    color: "#f7ca54",
+                    totalHp: "3조 3,576억",
+                    parts: [
+                        { name: "체력", pct: 81.9, color: "#f7ca54", legend: "기본체력 (300줄)", hp: "2조 7,551억" },
+                        { name: "실드", pct: 6.0, color: "#d1d5db", legend: "165실드 (22줄)", hp: "2,033억" },
+                        { name: "0줄", pct: 11.9, color: "#f87171", legend: "0줄 발악 (44줄)", hp: "3,992억" }
+                    ]
+                },
+                {
+                    name: "노말",
+                    color: "#34d399",
+                    totalHp: "1조 6,481억",
+                    parts: [
+                        { name: "체력", pct: 82.1, color: "#34d399", legend: "기본체력 (300줄)", hp: "1조 3,523억" },
+                        { name: "실드", pct: 6.1, color: "#d1d5db", legend: "165실드 (22줄)", hp: "998억" },
+                        { name: "0줄", pct: 11.9, color: "#f87171", legend: "0줄 발악 (44줄)", hp: "1,959억" }
+                    ]
+                }
+            ],
+            esther: [
+                ["에아달린 히든 3칸", "약 3,690억", "약 2,043억", "약 997.5억"],
+                ["아델 3칸", "약 930억", "약 514억", "약 251억"],
+                ["아델 1칸", "약 700억", "약 387억", "약 189억"],
+                ["에아달린 1칸", "약 1,350억", "약 747억", "약 365억"]
+            ]
+        }
+    },
+
+    "abr-ex": {
+        sectionTitle: "아브렐슈드 EX",
+        intro: "<i>아브렐슈드 EX 레이드 26.05.20 ~ 26.06.17 패치전 까지</i>",
+        cards: [
+            {
+                tier: "normal",
+                level: "1720",
+                name: "아브 EX 노말",
+                tags: [{ text: "1관 아브렐슈드" }, { text: "악마" }, { text: "뇌속성 취약", weak: true }],
+                tank_dmg: "1,502",
+                tank_dps: "1.13억",
+                one_dmg: "1,669",
+                one_dps: "1.26억",
+                blood_dmg: "2,003",
+                blood_dps: "1.51억",
+                phases: [
+                    { label: "1페이즈 종료", sub: "335줄 / 누적 2분 20초", t_d: "215억", t_s: "1.54억", o_d: "239억", o_s: "1.71억", b_d: "287억", b_s: "2.05억" },
+                    { label: "2페이즈 종료", sub: "145줄 / 누적 11분 00초", t_d: "760억", t_s: "1.15억", o_d: "844억", o_s: "1.28억", b_d: "1,013억", b_s: "1.53억" },
+                    { label: "3페이즈 종료", sub: "0줄 진입 / 누적 17분 55초", t_d: "1,162억", t_s: "1.08억", o_d: "1,291억", o_s: "1.20억", b_d: "1,549억", b_s: "1.44억" },
+                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 22분 05초", t_d: "1,502억", t_s: "1.13억", o_d: "1,669억", o_s: "1.26억", b_d: "2,003억", b_s: "1.51억", total: true }
+                ]
+            },
+            {
+                tier: "hard",
+                level: "1750",
+                name: "아브 EX 하드",
+                tags: [{ text: "1관 아브렐슈드" }, { text: "악마" }, { text: "뇌속성 취약", weak: true }],
+                tank_dmg: "4,065",
+                tank_dps: "3.07억",
+                one_dmg: "4,515",
+                one_dps: "3.41억",
+                blood_dmg: "5,420",
+                blood_dps: "4.09억",
+                phases: [
+                    { label: "1페이즈 종료", sub: "335줄 / 누적 2분 20초", t_d: "579억", t_s: "4.14억", o_d: "643억", o_s: "4.59억", b_d: "772억", b_s: "5.51억" },
+                    { label: "2페이즈 종료", sub: "145줄 / 누적 11분 00초", t_d: "2,052억", t_s: "3.11억", o_d: "2,280억", o_s: "3.45억", b_d: "2,737억", b_s: "4.15억" },
+                    { label: "3페이즈 종료", sub: "0줄 진입 / 누적 17분 55초", t_d: "3,139억", t_s: "2.92억", o_d: "3,488억", o_s: "3.24억", b_d: "4,185억", b_s: "3.89억" },
+                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 22분 05초", t_d: "4,065억", t_s: "3.07억", o_d: "4,515억", o_s: "3.41억", b_d: "5,420억", b_s: "4.09억", total: true }
+                ]
+            },
+            {
+                tier: "nightmare",
+                level: "1770",
+                name: "아브 EX 나이트메어",
+                tags: [{ text: "1관 아브렐슈드" }, { text: "악마" }, { text: "뇌속성 취약", weak: true }],
+                tank_dmg: "9,228",
+                tank_dps: "6.96억",
+                one_dmg: "10,249",
+                one_dps: "7.73억",
+                blood_dmg: "12,304",
+                blood_dps: "9.29억",
+                phases: [
+                    { label: "1페이즈 종료", sub: "335줄 / 누적 2분 20초", t_d: "1,320.2억", t_s: "9.43억", o_d: "1,466.2억", o_s: "10.47억", b_d: "1,760.2억", b_s: "12.57억" },
+                    { label: "2페이즈 종료", sub: "145줄 / 누적 11분 00초", t_d: "4,669.7억", t_s: "7.08억", o_d: "5,186.5억", o_s: "7.86억", b_d: "6,226.3억", b_s: "9.43억" },
+                    { label: "3페이즈 종료", sub: "0줄 진입 / 누적 17분 55초", t_d: "7,141.2억", t_s: "6.64억", o_d: "7,931.5억", o_s: "7.38억", b_d: "9,521.6억", b_s: "8.86억" },
+                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 22분 05초", t_d: "9,228.0억", t_s: "6.96억", o_d: "10,249.2억", o_s: "7.73억", b_d: "12,304.0억", b_s: "9.29억", total: true }
+                ]
+            }
+        ],
+        bossSection: {
+            headerColor: "#a78bfa",
+            estherBar: "#f7ca54",
+            colName1: "나이트메어",
+            colName2: "하드",
+            colName3: "노말",
+            col1: "#a78bfa",
+            col2: "#f7ca54",
+            col3: "#34d399",
+            bosses: [
+                {
+                    name: "나이트메어",
+                    color: "#a78bfa",
+                    totalHp: "7조 3,669억",
+                    parts: [
+                        { name: "체력", pct: 73.5, color: "#a78bfa", legend: "기본 체력 (420줄)", hp: "5조 4,168억" },
+                        { name: "0줄", pct: 26.5, color: "#f87171", legend: "0줄 발악 (152줄)", hp: "1조 9,500억" }
+                    ]
+                },
+                {
+                    name: "하드",
+                    color: "#f7ca54",
+                    totalHp: "3조 2,449억",
+                    parts: [
+                        { name: "체력", pct: 73.5, color: "#f7ca54", legend: "기본 체력 (420줄)", hp: "2조 3,859억" },
+                        { name: "0줄", pct: 26.5, color: "#f87171", legend: "0줄 발악 (152줄)", hp: "8,589억" }
+                    ]
+                },
+                {
+                    name: "노말",
+                    color: "#34d399",
+                    totalHp: "1조 1,966억",
+                    parts: [
+                        { name: "체력", pct: 73.5, color: "#34d399", legend: "기본 체력 (420줄)", hp: "8,799억" },
+                        { name: "0줄", pct: 26.5, color: "#f87171", legend: "0줄 발악 (152줄)", hp: "3,167억" }
+                    ]
+                }
+            ],
+            esther: [
+                ["아제나 3칸", "약 1,009억", "약 451억", "약 162억"],
+                ["아제나 1칸", "약 1,135억", "약 508억", "약 182억"],
+                ["히든 아제나", "약 4,539억", "약 1,946억", "약 729억"],
+                ["니나브 3칸", "약 743억", "약 320억", "약 119억"],
+                ["니나브 1칸", "약 1,185억", "약 530억", "약 190억"],
+                ["구스토 1칸", "약 995억", "약 445억", "약 159억"]
+            ]
+        }
+    }
+};
+
+
+/* =============================================
+   세르카 보상 데이터
+   ============================================= */
+const serkaRewardData = {
+    "normal_gate1": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"880", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,760", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"12", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"4", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"1,300", name:"클리어 메달"}
+        ],
+        gold: "13,000", shard: "6,200",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,500", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"3,000", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"47", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"4", name:"고통의 가시"}
+        ],
+        moreGold: "", moreShard: "12,680"
+    },
+    "normal_gate2": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"5", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,100", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"2,200", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"15", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"6", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"2,100", name:"클리어 메달"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"17", name:"3티어 순환 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"8", name:"운명의 돌"}
+        ],
+        gold: "19,000", shard: "7,900",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"5", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"2,250", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"4,500", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"75", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"6", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"12", name:"3티어 순환 돌파석"}
+        ],
+        moreGold: "", moreShard: "18,900"
+    },
+    "hard_gate1": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"385", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"770", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"7", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"1,300", name:"클리어 메달"}
+        ],
+        gold: "17,500", shard: "8,300",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"750", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,500", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"30", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"}
+        ],
+        moreGold: "", moreShard: "17,500"
+    },
+    "hard_gate2": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"475", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"950", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"10", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"2,100", name:"클리어 메달"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"5", name:"4티어 전이 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
+        ],
+        gold: "26,500", shard: "10,100",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"1,130", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"2,260", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"45", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"4", name:"4티어 전이 돌파석"}
+        ],
+        moreGold: "", moreShard: "26,820"
+    },
+    "nightmare_gate1": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"405", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"810", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"8", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"1,300", name:"클리어 메달"}
+        ],
+        gold: "21,000", shard: "9,100",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"860", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,720", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"36", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"}
+        ],
+        moreGold: "", moreShard: "19,000"
+    },
+    "nightmare_gate2": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/newvehicle/newvehicle_151.png", count:"1", name:"마녀의 빗자루"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"500", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,000", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"12", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"2,100", name:"클리어 메달"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"6", name:"4티어 전이 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
+        ],
+        gold: "33,000", shard: "11,000",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"1,430", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"2,860", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"60", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"4", name:"4티어 전이 돌파석"}
+        ],
+        moreGold: "", moreShard: "32,200"
+    }
+};
+
+
+/* =============================================
+   지평의 성당 보상 데이터
+   ============================================= */
+const cathedralRewardData = {
+    "normal_gate1": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"7", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"820", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,640", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"9", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"4", name:"은총의 파편"}
+        ],
+        gold: "13,500", shard: "5,400",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"7", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,400", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"2,800", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"44", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"4", name:"은총의 파편"}
+        ],
+        moreGold: "", moreShard: "11,880"
+    },
+    "normal_gate2": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"960", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,920", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"12", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"6", name:"은총의 파편"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"15", name:"3티어 순환 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"8", name:"운명의 돌"}
+        ],
+        gold: "16,500", shard: "6,800",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"2,400", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"4,800", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"78", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"6", name:"은총의 파편"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"10", name:"3티어 순환 돌파석"}
+        ],
+        moreGold: "", moreShard: "6,800"
+    },
+    "hard_gate1": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"1", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"980", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,960", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"11", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"12", name:"은총의 파편"}
+        ],
+        gold: "16,000", shard: "6,800",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"1", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,680", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"3,360", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"53", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"12", name:"은총의 파편"}
+        ],
+        moreGold: "", moreShard: "14,250"
+    },
+    "hard_gate2": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,150", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"2,300", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"16", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"18", name:"은총의 파편"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"17", name:"3티어 순환 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
+        ],
+        gold: "24,000", shard: "8,600",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"2,880", name:"운명의 파괴석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"5,760", name:"운명의 수호석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"94", name:"운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"18", name:"은총의 파편"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"13", name:"3티어 순환 돌파석"}
+        ],
+        moreGold: "", moreShard: "24,200"
+    },
+    "nightmare_gate1": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"405", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"810", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"8", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"24", name:"은총의 파편"}
+        ],
+        gold: "20,000", shard: "9,100",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"860", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,720", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"36", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"24", name:"은총의 파편"}
+        ],
+        moreGold: "", moreShard: "19,000"
+    },
+    "nightmare_gate2": {
+        clearItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"500", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,000", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"12", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"36", name:"은총의 파편"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"6", name:"4티어 전이 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
+        ],
+        gold: "30,000", shard: "11,000",
+        moreItems: [
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"1,430", name:"운명의 파괴석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"2,860", name:"운명의 수호석 결정"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"60", name:"위대한 운명의 돌파석"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"36", name:"은총의 파편"},
+            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"5", name:"4티어 전이 돌파석"}
+        ],
+        moreGold: "", moreShard: "32,200"
+    }
+};
+
+
+/* =============================================
+   벨가르딘 보상 데이터 (신규)
+   ============================================= */
+const BG_ICON = {
+    destroy: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png",   // 운명의 파괴석 결정
+    guard: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png",     // 운명의 수호석 결정
+    bracelet: "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png",     // 4티어 팔찌
+    stone: "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png",// 4티어 비상의 돌
+    breakGreat: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png",// 위대한 운명의 돌파석
+    transfer: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png",  // 4티어 전이 돌파석
+    fateStone: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png",  // 운명의 돌
+    gold: "https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png",
+    shard: "https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png",
+    shadowOfCommand: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_46.png", // 사령의 잔영 (노말 전용)
+    handOfDeath: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_55.png"      // 죽음의 손 (하드/나메 전용)
+};
+
+const belgardinRewardData = {
+    "normal_gate1": {
+        clearItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"3", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"405", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"810", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"8", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.shadowOfCommand, count:"12", name:"사령의 잔영"}
+        ],
+        gold: "20,000", shard: "9,100",
+        moreItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"3", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"860", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"1,720", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"36", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.shadowOfCommand, count:"12", name:"사령의 잔영"}
+        ],
+        moreGold: "", moreShard: "19,000"
+    },
+    "normal_gate2": {
+        clearItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"500", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"1,000", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"12", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.shadowOfCommand, count:"18", name:"사령의 잔영"},
+            {src:BG_ICON.transfer, count:"6", name:"4티어 전이 돌파석"},
+            {src:BG_ICON.fateStone, count:"10", name:"운명의 돌"}
+        ],
+        gold: "30,000", shard: "11,000",
+        moreItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"1,430", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"2,860", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"60", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.shadowOfCommand, count:"18", name:"사령의 잔영"},
+            {src:BG_ICON.transfer, count:"5", name:"4티어 전이 돌파석"}
+        ],
+        moreGold: "", moreShard: "32,200"
+    },
+    "hard_gate1": {
+        clearItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"490", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"980", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"10", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
+        ],
+        gold: "25,000", shard: "10,920",
+        moreItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"1,130", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"2,260", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"43", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
+        ],
+        moreGold: "", moreShard: "22,800"
+    },
+    "hard_gate2": {
+        clearItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"600", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"1,200", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"15", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
+            {src:BG_ICON.transfer, count:"9", name:"4티어 전이 돌파석"},
+            {src:BG_ICON.fateStone, count:"10", name:"운명의 돌"}
+        ],
+        gold: "37,000", shard: "13,200",
+        moreItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"1,720", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"3,440", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"72", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
+            {src:BG_ICON.transfer, count:"6", name:"4티어 전이 돌파석"}
+        ],
+        moreGold: "", moreShard: "38,640"
+    },
+    "nightmare_gate1": {
+        clearItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"565", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"1,130", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"12", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
+        ],
+        gold: "30,000", shard: "12,550",
+        moreItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"1,300", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"2,600", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"49", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
+        ],
+        moreGold: "", moreShard: "26,220"
+    },
+    "nightmare_gate2": {
+        clearItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"6", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"690", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"1,380", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"18", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
+            {src:BG_ICON.transfer, count:"10", name:"4티어 전이 돌파석"},
+            {src:BG_ICON.fateStone, count:"10", name:"운명의 돌"}
+        ],
+        gold: "45,000", shard: "15,180",
+        moreItems: [
+            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
+            {src:BG_ICON.bracelet, count:"6", name:"4티어 팔찌"},
+            {src:BG_ICON.destroy, count:"1,980", name:"운명의 파괴석 결정"},
+            {src:BG_ICON.guard, count:"3,960", name:"운명의 수호석 결정"},
+            {src:BG_ICON.breakGreat, count:"83", name:"위대한 운명의 돌파석"},
+            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
+            {src:BG_ICON.transfer, count:"7", name:"4티어 전이 돌파석"}
+        ],
+        moreGold: "", moreShard: "44,440"
+    }
+};
+
+
+/* =============================================
+   가디언 데이터
+   ============================================= */
+const gato1730Bosses = [
+    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
+];
+const gato1750Bosses = [
+    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
+];
+const gato1770Bosses = [
+    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
+];
+
+const gato1730AvailableBosses = [
+    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
+];
+const gato1750AvailableBosses = [
+    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
+];
+// 1770 티어는 시트에 15개 보스 데이터가 전부 존재 (엘버하스틱 포함 전체 오픈)
+const gato1770AvailableBosses = [
+    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
+    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
+];
+
+function isGato1730Available(boss) {
+    return gato1730AvailableBosses.includes(boss);
+}
+function isGato1750Available(boss) {
+    return gato1750AvailableBosses.includes(boss);
+}
+function isGato1770Available(boss) {
+    return gato1770AvailableBosses.includes(boss);
+}
+
+const gato1730Layout = [
+    { boss:"루멘칼리고", startRow:66, shareCol:1, damageCol:3 },
+    { boss:"가르가디스", startRow:66, shareCol:9, damageCol:11 },
+    { boss:"스콜라키아", startRow:66, shareCol:17, damageCol:19 },
+    { boss:"크라티오스", startRow:98, shareCol:1, damageCol:3 },
+    { boss:"아게오로스", startRow:98, shareCol:9, damageCol:11 },
+    { boss:"드렉탈라스", startRow:98, shareCol:17, damageCol:19 },
+    { boss:"소나벨", startRow:130, shareCol:1, damageCol:3 },
+    { boss:"베스칼", startRow:130, shareCol:9, damageCol:11 },
+    { boss:"쿤겔라니움", startRow:266, shareCol:1, damageCol:3 },
+    { boss:"하누마탄", startRow:266, shareCol:9, damageCol:11 },
+    { boss:"데스칼루다", startRow:266, shareCol:17, damageCol:19 },
+    { boss:"이그렉시온", startRow:298, shareCol:1, damageCol:3 },
+    { boss:"벨가누스", startRow:298, shareCol:9, damageCol:11 },
+    { boss:"아카테스", startRow:298, shareCol:17, damageCol:19 },
+    { boss:"엘버하스틱", startRow:330, shareCol:1, damageCol:3 }
+];
+
+const gato1750Layout = [
+    { boss:"루멘칼리고", startRow:167, shareCol:1, damageCol:3 },
+    { boss:"가르가디스", startRow:167, shareCol:9, damageCol:11 },
+    { boss:"스콜라키아", startRow:167, shareCol:17, damageCol:19 },
+    { boss:"크라티오스", startRow:199, shareCol:1, damageCol:3 },
+    { boss:"아게오로스", startRow:199, shareCol:9, damageCol:11 },
+    { boss:"드렉탈라스", startRow:199, shareCol:17, damageCol:19 },
+    { boss:"소나벨", startRow:231, shareCol:1, damageCol:3 },
+    { boss:"베스칼", startRow:231, shareCol:9, damageCol:11 },
+    { boss:"쿤겔라니움", startRow:367, shareCol:1, damageCol:3 },
+    { boss:"하누마탄", startRow:367, shareCol:9, damageCol:11 },
+    { boss:"데스칼루다", startRow:367, shareCol:17, damageCol:19 },
+    { boss:"이그렉시온", startRow:399, shareCol:1, damageCol:3 },
+    { boss:"벨가누스", startRow:399, shareCol:9, damageCol:11 },
+    { boss:"아카테스", startRow:399, shareCol:17, damageCol:19 },
+    { boss:"엘버하스틱", startRow:431, shareCol:1, damageCol:3 }
+];
+
+// 신규: 가디언 토벌 1770 (구글시트 466~658행대, 딜지분 25%~50% 구간)
+const gato1770Layout = [
+    { boss:"루멘칼리고", startRow:468, shareCol:1, damageCol:3 },
+    { boss:"가르가디스", startRow:468, shareCol:9, damageCol:11 },
+    { boss:"스콜라키아", startRow:468, shareCol:17, damageCol:19 },
+    { boss:"크라티오스", startRow:500, shareCol:1, damageCol:3 },
+    { boss:"아게오로스", startRow:500, shareCol:9, damageCol:11 },
+    { boss:"드렉탈라스", startRow:500, shareCol:17, damageCol:19 },
+    { boss:"소나벨", startRow:532, shareCol:1, damageCol:3 },
+    { boss:"베스칼", startRow:532, shareCol:9, damageCol:11 },
+    { boss:"쿤겔라니움", startRow:565, shareCol:1, damageCol:3 },
+    { boss:"하누마탄", startRow:565, shareCol:9, damageCol:11 },
+    { boss:"데스칼루다", startRow:565, shareCol:17, damageCol:19 },
+    { boss:"이그렉시온", startRow:597, shareCol:1, damageCol:3 },
+    { boss:"벨가누스", startRow:597, shareCol:9, damageCol:11 },
+    { boss:"아카테스", startRow:597, shareCol:17, damageCol:19 },
+    { boss:"엘버하스틱", startRow:629, shareCol:1, damageCol:3 }
+];
+
+const gatoMeta = {
+    "루멘칼리고": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"암속성 취약", cls:"attr-dark" } },
+    "가르가디스": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"토속성 취약", cls:"attr-earth" } },
+    "스콜라키아": { type:{ text:"곤충", cls:"type-insect" }, attr:{ text:"토속성 취약", cls:"attr-earth" } },
+    "크라티오스": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"뇌속성 취약", cls:"attr-lightning" } },
+    "아게오로스": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"성속성 취약", cls:"attr-holy" } },
+    "드렉탈라스": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"화속성 취약", cls:"attr-fire" } },
+    "소나벨": { type:{ text:"정령", cls:"type-spirit" }, attr:{ text:"암속성 취약", cls:"attr-dark" } },
+    "베스칼": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"화속성 취약", cls:"attr-fire" } },
+    "쿤겔라니움": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"뇌속성 취약", cls:"attr-lightning" } },
+    "하누마탄": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"취약 없음", cls:"attr-none" } },
+    "데스칼루다": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"수속성 취약", cls:"attr-water" } },
+    "이그렉시온": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"화속성 취약", cls:"attr-fire" } },
+    "벨가누스": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"성속성 취약", cls:"attr-holy" } },
+    "아카테스": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"암속성 취약", cls:"attr-dark" } },
+    "엘버하스틱": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"수속성 취약", cls:"attr-water" } }
+};
+
+/* =============================================
+   가디언 티어별 보스 변수 (1730 / 1750 / 1770)
+   ============================================= */
+function getCurrentGuardianBoss() {
+    if (currentGuardianTier === "1730") return currentGatoBoss;
+    if (currentGuardianTier === "1750") return currentGato1750Boss;
+    return currentGato1770Boss;
+}
+function setCurrentGuardianBoss(boss) {
+    if (currentGuardianTier === "1730") currentGatoBoss = boss;
+    else if (currentGuardianTier === "1750") currentGato1750Boss = boss;
+    else currentGato1770Boss = boss;
+}
+function getGuardianBossListByTier(tier) {
+    if (tier === "1730") return gato1730Bosses;
+    if (tier === "1750") return gato1750Bosses;
+    return gato1770Bosses;
+}
+function getGuardianAvailListByTier(tier) {
+    if (tier === "1730") return gato1730AvailableBosses;
+    if (tier === "1750") return gato1750AvailableBosses;
+    return gato1770AvailableBosses;
+}
+function isGuardianBossAvailable(tier, boss) {
+    if (tier === "1730") return isGato1730Available(boss);
+    if (tier === "1750") return isGato1750Available(boss);
+    return isGato1770Available(boss);
+}
+function getGuardianParsedRows(tier, boss) {
+    if (tier === "1730") return parsedData.gato1730[boss] || [];
+    if (tier === "1750") return parsedData.gato1750[boss] || [];
+    return parsedData.gato1770[boss] || [];
+}
+
+/* =============================================
+   유틸 함수
+   ============================================= */
+function makeBadge(text, cls) {
+    const emoji = getAttrEmoji(text, cls);
+    const finalText = emoji ? `${emoji} ${text}` : text;
+    return `<span class="badge ${cls}">${finalText}</span>`;
+}
+
+function fmt(v) {
+    return Number(v || 0).toLocaleString("ko-KR");
+}
+
+function fmtPartyDps(v) {
+    return `${Number(v || 0).toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}억`;
+}
+
+function toNum(v) {
+    if (v == null) return 0;
+    const t = String(v).replace(/,/g, "").replace(/"/g, "").trim();
+    const n = Number(t);
+    return isNaN(n) ? 0 : n;
+}
+
+function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+                current += '"';
+                i++;
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (ch === "," && !inQuotes) {
+            result.push(current);
+            current = "";
+        } else {
+            current += ch;
+        }
+    }
+
+    result.push(current);
+    return result;
+}
+
+function percentNum(v) {
+    // 소수 딜지분(예: 16.60%)도 정확히 인식하도록 소수부까지 매칭
+    const m = String(v || "").match(/(\d+(?:\.\d+)?)%/);
+    return m ? Number(m[1]) : null;
+}
+
+// 메뉴별 강투/1인분/잔혈 기준 딜지분 (4인 레이드 vs 벨가르딘 8인 레이드)
+const PRECISION_SHARE_BY_MENU = {
+    default: { tank: 30, one: 33, blood: 40 },
+    belgardin: { tank: 15, one: 16.6, blood: 20 }
+};
+function getPrecisionShares(menu) {
+    return PRECISION_SHARE_BY_MENU[menu] || PRECISION_SHARE_BY_MENU.default;
+}
+
+/* =============================================
+   속성 이모지
+   ============================================= */
+function getAttrEmoji(text, cls) {
+    if (!cls || !cls.startsWith("attr-")) return "";
+
+    if (text.includes("속성 없음") || text.includes("취약 없음")) return "🔘";
+    if (text.includes("암속성")) return "👥​";
+    if (text.includes("성속성")) return "☀️​";
+    if (text.includes("화속성")) return "🔥";
+    if (text.includes("뇌속성")) return "⚡";
+    if (text.includes("토속성")) return "🧱​";
+    if (text.includes("수속성")) return "❄️​";
+
+    return "🔘";
+}
+
+function getWeakAttrEmojiOnly(text, cls) {
+    if (!cls || !cls.startsWith("attr-")) return "";
+    if (text.includes("속성 없음") || text.includes("취약 없음")) return "";
+    return getAttrEmoji(text, cls);
+}
+
+function getGuardianElementEmojiFromWeakness(attrText) {
+    if (!attrText) return "🔘";
+    if (attrText.includes("취약 없음") || attrText.includes("속성 없음")) return "🔘";
+    if (attrText.includes("암속성")) return "☀️​"; // 암속성 취약 = 성속성 몬스터
+    if (attrText.includes("성속성")) return "👥​"; // 성속성 취약 = 암속성 몬스터
+    if (attrText.includes("뇌속성")) return "❄️​"; // 뇌속성 취약 = 수속성 몬스터
+    if (attrText.includes("수속성")) return "🔥"; // 수속성 취약 = 화속성 몬스터
+    if (attrText.includes("토속성")) return "⚡"; // 토속성 취약 = 뇌속성 몬스터
+    if (attrText.includes("화속성")) return "🧱​"; // 화속성 취약 = 토속성 몬스터
+    return "🔘";
+}
+
+function getRaidElementEmojiFromAttr(attrText) {
+    if (!attrText) return "🔘";
+    if (attrText.includes("속성 없음") || attrText.includes("취약 없음")) return "🔘";
+    if (attrText.includes("암속성")) return "☀️​";
+    if (attrText.includes("성속성")) return "👥​";
+    if (attrText.includes("뇌속성")) return "❄️​";
+    if (attrText.includes("수속성")) return "🔥";
+    if (attrText.includes("토속성")) return "⚡";
+    if (attrText.includes("화속성")) return "🧱​";
+    return "🔘";
+}
+
+
+/* =============================================
+   시간 관련 함수
+   ============================================= */
+function updateTimeDisplay() {
+    let m = parseInt(document.getElementById("minutes").value || 0, 10);
+    let s = parseInt(document.getElementById("seconds").value || 0, 10);
+
+    if (isNaN(m) || m < 0) m = 0;
+    if (isNaN(s) || s < 0) s = 0;
+    if (s > 59) s = 59;
+
+    document.getElementById("minutes").value = m;
+    document.getElementById("seconds").value = s;
+    document.getElementById("timeDisplay").textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function setBaseTimeByMenu(menu, gateKey) {
+    const minutes = document.getElementById("minutes");
+    const seconds = document.getElementById("seconds");
+    const label = document.getElementById("timeBaseLabel");
+
+    if (menu === "guardian") {
+        minutes.value = 1;
+        seconds.value = 50;
+        label.textContent = "기본값: 1분 50초(110초)";
+    } else if (menu === "belgardin" && gateKey === "gate2") {
+        minutes.value = 13;
+        seconds.value = 0;
+        label.textContent = "기본값: 13분(780초)";
+    } else {
+        minutes.value = 10;
+        seconds.value = 0;
+        label.textContent = "기본값: 10분(600초)";
+    }
+
+    updateTimeDisplay();
+}
+
+function getTotalSeconds() {
+    let m = parseInt(document.getElementById("minutes").value || 0, 10);
+    let s = parseInt(document.getElementById("seconds").value || 0, 10);
+
+    if (isNaN(m) || m < 0) m = 0;
+    if (isNaN(s) || s < 0) s = 0;
+    if (s > 59) s = 59;
+
+    document.getElementById("minutes").value = m;
+    document.getElementById("seconds").value = s;
+
+    return Math.max(1, 60 * m + s);
+}
+
+function changeTimeValue(target, step) {
+   if (currentMenu === "simple" || currentMenu === "raid-simple") return;
+
+    const input = document.getElementById(target);
+    let value = parseInt(input.value || 0, 10);
+    if (isNaN(value)) value = 0;
+    value += step;
+
+    if (target === "minutes") value = Math.max(0, value);
+    if (target === "seconds") value = Math.max(0, Math.min(59, value));
+
+    input.value = value;
+    renderTable();
+}
+
+/* =============================================
+   제목 / 메뉴 관련
+   ============================================= */
+function getRaidDisplayName(menu) {
+    if (menu === "serka") return "세르카";
+    if (menu === "cathedral") return "지평의 성당";
+    if (menu === "belgardin") return "벨가르딘";
+    return "";
+}
+
+function getContentName() {
+if (currentMenu === "raid-simple") {
+    return "레이드별 잔혈컷 👀";
+}
+    if (currentMenu === "simple") {
+        if (currentSimpleLevel === "egir-ex") return "에기르 EX 레이드 💠";
+        if (currentSimpleLevel === "abr-ex") return "아브렐슈드 EX 레이드 ⚡";
+        return "잔혈컷 간편보기 👀";
+    }
+
+    if (currentMenu === "guardian") {
+        const boss = getCurrentGuardianBoss();
+        return `가디언 토벌 : ${boss}`;
+    }
+
+    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
+        const info = raidMeta[currentMenu][currentCombo];
+        return `${getRaidDisplayName(currentMenu)} : ${info.title.replace(/\s*\(.+\)/, "")} ${info.gateName}`;
+    }
+
+    return "콘텐츠";
+}
+
+function getTableTitle() {
+   
+if (currentMenu === "raid-simple") {
+    return simpleRaidMeta[currentSimpleRaid]?.label || "레이드별 잔혈컷";
+}
+
+ if (currentMenu === "simple") {
+        if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
+            return "DPS컷은 딱클 정도의 수치로 표기되었습니다.";
+        }
+        return simpleData[currentSimpleLevel]?.sectionTitle || "잔혈컷 간편보기";
+    }
+
+    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
+        const lv = raidMeta[currentMenu][currentCombo].title.match(/\((\d+)\)/);
+        return `입장레벨 : ${lv ? lv[1] : "-"}`;
+    }
+
+    return "";
+}
+
+function applyMenuFromQuery() {
+    if (isStandaloneLevelPage) {
+        currentMenu = "simple";
+        currentSimpleLevel = "1750";
+        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
+        document.querySelector('.menu-item[data-menu="simple"]')?.classList.add("active");
+        setBaseTimeByMenu(currentMenu);
+        return;
+    }
+
+    if (isStandaloneRaidPage) {
+        currentMenu = "raid-simple";
+        currentSimpleRaid = "cathedral";
+        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
+        document.querySelector('.menu-item[data-menu="raid-simple"]')?.classList.add("active");
+        setBaseTimeByMenu(currentMenu);
+        return;
+    }
+
+    if (isStandaloneSerkaPage) {
+        currentMenu = "serka";
+        currentCombo = "hard_gate1";
+        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
+        document.querySelector('.menu-item[data-menu="serka"]')?.classList.add("active");
+        setBaseTimeByMenu(currentMenu);
+        return;
+    }
+
+    if (isStandaloneCathedralPage) {
+        currentMenu = "cathedral";
+        currentCombo = "hard_gate1";
+        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
+        document.querySelector('.menu-item[data-menu="cathedral"]')?.classList.add("active");
+        setBaseTimeByMenu(currentMenu);
+        return;
+    }
+
+    if (isStandaloneBelgardinPage) {
+        currentMenu = "belgardin";
+        currentCombo = "hard_gate1";
+        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
+        document.querySelector('.menu-item[data-menu="belgardin"]')?.classList.add("active");
+        setBaseTimeByMenu(currentMenu);
+        return;
+    }
+
+    if (isStandaloneGuardianPage) {
+        currentMenu = "guardian";
+        currentGuardianTier = "1750";
+        currentGatoBoss = "엘버하스틱";
+        currentGato1750Boss = "엘버하스틱";
+        currentGato1770Boss = "엘버하스틱";
+        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
+        document.querySelector('.menu-item[data-menu="guardian"]')?.classList.add("active");
+        setBaseTimeByMenu(currentMenu);
+        return;
+    }
+
+    const menu = new URLSearchParams(window.location.search).get("menu");
+    if (!menu) return;
+
+  if (["serka", "cathedral", "belgardin", "guardian", "simple", "raid-simple", "egir-ex", "abr-ex"].includes(menu)) {
+        if (menu === "egir-ex" || menu === "abr-ex") {
+            currentMenu = "simple";
+            currentSimpleLevel = menu;
+        } else {
+            currentMenu = menu;
+        }
+    
+if (currentMenu === "serka") {
+    currentCombo = "hard_gate1";
+} else if (currentMenu === "cathedral") {
+    currentCombo = "hard_gate1";
+} else if (currentMenu === "belgardin") {
+    currentCombo = "hard_gate1";
+} else if (currentMenu === "guardian") {
+    currentGuardianTier = "1750";
+    currentGatoBoss = "엘버하스틱";
+    currentGato1750Boss = "엘버하스틱";
+    currentGato1770Boss = "엘버하스틱";
+} else if (currentMenu === "raid-simple") {
+    currentSimpleRaid = "cathedral";
+} else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
+    currentSimpleLevel = "1750";
+}
+
+        document.querySelectorAll(".menu-item").forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.menu === menu || (menu === "simple" && btn.dataset.menu === "simple"));
+        });
+
+        setBaseTimeByMenu(currentMenu);
+    }
+}
+
+function renderTitleMeta() {
+    const box = document.getElementById("titleMeta");
+
+   if (currentMenu === "simple" || currentMenu === "raid-simple") {
+    box.innerHTML = "";
+    return;
+}
+
+    if (currentMenu === "guardian") {
+        const boss = getCurrentGuardianBoss();
+        const info = gatoMeta[boss];
+        box.innerHTML = `${makeBadge(info.type.text, info.type.cls)} ${makeBadge(info.attr.text, info.attr.cls)}`;
+        return;
+    }
+
+    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
+        const info = raidMeta[currentMenu][currentCombo];
+        box.innerHTML = `${makeBadge(info.type.text, info.type.cls)} ${makeBadge(info.attr.text, info.attr.cls)}`;
+        return;
+    }
+
+    box.innerHTML = "";
+}
+
+
+/* =============================================
+   심플 히어로 함수
+   ============================================= */
+
+function simpleHeroHtml() {
+    return `
+        <section class="simple-hero">
+            <div class="simple-hero-top">
+                <div class="simple-hero-left">
+                    <div class="simple-hero-copy">
+                        <div class="simple-hero-kicker">LOA VIEWER · SIMPLE MODE</div>
+
+                        <div class="simple-hero-title-row">
+                            <div class="simple-hero-title-icon">💠</div>
+                            <h2 class="simple-hero-title">레벨별 잔혈컷</h2>
+                        </div>
+
+                        <p class="simple-hero-desc">
+                            해당 레벨에서 입장 가능한 레이드 중
+                            골드 획득 우선순위 3개를 먼저 보여주고,
+                            나머지 레이드는 아래에서 펼쳐서 확인할 수 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="simple-hero-pills">
+                        <span class="simple-hero-pill pill-level">주간 골드 3개</span>
+                        <span class="simple-hero-pill pill-compare">빠른 비교</span>
+                        <span class="simple-hero-pill pill-cut">추가 레이드 펼치기</span>
+                    </div>
+                </div>
+
+                <div class="simple-hero-right">
+                    <div class="simple-hero-stat">
+                        <div class="simple-hero-stat-label">현재 선택</div>
+                        <div class="simple-hero-stat-value">${currentSimpleLevel}</div>
+                        <div class="simple-hero-stat-sub">골드 획득 우선 3개</div>
+                    </div>
+
+                    <div class="simple-hero-stat">
+                        <div class="simple-hero-stat-label">LEVEL RANGE</div>
+                        <div class="simple-hero-stat-value">1710 ~ 1780</div>
+                        <div class="simple-hero-stat-sub">추가 레이드는 아래 펼치기</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+/* =============================================
+  헬퍼 함수
+   ============================================= */
+
+function getSimpleCardMapByTitle() {
+    const orderedLevels = ["1710", "1720", "1730", "1740", "1750", "1770", "1780"];
+    const map = {};
+
+    orderedLevels.forEach(level => {
+        const cards = simpleData[level]?.cards || [];
+        cards.forEach(card => {
+            if (!map[card.title]) {
+                map[card.title] = card;
+            }
+        });
+    });
+
+    return map;
+}
+
+
+function parseSimpleGoldValue(v) {
+    return Number(String(v || "").replace(/,/g, "").trim()) || 0;
+}
+
+function getSimpleCardRewardValue(card) {
+    if (!card) return 0;
+
+    const total = parseSimpleGoldValue(card.total);
+    if (total > 0) return total;
+
+    return parseSimpleGoldValue(card.gold) + parseSimpleGoldValue(card.bindGold);
+}
+
+function getSimpleCardNodeLevel(card) {
+    return Number(String(card?.node || "").replace(/[^0-9]/g, "")) || 0;
+}
+
+function getSimpleCardGroupKey(card) {
+    const title = card?.title || "";
+
+    if (title.includes("벨가르딘")) return "belgardin";
+    if (title.includes("세르카")) return "serka";
+    if (title.includes("성당")) return "cathedral";
+    if (title.includes("종막")) return "finale";
+    if (title.includes("4막")) return "act4";
+
+    return title;
+}
+
+function getSimpleAllBaseCards() {
+    return Object.values(getSimpleCardMapByTitle());
+}
+
+function pickBetterSimpleCard(prev, next) {
+    if (!prev) return next;
+    if (!next) return prev;
+
+    const prevNode = getSimpleCardNodeLevel(prev);
+    const nextNode = getSimpleCardNodeLevel(next);
+
+    if (nextNode !== prevNode) {
+        return nextNode > prevNode ? next : prev;
+    }
+
+    const prevReward = getSimpleCardRewardValue(prev);
+    const nextReward = getSimpleCardRewardValue(next);
+
+    if (nextReward !== prevReward) {
+        return nextReward > prevReward ? next : prev;
+    }
+
+    return prev;
+}
+
+function getSimpleLevelCardsByAccess(level) {
+    const lv = Number(level);
+    const allCards = getSimpleAllBaseCards().filter(card => getSimpleCardNodeLevel(card) <= lv);
+
+    const groupMap = {};
+
+    allCards.forEach(card => {
+        const groupKey = getSimpleCardGroupKey(card);
+        groupMap[groupKey] = pickBetterSimpleCard(groupMap[groupKey], card);
+    });
+
+    return Object.values(groupMap).sort((a, b) => {
+        const rewardDiff = getSimpleCardRewardValue(b) - getSimpleCardRewardValue(a);
+        if (rewardDiff !== 0) return rewardDiff;
+
+        const nodeDiff = getSimpleCardNodeLevel(b) - getSimpleCardNodeLevel(a);
+        if (nodeDiff !== 0) return nodeDiff;
+
+        return 0;
+    });
+}
+
+function getSimpleLevelCardSections(level) {
+    const cards = getSimpleLevelCardsByAccess(level);
+
+    return {
+        goldCards: cards.slice(0, 3),
+        extraCards: cards.slice(3)
+    };
+}
+
+function bindSimpleExtraToggle() {
+    const btn = document.getElementById("simpleExtraToggleBtn");
+    const panel = document.getElementById("simpleExtraPanel");
+    const text = document.getElementById("simpleExtraToggleText");
+    const arrow = document.getElementById("simpleExtraToggleArrow");
+
+    if (!btn || !panel || !text || !arrow) return;
+
+    btn.addEventListener("click", () => {
+        const isOpen = panel.classList.toggle("open");
+        btn.classList.toggle("open", isOpen);
+        text.textContent = isOpen ? "골드 미획득 레이드 접기" : "골드 미획득 레이드 펼치기";
+        arrow.textContent = isOpen ? "▲" : "▼";
+    });
+}
+
+
+
+
+function getSimpleRaidCards(raidKey) {
+    const meta = simpleRaidMeta[raidKey];
+    if (!meta) return [];
+
+    const cardMap = getSimpleCardMapByTitle();
+    return meta.titles.map(title => cardMap[title]).filter(Boolean);
+}
+
+function simpleRaidHeroHtml() {
+    const meta = simpleRaidMeta[currentSimpleRaid];
+    if (!meta) return "";
+
+    return `
+        <section class="simple-hero">
+            <div class="simple-hero-top">
+                <div class="simple-hero-left">
+                    <div class="simple-hero-copy">
+                        <div class="simple-hero-kicker">LOA VIEWER · RAID MODE</div>
+
+                        <div class="simple-hero-title-row">
+                            <div class="simple-hero-title-icon">${meta.icon}</div>
+                            <h2 class="simple-hero-title">레이드별 잔혈컷</h2>
+                        </div>
+
+                        <p class="simple-hero-desc">
+                          난이도별 강투 · 1인분 · 잔혈 컷을 한 번에 비교하고,
+                            각 관문의 수치를 빠르게 확인할 수 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="simple-hero-pills">
+                        <span class="simple-hero-pill pill-level">레이드별 정리</span>
+                        <span class="simple-hero-pill pill-compare">간편 비교</span>
+                        <span class="simple-hero-pill pill-cut">강투 · 1인분 · 잔혈</span>
+                    </div>
+                </div>
+
+                <div class="simple-hero-right">
+                    <div class="simple-hero-stat">
+                        <div class="simple-hero-stat-label">현재 선택</div>
+                        <div class="simple-hero-stat-value">${meta.label}</div>
+                        <div class="simple-hero-stat-sub">${meta.sub}</div>
+                    </div>
+
+                    <div class="simple-hero-stat">
+                        <div class="simple-hero-stat-label">RAID INFO</div>
+                        <div class="simple-hero-stat-value">${meta.summary}</div>
+                        <div class="simple-hero-stat-sub">난이도 / 관문 기준 보기</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+
+/* =============================================
+   탭 렌더링
+   ============================================= */
+function renderTabs() {
+    const el = document.getElementById("tabs");
+    el.classList.remove("simple-tabs");
+
+    if (currentMenu === "simple") {
+        el.classList.add("simple-tabs");
+        if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
+            el.innerHTML = "";
+            return;
+        }
+
+        const levels = ["1710", "1720", "1730", "1740", "1750", "1770", "1780"];
+
+        el.innerHTML = `
+            ${simpleHeroHtml()}
+
+            <div class="simple-level-tabs">
+                ${levels.map(lv => `
+                    <button class="simple-level-tab ${currentSimpleLevel === lv ? "active" : ""}" data-simple-level="${lv}">
+                        <span class="simple-level-tab-main">${lv}</span>
+                        <span class="simple-level-tab-sub">레이드</span>
+                    </button>
+                `).join("")}
+            </div>
+        `;
+
+        el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentSimpleLevel = btn.dataset.simpleLevel;
+                renderTabs();
+                renderTable();
+            });
+        });
+
+        return;
+    }
+
+    if (currentMenu === "raid-simple") {
+        el.classList.add("simple-tabs");
+
+        const raids = ["cathedral", "serka", "belgardin", "finale", "act4"];
+
+        el.innerHTML = `
+            ${simpleRaidHeroHtml()}
+
+            <div class="simple-level-tabs">
+                ${raids.map(key => {
+                    const meta = simpleRaidMeta[key];
+                    return `
+                        <button class="simple-level-tab simple-raid-tab ${currentSimpleRaid === key ? "active" : ""}" data-simple-raid="${key}">
+                            <span class="simple-level-tab-main">${meta.label}</span>
+                            <span class="simple-level-tab-sub">${meta.sub}</span>
+                        </button>
+                    `;
+                }).join("")}
+            </div>
+        `;
+
+        el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentSimpleRaid = btn.dataset.simpleRaid;
+                renderTabs();
+                renderTable();
+            });
+        });
+
+        return;
+    }
+
+    el.innerHTML = "";
+}
+
+/* =============================================
+   CSV 파싱
+   ============================================= */
+function clearAllData() {
+    parsedData.serka = { normal: [], hard: [], nightmare: [] };
+    parsedData.cathedral = { normal: [], hard: [], nightmare: [] };
+    parsedData.belgardin = { normal: [], hard: [], nightmare: [] };
+    parsedData.gato1730 = {};
+    parsedData.gato1750 = {};
+    parsedData.gato1770 = {};
+}
+
+function parseBlock(lines, startRow, target) {
+    for (let i = startRow + 3; i < startRow + 29; i++) {
+        const cols = parseCSVLine(lines[i] || "");
+        const share = percentNum(cols[1]);
+        if (share) {
+            parsedData[target].normal.push({ share, g1: toNum(cols[3]), g2: toNum(cols[6]) });
+            parsedData[target].hard.push({ share, g1: toNum(cols[11]), g2: toNum(cols[14]) });
+            parsedData[target].nightmare.push({ share, g1: toNum(cols[19]), g2: toNum(cols[22]) });
+        }
+    }
+}
+
+function parseCathedral(lines) {
+    for (let i = 0; i < lines.length; i++) {
+        if ((lines[i] || "").includes("지평의 성당 1~3단계 딜지분 상세")) {
+            parseBlock(lines, i + 1, "cathedral");
+            return;
+        }
+    }
+}
+
+function parseSerka(lines) {
+    for (let i = 0; i < lines.length; i++) {
+        if ((lines[i] || "").includes("세르카 딜지분 상세")) {
+            parseBlock(lines, i + 1, "serka");
+            return;
+        }
+    }
+}
+
+// 신규: 벨가르딘 파싱 — 세르카/성당과 달리 난이도별로 딜지분 컬럼이 따로 존재
+// (노말 B열 / 하드 J열 / 나메 R열), 데이터 시작은 제목행+4(=670행 기준)
+function parseBelgardin(lines) {
+    // 공백 배치가 시트마다 미묘하게 다를 수 있어 "벨가르딘"+"딜지분"+"상세"가
+    // 같은 줄에 순서대로 있으면 매칭되도록 느슨하게 검사
+    const titleRe = /벨가르딘\s*딜지분\s*상세/;
+
+    for (let i = 0; i < lines.length; i++) {
+        if (titleRe.test(lines[i] || "")) {
+            const headerRow = i + 1; // 난이도 라벨행 (제목 다음 줄)
+            const dataStart = headerRow + 3; // 데이터 시작행 (제목행+4)
+            for (let r = dataStart; r < dataStart + 22; r++) {
+                const cols = parseCSVLine(lines[r] || "");
+
+                const shareNormal = percentNum(cols[1]);      // B열
+                if (shareNormal) {
+                    parsedData.belgardin.normal.push({ share: shareNormal, g1: toNum(cols[3]), g2: toNum(cols[6]) });
+                }
+
+                const shareHard = percentNum(cols[9]);         // J열
+                if (shareHard) {
+                    parsedData.belgardin.hard.push({ share: shareHard, g1: toNum(cols[11]), g2: toNum(cols[14]) });
+                }
+
+                const shareNightmare = percentNum(cols[17]);   // R열
+                if (shareNightmare) {
+                    parsedData.belgardin.nightmare.push({ share: shareNightmare, g1: toNum(cols[19]), g2: toNum(cols[22]) });
+                }
+            }
+
+            // 디버그용: 실제로 파싱된 행 수가 0이면 dataStart 오프셋이 틀렸을 가능성이 큼
+            if (
+                !parsedData.belgardin.normal.length &&
+                !parsedData.belgardin.hard.length &&
+                !parsedData.belgardin.nightmare.length
+            ) {
+                console.warn(
+                    `[벨가르딘 파싱] 제목은 찾았지만(줄 ${i}) 데이터가 비어있습니다. ` +
+                    `dataStart=${dataStart}행 부근을 시트에서 직접 확인해보세요. ` +
+                    `해당 행 원문: "${lines[dataStart] || "(없음)"}"`
+                );
+            }
+            return;
+        }
+    }
+
+    console.warn('[벨가르딘 파싱] CSV에서 "벨가르딘 딜지분 상세" 제목을 찾지 못했습니다. 시트 문구 또는 gid(탭)를 확인해주세요.');
+}
+
+function parseGato1730(lines) {
+    gato1730Bosses.forEach(b => { parsedData.gato1730[b] = []; });
+    gato1730Layout.forEach(layout => {
+        for (let i = layout.startRow + 3; i <= layout.startRow + 28; i++) {
+            const cols = parseCSVLine(lines[i] || "");
+            const share = percentNum(cols[layout.shareCol]);
+            if (share) {
+                parsedData.gato1730[layout.boss].push({ share, damage: toNum(cols[layout.damageCol]) });
+            }
+        }
+    });
+}
+
+function parseGato1750(lines) {
+    gato1750Bosses.forEach(b => { parsedData.gato1750[b] = []; });
+    gato1750Layout.forEach(layout => {
+        for (let i = layout.startRow + 3; i <= layout.startRow + 28; i++) {
+            const cols = parseCSVLine(lines[i] || "");
+            const share = percentNum(cols[layout.shareCol]);
+            if (share) {
+                parsedData.gato1750[layout.boss].push({ share, damage: toNum(cols[layout.damageCol]) });
+            }
+        }
+    });
+}
+
+// 신규: 가디언 토벌 1770 파싱 (딜지분 25%~50% 구간, startRow+3 ~ startRow+28)
+function parseGato1770(lines) {
+    gato1770Bosses.forEach(b => { parsedData.gato1770[b] = []; });
+    gato1770Layout.forEach(layout => {
+        for (let i = layout.startRow + 3; i <= layout.startRow + 28; i++) {
+            const cols = parseCSVLine(lines[i] || "");
+            const share = percentNum(cols[layout.shareCol]);
+            if (share) {
+                parsedData.gato1770[layout.boss].push({ share, damage: toNum(cols[layout.damageCol]) });
+            }
+        }
+    });
+}
+
+
+/* =============================================
+   테이블 렌더 헬퍼
+   ============================================= */
+function renderShareCell(share, menu) {
+    const shares = getPrecisionShares(menu);
+    const tagMap = {
+        [shares.tank]: { tag: "강투", cls: "tag-30" },
+        [shares.one]: { tag: "1인분", cls: "tag-33" },
+        [shares.blood]: { tag: "잔혈", cls: "tag-40" }
+    };
+
+    const info = tagMap[share];
+
+    const badgeSlot = info
+        ? `<div class="share-tag-area"><span class="share-tag ${info.cls}">${info.tag}</span></div>`
+        : `<div class="share-tag-area"></div>`;
+
+    const shareLabel = Number.isInteger(share) ? `${share}%` : `${share.toFixed(2).replace(/0$/, "")}%`;
+
+    return `
+        <td class="share-cell ${info ? "has-badge" : ""}">
+            <div class="share-row">
+                ${badgeSlot}
+                <span class="share-pct">${shareLabel}</span>
+            </div>
+        </td>
+    `;
+}
+
+function renderHead() {
+    document.getElementById("tableHead").innerHTML = "<tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>";
+}
+
+function renderComingSoon(title, desc) {
+    document.getElementById("mainContent").innerHTML = `<div class="coming-soon"><h3>${title}</h3><p>${desc}</p></div>`;
+}
+
+function ensureTableWrap() {
+    document.getElementById("mainContent").innerHTML =
+        '<div class="table-wrap" id="tableWrap"><table id="dataTable"><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table></div>';
+}
+
+function setClearTimeDisabled(disabled) {
+    const card = document.getElementById("timeCard");
+    if (!card) return;
+
+    card.classList.toggle("simple-disabled", disabled);
+    card.querySelectorAll("input, button").forEach(el => { el.disabled = disabled; });
+
+    const note = card.querySelector(".side-hint");
+    if (note) {
+        note.textContent = disabled ? "간편보기 상태에서는 비활성화" : "시간 변경 시 즉시 반영";
+    }
+}
+
+/* =============================================
+   골드바 HTML
+   ============================================= */
+
+
+function goldBarHtml(card) {
+    if (!card.gold && !card.bindGold) return "";
+
+    if (card.bindGold && !card.gold) {
+        return `
+            <div class="simple-goldbar">
+                <div class="gold-item">
+                    <div class="gold-item-label">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon">
+                        <span class="gold-bind-label">귀속 골드</span>
+                    </div>
+                    <div class="gold-item-value gold-bind-value">${card.bindGold}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
+        let orb = 0;
+        if (card.title && card.title.includes("노말")) orb = 150;
+        else if (card.title) orb = 200;
+
+        return `
+            <div class="simple-goldbar">
+                <div class="gold-item">
+                    <div class="gold-item-label">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
+                        <span class="gold-clear-label">클리어 골드</span>
+                    </div>
+                    <div class="gold-item-value gold-clear-value">${card.gold}</div>
+                </div>
+                <div class="gold-item">
+                    <div class="gold-item-label">
+                        <img src="../img/wing_orb.png" class="icon">
+                        <span class="gold-bind-label">재료</span>
+                    </div>
+                    <div class="gold-item-value gold-bind-value">x${orb}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    if (card.bindGold) {
+        return `
+            <div class="simple-goldbar">
+                <div class="gold-item">
+                    <div class="gold-item-label">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
+                        <span class="gold-clear-label">클리어 골드</span>
+                    </div>
+                    <div class="gold-item-value gold-clear-value">${card.gold}</div>
+                </div>
+                <div class="gold-operator">+</div>
+                <div class="gold-item">
+                    <div class="gold-item-label">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon">
+                        <span class="gold-bind-label">귀속 골드</span>
+                    </div>
+                    <div class="gold-item-value gold-bind-value">${card.bindGold}</div>
+                </div>
+                <div class="gold-operator">=</div>
+                <div class="gold-total">
+                    <div class="gold-total-label">합계</div>
+                    <div class="gold-total-value">${card.total}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="simple-goldbar">
+            <div class="gold-item">
+                <div class="gold-item-label">
+                    <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
+                    <span class="gold-clear-label">클리어 골드</span>
+                </div>
+                <div class="gold-item-value gold-clear-value">${card.gold}</div>
+            </div>
+        </div>
+    `;
+}
+
+
+/* =============================================
+   칸분리형 HTML
+   ============================================= */
+
+function getSimpleRaidShareConfig(title = "") {
+    // 4인 레이드
+    if (title.includes("세르카") || title.includes("성당")) {
+        return {
+            bloodShare: 0.40,
+            oneShare: 1 / 3
+        };
+    }
+
+    // 8인 레이드 (4막, 종막, 벨가르딘)
+    return {
+        bloodShare: 0.20,
+        oneShare: 1 / 6
+    };
+}
+
+function parseSimpleRangeParts(rangeText, cardTitle) {
+    if (!rangeText || rangeText === "준비중") return null;
+
+    const parts = String(rangeText)
+        .split("-")
+        .map(v => v.trim())
+        .filter(Boolean);
+
+    // 이미 3개 값을 직접 적어둔 경우
+    if (parts.length === 3) {
+        const nums = parts.map(v => Number(String(v).replace(/,/g, "")));
+        if (nums.some(n => Number.isNaN(n))) return null;
+
+        return {
+            tank: Math.round(nums[0]),
+            one: Math.round(nums[1]),
+            blood: Math.round(nums[2])
+        };
+    }
+
+    // 기존처럼 2개만 적혀있는 경우: 강투 - 잔혈
+    if (parts.length === 2) {
+        const nums = parts.map(v => Number(String(v).replace(/,/g, "")));
+        if (nums.some(n => Number.isNaN(n))) return null;
+
+        const [tank, blood] = nums;
+        const config = getSimpleRaidShareConfig(cardTitle);
+
+        const total = blood / config.bloodShare;
+        const one = Math.round((total * config.oneShare) / 10) * 10; // 끝자리 0으로 정리
+
+        return {
+            tank: Math.round(tank),
+            one,
+            blood: Math.round(blood)
+        };
+    }
+
+    return null;
+}
+
+
+/* =============================================
+   간편보기 카드 HTML
+   ============================================= */
+function simpleCardHtml(card) {
+    const rows = card.rows.map(r => {
+        const badges = (r.badges || []).map(b => {
+            const emoji = getAttrEmoji(b.text, b.cls);
+            const finalText = emoji ? `${emoji} ${b.text}` : b.text;
+            return `<span class="badge ${b.cls}">${finalText}</span>`;
+        }).join("");
+
+        const isPreparing = r.range === "준비중";
+        const rangeParts = parseSimpleRangeParts(r.range, card.title);
+        const hasTripleRange = !!rangeParts && !isPreparing;
+
+        const rangeHtml = hasTripleRange
+            ? `
+                <div class="triple-range">
+                    <div class="triple-part tank">
+                        <span class="t-label">강투</span>
+                        <span class="t-value">${rangeParts.tank}</span>
+                    </div>
+                    <div class="triple-part one">
+                        <span class="t-label">1인분</span>
+                        <span class="t-value">${rangeParts.one}</span>
+                    </div>
+                    <div class="triple-part blood">
+                        <span class="t-label">잔혈</span>
+                        <span class="t-value">${rangeParts.blood}</span>
+                    </div>
+                </div>
+            `
+            : `<span class="range-b ${isPreparing ? "preparing" : ""}">${r.range}</span>`;
+
+        return `
+            <div class="simple-row ${hasTripleRange ? "has-triple-range" : ""}" style="${isPreparing ? "min-height:56px;align-items:center;" : ""}">
+                <div class="simple-row-left">
+                    <span class="gate-b">${r.gate}</span>
+                    <span class="boss-b">${r.boss}</span>
+                    <span class="simple-badges">${badges}</span>
+                </div>
+
+                <div style="text-align:right;">
+                    ${rangeHtml}
+                    ${r.dpscut ? `<div style="font-size:14px;color:#d4bf8a;font-style:italic;margin-top:3px;">${r.dpscut}</div>` : ""}
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    return `
+        <article class="simple-card ${card.theme}">
+            <div class="simple-left">
+                <div class="simple-node">${card.node}</div>
+            </div>
+
+            <div class="simple-right">
+                <div class="simple-head">
+                    <div class="simple-mobile-title-pack">
+                        <span class="simple-mobile-node">${card.node}</span>
+                        <span class="simple-mobile-name">${card.title}</span>
+                    </div>
+
+                    <h3 class="simple-title">${card.title}</h3>
+                    <div class="simple-kind">피해/억</div>
+                </div>
+
+                <div class="simple-rows">${rows}</div>
+                ${goldBarHtml(card)}
+            </div>
+        </article>
+    `;
+}
+
+
+/* =============================================
+   EX 전용 카드 HTML
+   ============================================= */
+window.toggleExAccordion = function(card) {
+    card.classList.toggle("ex-active");
+};
+
+function makeExCard(opt) {
+    return `
+        <div class="ex-raid-card ex-card-${opt.tier}" onclick="toggleExAccordion(this)">
+            <div class="ex-card-header">
+                <div class="ex-left-section">
+                    <div class="ex-level-badge">${opt.level}</div>
+                    <div class="ex-raid-info-title">
+                        <h2>${opt.name}</h2>
+                        <div class="ex-tags">
+                            ${opt.tags.map(t => `<span class="ex-tag${t.weak ? " ex-weakness" : ""}">${t.text}</span>`).join("")}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ex-right-section">
+                    <div class="ex-stats-grid">
+                        <div class="ex-stat-col">
+                            <div class="ex-stat-label l-tank">강투</div>
+                            <div class="ex-stat-dmg">${opt.tank_dmg}</div>
+                            <div class="ex-stat-dps">${opt.tank_dps}</div>
+                        </div>
+                        <div class="ex-stat-col">
+                            <div class="ex-stat-label l-one">1인분</div>
+                            <div class="ex-stat-dmg">${opt.one_dmg}</div>
+                            <div class="ex-stat-dps">${opt.one_dps}</div>
+                        </div>
+                        <div class="ex-stat-col col-blood">
+                            <div class="ex-stat-label l-blood">잔혈</div>
+                            <div class="ex-stat-dmg">${opt.blood_dmg}</div>
+                            <div class="ex-stat-dps">${opt.blood_dps}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ex-detail-bar">
+                <span>상세보기</span>
+                <span class="ex-detail-arrow">▼</span>
+            </div>
+
+            <div class="ex-accordion-content" onclick="event.stopPropagation();">
+                <div class="ex-pc-table-view">
+                    <table class="ex-dps-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;width:31%;">구간 (누적 기준)</th>
+                                <th style="width:23%;">강투 (15%)</th>
+                                <th style="width:23%;">1인분 (16.66%)</th>
+                                <th style="width:23%;" class="ex-col-highlight">잔혈 (20%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${opt.phases.map(p => `
+                                <tr${p.total ? ' class="ex-row-total"' : ''}>
+                                    <td class="ex-phase-title">${p.label}<span>${p.sub}</span></td>
+                                    <td><span class="ex-val-text">${p.t_d}</span><span class="ex-dps-text">${p.t_s}</span></td>
+                                    <td><span class="ex-val-text">${p.o_d}</span><span class="ex-dps-text">${p.o_s}</span></td>
+                                    <td class="ex-col-highlight"><span class="ex-val-text">${p.b_d}</span><span class="ex-dps-text">${p.b_s}</span></td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="ex-mobile-list-view">
+                    ${opt.phases.map(p => `
+                        <div class="ex-m-phase-card${p.total ? " ex-m-total" : ""}">
+                            <div class="ex-m-phase-header">
+                                <span class="ex-m-phase-name ex-phase-title"${p.total ? ` style="color:${opt.tierColor};"` : ""}>${p.label}</span>
+                                <span class="ex-m-phase-info"${p.total ? ` style="color:${opt.tierColor};"` : ""}>${p.sub}</span>
+                            </div>
+                            <div class="ex-m-grid-row"><span class="ex-m-label">강투 (15%)</span><span class="ex-m-values">${p.t_d}<span class="ex-m-dps">${p.t_s}</span></span></div>
+                            <div class="ex-m-grid-row"><span class="ex-m-label">1인분 (16.6%)</span><span class="ex-m-values">${p.o_d}<span class="ex-m-dps">${p.o_s}</span></span></div>
+                            <div class="ex-m-grid-row ex-m-highlight"><span class="ex-m-label">잔혈 (20%)</span><span class="ex-m-values">${p.b_d}<span class="ex-m-dps">${p.b_s}</span></span></div>
+                        </div>
+                    `).join("")}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+/* =============================================
+   보스 그래프 + 에스더 HTML
+   ============================================= */
+function makeBossSection(config) {
+    const bossCards = config.bosses.map(b => {
+        const totalPct = b.parts.reduce((acc, p) => acc + p.pct, 0);
+        let current = 0;
+        const gradient = b.parts.map(p => {
+            const start = current / totalPct * 100;
+            current += p.pct;
+            const end = current / totalPct * 100;
+            return `${p.color} ${start}% ${end}%`;
+        }).join(", ");
+
+        const labels = b.parts.map(p => `
+            <div class="boss-label-item">
+                <div class="boss-label-dot" style="background:${p.color};"></div>
+                <div>
+                    <div class="boss-label-name">${p.name}</div>
+                    <div class="boss-label-pct" style="color:${p.color};">${p.pct}%</div>
+                </div>
+            </div>
+        `).join("");
+
+        const legends = b.parts.map(p => `
+            <div class="boss-legend-row">
+                <div class="boss-legend-dot" style="background:${p.color};"></div>
+                ${p.legend}
+                <span class="boss-legend-val">${p.hp}</span>
+            </div>
+        `).join("");
+
+        return `
+            <div class="boss-card">
+                <div class="boss-card-title" style="color:${b.color};">
+                    <div class="bar" style="background:${b.color};"></div>${b.name}
+                </div>
+                <div class="boss-chart-row">
+                    <div class="boss-labels">${labels}</div>
+                    <div class="boss-donut-wrap">
+                        <div class="boss-donut" style="background:conic-gradient(from -90deg, ${gradient}); box-shadow:0 0 0 3px rgba(255,255,255,.03), 0 4px 14px rgba(0,0,0,.4);">
+                            <div class="boss-donut-inner">
+                                <div class="boss-donut-title">총 체력</div>
+                                <div class="boss-donut-val">${b.totalHp}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boss-legend">${legends}</div>
+                <div class="boss-total-row">
+                    <span class="boss-total-label">총 체력</span>
+                    <span class="boss-total-val" style="color:${b.color};">${b.totalHp}</span>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    const estherRows = config.esther.map(r => `
+        <div class="esther-row">
+            <div>${r[0]}</div>
+            <div style="color:${config.col1};">${r[1]}</div>
+            <div style="color:${config.col2};">${r[2]}</div>
+            <div style="color:${config.col3};">${r[3]}</div>
+        </div>
+    `).join("");
+
+    return `
+        <div class="boss-info-section">
+            <div class="section-header">
+                <div class="dot" style="background:${config.headerColor};"></div>
+                <span class="section-title">보스 체력 정보</span>
+            </div>
+            <div class="warning-bar">⚠ 보스 체력정보 / 에스더 데미지는 직접 수작업으로 체크한 부분이라 정확하지 않을 수 있습니다.</div>
+            <div class="boss-grid">${bossCards}</div>
+            <div class="esther-table">
+                <div class="esther-header">
+                    <div class="bar" style="background:${config.estherBar};"></div>
+                    <span>에스더 데미지 기대값</span>
+                </div>
+                <div class="esther-cols">
+                    <div>에스더 스킬</div>
+                    <div style="color:${config.col1};">${config.colName1}</div>
+                    <div style="color:${config.col2};">${config.colName2}</div>
+                    <div style="color:${config.col3};">${config.colName3}</div>
+                </div>
+                ${estherRows}
+            </div>
+        </div>
+    `;
+}
+
+/* =============================================
+   EX / 간편보기 렌더
+   ============================================= */
+function renderExView(exKey) {
+    const data = exRaidData[exKey];
+    if (!data) return "<div class='coming-soon'><h3>준비중</h3></div>";
+
+    const tierColors = { normal: "#34d399", hard: "#f7ca54", nightmare: "#a78bfa" };
+    const cards = data.cards.map(c => makeExCard({ ...c, tierColor: tierColors[c.tier] || "#fff" })).join("");
+    const boss = data.bossSection ? makeBossSection(data.bossSection) : "";
+
+    const introTheme = exKey === "egir-ex" ? "ex-intro-purple" : "ex-intro-gold";
+
+    return `
+        <div class="simple-view">
+            <div class="ex-intro-box ${introTheme}">
+                <div class="ex-intro-title-box">${data.sectionTitle}</div>
+                <div class="ex-intro-desc">${data.intro}</div>
+            </div>
+            <div class="ex-dash-container">${cards}</div>
+            ${boss}
+        </div>
+    `;
+}
+
+function renderRaidSimpleView() {
+    const meta = simpleRaidMeta[currentSimpleRaid];
+    const cards = getSimpleRaidCards(currentSimpleRaid);
+
+    if (!meta) {
+        document.getElementById("mainContent").innerHTML =
+            '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>';
+        return;
+    }
+
+    document.getElementById("mainContent").innerHTML = `
+        <div class="simple-view">
+            <div class="simple-stack">
+                ${cards.length > 0
+                    ? cards.map(simpleCardHtml).join("")
+                    : "<div class='coming-soon'><h3>준비중</h3><p>곧 업데이트 예정입니다.</p></div>"}
+            </div>
+        </div>
+    `;
+}
+
+
+
+
+function renderSimpleView() {
+    const defaultContent = document.getElementById("defaultSimpleContent");
+    if (defaultContent) defaultContent.remove();
+
+    if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
+        document.getElementById("mainContent").innerHTML = renderExView(currentSimpleLevel);
+        return;
+    }
+
+    const data = simpleData[currentSimpleLevel];
+    if (!data) {
+        document.getElementById("mainContent").innerHTML =
+            '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>';
+        return;
+    }
+
+    const { goldCards, extraCards } = getSimpleLevelCardSections(currentSimpleLevel);
+
+    document.getElementById("mainContent").innerHTML = `
+        <div class="simple-view">
+            <div class="simple-stack">
+                ${
+                    goldCards.length > 0
+                        ? goldCards.map(simpleCardHtml).join("")
+                        : "<div class='coming-soon'><h3>준비중</h3><p>곧 업데이트 예정입니다.</p></div>"
+                }
+
+                ${
+                    extraCards.length > 0
+                        ? `
+                            <div class="simple-extra-wrap">
+                                <button class="simple-extra-toggle" id="simpleExtraToggleBtn" type="button">
+                                    <span id="simpleExtraToggleText">골드 미획득 레이드 펼치기</span>
+                                    <span id="simpleExtraToggleArrow">▼</span>
+                                </button>
+
+                                <div class="simple-extra-panel" id="simpleExtraPanel">
+                                    <div class="simple-extra-stack">
+                                        ${extraCards.map(simpleCardHtml).join("")}
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                        : ""
+                }
+            </div>
+        </div>
+    `;
+
+    bindSimpleExtraToggle();
+}
+
+
+
+/* =============================================
+   파티 DPS
+   ============================================= */
+function getCurrentRowsForPartyDps() {
+    if (currentMenu === "simple") return [];
+
+    if (currentMenu === "guardian") {
+        const tier = currentGuardianTier;
+        const boss = getCurrentGuardianBoss();
+        const isAvail = isGuardianBossAvailable(tier, boss);
+        if (!isAvail) return [];
+        return getGuardianParsedRows(tier, boss);
+    }
+
+    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
+        const info = raidMeta[currentMenu][currentCombo];
+        return parsedData[currentMenu]?.[info.diffKey] || [];
+    }
+
+    return [];
+}
+
+function getDamageFromRow(row) {
+    if (!row) return 0;
+
+    if (currentMenu === "guardian") return row.damage || 0;
+
+    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
+        return raidMeta[currentMenu][currentCombo].gateKey === "gate1"
+            ? row.g1 || 0
+            : row.g2 || 0;
+    }
+
+    return row.damage || 0;
+}
+
+function getPartyDpsValue() {
+    const rows = getCurrentRowsForPartyDps();
+    if (!rows.length) return null;
+
+    const shares = getPrecisionShares(currentMenu);
+    let found = null;
+    for (const share of [shares.one, shares.tank, shares.blood]) {
+        found = rows.find(r => r.share === share && getDamageFromRow(r) > 0);
+        if (found) break;
+    }
+
+    if (!found) found = rows.find(r => getDamageFromRow(r) > 0) || null;
+    if (!found) return null;
+
+    const dmg = getDamageFromRow(found);
+    const pct = (found.share || 0) / 100;
+    return (dmg && pct) ? dmg / pct / getTotalSeconds() : null;
+}
+
+function updatePartyDpsDisplay() {
+    const el = document.getElementById("partyDpsDisplay");
+    const isGuardianPending = currentMenu === "guardian" &&
+        !isGuardianBossAvailable(currentGuardianTier, getCurrentGuardianBoss());
+
+    if (currentMenu === "simple" || isGuardianPending) {
+        el.innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+        return;
+    }
+
+    const val = getPartyDpsValue();
+    el.innerHTML = val !== null
+        ? `파티 DPS : <span class="party-dps-value">${fmtPartyDps(val)}</span>`
+        : '파티 DPS : <span class="party-dps-value">-</span>';
+}
+
+
+/* =============================================
+   가디언 히어로 바
+   ============================================= */
+
+function makeGuardianHero(tier, boss, bossInfo) {
+    const bossElementEmoji = getGuardianElementEmojiFromWeakness(bossInfo.attr.text);
+    const weakEmoji = getAttrEmoji(bossInfo.attr.text, bossInfo.attr.cls);
+    const stageText = tier === "1730" ? "잔영 : 1단계" : (tier === "1750" ? "잔영 : 2단계" : "잔영 : 3단계");
+
+    return `
+        <div class="p-hero hero-guardian">
+            <div class="p-hero-inner">
+                <div class="p-hero-left">
+                    <div class="p-hero-copy">
+                        <div class="p-hero-kicker">PRECISION · GUARDIAN RAID</div>
+
+                        <div class="p-hero-title-row">
+                            <div class="p-hero-icon">🐉</div>
+                            <div class="p-hero-title-wrap">
+                                <h2 class="p-hero-title">가디언 토벌</h2>
+                                <div class="p-hero-subtitle">${stageText}</div>
+                            </div>
+                        </div>
+
+                        <div class="p-hero-badges">
+                            <span class="p-badge b-type">${bossInfo.type.text}</span>
+                            <span class="p-badge b-attr">${weakEmoji ? `${weakEmoji} ` : ""}${bossInfo.attr.text}</span>
+                        </div>
+
+                        <p class="p-hero-desc">
+                            레벨과 보스를 선택하면 해당 가디언의 딜지분과 DPS를 실시간으로 확인할 수 있습니다.
+                        </p>
+                        <p class="p-hero-desc" style="margin-top:6px;">
+                            가디언 토벌은 잔영 단계에 따라 요구 DPS가 크게 달라지며, 강투컷·1인분·잔혈컷 기준으로
+                            자신의 딜 기여도를 빠르게 비교할 수 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="p-hero-pills">
+                        <span class="p-pill ${tier === "1730" ? "active" : ""}">1730 가디언</span>
+                        <span class="p-pill ${tier === "1750" ? "active" : ""}">1750 가디언</span>
+                        <span class="p-pill ${tier === "1770" ? "active" : ""}">1770 가디언</span>
+                    </div>
+                </div>
+
+                <div class="p-hero-right">
+                    <div class="p-stat">
+                        <div class="p-stat-label">입장 레벨</div>
+                        <div class="p-stat-value">${tier}</div>
+                    </div>
+
+                    <div class="p-stat">
+                        <div class="p-stat-label">보스명</div>
+                        <div class="p-stat-value">${bossElementEmoji} ${boss}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
+/* =============================================
+   보상 위젯 HTML 생성
+   ============================================= */
+function getRewardDataSource(menu) {
+    if (menu === "serka") return serkaRewardData;
+    if (menu === "cathedral") return cathedralRewardData;
+    if (menu === "belgardin") return belgardinRewardData;
+    return null;
+}
+
+function makeRewardWidget(menu, comboKey) {
+    const dataSource = getRewardDataSource(menu);
+    const data = dataSource ? dataSource[comboKey] : null;
+    if (!data) return "";
+
+    const widgetId = `rewardWidget_${menu}`;
+    const moreId = `rewardMore_${menu}`;
+    const moreBtnId = `rewardMoreBtn_${menu}`;
+
+    const itemSlots = (items) => items.map(item =>
+        `<div class="rw-slot" title="${item.name}"><img src="${item.src}"><span class="rw-count">${item.count}</span></div>`
+    ).join("");
+
+    const goldLine = (gold) => gold ? `
+        <div class="rw-currency">
+            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png"><span>골드</span></div>
+            <span class="rw-gold">${gold}</span>
+        </div>` : "";
+
+    const shardLine = (shard) => shard ? `
+        <div class="rw-currency">
+            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png"><span>운명의 파편</span></div>
+            <span class="rw-shard">${shard}</span>
+        </div>` : "";
+
+    return `
+        <div class="rw-widget" id="${widgetId}">
+            <div class="rw-title">클리어 보상</div>
+            <div class="rw-grid">${itemSlots(data.clearItems)}</div>
+            ${goldLine(data.gold)}
+            ${shardLine(data.shard)}
+
+            <div class="rw-more-area">
+                <button class="rw-more-btn" id="${moreBtnId}" type="button">더보기 보상 열기 ▼</button>
+                <div class="rw-more-content" id="${moreId}">
+                    <div class="rw-more-label">더보기 고정보상</div>
+                    <div class="rw-grid">${itemSlots(data.moreItems)}</div>
+                    ${goldLine(data.moreGold)}
+                    ${shardLine(data.moreShard)}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function makeRewardWidgetMobile(menu, comboKey) {
+    const dataSource = getRewardDataSource(menu);
+    const data = dataSource ? dataSource[comboKey] : null;
+    if (!data) return "";
+
+    const moreId = `mobileRewardMore_${menu}`;
+    const moreBtnId = `mobileRewardMoreBtn_${menu}`;
+
+    const itemSlots = (items) => items.map(item =>
+        `<div class="rw-slot" title="${item.name}"><img src="${item.src}"><span class="rw-count">${item.count}</span></div>`
+    ).join("");
+
+    const goldLine = (gold) => gold ? `
+        <div class="rw-currency">
+            <div class="rw-currency-left">
+                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png">
+                <span>골드</span>
+            </div>
+            <span class="rw-gold">${gold}</span>
+        </div>` : "";
+
+    const shardLine = (shard) => shard ? `
+        <div class="rw-currency">
+            <div class="rw-currency-left">
+                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png">
+                <span>운명의 파편</span>
+            </div>
+            <span class="rw-shard">${shard}</span>
+        </div>` : "";
+
+    return `
+        <div class="rw-widget mobile-rw-widget">
+            <div class="rw-title">클리어 보상</div>
+            <div class="rw-grid">${itemSlots(data.clearItems)}</div>
+            ${goldLine(data.gold)}
+            ${shardLine(data.shard)}
+
+            <div class="rw-more-area">
+                <button class="rw-more-btn" id="${moreBtnId}" type="button">더보기 보상 열기 ▼</button>
+                <div class="rw-more-content" id="${moreId}">
+                    <div class="rw-more-label">더보기 고정보상</div>
+                    <div class="rw-grid">${itemSlots(data.moreItems)}</div>
+                    ${goldLine(data.moreGold)}
+                    ${shardLine(data.moreShard)}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function makeMobilePrecisionTools(menu, comboKey) {
+    const timeBtnId = `openMobileTimeBtn_${menu}`;
+    const rewardToggleId = `mobileRewardToggle_${menu}`;
+    const rewardBoxId = `mobileRewardBox_${menu}`;
+
+    return `
+        <div class="mobile-precision-tools">
+            <button class="mobile-precision-tool-btn" id="${timeBtnId}" type="button">
+                ⏱ 클리어 타임 입력
+            </button>
+
+            <button class="mobile-precision-tool-btn" id="${rewardToggleId}" type="button">
+                📦 클리어 보상 확대하기
+            </button>
+        </div>
+
+        <div class="mobile-reward-collapse" id="${rewardBoxId}">
+            ${makeRewardWidgetMobile(menu, comboKey)}
+        </div>
+    `;
+}
+
+function bindRewardMoreToggle(menu) {
+    const moreId = `rewardMore_${menu}`;
+    const moreBtnId = `rewardMoreBtn_${menu}`;
+    const btn = document.getElementById(moreBtnId);
+    const content = document.getElementById(moreId);
+    if (!btn || !content) return;
+
+    btn.addEventListener("click", () => {
+        const isOpen = content.classList.toggle("rw-open");
+        btn.textContent = isOpen ? "더보기 보상 닫기 ▲" : "더보기 보상 열기 ▼";
+    });
+}
+
+function makeRaidPrecisionHero(menu, meta, currentDiff) {
+    const isSerka = menu === "serka";
+    const isCathedral = menu === "cathedral";
+    const raidTitle = getRaidDisplayName(menu);
+    const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : "hero-belgardin");
+    const kicker = isSerka ? "PRECISION · SERKA" : (isCathedral ? "PRECISION · CATHEDRAL" : "PRECISION · BELGARDIN");
+    const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : "🧛");
+    const subtitle = isSerka ? "그림자 레이드" : (isCathedral ? "어비스 던전" : "그림자 레이드");
+
+    const entryLevelMatch = meta.title.match(/\((\d+)\)/);
+    const entryLevel = entryLevelMatch ? entryLevelMatch[1] : "-";
+    const diffLabel = meta.title.replace(/\s*\(.+\)/, "");
+    const gateLabel = meta.gateName;
+    const attrEmoji = getAttrEmoji(meta.attr.text, meta.attr.cls);
+
+    const pills = isSerka
+        ? [
+            { key: "normal", text: "노말 · 1710" },
+            { key: "hard", text: "하드 · 1730" },
+            { key: "nightmare", text: "나메 · 1740" }
+        ]
+        : isCathedral
+        ? [
+            { key: "normal", text: "1단계 · 1700" },
+            { key: "hard", text: "2단계 · 1720" },
+            { key: "nightmare", text: "3단계 · 1750" }
+        ]
+        : [
+            { key: "normal", text: "노말 · 1750" },
+            { key: "hard", text: "하드 · 1770" },
+            { key: "nightmare", text: "나메 · 1780" }
+        ];
+
+    const shares = getPrecisionShares(menu);
+    const descLine = menu === "belgardin"
+        ? `강투컷은 15%, 1인분은 ${shares.one}%, 잔혈컷은 20% 딜지분 기준입니다 (8인 레이드 기준).`
+        : `강투컷은 파티 내 상위 기여도, 1인분은 인원수 기준 균등 분배, 잔혈컷은 압도적 기여 기준입니다.`;
+
+    return `
+        <div class="p-hero ${themeClass}">
+            <div class="p-hero-inner">
+                <div class="p-hero-left">
+                    <div class="p-hero-copy">
+                        <div class="p-hero-kicker">${kicker}</div>
+
+                        <div class="p-hero-title-row">
+                            <div class="p-hero-icon">${icon}</div>
+                            <div class="p-hero-title-wrap">
+                                <h2 class="p-hero-title">${raidTitle}</h2>
+                                <div class="p-hero-subtitle">${subtitle}</div>
+                            </div>
+                        </div>
+
+                        <div class="p-hero-badges">
+                            <span class="p-badge b-type">${meta.type.text}</span>
+                            <span class="p-badge b-attr">${attrEmoji ? `${attrEmoji} ` : ""}${meta.attr.text}</span>
+                        </div>
+
+                        <p class="p-hero-desc">
+                            클리어 시간을 직접 입력해 딜지분에 따른 DPS를 실시간으로 확인할 수 있습니다.
+                        </p>
+                        <p class="p-hero-desc" style="margin-top:6px;">
+                            ${descLine}
+                            같은 딜지분이라도 클리어 시간이 짧을수록 요구되는 DPS는 높아집니다.
+                        </p>
+                    </div>
+
+                    <div class="p-hero-pills">
+                        ${pills.map(p => `
+                            <span class="p-pill ${currentDiff === p.key ? "active" : ""}">${p.text}</span>
+                        `).join("")}
+                    </div>
+                </div>
+
+                <div class="p-hero-right">
+                    <div class="p-stat">
+                        <div class="p-stat-label">입장 레벨</div>
+                        <div class="p-stat-value">${entryLevel}</div>
+                    </div>
+
+                    <div class="p-stat">
+                        <div class="p-stat-label">난이도 · 관문</div>
+                        <div class="p-stat-value">${diffLabel} · ${gateLabel}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
+/* =============================================
+   가디언 컨트롤
+   ============================================= */
+function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
+    const oldBosses = ["루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼"];
+
+    const tierChecks = ["1730", "1750", "1770"].map(t => {
+        const isActive = tier === t;
+
+        return `
+            <div class="guardian-tier-chip ${isActive ? "active" : ""}" data-tier="${t}">
+                <span class="guardian-tier-chip-check">${isActive ? "✓" : ""}</span>
+                <span class="guardian-tier-chip-text">${t}</span>
+            </div>
+        `;
+    }).join("");
+
+    const makeDropdownItem = (b) => {
+        const m = gatoMeta[b];
+        const isActive = b === boss;
+        const isAvail = availList.includes(b);
+        const baseEmoji = getGuardianElementEmojiFromWeakness(m.attr.text);
+
+        return `
+            <div class="guardian-dropdown-item ${isActive ? "gd-active" : ""} ${isAvail ? "" : "pending"}" data-boss="${b}">
+                <div class="gd-item-name">
+                    <span class="gd-item-name-wrap">
+                        <span class="element-emoji">${baseEmoji}</span>
+                        <span>${b}</span>
+                    </span>
+                </div>
+                <div class="gd-item-badges">
+                    ${makeBadge(m.type.text, m.type.cls)}
+                    ${makeBadge(m.attr.text, m.attr.cls)}
+                </div>
+                ${isActive ? '<div class="gd-item-check">✓</div>' : ""}
+                ${isAvail ? "" : '<span class="gd-pending-tag">준비중</span>'}
+            </div>
+        `;
+    };
+
+    const oldItems = bossList.filter(b => oldBosses.includes(b)).map(makeDropdownItem).join("");
+    const newItems = bossList.filter(b => !oldBosses.includes(b)).map(makeDropdownItem).join("");
+    const triggerEmoji = getGuardianElementEmojiFromWeakness(bossInfo.attr.text);
+
+    // 요청 반영: [1730][1750][1770] 티어 버튼을 한 줄로, 그 아래 줄에 보스 선택 드롭다운을 배치
+    // (guardian-inline-row를 1열로 강제 → 상단 guardian-top-tools(티어+시간버튼), 하단 guardian-select-inline(드롭다운) 순서로 쌓임)
+    return `
+        <div class="precision-control guardian-inline-control">
+            <div class="guardian-inline-row" style="display:grid;grid-template-columns:1fr;gap:12px;">
+                <div class="guardian-top-tools">
+                    <div class="guardian-tier-inline" style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:8px;">
+                        ${tierChecks}
+                    </div>
+
+                    <button class="guardian-mobile-time-btn" id="guardianMobileTimeBtn" type="button">
+                        ⏱ 클리어 타임 입력
+                    </button>
+                </div>
+
+                <div class="guardian-select-inline">
+                    <div class="guardian-dropdown">
+                        <div class="guardian-dropdown-trigger compact">
+                            <div class="gd-trigger-name">
+                                <span class="gd-trigger-name-wrap">
+                                    <span class="element-emoji">${triggerEmoji}</span>
+                                    <span>${boss}</span>
+                                </span>
+                            </div>
+                            <div class="gd-trigger-badges">
+                                ${makeBadge(bossInfo.type.text, bossInfo.type.cls)}
+                                ${makeBadge(bossInfo.attr.text, bossInfo.attr.cls)}
+                            </div>
+                            <div class="gd-trigger-arrow">▼</div>
+                        </div>
+
+                        <div class="guardian-dropdown-list" style="display:none;">
+                            <div class="gd-group-label">기존 가디언</div>
+                            ${oldItems}
+                            <div class="gd-group-label">신규 가디언</div>
+                            ${newItems}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
+/* =============================================
+   공통 요약 카드 HTML
+   ============================================= */
+function makePrecisionSummary(rowTank, rowOne, rowBlood, getDmgFn, totalSec, menu) {
+    const shares = getPrecisionShares(menu);
+    const fmtShare = (s) => Number.isInteger(s) ? s : s.toFixed(1);
+
+    const makeCard = (label, labelCls, cardCls, dpsCls, share, row) => {
+        const dmg = row ? getDmgFn(row) : 0;
+        const dps = row ? (dmg / totalSec).toFixed(1) : "-";
+        return `
+            <div class="precision-summary-card ${cardCls}">
+                <div class="precision-summary-label ${labelCls}">${label}</div>
+                <div class="precision-summary-share">딜지분 ${fmtShare(share)}%</div>
+                <div class="precision-summary-dmg">${fmt(dmg)}<span class="precision-summary-unit"> 억</span></div>
+                <div class="precision-summary-dps ${dpsCls}">DPS ${dps}억</div>
+            </div>
+        `;
+    };
+
+    return `
+        <div class="precision-summary-cards">
+            ${makeCard("강투컷", "precision-label-tank", "precision-card-tank", "precision-dps-tank", shares.tank, rowTank)}
+            ${makeCard("1인분", "precision-label-one", "precision-card-one", "precision-dps-one", shares.one, rowOne)}
+            ${makeCard("잔혈컷", "precision-label-blood", "precision-card-blood", "precision-dps-blood", shares.blood, rowBlood)}
+        </div>
+    `;
+}
+
+
+/* =============================================
+   메인 테이블 렌더링
+   ============================================= */
+function renderTable() {
+    updateTimeDisplay();
+    const totalSec = getTotalSeconds();
+
+    const isSimpleQuickView =
+    currentMenu === "simple" &&
+    currentSimpleLevel !== "egir-ex" &&
+    currentSimpleLevel !== "abr-ex";
+
+const isRaidSimpleQuickView = currentMenu === "raid-simple";
+    const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin";
+    document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
+
+    const shouldHideTopline =
+    isSimpleQuickView ||
+    isRaidSimpleQuickView ||
+    currentMenu === "guardian" ||
+    currentMenu === "serka" ||
+    currentMenu === "cathedral" ||
+    currentMenu === "belgardin" ||
+    currentMenu === "arc-grid";
+
+const tabsEl = document.getElementById("tabs");
+if (tabsEl) {
+    tabsEl.style.display = currentMenu === "arc-grid" ? "none" : "";
+}
+
+    const topline = document.querySelector(".topline");
+    if (topline) {
+        topline.style.display = shouldHideTopline ? "none" : "";
+    }
+
+    const mainEl = document.querySelector(".main");
+
+    if (mainEl) {
+       mainEl.classList.toggle("simple-quick-mode", isSimpleQuickView || isRaidSimpleQuickView);
+    }
+
+   if (isSimpleQuickView || isRaidSimpleQuickView) {
+        document.getElementById("contentTitle").textContent = "";
+        document.getElementById("tableTitle").textContent = "";
+        document.getElementById("titleMeta").innerHTML = "";
+    }
+
+    // EX 제목 특수 처리
+    if (currentMenu === "simple" && currentSimpleLevel === "egir-ex") {
+        document.getElementById("contentTitle").innerHTML =
+            '<span style="background:linear-gradient(90deg,#ff6b6b 0%,#ffd700 15%,#fffacd 30%,#6bcb77 45%,#ffd700 60%,#fffacd 75%,#ff9ff3 90%,#ffd700 100%);background-size:250% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer 2s linear infinite;filter:drop-shadow(0 0 7px rgba(255,215,0,0.85));">에기르 EX 레이드</span>';
+    } else if (currentMenu === "simple" && currentSimpleLevel === "abr-ex") {
+        document.getElementById("contentTitle").innerHTML =
+            '<span style="background:linear-gradient(90deg,#FFD60A 0%,#7E57C2 25%,#FFD60A 50%,#7E57C2 75%,#FFD60A 100%);background-size:250% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer 2s linear infinite;filter:drop-shadow(0 0 7px rgba(255,214,10,0.85));">아브렐슈드 EX 레이드</span>';
+    } else if (!isSimpleQuickView) {
+        document.getElementById("contentTitle").textContent = getContentName();
+    }
+
+    document.getElementById("tableTitle").textContent = getTableTitle();
+    renderTitleMeta();
+    document.getElementById("infoHint").innerHTML = getInfoHintText();
+
+if (currentMenu === "arc-grid") {
+    setClearTimeDisabled(true);
+    document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+
+    document.getElementById("contentTitle").textContent = "";
+    document.getElementById("tableTitle").textContent = "";
+    document.getElementById("titleMeta").innerHTML = "";
+
+    if (typeof ArcGrid !== "undefined") {
+        ArcGrid.init(document.getElementById("mainContent"));
+    }
+
+    return;
+}
+
+if (currentMenu === "simple" || currentMenu === "raid-simple") {
+    setClearTimeDisabled(true);
+    document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+
+    if (currentMenu === "raid-simple") {
+        renderRaidSimpleView();
+    } else {
+        renderSimpleView();
+    }
+    return;
+}
+
+    setClearTimeDisabled(false);
+
+    // === 가디언 토벌 ===
+    if (currentMenu === "guardian") {
+        document.getElementById("contentTitle").textContent = "";
+        document.getElementById("tableTitle").textContent = "";
+        document.getElementById("titleMeta").innerHTML = "";
+
+        const tier = currentGuardianTier;
+        const boss = getCurrentGuardianBoss();
+        const bossInfo = gatoMeta[boss];
+        const isAvail = isGuardianBossAvailable(tier, boss);
+        const bossList = getGuardianBossListByTier(tier);
+        const availList = getGuardianAvailListByTier(tier);
+
+        if (!isAvail) {
+            document.getElementById("mainContent").innerHTML = `
+                ${makeGuardianHero(tier, boss, bossInfo)}
+                ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
+
+                <div class="coming-soon"><h3>${boss} 준비중</h3><p>해당 보스의 가디언 토벌 데이터는 순차적으로 공개됩니다.</p></div>
+            `;
+        } else {
+            const rows = getGuardianParsedRows(tier, boss);
+
+            const getDmg = (r) => r.damage || 0;
+            const findRow = (share) => rows.find(r => r.share === share && getDmg(r) > 0);
+
+            const row30 = findRow(30);
+            const row33 = findRow(33);
+            const row40 = findRow(40);
+
+            const tableRowsHtml = rows.length
+                ? rows.map(r => {
+                    let cls = "";
+                    if (r.share === 30) cls = "row-30";
+                    if (r.share === 33) cls = "row-33";
+                    if (r.share === 40) cls = "row-40";
+                    return `<tr class="${cls}">${renderShareCell(r.share, "guardian")}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
+                }).join("")
+                : '<tr><td colspan="3">데이터 없음</td></tr>';
+
+            document.getElementById("mainContent").innerHTML = `
+                ${makeGuardianHero(tier, boss, bossInfo)}
+                ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
+                ${makePrecisionSummary(row30, row33, row40, getDmg, totalSec, "guardian")}
+                <div class="precision-table-panel">
+                    <div class="precision-table-head">
+                        <div class="precision-table-title">${boss} (${tier}) 상세 딜지분</div>
+                        <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="dataTable">
+                            <thead>
+                                <tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>
+                            </thead>
+                            <tbody>${tableRowsHtml}</tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 레벨 체크 이벤트
+        document.querySelectorAll(".guardian-tier-chip[data-tier]").forEach(el => {
+            el.addEventListener("click", () => {
+                currentGuardianTier = el.dataset.tier;
+                renderTable();
+            });
+        });
+
+        // 드롭다운 토글
+        const trigger = document.querySelector(".guardian-dropdown-trigger");
+        const list = document.querySelector(".guardian-dropdown-list");
+        if (trigger && list) {
+            trigger.addEventListener("click", () => {
+                const isOpen = list.style.display === "block";
+                list.style.display = isOpen ? "none" : "block";
+                trigger.classList.toggle("open", !isOpen);
+            });
+        }
+
+        // 보스 선택 이벤트
+        document.querySelectorAll(".guardian-dropdown-item[data-boss]").forEach(el => {
+            el.addEventListener("click", () => {
+                if (el.classList.contains("pending")) return;
+                const selectedBoss = el.dataset.boss;
+                setCurrentGuardianBoss(selectedBoss);
+                renderTable();
+            });
+        });
+
+    const guardianMobileTimeBtn = document.getElementById("guardianMobileTimeBtn");
+    if (guardianMobileTimeBtn) {
+        guardianMobileTimeBtn.addEventListener("click", openMobileTimeModal);
+    }
+        updatePartyDpsDisplay();
+        return;
+    }
+
+// === 세르카 / 성당 / 벨가르딘 ===
+if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
+    document.getElementById("contentTitle").textContent = "";
+    document.getElementById("tableTitle").textContent = "";
+    document.getElementById("titleMeta").innerHTML = "";
+
+    const meta = raidMeta[currentMenu][currentCombo];
+    const dataRows = parsedData[currentMenu]?.[meta.diffKey] || [];
+    const raidName = getRaidDisplayName(currentMenu);
+    const shares = getPrecisionShares(currentMenu);
+
+    const getDamage = (row) => meta.gateKey === "gate1" ? row.g1 : row.g2;
+    const findRow = (share) => dataRows.find(r => r.share === share && getDamage(r) > 0);
+    const rowTank = findRow(shares.tank);
+    const rowOne = findRow(shares.one);
+    const rowBlood = findRow(shares.blood);
+
+    const bossNames = currentMenu === "serka"
+        ? { gate1: "세르카", gate2: "코르부스" }
+        : currentMenu === "cathedral"
+        ? { gate1: "대주교", gate2: "광신의 인도자" }
+        : { gate1: "벨가르딘", gate2: "페투스" };
+
+    const groups = currentMenu === "serka"
+        ? [
+            { diffKey: "normal", label: "노말", level: "1710", cls: "pd-green" },
+            { diffKey: "hard", label: "하드", level: "1730", cls: "pd-gold" },
+            { diffKey: "nightmare", label: "나메", level: "1740", cls: "pd-purple" }
+        ]
+        : currentMenu === "cathedral"
+        ? [
+            { diffKey: "normal", label: "1단계", level: "1700", cls: "pd-green" },
+            { diffKey: "hard", label: "2단계", level: "1720", cls: "pd-gold" },
+            { diffKey: "nightmare", label: "3단계", level: "1750", cls: "pd-purple" }
+        ]
+        : [
+            { diffKey: "normal", label: "노말", level: "1750", cls: "pd-green" },
+            { diffKey: "hard", label: "하드", level: "1770", cls: "pd-gold" },
+            { diffKey: "nightmare", label: "나메", level: "1780", cls: "pd-purple" }
+        ];
+
+    const currentDiff = currentCombo.split("_")[0];
+    const currentGate = currentCombo.split("_")[1];
+
+    const tableRowsHtml = dataRows.length
+        ? dataRows.map(r => {
+            let cls = "";
+            if (r.share === shares.tank) cls = "row-30";
+            if (r.share === shares.one) cls = "row-33";
+            if (r.share === shares.blood) cls = "row-40";
+            const dmg = getDamage(r);
+            return `<tr class="${cls}">${renderShareCell(r.share, currentMenu)}<td><span class="damage-wrap"><span class="damage-num">${fmt(dmg)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${(dmg / totalSec).toFixed(1)}억</span></td></tr>`;
+        }).join("")
+        : '<tr><td colspan="3">데이터 없음</td></tr>';
+
+    document.getElementById("mainContent").innerHTML = `
+        ${makeRaidPrecisionHero(currentMenu, meta, currentDiff)}
+
+                <div class="precision-layout-split">
+            <div class="precision-control compact-precision-control">
+                <div class="precision-inline-group">
+                    <div class="precision-control-label">난이도 선택</div>
+                    <div class="precision-diff-inline">
+                        ${groups.map(g => {
+                            const isActive = currentDiff === g.diffKey;
+                            return `
+                                <div class="precision-diff-chip ${isActive ? `${g.cls} active` : ""}" data-diff="${g.diffKey}">
+                                    <span class="precision-diff-chip-check">${isActive ? "✓" : ""}</span>
+                                    <span class="precision-diff-chip-main">${g.label}</span>
+                                    <span class="precision-diff-chip-sub">${g.level}</span>
+                                </div>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
+
+                <div class="precision-inline-group">
+                    <div class="precision-control-label">관문 선택</div>
+                    <div class="precision-gate-inline">
+                        <div class="precision-gate-chip ${currentGate === "gate1" ? "active" : ""}" data-gate="gate1">
+                            <div class="precision-gate-chip-content">
+                                <div class="precision-gate-chip-line">
+                                    <span class="precision-gate-chip-gate">1관</span>
+                                    <span class="precision-gate-chip-boss">${bossNames.gate1}</span>
+                                </div>
+                                <div class="precision-gate-chip-badges">
+                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate1`].type.text, raidMeta[currentMenu][`${currentDiff}_gate1`].type.cls)}
+                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate1`].attr.text, raidMeta[currentMenu][`${currentDiff}_gate1`].attr.cls)}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="precision-gate-chip ${currentGate === "gate2" ? "active" : ""}" data-gate="gate2">
+                            <div class="precision-gate-chip-content">
+                                <div class="precision-gate-chip-line">
+                                    <span class="precision-gate-chip-gate">2관</span>
+                                    <span class="precision-gate-chip-boss">${bossNames.gate2}</span>
+                                </div>
+                                <div class="precision-gate-chip-badges">
+                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate2`].type.text, raidMeta[currentMenu][`${currentDiff}_gate2`].type.cls)}
+                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate2`].attr.text, raidMeta[currentMenu][`${currentDiff}_gate2`].attr.cls)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                ${makeMobilePrecisionTools(currentMenu, currentDiff + "_" + meta.gateKey)}
+            </div>
+
+            <div class="precision-reward-standalone">
+                ${makeRewardWidget(currentMenu, currentDiff + "_" + meta.gateKey)}
+            </div>
+        </div>
+
+        ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, currentMenu)}
+
+        <div class="precision-table-panel">
+            <div class="precision-table-head">
+                <div class="precision-table-title">${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName} 상세 딜지분</div>
+                <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
+            </div>
+            <div class="table-wrap">
+                <table id="dataTable">
+                    <thead>
+                        <tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>
+                    </thead>
+                    <tbody>${tableRowsHtml}</tbody>
+                </table>
+            </div>
+        </div>
+    `;
+
+    // 난이도 선택
+    document.querySelectorAll(".precision-diff-chip[data-diff]").forEach(el => {
+        el.addEventListener("click", () => {
+            const gate = currentCombo.split("_")[1];
+            currentCombo = `${el.dataset.diff}_${gate}`;
+            renderTable();
+        });
+    });
+
+    // 관문 선택
+    document.querySelectorAll(".precision-gate-chip[data-gate]").forEach(el => {
+        el.addEventListener("click", () => {
+            const diff = currentCombo.split("_")[0];
+            currentCombo = `${diff}_${el.dataset.gate}`;
+            if (currentMenu === "belgardin") {
+                setBaseTimeByMenu(currentMenu, el.dataset.gate);
+            }
+            renderTable();
+        });
+    });
+
+    bindRewardMoreToggle(currentMenu);
+
+    const mobileTimeBtn = document.getElementById(`openMobileTimeBtn_${currentMenu}`);
+    const mobileRewardToggleBtn = document.getElementById(`mobileRewardToggle_${currentMenu}`);
+    const mobileRewardBox = document.getElementById(`mobileRewardBox_${currentMenu}`);
+
+    if (mobileTimeBtn) {
+        mobileTimeBtn.addEventListener("click", openMobileTimeModal);
+    }
+
+    if (mobileRewardToggleBtn && mobileRewardBox) {
+        mobileRewardToggleBtn.addEventListener("click", () => {
+            const isOpen = mobileRewardBox.classList.toggle("open");
+            mobileRewardToggleBtn.textContent = isOpen
+                ? "📦 클리어 보상 닫기"
+                : "📦 클리어 보상 확대하기";
+        });
+    }
+
+    const mobileRewardMoreBtn = document.getElementById(`mobileRewardMoreBtn_${currentMenu}`);
+    const mobileRewardMoreContent = document.getElementById(`mobileRewardMore_${currentMenu}`);
+
+    if (mobileRewardMoreBtn && mobileRewardMoreContent) {
+        mobileRewardMoreBtn.addEventListener("click", () => {
+            const isOpen = mobileRewardMoreContent.classList.toggle("rw-open");
+            mobileRewardMoreBtn.textContent = isOpen ? "더보기 보상 닫기 ▲" : "더보기 보상 열기 ▼";
+        });
+    }
+
+    updatePartyDpsDisplay();
+    return;
+}
+
+}
+
+
+/* =============================================
+   CSV 로드
+   ============================================= */
+async function loadCSV() {
+    const statusEl = document.getElementById("status");
+    const CACHE_KEY = "loa_dps_csv_cache_v1";
+
+    try {
+        const cachedCsv = localStorage.getItem(CACHE_KEY);
+        if (cachedCsv) {
+            const cachedLines = cachedCsv.split(/\r?\n/);
+
+            clearAllData();
+            parseCathedral(cachedLines);
+            parseSerka(cachedLines);
+            parseBelgardin(cachedLines);
+            parseGato1730(cachedLines);
+            parseGato1750(cachedLines);
+            parseGato1770(cachedLines);
+
+            if (currentMenu !== "simple" && currentMenu !== "raid-simple") {
+                renderTabs();
+                renderTable();
+            }
+        }
+
+        const resp = await fetch(CSV_URL);
+        const csvText = await resp.text();
+        const lines = csvText.split(/\r?\n/);
+
+        localStorage.setItem(CACHE_KEY, csvText);
+
+        clearAllData();
+        parseCathedral(lines);
+        parseSerka(lines);
+        parseBelgardin(lines);
+        parseGato1730(lines);
+        parseGato1750(lines);
+        parseGato1770(lines);
+
+        if (currentMenu !== "simple" && currentMenu !== "raid-simple") {
+            renderTabs();
+            renderTable();
+
+            if (statusEl) {
+                statusEl.textContent = "연동 완료";
+                statusEl.style.display = "block";
+                setTimeout(() => { statusEl.style.display = "none"; }, 2000);
+            }
+        } else {
+            if (statusEl) {
+                statusEl.style.display = "none";
+            }
+        }
+    } catch (err) {
+        console.error(err);
+        if (statusEl) {
+            statusEl.style.display = "none";
+        }
+    }
+}
+
+/* =============================================
+   경매 계산기
+   ============================================= */
+function acFmt(v) {
+    return Math.round(v).toLocaleString("ko-KR");
+}
+
+function calcBreakeven(price, members) {
+    return 0.95 * price * (members - 1) / members;
+}
+
+function calcRecommend(breakeven, margin) {
+    return breakeven / (1 + margin);
+}
+
+function acUpdate() {
+    const acPriceEl = document.getElementById("ac-price");
+    if (!acPriceEl) return;
+
+    const raw = (acPriceEl.value || "").replace(/,/g, "");
+    const price = parseInt(raw) || 0;
+
+    if (!price) {
+        document.getElementById("ac-be").textContent = "-";
+        document.getElementById("ac-be-desc").textContent = "거래소 가격을 입력하세요";
+        [5, 10].forEach(pct => {
+            document.getElementById(`ac-v${pct}`).textContent = "-";
+            document.getElementById(`ac-d${pct}`).textContent = "가격 입력 시 표시";
+            document.getElementById(`ac-bar${pct}`).style.width = "0%";
+        });
+        return;
+    }
+
+    const be = calcBreakeven(price, acMembers);
+    document.getElementById("ac-be").textContent = acFmt(be);
+    document.getElementById("ac-be-desc").textContent = "이 금액 이하로 입찰하면 이득";
+
+    const r5 = calcRecommend(be, 0.05);
+    const r10 = calcRecommend(be, 0.1);
+
+    document.getElementById("ac-v5").textContent = acFmt(r5);
+    document.getElementById("ac-d5").textContent = `${acFmt(r5)} 입찰 시 ${acFmt(be - r5)} 이득`;
+    document.getElementById("ac-bar5").style.width = "60%";
+
+    document.getElementById("ac-v10").textContent = acFmt(r10);
+    document.getElementById("ac-d10").textContent = `${acFmt(r10)} 입찰 시 ${acFmt(be - r10)} 이득`;
+    document.getElementById("ac-bar10").style.width = "100%";
+}
+
+/* =============================================
+   가이드 모달
+   ============================================= */
+const guideModal = document.getElementById("guideModal");
+const openGuideBtn = document.getElementById("openGuideBtn");
+const closeGuideBtn = document.getElementById("closeGuideBtn");
+
+function openGuideModal() {
+    if (!guideModal) return;
+    guideModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeGuideModal() {
+    if (!guideModal) return;
+    guideModal.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+/* =============================================
+   INFO
+   ============================================= */
+function getInfoHintText() {
+if (currentMenu === "raid-simple") {
+    return "레이드 기준으로 난이도별 강투 / 1인분 / 잔혈 컷을 비교할 수 있습니다.";
+}
+   
+if (currentMenu === "simple") {
+    if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
+        return "에스더가 포함된 추정 기준표입니다. 실전 오차가 있을 수 있습니다.";
+    }
+    return "해당 레벨에서 골드 획득 우선순위 3개를 먼저 보여주고, 나머지 입장 가능 레이드는 아래에서 펼쳐 볼 수 있습니다.";
+}
+
+
+    if (currentMenu === "serka" || currentMenu === "cathedral") {
+        return "클리어 타임을 입력하면 피해량과 DPS가 실시간으로 반영됩니다.";
+    }
+
+    if (currentMenu === "belgardin") {
+        return "벨가르딘은 8인 레이드로 강투 15% · 1인분 16.6% · 잔혈 20% 기준입니다. 클리어 타임을 입력하면 실시간 반영됩니다.";
+    }
+
+    if (currentMenu === "guardian") {
+        return "레벨과 보스를 선택하면 해당 가디언의 딜지분과 DPS를 확인할 수 있습니다.";
+    }
+
+    return "구글 시트 데이터를 읽어 옵니다.";
+}
+
+// 사이드바 메뉴
+document.querySelectorAll(".menu-item").forEach(btn => {
+    btn.addEventListener("click", () => {
+        if (btn.classList.contains("disabled")) return;
+
+        const menu = btn.dataset.menu;
+        if (!menu) return;
+
+        document.body.classList.remove("arc-grid-mode");
+
+        document.querySelectorAll(".menu-item").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (menu === "simple") {
+            currentMenu = "simple";
+            currentSimpleLevel = "1750";
+        }
+        else if (menu === "raid-simple") {
+            currentMenu = "raid-simple";
+            currentSimpleRaid = "cathedral";
+        }
+        else if (menu === "egir-ex") {
+            currentMenu = "simple";
+            currentSimpleLevel = "egir-ex";
+        }
+        else if (menu === "abr-ex") {
+            currentMenu = "simple";
+            currentSimpleLevel = "abr-ex";
+        }
+        else if (menu === "serka") {
+            currentMenu = "serka";
+            currentCombo = "hard_gate1";
+        }
+        else if (menu === "cathedral") {
+            currentMenu = "cathedral";
+            currentCombo = "hard_gate1";
+        }
+        else if (menu === "belgardin") {
+            currentMenu = "belgardin";
+            currentCombo = "hard_gate1";
+        }
+        else if (menu === "guardian") {
+            currentMenu = "guardian";
+            currentGuardianTier = "1750";
+            currentGatoBoss = "엘버하스틱";
+            currentGato1750Boss = "엘버하스틱";
+            currentGato1770Boss = "엘버하스틱";
+        }
+        else if (menu === "arc-grid") {
+            currentMenu = "arc-grid";
+            document.body.classList.add("arc-grid-mode");
+        }
+
+        setBaseTimeByMenu(currentMenu);
+        renderTabs();
+        renderTable();
+       updateCanonicalAndUrl(currentMenu);
+
+if (menu === "arc-grid") {
+    window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+        if (isMobileViewport() && btn.classList.contains("mobile-launch-btn")) {
+            enterMobileContentMode();
+            window.scrollTo({ top: 0, behavior: "auto" });
+        }
+    });
+});
+
+// 시간 스텝 버튼
+document.querySelectorAll(".time-step-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        changeTimeValue(btn.dataset.stepTarget, parseInt(btn.dataset.step, 10));
+    });
+});
+
+// 시간 입력
+document.getElementById("minutes").addEventListener("input", () => {
+    if (currentMenu !== "simple") renderTable();
+});
+
+document.getElementById("seconds").addEventListener("input", () => {
+    if (currentMenu !== "simple") renderTable();
+});
+
+// 가이드 모달
+if (openGuideBtn) {
+    openGuideBtn.addEventListener("click", () => {
+        openGuideModal();
+    });
+}
+
+if (closeGuideBtn) {
+    closeGuideBtn.addEventListener("click", closeGuideModal);
+}
+
+if (guideModal) {
+    guideModal.addEventListener("click", e => {
+        if (e.target === guideModal) closeGuideModal();
+    });
+}
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && guideModal && guideModal.classList.contains("show")) {
+        closeGuideModal();
+    }
+});
+
+/* =============================================
+   모바일 홈 / 콘텐츠 전환
+   ============================================= */
+const mobileGuideBtn = document.getElementById("mobileGuideBtn");
+const mobileBackBtn = document.getElementById("mobileBackBtn");
+
+function isMobileViewport() {
+    return window.innerWidth <= 768;
+}
+
+function enterMobileHomeMode() {
+    if (!isMobileViewport()) return;
+    document.body.classList.add("mobile-home-mode");
+    document.body.classList.remove("mobile-content-mode");
+}
+
+function enterMobileContentMode() {
+    if (!isMobileViewport()) return;
+    document.body.classList.add("mobile-content-mode");
+    document.body.classList.remove("mobile-home-mode");
+}
+
+function syncMobileShellMode() {
+    if (isMobileViewport()) {
+        if (
+            !document.body.classList.contains("mobile-home-mode") &&
+            !document.body.classList.contains("mobile-content-mode")
+        ) {
+            document.body.classList.add("mobile-home-mode");
+        }
+    } else {
+        document.body.classList.remove("mobile-home-mode", "mobile-content-mode");
+    }
+}
+
+if (mobileGuideBtn) {
+    mobileGuideBtn.addEventListener("click", openGuideModal);
+}
+
+if (mobileBackBtn) {
+    mobileBackBtn.addEventListener("click", () => {
+        enterMobileHomeMode();
+        window.scrollTo({ top: 0, behavior: "auto" });
+    });
+}
+
+window.addEventListener("resize", syncMobileShellMode);
+syncMobileShellMode();
+
+/* =============================================
+   모바일 클리어 타임 팝업
+   ============================================= */
+const mobileTimeModal = document.getElementById("mobileTimeModal");
+const closeMobileTimeModalBtn = document.getElementById("closeMobileTimeModal");
+const applyMobileTimeBtn = document.getElementById("applyMobileTimeBtn");
+const mobileTimeMinutes = document.getElementById("mobileTimeMinutes");
+const mobileTimeSeconds = document.getElementById("mobileTimeSeconds");
+const mobileTimePreview = document.getElementById("mobileTimePreview");
+
+function updateMobileTimePreview() {
+    let m = parseInt(mobileTimeMinutes.value || 0, 10);
+    let s = parseInt(mobileTimeSeconds.value || 0, 10);
+
+    if (isNaN(m) || m < 0) m = 0;
+    if (isNaN(s) || s < 0) s = 0;
+    if (s > 59) s = 59;
+
+    mobileTimeMinutes.value = m;
+    mobileTimeSeconds.value = s;
+    mobileTimePreview.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function openMobileTimeModal() {
+    if (!mobileTimeModal) return;
+
+    const mainMinutes = document.getElementById("minutes");
+    const mainSeconds = document.getElementById("seconds");
+
+    mobileTimeMinutes.value = mainMinutes ? mainMinutes.value || 0 : 0;
+    mobileTimeSeconds.value = mainSeconds ? mainSeconds.value || 0 : 0;
+    updateMobileTimePreview();
+
+    mobileTimeModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeMobileTimeModal() {
+    if (!mobileTimeModal) return;
+    mobileTimeModal.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+if (mobileTimeMinutes) {
+    mobileTimeMinutes.addEventListener("input", updateMobileTimePreview);
+}
+
+if (mobileTimeSeconds) {
+    mobileTimeSeconds.addEventListener("input", updateMobileTimePreview);
+}
+
+if (closeMobileTimeModalBtn) {
+    closeMobileTimeModalBtn.addEventListener("click", closeMobileTimeModal);
+}
+
+if (applyMobileTimeBtn) {
+    applyMobileTimeBtn.addEventListener("click", () => {
+        const mainMinutes = document.getElementById("minutes");
+        const mainSeconds = document.getElementById("seconds");
+
+        if (mainMinutes) mainMinutes.value = mobileTimeMinutes.value;
+        if (mainSeconds) mainSeconds.value = mobileTimeSeconds.value;
+
+        closeMobileTimeModal();
+        renderTable();
+    });
+}
+
+if (mobileTimeModal) {
+    mobileTimeModal.addEventListener("click", e => {
+        if (e.target === mobileTimeModal) closeMobileTimeModal();
+    });
+}
+
+// 경매 계산기 토글
+document.querySelectorAll(".ac-toggle-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".ac-toggle-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        acMembers = parseInt(btn.dataset.m);
+        acUpdate();
+    });
+});
+
+// 경매 계산기 입력
+const acPriceInput = document.getElementById("ac-price");
+if (acPriceInput) {
+    acPriceInput.addEventListener("input", e => {
+        let val = e.target.value.replace(/,/g, "").replace(/[^0-9]/g, "");
+        e.target.value = val ? Number(val).toLocaleString("ko-KR") : "";
+        acUpdate();
+    });
+}
+
+/* =============================================
+   패치노트 미니 팝업
+   ============================================= */
+const patchModal = document.getElementById("patchModal");
+const closePatchModalBtn = document.getElementById("closePatchModal");
+const patchModalDate = document.getElementById("patchModalDate");
+const patchModalTitle = document.getElementById("patchModalTitle");
+const patchModalDesc = document.getElementById("patchModalDesc");
+const patchModalBody = document.getElementById("patchModalBody");
+
+function openPatchModal(data) {
+    if (!patchModal) return;
+
+    patchModalDate.textContent = data.date || "";
+    patchModalTitle.textContent = data.title || "";
+    patchModalDesc.textContent = data.desc || "";
+    patchModalBody.innerHTML = data.body || "";
+
+    patchModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closePatchModal() {
+    if (!patchModal) return;
+    patchModal.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".patch-item[data-patch-title]").forEach(item => {
+    item.addEventListener("click", () => {
+        openPatchModal({
+            date: item.dataset.patchDate,
+            title: item.dataset.patchTitle,
+            desc: item.dataset.patchDesc,
+            body: item.dataset.patchBody
+        });
+    });
+});
+
+if (closePatchModalBtn) {
+    closePatchModalBtn.addEventListener("click", closePatchModal);
+}
+
+if (patchModal) {
+    patchModal.addEventListener("click", e => {
+        if (e.target === patchModal) closePatchModal();
+    });
+}
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && patchModal && patchModal.classList.contains("show")) {
+        closePatchModal();
+    }
+});
+
+/* =============================================
+   초기화 실행
+   ============================================= */
+setBaseTimeByMenu("simple");
+applyMenuFromQuery();
+updateCanonicalAndUrl(currentMenu);
+
+if (currentMenu === "simple" || currentMenu === "raid-simple") {
+    renderTabs();
+    renderTable();
+}
+
+loadCSV();
+acUpdate();
