@@ -1,1 +1,539 @@
-function _0x11ce(_0x3993fb,_0x2e56a9){_0x3993fb=_0x3993fb-0x13d;const _0x5b50e6=_0x5b50();let _0x11ce19=_0x5b50e6[_0x3993fb];return _0x11ce19;}function _0x5b50(){const _0xf76a16=['/dps/guardian','\x22>아크그리드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','search','Escape','.grade-stamp.like-stamp','isArray','\x22\x20class=\x22qm-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-icon\x22>🏆</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-label\x22>직각<br>토너먼트</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</a>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/privacy.html','dps/raid.html','_blank','.auction-page','querySelector','loa_tournament_visitor_key','\x22>벨가르딘</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/class/synergy','length','about.html\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin-right:\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>사이트\x20소개</a>\x20|\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','3edQfzY','/dps/raid','/rank/winrate','sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb','/tools/market','\x22>직각\x20랭킹보드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','padStart','origin','rank','href','dps/guardian.html','2252395ePqJga','\x22>토너먼트\x20시작하기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/class/synergy.html','boxShadow','preventDefault','\x22>세르카</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','applyHomeTournamentStamps\x20error:','gnbDrawerClose','setAttribute','linear-gradient(180deg,\x20rgba(255,120,170,.12),\x20rgba(255,255,255,.02))','javascript:','/index','\x22>레벨별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>밸런스\x20승률표</a>\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','split','\x22>클래스별\x20우승자\x20분석</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/dps/guardian.html','includes','pushState','endsWith','false','\x22\x20class=\x22gnb-brand-name\x22><img\x20src=\x22https://loaviewer.github.io/favicon.ico\x22\x20alt=\x22로아뷰\x22\x20class=\x22gnb-favicon\x22>\x20로아뷰<span\x20class=\x22gnb-brand-sub\x22>\x20·\x20LOA\x20VIEWER</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<nav\x20class=\x22gnb-nav\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul\x20class=\x22gnb-nav-list\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x22><a\x20href=\x22','target','.tools-page','4498686BEIyKA','\x22>벨가르딘</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>레벨별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','date_key','\x0a\x20\x20\x20\x20<div\x20style=\x22border-top:\x201px\x20solid\x20rgba(255,255,255,0.05);\x20margin-top:\x2020px;\x20padding-top:\x2015px;\x20padding-bottom:\x2025px;\x20font-size:\x2010px;\x20color:\x20#384967;\x20line-height:\x201.7;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div>©\x202026\x20LOA\x20VIEWER\x20·\x20All\x20Rights\x20Reserved.</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div>Not\x20associated\x20with\x20Smilegate\x20RPG\x20&\x20Smilegate\x20Stove.</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div>Data\x20based\x20on\x20Google\x20Sheets\x20·\x20Powered\x20by\x20Supabase\x20·\x20cloudtype\x20·\x20GitHub\x20Pages\x20·\x20GoatCounter</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:\x206px;\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','1507538jKlxVT','\x22>지평의\x20성당</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>밸런스\x20승률표</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','48IvVOIS','\x22>레이드별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>잔혈컷\x20정밀계산</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','innerWidth','body','\x22>아크패시브</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-dropdown-link\x20disabled\x22>캐릭터\x20정보\x20(준비중)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20','/about','closest','src','<br>호감\x20참여\x20완료</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','error','class/synergy.html','\x22\x20class=\x22qm-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-icon\x22>💹</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-label\x22>시세정보</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</a>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','0\x200\x200\x201px\x20rgba(255,120,170,.08)\x20inset,\x200\x200\x2018px\x20rgba(255,120,170,.10)','querySelectorAll','4330BrUWsw','\x22>가디언\x20토벌</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>직업별\x20DPS컷</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-drawer-link\x20disabled\x22>허수\x20배율\x20계산\x20(준비중)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-drawer-link\x20disabled\x22>DPS값\x20계산\x20(준비중)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>직각\x20토너먼트</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','rank/tier.html','/class/','/dps/level.html','?select=tournament_type,grade,date_key','\x22\x20class=\x22qm-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-icon\x22>💠</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-label\x22>레벨별<br>잔혈컷</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</a>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','rgba(255,215,0,.38)','\x22>지평의\x20성당</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/rank/history','class/arkPassive.html','true','/tools/auction.html','/class/arkPassive.html','\x22>시너지표</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/rank/winrate.html','\x22>토너먼트\x20시작하기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22\x20class=\x22qm-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-icon\x22>🧛</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-label\x22>정밀\x20계산</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</a>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/tools/market.html','\x22\x20class=\x22gnb-dropdown-link\x20','forEach','\x22>아크패시브</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-drawer-link\x20disabled\x22>캐릭터\x20정보</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>편의\x20도구</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22\x20class=\x22gnb-cta\x20op\x22>🏆\x20OP\x20토너먼트\x20참여</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','tools/auction.html','/dps/cathedral','\x22>·\x20홈으로</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-drawer-close\x22\x20id=\x22gnbDrawerClose\x22\x20type=\x22button\x22\x20aria-label=\x22메뉴\x20닫기\x22>✕</button>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20<nav\x20class=\x22gnb-drawer-nav\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>잔혈컷\x20간편보기</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','active','scripts','/guide','tournament_type','getAttribute','\x22>티어표\x20(최근\x2010일)</a>\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/dps/belgardin','\x22\x20class=\x22gnb-drawer-link\x20','contains','rank/winrate.html','735544zNNZln','/class/arc-grid.html','click','\x22>클래스별\x20우승자\x20분석</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','linear-gradient(180deg,\x20rgba(255,215,0,.12),\x20rgba(255,255,255,.02))','/dps/serka','gnbDrawer','currentScript','getElementById','\x22>시세\x20정보</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</nav>\x0a\x20\x20\x20\x20</aside>\x0a\x20\x20','rank/ranking.html','/privacy','common-shell','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>TODAY\x20STAMP</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>','gnbDrawerOverlay','/dps/serka.html','style','pathname','/rank','DOMContentLoaded','slice','/rank/','borderColor','rank.html','\x22>경매\x20계산기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','background','730840euGgyq','dps/serka.html','dps/level.html','gnb-drawer-open','\x22>홈</a></li>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20','json','\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20잔혈컷\x20정밀계산\x20<span\x20class=\x22gnb-caret\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/dps/level','/about.html','rank/class-win.html','startsWith','/rank.html','/js/common.js','.html','getDate','find','\x22>직각\x20랭킹보드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','rank/history.html','/rank/tier','\x22>시세\x20정보</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</nav>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-cta-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','<br>OP\x20참여\x20완료</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','7UVfwHb','addEventListener','/tools/auction','4oaXuOA','grade','add','from','\x22>승률\x20변화\x20그래프</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>클래스\x20정보</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/dps/raid.html','standalone-dps-page','aria-expanded','resize','common.js\x20loaded','hash','\x22>아크그리드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','333yOFIWW','dps/cathedral.html','privacy.html\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin:\x200\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>개인정보처리방침</a>\x20|\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22mailto:dnjswjd10041@gmail.com\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin-left:\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>이메일\x20문의</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20','/rank/ranking','keydown','/rank/ranking.html','0\x200\x200\x201px\x20rgba(255,215,0,.10)\x20inset,\x200\x200\x2018px\x20rgba(255,215,0,.10)','\x0a\x20\x20\x20\x20<div\x20class=\x22common-aurora\x22></div>\x0a\x20\x20','4216234FTcvKN','\x22\x20class=\x22qm-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_96.png\x22\x20alt=\x22\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-label\x22>아크그리드</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</a>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/dps/','innerHTML','\x22>기간내\x20승률\x20변화\x20그래프</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20','/tools/','aria-hidden','classList'];_0x5b50=function(){return _0xf76a16;};return _0x5b50();}const _0x5bf1dc=_0x11ce;(function(_0x25f8e6,_0x3e14b9){const _0x206627=_0x11ce,_0x9eda84=_0x25f8e6();while(!![]){try{const _0x1f5bba=-parseInt(_0x206627(0x161))/0x1+-parseInt(_0x206627(0x1e8))/0x2*(-parseInt(_0x206627(0x1c0))/0x3)+parseInt(_0x206627(0x193))/0x4*(-parseInt(_0x206627(0x1cb))/0x5)+-parseInt(_0x206627(0x1e3))/0x6+-parseInt(_0x206627(0x190))/0x7*(-parseInt(_0x206627(0x17b))/0x8)+parseInt(_0x206627(0x19f))/0x9*(-parseInt(_0x206627(0x13d))/0xa)+parseInt(_0x206627(0x1a7))/0xb*(parseInt(_0x206627(0x1eb))/0xc);if(_0x1f5bba===_0x3e14b9)break;else _0x9eda84['push'](_0x9eda84['shift']());}catch(_0x23f84e){_0x9eda84['push'](_0x9eda84['shift']());}}}(_0x5b50,0x681eb),console['log'](_0x5bf1dc(0x19c)),document[_0x5bf1dc(0x191)](_0x5bf1dc(0x174),()=>{const _0x483f99=_0x5bf1dc,_0x3295ab=document[_0x483f99(0x169)](_0x483f99(0x16d));if(!_0x3295ab)return;const _0x2fa12a=location[_0x483f99(0x172)];if(_0x2fa12a['endsWith']('.html')){const _0x31a685=_0x2fa12a[_0x483f99(0x175)](0x0,-0x5);history['replaceState'](null,'',_0x31a685+location[_0x483f99(0x1b1)]+location[_0x483f99(0x19d)]);}const _0x51fb21=Array[_0x483f99(0x196)](document[_0x483f99(0x158)])['find'](_0x3f0cc3=>_0x3f0cc3['src'][_0x483f99(0x1dc)]('/js/common.js'))||document[_0x483f99(0x168)],_0x3b2a11=_0x51fb21&&_0x51fb21['src'][_0x483f99(0x1dc)](_0x483f99(0x187))?_0x51fb21[_0x483f99(0x1f2)][_0x483f99(0x1d9)](_0x483f99(0x187))[0x0]+'/':location['origin']?location[_0x483f99(0x1c7)]+'/':'./',_0x538df2=_0x2fa12a[_0x483f99(0x1dc)](_0x483f99(0x1a9)),_0x1af386=_0x2fa12a['endsWith'](_0x483f99(0x186))||_0x2fa12a['endsWith'](_0x483f99(0x173))||_0x2fa12a['endsWith'](_0x483f99(0x178))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1c8)),_0x4831e6=_0x2fa12a[_0x483f99(0x1dc)](_0x483f99(0x1ac)),_0x2633ec=_0x2fa12a[_0x483f99(0x1dc)](_0x483f99(0x140)),_0x22a492=_0x2fa12a['includes'](_0x483f99(0x176)),_0x42802f=document['body'][_0x483f99(0x1ae)][_0x483f99(0x15f)](_0x483f99(0x199)),_0x23059c=_0x2633ec,_0x459ea7=!_0x538df2&&!_0x1af386&&!_0x4831e6&&(_0x2fa12a==='/'||_0x2fa12a['endsWith']('/index.html')||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1d6))||_0x2fa12a[_0x483f99(0x1de)]('/')),_0x244d8b=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x141))||_0x2fa12a['endsWith'](_0x483f99(0x182)),_0x30b755=_0x2fa12a['endsWith'](_0x483f99(0x198))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1c1)),_0x4cbeb9=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x170))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x166)),_0x10de2f=_0x2fa12a[_0x483f99(0x1de)]('/dps/cathedral.html')||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x155)),_0x351f97=_0x2fa12a['endsWith']('/dps/belgardin.html')||_0x2fa12a['endsWith'](_0x483f99(0x15d)),_0x1aad4a=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1db))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1af)),_0x51196b=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1cd))||_0x2fa12a['endsWith'](_0x483f99(0x1bd)),_0x4dd07a=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x162))||_0x2fa12a[_0x483f99(0x1de)]('/class/arc-grid'),_0x58de2d=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x14a))||_0x2fa12a[_0x483f99(0x1de)]('/class/arkPassive'),_0x548036=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x149))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x192)),_0x3f1b81=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x14f))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1c4)),_0x38e935=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1a4))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1a2)),_0x45f69e=_0x2fa12a[_0x483f99(0x1de)]('/rank/tier.html')||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x18d)),_0x183954=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x14c))||_0x2fa12a['endsWith'](_0x483f99(0x1c2)),_0x26d084=_0x2fa12a[_0x483f99(0x1de)]('/rank/class-win.html')||_0x2fa12a['endsWith']('/rank/class-win'),_0x451732=_0x2fa12a[_0x483f99(0x1de)]('/rank/history.html')||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x146)),_0x5d3f6d=_0x244d8b||_0x30b755,_0x9f24cb=_0x4cbeb9||_0x10de2f||_0x351f97||_0x1aad4a,_0x27d2dd=_0x51196b||_0x4dd07a||_0x58de2d,_0x41c2a2=_0x548036||_0x3f1b81,_0x2c46e1=_0x1af386||_0x38e935||_0x45f69e||_0x183954||_0x26d084||_0x451732||_0x22a492,_0x5cae66=_0x3b2a11,_0x1d5f06=_0x3b2a11+'index.html',_0x1922f6=_0x3b2a11+'dps/index.html',_0x2009ce=_0x3b2a11+_0x483f99(0x178),_0x41d9be=_0x3b2a11+_0x483f99(0x17d),_0xe7a5b2=_0x3b2a11+_0x483f99(0x1b7),_0x210935=_0x3b2a11+_0x483f99(0x17c),_0x383e1e=_0x3b2a11+_0x483f99(0x1a0),_0x4c37bc=_0x3b2a11+'dps/belgardin.html',_0x10c490=_0x3b2a11+_0x483f99(0x1ca),_0x16e97e=_0x3b2a11+_0x483f99(0x154),_0x4e38a0=_0x3b2a11+'tools/market.html',_0x3c135f=_0x3b2a11+_0x483f99(0x1f5),_0x78599e=_0x3b2a11+'class/arc-grid.html',_0x725939=_0x3b2a11+_0x483f99(0x147),_0x391eb6=_0x3b2a11+_0x483f99(0x16b),_0x1da0e8=_0x3b2a11+_0x483f99(0x13f),_0x1cfd2e=_0x3b2a11+_0x483f99(0x160),_0xcf997c=_0x3b2a11+_0x483f99(0x184),_0x11a717=_0x3b2a11+_0x483f99(0x18c),_0x585026=_0x459ea7&&!_0x42802f,_0x3630a4=_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1f0))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x183))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x159))||_0x2fa12a[_0x483f99(0x1de)]('/guide.html')||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x16c))||_0x2fa12a[_0x483f99(0x1de)](_0x483f99(0x1b6)),_0x424781='\x0a\x20\x20\x20\x20<header\x20class=\x22gnb\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-shell\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-bar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-hamburger\x22\x20id=\x22gnbHamburgerBtn\x22\x20type=\x22button\x22\x20aria-label=\x22메뉴\x20열기\x22\x20aria-expanded=\x22false\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span></span><span></span><span></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-brand\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x1d5f06+_0x483f99(0x1e0)+_0x1d5f06+'\x22\x20class=\x22gnb-link\x20'+(_0x459ea7||_0x3630a4?_0x483f99(0x157):'')+_0x483f99(0x17f)+(_0x5d3f6d?'active':'')+'\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20잔혈컷\x20간편보기\x20<span\x20class=\x22gnb-caret\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x41d9be+'\x22\x20class=\x22gnb-dropdown-link\x20'+(_0x244d8b?'active':'')+_0x483f99(0x1e5)+_0xe7a5b2+_0x483f99(0x150)+(_0x30b755?_0x483f99(0x157):'')+'\x22>레이드별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20'+(_0x9f24cb?_0x483f99(0x157):'')+_0x483f99(0x181)+_0x210935+'\x22\x20class=\x22gnb-dropdown-link\x20'+(_0x4cbeb9?_0x483f99(0x157):'')+'\x22>세르카</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x383e1e+_0x483f99(0x150)+(_0x10de2f?'active':'')+_0x483f99(0x1e9)+_0x4c37bc+_0x483f99(0x150)+(_0x351f97?'active':'')+_0x483f99(0x1e4)+_0x10c490+_0x483f99(0x150)+(_0x1aad4a?'active':'')+'\x22>가디언\x20토벌</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20직업별\x20DPS컷\x20<span\x20class=\x22gnb-caret\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-dropdown-link\x20disabled\x22>허수\x20배율\x20계산\x20(준비중)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-dropdown-link\x20disabled\x22>DPS값\x20계산\x20(준비중)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20'+(_0x2c46e1?_0x483f99(0x157):'')+'\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20직각\x20토너먼트\x20<span\x20class=\x22gnb-caret\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x2009ce+_0x483f99(0x150)+(_0x1af386?_0x483f99(0x157):'')+_0x483f99(0x14d)+_0x391eb6+'\x22\x20class=\x22gnb-dropdown-link\x20'+(_0x38e935?_0x483f99(0x157):'')+_0x483f99(0x18b)+_0x1da0e8+_0x483f99(0x150)+(_0x45f69e?_0x483f99(0x157):'')+_0x483f99(0x15c)+_0x1cfd2e+'\x22\x20class=\x22gnb-dropdown-link\x20'+(_0x183954?_0x483f99(0x157):'')+_0x483f99(0x1d8)+_0xcf997c+_0x483f99(0x150)+(_0x26d084?_0x483f99(0x157):'')+_0x483f99(0x1da)+_0x11a717+_0x483f99(0x150)+(_0x451732?_0x483f99(0x157):'')+_0x483f99(0x1ab)+(_0x27d2dd?_0x483f99(0x157):'')+'\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20클래스\x20정보\x20<span\x20class=\x22gnb-caret\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x3c135f+_0x483f99(0x150)+(_0x51196b?_0x483f99(0x157):'')+_0x483f99(0x14b)+_0x78599e+_0x483f99(0x150)+(_0x4dd07a?_0x483f99(0x157):'')+_0x483f99(0x1b0)+_0x725939+_0x483f99(0x150)+(_0x58de2d?_0x483f99(0x157):'')+_0x483f99(0x1ef)+(_0x41c2a2?_0x483f99(0x157):'')+'\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20편의\x20도구\x20<span\x20class=\x22gnb-caret\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x16e97e+_0x483f99(0x150)+(_0x548036?_0x483f99(0x157):'')+'\x22>경매\x20계산기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x4e38a0+_0x483f99(0x150)+(_0x3f1b81?_0x483f99(0x157):'')+_0x483f99(0x18e)+_0x2009ce+_0x483f99(0x153)+_0x2009ce+'\x22\x20class=\x22gnb-cta\x20like\x22>💗\x20호감\x20토너먼트\x20참여</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</header>\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22divider\x20common-divider-top\x22><hr\x20class=\x22divider-line\x22></div>\x0a\x0a\x20\x20\x20\x20<!--\x20=====\x20모바일\x20왼쪽\x20드로어\x20메뉴\x20=====\x20-->\x0a\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-overlay\x22\x20id=\x22gnbDrawerOverlay\x22></div>\x0a\x20\x20\x20\x20<aside\x20class=\x22gnb-drawer\x22\x20id=\x22gnbDrawer\x22\x20aria-hidden=\x22true\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x1d5f06+'\x22\x20class=\x22gnb-drawer-brand\x22><img\x20src=\x22https://loaviewer.github.io/favicon.ico\x22\x20alt=\x22로아뷰\x22\x20class=\x22gnb-favicon\x22>\x20로아뷰\x20<span\x20class=\x22gnb-drawer-brand-home\x20'+(_0x459ea7||_0x3630a4?_0x483f99(0x157):'')+_0x483f99(0x156)+_0x41d9be+_0x483f99(0x15e)+(_0x244d8b?'active':'')+_0x483f99(0x1d7)+_0xe7a5b2+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x30b755?_0x483f99(0x157):'')+_0x483f99(0x1ec)+_0x210935+_0x483f99(0x15e)+(_0x4cbeb9?_0x483f99(0x157):'')+_0x483f99(0x1d0)+_0x383e1e+_0x483f99(0x15e)+(_0x10de2f?_0x483f99(0x157):'')+_0x483f99(0x145)+_0x4c37bc+_0x483f99(0x15e)+(_0x351f97?_0x483f99(0x157):'')+_0x483f99(0x1bc)+_0x10c490+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x1aad4a?_0x483f99(0x157):'')+_0x483f99(0x13e)+_0x2009ce+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x1af386?'active':'')+_0x483f99(0x1cc)+_0x391eb6+_0x483f99(0x15e)+(_0x38e935?_0x483f99(0x157):'')+_0x483f99(0x1c5)+_0x1da0e8+_0x483f99(0x15e)+(_0x45f69e?_0x483f99(0x157):'')+'\x22>티어표\x20(최근\x2010일)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x1cfd2e+_0x483f99(0x15e)+(_0x183954?'active':'')+_0x483f99(0x1ea)+_0xcf997c+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x26d084?_0x483f99(0x157):'')+_0x483f99(0x164)+_0x11a717+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x451732?_0x483f99(0x157):'')+_0x483f99(0x197)+_0x3c135f+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x51196b?'active':'')+'\x22>시너지표</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x78599e+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x4dd07a?_0x483f99(0x157):'')+_0x483f99(0x19e)+_0x725939+_0x483f99(0x15e)+(_0x58de2d?_0x483f99(0x157):'')+_0x483f99(0x152)+_0x16e97e+_0x483f99(0x15e)+(_0x548036?_0x483f99(0x157):'')+_0x483f99(0x179)+_0x4e38a0+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x3f1b81?_0x483f99(0x157):'')+_0x483f99(0x16a),_0x466ad7='\x0a\x20\x20\x20\x20<section\x20class=\x22hero\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-inner\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-eyebrow\x22>LOA\x20VIEWER</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1\x20class=\x22hero-title\x22>데이터로\x20보는<br><span\x20class=\x22hl\x22>로스트아크</span></h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-tags\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22hero-tag\x20blood\x22><span\x20class=\x22tag-dot\x22></span>잔혈컷\x20·\x20DPS</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22hero-tag\x20tier\x22><span\x20class=\x22tag-dot\x22></span>직각\x20티어</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22hero-tag\x20grid\x22><span\x20class=\x22tag-dot\x22></span>아크그리드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-right\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-rack\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grade-stamp\x20op\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>TOURNAMENT</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>OP</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>직각\x20토너먼트\x20진입\x20후<br>시즌\x20도장\x20표시</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grade-stamp\x20like-stamp\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>FAVORITE</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>호감</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>호감\x20토너먼트\x20진입\x20후<br>참여\x20도장\x20표시</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</section>\x0a\x0a\x20\x20\x20\x20<nav\x20class=\x22quickmenu\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x41d9be+_0x483f99(0x143)+_0x4c37bc+_0x483f99(0x14e)+_0x78599e+_0x483f99(0x1a8)+_0x2009ce+_0x483f99(0x1b5)+_0x4e38a0+_0x483f99(0x1f6)+_0x16e97e+'\x22\x20class=\x22qm-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-icon\x22>🔨</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-label\x22>경매계산기</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</a>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</nav>\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22divider\x20common-divider-bottom\x22\x20style=\x22margin-top:20px;\x22><hr\x20class=\x22divider-line\x22></div>\x0a\x20\x20',_0x17de54=_0x483f99(0x1e7)+_0x5cae66+_0x483f99(0x1bf)+_0x5cae66+'guide.html\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin:\x200\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>이용\x20가이드</a>\x20|\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x5cae66+_0x483f99(0x1a1),_0x46419d=_0x483f99(0x1a6);_0x3295ab[_0x483f99(0x1aa)]=_0x46419d+_0x424781+(_0x585026?_0x466ad7:''),document[_0x483f99(0x191)](_0x483f99(0x163),_0x352b03=>{const _0x42ebd6=_0x483f99,_0x4af004=_0x352b03[_0x42ebd6(0x1e1)][_0x42ebd6(0x1f1)]('a');if(!_0x4af004)return;const _0xe4fc38=_0x4af004[_0x42ebd6(0x15b)](_0x42ebd6(0x1c9));if(!_0xe4fc38||_0xe4fc38[_0x42ebd6(0x185)](_0x42ebd6(0x1d5))||_0xe4fc38[_0x42ebd6(0x185)]('#')||_0x4af004['target']===_0x42ebd6(0x1b8))return;if(_0xe4fc38['endsWith'](_0x42ebd6(0x188))){_0x352b03[_0x42ebd6(0x1cf)]();const _0x46fec5=_0xe4fc38[_0x42ebd6(0x175)](0x0,-0x5);history[_0x42ebd6(0x1dd)](null,'',_0x46fec5),location['href']=_0xe4fc38;}});async function _0x4ef8aa(){const _0x2e8266=_0x483f99;if(!_0x585026)return;const _0x2444fc=_0x3295ab['querySelector']('.grade-stamp.op'),_0x34778e=_0x3295ab[_0x2e8266(0x1ba)](_0x2e8266(0x1b3));if(!_0x2444fc&&!_0x34778e)return;const _0x5c7144='https://khszfukekudyripouifm.supabase.co',_0x5353fd=_0x2e8266(0x1c3);function _0x3420b6(){const _0x311420=_0x2e8266;let _0x5609bb=localStorage['getItem'](_0x311420(0x1bb));if(!_0x5609bb)return null;return _0x5609bb;}function _0x4a7c2b(){const _0x47d213=_0x2e8266,_0x474e3b=new Date();return _0x474e3b['getFullYear']()+'-'+String(_0x474e3b['getMonth']()+0x1)['padStart'](0x2,'0')+'-'+String(_0x474e3b[_0x47d213(0x189)]())[_0x47d213(0x1c6)](0x2,'0');}function _0x22f4d1(_0x474c2e){const _0x2e7ae0=_0x2e8266;if(!_0x474c2e)return'';const [_0x4532f6,_0x2ef2d2,_0x251fe5]=_0x474c2e[_0x2e7ae0(0x1d9)]('-');return _0x4532f6['slice'](0x2)+'.'+_0x2ef2d2+'.'+_0x251fe5;}const _0x746ad1=_0x3420b6();if(!_0x746ad1)return;try{const _0x50a2c3=_0x5c7144+'/rest/v1/sessions'+_0x2e8266(0x142)+('&visitor_key=eq.'+encodeURIComponent(_0x746ad1))+('&date_key=eq.'+_0x4a7c2b()),_0x37d10e=await fetch(_0x50a2c3,{'headers':{'apikey':_0x5353fd,'Authorization':'Bearer\x20'+_0x5353fd}});if(!_0x37d10e['ok'])return;const _0x43b493=await _0x37d10e[_0x2e8266(0x180)]();if(!Array[_0x2e8266(0x1b4)](_0x43b493)||!_0x43b493[_0x2e8266(0x1be)])return;const _0x3e3b41=_0x43b493['find'](_0x5efdad=>_0x5efdad[_0x2e8266(0x15a)]==='op'),_0xdc0b03=_0x43b493[_0x2e8266(0x18a)](_0x375cf3=>_0x375cf3[_0x2e8266(0x15a)]==='favor');_0x3e3b41&&_0x2444fc&&(_0x2444fc[_0x2e8266(0x1aa)]=_0x2e8266(0x16e)+(_0x3e3b41[_0x2e8266(0x194)]||'완료')+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>'+_0x22f4d1(_0x3e3b41[_0x2e8266(0x1e6)])+_0x2e8266(0x18f),_0x2444fc[_0x2e8266(0x171)][_0x2e8266(0x17a)]=_0x2e8266(0x165),_0x2444fc[_0x2e8266(0x171)][_0x2e8266(0x177)]=_0x2e8266(0x144),_0x2444fc[_0x2e8266(0x171)][_0x2e8266(0x1ce)]=_0x2e8266(0x1a5)),_0xdc0b03&&_0x34778e&&(_0x34778e[_0x2e8266(0x1aa)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>TODAY\x20STAMP</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>완료</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>'+_0x22f4d1(_0xdc0b03[_0x2e8266(0x1e6)])+_0x2e8266(0x1f3),_0x34778e[_0x2e8266(0x171)][_0x2e8266(0x17a)]=_0x2e8266(0x1d4),_0x34778e[_0x2e8266(0x171)]['borderColor']='rgba(255,120,170,.32)',_0x34778e['style'][_0x2e8266(0x1ce)]=_0x2e8266(0x1f7));}catch(_0x29bb07){console[_0x2e8266(0x1f4)](_0x2e8266(0x1d1),_0x29bb07);}}_0x4ef8aa();const _0x2490b2=document[_0x483f99(0x1ba)]('.page')||document[_0x483f99(0x1ba)](_0x483f99(0x1b9))||document[_0x483f99(0x1ba)](_0x483f99(0x1e2))||document[_0x483f99(0x1ba)]('.app')||document['body'];_0x2490b2['insertAdjacentHTML']('beforeend',_0x17de54);const _0x262957=document[_0x483f99(0x169)]('gnbHamburgerBtn'),_0x39be01=document[_0x483f99(0x169)](_0x483f99(0x167)),_0x403b23=document[_0x483f99(0x169)](_0x483f99(0x16f)),_0x31c405=document[_0x483f99(0x169)](_0x483f99(0x1d2));function _0x3d5944(){const _0x48e12c=_0x483f99;document[_0x48e12c(0x1ee)][_0x48e12c(0x1ae)][_0x48e12c(0x195)](_0x48e12c(0x17e)),_0x262957?.[_0x48e12c(0x1d3)](_0x48e12c(0x19a),_0x48e12c(0x148)),_0x39be01?.[_0x48e12c(0x1d3)](_0x48e12c(0x1ad),_0x48e12c(0x1df));}function _0x590d58(){const _0x147e33=_0x483f99;document[_0x147e33(0x1ee)][_0x147e33(0x1ae)]['remove']('gnb-drawer-open'),_0x262957?.['setAttribute']('aria-expanded','false'),_0x39be01?.[_0x147e33(0x1d3)]('aria-hidden',_0x147e33(0x148));}_0x262957?.['addEventListener']('click',()=>{const _0x3f89cd=_0x483f99;document[_0x3f89cd(0x1ee)][_0x3f89cd(0x1ae)][_0x3f89cd(0x15f)](_0x3f89cd(0x17e))?_0x590d58():_0x3d5944();}),_0x403b23?.[_0x483f99(0x191)](_0x483f99(0x163),_0x590d58),_0x31c405?.[_0x483f99(0x191)](_0x483f99(0x163),_0x590d58),_0x39be01?.[_0x483f99(0x1f8)]('a.gnb-drawer-link:not(.disabled)')[_0x483f99(0x151)](_0xcb4959=>{const _0x202cfc=_0x483f99;_0xcb4959['addEventListener'](_0x202cfc(0x163),_0x590d58);}),window[_0x483f99(0x191)](_0x483f99(0x19b),()=>{const _0x4c9efa=_0x483f99;window[_0x4c9efa(0x1ed)]>0x2f8&&_0x590d58();}),document['addEventListener'](_0x483f99(0x1a3),_0x579cab=>{const _0x3fcbc0=_0x483f99;if(_0x579cab['key']===_0x3fcbc0(0x1b2))_0x590d58();});}));
+// console.log("common.js loaded");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const shell = document.getElementById("common-shell");
+  if (!shell) return;
+
+  const rawPath = location.pathname;
+
+  const isLocalhost =
+    location.hostname === "127.0.0.1" ||
+    location.hostname === "localhost";
+
+  function cleanPathname(pathname) {
+    // 루트 홈
+    if (pathname === "/index.html" || pathname === "/index") return "/";
+
+    // 하위 폴더의 index
+    if (pathname.endsWith("/index.html")) {
+      return pathname.slice(0, -10) + "/";
+    }
+
+    if (pathname.endsWith("/index")) {
+      return pathname.slice(0, -5) + "/";
+    }
+
+    // 일반 .html 제거
+    if (pathname.endsWith(".html")) {
+      return pathname.slice(0, -5);
+    }
+
+    return pathname;
+  }
+
+  // 로컬에서는 .html 유지 / 배포에서는 .html 없는 주소로 정리
+  const path = isLocalhost ? rawPath : cleanPathname(rawPath);
+
+  if (!isLocalhost && path !== rawPath) {
+    history.replaceState(null, "", path + location.search + location.hash);
+  }
+
+  const commonScript =
+    Array.from(document.scripts).find((s) => s.src.includes("/js/common.js")) ||
+    document.currentScript;
+
+  const siteRoot =
+    commonScript && commonScript.src.includes("/js/common.js")
+      ? commonScript.src.split("/js/common.js")[0] + "/"
+      : (location.origin ? location.origin + "/" : "./");
+
+  const ext = isLocalhost ? ".html" : "";
+
+  function matchesPath(target) {
+    if (target === "/") {
+      return path === "/" || path === "/index" || path === "/index.html";
+    }
+    return (
+      path === target ||
+      path === `${target}/` ||
+      path === `${target}.html`
+    );
+  }
+
+  const isDps = path.includes("/dps/");
+  const isRank = matchesPath("/rank");
+  const isTools = path.includes("/tools/");
+  const isClass = path.includes("/class/");
+  const isRankDir = path.includes("/rank/");
+  const isStandaloneDpsPage = document.body.classList.contains("standalone-dps-page");
+
+  const isHome =
+    !isDps &&
+    !isRank &&
+    !isTools &&
+    matchesPath("/");
+
+  // 현재 페이지 판별
+  const isLevelPage = matchesPath("/dps/level");
+  const isRaidLevelPage = matchesPath("/dps/raid");
+  const isSerkaPage = matchesPath("/dps/serka");
+  const isCathedralPage = matchesPath("/dps/cathedral");
+  const isBelgardinPage = matchesPath("/dps/belgardin");
+  const isGuardianPage = matchesPath("/dps/guardian");
+
+  const isSynergyPage = matchesPath("/class/synergy");
+  const isArcGridPage = matchesPath("/class/arc-grid");
+  const isArkPassivePage = matchesPath("/class/arkPassive");
+
+  const isAuctionPage = matchesPath("/tools/auction");
+  const isMarketPage = matchesPath("/tools/market");
+
+  const isRankingPage = matchesPath("/rank/ranking");
+  const isTierPage = matchesPath("/rank/tier");
+  const isWinratePage = matchesPath("/rank/winrate");
+  const isClassWinPage = matchesPath("/rank/class-win");
+  const isHistoryPage = matchesPath("/rank/history");
+
+  const isInfoPage =
+    matchesPath("/about") ||
+    matchesPath("/guide") ||
+    matchesPath("/privacy");
+
+  const isSimpleGroupActive = isLevelPage || isRaidLevelPage;
+  const isPrecisionGroupActive = isSerkaPage || isCathedralPage || isBelgardinPage || isGuardianPage;
+  const isClassGroupActive = isSynergyPage || isArcGridPage || isArkPassivePage;
+  const isToolsGroupActive = isAuctionPage || isMarketPage;
+
+  const isRankGroupActive =
+    isRank ||
+    isRankingPage ||
+    isTierPage ||
+    isWinratePage ||
+    isClassWinPage ||
+    isHistoryPage ||
+    isRankDir;
+
+  // 링크
+  const homeHref = isLocalhost ? `${siteRoot}index.html` : `${siteRoot}`;
+  const dpsHref = isLocalhost ? `${siteRoot}dps/index.html` : `${siteRoot}dps/`;
+  const rankHref = `${siteRoot}rank${ext}`;
+
+  const levelHref = `${siteRoot}dps/level${ext}`;
+  const raidHref = `${siteRoot}dps/raid${ext}`;
+
+  const serkaHref = `${siteRoot}dps/serka${ext}`;
+  const cathedralHref = `${siteRoot}dps/cathedral${ext}`;
+  const belgardinHref = `${siteRoot}dps/belgardin${ext}`;
+  const guardianHref = `${siteRoot}dps/guardian${ext}`;
+
+  const auctionHref = `${siteRoot}tools/auction${ext}`;
+  const marketHref = `${siteRoot}tools/market${ext}`;
+
+  const synergyHref = `${siteRoot}class/synergy${ext}`;
+  const arcGridHref = `${siteRoot}class/arc-grid${ext}`;
+  const arkPassiveHref = `${siteRoot}class/arkPassive${ext}`;
+
+  const rankingHref = `${siteRoot}rank/ranking${ext}`;
+  const tierHref = `${siteRoot}rank/tier${ext}`;
+  const winrateHref = `${siteRoot}rank/winrate${ext}`;
+  const classWinHref = `${siteRoot}rank/class-win${ext}`;
+  const historyHref = `${siteRoot}rank/history${ext}`;
+
+  const aboutHref = `${siteRoot}about${ext}`;
+  const guideHref = `${siteRoot}guide${ext}`;
+  const privacyHref = `${siteRoot}privacy${ext}`;
+
+  const showHero = isHome && !isStandaloneDpsPage;
+
+  // ===== GNB (모든 페이지 공통) =====
+  const gnbHtml = `
+    <header class="gnb">
+      <div class="gnb-shell">
+        <div class="gnb-bar">
+          <button class="gnb-hamburger" id="gnbHamburgerBtn" type="button" aria-label="메뉴 열기" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="gnb-brand">
+            <a href="${homeHref}" class="gnb-brand-name"><img src="https://loaviewer.github.io/favicon.ico" alt="로아뷰" class="gnb-favicon"> 로아뷰<span class="gnb-brand-sub"> · LOA VIEWER</span></a>
+          </div>
+
+          <nav class="gnb-nav">
+            <ul class="gnb-nav-list">
+            
+              <li class="gnb-nav-item">
+                <a href="${homeHref}" class="gnb-link ${(isHome || isInfoPage) ? "active" : ""}">홈</a>
+              </li>
+
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isSimpleGroupActive ? "active" : ""}" type="button">
+                  잔혈컷 간편보기 <span class="gnb-caret">▼</span>
+                </button>
+                <div class="gnb-dropdown">
+                  <a href="${levelHref}" class="gnb-dropdown-link ${isLevelPage ? "active" : ""}">레벨별 보기</a>
+                  <a href="${raidHref}" class="gnb-dropdown-link ${isRaidLevelPage ? "active" : ""}">레이드별 보기</a>
+                </div>
+              </li>
+
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isPrecisionGroupActive ? "active" : ""}" type="button">
+                  잔혈컷 정밀계산 <span class="gnb-caret">▼</span>
+                </button>
+                <div class="gnb-dropdown">
+                  <a href="${serkaHref}" class="gnb-dropdown-link ${isSerkaPage ? "active" : ""}">세르카</a>
+                  <a href="${cathedralHref}" class="gnb-dropdown-link ${isCathedralPage ? "active" : ""}">지평의 성당</a>
+                  <a href="${belgardinHref}" class="gnb-dropdown-link ${isBelgardinPage ? "active" : ""}">벨가르딘</a>
+                  <a href="${guardianHref}" class="gnb-dropdown-link ${isGuardianPage ? "active" : ""}">가디언 토벌</a>
+                </div>
+              </li>
+
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger" type="button">
+                  직업별 DPS컷 <span class="gnb-caret">▼</span>
+                </button>
+                <div class="gnb-dropdown">
+                  <a href="javascript:void(0)" class="gnb-dropdown-link disabled">허수 배율 계산 (준비중)</a>
+                  <a href="javascript:void(0)" class="gnb-dropdown-link disabled">DPS값 계산 (준비중)</a>
+                </div>
+              </li>
+
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isRankGroupActive ? "active" : ""}" type="button">
+                  직각 토너먼트 <span class="gnb-caret">▼</span>
+                </button>
+                <div class="gnb-dropdown">
+                  <a href="${rankHref}" class="gnb-dropdown-link ${isRank ? "active" : ""}">토너먼트 시작하기</a>
+                  <a href="${rankingHref}" class="gnb-dropdown-link ${isRankingPage ? "active" : ""}">직각 랭킹보드</a>
+                  <a href="${tierHref}" class="gnb-dropdown-link ${isTierPage ? "active" : ""}">티어표 (최근 10일)</a> 
+                  <a href="${winrateHref}" class="gnb-dropdown-link ${isWinratePage ? "active" : ""}">밸런스 승률표</a> 
+                  <a href="${classWinHref}" class="gnb-dropdown-link ${isClassWinPage ? "active" : ""}">클래스별 우승자 분석</a>
+                  <a href="${historyHref}" class="gnb-dropdown-link ${isHistoryPage ? "active" : ""}">기간내 승률 변화 그래프</a>
+                </div>
+              </li>
+
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isClassGroupActive ? "active" : ""}" type="button">
+                  클래스 정보 <span class="gnb-caret">▼</span>
+                </button>
+                <div class="gnb-dropdown">
+                  <a href="${synergyHref}" class="gnb-dropdown-link ${isSynergyPage ? "active" : ""}">시너지표</a>
+                  <a href="${arcGridHref}" class="gnb-dropdown-link ${isArcGridPage ? "active" : ""}">아크그리드</a>
+                  <a href="${arkPassiveHref}" class="gnb-dropdown-link ${isArkPassivePage ? "active" : ""}">아크패시브</a>
+                  <a href="javascript:void(0)" class="gnb-dropdown-link disabled">캐릭터 정보 (준비중)</a>
+                </div>
+              </li>
+
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isToolsGroupActive ? "active" : ""}" type="button">
+                  편의 도구 <span class="gnb-caret">▼</span>
+                </button>
+                <div class="gnb-dropdown">
+                  <a href="${auctionHref}" class="gnb-dropdown-link ${isAuctionPage ? "active" : ""}">경매 계산기</a>
+                  <a href="${marketHref}" class="gnb-dropdown-link ${isMarketPage ? "active" : ""}">시세 정보</a>
+                </div>
+              </li>
+
+            </ul>
+          </nav>
+
+          <div class="gnb-cta-group">
+            <a href="${rankHref}" class="gnb-cta op">🏆 OP 토너먼트 참여</a>
+            <a href="${rankHref}" class="gnb-cta like">💗 호감 토너먼트 참여</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="divider common-divider-top"><hr class="divider-line"></div>
+
+    <div class="gnb-drawer-overlay" id="gnbDrawerOverlay"></div>
+    <aside class="gnb-drawer" id="gnbDrawer" aria-hidden="true">
+      <div class="gnb-drawer-header">
+        <a href="${homeHref}" class="gnb-drawer-brand"><img src="https://loaviewer.github.io/favicon.ico" alt="로아뷰" class="gnb-favicon"> 로아뷰 <span class="gnb-drawer-brand-home ${(isHome || isInfoPage) ? "active" : ""}">· 홈으로</span></a>
+        <button class="gnb-drawer-close" id="gnbDrawerClose" type="button" aria-label="메뉴 닫기">✕</button>
+      </div>
+
+      <nav class="gnb-drawer-nav">
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">잔혈컷 간편보기</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${levelHref}" class="gnb-drawer-link ${isLevelPage ? "active" : ""}">레벨별 보기</a>
+            <a href="${raidHref}" class="gnb-drawer-link ${isRaidLevelPage ? "active" : ""}">레이드별 보기</a>
+          </div>
+        </div>
+
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">잔혈컷 정밀계산</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${serkaHref}" class="gnb-drawer-link ${isSerkaPage ? "active" : ""}">세르카</a>
+            <a href="${cathedralHref}" class="gnb-drawer-link ${isCathedralPage ? "active" : ""}">지평의 성당</a>
+            <a href="${belgardinHref}" class="gnb-drawer-link ${isBelgardinPage ? "active" : ""}">벨가르딘</a>
+            <a href="${guardianHref}" class="gnb-drawer-link ${isGuardianPage ? "active" : ""}">가디언 토벌</a>
+          </div>
+        </div>
+
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">직업별 DPS컷</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="javascript:void(0)" class="gnb-drawer-link disabled">허수 배율 계산 (준비중)</a>
+            <a href="javascript:void(0)" class="gnb-drawer-link disabled">DPS값 계산 (준비중)</a>
+          </div>
+        </div>
+
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">직각 토너먼트</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${rankHref}" class="gnb-drawer-link ${isRank ? "active" : ""}">토너먼트 시작하기</a>
+            <a href="${rankingHref}" class="gnb-drawer-link ${isRankingPage ? "active" : ""}">직각 랭킹보드</a>
+            <a href="${tierHref}" class="gnb-drawer-link ${isTierPage ? "active" : ""}">티어표 (최근 10일)</a>
+            <a href="${winrateHref}" class="gnb-drawer-link ${isWinratePage ? "active" : ""}">밸런스 승률표</a>
+            <a href="${classWinHref}" class="gnb-drawer-link ${isClassWinPage ? "active" : ""}">클래스별 우승자 분석</a>
+            <a href="${historyHref}" class="gnb-drawer-link ${isHistoryPage ? "active" : ""}">승률 변화 그래프</a>
+          </div>
+        </div>
+
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">클래스 정보</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${synergyHref}" class="gnb-drawer-link ${isSynergyPage ? "active" : ""}">시너지표</a>
+            <a href="${arcGridHref}" class="gnb-drawer-link ${isArcGridPage ? "active" : ""}">아크그리드</a>
+            <a href="${arkPassiveHref}" class="gnb-drawer-link ${isArkPassivePage ? "active" : ""}">아크패시브</a>
+            <a href="javascript:void(0)" class="gnb-drawer-link disabled">캐릭터 정보</a>
+          </div>
+        </div>
+
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">편의 도구</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${auctionHref}" class="gnb-drawer-link ${isAuctionPage ? "active" : ""}">경매 계산기</a>
+            <a href="${marketHref}" class="gnb-drawer-link ${isMarketPage ? "active" : ""}">시세 정보</a>
+          </div>
+        </div>
+      </nav>
+    </aside>
+  `;
+
+  // ===== 히어로 + 빠른메뉴 =====
+  const heroExtraHtml = `
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-eyebrow">LOA VIEWER</div>
+          <h1 class="hero-title">데이터로 보는<br><span class="hl">로스트아크</span></h1>
+          <div class="hero-tags">
+            <span class="hero-tag blood"><span class="tag-dot"></span>잔혈컷 · DPS</span>
+            <span class="hero-tag tier"><span class="tag-dot"></span>직각 티어</span>
+            <span class="hero-tag grid"><span class="tag-dot"></span>아크그리드</span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="stamp-rack">
+            <div class="grade-stamp op">
+              <div class="stamp-kicker">TOURNAMENT</div>
+              <div class="stamp-title">OP</div>
+              <div class="stamp-desc">직각 토너먼트 진입 후<br>시즌 도장 표시</div>
+            </div>
+            <div class="grade-stamp like-stamp">
+              <div class="stamp-kicker">FAVORITE</div>
+              <div class="stamp-title">호감</div>
+              <div class="stamp-desc">호감 토너먼트 진입 후<br>참여 도장 표시</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="quickmenu">
+      <div class="qm-row">
+        <a href="${levelHref}" class="qm-item">
+          <div class="qm-icon">💠</div>
+          <div class="qm-label">레벨별<br>잔혈컷</div>
+        </a>
+
+        <a href="${belgardinHref}" class="qm-item">
+          <div class="qm-icon">🧛</div>
+          <div class="qm-label">정밀 계산</div>
+        </a>
+
+        <a href="${arcGridHref}" class="qm-item">
+          <div class="qm-icon">
+            <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_96.png" alt="">
+          </div>
+          <div class="qm-label">아크그리드</div>
+        </a>
+
+        <a href="${rankHref}" class="qm-item">
+          <div class="qm-icon">🏆</div>
+          <div class="qm-label">직각<br>토너먼트</div>
+        </a>
+
+        <a href="${marketHref}" class="qm-item">
+          <div class="qm-icon">💹</div>
+          <div class="qm-label">시세정보</div>
+        </a>
+
+        <a href="${auctionHref}" class="qm-item">
+          <div class="qm-icon">🔨</div>
+          <div class="qm-label">경매계산기</div>
+        </a>
+      </div>
+    </nav>
+
+    <div class="divider common-divider-bottom" style="margin-top:20px;"><hr class="divider-line"></div>
+  `;
+
+  // ===== 푸터 (공통) =====
+  const footerHtml = `
+    <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; padding-top: 15px; padding-bottom: 25px; font-size: 10px; color: #384967; line-height: 1.7; text-align: center;">
+        <div>© 2026 LOA VIEWER · All Rights Reserved.</div>
+        <div>Not associated with Smilegate RPG & Smilegate Stove.</div>
+        <div>Data based on Google Sheets · Powered by Supabase · cloudtype · GitHub Pages · GoatCounter</div>
+        <div style="margin-top: 6px; font-weight: bold;">
+            <a href="${aboutHref}" style="color: #384967; text-decoration: none; margin-right: 8px; border-bottom: 1px solid #233044;">사이트 소개</a> |
+            <a href="${guideHref}" style="color: #384967; text-decoration: none; margin: 0 8px; border-bottom: 1px solid #233044;">이용 가이드</a> |
+            <a href="${privacyHref}" style="color: #384967; text-decoration: none; margin: 0 8px; border-bottom: 1px solid #233044;">개인정보처리방침</a> |
+            <a href="mailto:dnjswjd10041@gmail.com" style="color: #384967; text-decoration: none; margin-left: 8px; border-bottom: 1px solid #233044;">이메일 문의</a>
+        </div>
+    </div>
+  `;
+
+  const auroraHtml = `
+    <div class="common-aurora"></div>
+  `;
+
+  shell.innerHTML = auroraHtml + gnbHtml + (showHero ? heroExtraHtml : "");
+
+  async function applyHomeTournamentStamps() {
+    if (!showHero) return;
+
+    const opCard = shell.querySelector(".grade-stamp.op");
+    const favorCard = shell.querySelector(".grade-stamp.like-stamp");
+    if (!opCard && !favorCard) return;
+
+    const SUPABASE_URL = "https://khszfukekudyripouifm.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb";
+
+    function getVisitorKey() {
+      let k = localStorage.getItem("loa_tournament_visitor_key");
+      if (!k) return null;
+      return k;
+    }
+
+    function getDateKey() {
+      const n = new Date();
+      return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`;
+    }
+
+    function formatStampDate(dk) {
+      if (!dk) return "";
+      const [y, m, d] = dk.split("-");
+      return `${y.slice(2)}.${m}.${d}`;
+    }
+
+    const visitorKey = getVisitorKey();
+    if (!visitorKey) return;
+
+    try {
+      const url =
+        `${SUPABASE_URL}/rest/v1/sessions` +
+        `?select=tournament_type,grade,date_key` +
+        `&visitor_key=eq.${encodeURIComponent(visitorKey)}` +
+        `&date_key=eq.${getDateKey()}`;
+
+      const res = await fetch(url, {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`
+        }
+      });
+
+      if (!res.ok) return;
+
+      const data = await res.json();
+      if (!Array.isArray(data) || !data.length) return;
+
+      const opRow = data.find((r) => r.tournament_type === "op");
+      const favorRow = data.find((r) => r.tournament_type === "favor");
+
+      if (opRow && opCard) {
+        opCard.innerHTML = `
+          <div class="stamp-kicker">TODAY STAMP</div>
+          <div class="stamp-title">${opRow.grade || "완료"}</div>
+          <div class="stamp-desc">${formatStampDate(opRow.date_key)}<br>OP 참여 완료</div>
+        `;
+        opCard.style.background = "linear-gradient(180deg, rgba(255,215,0,.12), rgba(255,255,255,.02))";
+        opCard.style.borderColor = "rgba(255,215,0,.38)";
+        opCard.style.boxShadow = "0 0 0 1px rgba(255,215,0,.10) inset, 0 0 18px rgba(255,215,0,.10)";
+      }
+
+      if (favorRow && favorCard) {
+        favorCard.innerHTML = `
+          <div class="stamp-kicker">TODAY STAMP</div>
+          <div class="stamp-title">완료</div>
+          <div class="stamp-desc">${formatStampDate(favorRow.date_key)}<br>호감 참여 완료</div>
+        `;
+        favorCard.style.background = "linear-gradient(180deg, rgba(255,120,170,.12), rgba(255,255,255,.02))";
+        favorCard.style.borderColor = "rgba(255,120,170,.32)";
+        favorCard.style.boxShadow = "0 0 0 1px rgba(255,120,170,.08) inset, 0 0 18px rgba(255,120,170,.10)";
+      }
+    } catch (e) {
+      console.error("applyHomeTournamentStamps error:", e);
+    }
+  }
+
+  applyHomeTournamentStamps();
+
+  // 푸터 삽입
+  const footerTarget =
+    document.querySelector(".page") ||
+    document.querySelector(".auction-page") ||
+    document.querySelector(".tools-page") ||
+    document.querySelector(".app") ||
+    document.body;
+
+  footerTarget.insertAdjacentHTML("beforeend", footerHtml);
+
+  // 모바일 드로어
+  const hamburgerBtn = document.getElementById("gnbHamburgerBtn");
+  const drawer = document.getElementById("gnbDrawer");
+  const drawerOverlay = document.getElementById("gnbDrawerOverlay");
+  const drawerClose = document.getElementById("gnbDrawerClose");
+
+  function openDrawer() {
+    document.body.classList.add("gnb-drawer-open");
+    hamburgerBtn?.setAttribute("aria-expanded", "true");
+    drawer?.setAttribute("aria-hidden", "false");
+  }
+
+  function closeDrawer() {
+    document.body.classList.remove("gnb-drawer-open");
+    hamburgerBtn?.setAttribute("aria-expanded", "false");
+    drawer?.setAttribute("aria-hidden", "true");
+  }
+
+  hamburgerBtn?.addEventListener("click", () => {
+    if (document.body.classList.contains("gnb-drawer-open")) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  });
+
+  drawerOverlay?.addEventListener("click", closeDrawer);
+  drawerClose?.addEventListener("click", closeDrawer);
+
+  drawer?.querySelectorAll("a.gnb-drawer-link:not(.disabled)").forEach((link) => {
+    link.addEventListener("click", closeDrawer);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) {
+      closeDrawer();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
+  });
+});
