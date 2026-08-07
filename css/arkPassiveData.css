@@ -1,0 +1,1858 @@
+/* ========================================
+   아크패시브 전용 CSS
+   (아크그리드 색상 팔레트/톤 재사용)
+   ======================================== */
+
+#arkPassiveApp {
+    color: #cbd5e1;
+    padding: 6px 8px 40px 8px;
+    margin: 0 -22px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* ========================================
+   아크패시브 전용 페이지 상단 라인 정리 (아크그리드와 동일)
+   ======================================== */
+body.standalone-dps-page #arkPassiveApp {
+    margin-top: -6px;
+    border-top: none;
+}
+
+/* ========================================
+   상단 히어로 (아크그리드 hero-arc-grid와 동일한 톤/구조로 통일)
+   ======================================== */
+.hero-arc-passive {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-bottom: 22px;
+    background:
+        radial-gradient(circle at top right, rgba(188, 164, 122, 0.12), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(56, 189, 248, 0.08), transparent 28%),
+        linear-gradient(180deg, #0e1018 0%, #090d14 100%);
+    border: 1px solid rgba(188, 164, 122, 0.18);
+}
+
+.hero-arc-passive::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.02) 40%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-arc-passive-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+}
+
+.hero-arc-passive-left {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hero-arc-passive-kicker {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #d4b483;
+}
+
+.hero-arc-passive-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.hero-arc-passive-desc {
+    font-size: 13px;
+    color: #8a95ad;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.hero-arc-passive-tags {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.arkp-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.arkp-hero-tag.tag-evo {
+    background: rgba(212, 160, 60, 0.08);
+    border-color: rgba(212, 160, 60, 0.20);
+    color: #f3d488;
+}
+
+.arkp-hero-tag.tag-awa {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.20);
+    color: #93c5fd;
+}
+
+.arkp-hero-tag.tag-leap {
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.20);
+    color: #86efac;
+}
+
+.hero-arc-passive-right {
+    flex: 0 0 160px;
+    display: flex;
+    align-items: stretch;
+}
+
+.hero-arc-passive-stat {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(188, 164, 122, 0.05);
+    border: 1px solid rgba(188, 164, 122, 0.14);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-arc-passive-stat-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #a8925f;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.hero-arc-passive-stat-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+
+.hero-arc-passive-stat-sub {
+    font-size: 10px;
+    color: #a8925f;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    #arkpJobGrid {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .hero-arc-passive {
+        padding: 18px 16px;
+        border-radius: 14px;
+        margin-bottom: 16px;
+    }
+
+    .hero-arc-passive-inner {
+        flex-wrap: wrap;
+    }
+
+    .hero-arc-passive-right {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .hero-arc-passive-title {
+        font-size: 20px;
+    }
+
+    .hero-arc-passive-stat {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .hero-arc-passive-stat-value {
+        font-size: 22px;
+    }
+
+    #selectedJobTitle {
+        min-height: 52px;
+        padding: 0 14px 0 38px;
+        font-size: 15px;
+    }
+
+    .arc-selected-thumb {
+        width: 54px;
+        height: 54px;
+        left: -4px;
+    }
+}
+
+/* ========================================
+   트리 탭 (진화 / 깨달음 / 도약)
+   ======================================== */
+.arkp-tree-tabs {
+    display: flex;
+    gap: 0;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%),
+        linear-gradient(135deg, #161a29 0%, #0b0f18 100%);
+    border: 1px solid #263247;
+    border-bottom: none;
+    border-radius: 14px 14px 0 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.arkp-tree-tab {
+    flex: 1;
+    padding: 14px 0;
+    background: transparent;
+    border: none;
+    border-right: 1px solid #263247;
+    color: #7f8ea3;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    letter-spacing: -0.1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.arkp-tree-tab-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #64748b;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+}
+
+.arkp-tree-tab:last-child {
+    border-right: none;
+}
+
+.arkp-tree-tab:hover:not(.active) {
+    color: #dbeafe;
+    background: rgba(56, 189, 248, 0.06);
+}
+
+.arkp-tree-tab.active {
+    color: #ffffff;
+    background:
+        linear-gradient(180deg, rgba(56,189,248,0.18) 0%, rgba(56,189,248,0.08) 100%),
+        #182234;
+    box-shadow:
+        inset 0 0 0 1px rgba(90, 170, 255, 0.35),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* ---- 트리별 탭 컬러 (진화=금, 깨달음=파랑, 도약=초록) ---- */
+.arkp-tree-tab[data-tree="진화"] .arkp-tree-tab-dot { background: #d4a03c; }
+.arkp-tree-tab[data-tree="진화"]:hover:not(.active) { color: #f3d488; background: rgba(212, 160, 60, 0.08); }
+.arkp-tree-tab[data-tree="진화"].active {
+    color: #fff7e6;
+    background:
+        linear-gradient(180deg, rgba(212,160,60,0.22) 0%, rgba(212,160,60,0.08) 100%),
+        #221c12;
+    box-shadow:
+        inset 0 0 0 1px rgba(212,160,60,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.arkp-tree-tab[data-tree="진화"].active .arkp-tree-tab-dot { background: #f3d488; box-shadow: 0 0 6px rgba(243,212,136,.7); }
+
+.arkp-tree-tab[data-tree="깨달음"] .arkp-tree-tab-dot { background: #2f6fd6; }
+.arkp-tree-tab[data-tree="깨달음"]:hover:not(.active) { color: #93c5fd; background: rgba(59, 130, 246, 0.08); }
+.arkp-tree-tab[data-tree="깨달음"].active {
+    color: #eaf3ff;
+    background:
+        linear-gradient(180deg, rgba(59,130,246,0.22) 0%, rgba(59,130,246,0.08) 100%),
+        #131c2e;
+    box-shadow:
+        inset 0 0 0 1px rgba(59,130,246,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.arkp-tree-tab[data-tree="깨달음"].active .arkp-tree-tab-dot { background: #93c5fd; box-shadow: 0 0 6px rgba(147,197,253,.7); }
+
+.arkp-tree-tab[data-tree="도약"] .arkp-tree-tab-dot { background: #2fa85a; }
+.arkp-tree-tab[data-tree="도약"]:hover:not(.active) { color: #86efac; background: rgba(34, 197, 94, 0.08); }
+.arkp-tree-tab[data-tree="도약"].active {
+    color: #eafff2;
+    background:
+        linear-gradient(180deg, rgba(34,197,94,0.22) 0%, rgba(34,197,94,0.08) 100%),
+        #10241a;
+    box-shadow:
+        inset 0 0 0 1px rgba(34,197,94,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.arkp-tree-tab[data-tree="도약"].active .arkp-tree-tab-dot { background: #86efac; box-shadow: 0 0 6px rgba(134,239,172,.7); }
+
+/* ========================================
+   헤더 바 (직업명 / 직업변경 / 포인트 / 초기화)
+   ======================================== */
+.arkp-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 48px;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%),
+        linear-gradient(135deg, #161a29 0%, #0b0f18 100%);
+    border: 1px solid #263247;
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.arkp-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ========================================
+   직업명 배지 (헤더 좌측) — 알약형 카드 + 글로우 아바타
+   ======================================== */
+.arkp-job-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 5px 18px 5px 8px;
+    background: linear-gradient(180deg, #16233a 0%, #0f1726 100%);
+    border: 1px solid #33465f;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.1px;
+    color: #e2f3ff;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 4px 12px rgba(0,0,0,0.28);
+}
+
+.arkp-job-thumb {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #38bdf8;
+    background: #0b0d14;
+    flex-shrink: 0;
+    box-shadow:
+        0 0 10px rgba(56, 189, 248, .40),
+        0 2px 6px rgba(0,0,0,.4);
+}
+
+.arkp-btn-change-job {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #1a2a3d;
+    border: 1px solid #2c4763;
+    color: #7dd3fc;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.arkp-btn-change-job:hover {
+    background: #21374d;
+    border-color: #38bdf8;
+}
+
+.arkp-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* ========================================
+   포인트 요약 (진화/깨달음/도약 컬러 배지)
+   ======================================== */
+.arkp-point-summary {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.arkp-point-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 7px 22px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.08);
+    min-width: 96px;
+    transition: all .18s ease;
+}
+
+.arkp-point-badge-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    color: #7f8ea3;
+}
+
+.arkp-point-badge-value {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #e2e8f0;
+    letter-spacing: 0.3px;
+}
+
+.arkp-point-badge-value .slash {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.arkp-point-badge.tree-evolution.active {
+    background: rgba(212, 160, 60, .10);
+    border-color: rgba(212, 160, 60, .45);
+    box-shadow: 0 0 12px rgba(212, 160, 60, .12);
+}
+.arkp-point-badge.tree-evolution.active .arkp-point-badge-label,
+.arkp-point-badge.tree-evolution.active .arkp-point-badge-value { color: #f3d488; }
+
+.arkp-point-badge.tree-awakening.active {
+    background: rgba(59, 130, 246, .10);
+    border-color: rgba(59, 130, 246, .45);
+    box-shadow: 0 0 12px rgba(59, 130, 246, .12);
+}
+.arkp-point-badge.tree-awakening.active .arkp-point-badge-label,
+.arkp-point-badge.tree-awakening.active .arkp-point-badge-value { color: #93c5fd; }
+
+.arkp-point-badge.tree-leap.active {
+    background: rgba(34, 197, 94, .10);
+    border-color: rgba(34, 197, 94, .45);
+    box-shadow: 0 0 12px rgba(34, 197, 94, .12);
+}
+.arkp-point-badge.tree-leap.active .arkp-point-badge-label,
+.arkp-point-badge.tree-leap.active .arkp-point-badge-value { color: #86efac; }
+
+.arkp-btn-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(180deg, #d97706, #b45309);
+    border: 1px solid #92400e;
+    color: #fff7ed;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.arkp-btn-reset:hover {
+    filter: brightness(1.1);
+}
+
+/* ========================================
+   직업 선택 그리드 (변경 모드일 때 표시)
+   최신 게임 사이트 느낌으로 리뉴얼: 카테고리는 컬러 배지,
+   직업 버튼은 둥근 필(pill) 형태 + 호버 리프트 + 선택 시 글로우
+   ======================================== */
+#arkpJobGrid {
+    background: #11131e;
+    border: 1px solid #1e293b;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.arc-job-category {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 32px;
+}
+
+.arc-job-category + .arc-job-category {
+    padding-top: 14px;
+    border-top: 1px solid #1a2233;
+}
+
+.arc-job-cat-label {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 78px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: #7dd3fc;
+    white-space: nowrap;
+}
+
+.arc-job-cat-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    gap: 8px;
+}
+
+.arc-job-btn {
+    height: 36px;
+    padding: 0 8px;
+    border-radius: 8px;
+    border: 1px solid #263247;
+    background: rgba(255, 255, 255, .03);
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    transition: all .16s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.arc-job-btn:hover:not(.active) {
+    background: rgba(56, 189, 248, .08);
+    border-color: rgba(56, 189, 248, .30);
+    color: #e2e8f0;
+}
+
+.arc-job-btn.active {
+    background: rgba(56, 189, 248, .14);
+    border-color: #38bdf8;
+    color: #7dd3fc;
+    font-weight: 800;
+    box-shadow: 0 0 0 1px rgba(56,189,248,.20);
+}
+
+@media (max-width: 768px) {
+    .arc-job-category {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .arc-job-cat-label {
+        width: auto;
+    }
+
+    .arc-job-btn {
+        height: 32px;
+        padding: 0 13px;
+        font-size: 11px;
+    }
+}
+
+/* ========================================
+   선택된 직업 표시 (아크그리드 #selectedJobTitle과 동일 톤)
+   왼쪽 끝에 원형 아바타가 살짝 걸쳐 나오는 배지 형태
+   ======================================== */
+#selectedJobTitle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 64px;
+    padding: 0 20px 0 46px;
+    font-size: 17px;
+    white-space: nowrap;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    color: #e2f3ff;
+    background: linear-gradient(180deg, #132033 0%, #0f1726 100%);
+    border: 1px solid #314158;
+    border-radius: 32px;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: visible;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05),
+        0 4px 14px rgba(0,0,0,0.22);
+}
+
+.arc-selected-thumb {
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: 2px solid #38bdf8;
+    box-shadow:
+        0 0 12px rgba(56, 189, 248, .35),
+        0 4px 10px rgba(0, 0, 0, .4);
+    object-fit: cover;
+    background: #0b0d14;
+    z-index: 2;
+}
+
+/* ========================================
+   티어 행 (다이아몬드 배지 + 노드 그리드) - PC 기본
+   ======================================== */
+.arkp-tier-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 26px;
+    padding: 22px 24px;
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(135deg, #12151f 0%, #0b0d15 100%);
+    border: 1px solid #1e2532;
+    border-radius: 16px;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.03),
+        0 6px 16px rgba(0,0,0,0.28);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.arkp-tier-row:hover {
+    border-color: #2c3547;
+}
+
+.arkp-tier-badge-col {
+    width: 56px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.arkp-tier-diamond {
+    width: 56px;
+    height: 56px;
+    background:
+        linear-gradient(135deg, #4a3820 0%, #1c1410 100%);
+    border: 2px solid #8a6a34;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    box-shadow:
+        inset 0 2px 2px rgba(255,255,255,0.15),
+        inset 0 -4px 8px rgba(0,0,0,0.5),
+        0 0 0 3px #0b0d14,
+        0 4px 12px rgba(0,0,0,0.5),
+        0 0 14px rgba(212, 160, 60, 0.20);
+}
+
+/* 광택 하이라이트 - 다이아몬드 좌상단에 유리 반사 느낌 추가 */
+.arkp-tier-diamond::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40%;
+    height: 40%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0) 70%);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.arkp-tier-diamond::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(212, 180, 131, 0.35);
+}
+
+.arkp-tier-diamond span {
+    transform: rotate(-45deg);
+    font-size: 18px;
+    font-weight: 900;
+    color: #f0d9a8;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+.arkp-tier-progress {
+    position: relative;
+    z-index: 3;
+    margin-top: -13px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    background: #0d0f17;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.45);
+}
+
+.arkp-tier-progress.filled {
+    color: #22c55e;
+    border-color: #22c55e;
+}
+
+/* ---- 트리별 다이아몬드 색상 테마 (진화=금, 깨달음=파랑, 도약=초록) ---- */
+.tree-theme-evolution .arkp-tier-diamond {
+    border-color: #d4a03c;
+    box-shadow:
+        inset 0 2px 2px rgba(255,255,255,0.15),
+        inset 0 -4px 8px rgba(0,0,0,0.5),
+        0 0 0 3px #0b0d14,
+        0 4px 12px rgba(0,0,0,0.5),
+        0 0 16px rgba(212, 160, 60, 0.30);
+}
+.tree-theme-evolution .arkp-tier-diamond::before { border-color: rgba(243, 212, 136, 0.4); }
+.tree-theme-evolution .arkp-tier-diamond span { color: #f3d488; }
+.tree-theme-evolution .arkp-tier-progress { border-color: rgba(212, 160, 60, 0.35); }
+
+.tree-theme-awakening .arkp-tier-diamond {
+    border-color: #2f6fd6;
+    box-shadow:
+        inset 0 2px 2px rgba(255,255,255,0.15),
+        inset 0 -4px 8px rgba(0,0,0,0.5),
+        0 0 0 3px #0b0d14,
+        0 4px 12px rgba(0,0,0,0.5),
+        0 0 16px rgba(59, 130, 246, 0.30);
+}
+.tree-theme-awakening .arkp-tier-diamond::before { border-color: rgba(147, 197, 253, 0.4); }
+.tree-theme-awakening .arkp-tier-diamond span { color: #93c5fd; }
+.tree-theme-awakening .arkp-tier-progress { border-color: rgba(59, 130, 246, 0.35); }
+
+.tree-theme-leap .arkp-tier-diamond {
+    border-color: #2fa85a;
+    box-shadow:
+        inset 0 2px 2px rgba(255,255,255,0.15),
+        inset 0 -4px 8px rgba(0,0,0,0.5),
+        0 0 0 3px #0b0d14,
+        0 4px 12px rgba(0,0,0,0.5),
+        0 0 16px rgba(34, 197, 94, 0.30);
+}
+.tree-theme-leap .arkp-tier-diamond::before { border-color: rgba(134, 239, 172, 0.4); }
+.tree-theme-leap .arkp-tier-diamond span { color: #86efac; }
+.tree-theme-leap .arkp-tier-progress { border-color: rgba(34, 197, 94, 0.35); }
+
+/* ========================================
+   티어 행 (좌상단 리본 배지) - 모바일 전용
+   (.mobile-ribbon 클래스는 모바일 렌더링일 때만 JS가 붙여준다)
+   ======================================== */
+.arkp-tier-row.mobile-ribbon {
+    display: block;
+    padding: 54px 20px 22px 20px;
+}
+
+.arkp-tier-ribbon-box {
+    display: none;
+}
+
+/* 리본이 담기는 좌상단 코너 박스 - 안쪽까지 테마 색으로 은은하게 물들인다 */
+.arkp-tier-row.mobile-ribbon .arkp-tier-ribbon-box {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 68px;
+    height: 68px;
+    overflow: hidden;
+    border-radius: 16px 0 0 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(212, 160, 60, 0.18), transparent 65%);
+}
+
+.arkp-tier-row.mobile-ribbon .arkp-tier-ribbon {
+    position: absolute;
+    top: 13px;
+    left: -21px;
+    width: 100px;
+    height: 23px;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d4a03c;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.arkp-tier-row.mobile-ribbon .arkp-tier-ribbon span {
+    font-size: 13px;
+    font-weight: 900;
+    color: #2b1c04;
+}
+
+.arkp-tier-row.mobile-ribbon .arkp-tier-progress-inline {
+    position: absolute;
+    top: 17px;
+    left: 60px;
+    z-index: 3;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    background: #0d0f17;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.35);
+}
+
+.arkp-tier-row.mobile-ribbon .arkp-tier-progress-inline.filled {
+    color: #22c55e;
+    border-color: #22c55e;
+}
+
+/* ---- 트리별 리본 색상 테마 (진화=금, 깨달음=파랑, 도약=초록) ---- */
+.tree-theme-evolution .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon-box { background: linear-gradient(135deg, rgba(212, 160, 60, 0.20), transparent 65%); }
+.tree-theme-evolution .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon { background: #d4a03c; }
+.tree-theme-evolution .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon span { color: #2b1c04; }
+.tree-theme-evolution .arkp-tier-row.mobile-ribbon .arkp-tier-progress-inline { border-color: rgba(212, 160, 60, 0.35); }
+
+.tree-theme-awakening .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon-box { background: linear-gradient(135deg, rgba(59, 130, 246, 0.20), transparent 65%); }
+.tree-theme-awakening .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon { background: #2f6fd6; }
+.tree-theme-awakening .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon span { color: #eef5ff; }
+.tree-theme-awakening .arkp-tier-row.mobile-ribbon .arkp-tier-progress-inline { border-color: rgba(59, 130, 246, 0.35); }
+
+.tree-theme-leap .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon-box { background: linear-gradient(135deg, rgba(34, 197, 94, 0.20), transparent 65%); }
+.tree-theme-leap .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon { background: #2fa85a; }
+.tree-theme-leap .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon span { color: #08210f; }
+.tree-theme-leap .arkp-tier-row.mobile-ribbon .arkp-tier-progress-inline { border-color: rgba(34, 197, 94, 0.35); }
+
+/* ========================================
+   노드 그리드
+   컬럼 폭은 JS에서 인라인 스타일로 지정(node_column 기반)
+   여기서는 왼쪽 정렬만 강제해서 인게임처럼 자연스럽게 배치
+   ======================================== */
+.arkp-node-grid {
+    display: grid;
+    gap: 30px 18px;
+    justify-content: start;
+    flex: 1;
+    position: relative;
+}
+
+.arkp-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: transform 0.16s ease;
+    z-index: 1;
+}
+
+.arkp-node:not(.locked):not(.excluded):hover {
+    transform: translateY(-2px);
+}
+
+/* 옆/아래에 있는 다른 노드가 DOM 순서상 나중에 그려지면서
+   위로 뜬 툴팁을 가려버리는 문제 방지 - 호버 중인 노드를 항상 최상단으로 */
+.arkp-node:hover,
+.arkp-node.show-tooltip {
+    z-index: 60;
+}
+
+/* 아이콘 + 포인트 배지를 겹쳐 보이게 하는 wrapper */
+.arkp-node-icon-stack {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+/* 금속 베젤 프레임 - 인게임/인벤 아이콘 느낌의 고급스러운 원형 테두리 */
+.arkp-node-icon-wrap {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 30%, #2a3548 0%, #12151f 70%);
+    border: 2px solid #3d4a63;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.18s ease;
+    position: relative;
+    box-shadow:
+        0 0 0 2px #0b0d14,
+        0 0 0 3px rgba(148, 163, 184, 0.25),
+        inset 0 2px 3px rgba(255,255,255,0.10),
+        inset 0 -3px 6px rgba(0,0,0,0.55),
+        0 4px 10px rgba(0,0,0,0.45);
+}
+
+/* 위쪽 유리 반사 하이라이트 */
+.arkp-node-icon-wrap::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 9px;
+    right: 9px;
+    height: 42%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ========================================
+   트리별 색상 테마 (진화=주황/골드, 깨달음=파랑, 도약=초록)
+   ======================================== */
+.tree-theme-evolution .arkp-node-icon-wrap {
+    background: radial-gradient(circle at 50% 25%, #6b4413 0%, #241505 75%);
+    border-color: #d4a03c;
+    /* 인게임처럼 금테 이중 링 강조 */
+    box-shadow:
+        0 0 0 2px #0b0d14,
+        0 0 0 4px rgba(212, 160, 60, 0.55),
+        inset 0 2px 3px rgba(255,255,255,0.14),
+        inset 0 -3px 6px rgba(0,0,0,0.5),
+        0 4px 10px rgba(0,0,0,0.45);
+}
+
+.tree-theme-awakening .arkp-node-icon-wrap {
+    background: radial-gradient(circle at 50% 25%, #163166 0%, #060d1f 75%);
+    border-color: #2f6fd6;
+}
+
+.tree-theme-leap .arkp-node-icon-wrap {
+    background: radial-gradient(circle at 50% 25%, #114a24 0%, #051609 75%);
+    border-color: #2fa85a;
+}
+
+
+.arkp-node-icon-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.arkp-node:hover .arkp-node-icon-wrap {
+    border-color: #7dd3fc;
+    box-shadow:
+        0 0 0 2px #0b0d14,
+        0 0 0 3px rgba(56, 189, 248, 0.35),
+        inset 0 2px 3px rgba(255,255,255,0.12),
+        0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+/* 노드 선택/레벨 보유 상태 표시 - 요청대로 초록색 강조 */
+.arkp-node.has-level .arkp-node-icon-wrap {
+    border-color: #22c55e;
+    box-shadow:
+        0 0 0 2px #0b0d14,
+        0 0 0 3px rgba(34, 197, 94, 0.35),
+        inset 0 2px 3px rgba(255,255,255,0.12),
+        0 0 16px rgba(34, 197, 94, 0.45);
+}
+
+.arkp-node.maxed .arkp-node-icon-wrap {
+    border-color: #eab308;
+    box-shadow:
+        0 0 0 2px #0b0d14,
+        0 0 0 3px rgba(234, 179, 8, 0.4),
+        inset 0 2px 3px rgba(255,255,255,0.12),
+        0 0 16px rgba(234, 179, 8, 0.5);
+}
+
+/* ========================================
+   레벨 보유 노드 오오라 효과 (은은한 펄스 + 회전 룬 링)
+   ======================================== */
+@keyframes arkp-node-pulse {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.18); }
+}
+
+@keyframes arkp-rune-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.arkp-node.has-level .arkp-node-icon-wrap {
+    animation: arkp-node-pulse 2.6s ease-in-out infinite;
+}
+
+.arkp-node.has-level .arkp-node-icon-stack::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px dashed rgba(34, 197, 94, 0.55);
+    animation: arkp-rune-spin 7s linear infinite;
+    pointer-events: none;
+}
+
+.arkp-node.maxed .arkp-node-icon-stack::after {
+    border-color: rgba(234, 179, 8, 0.6);
+    animation-duration: 5s;
+}
+
+/* 잠기거나 배타 처리된 노드는 오오라 링 숨김 */
+.arkp-node.locked .arkp-node-icon-stack::after,
+.arkp-node.excluded .arkp-node-icon-stack::after,
+.arkp-node.tier-full .arkp-node-icon-stack::after {
+    display: none;
+}
+
+/* 선행조건 미충족 등으로 잠긴 노드
+   -> opacity를 .arkp-node 전체가 아니라 "보이는 부분"에만 걸어서
+      마우스를 올렸을 때 뜨는 툴팁까지 같이 흐려지지 않게 한다. */
+.arkp-node.locked {
+    cursor: not-allowed;
+}
+
+.arkp-node.locked .arkp-node-icon-wrap,
+.arkp-node.locked .arkp-node-point-badge,
+.arkp-node.locked .arkp-node-level-badge,
+.arkp-node.locked .arkp-node-name {
+    opacity: 0.4;
+}
+
+.arkp-node.locked .arkp-node-icon-wrap {
+    filter: grayscale(1);
+}
+
+/* 배타관계로 인해 선택 불가된 노드 (다른 걸 이미 찍음) */
+.arkp-node.excluded {
+    cursor: not-allowed;
+}
+
+.arkp-node.excluded .arkp-node-icon-wrap,
+.arkp-node.excluded .arkp-node-point-badge,
+.arkp-node.excluded .arkp-node-level-badge,
+.arkp-node.excluded .arkp-node-name {
+    opacity: 0.35;
+}
+
+/* 이 티어의 포인트 한도를 이미 다 채워서, 안 찍은 노드는 더 이상 못 찍는 상태
+   (진화/깨달음/도약 트리 모두 동일하게 적용) */
+.arkp-node.tier-full {
+    cursor: not-allowed;
+}
+
+.arkp-node.tier-full .arkp-node-icon-wrap,
+.arkp-node.tier-full .arkp-node-point-badge,
+.arkp-node.tier-full .arkp-node-level-badge,
+.arkp-node.tier-full .arkp-node-name {
+    opacity: 0.4;
+}
+
+.arkp-node.tier-full .arkp-node-icon-wrap {
+    filter: grayscale(1);
+}
+
+.arkp-node-point-badge {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    z-index: 3;
+    background: #0b0d14;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.arkp-node-level-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    background: #0d0f17;
+    border: 1px solid #1e293b;
+    border-radius: 999px;
+    padding: 2px 10px;
+    white-space: nowrap;
+}
+
+.arkp-node.has-level .arkp-node-level-badge {
+    color: #4ade80;
+    border-color: #22c55e;
+}
+
+.arkp-node.maxed .arkp-node-level-badge {
+    color: #facc15;
+    border-color: #eab308;
+}
+
+.arkp-node-name {
+    font-size: 12px;
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 96px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ========================================
+   노드 연결선 (선행 노드 -> 하위 노드)
+   node_row/node_column 기반으로 JS에서 위치 계산 후
+   이 클래스를 가진 절대 위치 div를 생성하는 방식
+   ======================================== */
+.arkp-connector-line {
+    position: absolute;
+    background: #263247;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.arkp-connector-line.active {
+    background: #38bdf8;
+    box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+}
+
+/* ========================================
+   노드 효과 설명 툴팁/패널
+   ======================================== */
+.arkp-node-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    background: #11131e;
+    border: 1px solid #3d4a63;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.55);
+    z-index: 50;
+    display: none;
+    text-align: left;
+}
+
+.arkp-node.show-tooltip .arkp-node-tooltip,
+.arkp-node:hover .arkp-node-tooltip {
+    display: block;
+}
+
+.arkp-node-tooltip-title {
+    font-family: 'Do Hyeon', sans-serif;
+    letter-spacing: 0.3px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #d4b483;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #263247;
+}
+
+.arkp-node-tooltip-body {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.arkp-node-tooltip-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, #2a3548 0%, #12151f 70%);
+    border: 1px solid #3d4a63;
+}
+
+.arkp-node-tooltip-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arkp-node-tooltip-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.arkp-node-tooltip-tree {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.arkp-node-tooltip-status {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 9px;
+    border-radius: 999px;
+}
+
+.arkp-node-tooltip-status.acquired {
+    color: #4ade80;
+    background: rgba(34, 197, 94, .12);
+    border: 1px solid rgba(34, 197, 94, .35);
+}
+
+.arkp-node-tooltip-status.not-acquired {
+    color: #7dd3fc;
+    background: rgba(56, 189, 248, .10);
+    border: 1px solid rgba(56, 189, 248, .30);
+}
+
+.arkp-node-tooltip-levelline {
+    font-size: 12px;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.arkp-node-tooltip-pointline {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 10px;
+}
+
+.arkp-node-tooltip-pointline .num {
+    color: #38bdf8;
+    font-weight: 800;
+}
+
+.arkp-node-tooltip-desc {
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.arkp-node-tooltip-precede {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #1e293b;
+}
+
+.arkp-node-tooltip-precede-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+    margin-bottom: 4px;
+}
+
+.arkp-node-tooltip-precede-desc {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.arkp-node-tooltip-precede-desc.met {
+    color: #4ade80;
+}
+
+.arkp-node-tooltip-precede-desc.unmet {
+    color: #f43f5e;
+}
+
+/* ========================================
+   배타 그룹 안내 텍스트
+   ======================================== */
+.arkp-exclusive-note {
+    font-size: 11px;
+    color: #f87171;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+/* ========================================
+   토스트 (아크그리드 토스트 재사용 톤)
+   ======================================== */
+#arkPassiveToast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.96);
+    background: rgba(15, 17, 26, 0.96);
+    color: #38bdf8;
+    border: 1px solid #334155;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99999;
+}
+
+#arkPassiveToast.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* ========================================
+   반응형 (모바일)
+   ======================================== */
+@media (max-width: 768px) {
+    #arkPassiveApp {
+        padding: 16px 12px 24px 12px;
+        border-radius: 10px;
+    }
+
+    .arkp-header-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .arkp-header-left {
+        display: none;
+    }
+
+    .arkp-header-right {
+        justify-content: space-between;
+    }
+
+    .arkp-tier-row.mobile-ribbon {
+        padding: 46px 12px 16px 12px;
+        border-radius: 12px;
+    }
+
+    .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon-box {
+        width: 52px;
+        height: 52px;
+    }
+
+    .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon {
+        top: 9px;
+        left: -19px;
+        width: 78px;
+        height: 18px;
+    }
+
+    .arkp-tier-row.mobile-ribbon .arkp-tier-ribbon span {
+        font-size: 11px;
+    }
+
+    .arkp-tier-row.mobile-ribbon .arkp-tier-progress-inline {
+        top: 12px;
+        left: 44px;
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+
+    .arkp-node-grid {
+        gap: 10px 6px;
+    }
+
+    .arkp-node-icon-wrap {
+        width: 100%;
+        max-width: 48px;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .arkp-node-icon-stack {
+        width: 100%;
+    }
+
+    .arkp-node-tooltip {
+        width: 260px;
+    }
+
+    .arkp-tree-tab {
+        font-size: 13px;
+        padding: 12px 0;
+    }
+}
+
+/* ========================================
+   게임 UI 느낌의 디스플레이 폰트 적용
+   (arkPassive.html에서 이미 Do Hyeon을 로드하고 있음)
+   히어로 타이틀/스탯은 요청에 따라 기본 폰트로 유지
+   ======================================== */
+.arkp-node-point-badge {
+    font-family: 'Do Hyeon', sans-serif;
+    letter-spacing: 0.2px;
+}
+
+/* ========================================
+   우측 요약 패널 (찍은 노드 효과 자동 합산)
+   ======================================== */
+.arkp-tier-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.arkp-tier-list {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.arkp-summary-panel {
+    flex: 0 0 240px;
+    position: sticky;
+    top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%),
+        linear-gradient(135deg, #161a29 0%, #0b0f18 100%);
+    border: 1px solid #263247;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.arkp-summary-panel:empty {
+    display: none;
+}
+
+.arkp-summary-disabled {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 30px 10px;
+    text-align: center;
+}
+
+.arkp-summary-disabled-icon {
+    font-size: 22px;
+    opacity: 0.5;
+}
+
+.arkp-summary-disabled-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.arkp-summary-title {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    color: #e2f3ff;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #263247;
+}
+
+.arkp-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.arkp-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 4px;
+    border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+
+.arkp-summary-row:last-child {
+    border-bottom: none;
+}
+
+.arkp-summary-row.combo {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid #263247;
+    border-bottom: none;
+}
+
+.arkp-summary-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.arkp-summary-value {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 14px;
+    color: #e2e8f0;
+    letter-spacing: 0.2px;
+}
+
+.arkp-summary-value .negative {
+    color: #f87171;
+}
+
+.arkp-summary-row.combo .arkp-summary-value {
+    font-size: 12px;
+    color: #cbd5e1;
+}
+
+.arkp-summary-tier-title {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    color: #d4b483;
+    margin: 14px 0 8px;
+    padding-top: 12px;
+    border-top: 1px solid #263247;
+}
+
+.arkp-summary-tier-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.arkp-summary-tier-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.arkp-summary-tier-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #3d4a63;
+    background: #0b0d14;
+    flex-shrink: 0;
+}
+
+.arkp-summary-tier-name {
+    flex: 1;
+    color: #e2e8f0;
+    font-weight: 700;
+}
+
+.arkp-summary-tier-level {
+    color: #4ade80;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.arkp-summary-tier-empty {
+    font-size: 11px;
+    color: #64748b;
+    padding: 6px 2px;
+}
+
+/* 트리 테마 색상 반영 */
+.tree-theme-evolution .arkp-summary-panel { border-color: rgba(212, 160, 60, 0.30); }
+.tree-theme-evolution .arkp-summary-value { color: #f3d488; }
+.tree-theme-evolution .arkp-summary-tier-title { color: #f3d488; }
+
+.tree-theme-awakening .arkp-summary-panel { border-color: rgba(59, 130, 246, 0.30); }
+.tree-theme-awakening .arkp-summary-value { color: #93c5fd; }
+.tree-theme-awakening .arkp-summary-tier-title { color: #93c5fd; }
+
+.tree-theme-leap .arkp-summary-panel { border-color: rgba(34, 197, 94, 0.30); }
+.tree-theme-leap .arkp-summary-value { color: #86efac; }
+.tree-theme-leap .arkp-summary-tier-title { color: #86efac; }
+
+@media (max-width: 900px) {
+    .arkp-tier-layout {
+        flex-direction: column;
+    }
+
+    .arkp-summary-panel {
+        flex: 1 1 100%;
+        position: static;
+        width: 100%;
+    }
+
+    /* 패널 폭이 화면 전체로 늘어나면서 라벨-값 사이가 너무 멀어져
+       한눈에 안 들어오는 문제 방지: space-between 대신 라벨 옆에
+       값을 바짝 붙이고, 남는 공간은 점선으로 채운다 */
+    .arkp-summary-row {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .arkp-summary-row::after {
+        content: "";
+        flex: 1;
+        min-width: 12px;
+        border-bottom: 1px dashed rgba(255,255,255,0.10);
+        margin-bottom: 4px;
+        order: 2;
+    }
+
+    .arkp-summary-value {
+        order: 3;
+    }
+}
+
+/* ========================================
+   하단 사용법 안내 박스
+   ======================================== */
+.arkp-guide-box {
+    margin-top: 24px;
+    background: #11131e;
+    border: 1px solid #1e293b;
+    border-radius: 14px;
+    padding: 18px 22px;
+}
+
+.arkp-guide-box ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.arkp-guide-box li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #8a95ad;
+}
+
+.arkp-guide-box li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #38bdf8;
+}
+
+.arkp-guide-box li strong {
+    color: #dbeafe;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .arkp-header-bar {
+        gap: 14px;
+    }
+
+    .arkp-guide-box {
+        padding: 14px 16px;
+    }
+}
+
+/* ========================================
+   모바일 전용: 노드 +/− 버튼
+   (데스크톱은 좌/우클릭으로 조작하니 숨겨둔다)
+   ======================================== */
+.arkp-node-mobile-controls {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .arkp-node-mobile-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 2px;
+    }
+
+    .arkp-node-btn {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 1px solid #334155;
+        background: #0d0f17;
+        color: #cbd5e1;
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .arkp-node-btn-minus:active {
+        background: rgba(244, 63, 94, 0.18);
+        border-color: #f43f5e;
+        color: #fda4af;
+    }
+
+    .arkp-node-btn-plus:active {
+        background: rgba(56, 189, 248, 0.18);
+        border-color: #38bdf8;
+        color: #7dd3fc;
+    }
+
+    .arkp-node.locked .arkp-node-mobile-controls,
+    .arkp-node.excluded .arkp-node-mobile-controls {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    /* 모바일에서는 호버가 없으므로, JS가 붙여주는 show-tooltip 클래스로만 툴팁을 연다 */
+    .arkp-node:hover .arkp-node-tooltip {
+        display: none;
+    }
+
+    .arkp-node.show-tooltip .arkp-node-tooltip {
+        display: block;
+    }
+}
+
+/* ========================================
+   모바일 전용 직업 선택 (아크그리드 모바일과 동일한 톤)
+   ======================================== */
+.arkp-mobile-job-section {
+    background: linear-gradient(180deg, #141722 0%, #11131e 100%);
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.arkp-mobile-job-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arkp-mobile-job-label::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 14px;
+    background: #38bdf8;
+    border-radius: 2px;
+}
+
+.arkp-mobile-job-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.arkp-mobile-job-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #0d0f17;
+    border: 2px solid #334155;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.arkp-mobile-job-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arkp-mobile-job-thumb:has(img) {
+    border-color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+.arkp-mobile-job-placeholder {
+    color: #475569;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.arkp-mobile-select {
+    flex: 1;
+    width: 100%;
+    background: #0d0f17;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.arkp-mobile-select:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+.arkp-mobile-select optgroup {
+    background: #11131e;
+    color: #64748b;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.arkp-mobile-select optgroup option {
+    color: #cbd5e1;
+    font-weight: 400;
+    font-size: 14px;
+}

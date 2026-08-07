@@ -5113,6 +5113,27 @@ body.mobile-home-mode .sidebar > :not(.switch-wrap):not(.mobile-home):not(.patch
     }
     .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active::before, .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active .precision-gate-chip-gate { color: #c4b5fd !important; }
 
+
+
+
+
+
+
+
+/* =============================================
+   벨가르딘 (신규 추가분 — .hero-cathedral 블록 뒤에 붙여넣기)
+   ============================================= */
+
+
+
+
+
+
+
+
+
+
+
     /* 가디언 토벌 (붉은 계열 & 2줄 구조) */
     .hero-guardian {
         background: radial-gradient(circle at top right, rgba(239, 68, 68, .14), transparent 28%), radial-gradient(circle at bottom left, rgba(248, 113, 113, .10), transparent 26%), linear-gradient(180deg, #1a1210 0%, #120d0b 100%) !important; border-color: rgba(239, 68, 68, .20) !important;
@@ -5481,4 +5502,168 @@ body.arc-grid-mode #mainContent {
     margin-left: 2px;
     text-align: left;
 }
+body.standalone-dps-page .sidebar {
+    display: none !important;
+}
 
+body.standalone-dps-page .workspace {
+    grid-template-columns: 1fr !important;
+}
+
+body.standalone-dps-page .main {
+    padding-top: 20px !important;
+}
+
+@media (min-width: 769px) {
+    body.standalone-dps-page .app {
+        width: min(1180px, calc(100% - 20px)) !important;
+    }
+}
+
+/* =============================================
+   정밀 계산 우측 컬럼 스크롤 고정
+   ============================================= */
+body.standalone-dps-page .app {
+    overflow: visible !important;
+}
+
+body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+}
+
+
+.simple-extra-wrap {
+    margin-top: 18px;
+}
+
+
+.simple-extra-wrap {
+    margin-top: 18px;
+}
+
+
+
+.simple-extra-wrap {
+    margin-top: 16px;
+}
+
+.simple-extra-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    color: #e8edf7;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.simple-extra-toggle:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.12);
+    color: #ffffff;
+}
+
+.simple-extra-toggle.open {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.14);
+}
+
+.simple-extra-panel {
+    display: none;
+    margin-top: 14px;
+}
+
+.simple-extra-panel.open {
+    display: block;
+}
+
+.simple-extra-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .simple-extra-toggle {
+        font-size: 14px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        gap: 5px;
+    }
+
+    .simple-extra-wrap {
+        margin-top: 12px;
+    }
+
+    .simple-extra-panel {
+        margin-top: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =============================================
+   벨가르딘 - 붉은 글로우 / 무덤 석재 버전 (폭 안 줄어드는 수정본)
+   ============================================= */
+.hero-belgardin {
+background:
+radial-gradient(circle at top left, rgba(248,113,113,.16), transparent 26%),
+radial-gradient(circle at bottom right, rgba(225,29,72,.10), transparent 30%),
+linear-gradient(180deg, #1e1010 0%, #160c0c 100%);
+border-color: rgba(248,113,113,.20);
+}
+.hero-belgardin .p-hero-kicker {
+color: #fca5a5;
+}
+.hero-belgardin .p-hero-icon {
+background: linear-gradient(135deg, rgba(248,113,113,.22), rgba(225,29,72,.14));
+border: 1px solid rgba(248,113,113,.30);
+box-shadow: 0 8px 18px rgba(225,29,72,.12);
+}
+.hero-belgardin .p-hero-subtitle {
+color: #fca5a5;
+}
+.hero-belgardin .p-badge.b-type {
+background: rgba(239,68,68,.15);
+color: #fca5a5;
+}
+.hero-belgardin .p-badge.b-attr {
+background: rgba(248,113,113,.15);
+color: #fca5a5;
+}
+.hero-belgardin .p-pill {
+background: rgba(248,113,113,.06);
+color: #fca5a5;
+border-color: rgba(248,113,113,.14);
+}
+.hero-belgardin .p-pill.active {
+background: rgba(248,113,113,.14);
+color: #fff1f2;
+border-color: rgba(248,113,113,.24);
+}
+.hero-belgardin .p-stat {
+background: rgba(248,113,113,.04);
+border-color: rgba(248,113,113,.10);
+}
+.hero-belgardin .p-stat-label {
+color: #b56c6c;
+}
