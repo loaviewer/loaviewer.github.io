@@ -14,28 +14,38 @@ let acMembers = 4;
 let currentSimpleRaid = "cathedral";
 
 
+function normalizePathname(pathname) {
+  let p = pathname;
 
+  // /index.html -> /
+  if (p === "/index.html" || p === "/index") return "/";
 
-const currentPathname = window.location.pathname;
-const isStandaloneLevelPage =
-    currentPathname.includes("/dps/level/") ||
-    currentPathname.endsWith("/dps/level.html");
+  // /abc/index.html -> /abc
+  p = p.replace(/\/index\.html$/, "");
+  p = p.replace(/\/index$/, "");
 
-const isStandaloneRaidPage =
-    currentPathname.includes("/dps/raid/") ||
-    currentPathname.endsWith("/dps/raid.html");
+  // .html 제거
+  p = p.replace(/\.html$/, "");
 
-const isStandaloneSerkaPage =
-    currentPathname.endsWith("/dps/serka.html");
+  // 끝 슬래시 제거 (루트 / 는 제외)
+  if (p.length > 1 && p.endsWith("/")) {
+    p = p.slice(0, -1);
+  }
 
-const isStandaloneCathedralPage =
-    currentPathname.endsWith("/dps/cathedral.html");
+  return p;
+}
 
-const isStandaloneGuardianPage =
-    currentPathname.endsWith("/dps/guardian.html");
+const currentPathname = normalizePathname(window.location.pathname);
 
-const isStandaloneBelgardinPage =
-    currentPathname.endsWith("/dps/belgardin.html");
+const isPath = (target) => currentPathname === target;
+
+const isStandaloneLevelPage = isPath("/dps/level");
+const isStandaloneRaidPage = isPath("/dps/raid");
+const isStandaloneSerkaPage = isPath("/dps/serka");
+const isStandaloneCathedralPage = isPath("/dps/cathedral");
+const isStandaloneGuardianPage = isPath("/dps/guardian");
+const isStandaloneBelgardinPage = isPath("/dps/belgardin");
+
 
 
 
