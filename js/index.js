@@ -5,9 +5,9 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsij
 
 let currentMenu = "simple";
 let currentCombo = "hard_gate1";
-let currentGatoBoss = "엘버하스틱";
-let currentGato1750Boss = "엘버하스틱";
-let currentGato1770Boss = "엘버하스틱";
+let currentGatoBoss = "루멘칼리고";
+let currentGato1750Boss = "루멘칼리고";
+let currentGato1770Boss = "루멘칼리고";
 let currentSimpleLevel = "1750";
 let currentGuardianTier = "1750";
 let acMembers = 4;
@@ -1601,9 +1601,9 @@ function applyMenuFromQuery() {
     if (isStandaloneGuardianPage) {
         currentMenu = "guardian";
         currentGuardianTier = "1750";
-        currentGatoBoss = "엘버하스틱";
-        currentGato1750Boss = "엘버하스틱";
-        currentGato1770Boss = "엘버하스틱";
+        currentGatoBoss = "루멘칼리고";
+        currentGato1750Boss = "루멘칼리고";
+        currentGato1770Boss = "루멘칼리고";
         document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
         document.querySelector('.menu-item[data-menu="guardian"]')?.classList.add("active");
         setBaseTimeByMenu(currentMenu);
@@ -1629,9 +1629,9 @@ if (currentMenu === "serka") {
     currentCombo = "hard_gate1";
 } else if (currentMenu === "guardian") {
     currentGuardianTier = "1750";
-    currentGatoBoss = "엘버하스틱";
-    currentGato1750Boss = "엘버하스틱";
-    currentGato1770Boss = "엘버하스틱";
+    currentGatoBoss = "루멘칼리고";
+    currentGato1750Boss = "루멘칼리고";
+    currentGato1770Boss = "루멘칼리고";
 } else if (currentMenu === "raid-simple") {
     currentSimpleRaid = "cathedral";
 } else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
@@ -3740,9 +3740,9 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         else if (menu === "guardian") {
             currentMenu = "guardian";
             currentGuardianTier = "1750";
-            currentGatoBoss = "엘버하스틱";
-            currentGato1750Boss = "엘버하스틱";
-            currentGato1770Boss = "엘버하스틱";
+            currentGatoBoss = "루멘칼리고";
+            currentGato1750Boss = "루멘칼리고";
+            currentGato1770Boss = "루멘칼리고";
         }
         else if (menu === "arc-grid") {
             currentMenu = "arc-grid";
