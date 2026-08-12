@@ -8,8 +8,8 @@ let currentCombo = "hard_gate1";
 let currentGatoBoss = "루멘칼리고";
 let currentGato1750Boss = "루멘칼리고";
 let currentGato1770Boss = "루멘칼리고";
-let currentSimpleLevel = "1750";
-let currentGuardianTier = "1750";
+let currentSimpleLevel = "1770";
+let currentGuardianTier = "1770";
 let acMembers = 4;
 let currentSimpleRaid = "cathedral";
 
@@ -1249,21 +1249,21 @@ const gato1750Layout = [
 
 // 신규: 가디언 토벌 1770 (구글시트 466~658행대, 딜지분 25%~50% 구간)
 const gato1770Layout = [
-    { boss:"루멘칼리고", startRow:468, shareCol:1, damageCol:3 },
-    { boss:"가르가디스", startRow:468, shareCol:9, damageCol:11 },
-    { boss:"스콜라키아", startRow:468, shareCol:17, damageCol:19 },
-    { boss:"크라티오스", startRow:500, shareCol:1, damageCol:3 },
-    { boss:"아게오로스", startRow:500, shareCol:9, damageCol:11 },
-    { boss:"드렉탈라스", startRow:500, shareCol:17, damageCol:19 },
-    { boss:"소나벨", startRow:532, shareCol:1, damageCol:3 },
-    { boss:"베스칼", startRow:532, shareCol:9, damageCol:11 },
-    { boss:"쿤겔라니움", startRow:565, shareCol:1, damageCol:3 },
-    { boss:"하누마탄", startRow:565, shareCol:9, damageCol:11 },
-    { boss:"데스칼루다", startRow:565, shareCol:17, damageCol:19 },
-    { boss:"이그렉시온", startRow:597, shareCol:1, damageCol:3 },
-    { boss:"벨가누스", startRow:597, shareCol:9, damageCol:11 },
-    { boss:"아카테스", startRow:597, shareCol:17, damageCol:19 },
-    { boss:"엘버하스틱", startRow:629, shareCol:1, damageCol:3 }
+    { boss:"루멘칼리고", startRow:467, shareCol:1, damageCol:3 },
+    { boss:"가르가디스", startRow:467, shareCol:9, damageCol:11 },
+    { boss:"스콜라키아", startRow:467, shareCol:17, damageCol:19 },
+    { boss:"크라티오스", startRow:499, shareCol:1, damageCol:3 },
+    { boss:"아게오로스", startRow:499, shareCol:9, damageCol:11 },
+    { boss:"드렉탈라스", startRow:499, shareCol:17, damageCol:19 },
+    { boss:"소나벨", startRow:531, shareCol:1, damageCol:3 },
+    { boss:"베스칼", startRow:531, shareCol:9, damageCol:11 },
+    { boss:"쿤겔라니움", startRow:564, shareCol:1, damageCol:3 },
+    { boss:"하누마탄", startRow:564, shareCol:9, damageCol:11 },
+    { boss:"데스칼루다", startRow:564, shareCol:17, damageCol:19 },
+    { boss:"이그렉시온", startRow:596, shareCol:1, damageCol:3 },
+    { boss:"벨가누스", startRow:596, shareCol:9, damageCol:11 },
+    { boss:"아카테스", startRow:596, shareCol:17, damageCol:19 },
+    { boss:"엘버하스틱", startRow:628, shareCol:1, damageCol:3 }
 ];
 
 const gatoMeta = {
@@ -1600,7 +1600,7 @@ function applyMenuFromQuery() {
 
     if (isStandaloneGuardianPage) {
         currentMenu = "guardian";
-        currentGuardianTier = "1750";
+        currentGuardianTier = "1770";
         currentGatoBoss = "루멘칼리고";
         currentGato1750Boss = "루멘칼리고";
         currentGato1770Boss = "루멘칼리고";
@@ -1628,7 +1628,7 @@ if (currentMenu === "serka") {
 } else if (currentMenu === "belgardin") {
     currentCombo = "hard_gate1";
 } else if (currentMenu === "guardian") {
-    currentGuardianTier = "1750";
+    currentGuardianTier = "1770";
     currentGatoBoss = "루멘칼리고";
     currentGato1750Boss = "루멘칼리고";
     currentGato1770Boss = "루멘칼리고";
@@ -3739,7 +3739,7 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         }
         else if (menu === "guardian") {
             currentMenu = "guardian";
-            currentGuardianTier = "1750";
+            currentGuardianTier = "1770";
             currentGatoBoss = "루멘칼리고";
             currentGato1750Boss = "루멘칼리고";
             currentGato1770Boss = "루멘칼리고";
