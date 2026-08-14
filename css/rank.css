@@ -1054,6 +1054,7 @@
   border-radius: 999px;
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.08);
+  white-space: nowrap; 
 }
 
 /* 오오라 테마 */
@@ -1822,18 +1823,21 @@
    ============================================= */
 @media (max-width: 768px) {
   .battle-hero-banner {
-    padding: 20px 16px 16px;
+    padding: 54px 16px 16px;
     margin: -16px -16px 0;
     border-radius: 18px 18px 0 0;
+    position: relative;
   }
-
   .battle-hero-title { font-size: 22px; }
   .battle-hero-sub { font-size: 13px; }
    .battle-hero-kicker { font-size: 16px; letter-spacing: 3px; }
-  .battle-stage-badge { top: 10px; right: 12px; }
-
+  .battle-stage-badge {
+    top: 10px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
   .battle-progress-wrap { max-width: 90%; margin: 14px auto; }
-
   .battle-field {
     gap: 12px !important;
   }
