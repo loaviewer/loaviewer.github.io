@@ -5,95 +5,110 @@
     <loc>https://loaviewer.github.io/</loc>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/about.html</loc>
+    <loc>https://loaviewer.github.io/about</loc>
     <priority>0.5</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/guide.html</loc>
+    <loc>https://loaviewer.github.io/guide</loc>
     <priority>0.5</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/privacy.html</loc>
+    <loc>https://loaviewer.github.io/privacy</loc>
     <priority>0.3</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/contact.html</loc>
+    <loc>https://loaviewer.github.io/contact</loc>
     <priority>0.5</priority>
   </url>
- 
+
   <url>
-    <loc>https://loaviewer.github.io/dps/level.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://loaviewer.github.io/dps/raid.html</loc>
+    <loc>https://loaviewer.github.io/dps/level</loc>
     <priority>0.8</priority>
   </url>
 
- 
   <url>
-    <loc>https://loaviewer.github.io/dps/serka.html</loc>
+    <loc>https://loaviewer.github.io/dps/raid</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/dps/cathedral.html</loc>
+    <loc>https://loaviewer.github.io/dps/serka</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/dps/belgardin.html</loc>
+    <loc>https://loaviewer.github.io/dps/cathedral</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/dps/guardian.html</loc>
+    <loc>https://loaviewer.github.io/dps/belgardin</loc>
     <priority>0.8</priority>
   </url>
- 
+
   <url>
-    <loc>https://loaviewer.github.io/rank.html</loc>
+    <loc>https://loaviewer.github.io/dps/guardian</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://loaviewer.github.io/rank</loc>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/rank/class-win.html</loc>
+    <loc>https://loaviewer.github.io/rank/class-win</loc>
     <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/rank/history.html</loc>
+    <loc>https://loaviewer.github.io/rank/history</loc>
     <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/rank/ranking.html</loc>
+    <loc>https://loaviewer.github.io/rank/ranking</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/rank/tier.html</loc>
+    <loc>https://loaviewer.github.io/rank/tier</loc>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://loaviewer.github.io/rank/winrate.html</loc>
+    <loc>https://loaviewer.github.io/rank/winrate</loc>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://loaviewer.github.io/class/synergy.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://loaviewer.github.io/class/arc-grid.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://loaviewer.github.io/class/arkPassive.html</loc>
+    <loc>https://loaviewer.github.io/class/synergy</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://loaviewer.github.io/tools/auction.html</loc>
+    <loc>https://loaviewer.github.io/class/arc-grid</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://loaviewer.github.io/tools/market.html</loc>
+    <loc>https://loaviewer.github.io/class/arkPassive</loc>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://loaviewer.github.io/tools/auction</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://loaviewer.github.io/tools/market</loc>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
