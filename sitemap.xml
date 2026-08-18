@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- 메인 / 소개 / 안내 -->
+
   <url>
     <loc>https://loaviewer.github.io/</loc>
     <priority>1.0</priority>
@@ -21,8 +21,7 @@
     <loc>https://loaviewer.github.io/contact.html</loc>
     <priority>0.5</priority>
   </url>
-
-  <!-- 잔혈컷 간편보기 -->
+ 
   <url>
     <loc>https://loaviewer.github.io/dps/level.html</loc>
     <priority>0.8</priority>
@@ -32,7 +31,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- 잔혈컷 정밀계산 -->
+ 
   <url>
     <loc>https://loaviewer.github.io/dps/serka.html</loc>
     <priority>0.8</priority>
@@ -49,8 +48,7 @@
     <loc>https://loaviewer.github.io/dps/guardian.html</loc>
     <priority>0.8</priority>
   </url>
-
-  <!-- 직각 토너먼트 -->
+ 
   <url>
     <loc>https://loaviewer.github.io/rank.html</loc>
     <priority>0.9</priority>
@@ -77,8 +75,6 @@
     <priority>0.7</priority>
   </url>
 
-
-  <!-- 클래스 정보 -->
   <url>
     <loc>https://loaviewer.github.io/class/synergy.html</loc>
     <priority>0.8</priority>
@@ -92,7 +88,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- 편의 도구 -->
   <url>
     <loc>https://loaviewer.github.io/tools/auction.html</loc>
     <priority>0.8</priority>
