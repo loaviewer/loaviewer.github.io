@@ -11,7 +11,7 @@ let currentGato1770Boss = "루멘칼리고";
 let currentSimpleLevel = "1770";
 let currentGuardianTier = "1770";
 let acMembers = 4;
-let currentSimpleRaid = "cathedral";
+let currentSimpleRaid = "belgardin";
 
 
 function normalizePathname(pathname) {
@@ -1598,17 +1598,29 @@ function applyMenuFromQuery() {
         return;
     }
 
-    if (isStandaloneGuardianPage) {
-        currentMenu = "guardian";
-        currentGuardianTier = "1770";
-        currentGatoBoss = "루멘칼리고";
-        currentGato1750Boss = "루멘칼리고";
-        currentGato1770Boss = "루멘칼리고";
-        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
-        document.querySelector('.menu-item[data-menu="guardian"]')?.classList.add("active");
-        setBaseTimeByMenu(currentMenu);
-        return;
-    }
+  // 수정
+if (isStandaloneGuardianPage) {
+    currentMenu = "guardian";
+
+    const guardianParams = new URLSearchParams(window.location.search);
+    const qTier = guardianParams.get("tier");
+    const qBoss = guardianParams.get("boss");
+
+    const validTiers = ["1730", "1750", "1770"];
+    currentGuardianTier = validTiers.includes(qTier) ? qTier : "1770";
+
+    const bossList = getGuardianBossListByTier(currentGuardianTier);
+    const resolvedBoss = (qBoss && bossList.includes(qBoss)) ? qBoss : "루멘칼리고";
+
+    currentGatoBoss = resolvedBoss;
+    currentGato1750Boss = resolvedBoss;
+    currentGato1770Boss = resolvedBoss;
+
+    document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
+    document.querySelector('.menu-item[data-menu="guardian"]')?.classList.add("active");
+    setBaseTimeByMenu(currentMenu);
+    return;
+}
 
     const menu = new URLSearchParams(window.location.search).get("menu");
     if (!menu) return;
