@@ -715,20 +715,22 @@ body.standalone-arc-grid-page .common-divider-top {
     z-index: auto !important; /* 모든 페이지의 z-index를 해제하여 광고판이 가려지는 것을 막습니다 */
 }
 
+
 /* =============================================
-   4. 구글 애드센스 자동 광고 및 일반 광고 강제 파기(Collapse) 방지
+   4. 구글 애드센스 자동 광고 강제 파기(Collapse) 방지 (앵커 광고 충돌 해결 버전)
    ============================================= */
-.google-auto-placed,
-ins.adsbygoogle {
+/* 본문 중간에 삽입되는 자동 광고(.google-auto-placed 내부의 광고)만 안전하게 타겟팅합니다 */
+.google-auto-placed ins.adsbygoogle {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
-    grid-column: 1 / -1 !important; /* 그리드 레이아웃 사이에 껴도 한 줄 전체를 차지하게 만듭니다 */
+    grid-column: 1 / -1 !important; /* 그리드 레이아웃 깨짐 방지 */
     opacity: 1 !important;          /* 투명도 감지 오류 방지 */
     visibility: visible !important;
     margin: 16px auto !important;
     overflow: visible !important;
 }
+
 
 /* =============================================
    5. [신규 추가] 양쪽 사이드 스티키 광고 레이아웃
