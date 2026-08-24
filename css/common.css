@@ -535,47 +535,69 @@ body.standalone-rank-page .qm-row {
     }
 }
 
+
+
+
+
+
+
+
+
+
 /* =============================================
-   공통 오로라 배경 (애니메이션 제거 및 정적 최적화 버전)
+   공통 오로라 배경 (전체 화면 꽉 차게 복원 + 정적 최적화)
    ============================================= */
 .common-aurora {
     position: fixed;
-    top: 70px;                   /* 상단 앵커 광고 영역 보호 */
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%); /* 화면 가로 정중앙 배치 */
-    width: 100%;
-    max-width: 1560px;           /* 좌우 사이드 광고 영역 보호 */
-    z-index: -99999 !important;  /* 광고판 무조건 뒤로 배치 */
+    inset: 0;                    /* ✨ 외곽까지 오오라가 가득 차도록 전체 화면으로 복원 */
+    z-index: -99999 !important;  /* 광고와 모든 콘텐츠의 최하단에 배치 */
     pointer-events: none;
     overflow: hidden;
     background: linear-gradient(180deg, #05060b 0%, #06070f 30%, #07080f 55%, #05060b 100%);
 }
 
-/* 애니메이션 동작(animation, will-change)을 완전히 제거하여 브라우저 과부하 및 광고 충돌을 막습니다 */
 .common-aurora::before,
 .common-aurora::after {
     content: "";
     position: absolute;
     inset: -8%;
     pointer-events: none;
+    will-change: auto;           /* iframe 로드 충돌 방지 */
 }
 
 .common-aurora::before {
     background:
         radial-gradient(700px 900px at 82% 4%, rgba(155, 126, 240, .14), transparent 60%),
         radial-gradient(900px 700px at 8% 30%, rgba(91, 156, 245, .10), transparent 62%);
-    /* animation 제거됨 */
 }
 
 .common-aurora::after {
     background:
         radial-gradient(800px 900px at 78% 62%, rgba(232, 184, 75, .08), transparent 58%),
         radial-gradient(1000px 800px at 15% 92%, rgba(155, 126, 240, .11), transparent 60%);
-    /* animation 제거됨 */
 }
 
-/* 기존의 @keyframes commonAuroraFloat1, commonAuroraFloat2 코드는 더 이상 사용되지 않으므로 안 지워도 무방하고 지우면 더 깔끔합니다. */
+@keyframes commonAuroraFloat1 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.92;
+    }
+    100% {
+        transform: translate3d(14px, -10px, 0) scale(1.02);
+        opacity: 1;
+    }
+}
+
+@keyframes commonAuroraFloat2 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.88;
+    }
+    100% {
+        transform: translate3d(-12px, 12px, 0) scale(1.015);
+        opacity: 0.98;
+    }
+}
 
 /* =============================================
    아크그리드 전용: 헤더 아래 이중 구분선 제거
@@ -592,5 +614,20 @@ body.standalone-arc-grid-page .common-divider-top {
 .tools-page, 
 .app, 
 [class*="-page"] {
-    z-index: auto !important;
+    z-index: auto !important; /* 모든 페이지의 z-index를 해제하여 광고판이 가려지는 것을 막습니다 */
+}
+
+/* =============================================
+   구글 애드센스 자동 광고 강제 파기(Collapse) 방지
+   ============================================= */
+.google-auto-placed,
+ins.adsbygoogle {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 1 / -1 !important; /* 그리드 레이아웃 사이에 껴도 한 줄 전체를 차지하게 만듭니다 */
+    opacity: 1 !important;          /* 투명도 감지 오류 방지 */
+    visibility: visible !important;
+    margin: 16px auto !important;
+    overflow: visible !important;
 }
