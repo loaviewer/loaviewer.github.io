@@ -638,3 +638,131 @@ ins.adsbygoogle {
     margin: 16px auto !important;
     overflow: visible !important;
 }
+
+
+
+
+/* =============================================
+   1. 공통 오로라 배경 (전체 화면 꽉 차게 복원 + 정적 최적화)
+   ============================================= */
+.common-aurora {
+    position: fixed;
+    inset: 0;                    /* 외곽까지 오오라가 가득 차도록 전체 화면으로 복원 */
+    z-index: -99999 !important;  /* 광고와 모든 콘텐츠의 최하단에 배치 */
+    pointer-events: none;
+    overflow: hidden;
+    background: linear-gradient(180deg, #05060b 0%, #06070f 30%, #07080f 55%, #05060b 100%);
+}
+
+.common-aurora::before,
+.common-aurora::after {
+    content: "";
+    position: absolute;
+    inset: -8%;
+    pointer-events: none;
+    will-change: auto;           /* iframe 로드 충돌 방지 */
+}
+
+.common-aurora::before {
+    background:
+        radial-gradient(700px 900px at 82% 4%, rgba(155, 126, 240, .14), transparent 60%),
+        radial-gradient(900px 700px at 8% 30%, rgba(91, 156, 245, .10), transparent 62%);
+}
+
+.common-aurora::after {
+    background:
+        radial-gradient(800px 900px at 78% 62%, rgba(232, 184, 75, .08), transparent 58%),
+        radial-gradient(1000px 800px at 15% 92%, rgba(155, 126, 240, .11), transparent 60%);
+}
+
+@keyframes commonAuroraFloat1 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.92;
+    }
+    100% {
+        transform: translate3d(14px, -10px, 0) scale(1.02);
+        opacity: 1;
+    }
+}
+
+@keyframes commonAuroraFloat2 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.88;
+    }
+    100% {
+        transform: translate3d(-12px, 12px, 0) scale(1.015);
+        opacity: 0.98;
+    }
+}
+
+/* =============================================
+   2. 아크그리드 전용: 헤더 아래 이중 구분선 제거
+   ============================================= */
+body.standalone-arc-grid-page .common-divider-top {
+    display: none;
+}
+
+/* =============================================
+   3. 모든 페이지(서브페이지 포함) z-index 강제 초기화
+   ============================================= */
+.page, 
+.auction-page, 
+.tools-page, 
+.app, 
+[class*="-page"] {
+    z-index: auto !important; /* 모든 페이지의 z-index를 해제하여 광고판이 가려지는 것을 막습니다 */
+}
+
+/* =============================================
+   4. 구글 애드센스 자동 광고 및 일반 광고 강제 파기(Collapse) 방지
+   ============================================= */
+.google-auto-placed,
+ins.adsbygoogle {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 1 / -1 !important; /* 그리드 레이아웃 사이에 껴도 한 줄 전체를 차지하게 만듭니다 */
+    opacity: 1 !important;          /* 투명도 감지 오류 방지 */
+    visibility: visible !important;
+    margin: 16px auto !important;
+    overflow: visible !important;
+}
+
+/* =============================================
+   5. [신규 추가] 양쪽 사이드 스티키 광고 레이아웃
+   ============================================= */
+.loaview-side-ad-wrap {
+    position: fixed;
+    top: 100px;                  /* 상단 GNB 메뉴바 아래에 위치하도록 조절 */
+    width: 160px;                /* 광고 가로폭 160px로 강제 고정 */
+    height: 600px;               /* 광고 세로폭 600px로 강제 고정 */
+    z-index: 10;                 /* 오오라 배경보다는 위, 모달/드로어보다는 아래 */
+    display: none;               /* 기본적으로 모바일/태블릿/노트북에서는 숨김 */
+    pointer-events: auto;
+}
+
+/* 왼쪽 사이드 광고 위치: 중앙에서 메인 콘텐츠 절반(780px)을 빼고 여백만큼 더 왼쪽으로 */
+.loaview-side-ad-wrap.left {
+    left: calc(50% - 780px - 180px);
+}
+
+/* 오른쪽 사이드 광고 위치: 중앙에서 메인 콘텐츠 절반(780px)을 더하고 여백만큼 오른쪽으로 */
+.loaview-side-ad-wrap.right {
+    left: calc(50% + 780px + 20px);
+}
+
+/* 오직 가로폭 1920px 이상의 큰 모니터 환경에서만 사이드 광고를 노출시킵니다 */
+@media (min-width: 1920px) {
+    .loaview-side-ad-wrap {
+        display: block;
+    }
+}
+
+/* 사이드 광고 영역 내부 크기 강제 고정 */
+.loaview-side-ad-wrap ins.adsbygoogle {
+    display: inline-block !important;
+    width: 160px !important;
+    height: 600px !important;
+}
