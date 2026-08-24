@@ -535,14 +535,18 @@ body.standalone-rank-page .qm-row {
     }
 }
 
-
 /* =============================================
-   공통 오로라 배경 
+   공통 오로라 배경 (상단 70px 및 좌우 외곽 완전 제외 버전)
    ============================================= */
 .common-aurora {
     position: fixed;
-    inset: 0;
-    z-index: -99999 !important;  /* ✨ 수정: -1 → -99999 (확실히 뒤로) */
+    top: 70px;                   /* 1. 상단 앵커 광고 영역 보호 (상단 70px 비움) */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* 2. 화면 가로 정중앙 배치 */
+    width: 100%;
+    max-width: 1560px;           /* 3. 사이트 가로폭(1560px)에만 오오라 제한 (좌우 사이드 광고 영역 보호) */
+    z-index: -99999 !important;  /* 4. 광고를 포함한 모든 요소의 맨 뒤로 배치 */
     pointer-events: none;
     overflow: hidden;
     background: linear-gradient(180deg, #05060b 0%, #06070f 30%, #07080f 55%, #05060b 100%);
@@ -554,7 +558,7 @@ body.standalone-rank-page .qm-row {
     position: absolute;
     inset: -8%;
     pointer-events: none;
-    will-change: auto;  /* ✨ 수정: transform, opacity → auto ( iframe 충돌 방지) */
+    will-change: auto;           /* iframe 가속화 버그 방지 */
 }
 
 .common-aurora::before {
@@ -570,7 +574,6 @@ body.standalone-rank-page .qm-row {
         radial-gradient(1000px 800px at 15% 92%, rgba(155, 126, 240, .11), transparent 60%);
     animation: commonAuroraFloat2 34s ease-in-out infinite alternate;
 }
-
 
 @keyframes commonAuroraFloat1 {
     0% {
@@ -602,8 +605,12 @@ body.standalone-arc-grid-page .common-divider-top {
 }
 
 /* =============================================
-   모든 페이지의 쌓임 맥락(z-index) 강제 초기화 
+   모든 페이지(서브페이지 포함) z-index 강제 초기화
    ============================================= */
-.page {
-    z-index: auto !important; /* 👈 모든 서브 페이지의 z-index: 1을 강제로 해제하여 광고 위로 올라오게 만듭니다. */
+.page, 
+.auction-page, 
+.tools-page, 
+.app, 
+[class*="-page"] {
+    z-index: auto !important; /* 모든 서브 페이지의 z-index를 강제로 해제하여 광고 위로 올립니다. */
 }
