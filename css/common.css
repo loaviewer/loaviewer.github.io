@@ -600,3 +600,10 @@ body.standalone-rank-page .qm-row {
 body.standalone-arc-grid-page .common-divider-top {
     display: none;
 }
+
+/* =============================================
+   모든 페이지의 쌓임 맥락(z-index) 강제 초기화 
+   ============================================= */
+.page {
+    z-index: auto !important; /* 👈 모든 서브 페이지의 z-index: 1을 강제로 해제하여 광고 위로 올라오게 만듭니다. */
+}
