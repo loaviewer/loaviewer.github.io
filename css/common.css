@@ -535,13 +535,14 @@ body.standalone-rank-page .qm-row {
     }
 }
 
+
 /* =============================================
-   공통 오로라 배경
+   공통 오로라 배경 
    ============================================= */
 .common-aurora {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: -99999 !important;  /* ✨ 수정: -1 → -99999 (확실히 뒤로) */
     pointer-events: none;
     overflow: hidden;
     background: linear-gradient(180deg, #05060b 0%, #06070f 30%, #07080f 55%, #05060b 100%);
@@ -553,7 +554,7 @@ body.standalone-rank-page .qm-row {
     position: absolute;
     inset: -8%;
     pointer-events: none;
-    will-change: transform, opacity;
+    will-change: auto;  /* ✨ 수정: transform, opacity → auto ( iframe 충돌 방지) */
 }
 
 .common-aurora::before {
@@ -569,6 +570,7 @@ body.standalone-rank-page .qm-row {
         radial-gradient(1000px 800px at 15% 92%, rgba(155, 126, 240, .11), transparent 60%);
     animation: commonAuroraFloat2 34s ease-in-out infinite alternate;
 }
+
 
 @keyframes commonAuroraFloat1 {
     0% {
