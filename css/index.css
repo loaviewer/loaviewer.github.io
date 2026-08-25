@@ -5667,3 +5667,363 @@ border-color: rgba(248,113,113,.10);
 .hero-belgardin .p-stat-label {
 color: #b56c6c;
 }
+
+
+
+
+/* =============================================
+   상세/구간별 딜지분 탭
+   ============================================= */
+
+.detail-tab-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: #111320;
+    border: 1px solid #1a1d2e;
+}
+
+
+.detail-tabs {
+    display: flex;
+    gap: 6px;
+    background: #151822;
+    border: 1px solid #23283a;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.detail-tab {
+    border: none;
+    background: transparent;
+    color: #667085;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .18s ease;
+    white-space: nowrap;
+}
+
+.detail-tab:hover {
+    color: #c0c7d6;
+}
+
+.detail-tab.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(99,102,241,.28);
+}
+
+/* =============================================
+   벨가르딘 구간별(줄 수) 잔혈컷 타임라인
+   ============================================= */
+.line-cut-timeline {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 4px 2px;
+}
+
+
+
+
+.line-cut-row {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 14px;
+    padding-bottom: 40px;
+}
+
+.line-cut-row.line-cut-clear {
+    padding-bottom: 4px;
+}
+
+
+
+
+.line-cut-marker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.line-cut-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59,130,246,.15);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.line-cut-row.line-cut-clear .line-cut-dot {
+    background: #34d399;
+    box-shadow: 0 0 0 4px rgba(52,211,153,.15);
+}
+
+.line-cut-connector {
+    width: 2px;
+    flex: 1;
+    margin-top: 4px;
+    background: linear-gradient(180deg, rgba(59,130,246,.5), rgba(59,130,246,.08));
+}
+
+.line-cut-body {
+    background: #111320;
+    border: 1px solid #1a1d2e;
+    border-radius: 14px;
+    padding: 14px 16px;
+}
+
+.line-cut-label-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.line-cut-line-num {
+    font-size: 17px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.line-cut-time {
+    font-size: 11px;
+    color: #667085;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.line-cut-desc {
+    font-size: 12px;
+    color: #8a94a8;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+
+
+
+.line-cut-card {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 8px;
+}
+
+.lc-tri {
+    padding: 8px 10px 7px;
+    border-radius: 10px;
+    border: 1px solid #262c3d;
+    background: #121622;
+    text-align: center;
+}
+
+.lc-tri-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    margin-bottom: 4px;
+    color: #667085;
+}
+
+.lc-tri-value {
+    display: block;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.lc-tri.tank {
+    background: rgba(247,202,84,.04);
+    border-color: rgba(247,202,84,.12);
+}
+.lc-tri.tank .lc-tri-value { color: #f7ca54; }
+
+.lc-tri.one {
+    background: rgba(59,130,246,.05);
+    border-color: rgba(59,130,246,.14);
+}
+.lc-tri.one .lc-tri-value { color: #8db8ff; }
+
+.lc-tri.blood {
+    background: rgba(167,139,250,.05);
+    border-color: rgba(167,139,250,.14);
+}
+.lc-tri.blood .lc-tri-value { color: #c4b5fd; }
+
+
+
+
+@media (max-width: 768px) {
+    .detail-tab-head {
+        flex-wrap: wrap;
+    }
+}
+
+
+
+.line-cut-row.line-cut-start {
+    padding-bottom: 16px;
+    align-items: center;
+}
+
+.line-cut-dot.start {
+    background: #667085;
+    box-shadow: 0 0 0 4px rgba(102,112,133,.15);
+}
+
+.line-cut-start-label {
+    font-size: 14px;
+    font-weight: 800;
+    color: #8a94a8;
+    padding-top: 1px;
+}
+
+
+
+
+
+.precision-section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0 4px;
+}
+
+.precision-section-divider::before,
+.precision-section-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+}
+
+.precision-section-divider span {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #4a5568;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+.line-cut-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 18px;
+    letter-spacing: -.2px;
+    padding-left: 12px;
+    position: relative;
+}
+
+.line-cut-section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    bottom: 1px;
+    width: 4px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #60a5fa, #a78bfa);
+}
+
+@media (max-width: 768px) {
+    /* 탭바 + 전분시간 뱃지 */
+    .detail-tab-bar {
+        padding: 12px 14px;
+        gap: 8px;
+    }
+
+    .detail-tab {
+        padding: 7px 11px;
+        font-size: 11px;
+    }
+
+    /* 구간별 딜지분 제목 */
+    .line-cut-section-title {
+        font-size: 15px;
+        margin-bottom: 14px;
+        padding-left: 10px;
+    }
+
+    /* 타임라인 카드 */
+    .line-cut-row {
+        grid-template-columns: 18px 1fr;
+        gap: 10px;
+        padding-bottom: 28px;
+    }
+
+    .line-cut-body {
+        padding: 12px 12px;
+    }
+
+    .line-cut-label-row {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .line-cut-line-num {
+        font-size: 15px;
+    }
+
+    .line-cut-time {
+        font-size: 10px;
+    }
+
+    .line-cut-desc {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .line-cut-card {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        gap: 6px;
+    }
+
+    .lc-tri {
+        padding: 6px 4px 5px;
+    }
+
+
+
+
+    .lc-tri-label {
+        font-size: 9px;
+    }
+
+    .lc-tri-value {
+        font-size: 13px;
+    }
+
+    /* 구간선택 시작 라벨 */
+    .line-cut-start-label {
+        font-size: 12px;
+    }
+
+    /* 상단 구분선 */
+    .precision-section-divider span {
+        font-size: 10px;
+    }
+}
