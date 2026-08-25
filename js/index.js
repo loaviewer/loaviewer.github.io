@@ -12,7 +12,7 @@ let currentSimpleLevel = "1770";
 let currentGuardianTier = "1770";
 let acMembers = 4;
 let currentSimpleRaid = "belgardin";
-
+let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
 
 
 
@@ -1192,6 +1192,255 @@ const belgardinRewardData = {
         moreGold: "", moreShard: "44,440"
     }
 };
+
+
+
+
+/* =============================================
+   레이드별 구간별(줄 수) 딜컷 데이터
+   ============================================= */
+const lineCutConfig = {
+    serka: {
+        gate1: {
+            total: 300,
+            points: [
+                { line: 300, desc: "시작" },
+                { line: 240, desc: "체스판 모루저가 패턴" },
+                { line: 200, desc: "돈까스 패턴" },
+                { line: 100, desc: "폭탄 안전지역 패턴" },
+                { line: 0,   desc: "클리어" }
+            ]
+        },
+        gate2: {
+            total: 300,
+            points: [
+                { line: 300, desc: "시작" },
+                { line: 240, desc: "분신 저가후 무력 패턴" },
+                { line: 195, desc: "멘트후 저가 무력 딜타임 패턴" },
+                { line: 120, desc: "분신 타임어택 패턴" },
+                { line: 60,  desc: "삼각 간파후 딜무력 패턴" },
+                { line: 0,   desc: "클리어" }
+            ]
+        }
+    },
+    cathedral: {
+        gate1: {
+            total: 200,
+            points: [
+                { line: 200, desc: "시작" },
+                { line: 160, desc: "중앙 종 저가 패턴" },
+                { line: 100, desc: "금은 줄 장판 실드 까기 패턴" },
+                { line: 60,  desc: "중앙 저가후 지형 감소 패턴" },
+                { line: 0,   desc: "클리어" }
+            ]
+        },
+        gate2: {
+            total: 200,
+            points: [
+                { line: 200, desc: "시작" },
+                { line: 150, desc: "" },
+                { line: 100, desc: "" },
+                { line: 50,  desc: "" },
+                { line: 0,   desc: "클리어" }
+            ]
+        }
+    },
+    belgardin: {
+        gate1: {
+            total: 300,
+            points: [
+                { line: 300, desc: "시작" },
+                { line: 240, desc: "저가 - 미역 - 저가 - 관카운터 패턴" },
+                { line: 190, desc: "파도 - 저가or웅크 - 싸다구 패턴" },
+                { line: 75,  desc: "3방향 무력 + 저가 + 카운터" },
+                { line: 0,   desc: "클리어" }
+            ]
+        },
+        gate2: {
+            total: 400,
+            points: [
+                { line: 400, desc: "시작" },
+                { line: 360, desc: "제물 쫄잡기 패턴" },
+                { line: 320, desc: "줄연결 쫄잡고 무력 및 게이지 딜 타임어택" },
+                { line: 280, desc: "붉은장판 3저가 3카운터" },
+                { line: 200, desc: "검은 마법사(검마) 무력화 패턴" },
+                { line: 100, desc: "앵그리버드" },
+                { line: 0,   desc: "클리어" }
+            ]
+        }
+    }
+};
+
+// 100% 클리어 기준값에서 역산해 구간별(줄 수) 요구 수치를 계산
+// progress = (총 줄 수 - 남은 줄 수) / 총 줄 수
+// ※ 시간은 실측 구간 타임이 없어 클리어타임 × progress로 선형 근사한 참고값입니다.
+function getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
+    const config = lineCutConfig[menu] && lineCutConfig[menu][gateKey];
+    if (!config) return [];
+
+    const total = config.total;
+
+    return config.points.map(p => {
+        const progress = (total - p.line) / total;
+        const elapsedSec = Math.round(totalSec * progress);
+
+        return {
+            line: p.line,
+            desc: p.desc,
+            progress,
+            tank: Math.round((fullTank || 0) * progress),
+            one: Math.round((fullOne || 0) * progress),
+            blood: Math.round((fullBlood || 0) * progress),
+            elapsedSec
+        };
+    });
+}
+
+
+
+function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
+    const rows = getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
+    if (!rows.length) {
+        return '<div class="coming-soon"><h3>준비중</h3><p>구간 데이터가 없습니다.</p></div>';
+    }
+
+    const items = rows.map((r, idx) => {
+        const isStart = r.progress === 0;
+        const isLast = idx === rows.length - 1;
+        const timeLabel = `${String(Math.floor(r.elapsedSec / 60)).padStart(2, "0")}:${String(r.elapsedSec % 60).padStart(2, "0")}`;
+        const lineLabel = r.line === 0 ? "0줄 (클리어)" : `${r.line}줄`;
+
+        if (isStart) {
+            return `
+                <div class="line-cut-row line-cut-start">
+                    <div class="line-cut-marker">
+                        <span class="line-cut-dot start"></span>
+                        <span class="line-cut-connector"></span>
+                    </div>
+                    <div class="line-cut-start-label">${lineLabel} - 조우 시작</div>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="line-cut-row ${isLast ? "line-cut-clear" : ""}">
+                <div class="line-cut-marker">
+                    <span class="line-cut-dot"></span>
+                    ${isLast ? "" : '<span class="line-cut-connector"></span>'}
+                </div>
+                <div class="line-cut-body">
+                    <div class="line-cut-label-row">
+                        <span class="line-cut-line-num">${lineLabel}</span>
+                        <span class="line-cut-time">누적 ${timeLabel} (근사)</span>
+                    </div>
+                    ${r.desc ? `<div class="line-cut-desc">${r.desc}</div>` : ""}
+                    <div class="line-cut-card">
+                        <div class="lc-tri tank">
+                            <span class="lc-tri-label">강투</span>
+                            <span class="lc-tri-value">${fmt(r.tank)}</span>
+                        </div>
+                        <div class="lc-tri one">
+                            <span class="lc-tri-label">1인분</span>
+                            <span class="lc-tri-value">${fmt(r.one)}</span>
+                        </div>
+                        <div class="lc-tri blood">
+                            <span class="lc-tri-label">잔혈</span>
+                            <span class="lc-tri-value">${fmt(r.blood)}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    return `<div class="line-cut-timeline">${items}</div>`;
+}
+
+function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage) {
+    const timeBadge = `전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초`;
+    const titleText = `${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName}`;
+    const sectionDivider = `<div class="precision-section-divider"><span>딜지분 상세보기</span></div>`;
+
+
+    const percentTableHtml = `
+        <div class="table-wrap">
+            <table id="dataTable">
+                <thead><tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr></thead>
+                <tbody>${tableRowsHtml}</tbody>
+            </table>
+        </div>
+    `;
+
+    const hasLineCut = !!(lineCutConfig[menu] && lineCutConfig[menu][gateKey]);
+    const activeTab = hasLineCut ? (detailTabState[menu] || "percent") : "percent";
+
+ 
+    if (!hasLineCut) {
+        return `
+            ${sectionDivider}
+            ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu)}
+
+
+            <div class="precision-table-panel">
+                <div class="precision-table-head">
+                    <div class="precision-table-title">${titleText} 상세 딜지분</div>
+                    <div class="precision-table-badge" id="precisionTimeBadge">${timeBadge}</div>
+                </div>
+                ${percentTableHtml}
+            </div>
+        `;
+    }
+
+    const tabBarHtml = `
+        <div class="detail-tab-bar">
+            <div class="detail-tabs">
+                <button type="button" class="detail-tab ${activeTab === "percent" ? "active" : ""}" data-detail-tab="percent" data-detail-menu="${menu}">상세 딜지분</button>
+                <button type="button" class="detail-tab ${activeTab === "lines" ? "active" : ""}" data-detail-tab="lines" data-detail-menu="${menu}">구간별 딜지분</button>
+            </div>
+            <div class="precision-table-badge" id="precisionTimeBadge">${timeBadge}</div>
+        </div>
+    `;
+
+   
+
+    if (activeTab === "lines") {
+        const fullTank = rowTank ? getDamage(rowTank) : 0;
+        const fullOne = rowOne ? getDamage(rowOne) : 0;
+        const fullBlood = rowBlood ? getDamage(rowBlood) : 0;
+        const lineTimelineHtml = makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
+
+        return `
+            ${sectionDivider}
+            ${tabBarHtml}
+
+
+                       <div class="precision-table-panel">
+                <div class="line-cut-section-title">${titleText} 구간별 딜지분</div>
+                ${lineTimelineHtml}
+            </div>
+        `;
+    }
+
+      return `
+        ${sectionDivider}
+        ${tabBarHtml}
+        ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu)}
+
+        <div class="precision-table-panel">
+            <div class="precision-table-head">
+                <div class="precision-table-title">${titleText} 상세 딜지분</div>
+            </div>
+            ${percentTableHtml}
+        </div>
+    `;
+}
+
+
+
+
+
+
+
 
 
 /* =============================================
@@ -3495,23 +3744,11 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
             </div>
         </div>
 
-        ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, currentMenu)}
 
-        <div class="precision-table-panel">
-            <div class="precision-table-head">
-                <div class="precision-table-title">${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName} 상세 딜지분</div>
-                <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
-            </div>
-            <div class="table-wrap">
-                <table id="dataTable">
-                    <thead>
-                        <tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>
-                    </thead>
-                    <tbody>${tableRowsHtml}</tbody>
-                </table>
-            </div>
-        </div>
+        ${buildSummaryAndDetailHtml(currentMenu, meta.gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage)}
     `;
+
+
 
     // 난이도 선택
     document.querySelectorAll(".precision-diff-chip[data-diff]").forEach(el => {
@@ -3535,6 +3772,15 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
     });
 
     bindRewardMoreToggle(currentMenu);
+
+document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const menu = btn.dataset.detailMenu || currentMenu;
+        detailTabState[menu] = btn.dataset.detailTab;
+        renderTable();
+    });
+});
+
 
     const mobileTimeBtn = document.getElementById(`openMobileTimeBtn_${currentMenu}`);
     const mobileRewardToggleBtn = document.getElementById(`mobileRewardToggle_${currentMenu}`);
