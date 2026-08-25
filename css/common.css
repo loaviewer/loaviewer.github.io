@@ -737,32 +737,23 @@ body.standalone-arc-grid-page .common-divider-top {
    ============================================= */
 .loaview-side-ad-wrap {
     position: fixed;
-    top: 100px;                  /* 상단 GNB 메뉴바 아래에 위치하도록 조절 */
-    width: 160px;                /* 광고 가로폭 160px로 강제 고정 */
-    height: 600px;               /* 광고 세로폭 600px로 강제 고정 */
-    z-index: 10;                 /* 오오라 배경보다는 위, 모달/드로어보다는 아래 */
-    display: none;               /* 기본적으로 모바일/태블릿/노트북에서는 숨김 */
+    top: 100px;
+    width: 160px;
+    height: 600px;
+    z-index: 10;
+    display: none;
     pointer-events: auto;
 }
 
-/* 왼쪽 사이드 광고 위치: 중앙에서 메인 콘텐츠 절반(780px)을 빼고 여백만큼 더 왼쪽으로 */
-.loaview-side-ad-wrap.left {
-    left: calc(50% - 780px - 180px);
-}
+.loaview-side-ad-wrap.left { left: 12px; }
+.loaview-side-ad-wrap.right { right: 12px; }
 
-/* 오른쪽 사이드 광고 위치: 중앙에서 메인 콘텐츠 절반(780px)을 더하고 여백만큼 오른쪽으로 */
-.loaview-side-ad-wrap.right {
-    left: calc(50% + 780px + 20px);
-}
-
-/* 오직 가로폭 1920px 이상의 큰 모니터 환경에서만 사이드 광고를 노출시킵니다 */
-@media (min-width: 1920px) {
+@media (min-width: 1700px) {
     .loaview-side-ad-wrap {
         display: block;
     }
 }
 
-/* 사이드 광고 영역 내부 크기 강제 고정 */
 .loaview-side-ad-wrap ins.adsbygoogle {
     display: inline-block !important;
     width: 160px !important;
