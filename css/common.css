@@ -737,6 +737,7 @@ body.standalone-arc-grid-page .common-divider-top {
    ============================================= */
 
 
+
 .loaview-side-ad-wrap {
     position: fixed;
     top: 50%;
@@ -748,8 +749,13 @@ body.standalone-arc-grid-page .common-divider-top {
     pointer-events: auto;
 }
 
-.loaview-side-ad-wrap.left { left: 24px; }
-.loaview-side-ad-wrap.right { right: 24px; }
+.loaview-side-ad-wrap.left {
+    left: calc(50% - 780px - 180px);
+}
+
+.loaview-side-ad-wrap.right {
+    left: calc(50% + 780px + 20px);
+}
 
 @media (min-width: 1950px) {
     .loaview-side-ad-wrap {
