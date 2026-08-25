@@ -735,9 +735,12 @@ body.standalone-arc-grid-page .common-divider-top {
 /* =============================================
    5. [신규 추가] 양쪽 사이드 스티키 광고 레이아웃
    ============================================= */
+
+
 .loaview-side-ad-wrap {
     position: fixed;
-    top: 100px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 160px;
     height: 600px;
     z-index: 10;
@@ -745,10 +748,10 @@ body.standalone-arc-grid-page .common-divider-top {
     pointer-events: auto;
 }
 
-.loaview-side-ad-wrap.left { left: 12px; }
-.loaview-side-ad-wrap.right { right: 12px; }
+.loaview-side-ad-wrap.left { left: 24px; }
+.loaview-side-ad-wrap.right { right: 24px; }
 
-@media (min-width: 1700px) {
+@media (min-width: 1950px) {
     .loaview-side-ad-wrap {
         display: block;
     }
