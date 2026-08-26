@@ -603,12 +603,12 @@ body.standalone-arc-grid-page .common-divider-top {
 }
 
 /* =============================================
-   상단 및 하단 가로 배너 광고 전용 레이아웃 설정 (상단 헤더와 칼정렬 피팅)
+   상단 및 하단 가로 배너 광고 전용 레이아웃 설정 (완벽 보완: 무설정 투명 투입)
    ============================================= */
 .loaview-top-ad-wrap,
 .loaview-bottom-ad-wrap {
     display: flex !important;
-    justify-content: center !important;
+    justify-content: center !important; /* 광고가 가로폭보다 작더라도 무조건 정중앙 정렬 */
     align-items: center !important;
     margin: 16px auto !important;
     width: 100% !important;
@@ -619,6 +619,10 @@ body.standalone-arc-grid-page .common-divider-top {
     height: 90px !important;
     min-height: 90px !important;
     max-height: 90px !important;
+    
+    /* [패치] 회색 배경과 파란 점선을 완전히 지워 첫 로딩 및 광고 송출 시 100% 깔끔하게 처리 */
+    background: transparent !important;
+    border: none !important;
 }
 
 .main .loaview-top-ad-wrap,
@@ -636,15 +640,10 @@ body.standalone-arc-grid-page .common-divider-top {
     min-height: 90px !important;
     max-height: 90px !important;
     box-sizing: border-box !important;
-    background: rgba(255, 255, 255, 0.03) !important; 
-    border: 1.5px dashed rgba(91, 156, 245, 0.2) !important; 
-    border-radius: 12px !important;
-}
-
-/* 광고 충전 완료 시 빈방 디자인 자동 투명화 */
-ins.adsbygoogle[data-ad-status="filled"] {
-    background: transparent !important;
-    border: none !important;
+    
+    /* 여기도 완전 투명화 */
+    background: transparent !important; 
+    border: none !important; 
     box-shadow: none !important;
 }
 
