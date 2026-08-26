@@ -1334,20 +1334,24 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
                         <span class="line-cut-time">누적 ${timeLabel} (근사)</span>
                     </div>
                     ${r.desc ? `<div class="line-cut-desc">${r.desc}</div>` : ""}
-                    <div class="line-cut-card">
-                        <div class="lc-tri tank">
-                            <span class="lc-tri-label">강투</span>
-                            <span class="lc-tri-value">${fmt(r.tank)}</span>
-                        </div>
-                        <div class="lc-tri one">
-                            <span class="lc-tri-label">1인분</span>
-                            <span class="lc-tri-value">${fmt(r.one)}</span>
-                        </div>
-                        <div class="lc-tri blood">
-                            <span class="lc-tri-label">잔혈</span>
-                            <span class="lc-tri-value">${fmt(r.blood)}</span>
-                        </div>
-                    </div>
+                   
+
+<div class="line-cut-card">
+    <div class="lc-tri tank">
+        <span class="lc-tri-label">강투</span>
+        <span class="lc-tri-value">${fmt(r.tank)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
+    </div>
+    <div class="lc-tri one">
+        <span class="lc-tri-label">1인분</span>
+        <span class="lc-tri-value">${fmt(r.one)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
+    </div>
+    <div class="lc-tri blood">
+        <span class="lc-tri-label">잔혈</span>
+        <span class="lc-tri-value">${fmt(r.blood)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
+    </div>
+</div>
+
+
                 </div>
             </div>
         `;
