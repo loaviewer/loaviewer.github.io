@@ -751,36 +751,38 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 /* =============================================
-   상단 및 하단 가로 배너 광고 전용 레이아웃 설정 (홈/서브 이중패딩 완벽 예외처리)
+   상단 및 하단 가로 배너 광고 전용 레이아웃 설정 (완벽 보완: 무설정 투명 투입)
    ============================================= */
 .loaview-top-ad-wrap,
 .loaview-bottom-ad-wrap {
     display: flex !important;
-    justify-content: center !important;
+    justify-content: center !important; /* 광고가 가로폭보다 작더라도 무조건 정중앙 정렬 */
     align-items: center !important;
     margin: 16px auto !important;
     width: 100% !important;
     max-width: 1560px !important;
     
-    /* [기본값] 메인 홈 화면에서 GNB 메뉴바 라인과 일치시키기 위해 24px 여백을 줍니다 */
+    /* [이중패딩 예외처리] 메인은 24px 여백, 서브(.main 내부)는 0 */
     padding: 0 24px !important; 
-    
     box-sizing: border-box !important;
     overflow: hidden !important;
     
+    /* 🔒 처음부터 90px 공간을 투명하게 완벽 확보해 둡니다 (흔들림 CLS 100% 방지) */
     height: 90px !important;
     min-height: 90px !important;
     max-height: 90px !important;
+    
+    /* ✨ [해결책] 회색 박스와 점선을 완전히 제거하여 빈 방일 때나 광고가 작을 때의 어색함을 원천 차단 */
+    background: transparent !important;
+    border: none !important;
 }
 
-/* 🔒 [핵심 해결책] 정밀계산 서브 페이지(.main 내부)에서는 이미 부모에 패딩이 있으므로,
-   이중 패딩 방지를 위해 광고 자체 패딩을 0으로 강제 리셋하여 양끝 벽 라인에 자석처럼 맞춥니다! 🎯 */
 .main .loaview-top-ad-wrap,
 .main .loaview-bottom-ad-wrap {
     padding: 0 !important;
 }
 
-/* 실제 광고판 자체도 상자 안에서 100% 꽉 차도록 설정 */
+/* 실제 구글 광고판 스타일링 */
 .loaview-top-ad-wrap ins.adsbygoogle,
 .loaview-bottom-ad-wrap ins.adsbygoogle {
     display: inline-block !important;
@@ -790,14 +792,11 @@ body.standalone-arc-grid-page .common-divider-top {
     min-height: 90px !important;
     max-height: 90px !important;
     box-sizing: border-box !important;
-
-    /* 네온 점선 상자 스타일 유지 */
-    background: rgba(255, 255, 255, 0.03) !important; 
-    border: 1.5px dashed rgba(91, 156, 245, 0.2) !important; 
-    border-radius: 12px !important;
+    
+    /* 🔒 여기도 점선과 회색 배경을 완전히 걷어냅니다 */
+    background: transparent !important;
+    border: none !important;
 }
-
-
 
 
 /* =============================================
