@@ -724,11 +724,10 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-
 /* =============================================
-   양쪽 사이드 스티키 광고 레이아웃 [수정본]
-   - 본문 폭 계산(calc) 대신 화면 가장자리 고정 방식으로 변경 → 잘림 방지
-   - 노출 기준 1920px → 1700px로 완화
+   양쪽 사이드 스티키 광고 레이아웃 [v2 수정본]
+   - left/right 위치는 이제 JS(updateSideAdVisibility)가 실시간 계산해서 넣어줌
+   - CSS는 기본 틀(크기, position)만 담당, 미디어쿼리로 강제 display 하지 않음
    ============================================= */
 .loaview-side-ad-wrap {
     position: fixed;
@@ -737,27 +736,16 @@ body.standalone-arc-grid-page .common-divider-top {
     width: 300px;
     height: 600px;
     z-index: 10;
-    display: none;
+    display: none; /* 기본은 숨김 — JS가 공간 있을 때만 block으로 바꿈 */
     pointer-events: auto;
 }
-.loaview-side-ad-wrap.left {
-    left: 12px; /* ✅ 화면 왼쪽 가장자리에서 12px, 본문 폭 계산 안 함 */
-}
-.loaview-side-ad-wrap.right {
-    right: 12px; /* ✅ 화면 오른쪽 가장자리에서 12px */
-}
+/* ✅ left/right 고정값 없음 — JS가 매번 계산해서 style.left / style.right로 직접 넣어줌 */
 
-@media (min-width: 1700px) { /* ✅ 1920 → 1700 */
-    .loaview-side-ad-wrap {
-        display: block;
-    }
-}
 .loaview-side-ad-wrap ins.adsbygoogle {
     display: inline-block !important;
     width: 300px !important;
     height: 600px !important;
 }
-
 
 
 /* =============================================
