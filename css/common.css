@@ -722,27 +722,32 @@ body.standalone-arc-grid-page .common-divider-top {
     box-shadow: none !important;
 }
 
+
+
+
 /* =============================================
-   양쪽 사이드 스티키 광고 레이아웃 (300x600 뚱뚱한 광고 + 인벤 스타일 20px 간격)
+   양쪽 사이드 스티키 광고 레이아웃 [수정본]
+   - 본문 폭 계산(calc) 대신 화면 가장자리 고정 방식으로 변경 → 잘림 방지
+   - 노출 기준 1920px → 1700px로 완화
    ============================================= */
 .loaview-side-ad-wrap {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 300px;                /* 인벤과 동일한 300px 뚱뚱한 가로폭 */
-    height: 600px;               
-    z-index: 10;                 
-    display: none;               
+    width: 300px;
+    height: 600px;
+    z-index: 10;
+    display: none;
     pointer-events: auto;
 }
 .loaview-side-ad-wrap.left {
-    left: calc(50% - 780px - 320px); /* 300px(광고) + 20px(여백) = 320px 멀리 밀어냄 */
+    left: 12px; /* ✅ 화면 왼쪽 가장자리에서 12px, 본문 폭 계산 안 함 */
 }
 .loaview-side-ad-wrap.right {
-    left: calc(50% + 780px + 20px);  /* 20px 본문에서 띄움 */
+    right: 12px; /* ✅ 화면 오른쪽 가장자리에서 12px */
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1700px) { /* ✅ 1920 → 1700 */
     .loaview-side-ad-wrap {
         display: block;
     }
@@ -752,6 +757,8 @@ body.standalone-arc-grid-page .common-divider-top {
     width: 300px !important;
     height: 600px !important;
 }
+
+
 
 /* =============================================
    메인 홈 히어로 간격 미세조정 패치 (GNB 아래 간격 축소)
