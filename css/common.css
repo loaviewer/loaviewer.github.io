@@ -2,6 +2,9 @@
   --bg:#05060b;--bg-2:#090b14;--ink:#eef1f8;--muted:#7c88a5;--muted-2:#4d5772;
   --line:rgba(255,255,255,.07);--gold:#e8b84b;--gold-soft:#f3d488;--purple:#9b7ef0;
   --blue:#5b9cf5;--red:#e85454;--green:#3cc78c;
+
+  /* ★ 메인 페이지와 완벽 일치를 위한 사이트 전체 가로폭 변수 */
+  --container-width: 1280px;
 }
 
 html, body {
@@ -15,7 +18,7 @@ html, body {
    GNB (상단 메뉴바)
    ============================================= */
 .gnb{position:sticky;top:0;z-index:500;padding:8px 0 0;}
-.gnb-shell{max-width:1560px;margin:0 auto;padding:0 24px;}
+.gnb-shell{max-width:var(--container-width);margin:0 auto;padding:0 20px;} /* 너비 및 패딩 피팅 */
 .gnb-bar{display:flex;align-items:center;gap:18px;min-height:56px;padding:0 16px;border-radius:14px;background:rgba(8,10,17,.82);border:1px solid rgba(255,255,255,.05);backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 10px 36px rgba(0,0,0,.35);position:relative;}
 .gnb-bar::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,75,.22),rgba(155,126,240,.22),transparent);}
 .gnb-brand{display:flex;align-items:center;gap:9px;flex-shrink:0;}
@@ -290,14 +293,14 @@ body.gnb-drawer-open{
 }
 
 /* divider */
-.divider{max-width:1560px;margin:0 auto;padding:0 24px;}
+.divider{max-width:var(--container-width);margin:0 auto;padding:0 20px;} /* 너비 및 패딩 피팅 */
 .divider-line{height:1px;border:none;background:linear-gradient(90deg,transparent,rgba(91,156,245,.18) 15%,rgba(155,126,240,.22) 50%,rgba(232,184,75,.18) 85%,transparent);}
 
 /* =============================================
-   메인 홈 히어로 (.hero) 오리지널 스펙 보존
+   메인 홈 히어로 (.hero)
    ============================================= */
-.hero{position:relative;padding:56px 0 30px;min-height:0;}
-.hero-inner{max-width:1560px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:32px;min-height:196px;}
+.hero{position:relative;padding:16px 0 30px !important;min-height:0;}
+.hero-inner{max-width:var(--container-width);margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:32px;min-height:196px;} /* 너비 및 패딩 피팅 */
 .hero-left{flex:1 1 560px;min-width:0;}
 .hero-eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-soft);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
 .hero-eyebrow::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);}
@@ -307,7 +310,7 @@ body.gnb-drawer-open{
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     background-clip:text;
-    white-space: nowrap !important; /* 👈 '로스트아크' 줄바꿈 방지 패치 */
+    white-space: nowrap !important; /* '로스트아크' 줄바꿈 방지 */
 }
 .hero-tags{display:flex;gap:8px;flex-wrap:wrap;}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:800;border:1px solid rgba(255,255,255,.08);}
@@ -330,7 +333,7 @@ body.gnb-drawer-open{
 .stamp-desc{position:relative;z-index:1;font-size:10.5px;line-height:1.45;color:#8a95ad;font-weight:700;}
 
 /* quickmenu */
-.quickmenu{max-width:1560px;margin:0 auto;padding:6px 24px 0;}
+.quickmenu{max-width:var(--container-width);margin:0 auto;padding:6px 20px 0;} /* 너비 및 패딩 피팅 */
 .qm-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;}
 .qm-item{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:18px 10px;border-radius:16px;background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.045);transition:all .22s ease;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;}
 .qm-item::before{content:"";position:absolute;inset:0;border-radius:16px;background:radial-gradient(120px 90px at 50% -10%,rgba(91,156,245,.0),transparent 70%);transition:background .25s ease;pointer-events:none;}
@@ -355,7 +358,7 @@ body.gnb-drawer-open{
   /* 🎯 [초정밀 압축] 모바일 메인 헤더 최적화 1열 배치 */
   .hero{padding:24px 0 12px !important;}
   .hero-inner{
-    flex-direction: column !important; /* 무조건 가로 정렬을 1열 세로 정렬로 변경 */
+    flex-direction: column !important;
     align-items: flex-start !important;
     gap: 8px !important;
     min-height: 0 !important;
@@ -369,19 +372,17 @@ body.gnb-drawer-open{
     line-height: 1.25 !important;
     margin-bottom: 0 !important;
   }
-  /* 모바일에서 길게 자리를 차지하던 설명 문장 숨김 */
   .hero-left p {
     display: none !important;
   }
 
-  /* 태그 배지들 하단 실선 테두리 제거 및 예쁜 정렬 */
   .hero-tags{
     display: flex !important;
     flex-wrap: wrap !important;
     gap: 6px !important;
     width: 100% !important;
     padding-bottom: 0 !important;
-    border-bottom: none !important; /* 기존 가로선 지우기 */
+    border-bottom: none !important;
     margin-top: 10px !important;
   }
   .hero-tag {
@@ -390,7 +391,6 @@ body.gnb-drawer-open{
     padding: 0 10px !important;
   }
 
-  /* 우측 뚱뚱하던 등급 도장을 태그 바로 아래에 일렬 종대로 배치 */
   .hero-right{
     display: flex !important;
     width: 100% !important;
@@ -404,7 +404,6 @@ body.gnb-drawer-open{
     gap: 6px !important;
   }
 
-  /* 대형 도장 상자를 예쁜 알약 모양의 [🏆 OP 도장] [💖 호감 도장] 배지로 완벽 초정밀 압축 */
   .grade-stamp,
   .grade-stamp.op,
   .grade-stamp.like-stamp {
@@ -424,11 +423,11 @@ body.gnb-drawer-open{
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
   .grade-stamp::before {
-    display: none !important; /* 기존 대형 점선 테두리 제거 */
+    display: none !important;
   }
   .grade-stamp .stamp-kicker,
   .grade-stamp .stamp-desc {
-    display: none !important; /* 공간 낭비 유발하던 kicker와 긴 설명글 영구 삭제 */
+    display: none !important;
   }
   .grade-stamp .stamp-title {
     font-size: 11px !important;
@@ -437,7 +436,6 @@ body.gnb-drawer-open{
     line-height: 1 !important;
   }
 
-  /* OP 도장 알약화 및 이모지 적용 */
   .grade-stamp.op {
     background: rgba(91,156,245,.08) !important;
     color: #bdd6ff !important;
@@ -448,7 +446,6 @@ body.gnb-drawer-open{
     font-size: 11px !important;
   }
 
-  /* 호감 도장 알약화 및 이모지 적용 */
   .grade-stamp.like-stamp {
     background: rgba(255,113,157,.08) !important;
     color: #ffb3c9 !important;
@@ -481,9 +478,9 @@ body.standalone-rank-page .hero {
 
 body.standalone-dps-page .hero-inner,
 body.standalone-rank-page .hero-inner {
-  max-width: 1560px !important;
+  max-width: var(--container-width) !important; /* 너비 피팅 */
   margin: 0 auto !important;
-  padding: 0 24px !important;
+  padding: 0 20px !important; /* 패딩 피팅 */
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -493,9 +490,9 @@ body.standalone-rank-page .hero-inner {
 
 body.standalone-dps-page .divider,
 body.standalone-rank-page .divider {
-  max-width: 1560px !important;
+  max-width: var(--container-width) !important; /* 너비 피팅 */
   margin: 0 auto !important;
-  padding: 0 24px !important;
+  padding: 0 20px !important; /* 패딩 피팅 */
 }
 
 body.standalone-dps-page .divider-line,
@@ -517,9 +514,9 @@ body.standalone-rank-page .divider-line {
 
 body.standalone-dps-page .quickmenu,
 body.standalone-rank-page .quickmenu {
-  max-width: 1560px !important;
+  max-width: var(--container-width) !important; /* 너비 피팅 */
   margin: 0 auto !important;
-  padding: 6px 24px 0 !important;
+  padding: 6px 20px 0 !important; /* 패딩 피팅 */
 }
 
 body.standalone-dps-page .qm-row,
@@ -552,12 +549,12 @@ body.standalone-rank-page .qm-row {
 .common-footer {
     width: 100%;
     margin-top: 40px;
-    padding: 20px 24px 28px;
+    padding: 20px 20px 28px; /* 패딩 조정 */
     border-top: 1px solid rgba(255,255,255,.05);
     text-align: center;
 }
 .common-footer-inner {
-    max-width: 1560px;
+    max-width: var(--container-width); /* 너비 피팅 */
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -599,7 +596,7 @@ body.standalone-rank-page .qm-row {
 .common-aurora {
     position: fixed;
     inset: 0;                    
-    z-index: -99999 !important;  /* 광고와 모든 콘텐츠의 최하단에 배치 */
+    z-index: -99999 !important;
     pointer-events: none;
     overflow: hidden;
     background: linear-gradient(180deg, #05060b 0%, #06070f 30%, #07080f 55%, #05060b 100%);
@@ -610,7 +607,7 @@ body.standalone-rank-page .qm-row {
     position: absolute;
     inset: -8%;
     pointer-events: none;
-    will-change: auto;           /* iframe 로드 충돌 방지 */
+    will-change: auto;
 }
 .common-aurora::before {
     background:
@@ -659,26 +656,25 @@ body.standalone-arc-grid-page .common-divider-top {
 .tools-page, 
 .app, 
 [class*="-page"] {
-    z-index: auto !important; /* 모든 페이지의 z-index를 해제하여 광고판이 가려지는 것을 막습니다 */
+    z-index: auto !important;
 }
 
 /* =============================================
    구글 애드센스 자동 광고 강제 파기(Collapse) 방지
    ============================================= */
-/* 본문 중간에 삽입되는 자동 광고만 타겟팅합니다 */
 .google-auto-placed ins.adsbygoogle {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
-    grid-column: 1 / -1 !important; /* 그리드 레이아웃 깨짐 방지 */
-    opacity: 1 !important;          /* 투명도 감지 오류 방지 */
+    grid-column: 1 / -1 !important;
+    opacity: 1 !important;
     visibility: visible !important;
     margin: 16px auto !important;
     overflow: visible !important;
 }
 
 /* =============================================
-   상단 및 하단 가로 배너 광고 전용 레이아웃 설정 (상단 헤더와 칼정렬 피팅)
+   상단 및 하단 가로 배너 광고 전용 레이아웃 설정 (너비 피팅 반영)
    ============================================= */
 .loaview-top-ad-wrap,
 .loaview-bottom-ad-wrap {
@@ -687,25 +683,22 @@ body.standalone-arc-grid-page .common-divider-top {
     align-items: center !important;
     margin: 16px auto !important;
     width: 100% !important;
-    max-width: 1560px !important;
-    padding: 0 24px !important; /* GNB 및 본문 영역 1512px 맞춤 피팅 */
+    max-width: var(--container-width) !important; /* 광고 너비 1280px로 피팅 */
+    padding: 0 20px !important; /* GNB 및 본문과 오차 없이 일치 */
     box-sizing: border-box !important;
     overflow: hidden !important;
     height: 90px !important;
     min-height: 90px !important;
     max-height: 90px !important;
-    
-    /* [패치] 회색 배경과 파란 점선을 완전히 지워 첫 로딩 및 광고 송출 시 100% 깔끔하게 처리 */
     background: transparent !important;
     border: none !important;
 }
 
 .main .loaview-top-ad-wrap,
 .main .loaview-bottom-ad-wrap {
-    padding: 0 !important; /* 서브 페이지 이중패딩 자동 제거 패치 */
+    padding: 0 !important;
 }
 
-/* 실제 구글 배너판 100% 가로 꽉 차게 조절 */
 .loaview-top-ad-wrap ins.adsbygoogle,
 .loaview-bottom-ad-wrap ins.adsbygoogle {
     display: inline-block !important;
@@ -715,19 +708,13 @@ body.standalone-arc-grid-page .common-divider-top {
     min-height: 90px !important;
     max-height: 90px !important;
     box-sizing: border-box !important;
-    
-    /* 여기도 완전 투명화 */
     background: transparent !important; 
     border: none !important; 
     box-shadow: none !important;
 }
 
-
 /* =============================================
    양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
-   - JS가 left 값을 계속 계산해서 넣어줌 (본문과 GAP만큼 항상 떨어져 있음)
-   - 화면이 좁아지면 left가 화면 밖(음수 등)으로 나가면서 자연히 안 보이게 됨
-   - 강제 display:none 토글 없음 (모바일 제외) → 인벤처럼 자연스러운 동작
    ============================================= */
 .loaview-side-ad-wrap {
     position: fixed;
@@ -736,9 +723,9 @@ body.standalone-arc-grid-page .common-divider-top {
     width: 300px;
     height: 600px;
     z-index: 10;
-    display: none; /* 초기값. JS가 PC에서는 block으로, 모바일에서만 none 유지 */
+    display: none;
     pointer-events: auto;
-    overflow: hidden; /* 화면 밖으로 나갈 때 불필요한 스크롤바 방지 */
+    overflow: hidden;
 }
 
 .loaview-side-ad-wrap ins.adsbygoogle {
@@ -747,13 +734,12 @@ body.standalone-arc-grid-page .common-divider-top {
     height: 600px !important;
 }
 
-
 /* =============================================
    메인 홈 히어로 간격 미세조정 패치 (GNB 아래 간격 축소)
    ============================================= */
 .hero {
     position: relative !important;
-    padding: 16px 0 30px !important; /* 상단 패딩을 56px에서 16px로 줄여 여백 타이트하게 세팅 */
+    padding: 16px 0 30px !important;
     min-height: 0;
 }
 
@@ -761,7 +747,6 @@ body.standalone-arc-grid-page .common-divider-top {
    [v5 복원] 모바일 simple-tabs 5열 레이아웃 고정
    ============================================= */
 @media (max-width: 760px) {
-    /* 모바일 레이드별 잔혈컷 5개 탭이 한 줄에 균등 정렬되도록 그리드 강제화 */
     .simple-level-tabs:has(.simple-raid-tab) {
         display: grid !important;
         grid-template-columns: repeat(5, 1fr) !important;
