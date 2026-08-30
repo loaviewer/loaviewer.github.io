@@ -13,6 +13,7 @@ let currentGuardianTier = "1770";
 let acMembers = 4;
 let currentSimpleRaid = "belgardin";
 let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
+let currentRoleMode = "dealer"; // "dealer" | "support"
 
 
 
@@ -1296,13 +1297,18 @@ function getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
     });
 }
 
-
-
 function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
     const rows = getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
     if (!rows.length) {
         return '<div class="coming-soon"><h3>준비중</h3><p>구간 데이터가 없습니다.</p></div>';
     }
+
+    // [오류 해결] 에러를 유발하던 무의미한 config 관련 줄을 완전히 제거했습니다.
+
+    // 서폿 모드일 때 라벨을 강조 / 잔조로 동적 변경
+    const isSupport = currentRoleMode === "support";
+    const tankLabel = isSupport ? "강조" : "강투";
+    const bloodLabel = isSupport ? "잔조" : "잔혈";
 
     const items = rows.map((r, idx) => {
         const isStart = r.progress === 0;
@@ -1335,23 +1341,20 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
                     </div>
                     ${r.desc ? `<div class="line-cut-desc">${r.desc}</div>` : ""}
                    
-
-<div class="line-cut-card">
-    <div class="lc-tri tank">
-        <span class="lc-tri-label">강투</span>
-        <span class="lc-tri-value">${fmt(r.tank)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-    </div>
-    <div class="lc-tri one">
-        <span class="lc-tri-label">1인분</span>
-        <span class="lc-tri-value">${fmt(r.one)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-    </div>
-    <div class="lc-tri blood">
-        <span class="lc-tri-label">잔혈</span>
-        <span class="lc-tri-value">${fmt(r.blood)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-    </div>
-</div>
-
-
+                    <div class="line-cut-card">
+                        <div class="lc-tri tank">
+                            <span class="lc-tri-label">${tankLabel}</span>
+                            <span class="lc-tri-value">${fmt(r.tank)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
+                        </div>
+                        <div class="lc-tri one">
+                            <span class="lc-tri-label">1인분</span>
+                            <span class="lc-tri-value">${fmt(r.one)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
+                        </div>
+                        <div class="lc-tri blood">
+                            <span class="lc-tri-label">${bloodLabel}</span>
+                            <span class="lc-tri-value">${fmt(r.blood)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
@@ -1360,16 +1363,23 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
     return `<div class="line-cut-timeline">${items}</div>`;
 }
 
-function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage) {
+
+
+
+
+function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage, isSupport) {
     const timeBadge = `전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초`;
     const titleText = `${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName}`;
     const sectionDivider = `<div class="precision-section-divider"><span>딜지분 상세보기</span></div>`;
 
+    const headLabels = isSupport
+        ? { share: "조력지분", dmg: "조력피해/억", dps: "조력 DPS" }
+        : { share: "딜지분", dmg: "피해/억", dps: "DPS" };
 
     const percentTableHtml = `
         <div class="table-wrap">
             <table id="dataTable">
-                <thead><tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr></thead>
+                <thead><tr><th>${headLabels.share}</th><th>${headLabels.dmg}</th><th>${headLabels.dps}</th></tr></thead>
                 <tbody>${tableRowsHtml}</tbody>
             </table>
         </div>
@@ -1378,12 +1388,11 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
     const hasLineCut = !!(lineCutConfig[menu] && lineCutConfig[menu][gateKey]);
     const activeTab = hasLineCut ? (detailTabState[menu] || "percent") : "percent";
 
- 
+    // 라인컷이 없으면 (세르카, 성당 등 구간별 데이터 없는 관문) - 상세 딜지분만 표시
     if (!hasLineCut) {
         return `
             ${sectionDivider}
-            ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu)}
-
+            ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu, isSupport)}
 
             <div class="precision-table-panel">
                 <div class="precision-table-head">
@@ -1395,17 +1404,17 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
         `;
     }
 
+    // 라인컷 지원되는 관문 (벨가르딘 등) - 탭 노출
     const tabBarHtml = `
         <div class="detail-tab-bar">
             <div class="detail-tabs">
                 <button type="button" class="detail-tab ${activeTab === "percent" ? "active" : ""}" data-detail-tab="percent" data-detail-menu="${menu}">상세 딜지분</button>
                 <button type="button" class="detail-tab ${activeTab === "lines" ? "active" : ""}" data-detail-tab="lines" data-detail-menu="${menu}">구간별 딜지분</button>
             </div>
-            <div class="precision-table-badge" id="precisionTimeBadge">${timeBadge}</div>
+            <div class="control-divider"></div>
+            ${makeRoleToggleHtml("compact")}
         </div>
     `;
-
-   
 
     if (activeTab === "lines") {
         const fullTank = rowTank ? getDamage(rowTank) : 0;
@@ -1417,30 +1426,30 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
             ${sectionDivider}
             ${tabBarHtml}
 
-
-                       <div class="precision-table-panel">
-                <div class="line-cut-section-title">${titleText} 구간별 딜지분</div>
+            <div class="precision-table-panel">
+                <div class="line-cut-section-head">
+                    <div class="line-cut-section-title">${titleText} 구간별 딜지분</div>
+                    <div class="precision-table-badge" id="precisionTimeBadgeLines">${timeBadge}</div>
+                </div>
                 ${lineTimelineHtml}
             </div>
         `;
     }
 
-      return `
+    return `
         ${sectionDivider}
         ${tabBarHtml}
-        ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu)}
+        ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu, isSupport)}
 
         <div class="precision-table-panel">
             <div class="precision-table-head">
                 <div class="precision-table-title">${titleText} 상세 딜지분</div>
+                <div class="precision-table-badge" id="precisionTimeBadgePercent">${timeBadge}</div>
             </div>
             ${percentTableHtml}
         </div>
     `;
 }
-
-
-
 
 
 
@@ -1655,9 +1664,204 @@ const PRECISION_SHARE_BY_MENU = {
     default: { tank: 30, one: 33, blood: 40 },
     belgardin: { tank: 15, one: 16.6, blood: 20 }
 };
+
+
 function getPrecisionShares(menu) {
     return PRECISION_SHARE_BY_MENU[menu] || PRECISION_SHARE_BY_MENU.default;
 }
+
+
+function getRoleMultiplier() {
+    return currentRoleMode === "support" ? 1.25 : 1;
+}
+
+function floorTo1(n) {
+    return Math.floor(n * 10) / 10;
+}
+
+// 딜러표(dataRows)를 기준으로 서폿 강조컷/1인분/잔조컷 지점을 보간 계산
+// getDamage: row -> 피해량(억) 반환 함수
+
+
+
+
+
+// 딜러표(dataRows)를 기준으로 서폿 강조컷/1인분/잔조컷 지점을 보간 계산 및 테이블 정적 범위 변환
+function computeSupportConversion(dataRows, shares, getDamage) {
+    const sorted = dataRows
+        .filter(r => getDamage(r) > 0)
+        .sort((a, b) => a.share - b.share);
+
+    if (!sorted.length) return { rows: [], anchors: {} };
+
+    // 특정 %(share) 지점의 피해량을 두 인접 행 사이에서 선형 보간(역산)해 구함
+    function damageAtShare(share) {
+        for (let i = 0; i < sorted.length; i++) {
+            if (Math.abs(sorted[i].share - share) < 1e-9) {
+                return getDamage(sorted[i]);
+            }
+        }
+        for (let i = 0; i < sorted.length - 1; i++) {
+            const a = sorted[i], b = sorted[i + 1];
+            if (share > a.share && share < b.share) {
+                const da = getDamage(a), db = getDamage(b);
+                const frac = (share - a.share) / (b.share - a.share);
+                return da + frac * (db - da);
+            }
+        }
+        const last = sorted[sorted.length - 1];
+        const prev = sorted[sorted.length - 2];
+        if (prev && share > last.share) {
+            const da = getDamage(prev), db = getDamage(last);
+            const frac = (share - prev.share) / (last.share - prev.share);
+            return da + frac * (db - da);
+        }
+        const first = sorted[0];
+        const second = sorted[1];
+        if (second && share < first.share) {
+            const da = getDamage(first), db = getDamage(second);
+            const frac = (share - first.share) / (second.share - first.share);
+            return da + frac * (db - da);
+        }
+        return null;
+    }
+
+    // 목표 %는 기준% × 1.25로 이미 확정된 값이므로, 그 지점의 피해량만 보간
+    function makeAnchor(baseShare) {
+        const targetShare = Math.floor(baseShare * 1.25 * 10) / 10;
+        const dmg = damageAtShare(targetShare);
+        if (dmg == null) return null;
+        return { share: targetShare, damage: Math.floor(dmg) };
+    }
+
+    const anchors = {
+        gangjo: makeAnchor(shares.tank),
+        ilinbun: makeAnchor(shares.one),
+        janjo: makeAnchor(shares.blood)
+    };
+
+    // [핵심 변경] 8인 레이드(벨가르딘) 여부에 따라 정수 테이블의 범위를 동적으로 생성
+    const is8Man = (shares.tank === 15); // 벨가르딘은 강투 지분이 15%입니다.
+    const startShare = is8Man ? 15 : 35; // 8인은 15%부터, 4인은 35%부터 시작
+    const endShare = is8Man ? 35 : 55;   // 8인은 35%까지, 4인은 55%까지 표시
+
+    const merged = [];
+    
+    // 정해진 범위의 서폿 정수 지분율에 맞게 딜러 피해량을 선형 보간하여 행 생성
+    for (let s = startShare; s <= endShare; s++) {
+        const dmg = damageAtShare(s);
+        if (dmg !== null) {
+            merged.push({ share: s, damage: Math.floor(dmg), label: null });
+        }
+    }
+
+    // 강조컷, 1인분, 잔조컷 등의 특수 소수점 앵커(예: 37.5%, 41.2% 등)를 적재적소에 머지
+    Object.entries(anchors).forEach(([key, anchor]) => {
+        if (!anchor) return;
+        const dupIdx = merged.findIndex(r => Math.abs(r.share - anchor.share) < 1e-9);
+        if (dupIdx >= 0) {
+            merged[dupIdx].label = key;
+            merged[dupIdx].damage = anchor.damage;
+        } else {
+            merged.push({ share: anchor.share, damage: anchor.damage, label: key });
+        }
+    });
+
+    merged.sort((a, b) => a.share - b.share);
+
+    return { rows: merged, anchors };
+}
+
+
+
+
+
+
+
+
+
+
+function renderSupportShareCell(row) {
+    const tagMap = {
+        gangjo: { tag: "강조", cls: "tag-30" },
+        ilinbun: { tag: "1인분", cls: "tag-33" },
+        janjo: { tag: "잔조", cls: "tag-40" }
+    };
+    const info = row.label ? tagMap[row.label] : null;
+
+    const badgeSlot = info
+        ? `<div class="share-tag-area"><span class="share-tag ${info.cls}">${info.tag}</span></div>`
+        : `<div class="share-tag-area"></div>`;
+
+    const shareLabel = Number.isInteger(row.share) ? `${row.share}%` : `${row.share.toFixed(1)}%`;
+
+    return `
+        <td class="share-cell ${info ? "has-badge" : ""}">
+            <div class="share-row">
+                ${badgeSlot}
+                <span class="share-pct">${shareLabel}</span>
+            </div>
+        </td>
+    `;
+}
+
+
+const ROLE_TOOLTIP_HTML = `
+    <div class="rt-title">잔조컷에 대하여 💡</div>
+    <div class="rt-line"><strong>잔혈+찬조</strong> = 합성어로 <strong class="rt-purple">잔조컷</strong>으로 정의했습니다.</div>
+    <div class="rt-line"><strong>강투+찬조</strong> = 합성어로 <strong class="rt-orange">강조컷</strong>으로 정의했습니다.</div>
+    <div class="rt-line">오로지 <strong>조력 피해</strong>로만 이 수치를 확인합니다. </div>
+    <div class="rt-divider"></div>
+    <div class="rt-row"><span class="rt-tag rt-tag-orange">강조컷</span><span>딜러의 강투보다 살짝 우위</span></div>
+    <div class="rt-row"><span class="rt-tag rt-tag-blue">서폿 1인분</span><span>딜러의 1인분보다 살짝 우위</span></div>
+    <div class="rt-row"><span class="rt-tag rt-tag-purple">잔조컷</span><span>딜러의 잔혈보다 살짝 우위</span></div>
+    <div class="rt-line" style="margin-top:10px;">서폿은 기믹 대응과 케어를 동시 수행하기 때문에 전체적으로 딜러보다 살짝 우위에 속합니다.</div>
+    <div class="rt-line">수많은 서폿분들의 전분을 확인한 결과, 트라이~딜찍 기준 <strong>5%~33%</strong>까지 딜러 피해량과 조력 피해량의 차이가 있었습니다.</div>
+    <div class="rt-line">이 데이터를 종합해 로아뷰에서 찾은 <strong class="rt-green">황금배율</strong>로 서폿 잔조컷을 만들었습니다.</div>
+    <div class="rt-note">※ 이 계산법은 로아뷰에서 자체 제작한 방식으로, 절대적인 정답 수치는 아닙니다.</div>
+`;
+
+function makeRoleToggleHtml(variant) {
+    const isDealer = currentRoleMode === "dealer";
+    const boxCls = variant === "compact" ? "role-toggle-box compact" : "role-toggle-box";
+    return `
+        <div class="${boxCls}">
+            <div class="role-toggle-group">
+                <button type="button" class="role-toggle-btn role-dealer ${isDealer ? "active" : ""}" data-role="dealer">
+                    <span class="role-icon">⚔️</span>
+                    <span class="role-label">딜러 잔혈컷</span>
+                    <span class="role-check">${isDealer ? "✓" : "○"}</span>
+                </button>
+                <button type="button" class="role-toggle-btn role-support ${!isDealer ? "active" : ""}" data-role="support">
+                    <span class="role-icon">✚</span>
+                    <span class="role-label">서폿 잔조컷</span>
+                    <span class="role-check">${!isDealer ? "✓" : "○"}</span>
+                    <span class="role-info-tip" tabindex="0"><span class="role-info-icon">!</span></span>
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+
+
+
+
+
+function bindRoleToggle() {
+    document.querySelectorAll(".role-toggle-btn[data-role]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (btn.dataset.role === currentRoleMode) return;
+            currentRoleMode = btn.dataset.role;
+            renderTabs();
+            renderTable();
+        });
+    });
+}
+
+
+
+
 
 /* =============================================
    속성 이모지
@@ -1977,16 +2181,15 @@ function simpleHeroHtml() {
                         </div>
 
                         <p class="simple-hero-desc">
-                            해당 레벨에서 입장 가능한 레이드 중
-                            골드 획득 우선순위 3개를 먼저 보여주고,
-                            나머지 레이드는 아래에서 펼쳐서 확인할 수 있습니다.
+                            레벨별 강투 · 1인분 · 잔혈 컷을 한 번에 비교하고,
+                            각 관문의 수치를 빠르게 확인할 수 있습니다.
                         </p>
                     </div>
 
                     <div class="simple-hero-pills">
-                        <span class="simple-hero-pill pill-level">주간 골드 3개</span>
+                        <span class="simple-hero-pill pill-level">레벨별 정리</span>
                         <span class="simple-hero-pill pill-compare">빠른 비교</span>
-                        <span class="simple-hero-pill pill-cut">추가 레이드 펼치기</span>
+                        <span class="simple-hero-pill pill-cut">강투 · 1인분 · 잔혈</span>
                     </div>
                 </div>
 
@@ -2158,7 +2361,7 @@ function simpleRaidHeroHtml() {
                         </div>
 
                         <p class="simple-hero-desc">
-                          난이도별 강투 · 1인분 · 잔혈 컷을 한 번에 비교하고,
+                          레이드별 강투 · 1인분 · 잔혈 컷을 한 번에 비교하고,
                             각 관문의 수치를 빠르게 확인할 수 있습니다.
                         </p>
                     </div>
@@ -2192,6 +2395,7 @@ function simpleRaidHeroHtml() {
 /* =============================================
    탭 렌더링
    ============================================= */
+
 function renderTabs() {
     const el = document.getElementById("tabs");
     el.classList.remove("simple-tabs");
@@ -2208,23 +2412,34 @@ function renderTabs() {
         el.innerHTML = `
             ${simpleHeroHtml()}
 
-            <div class="simple-level-tabs">
-                ${levels.map(lv => `
-                    <button class="simple-level-tab ${currentSimpleLevel === lv ? "active" : ""}" data-simple-level="${lv}">
-                        <span class="simple-level-tab-main">${lv}</span>
-                        <span class="simple-level-tab-sub">레이드</span>
-                    </button>
-                `).join("")}
-            </div>
+            <div class="simple-grid-layout">
+                <div class="simple-controls-col simple-grid-left">
+                    <div class="simple-level-tabs">
+                        ${levels.map(lv => `
+                            <button class="simple-level-tab ${currentSimpleLevel === lv ? "active" : ""}" data-simple-level="${lv}">
+                                <span class="simple-level-tab-main">${lv}</span>
+                                <span class="simple-level-tab-sub">레이드</span>
+                            </button>
+                        `).join("")}
+                    </div>
+                    ${makeRoleToggleHtml()}
+
+                    <div class="simple-cards-full" id="simpleCardsFull"></div>
+                </div><!-- // .simple-grid-left 닫힘 -->
+
+                <div class="simple-grid-right" id="simpleGridRight"></div>
+            </div><!-- // .simple-grid-layout 닫힘 -->
         `;
 
-        el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
-            btn.addEventListener("click", () => {
-                currentSimpleLevel = btn.dataset.simpleLevel;
-                renderTabs();
-                renderTable();
-            });
-        });
+     el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        currentSimpleLevel = btn.dataset.simpleLevel;
+        renderTabs();
+        renderTable();
+    });
+});
+
+        bindRoleToggle();
 
         return;
     }
@@ -2237,32 +2452,44 @@ function renderTabs() {
         el.innerHTML = `
             ${simpleRaidHeroHtml()}
 
-            <div class="simple-level-tabs">
-                ${raids.map(key => {
-                    const meta = simpleRaidMeta[key];
-                    return `
-                        <button class="simple-level-tab simple-raid-tab ${currentSimpleRaid === key ? "active" : ""}" data-simple-raid="${key}">
-                            <span class="simple-level-tab-main">${meta.label}</span>
-                            <span class="simple-level-tab-sub">${meta.sub}</span>
-                        </button>
-                    `;
-                }).join("")}
-            </div>
+            <div class="simple-grid-layout">
+                <div class="simple-controls-col simple-grid-left">
+                    <div class="simple-level-tabs">
+                        ${raids.map(key => {
+                            const meta = simpleRaidMeta[key];
+                            return `
+                                <button class="simple-level-tab simple-raid-tab ${currentSimpleRaid === key ? "active" : ""}" data-simple-raid="${key}">
+                                    <span class="simple-level-tab-main">${meta.label}</span>
+                                    <span class="simple-level-tab-sub">${meta.sub}</span>
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                    ${makeRoleToggleHtml()}
+
+                    <div class="simple-cards-full" id="simpleCardsFull"></div>
+                </div><!-- // .simple-grid-left 닫힘 -->
+
+                <div class="simple-grid-right" id="simpleGridRight"></div>
+            </div><!-- // .simple-grid-layout 닫힘 -->
         `;
 
-        el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
-            btn.addEventListener("click", () => {
-                currentSimpleRaid = btn.dataset.simpleRaid;
-                renderTabs();
-                renderTable();
-            });
-        });
+  el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        currentSimpleRaid = btn.dataset.simpleRaid;
+        renderTabs();
+        renderTable();
+    });
+});
+
+        bindRoleToggle();
 
         return;
     }
 
     el.innerHTML = "";
 }
+
 
 /* =============================================
    CSV 파싱
@@ -2438,6 +2665,66 @@ function ensureTableWrap() {
         '<div class="table-wrap" id="tableWrap"><table id="dataTable"><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table></div>';
 }
 
+
+
+
+// 페이지 로드 시 최초 1회만 붙잡아두는 전역 참조.
+// HTML에 없다면 동적으로 직접 빌드하여 소실을 방지합니다.
+let persistentAuctionCalcEl = null;
+
+function getAuctionCalcEl() {
+    if (!persistentAuctionCalcEl) {
+        // 1. 먼저 HTML에 이미 경매 계산기가 존재하는지 찾아봅니다.
+        let el = document.querySelector(".auction-calc") || document.querySelector(".side-auction-link");
+        
+        // 2. [완벽 해결] HTML에 경매 계산기 태그가 없다면, JS가 똑같은 디자인으로 즉석 빌드합니다!
+        if (!el) {
+            el = document.createElement("a");
+            
+            // 현재 폴더 위치(루트 / 인지 dps / 인지)에 맞춰 올바른 상대 경로 지정
+            if (window.location.pathname === "/" || window.location.pathname === "/index.html" || window.location.pathname === "/index") {
+                el.href = "./tools/auction.html";
+            } else {
+                el.href = "../tools/auction.html";
+            }
+            
+            el.className = "side-card side-auction-link";
+            
+            // 기존 HTML에 선언되어 있던 럭셔리한 인라인 스타일 그대로 적용
+            el.style.display = "flex";
+            el.style.flexDirection = "column";
+            el.style.alignItems = "center";
+            el.style.justifyContent = "center";
+            el.style.gap = "6px";
+            el.style.padding = "12px";
+            el.style.textDecoration = "none";
+            el.style.color = "inherit";
+            el.style.borderColor = "rgba(247,202,84,.18)";
+            el.style.transition = "all .2s";
+            el.style.height = "119px";
+            
+            // 구조 삽입
+            el.innerHTML = `
+                <div style="font-size:24px;">🔨</div>
+                <div style="font-size:14px;font-weight:900;color:#f7ca54;">경매 계산기</div>
+                <div style="font-size:11px;color:#667085;text-align:center;line-height:1.45;">실시간 각인서 시세 +<br>손익분기점 계산</div>
+            `;
+        }
+        persistentAuctionCalcEl = el;
+    }
+    return persistentAuctionCalcEl;
+}
+
+
+
+
+
+
+
+
+
+
+
 function setClearTimeDisabled(disabled) {
     const card = document.getElementById("timeCard");
     if (!card) return;
@@ -2612,15 +2899,30 @@ function simpleCardHtml(card) {
             return `<span class="badge ${b.cls}">${finalText}</span>`;
         }).join("");
 
+      
         const isPreparing = r.range === "준비중";
-        const rangeParts = parseSimpleRangeParts(r.range, card.title);
+        const rawRangeParts = parseSimpleRangeParts(r.range, card.title);
+        const roleMul = getRoleMultiplier();
+        const rangeParts = rawRangeParts
+            ? {
+                tank: Math.round(rawRangeParts.tank * roleMul),
+                one: Math.round(rawRangeParts.one * roleMul),
+                blood: Math.round(rawRangeParts.blood * roleMul)
+            }
+            : null;
         const hasTripleRange = !!rangeParts && !isPreparing;
+
+
+
+         const isSupportModeCard = currentRoleMode === "support";
+        const tankLabel = isSupportModeCard ? "강조" : "강투";
+        const bloodLabel = isSupportModeCard ? "잔조" : "잔혈";
 
         const rangeHtml = hasTripleRange
             ? `
                 <div class="triple-range">
                     <div class="triple-part tank">
-                        <span class="t-label">강투</span>
+                        <span class="t-label">${tankLabel}</span>
                         <span class="t-value">${rangeParts.tank}</span>
                     </div>
                     <div class="triple-part one">
@@ -2628,12 +2930,14 @@ function simpleCardHtml(card) {
                         <span class="t-value">${rangeParts.one}</span>
                     </div>
                     <div class="triple-part blood">
-                        <span class="t-label">잔혈</span>
+                        <span class="t-label">${bloodLabel}</span>
                         <span class="t-value">${rangeParts.blood}</span>
                     </div>
                 </div>
             `
             : `<span class="range-b ${isPreparing ? "preparing" : ""}">${r.range}</span>`;
+
+
 
         return `
             <div class="simple-row ${hasTripleRange ? "has-triple-range" : ""}" style="${isPreparing ? "min-height:56px;align-items:center;" : ""}">
@@ -2884,14 +3188,23 @@ function renderExView(exKey) {
 function renderRaidSimpleView() {
     const meta = simpleRaidMeta[currentSimpleRaid];
     const cards = getSimpleRaidCards(currentSimpleRaid);
+    const target = document.getElementById("simpleCardsFull") || document.getElementById("mainContent");
 
     if (!meta) {
-        document.getElementById("mainContent").innerHTML =
-            '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>';
+        if (target) {
+            target.innerHTML = ""; // 청소
+            target.insertAdjacentHTML("beforeend",
+                '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>');
+        }
         return;
     }
 
-    document.getElementById("mainContent").innerHTML = `
+    // [보완] 렌더링 전 타겟 클리어
+    if (target) {
+        target.innerHTML = "";
+    }
+
+    target.insertAdjacentHTML("beforeend", `
         <div class="simple-view">
             <div class="simple-stack">
                 ${cards.length > 0
@@ -2899,7 +3212,7 @@ function renderRaidSimpleView() {
                     : "<div class='coming-soon'><h3>준비중</h3><p>곧 업데이트 예정입니다.</p></div>"}
             </div>
         </div>
-    `;
+    `);
 }
 
 
@@ -2915,15 +3228,25 @@ function renderSimpleView() {
     }
 
     const data = simpleData[currentSimpleLevel];
+    const target = document.getElementById("simpleCardsFull") || document.getElementById("mainContent");
+
     if (!data) {
-        document.getElementById("mainContent").innerHTML =
-            '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>';
+        if (target) {
+            target.innerHTML = ""; // 기존 잔여물 청소
+            target.insertAdjacentHTML("beforeend",
+                '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>');
+        }
         return;
     }
 
     const { goldCards, extraCards } = getSimpleLevelCardSections(currentSimpleLevel);
 
-    document.getElementById("mainContent").innerHTML = `
+    // [보완] 카드를 덧붙이기 전에 기존 카드를 한 번 깨끗하게 비워줌
+    if (target) {
+        target.innerHTML = ""; 
+    }
+
+    target.insertAdjacentHTML("beforeend", `
         <div class="simple-view">
             <div class="simple-stack">
                 ${
@@ -2931,7 +3254,6 @@ function renderSimpleView() {
                         ? goldCards.map(simpleCardHtml).join("")
                         : "<div class='coming-soon'><h3>준비중</h3><p>곧 업데이트 예정입니다.</p></div>"
                 }
-
                 ${
                     extraCards.length > 0
                         ? `
@@ -2940,7 +3262,6 @@ function renderSimpleView() {
                                     <span id="simpleExtraToggleText">골드 미획득 레이드 펼치기</span>
                                     <span id="simpleExtraToggleArrow">▼</span>
                                 </button>
-
                                 <div class="simple-extra-panel" id="simpleExtraPanel">
                                     <div class="simple-extra-stack">
                                         ${extraCards.map(simpleCardHtml).join("")}
@@ -2952,10 +3273,11 @@ function renderSimpleView() {
                 }
             </div>
         </div>
-    `;
+    `);
 
     bindSimpleExtraToggle();
 }
+
 
 
 
@@ -3049,10 +3371,14 @@ function makeGuardianHero(tier, boss, bossInfo) {
 
                         <div class="p-hero-title-row">
                             <div class="p-hero-icon">🐉</div>
+                            
+
                             <div class="p-hero-title-wrap">
-                                <h2 class="p-hero-title">가디언 토벌</h2>
+                                <h2 class="p-hero-title">가디언 토벌<span class="p-hero-member-badge">4인</span></h2>
                                 <div class="p-hero-subtitle">${stageText}</div>
                             </div>
+
+
                         </div>
 
                         <div class="p-hero-badges">
@@ -3233,10 +3559,15 @@ function bindRewardMoreToggle(menu) {
     });
 }
 
+
+const RAID_MEMBER_COUNT = { serka: "4인", cathedral: "4인", belgardin: "8인" };
+
 function makeRaidPrecisionHero(menu, meta, currentDiff) {
     const isSerka = menu === "serka";
     const isCathedral = menu === "cathedral";
     const raidTitle = getRaidDisplayName(menu);
+    const memberCount = RAID_MEMBER_COUNT[menu] || "";
+
     const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : "hero-belgardin");
     const kicker = isSerka ? "PRECISION · SERKA" : (isCathedral ? "PRECISION · CATHEDRAL" : "PRECISION · BELGARDIN");
     const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : "🧛");
@@ -3280,14 +3611,20 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
 
                         <div class="p-hero-title-row">
                             <div class="p-hero-icon">${icon}</div>
+                           
+
+
                             <div class="p-hero-title-wrap">
-                                <h2 class="p-hero-title">${raidTitle}</h2>
+                                <h2 class="p-hero-title">${raidTitle}<span class="p-hero-member-badge">${memberCount}</span></h2>
                                 <div class="p-hero-subtitle">${subtitle}</div>
                             </div>
                         </div>
 
                         <div class="p-hero-badges">
                             <span class="p-badge b-type">${meta.type.text}</span>
+
+
+
                             <span class="p-badge b-attr">${attrEmoji ? `${attrEmoji} ` : ""}${meta.attr.text}</span>
                         </div>
 
@@ -3417,31 +3754,44 @@ function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
 /* =============================================
    공통 요약 카드 HTML
    ============================================= */
-function makePrecisionSummary(rowTank, rowOne, rowBlood, getDmgFn, totalSec, menu) {
+
+
+function makePrecisionSummary(rowTank, rowOne, rowBlood, getDmgFn, totalSec, menu, isSupport) {
     const shares = getPrecisionShares(menu);
     const fmtShare = (s) => Number.isInteger(s) ? s : s.toFixed(1);
 
-    const makeCard = (label, labelCls, cardCls, dpsCls, share, row) => {
-        const dmg = row ? getDmgFn(row) : 0;
-        const dps = row ? (dmg / totalSec).toFixed(1) : "-";
+    const labels = isSupport
+        ? { tank: "강조컷", one: "1인분", blood: "잔조컷" }
+        : { tank: "강투컷", one: "1인분", blood: "잔혈컷" };
+
+   
+    const dpsLabel = isSupport ? "조력 DPS" : "DPS";
+
+    const makeCard = (key, labelCls, cardCls, dpsCls, defaultShare, row) => {
+        const dmg = row ? Math.floor(getDmgFn(row)) : 0;
+        const dps = row ? floorTo1(dmg / totalSec).toFixed(1) : "-";
+        const shareVal = (isSupport && row && row.share !== undefined) ? row.share : defaultShare;
         return `
             <div class="precision-summary-card ${cardCls}">
-                <div class="precision-summary-label ${labelCls}">${label}</div>
-                <div class="precision-summary-share">딜지분 ${fmtShare(share)}%</div>
+                <div class="precision-summary-label ${labelCls}">${labels[key]}</div>
+                <div class="precision-summary-share">딜지분 ${fmtShare(shareVal)}%</div>
                 <div class="precision-summary-dmg">${fmt(dmg)}<span class="precision-summary-unit"> 억</span></div>
-                <div class="precision-summary-dps ${dpsCls}">DPS ${dps}억</div>
+                <div class="precision-summary-dps ${dpsCls}">${dpsLabel} ${dps}억</div>
             </div>
         `;
     };
 
+
+
     return `
         <div class="precision-summary-cards">
-            ${makeCard("강투컷", "precision-label-tank", "precision-card-tank", "precision-dps-tank", shares.tank, rowTank)}
-            ${makeCard("1인분", "precision-label-one", "precision-card-one", "precision-dps-one", shares.one, rowOne)}
-            ${makeCard("잔혈컷", "precision-label-blood", "precision-card-blood", "precision-dps-blood", shares.blood, rowBlood)}
+            ${makeCard("tank", "precision-label-tank", "precision-card-tank", "precision-dps-tank", shares.tank, rowTank)}
+            ${makeCard("one", "precision-label-one", "precision-card-one", "precision-dps-one", shares.one, rowOne)}
+            ${makeCard("blood", "precision-label-blood", "precision-card-blood", "precision-dps-blood", shares.blood, rowBlood)}
         </div>
     `;
 }
+
 
 
 /* =============================================
@@ -3459,6 +3809,21 @@ function renderTable() {
 const isRaidSimpleQuickView = currentMenu === "raid-simple";
     const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin";
     document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
+
+
+    // [개정판] 간편보기일 때 빈 공간(.content-grid)과 우측 컬럼(.right-column)까지 통째로 숨기기
+    const contentGrid = document.querySelector(".content-grid");
+    const rightCol = document.querySelector(".right-column");
+    if (currentMenu === "simple" || currentMenu === "raid-simple") {
+        if (contentGrid) contentGrid.style.setProperty("display", "none", "important");
+        if (rightCol) rightCol.style.setProperty("display", "none", "important");
+    } else {
+        if (contentGrid) contentGrid.style.display = ""; // 정밀계산일 때는 원래대로 노출
+        if (rightCol) rightCol.style.display = "";
+    
+    }
+
+
 
     const shouldHideTopline =
     isSimpleQuickView ||
@@ -3521,9 +3886,11 @@ if (currentMenu === "arc-grid") {
     return;
 }
 
+
 if (currentMenu === "simple" || currentMenu === "raid-simple") {
     setClearTimeDisabled(true);
     document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+    enableSimpleAdSlot();
 
     if (currentMenu === "raid-simple") {
         renderRaidSimpleView();
@@ -3533,7 +3900,10 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
     return;
 }
 
+
+
     setClearTimeDisabled(false);
+    disableSimpleAdSlot();
 
     // === 가디언 토벌 ===
     if (currentMenu === "guardian") {
@@ -3548,50 +3918,90 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
         const bossList = getGuardianBossListByTier(tier);
         const availList = getGuardianAvailListByTier(tier);
 
-        if (!isAvail) {
+              if (!isAvail) {
             document.getElementById("mainContent").innerHTML = `
                 ${makeGuardianHero(tier, boss, bossInfo)}
                 ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
+                <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
+                ${makeRoleToggleHtml()}
 
                 <div class="coming-soon"><h3>${boss} 준비중</h3><p>해당 보스의 가디언 토벌 데이터는 순차적으로 공개됩니다.</p></div>
             `;
+     
         } else {
+           
+
+
             const rows = getGuardianParsedRows(tier, boss);
+            const isSupportGuardian = currentRoleMode === "support";
+            const guardianShares = getPrecisionShares("guardian");
 
             const getDmg = (r) => r.damage || 0;
             const findRow = (share) => rows.find(r => r.share === share && getDmg(r) > 0);
 
-            const row30 = findRow(30);
-            const row33 = findRow(33);
-            const row40 = findRow(40);
+            let row30, row33, row40, effectiveGetDmg, guardianConv;
 
-            const tableRowsHtml = rows.length
-                ? rows.map(r => {
-                    let cls = "";
-                    if (r.share === 30) cls = "row-30";
-                    if (r.share === 33) cls = "row-33";
-                    if (r.share === 40) cls = "row-40";
-                    return `<tr class="${cls}">${renderShareCell(r.share, "guardian")}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
-                }).join("")
-                : '<tr><td colspan="3">데이터 없음</td></tr>';
+            if (isSupportGuardian) {
+                guardianConv = computeSupportConversion(rows, guardianShares, getDmg);
+                row30 = guardianConv.anchors.gangjo;
+                row33 = guardianConv.anchors.ilinbun;
+                row40 = guardianConv.anchors.janjo;
+                effectiveGetDmg = (r) => r.damage;
+            } else {
+                row30 = findRow(30);
+                row33 = findRow(33);
+                row40 = findRow(40);
+                effectiveGetDmg = getDmg;
+            }
 
-            document.getElementById("mainContent").innerHTML = `
+            let tableRowsHtml;
+            if (isSupportGuardian) {
+                const gRows = guardianConv.rows;
+                tableRowsHtml = gRows.length
+                    ? gRows.map(r => {
+                        let cls = "";
+                        if (r.label === "gangjo") cls = "row-30";
+                        if (r.label === "ilinbun") cls = "row-33";
+                        if (r.label === "janjo") cls = "row-40";
+                        return `<tr class="${cls}">${renderSupportShareCell(r)}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
+                    }).join("")
+                    : '<tr><td colspan="3">데이터 없음</td></tr>';
+            } else {
+                tableRowsHtml = rows.length
+                    ? rows.map(r => {
+                        let cls = "";
+                        if (r.share === 30) cls = "row-30";
+                        if (r.share === 33) cls = "row-33";
+                        if (r.share === 40) cls = "row-40";
+                        return `<tr class="${cls}">${renderShareCell(r.share, "guardian")}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
+                    }).join("")
+                    : '<tr><td colspan="3">데이터 없음</td></tr>';
+            }
+
+                               document.getElementById("mainContent").innerHTML = `
                 ${makeGuardianHero(tier, boss, bossInfo)}
                 ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
-                ${makePrecisionSummary(row30, row33, row40, getDmg, totalSec, "guardian")}
+                <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
+                ${makeRoleToggleHtml()}
+                ${makePrecisionSummary(row30, row33, row40, effectiveGetDmg, totalSec, "guardian", isSupportGuardian)}
+
+
                 <div class="precision-table-panel">
                     <div class="precision-table-head">
                         <div class="precision-table-title">${boss} (${tier}) 상세 딜지분</div>
                         <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
                     </div>
-                    <div class="table-wrap">
+                                       <div class="table-wrap">
                         <table id="dataTable">
                             <thead>
-                                <tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>
+                                <tr>${isSupportGuardian
+                                    ? "<th>조력지분</th><th>조력피해/억</th><th>조력 DPS</th>"
+                                    : "<th>딜지분</th><th>피해/억</th><th>DPS</th>"}</tr>
                             </thead>
                             <tbody>${tableRowsHtml}</tbody>
                         </table>
                     </div>
+
                 </div>
             `;
         }
@@ -3625,13 +4035,17 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
             });
         });
 
+  
     const guardianMobileTimeBtn = document.getElementById("guardianMobileTimeBtn");
     if (guardianMobileTimeBtn) {
         guardianMobileTimeBtn.addEventListener("click", openMobileTimeModal);
     }
+        bindRoleToggle();
         updatePartyDpsDisplay();
         return;
     }
+
+
 
 // === 세르카 / 성당 / 벨가르딘 ===
 if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
@@ -3639,16 +4053,31 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
     document.getElementById("tableTitle").textContent = "";
     document.getElementById("titleMeta").innerHTML = "";
 
+  
+
     const meta = raidMeta[currentMenu][currentCombo];
     const dataRows = parsedData[currentMenu]?.[meta.diffKey] || [];
     const raidName = getRaidDisplayName(currentMenu);
     const shares = getPrecisionShares(currentMenu);
+    const isSupport = currentRoleMode === "support";
 
     const getDamage = (row) => meta.gateKey === "gate1" ? row.g1 : row.g2;
     const findRow = (share) => dataRows.find(r => r.share === share && getDamage(r) > 0);
-    const rowTank = findRow(shares.tank);
-    const rowOne = findRow(shares.one);
-    const rowBlood = findRow(shares.blood);
+
+    let rowTank, rowOne, rowBlood, effectiveGetDamage, supportConv;
+
+    if (isSupport) {
+        supportConv = computeSupportConversion(dataRows, shares, getDamage);
+        rowTank = supportConv.anchors.gangjo;
+        rowOne = supportConv.anchors.ilinbun;
+        rowBlood = supportConv.anchors.janjo;
+        effectiveGetDamage = (row) => row.damage;
+    } else {
+        rowTank = findRow(shares.tank);
+        rowOne = findRow(shares.one);
+        rowBlood = findRow(shares.blood);
+        effectiveGetDamage = getDamage;
+    }
 
     const bossNames = currentMenu === "serka"
         ? { gate1: "세르카", gate2: "코르부스" }
@@ -3677,16 +4106,33 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
     const currentDiff = currentCombo.split("_")[0];
     const currentGate = currentCombo.split("_")[1];
 
-    const tableRowsHtml = dataRows.length
-        ? dataRows.map(r => {
-            let cls = "";
-            if (r.share === shares.tank) cls = "row-30";
-            if (r.share === shares.one) cls = "row-33";
-            if (r.share === shares.blood) cls = "row-40";
-            const dmg = getDamage(r);
-            return `<tr class="${cls}">${renderShareCell(r.share, currentMenu)}<td><span class="damage-wrap"><span class="damage-num">${fmt(dmg)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${(dmg / totalSec).toFixed(1)}억</span></td></tr>`;
-        }).join("")
-        : '<tr><td colspan="3">데이터 없음</td></tr>';
+  
+    let tableRowsHtml;
+
+    if (isSupport) {
+        const rows = supportConv.rows;
+        tableRowsHtml = rows.length
+            ? rows.map(r => {
+                let cls = "";
+                if (r.label === "gangjo") cls = "row-30";
+                if (r.label === "ilinbun") cls = "row-33";
+                if (r.label === "janjo") cls = "row-40";
+                return `<tr class="${cls}">${renderSupportShareCell(r)}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
+            }).join("")
+            : '<tr><td colspan="3">데이터 없음</td></tr>';
+    } else {
+        tableRowsHtml = dataRows.length
+            ? dataRows.map(r => {
+                let cls = "";
+                if (r.share === shares.tank) cls = "row-30";
+                if (r.share === shares.one) cls = "row-33";
+                if (r.share === shares.blood) cls = "row-40";
+                const dmg = getDamage(r);
+                return `<tr class="${cls}">${renderShareCell(r.share, currentMenu)}<td><span class="damage-wrap"><span class="damage-num">${fmt(dmg)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(dmg / totalSec).toFixed(1)}억</span></td></tr>`;
+            }).join("")
+            : '<tr><td colspan="3">데이터 없음</td></tr>';
+    }
+  
 
     document.getElementById("mainContent").innerHTML = `
         ${makeRaidPrecisionHero(currentMenu, meta, currentDiff)}
@@ -3749,7 +4195,7 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
         </div>
 
 
-        ${buildSummaryAndDetailHtml(currentMenu, meta.gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage)}
+                ${buildSummaryAndDetailHtml(currentMenu, meta.gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, effectiveGetDamage, isSupport)}
     `;
 
 
@@ -3806,6 +4252,7 @@ document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
     const mobileRewardMoreBtn = document.getElementById(`mobileRewardMoreBtn_${currentMenu}`);
     const mobileRewardMoreContent = document.getElementById(`mobileRewardMore_${currentMenu}`);
 
+  
     if (mobileRewardMoreBtn && mobileRewardMoreContent) {
         mobileRewardMoreBtn.addEventListener("click", () => {
             const isOpen = mobileRewardMoreContent.classList.toggle("rw-open");
@@ -3813,6 +4260,7 @@ document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
         });
     }
 
+    bindRoleToggle();
     updatePartyDpsDisplay();
     return;
 }
@@ -4298,6 +4746,218 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
     renderTabs();
     renderTable();
 }
+
+
+/* =============================================
+   서폿 툴팁 - 최초 원본 복구 및 오작동 완벽 해결 버전
+   ============================================= */
+let sharedRoleTooltipEl = null;
+
+function ensureSharedRoleTooltip() {
+    if (sharedRoleTooltipEl) return sharedRoleTooltipEl;
+    const el = document.createElement("div");
+    el.className = "role-shared-tooltip";
+    el.innerHTML = ROLE_TOOLTIP_HTML;
+    document.body.appendChild(el);
+    sharedRoleTooltipEl = el;
+    return el;
+}
+
+function showSharedRoleTooltip(anchorEl) {
+    const tip = ensureSharedRoleTooltip();
+    tip.classList.add("show");
+
+    const rect = anchorEl.getBoundingClientRect();
+    const tipRect = tip.getBoundingClientRect();
+    const margin = 10;
+
+    let left = rect.left + rect.width / 2 - tipRect.width / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - tipRect.width - margin));
+
+    let top = rect.top - tipRect.height - 12;
+    if (top < margin) {
+        top = rect.bottom + 12;
+    }
+
+    tip.style.left = `${left}px`;
+    tip.style.top = `${top}px`;
+}
+
+function hideSharedRoleTooltip() {
+    if (sharedRoleTooltipEl) sharedRoleTooltipEl.classList.remove("show");
+}
+
+// 1. 마우스 올렸을 때 작동 (최초 원본 로직)
+document.addEventListener("mouseover", (e) => {
+    const trigger = e.target.closest(".role-info-tip");
+    if (trigger) showSharedRoleTooltip(trigger);
+});
+
+document.addEventListener("mouseout", (e) => {
+    const trigger = e.target.closest(".role-info-tip");
+    if (trigger && !trigger.contains(e.relatedTarget)) hideSharedRoleTooltip();
+});
+
+document.addEventListener("focusin", (e) => {
+    const trigger = e.target.closest(".role-info-tip");
+    if (trigger) showSharedRoleTooltip(trigger);
+});
+
+document.addEventListener("focusout", (e) => {
+    const trigger = e.target.closest(".role-info-tip");
+    if (trigger) hideSharedRoleTooltip();
+});
+
+// 2. [완벽 해결] 느낌표 클릭 시 부모 버튼이 클릭되는 버그를 캡처링 단계에서 선제 차단
+document.addEventListener("click", (e) => {
+    const trigger = e.target.closest(".role-info-tip");
+    if (trigger) {
+        e.preventDefault();
+        e.stopPropagation(); // 부모 버튼 클릭 이벤트 발동 원천 봉쇄!
+
+        if (sharedRoleTooltipEl && sharedRoleTooltipEl.classList.contains("show")) {
+            hideSharedRoleTooltip();
+        } else {
+            showSharedRoleTooltip(trigger);
+        }
+    } else {
+        hideSharedRoleTooltip();
+    }
+}, true); // ← true(캡처링) 옵션이 버튼보다 이벤트를 먼저 가로챕니다.
+
+window.addEventListener("scroll", hideSharedRoleTooltip, true);
+window.addEventListener("resize", hideSharedRoleTooltip);
+
+
+
+
+/* =============================================
+   우측 사이드바 및 구글 광고 제어 엔진 (3대장)
+   ============================================= */
+
+// 1. 간편보기 모드일 때 광고 및 레이아웃 제어
+function enableSimpleAdSlot() {
+    const auctionCalc = getAuctionCalcEl();
+    const gridRight = document.getElementById("simpleGridRight");
+    const timeCard = document.getElementById("timeCard");
+
+    if (timeCard) timeCard.style.display = "none";
+
+    // INFO 카드가 존재한다면 화면에서 완전히 숨깁니다.
+    const infoHintEl = document.getElementById("infoHint");
+    const infoCard = infoHintEl ? infoHintEl.closest(".side-card") : null;
+    if (infoCard) infoCard.style.display = "none";
+
+    // 정밀계산 전용 멀티플렉스 광고 감추기
+    const precisionAd = document.getElementById("precisionAdSlot");
+    if (precisionAd) precisionAd.style.display = "none";
+
+    if (!auctionCalc || !gridRight) return;
+
+    gridRight.appendChild(auctionCalc);
+
+    // 모바일/태블릿 등 우측 영역이 화면에서 숨겨져 있다면 애드센스 등록을 진행하지 않음
+    if (window.getComputedStyle(gridRight).display === "none") {
+        return;
+    }
+
+    // 광고 슬롯 (중복 삽입 방지)
+    if (!gridRight.querySelector(".simple-ad-slot")) {
+        const adWrap = document.createElement("div");
+        adWrap.className = "side-card simple-ad-slot";
+        adWrap.innerHTML = `
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="autorelaxed"
+                 data-ad-client="ca-pub-6403244403995841"
+                 data-ad-slot="4495683701"></ins>
+        `;
+        gridRight.appendChild(adWrap);
+        
+        try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            console.warn("애드센스 로드 실패 (안전하게 무시됨):", e);
+        }
+    }
+}
+
+
+
+function disableSimpleAdSlot() {
+    const timeCard = document.getElementById("timeCard");
+    const auctionCalc = getAuctionCalcEl();
+    const aside = document.querySelector(".right-column");
+
+    if (timeCard) timeCard.style.display = "";
+
+    // [INFO 영구 제거] INFO 카드를 완전히 숨깁니다.
+    const infoHintEl = document.getElementById("infoHint");
+    const infoCard = infoHintEl ? infoHintEl.closest(".side-card") : null;
+    if (infoCard) infoCard.style.display = "none";
+
+    // 경매 계산기를 무조건 시계 카드(timeCard) 바로 다음 자리에 강제 배치
+    if (auctionCalc && aside) {
+        if (timeCard) {
+            timeCard.parentNode.insertBefore(auctionCalc, timeCard.nextSibling);
+        } else {
+            aside.prepend(auctionCalc);
+        }
+    }
+
+    // 정밀계산 모드로 복귀 시 맨 아래(경매 계산기 밑)에 멀티플렉스 광고 노출 및 정렬
+    enablePrecisionAdSlot();
+}
+
+
+function enablePrecisionAdSlot() {
+    const timeCard = document.getElementById("timeCard");
+    const aside = document.querySelector(".right-column");
+    if (!timeCard || !aside) return;
+
+    let adSlot = document.getElementById("precisionAdSlot");
+    const auctionCalc = getAuctionCalcEl();
+
+    // 광고판이 아직 없다면 새로 생성
+    if (!adSlot) {
+        adSlot = document.createElement("div");
+        adSlot.id = "precisionAdSlot";
+        adSlot.className = "side-card simple-ad-slot"; 
+        adSlot.style.marginTop = "14px";
+        adSlot.style.marginBottom = "0px";
+        adSlot.innerHTML = `
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="autorelaxed"
+                 data-ad-client="ca-pub-6403244403995841"
+                 data-ad-slot="4495683701"></ins>
+        `;
+        
+        // 경매 계산기(auctionCalc) 바로 아래에 광고 삽입
+        if (auctionCalc) {
+            auctionCalc.parentNode.insertBefore(adSlot, auctionCalc.nextSibling);
+        } else {
+            aside.appendChild(adSlot);
+        }
+
+        try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            console.warn("정밀계산 전용 멀티플렉스 광고 로드 실패:", e);
+        }
+    } else {
+        // 이미 생성되어 있다면 화면에 노출
+        adSlot.style.display = "block";
+        
+        // 정렬이 꼬이더라도 무조건 경매 계산기 바로 밑으로 강제 재배치
+        if (auctionCalc && adSlot.previousSibling !== auctionCalc) {
+            auctionCalc.parentNode.insertBefore(adSlot, auctionCalc.nextSibling);
+        }
+    }
+}
+
+
+
 
 loadCSV();
 acUpdate();
