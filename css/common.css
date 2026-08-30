@@ -3,7 +3,7 @@
   --line:rgba(255,255,255,.07);--gold:#e8b84b;--gold-soft:#f3d488;--purple:#9b7ef0;
   --blue:#5b9cf5;--red:#e85454;--green:#3cc78c;
 
-  /* 메인 페이지와 완벽 일치를 위한 사이트 전체 가로폭 변수 */
+  /* ★ 메인 페이지와 완벽 일치를 위한 사이트 전체 가로폭 변수 */
   --container-width: 1280px;
 }
 
@@ -673,18 +673,19 @@ body.standalone-arc-grid-page .common-divider-top {
     overflow: visible !important;
 }
 
+
+
 /* =============================================
-   상단 및 하단 가로 배너 광고 전용 레이아웃 설정 (너비 피팅 반영)
+   상단 가로 배너 광고 전용 레이아웃 설정 (너비 피팅 반영)
    ============================================= */
-.loaview-top-ad-wrap,
-.loaview-bottom-ad-wrap {
+.loaview-top-ad-wrap {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     margin: 16px auto !important;
     width: 100% !important;
-    max-width: var(--container-width) !important; /* 광고 너비 1280px로 피팅 */
-    padding: 0 20px !important; /* GNB 및 본문과 오차 없이 일치 */
+    max-width: var(--container-width) !important;
+    padding: 0 20px !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
     height: 90px !important;
@@ -694,13 +695,11 @@ body.standalone-arc-grid-page .common-divider-top {
     border: none !important;
 }
 
-.main .loaview-top-ad-wrap,
-.main .loaview-bottom-ad-wrap {
+.main .loaview-top-ad-wrap {
     padding: 0 !important;
 }
 
-.loaview-top-ad-wrap ins.adsbygoogle,
-.loaview-bottom-ad-wrap ins.adsbygoogle {
+.loaview-top-ad-wrap ins.adsbygoogle {
     display: inline-block !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -712,6 +711,7 @@ body.standalone-arc-grid-page .common-divider-top {
     border: none !important; 
     box-shadow: none !important;
 }
+
 
 /* =============================================
    양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
