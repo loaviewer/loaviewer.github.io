@@ -713,6 +713,16 @@ body.standalone-arc-grid-page .common-divider-top {
 }
 
 
+/* 메인 홈페이지 광고 좌측 쏠림 수정 - 강제 중앙 정렬 */
+body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-top-ad-wrap,
+body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wrap {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    left: 50% !important;
+    transform: none !important;
+}
+
+
 /* =============================================
    양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
    ============================================= */
