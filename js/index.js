@@ -4925,13 +4925,15 @@ function enablePrecisionAdSlot() {
         adSlot.className = "side-card simple-ad-slot"; 
         adSlot.style.marginTop = "14px";
         adSlot.style.marginBottom = "0px";
-        adSlot.innerHTML = `
+       
+adSlot.innerHTML = `
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-format="autorelaxed"
                  data-ad-client="ca-pub-6403244403995841"
-                 data-ad-slot="4495683701"></ins>
+                 data-ad-slot="3697074526"></ins>
         `;
+
         
         // 경매 계산기(auctionCalc) 바로 아래에 광고 삽입
         if (auctionCalc) {
