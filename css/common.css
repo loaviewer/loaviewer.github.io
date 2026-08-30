@@ -720,8 +720,11 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
     margin-right: auto !important;
     left: 50% !important;
     transform: none !important;
+    width: 100% !important;
+    max-width: var(--container-width) !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
 }
-
 
 /* =============================================
    양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
