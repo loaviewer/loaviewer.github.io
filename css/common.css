@@ -3,7 +3,7 @@
   --line:rgba(255,255,255,.07);--gold:#e8b84b;--gold-soft:#f3d488;--purple:#9b7ef0;
   --blue:#5b9cf5;--red:#e85454;--green:#3cc78c;
 
-  /* ★ 메인 페이지와 완벽 일치를 위한 사이트 전체 가로폭 변수 */
+  /* 메인 페이지와 완벽 일치를 위한 사이트 전체 가로폭 변수 */
   --container-width: 1280px;
 }
 
