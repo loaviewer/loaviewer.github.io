@@ -6616,8 +6616,8 @@ color: #b56c6c;
    간편보기 상태에서 유령 광고판 몸뚱아리 완벽 소멸 (빈 공터 원인 해결)
    ============================================= */
 
-/* 간편보기(.simple-quick-mode) 상태에서는 우측 광고 상자가 절대 공간을 차지하지 못하도록 물리적으로 완전히 삭제 */
-.main.simple-quick-mode .simple-ad-slot,
+
+/* 간편보기 상태에서 유령 광고판 몸뚱아리 완벽 소멸 (빈 공터 원인 해결) */
 .main.simple-quick-mode .right-column .simple-ad-slot,
 .main.simple-quick-mode .right-column .side-card.simple-ad-slot {
     display: none !important;
@@ -6629,7 +6629,6 @@ color: #b56c6c;
     opacity: 0 !important;
     pointer-events: none !important;
 }
-
 
 /* =============================================
    우측 사이드바 3단 합체 통합 스티키 복원 (시계 + 계산기 + 광고)
