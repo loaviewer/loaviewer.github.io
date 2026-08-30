@@ -15,13 +15,23 @@ body {
     line-height: 1.5;
 }
 
+
+
 .app {
     width: min(1480px, calc(100% - 20px));
     margin: 20px auto;
     border-radius: 24px;
-    overflow: hidden;
     border: 1px solid #1a1d2e;
     box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+}
+
+
+.sidebar {
+    border-radius: 24px 0 0 24px;
+}
+
+.main {
+    border-radius: 0 24px 24px 0;
 }
 
 .workspace {
@@ -40,6 +50,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    border-radius: 24px 0 0 24px;
 }
 
 .brand {
@@ -650,15 +661,12 @@ body {
 /* =============================================
    경매 계산기
    ============================================= */
-.auction-calc {
-    border-radius: 14px;
-    padding: 16px;
-    background: #1a1c24;
-    border: 1px solid rgba(200,165,90,.25);
-    position: relative;
-    overflow: hidden;
+
+.right-column .auction-calc {
+    padding: 12px 14px;
     margin-bottom: 6px;
 }
+
 
 .auction-calc::before {
     content: "";
@@ -928,6 +936,7 @@ body {
     flex-direction: column;
     gap: 20px;
     min-width: 0;
+    border-radius: 0 24px 24px 0;
 }
 
 .main.simple-quick-mode {
@@ -4404,8 +4413,9 @@ tbody tr:hover td {
 
 
 
-.simple-raid-tab {
-    min-width: 132px;
+.simple-controls-col .simple-raid-tab {
+    min-width: 0 !important;
+    flex: 1 1 0 !important;
 }
 
 .simple-raid-tab .simple-level-tab-main {
@@ -5112,23 +5122,6 @@ body.mobile-home-mode .sidebar > :not(.switch-wrap):not(.mobile-home):not(.patch
         background: linear-gradient(180deg, #1a1228 0%, #120e1e 100%) !important; border-color: rgba(167, 139, 250, .55) !important; box-shadow: 0 0 0 1px rgba(167, 139, 250, .18), 0 0 14px rgba(167, 139, 250, .22), 0 0 30px rgba(167, 139, 250, .14), inset 0 0 18px rgba(167, 139, 250, .08) !important;
     }
     .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active::before, .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active .precision-gate-chip-gate { color: #c4b5fd !important; }
-
-
-
-
-
-
-
-
-/* =============================================
-   벨가르딘 (신규 추가분 — .hero-cathedral 블록 뒤에 붙여넣기)
-   ============================================= */
-
-
-
-
-
-
 
 
 
@@ -5947,83 +5940,758 @@ color: #b56c6c;
     background: linear-gradient(180deg, #60a5fa, #a78bfa);
 }
 
+
+
+/* =============================================
+   상세딜지분 탭바 - 모바일 최적화 및 레이아웃 정의
+   ============================================= */
+
 @media (max-width: 768px) {
-    /* 탭바 + 전분시간 뱃지 */
+
+    /* 모바일 - 좌측 정렬 및 경계선 표시 */
     .detail-tab-bar {
-        padding: 12px 14px;
-        gap: 8px;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important; /* 좌측 정렬로 변경 */
+        align-items: center !important;
+        padding: 5px 6px !important;
+        gap: 6px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    /* 모바일 - [상세/구간별] 탭과 [딜러/서폿] 토글 사이의 경계선 표시 */
+    .control-divider {
+        display: block !important;
+        width: 1px !important;
+        height: 24px !important;
+        background: #2a3147 !important;
+        flex-shrink: 0 !important;
+        margin: 0 2px !important;
+    }
+
+
+    /* 3. 상세 / 구간별 탭 버튼 압축 */
+    .detail-tabs {
+        display: flex !important;
+        gap: 2px !important;
+        padding: 2px !important;
+        background: #151822 !important;
+        border-radius: 8px !important;
+        flex-shrink: 0 !important; /* 찌그러짐 방지 */
     }
 
     .detail-tab {
-        padding: 7px 11px;
-        font-size: 11px;
+        padding: 5px 6px !important; /* 버튼 내부 여백 축소 */
+        font-size: 10px !important; /* 글자 크기 축소 */
+        font-weight: 800 !important;
+        border-radius: 6px !important;
+        white-space: nowrap !important;
     }
 
-    /* 구간별 딜지분 제목 */
+    /* 4. 딜러 / 서폿 토글 박스 모바일 너비 한정 */
+    .detail-tab-bar .role-toggle-box {
+        margin-top: 0 !important;
+        flex: 0 1 auto !important; /* 무조건 한 줄에 위치하도록 폭 확장 해제 */
+        min-width: 0 !important;
+        border-radius: 8px !important;
+        background: #10121c !important;
+    }
+
+    .role-toggle-box.compact {
+        padding: 2px !important;
+        border-radius: 8px !important;
+    }
+
+    .role-toggle-box.compact .role-toggle-btn {
+        padding: 5px 6px !important; /* 버튼 여백 대폭 축소 */
+        gap: 2px !important; /* 아이콘과 텍스트 완벽 밀착 */
+        border-radius: 6px !important;
+    }
+
+    .role-toggle-box.compact .role-label {
+        font-size: 10px !important; /* 텍스트 살짝 축소 */
+        font-weight: 800 !important;
+    }
+
+    .role-toggle-box.compact .role-icon {
+        font-size: 11px !important;
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    /* 5. [핵심] 모바일 한 줄 완벽 고정을 위해 체크 표시(✓, ○)를 숨김 */
+    .role-toggle-box.compact .role-check {
+        display: none !important;
+    }
+
+    /* 6. 서폿 느낌표(!) 아이콘 밀착 조절 및 크기 최적화 (가려짐 원천 방지) */
+    .role-toggle-box.compact .role-info-tip {
+        margin-left: 2px !important;
+        flex-shrink: 0 !important;
+    }
+
+   
+
+
+
+
+
+    /* 7. 구간별 딜지분 타임라인 모바일 레이아웃 최적화 */
     .line-cut-section-title {
-        font-size: 15px;
-        margin-bottom: 14px;
-        padding-left: 10px;
+        font-size: 14px !important;
+        margin-bottom: 12px !important;
+        padding-left: 8px !important;
     }
 
-    /* 타임라인 카드 */
     .line-cut-row {
-        grid-template-columns: 18px 1fr;
-        gap: 10px;
-        padding-bottom: 28px;
+        grid-template-columns: 16px 1fr !important;
+        gap: 8px !important;
+        padding-bottom: 24px !important;
     }
 
     .line-cut-body {
-        padding: 12px 12px;
-    }
-
-    .line-cut-label-row {
-        flex-wrap: wrap;
-        gap: 4px;
+        padding: 10px 10px !important;
+        border-radius: 10px !important;
     }
 
     .line-cut-line-num {
-        font-size: 15px;
+        font-size: 14px !important;
     }
 
     .line-cut-time {
-        font-size: 10px;
+        font-size: 9.5px !important;
     }
 
     .line-cut-desc {
-        font-size: 11px;
-        margin-bottom: 10px;
+        font-size: 10.5px !important;
+        margin-bottom: 8px !important;
     }
 
-
-
     .line-cut-card {
-        grid-template-columns: repeat(3, minmax(0,1fr));
-        gap: 6px;
+        grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+        gap: 4px !important;
     }
 
     .lc-tri {
-        padding: 6px 4px 5px;
+        padding: 5px 3px 4px !important;
+        border-radius: 8px !important;
     }
 
-
-
-
     .lc-tri-label {
-        font-size: 9px;
+        font-size: 8.5px !important;
+        margin-bottom: 2px !important;
     }
 
     .lc-tri-value {
-        font-size: 13px;
+        font-size: 11.5px !important;
     }
 
-    /* 구간선택 시작 라벨 */
     .line-cut-start-label {
-        font-size: 12px;
+        font-size: 11px !important;
     }
 
-    /* 상단 구분선 */
     .precision-section-divider span {
-        font-size: 10px;
+        font-size: 9.5px !important;
     }
+}
+
+/* =============================================
+   딜러 / 서폿 역할 토글 (기본 PC 데스크톱 스타일)
+   ============================================= */
+.role-toggle-box {
+    position: relative;
+    z-index: 60;
+    margin-top: 14px;
+    border-radius: 16px;
+    background: #10121c;
+    border: 1px solid #23283a;
+    overflow: visible;
+}
+
+.role-toggle-group {
+    display: flex;
+    width: 100%;
+}
+
+.role-toggle-btn {
+    flex: 1;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background .2s ease, box-shadow .2s ease;
+    white-space: nowrap;
+}
+
+.role-toggle-btn:hover {
+    background: rgba(255,255,255,.03);
+}
+
+.role-toggle-btn + .role-toggle-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 22%;
+    bottom: 22%;
+    width: 1px;
+    background: #23283a;
+}
+
+.role-toggle-btn:first-child { border-radius: 16px 0 0 16px; }
+.role-toggle-btn:last-child { border-radius: 0 16px 16px 0; }
+
+.role-toggle-box.compact .role-toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+.role-toggle-box.compact .role-toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+
+.role-toggle-btn.role-dealer.active {
+    background: linear-gradient(180deg, rgba(255,153,51,.14), rgba(255,153,51,.03));
+    box-shadow: inset 0 0 0 1px rgba(255,153,51,.4), 0 0 14px rgba(255,153,51,.14);
+}
+
+.role-toggle-btn.role-support.active {
+    background: linear-gradient(180deg, rgba(52,211,153,.14), rgba(52,211,153,.03));
+    box-shadow: inset 0 0 0 1px rgba(52,211,153,.4), 0 0 14px rgba(52,211,153,.14);
+}
+
+.role-icon {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    transition: filter .2s ease, opacity .2s ease;
+}
+
+.role-toggle-btn:not(.active) .role-icon { opacity: .45; }
+
+.role-label {
+    font-size: 15px;
+    font-weight: 900;
+    color: #5a6178;
+    transition: color .2s ease;
+    white-space: nowrap;
+}
+
+.role-toggle-btn.role-dealer.active .role-label { color: #ffb84d; }
+.role-toggle-btn.role-support.active .role-label { color: #34d399; }
+
+.role-check {
+    font-size: 15px;
+    font-weight: 900;
+    width: 18px;
+    text-align: center;
+    color: #3b4563;
+}
+
+.role-toggle-btn.role-dealer.active .role-check { color: #f7ca54; }
+.role-toggle-btn.role-support.active .role-check { color: #34d399; }
+
+/* 딜러 - 칼 이펙트 */
+.role-toggle-btn.role-dealer.active .role-icon {
+    animation: swordSwing .45s ease;
+    filter: drop-shadow(0 0 6px rgba(248,113,113,.55));
+}
+
+/* 서폿 - 힐 이펙트 */
+.role-toggle-btn.role-support.active .role-icon {
+    color: #34d399;
+    animation: healPulse 1.3s ease-in-out infinite;
+    filter: drop-shadow(0 0 7px rgba(52,211,153,.6));
+}
+
+@keyframes swordSwing {
+    0%   { transform: rotate(-30deg) scale(1); }
+    55%  { transform: rotate(12deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes healPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.18); opacity: .78; }
+}
+
+/* =============================================
+   상세딜지분 탭바 - 데스크톱 컴팩트 토글 스타일 정의
+   ============================================= */
+.role-toggle-box.compact {
+    background: #151822;
+    border: 1px solid #23283a;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.role-toggle-box.compact .role-toggle-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+.role-toggle-box.compact .role-toggle-btn + .role-toggle-btn::before {
+    display: none;
+}
+
+.role-toggle-box.compact .role-icon {
+    font-size: 13px;
+    width: 16px;
+    height: 16px;
+}
+
+.role-toggle-box.compact .role-label { font-size: 12px; }
+.role-toggle-box.compact .role-check { font-size: 12px; width: 14px; }
+
+.role-toggle-box.compact .role-toggle-btn.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    box-shadow: 0 2px 10px rgba(99,102,241,.28);
+}
+
+.role-toggle-box.compact .role-toggle-btn.active .role-label,
+.role-toggle-box.compact .role-toggle-btn.active .role-icon,
+.role-toggle-box.compact .role-toggle-btn.active .role-check {
+    color: #fff;
+}
+
+/* =============================================
+   전분시간 배지 스위칭 (PC/모바일 위치 제어)
+   ============================================= */
+@media (min-width: 769px) {
+    .mobile-inline-badge {
+        display: none !important;
+    }
+    .detail-tab-bar .precision-table-badge {
+        display: inline-flex !important;
+    }
+    .detail-tab-bar .role-toggle-box {
+        margin-top: 0;
+        flex: 1 1 auto;
+        min-width: 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-inline-badge {
+        display: inline-flex !important;
+    }
+    .detail-tab-bar .precision-table-badge {
+        display: none !important;
+    }
+}
+
+/* =============================================
+   간편보기 - PC 뷰 포트 그리드 시스템 (삭제 복구 및 최적화)
+   ============================================= */
+.simple-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 18px;
+    align-items: start;
+}
+
+.simple-grid-left {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+}
+
+.simple-cards-full {
+    margin-top: 0;
+}
+
+.simple-grid-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 0;
+}
+
+@media (max-width: 1180px) {
+    .simple-grid-layout {
+        grid-template-columns: 1fr 250px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .simple-grid-layout {
+        grid-template-columns: 1fr;
+    }
+    .simple-grid-right {
+        display: none; /* 태블릿 및 모바일에서 우측 사이드 영역 제거 */
+    }
+    .simple-cards-full {
+        margin-top: 14px;
+    }
+}
+
+
+/* =============================================
+   PC 화면 - 상세/구간별 딜지분 제목과 전분시간 완벽한 우측 끝 정렬
+   ============================================= */
+
+/* 상세 딜지분 제목 헤더 (PC) */
+.precision-table-head {
+    display: flex !important;
+    flex-direction: row !important; /* 가로 한 줄 정렬 */
+    justify-content: space-between !important; /* 좌측 끝과 우측 끝 배치 */
+    align-items: center !important; /* 세로 가운데 정렬 */
+    width: 100% !important;
+    margin-bottom: 14px !important;
+}
+
+/* 구간별 딜지분 제목 헤더 (PC) */
+.line-cut-section-head {
+    display: flex !important;
+    flex-direction: row !important; /* 가로 한 줄 정렬 */
+    justify-content: space-between !important; /* 좌측 끝과 우측 끝 배치 */
+    align-items: center !important; /* 세로 가운데 정렬 */
+    width: 100% !important;
+    margin-bottom: 18px !important;
+}
+
+/* 제목이 가로 공간을 다 차지해서 배지를 밀어내지 않도록 한정 */
+.precision-table-title,
+.line-cut-section-title {
+    margin-bottom: 0 !important;
+    flex: 0 1 auto !important;
+}
+
+/* 배지가 찌그러지지 않고 크기를 유지하며 우측 끝에 안착 */
+.precision-table-badge {
+    flex-shrink: 0 !important;
+}
+
+
+/* =============================================
+   서폿 컷 안내 툴팁 - 최초 원본 스타일
+   ============================================= */
+.role-info-tip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+.role-info-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(52,211,153,.18);
+    border: 1px solid rgba(52,211,153,.45);
+    color: #34d399;
+    font-size: 10px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* 모바일 대응 */
+.role-toggle-box.compact .role-info-tip {
+    margin-left: 3px !important;
+}
+
+.role-toggle-box.compact .role-info-icon {
+    width: 13px !important;
+    height: 13px !important;
+    font-size: 8px !important;
+    line-height: 11px !important;
+}
+
+.role-toggle-btn.active .role-info-icon {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    color: #fff !important;
+}
+
+
+/* =============================================
+   지워졌던 서폿 툴팁 말풍선 본체 CSS 복구 (필수 추가)
+   ============================================= */
+
+/* 1. 말풍선 팝업 상자 본체 */
+.role-shared-tooltip {
+    position: fixed !important;
+    width: 300px !important;
+    max-width: min(300px, 88vw) !important;
+    padding: 16px 18px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(180deg, #16324a 0%, #0f2436 100%) !important;
+    border: 1px solid rgba(52, 211, 153, 0.4) !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(52, 211, 153, 0.08) !important;
+    color: #d7f5e8 !important;
+    font-size: 12px !important;
+    line-height: 1.65 !important;
+    text-align: left !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(4px) !important;
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease !important;
+    z-index: 999999 !important; /* 다른 어떤 요소보다 위에 보이도록 설정 */
+    pointer-events: none !important;
+}
+
+/* 2. 툴팁 활성화 상태 */
+.role-shared-tooltip.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+/* 3. 말풍선 내부 텍스트 디자인 복구 */
+.role-shared-tooltip .rt-title {
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+    margin-bottom: 10px !important;
+}
+
+.role-shared-tooltip .rt-line {
+    margin-bottom: 6px !important;
+    color: #c9e8dc !important;
+}
+
+.role-shared-tooltip strong {
+    color: #eafff5 !important;
+    font-weight: 800 !important;
+}
+
+.role-shared-tooltip .rt-orange { color: #f7ca54 !important; }
+.role-shared-tooltip .rt-purple { color: #c4b5fd !important; }
+.role-shared-tooltip .rt-green { color: #34d399 !important; }
+
+.role-shared-tooltip .rt-divider {
+    height: 1px !important;
+    background: rgba(52, 211, 153, 0.2) !important;
+    margin: 10px 0 !important;
+}
+
+.role-shared-tooltip .rt-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-bottom: 6px !important;
+}
+
+.role-shared-tooltip .rt-tag {
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    height: 20px !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+    font-size: 10.5px !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+}
+
+.role-shared-tooltip .rt-tag-orange { background: rgba(247, 202, 84, 0.18) !important; color: #f7ca54 !important; }
+.role-shared-tooltip .rt-tag-blue { background: rgba(59, 130, 246, 0.18) !important; color: #93c5fd !important; }
+.role-shared-tooltip .rt-tag-purple { background: rgba(167, 139, 250, 0.2) !important; color: #c4b5fd !important; }
+
+.role-shared-tooltip .rt-note {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    border-top: 1px dashed rgba(52, 211, 153, 0.2) !important;
+    font-size: 10.5px !important;
+    color: #7f9c93 !important;
+    line-height: 1.6 !important;
+}
+
+/* =============================================
+   레이드별 인원수 배지 테마컬러 커스텀 (벨가르딘 묻힘 버그 해결)
+   ============================================= */
+
+/* [기본 스타일] */
+.p-hero-member-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 9px;
+    margin-left: 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+/* 1. 세르카 (4인) - 파란색 테마 배지 */
+.hero-serka .p-hero-member-badge {
+    background: rgba(56, 189, 248, 0.12) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    color: #7dd3fc !important;
+}
+
+/* 2. 지평의 성당 (4인) - 보라색 테마 배지 */
+.hero-cathedral .p-hero-member-badge {
+    background: rgba(167, 139, 250, 0.12) !important;
+    border: 1px solid rgba(167, 139, 250, 0.3) !important;
+    color: #c4b5fd !important;
+}
+
+/* 3. 벨가르딘 (8인) - 빨간색 테마 배지 (묻힘 방지) */
+.hero-belgardin .p-hero-member-badge {
+    background: rgba(248, 113, 113, 0.12) !important; /* 확실한 붉은 톤배경 */
+    border: 1px solid rgba(248, 113, 113, 0.3) !important; /* 확실한 붉은 테두리 */
+    color: #fca5a5 !important; /* 화사한 라이트 로즈 컬러 글자 */
+    box-shadow: 0 0 10px rgba(248, 113, 113, 0.08) !important; /* 미세한 광원 효과 */
+}
+
+/* [모바일 기기 최적화 압축] */
+@media (max-width: 768px) {
+    .p-hero-member-badge {
+        height: 19px;
+        padding: 0 7px;
+        font-size: 10px;
+        margin-left: 6px;
+    }
+}
+
+
+/* =============================================
+   가디언 토벌 인원수 배지 전용 커스텀 스타일 (완벽한 주황빛 매칭)
+   ============================================= */
+
+/* 4. 가디언 토벌 (4인) - 가디언 고유의 주황빛/오렌지 테마 배지 */
+.hero-guardian .p-hero-member-badge {
+    background: rgba(251, 146, 60, 0.12) !important; /* 가디언 시그니처 따뜻한 주황 배경 */
+    border: 1px solid rgba(251, 146, 60, 0.3) !important; /* 주황색 테두리 선 */
+    color: #fdba74 !important; /* 부드럽고 가독성 좋은 오렌지/골드 글자 */
+    box-shadow: 0 0 10px rgba(251, 146, 60, 0.08) !important; /* 은은한 주황빛 글로우 */
+}
+
+/* =============================================
+   PC/모바일 공통 - 레벨 버튼(7칸) 가로폭 100% 강제 확장 (토글 버튼과 폭 일치)
+   ============================================= */
+
+/* 1. 레벨 탭 컨테이너가 부모 폭(100%)을 꽉 채우고 줄바꿈을 절대 하지 않도록 고정 */
+.simple-level-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* 절대 줄바꿈 없음 */
+    width: 100% !important; /* 부모 너비 100% 꽉 채움 */
+    gap: 8px !important; /* 버튼들 사이의 간격 균일화 */
+    box-sizing: border-box !important;
+    margin-bottom: 0 !important;
+}
+
+/* 2. 각 레벨 버튼(1710 ~ 1780)들이 공간을 정확히 7등분하여 꽉 채우도록 설정 */
+.simple-level-tabs .simple-level-tab {
+    flex: 1 1 0 !important; /* 남는 가로폭을 7개가 정확히 공평하게 나눠 가짐 */
+    min-width: 0 !important; /* 기존 고정 폭(88px) 간섭 강제 해제 */
+    max-width: none !important;
+    width: auto !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 3. 모바일 화면(768px 이하)에서도 7등분 비율이 깨지지 않도록 부가 여백 최적화 */
+@media (max-width: 768px) {
+    .simple-level-tabs {
+        gap: 5px !important; /* 모바일에서는 간격을 살짝 좁힘 */
+    }
+    .simple-level-tabs .simple-level-tab {
+        padding: 8px 2px !important; /* 글자가 잘리지 않게 내부 여백 압축 */
+    }
+    .simple-level-tab-main {
+        font-size: 11px !important; /* 숫자 크기 최적화 */
+    }
+    .simple-level-tab-sub {
+        font-size: 7px !important; /* 하단 텍스트 최적화 */
+        margin-top: 2px !important;
+    }
+}
+
+
+/* =============================================
+   간편보기 상태에서 유령 광고판 몸뚱아리 완벽 소멸 (빈 공터 원인 해결)
+   ============================================= */
+
+/* 간편보기(.simple-quick-mode) 상태에서는 우측 광고 상자가 절대 공간을 차지하지 못하도록 물리적으로 완전히 삭제 */
+.main.simple-quick-mode .simple-ad-slot,
+.main.simple-quick-mode .right-column .simple-ad-slot,
+.main.simple-quick-mode .right-column .side-card.simple-ad-slot {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+
+/* =============================================
+   우측 사이드바 3단 합체 통합 스티키 복원 (시계 + 계산기 + 광고)
+   ============================================= */
+
+/* 1. 우측 컬럼(.right-column) 자체에 다시 sticky를 부여하여 3단 카드를 한 통으로 묶어 내립니다. */
+body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
+    position: sticky !important;
+    top: 80px !important; /* 스크롤 내릴 때 고정될 상단 높이 */
+    align-self: start !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important; /* 카드와 카드 사이의 수려한 간격 */
+    width: 100% !important;
+    z-index: 50 !important;
+}
+
+
+/* =============================================
+   정밀계산용 수동 멀티플렉스 광고판 최종 가공 (최소 250px ~ 최대 720px 제한)
+   ============================================= */
+#precisionAdSlot,
+#precisionAdSlot.side-card {
+    background: transparent !important; /* 배경색 투명화 */
+    border: none !important; /* 사각형 선(표시선) 영구 삭제 */
+    box-shadow: none !important; /* 그림자 삭제 */
+    padding: 0 !important; /* 내부 여백 제거 */
+    
+    /* [안정화 장치] 최소 높이 보장막 및 최대 720px 철벽 차단 */
+    min-height: 250px !important; /* 로컬/대기 상태일 때 스크롤 급락 추락 방지 */
+    max-height: 720px !important; /* 구글 반응형 광고가 720px 이상으로 커지는 것 차단 */
+    overflow: hidden !important; /* 광고 콘텐츠가 720px 너머로 삐져나오는 것 원천 봉쇄 */
+    
+    width: 100% !important;
+    display: block !important;
+}
+
+/* 사용하지 않는 임시 주머니 태그 완전 격리 숨김 */
+#stickySidebarWrap {
+    display: none !important;
+}
+
+
+/* =============================================
+   하단 수평 멀티플렉스 전용 최종 가공 (가로 1200px / 높이 300px 제한)
+   ============================================= */
+#loaview-bottom-ad,
+.loaview-bottom-ad-wrap {
+    background: transparent !important; /* 배경 투명화 */
+    border: none !important; /* 사각형 표시선 영구 소멸 */
+    box-shadow: none !important; /* 그림자 삭제 */
+    padding: 0 !important; /* 여백 제거 */
+    
+    /* [마진 & 정렬] 이용 안내 밑에 이쁘게 붙고, 넓은 화면에서는 수평 가운데 정렬 */
+    margin: 20px auto 14px !important; 
+    
+    /* [대장님 지시 규격 완벽 반영] */
+    max-width: 1200px !important; /* 가로 길이 최대 1200px 제한 */
+    width: 100% !important; /* 반응형 화면에 따라 유연하게 축소 */
+    
+    min-height: 100px !important; /* 로딩 전 찌그러짐 방지 */
+    height: 180px !important; /* 세로 높이 무조건 150px로 조절 */
+    max-height: 180px !important; /* 세로 최대 150px 고정 벽 설치 */
+    overflow: hidden !important; /* 광고 격자가 150px 이상 늘어나 삐져나오는 것 완벽 차단 */
 }
