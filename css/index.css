@@ -6688,25 +6688,15 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
 }
 
 
-/* =============================================
-   하단 수평 멀티플렉스 전용 최종 가공 (가로 1200px / 높이 300px 제한)
-   ============================================= */
+
 #loaview-bottom-ad,
 .loaview-bottom-ad-wrap {
-    background: transparent !important; /* 배경 투명화 */
-    border: none !important; /* 사각형 표시선 영구 소멸 */
-    box-shadow: none !important; /* 그림자 삭제 */
-    padding: 0 !important; /* 여백 제거 */
-    
-    /* [마진 & 정렬] 이용 안내 밑에 이쁘게 붙고, 넓은 화면에서는 수평 가운데 정렬 */
-    margin: 20px auto 14px !important; 
-    
-    /* [대장님 지시 규격 완벽 반영] */
-    max-width: 1200px !important; /* 가로 길이 최대 1200px 제한 */
-    width: 100% !important; /* 반응형 화면에 따라 유연하게 축소 */
-    
-    min-height: 100px !important; /* 로딩 전 찌그러짐 방지 */
-    height: 180px !important; /* 세로 높이 무조건 150px로 조절 */
-    max-height: 180px !important; /* 세로 최대 150px 고정 벽 설치 */
-    overflow: hidden !important; /* 광고 격자가 150px 이상 늘어나 삐져나오는 것 완벽 차단 */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 20px auto 14px !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    min-height: 100px !important;
 }
