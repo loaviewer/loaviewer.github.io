@@ -6688,7 +6688,6 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
 }
 
 
-
 #loaview-bottom-ad,
 .loaview-bottom-ad-wrap {
     background: transparent !important;
@@ -6698,5 +6697,4 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
     margin: 20px auto 14px !important;
     max-width: 1200px !important;
     width: 100% !important;
-    min-height: 100px !important;
 }
