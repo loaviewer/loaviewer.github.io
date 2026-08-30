@@ -6666,6 +6666,22 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
     display: block !important;
 }
 
+
+/* 간편보기 광고판도 정밀계산과 동일하게 카드 껍데기 제거 */
+.right-column .simple-ad-slot,
+.simple-grid-right .simple-ad-slot {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    min-height: 250px !important;
+    max-height: 720px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+
 /* 사용하지 않는 임시 주머니 태그 완전 격리 숨김 */
 #stickySidebarWrap {
     display: none !important;
