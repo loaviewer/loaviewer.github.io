@@ -1853,7 +1853,15 @@ function bindRoleToggle() {
         btn.addEventListener("click", () => {
             if (btn.dataset.role === currentRoleMode) return;
             currentRoleMode = btn.dataset.role;
-            renderTabs();
+
+            // 역할 토글 버튼 자체의 active 상태만 갱신 (전체 재렌더 방지)
+            document.querySelectorAll(".role-toggle-btn").forEach(b => {
+                const isActive = b.dataset.role === currentRoleMode;
+                b.classList.toggle("active", isActive);
+                const check = b.querySelector(".role-check");
+                if (check) check.textContent = isActive ? "✓" : "○";
+            });
+
             renderTable();
         });
     });
