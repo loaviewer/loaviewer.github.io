@@ -1816,7 +1816,7 @@ const ROLE_TOOLTIP_HTML = `
     <div class="rt-row"><span class="rt-tag rt-tag-blue">서폿 1인분</span><span>딜러의 1인분보다 살짝 우위</span></div>
     <div class="rt-row"><span class="rt-tag rt-tag-purple">잔조컷</span><span>딜러의 잔혈보다 살짝 우위</span></div>
     <div class="rt-line" style="margin-top:10px;">서폿은 기믹 대응과 케어를 동시 수행하기 때문에 전체적으로 딜러보다 살짝 우위에 속합니다.</div>
-    <div class="rt-line">수많은 서폿분들의 전분을 확인한 결과, 트라이~딜찍 기준 <strong>5%~33%</strong>까지 딜러 피해량과 조력 피해량의 차이가 있었습니다.</div>
+    <div class="rt-line">수많은 서폿분들의 전분을 확인한 결과, 트라이~딜찍 기준 <strong>↑5%~50%</strong>까지 딜러 피해량과 조력 피해량의 차이가 있었습니다.</div>
     <div class="rt-line">이 데이터를 종합해 로아뷰에서 찾은 <strong class="rt-green">황금배율</strong>로 서폿 잔조컷을 만들었습니다.</div>
     <div class="rt-note">※ 이 계산법은 로아뷰에서 자체 제작한 방식으로, 절대적인 정답 수치는 아닙니다.</div>
 `;
