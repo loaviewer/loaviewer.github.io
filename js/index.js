@@ -2204,7 +2204,7 @@ function simpleHeroHtml() {
                 <div class="simple-hero-right">
                     <div class="simple-hero-stat">
                         <div class="simple-hero-stat-label">현재 선택</div>
-                        <div class="simple-hero-stat-value">${currentSimpleLevel}</div>
+                        <div class="simple-hero-stat-value" id="simpleHeroCurrentLevel">${currentSimpleLevel}</div>
                         <div class="simple-hero-stat-sub">골드 획득 우선 3개</div>
                     </div>
 
@@ -2384,8 +2384,8 @@ function simpleRaidHeroHtml() {
                 <div class="simple-hero-right">
                     <div class="simple-hero-stat">
                         <div class="simple-hero-stat-label">현재 선택</div>
-                        <div class="simple-hero-stat-value">${meta.label}</div>
-                        <div class="simple-hero-stat-sub">${meta.sub}</div>
+                      <div class="simple-hero-stat-value" id="simpleHeroCurrentRaid">${meta.label}</div>
+                      <div class="simple-hero-stat-sub" id="simpleHeroCurrentRaidSub">${meta.sub}</div>
                     </div>
 
                     <div class="simple-hero-stat">
@@ -2439,13 +2439,24 @@ function renderTabs() {
             </div><!-- // .simple-grid-layout 닫힘 -->
         `;
 
-     el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
+   
+el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
     btn.addEventListener("click", () => {
+        if (btn.dataset.simpleLevel === currentSimpleLevel) return;
         currentSimpleLevel = btn.dataset.simpleLevel;
-        renderTabs();
+
+        // 탭 active 상태만 갱신 (우측 광고/경매계산기 영역 재생성 방지)
+        el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(b => {
+            b.classList.toggle("active", b.dataset.simpleLevel === currentSimpleLevel);
+        });
+
+        const heroVal = document.getElementById("simpleHeroCurrentLevel");
+        if (heroVal) heroVal.textContent = currentSimpleLevel;
+
         renderTable();
     });
 });
+
 
         bindRoleToggle();
 
@@ -2482,13 +2493,26 @@ function renderTabs() {
             </div><!-- // .simple-grid-layout 닫힘 -->
         `;
 
-  el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
+
+el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
     btn.addEventListener("click", () => {
+        if (btn.dataset.simpleRaid === currentSimpleRaid) return;
         currentSimpleRaid = btn.dataset.simpleRaid;
-        renderTabs();
+
+        el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(b => {
+            b.classList.toggle("active", b.dataset.simpleRaid === currentSimpleRaid);
+        });
+
+        const meta = simpleRaidMeta[currentSimpleRaid];
+        const heroVal = document.getElementById("simpleHeroCurrentRaid");
+        const heroSub = document.getElementById("simpleHeroCurrentRaidSub");
+        if (heroVal && meta) heroVal.textContent = meta.label;
+        if (heroSub && meta) heroSub.textContent = meta.sub;
+
         renderTable();
     });
 });
+
 
         bindRoleToggle();
 
@@ -4843,7 +4867,6 @@ window.addEventListener("resize", hideSharedRoleTooltip);
    우측 사이드바 및 구글 광고 제어 엔진 (3대장)
    ============================================= */
 
-// 1. 간편보기 모드일 때 광고 및 레이아웃 제어
 function enableSimpleAdSlot() {
     const auctionCalc = getAuctionCalcEl();
     const gridRight = document.getElementById("simpleGridRight");
@@ -4851,25 +4874,24 @@ function enableSimpleAdSlot() {
 
     if (timeCard) timeCard.style.display = "none";
 
-    // INFO 카드가 존재한다면 화면에서 완전히 숨깁니다.
     const infoHintEl = document.getElementById("infoHint");
     const infoCard = infoHintEl ? infoHintEl.closest(".side-card") : null;
     if (infoCard) infoCard.style.display = "none";
 
-    // 정밀계산 전용 멀티플렉스 광고 감추기
     const precisionAd = document.getElementById("precisionAdSlot");
     if (precisionAd) precisionAd.style.display = "none";
 
     if (!auctionCalc || !gridRight) return;
 
-    gridRight.appendChild(auctionCalc);
+    // 경매 계산기가 이미 gridRight의 첫 번째 자식이 아니면 맨 앞으로 이동
+    if (gridRight.firstElementChild !== auctionCalc) {
+        gridRight.insertBefore(auctionCalc, gridRight.firstElementChild || null);
+    }
 
-    // 모바일/태블릿 등 우측 영역이 화면에서 숨겨져 있다면 애드센스 등록을 진행하지 않음
     if (window.getComputedStyle(gridRight).display === "none") {
         return;
     }
 
-    // 광고 슬롯 (중복 삽입 방지)
     if (!gridRight.querySelector(".simple-ad-slot")) {
         const adWrap = document.createElement("div");
         adWrap.className = "side-card simple-ad-slot";
@@ -4881,7 +4903,7 @@ function enableSimpleAdSlot() {
                  data-ad-slot="4495683701"></ins>
         `;
         gridRight.appendChild(adWrap);
-        
+
         try {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
         } catch (e) {
@@ -4889,6 +4911,17 @@ function enableSimpleAdSlot() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
