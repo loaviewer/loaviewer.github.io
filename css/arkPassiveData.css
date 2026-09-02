@@ -1,27 +1,19 @@
-/* ========================================
-   아크패시브 전용 CSS
-   (아크그리드 색상 팔레트/톤 재사용)
-   ======================================== */
 
 #arkPassiveApp {
     color: #cbd5e1;
-    padding: 6px 8px 40px 8px;
-    margin: 0 -22px;
+    padding: 6px 0px 0px 8px;
+  
     box-sizing: border-box;
     position: relative;
 }
 
-/* ========================================
-   아크패시브 전용 페이지 상단 라인 정리 (아크그리드와 동일)
-   ======================================== */
+
 body.standalone-dps-page #arkPassiveApp {
     margin-top: -6px;
     border-top: none;
 }
 
-/* ========================================
-   상단 히어로 (아크그리드 hero-arc-grid와 동일한 톤/구조로 통일)
-   ======================================== */
+
 .hero-arc-passive {
     position: relative;
     overflow: hidden;
