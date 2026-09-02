@@ -4035,7 +4035,7 @@ setMainContentWithAdPreservation(`
                 ${makeRoleToggleHtml()}
 
                 <div class="coming-soon"><h3>${boss} 준비중</h3><p>해당 보스의 가디언 토벌 데이터는 순차적으로 공개됩니다.</p></div>
-            `;
+            `);
      
         } else {
            
@@ -4121,13 +4121,15 @@ setMainContentWithAdPreservation(`
                                     ? "<th>조력지분</th><th>조력피해/억</th><th>조력 DPS</th>"
                                     : "<th>딜지분</th><th>피해/억</th><th>DPS</th>"}</tr>
                             </thead>
-                            <tbody>${tableRowsHtml}</tbody>
-                        </table>
-                    </div>
+                                                            <tbody>${tableRowsHtml}</tbody>
+                            </table>
+                        </div>
 
-                </div>
-            `;
-        }
+                    </div>
+                `);
+            }
+
+
 
         // 레벨 체크 이벤트
         document.querySelectorAll(".guardian-tier-chip[data-tier]").forEach(el => {
@@ -4338,8 +4340,8 @@ setMainContentWithAdPreservation(`
         </div>
 
 
-                ${buildSummaryAndDetailHtml(currentMenu, meta.gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, effectiveGetDamage, isSupport)}
-    `;
+              ${buildSummaryAndDetailHtml(currentMenu, meta.gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, effectiveGetDamage, isSupport)}
+    `);
 
 
 
