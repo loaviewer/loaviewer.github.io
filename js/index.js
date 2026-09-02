@@ -15,33 +15,39 @@ let currentSimpleRaid = "belgardin";
 let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
 let currentRoleMode = "dealer"; // "dealer" | "support"
 
-// ===== 수평 광고 노드 영구 보존용 헬퍼 함수 (파괴 및 새로고침 초기화 원천 차단) =====
-function setMainContentWithAdPreservation(htmlString) {
-    const adNode = document.getElementById("div-gpt-ad-1788303186629-0");
-    
-    // 광고 노드가 이미 존재하면 파괴되지 않게 메모리에 잠시 떼어놓음
-    if (adNode) {
-        adNode.parentNode.removeChild(adNode);
+
+
+// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
+// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
+// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
+function setMainContentWithAdPreservation(heroHtml, bodyHtml) {
+    const mainContent = document.getElementById("mainContent");
+    let heroSlot = document.getElementById("precisionHeroSlot");
+
+    if (!heroSlot) {
+        mainContent.innerHTML = `
+            <div id="precisionHeroSlot"></div>
+            <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
+                <div id="ad-container-placeholder"></div>
+            </div>
+            <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
+            <div id="precisionBodySlot"></div>
+        `;
+
+        const placeholder = document.getElementById("ad-container-placeholder");
+        const adDiv = document.createElement("div");
+        adDiv.id = "div-gpt-ad-1788303186629-0";
+        adDiv.style.cssText = "min-width:320px;min-height:90px;";
+        placeholder.appendChild(adDiv);
+        try {
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
+        } catch(e) {}
+
+        heroSlot = document.getElementById("precisionHeroSlot");
     }
-    
-    document.getElementById("mainContent").innerHTML = htmlString;
-    
-    // 새 화면이 그려진 후, 광고 홀더(ad-container-placeholder)를 찾아 보존된 광고를 쏙 끼워넣음
-    const placeholder = document.getElementById("ad-container-placeholder");
-    if (placeholder) {
-        if (adNode) {
-            placeholder.appendChild(adNode);
-        } else {
-            // 최초 1회만 광고 노드를 정의하고 생성 (이후엔 계속 재활용 및 60초 타이머 영구 보존)
-            const adDiv = document.createElement("div");
-            adDiv.id = "div-gpt-ad-1788303186629-0";
-            adDiv.style.cssText = "min-width:320px;min-height:90px;";
-            placeholder.appendChild(adDiv);
-            try {
-                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
-            } catch(e) {}
-        }
-    }
+
+    heroSlot.innerHTML = heroHtml;
+    document.getElementById("precisionBodySlot").innerHTML = bodyHtml;
 }
 
 
@@ -3999,8 +4005,9 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
 
 
 
-    setClearTimeDisabled(false);
+        setClearTimeDisabled(false);
     disableSimpleAdSlot();
+    enablePrecisionAdSlot();
 
     // === 가디언 토벌 ===
     if (currentMenu === "guardian") {
@@ -4019,23 +4026,17 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
            
 
 
-setMainContentWithAdPreservation(`
-    ${makeGuardianHero(tier, boss, bossInfo)}
-
-    <!-- 수평 광고 영구 보존용 홀더 -->
-    <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
-      <div id="ad-container-placeholder"></div>
-    </div>
-    <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
-
+setMainContentWithAdPreservation(
+    makeGuardianHero(tier, boss, bossInfo),
+    `
     ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
 
+    <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
+    ${makeRoleToggleHtml()}
 
-                <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
-                ${makeRoleToggleHtml()}
-
-                <div class="coming-soon"><h3>${boss} 준비중</h3><p>해당 보스의 가디언 토벌 데이터는 순차적으로 공개됩니다.</p></div>
-            `);
+    <div class="coming-soon"><h3>${boss} 준비중</h3><p>해당 보스의 가디언 토벌 데이터는 순차적으로 공개됩니다.</p></div>
+    `
+);
      
         } else {
            
@@ -4089,46 +4090,35 @@ setMainContentWithAdPreservation(`
 
                                               
 
-                   setMainContentWithAdPreservation(`
-    ${makeGuardianHero(tier, boss, bossInfo)}
-
-    <!-- 수평 광고 영구 보존용 홀더 -->
-    <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
-      <div id="ad-container-placeholder"></div>
-    </div>
-    <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
-
+                   setMainContentWithAdPreservation(
+    makeGuardianHero(tier, boss, bossInfo),
+    `
     ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
-
 
     <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
 
+    ${makeRoleToggleHtml()}
+    ${makePrecisionSummary(row30, row33, row40, effectiveGetDmg, totalSec, "guardian", isSupportGuardian)}
 
-
-                ${makeRoleToggleHtml()}
-                ${makePrecisionSummary(row30, row33, row40, effectiveGetDmg, totalSec, "guardian", isSupportGuardian)}
-
-
-                <div class="precision-table-panel">
-                    <div class="precision-table-head">
-                        <div class="precision-table-title">${boss} (${tier}) 상세 딜지분</div>
-                        <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
-                    </div>
-                                       <div class="table-wrap">
-                        <table id="dataTable">
-                            <thead>
-                                <tr>${isSupportGuardian
-                                    ? "<th>조력지분</th><th>조력피해/억</th><th>조력 DPS</th>"
-                                    : "<th>딜지분</th><th>피해/억</th><th>DPS</th>"}</tr>
-                            </thead>
-                                                            <tbody>${tableRowsHtml}</tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                `);
+    <div class="precision-table-panel">
+        <div class="precision-table-head">
+            <div class="precision-table-title">${boss} (${tier}) 상세 딜지분</div>
+            <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
+        </div>
+        <div class="table-wrap">
+            <table id="dataTable">
+                <thead>
+                    <tr>${isSupportGuardian
+                        ? "<th>조력지분</th><th>조력피해/억</th><th>조력 DPS</th>"
+                        : "<th>딜지분</th><th>피해/억</th><th>DPS</th>"}</tr>
+                </thead>
+                <tbody>${tableRowsHtml}</tbody>
+            </table>
+        </div>
+    </div>
+    `
+);
             }
-
 
 
         // 레벨 체크 이벤트
@@ -4263,17 +4253,11 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
   
 
 
-
-setMainContentWithAdPreservation(`
-    ${makeRaidPrecisionHero(currentMenu, meta, currentDiff)}
-
-    <!-- 수평 광고 영구 보존용 홀더 -->
-    <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
-      <div id="ad-container-placeholder"></div>
-    </div>
-    <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
-
+setMainContentWithAdPreservation(
+    makeRaidPrecisionHero(currentMenu, meta, currentDiff),
+    `
             <div class="precision-layout-split">
+
 
 
    
@@ -4413,23 +4397,15 @@ document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
 /* =============================================
    CSV 로드
    ============================================= */
-
 async function loadCSV() {
     const statusEl = document.getElementById("status");
     const CACHE_KEY = "loa_dps_csv_cache_v1";
-    const CACHE_VERSION_KEY = "loa_dps_csv_cache_version";
-
-    // ⚠️ 구글시트 데이터를 수정했을 때만 이 숫자를 +1 올려주세요.
-    // (예: 1 → 2) 그러면 모든 방문자의 캐시가 자동으로 무효화되어 최신 데이터로 갱신됩니다.
-    const CACHE_VERSION = 1;
 
     try {
         const cachedCsv = localStorage.getItem(CACHE_KEY);
-        const cachedVersion = Number(localStorage.getItem(CACHE_VERSION_KEY) || 0);
-        const isCacheValid = cachedCsv && cachedVersion === CACHE_VERSION;
-
         if (cachedCsv) {
             const cachedLines = cachedCsv.split(/\r?\n/);
+
             clearAllData();
             parseCathedral(cachedLines);
             parseSerka(cachedLines);
@@ -4444,19 +4420,11 @@ async function loadCSV() {
             }
         }
 
-        // 캐시 버전이 최신이면 여기서 종료 — 구글시트 요청 자체를 안 보냄
-        if (isCacheValid) {
-            if (statusEl) statusEl.style.display = "none";
-            return;
-        }
-
-        // 캐시가 없거나(첫 방문) 버전이 다를 때만(=수동으로 올렸을 때만) 실제 fetch
         const resp = await fetch(CSV_URL);
         const csvText = await resp.text();
         const lines = csvText.split(/\r?\n/);
 
         localStorage.setItem(CACHE_KEY, csvText);
-        localStorage.setItem(CACHE_VERSION_KEY, String(CACHE_VERSION));
 
         clearAllData();
         parseCathedral(lines);
@@ -4476,15 +4444,17 @@ async function loadCSV() {
                 setTimeout(() => { statusEl.style.display = "none"; }, 2000);
             }
         } else {
-            if (statusEl) statusEl.style.display = "none";
+            if (statusEl) {
+                statusEl.style.display = "none";
+            }
         }
     } catch (err) {
         console.error(err);
-        if (statusEl) statusEl.style.display = "none";
+        if (statusEl) {
+            statusEl.style.display = "none";
+        }
     }
 }
-
-
 
 /* =============================================
    경매 계산기
