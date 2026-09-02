@@ -4413,15 +4413,23 @@ document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
 /* =============================================
    CSV 로드
    ============================================= */
+
 async function loadCSV() {
     const statusEl = document.getElementById("status");
     const CACHE_KEY = "loa_dps_csv_cache_v1";
+    const CACHE_VERSION_KEY = "loa_dps_csv_cache_version";
+
+    // ⚠️ 구글시트 데이터를 수정했을 때만 이 숫자를 +1 올려주세요.
+    // (예: 1 → 2) 그러면 모든 방문자의 캐시가 자동으로 무효화되어 최신 데이터로 갱신됩니다.
+    const CACHE_VERSION = 1;
 
     try {
         const cachedCsv = localStorage.getItem(CACHE_KEY);
+        const cachedVersion = Number(localStorage.getItem(CACHE_VERSION_KEY) || 0);
+        const isCacheValid = cachedCsv && cachedVersion === CACHE_VERSION;
+
         if (cachedCsv) {
             const cachedLines = cachedCsv.split(/\r?\n/);
-
             clearAllData();
             parseCathedral(cachedLines);
             parseSerka(cachedLines);
@@ -4436,11 +4444,19 @@ async function loadCSV() {
             }
         }
 
+        // 캐시 버전이 최신이면 여기서 종료 — 구글시트 요청 자체를 안 보냄
+        if (isCacheValid) {
+            if (statusEl) statusEl.style.display = "none";
+            return;
+        }
+
+        // 캐시가 없거나(첫 방문) 버전이 다를 때만(=수동으로 올렸을 때만) 실제 fetch
         const resp = await fetch(CSV_URL);
         const csvText = await resp.text();
         const lines = csvText.split(/\r?\n/);
 
         localStorage.setItem(CACHE_KEY, csvText);
+        localStorage.setItem(CACHE_VERSION_KEY, String(CACHE_VERSION));
 
         clearAllData();
         parseCathedral(lines);
@@ -4460,17 +4476,15 @@ async function loadCSV() {
                 setTimeout(() => { statusEl.style.display = "none"; }, 2000);
             }
         } else {
-            if (statusEl) {
-                statusEl.style.display = "none";
-            }
+            if (statusEl) statusEl.style.display = "none";
         }
     } catch (err) {
         console.error(err);
-        if (statusEl) {
-            statusEl.style.display = "none";
-        }
+        if (statusEl) statusEl.style.display = "none";
     }
 }
+
+
 
 /* =============================================
    경매 계산기
