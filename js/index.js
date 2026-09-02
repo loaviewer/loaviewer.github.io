@@ -4261,11 +4261,6 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
             : '<tr><td colspan="3">데이터 없음</td></tr>';
     }
   
-document.getElementById("mainContent").innerHTML = `
-    ${makeRaidPrecisionHero(currentMenu, meta, currentDiff)}
-
-
-
 
 
 
