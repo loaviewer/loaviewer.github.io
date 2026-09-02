@@ -995,17 +995,39 @@ body {
     width: 100%;
 }
 
+
+
 .content-grid {
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: minmax(0, 1fr) 280px;
     gap: 18px;
     align-items: start;
+    width: 100% !important;
 }
 
 .main-col {
     display: grid;
     gap: 18px;
+    min-width: 0 !important;
+    overflow: hidden !important; /* ★ 중요: 왼쪽 영역이 넘쳐도 절대 우측 영역을 침범하거나 찌그러트리지 못하게 차단! */
 }
+
+.right-column {
+    width: 280px !important;
+    flex-shrink: 0 !important; /* ★ 중요: 우측 영역이 안쪽으로 찌그러지는 현상(Squeeze)을 물리적으로 원천 차단! */
+}
+
+/* 태블릿 대응 너비 피팅 */
+@media (max-width: 1180px) {
+    .content-grid {
+        grid-template-columns: minmax(0, 1fr) 250px !important;
+    }
+    .right-column {
+        width: 250px !important;
+    }
+}
+
+
 
 .right-column {
     display: flex;
@@ -1253,14 +1275,7 @@ body {
 }
 
 .simple-level-tab::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 10px;
-    right: 10px;
-    height: 2px;
-    border-radius: 999px;
-    background: rgba(120, 140, 180, .22);
+    display: none !important;
 }
 
 .simple-level-tab:hover {
