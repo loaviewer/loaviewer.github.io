@@ -5,8 +5,8 @@
 /* 전체 컨테이너 */
 #arcGridApp {
     color: #cbd5e1;
-    padding: 6px 8px 40px 8px;
-    margin: 0 -22px;
+    padding: 6px 0px 0px 8px;
+   
     box-sizing: border-box;
     position: relative;
 }
