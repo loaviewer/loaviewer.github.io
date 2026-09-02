@@ -1,5006 +1,6717 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Do+Hyeon&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0b0d12;
+    color: #e5e7eb;
+    font-family: 'Inter', 'Malgun Gothic', sans-serif;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+
+
+.app {
+    width: min(1480px, calc(100% - 20px));
+    margin: 20px auto;
+    border-radius: 24px;
+    border: 1px solid #1a1d2e;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+}
+
+
+.sidebar {
+    border-radius: 24px 0 0 24px;
+}
+
+.main {
+    border-radius: 0 24px 24px 0;
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+}
+
 /* =============================================
-   전역 변수 & 상수
+   사이드바
    ============================================= */
-const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsijdMziekQaZ-wBTWrobncY/export?format=csv&gid=0";
+.sidebar {
+    background: #0f1019;
+    border-right: 1px solid #1a1d2e;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-radius: 24px 0 0 24px;
+}
 
-let currentMenu = "simple";
-let currentCombo = "hard_gate1";
-let currentGatoBoss = "루멘칼리고";
-let currentGato1750Boss = "루멘칼리고";
-let currentGato1770Boss = "루멘칼리고";
-let currentSimpleLevel = "1770";
-let currentGuardianTier = "1770";
-let acMembers = 4;
-let currentSimpleRaid = "belgardin";
-let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
-let currentRoleMode = "dealer"; // "dealer" | "support"
+.brand {
+    margin-bottom: 8px;
+}
+
+.brand-label,
+.mini-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #4a7cff;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.brand-title,
+.hero {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 8px;
+}
+
+.brand-desc,
+.muted {
+    font-size: 12px;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+/* =============================================
+   상단 스위치
+   ============================================= */
+.switch-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #1a1c24;
+    border: 1px solid #252836;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 2px;
+    margin-bottom: 20px;
+}
+
+.switch-wrap a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    text-decoration: none;
+    text-align: center;
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 900;
+    color: #5a6178;
+    transition: .2s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.switch-wrap a:not(.active):hover {
+    color: #c6d4e8;
+    background: rgba(255,255,255,0.06);
+}
+
+.switch-wrap a.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(99,102,241,.30);
+    animation: switchActiveAura 5s ease-in-out infinite;
+}
 
 
 
+.switch-wrap a.active::before {
+    content: "";
+    position: absolute;
+    inset: -45%;
+    border-radius: 999px;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.22) 0%,
+            rgba(255, 255, 255, 0.10) 18%,
+            rgba(75, 211, 255, 0.10) 34%,
+            transparent 62%);
+    opacity: 0;
+    transform: scale(0.55);
+    animation: switchGlowPulse 5s ease-in-out infinite;
+    z-index: -1;
+}
 
-// 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
-const HG_BOSSES = [
-  "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스",
-  "드렉탈라스","소나벨","베스칼","쿤겔라니움","하누마탄",
-  "데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
-];
-const HG_ANCHOR = new Date(2026, 6, 29, 10, 0, 0);
-const HG_ANCHOR_IDX = 13;
-function getHgWeekBoss() {
-  const now = new Date();
-  const diff = now.getTime() - HG_ANCHOR.getTime();
-  const weeks = Math.floor(diff / (7 * 24 * 60 * 60 * 1000));
-  const idx = ((HG_ANCHOR_IDX + weeks) % HG_BOSSES.length + HG_BOSSES.length) % HG_BOSSES.length;
-  return HG_BOSSES[idx];
+.switch-wrap a.active::after {
+    content: "";
+    position: absolute;
+    top: -35%;
+    left: -130%;
+    width: 72%;
+    height: 190%;
+    border-radius: 999px;
+    pointer-events: none;
+    background: linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 25%,
+        rgba(255, 255, 255, 0.22) 48%,
+        rgba(255, 255, 255, 0.06) 68%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(18deg);
+    opacity: 0;
+    animation: switchGlassSweep 5s linear infinite;
+    z-index: 1;
 }
 
 
 
 
 
-function normalizePathname(pathname) {
-  let p = pathname;
-
-  // /index.html -> /
-  if (p === "/index.html" || p === "/index") return "/";
-
-  // /abc/index.html -> /abc
-  p = p.replace(/\/index\.html$/, "");
-  p = p.replace(/\/index$/, "");
-
-  // .html 제거
-  p = p.replace(/\.html$/, "");
-
-  // 끝 슬래시 제거 (루트 / 는 제외)
-  if (p.length > 1 && p.endsWith("/")) {
-    p = p.slice(0, -1);
-  }
-
-  return p;
-}
-
-const currentPathname = normalizePathname(window.location.pathname);
-
-const isPath = (target) => currentPathname === target;
-
-const isStandaloneLevelPage = isPath("/dps/level");
-const isStandaloneRaidPage = isPath("/dps/raid");
-const isStandaloneSerkaPage = isPath("/dps/serka");
-const isStandaloneCathedralPage = isPath("/dps/cathedral");
-const isStandaloneGuardianPage = isPath("/dps/guardian");
-const isStandaloneBelgardinPage = isPath("/dps/belgardin");
-
-
-
-
-/* =============================================
-   URL / canonical 갱신
-   ============================================= */
-
-function updateCanonicalAndUrl(menu) {
-    if (
-        isStandaloneLevelPage ||
-        isStandaloneRaidPage ||
-        isStandaloneSerkaPage ||
-        isStandaloneCathedralPage ||
-        isStandaloneGuardianPage ||
-        isStandaloneBelgardinPage
-    ) return;
-
-    const canonicalTag = document.querySelector('link[rel="canonical"]');
-    const baseUrl = "https://loaviewer.github.io/";
-    const newUrl = (menu === "simple" || !menu)
-        ? baseUrl
-        : `${baseUrl}?menu=${menu}`;
-
-    if (canonicalTag) {
-        canonicalTag.setAttribute("href", newUrl);
+@keyframes switchGlowPulse {
+    0%, 80%, 100% {
+        opacity: 0;
+        transform: scale(0.55);
     }
-
-    const currentPath = window.location.pathname + window.location.search;
-    const targetPath = (menu === "simple" || !menu) ? "/" : `/?menu=${menu}`;
-
-    if (currentPath !== targetPath) {
-        history.pushState({}, "", targetPath);
+    86% {
+        opacity: 0.28;
+        transform: scale(1.02);
+    }
+    92% {
+        opacity: 0.10;
+        transform: scale(1.25);
     }
 }
 
-
-/* =============================================
-   파싱 데이터 저장소
-   ============================================= */
-const parsedData = {
-    serka: { normal: [], hard: [], nightmare: [] },
-    cathedral: { normal: [], hard: [], nightmare: [] },
-    belgardin: { normal: [], hard: [], nightmare: [] },
-    gato1730: {},
-    gato1750: {},
-    gato1770: {}
-};
-
-/* =============================================
-   레이드 메타 정보
-   ============================================= */
-const raidMeta = {
-    serka: {
-        normal_gate1: {
-            diffKey: "normal", gateKey: "gate1",
-            title: "노말 (1710)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "속성 없음", cls: "attr-none" }
-        },
-        normal_gate2: {
-            diffKey: "normal", gateKey: "gate2",
-            title: "노말 (1710)", gateName: "2관",
-            type: { text: "고대", cls: "type-ancient" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        },
-        hard_gate1: {
-            diffKey: "hard", gateKey: "gate1",
-            title: "하드 (1730)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "속성 없음", cls: "attr-none" }
-        },
-        hard_gate2: {
-            diffKey: "hard", gateKey: "gate2",
-            title: "하드 (1730)", gateName: "2관",
-            type: { text: "고대", cls: "type-ancient" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        },
-        nightmare_gate1: {
-            diffKey: "nightmare", gateKey: "gate1",
-            title: "나메 (1740)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "속성 없음", cls: "attr-none" }
-        },
-        nightmare_gate2: {
-            diffKey: "nightmare", gateKey: "gate2",
-            title: "나메 (1740)", gateName: "2관",
-            type: { text: "고대", cls: "type-ancient" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        }
-    },
-    cathedral: {
-        normal_gate1: {
-            diffKey: "normal", gateKey: "gate1",
-            title: "1단계 (1700)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "암속성 취약", cls: "attr-dark" }
-        },
-        normal_gate2: {
-            diffKey: "normal", gateKey: "gate2",
-            title: "1단계 (1700)", gateName: "2관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "암속성 취약", cls: "attr-dark" }
-        },
-        hard_gate1: {
-            diffKey: "hard", gateKey: "gate1",
-            title: "2단계 (1720)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "암속성 취약", cls: "attr-dark" }
-        },
-        hard_gate2: {
-            diffKey: "hard", gateKey: "gate2",
-            title: "2단계 (1720)", gateName: "2관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "암속성 취약", cls: "attr-dark" }
-        },
-        nightmare_gate1: {
-            diffKey: "nightmare", gateKey: "gate1",
-            title: "3단계 (1750)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "암속성 취약", cls: "attr-dark" }
-        },
-        nightmare_gate2: {
-            diffKey: "nightmare", gateKey: "gate2",
-            title: "3단계 (1750)", gateName: "2관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "암속성 취약", cls: "attr-dark" }
-        }
-    },
-    belgardin: {
-        normal_gate1: {
-            diffKey: "normal", gateKey: "gate1",
-            title: "노말 (1750)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        },
-        normal_gate2: {
-            diffKey: "normal", gateKey: "gate2",
-            title: "노말 (1750)", gateName: "2관",
-            type: { text: "고대", cls: "type-ancient" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        },
-        hard_gate1: {
-            diffKey: "hard", gateKey: "gate1",
-            title: "하드 (1770)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        },
-        hard_gate2: {
-            diffKey: "hard", gateKey: "gate2",
-            title: "하드 (1770)", gateName: "2관",
-            type: { text: "고대", cls: "type-ancient" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        },
-        nightmare_gate1: {
-            diffKey: "nightmare", gateKey: "gate1",
-            title: "나메 (1780)", gateName: "1관",
-            type: { text: "인간", cls: "type-human" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        },
-        nightmare_gate2: {
-            diffKey: "nightmare", gateKey: "gate2",
-            title: "나메 (1780)", gateName: "2관",
-            type: { text: "고대", cls: "type-ancient" },
-            attr: { text: "성속성 취약", cls: "attr-holy" }
-        }
+@keyframes switchGlassSweep {
+    0%, 80% {
+        left: -130%;
+        opacity: 0;
     }
-};
-
-/* =============================================
-   간편보기 기본 데이터
-   ============================================= */
-const simpleData = {
-    1710: {
-        sectionTitle: "1710 레이드",
-        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
-        cards: [
-            {
-                theme: "b-green", title: "종막 노말", node: "1710",
-                rows: [
-                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1190 - 1590" },
-                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1050 - 1400" }
-                ],
-                gold: "32,000", bindGold: "16,000", total: "48,000"
-            },
-            {
-                theme: "b-green", title: "세르카 노말", node: "1710",
-                rows: [
-                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "1100 - 1480" },
-                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "1430 - 1900" }
-                ],
-                gold: "32,000", bindGold: "16,000", total: "48,000"
-            },
-            {
-                theme: "b-green", title: "4막 노말", node: "1700",
-                rows: [
-                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "740 - 990" },
-                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "950 - 1270" }
-                ],
-                gold: "27,000", bindGold: "13,500", total: "40,500"
-            },
-            {
-                theme: "b-gray", title: "성당 1단계", node: "1700",
-                rows: [
-                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "994 - 1326" },
-                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "937 - 1250" }
-                ],
-                gold: "", bindGold: "30,000", total: ""
-            }
-        ]
-    },
-
-    1720: {
-        sectionTitle: "1720 레이드",
-        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
-        cards: [
-            {
-                theme: "b-gold", title: "4막 하드", node: "1720",
-                rows: [
-                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
-                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
-                ],
-                gold: "38,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gold", title: "성당 2단계", node: "1720",
-                rows: [
-                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2161 - 2882" },
-                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2089 - 2786" }
-                ],
-                gold: "", bindGold: "40,000", total: ""
-            },
-            {
-                theme: "b-green", title: "종막 노말", node: "1710",
-                rows: [
-                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1190 - 1590" },
-                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "1050 - 1400" }
-                ],
-                gold: "32,000", bindGold: "16,000", total: "48,000"
-            },
-            {
-                theme: "b-gray", title: "세르카 노말", node: "1710",
-                rows: [
-                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "1100 - 1480" },
-                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "1430 - 1900" }
-                ],
-                gold: "32,000", bindGold: "16,000", total: "48,000"
-            }
-        ]
-    },
-
-    1730: {
-        sectionTitle: "1730 레이드",
-        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
-        cards: [
-            {
-                theme: "b-gold", title: "세르카 하드", node: "1730",
-                rows: [
-                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "2300 - 3070" },
-                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "2980 - 3970" }
-                ],
-                gold: "44,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gold", title: "종막 하드", node: "1730",
-                rows: [
-                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
-                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
-                ],
-                gold: "48,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gold", title: "4막 하드", node: "1720",
-                rows: [
-                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
-                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
-                ],
-                gold: "38,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gray", title: "성당 2단계", node: "1720",
-                rows: [
-                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2161 - 2882" },
-                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2089 - 2786" }
-                ],
-                gold: "", bindGold: "40,000", total: ""
-            }
-        ]
-    },
-
-    1740: {
-        sectionTitle: "1740 레이드",
-        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
-        cards: [
-            {
-                theme: "b-purple", title: "세르카 나메", node: "1740",
-                rows: [
-                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "3580 - 4770" },
-                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4620 - 6160" }
-                ],
-                gold: "54,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gold", title: "종막 하드", node: "1730",
-                rows: [
-                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
-                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
-                ],
-                gold: "48,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gold", title: "4막 하드", node: "1720",
-                rows: [
-                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
-                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
-                ],
-                gold: "38,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gray", title: "성당 2단계", node: "1720",
-                rows: [
-                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2161 - 2882" },
-                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "2089 - 2786" }
-                ],
-                gold: "", bindGold: "40,000", total: ""
-            }
-        ]
-    },
-
-    1750: {
-        sectionTitle: "1750 레이드",
-        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다.</i>",
-        cards: [
-            {
-                theme: "b-purple", title: "세르카 나메", node: "1740",
-                rows: [
-                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "3580 - 4770" },
-                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4620 - 6160" }
-                ],
-                gold: "54,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gold", title: "종막 하드", node: "1730",
-                rows: [
-                    { gate: "1관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }], range: "2025 - 2700" },
-                    { gate: "2관", boss: "카제로스", badges: [{ text: "대악마", cls: "type-archdemon" }, { text: "신", cls: "type-divine" }], range: "3375 - 4490" }
-                ],
-                gold: "48,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-orange", title: "성당 3단계", node: "1750",
-                rows: [
-                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3650 - 4866" },
-                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3594 - 4792" }
-                ],
-                gold: "", bindGold: "50,000", total: ""
-            },
-            {
-                theme: "b-green", title: "벨가르딘 노말", node: "1750",
-                rows: [
-                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "2601 - 2879 - 3469" },
-                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "2917 - 3228 - 3889" }
-                ],
-                gold: "50,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-gray", title: "4막 하드", node: "1720",
-                rows: [
-                    { gate: "1관", boss: "에키드나", badges: [{ text: "악마", cls: "type-demon" }], range: "1425 - 1900" },
-                    { gate: "2관", boss: "아르모체", badges: [{ text: "고대", cls: "type-ancient" }, { text: "화속성 취약", cls: "attr-fire" }], range: "1575 - 2100" }
-                ],
-                gold: "38,000", bindGold: "", total: ""
-            }
-        ]
-    },
-
-    1770: {
-        sectionTitle: "1770 레이드",
-        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다. (벨가르딘 하드 딜컷은 확인 후 업데이트 예정)</i>",
-        cards: [
-            {
-                theme: "b-orange", title: "벨가르딘 하드", node: "1770",
-                rows: [
-                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4142 - 4584 - 5523" },
-                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4689 - 5189 - 6252" }
-                ],
-                gold: "62,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-purple", title: "세르카 나메", node: "1740",
-                rows: [
-                    { gate: "1관", boss: "세르카", badges: [{ text: "인간", cls: "type-human" }], range: "3580 - 4770" },
-                    { gate: "2관", boss: "코르부스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4620 - 6160" }
-                ],
-                gold: "54,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-orange", title: "성당 3단계", node: "1750",
-                rows: [
-                    { gate: "1관", boss: "대주교", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3650 - 4866" },
-                    { gate: "2관", boss: "광신의 인도자", badges: [{ text: "인간", cls: "type-human" }, { text: "암속성 취약", cls: "attr-dark" }], range: "3594 - 4792" }
-                ],
-                gold: "", bindGold: "50,000", total: ""
-            }
-        ]
-    },
-
-    1780: {
-        sectionTitle: "1780 레이드",
-        intro: "<i>해당 레벨대에 입장할수있는 레이드를 나열하였습니다. (벨가르딘 나메 딜컷은 확인 후 업데이트 예정)</i>",
-        cards: [
-            {
-                theme: "b-purple", title: "벨가르딘 나메", node: "1780",
-                rows: [
-                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "7412 - 8203 - 9883" },
-                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "8391 - 9286 - 11188" }
-                ],
-                gold: "75,000", bindGold: "", total: ""
-            },
-            {
-                theme: "b-orange", title: "벨가르딘 하드", node: "1770",
-                rows: [
-                    { gate: "1관", boss: "벨가르딘", badges: [{ text: "인간", cls: "type-human" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4142 - 4584 - 5523" },
-                    { gate: "2관", boss: "페투스", badges: [{ text: "고대", cls: "type-ancient" }, { text: "성속성 취약", cls: "attr-holy" }], range: "4689 - 5189 - 6252" }
-                ],
-                gold: "25,000", bindGold: "", total: ""
-            }
-        ]
+    84% {
+        opacity: 0.75;
     }
-};
-
-
-
-
-/* =============================================
-   레이드별 간편보기 메타
-   ============================================= */
-const simpleRaidMeta = {
-    cathedral: {
-        label: "지평의 성당",
-        sub: "4인 레이드",
-        icon: "⛪",
-        summary: "어비스 레이드",
-        titles: ["성당 3단계", "성당 2단계", "성당 1단계"]
-    },
-    serka: {
-        label: "세르카",
-        sub: "4인 레이드",
-        icon: "🧹",
-        summary: "그림자 레이드",
-        titles: ["세르카 나메", "세르카 하드", "세르카 노말"]
-    },
-    belgardin: {
-        label: "벨가르딘",
-        sub: "8인 레이드",
-        icon: "🧛",
-        summary: "그림자 레이드",
-        titles: ["벨가르딘 나메", "벨가르딘 하드", "벨가르딘 노말"]
-    },
-    finale: {
-        label: "종막",
-        sub: "8인 레이드",
-        icon: "👑",
-        summary: "카제로스 레이드",
-        titles: ["종막 하드", "종막 노말"]
-    },
-    act4: {
-        label: "4막",
-        sub: "8인 레이드",
-        icon: "🛡️",
-        summary: "카제로스 레이드",
-        titles: ["4막 하드", "4막 노말"]
+    96% {
+        left: 145%;
+        opacity: 0.35;
     }
-};
-
-
-
-/* =============================================
-   EX 레이드 UI 데이터
-   ============================================= */
-const exRaidData = {
-    "egir-ex": {
-        sectionTitle: "에기르 EX",
-        intro: "<i>에기르 EX 레이드 26.04.22 ~ 26.05.20 패치전 까지</i>",
-        cards: [
-            {
-                tier: "normal",
-                level: "1720",
-                name: "에기르 EX 노말",
-                tags: [{ text: "1관 에기르" }, { text: "고대" }],
-                tank_dmg: "2,200",
-                tank_dps: "1.72억",
-                one_dmg: "2,550",
-                one_dps: "2.00억",
-                blood_dmg: "2,900",
-                blood_dps: "2.28억",
-                phases: [
-                    { label: "1페이즈 종료", sub: "165실드 / 누적 7분 10초", t_d: "1,804억", t_s: "4.19억", o_d: "2,091억", o_s: "4.86억", b_d: "2,379억", b_s: "5.53억" },
-                    { label: "2페이즈 종료", sub: "0줄 진입 / 누적 13분 40초", t_d: "2,200억", t_s: "2.68억", o_d: "2,550억", o_s: "3.11억", b_d: "2,900억", b_s: "3.54억" },
-                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 21분 20초", t_d: "2,200억", t_s: "1.72억", o_d: "2,550억", o_s: "2.00억", b_d: "2,900억", b_s: "2.28억", total: true }
-                ]
-            },
-            {
-                tier: "hard",
-                level: "1750",
-                name: "에기르 EX 하드",
-                tags: [{ text: "1관 에기르" }, { text: "고대" }],
-                tank_dmg: "4,400",
-                tank_dps: "3.50억",
-                one_dmg: "5,120",
-                one_dps: "4.07억",
-                blood_dmg: "5,850",
-                blood_dps: "4.65억",
-                phases: [
-                    { label: "1페이즈 종료", sub: "165실드 / 누적 7분 10초", t_d: "3,608억", t_s: "8.39억", o_d: "4,198억", o_s: "9.76억", b_d: "4,797억", b_s: "11.16억" },
-                    { label: "2페이즈 종료", sub: "0줄 진입 / 누적 13분 40초", t_d: "4,400억", t_s: "5.37억", o_d: "5,120억", o_s: "6.24억", b_d: "5,850억", b_s: "7.13억" },
-                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 20분 55초", t_d: "4,400억", t_s: "3.50억", o_d: "5,120억", o_s: "4.07억", b_d: "5,850억", b_s: "4.65억", total: true }
-                ]
-            },
-            {
-                tier: "nightmare",
-                level: "1770",
-                name: "에기르 EX 나이트메어",
-                tags: [{ text: "1관 에기르" }, { text: "고대" }],
-                tank_dmg: "7,900",
-                tank_dps: "6.27억",
-                one_dmg: "9,200",
-                one_dps: "7.30억",
-                blood_dmg: "10,500",
-                blood_dps: "8.33억",
-                phases: [
-                    { label: "1페이즈 종료", sub: "165실드 / 누적 7분 10초", t_d: "6,483억", t_s: "15.08억", o_d: "7,549억", o_s: "17.56억", b_d: "8,615억", b_s: "20.03억" },
-                    { label: "2페이즈 종료", sub: "0줄 진입 / 누적 13분 40초", t_d: "7,900억", t_s: "9.65억", o_d: "9,200억", o_s: "11.25억", b_d: "10,500억", b_s: "12.84억" },
-                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 21분 00초", t_d: "7,900억", t_s: "6.27억", o_d: "9,200억", o_s: "7.30억", b_d: "10,500억", b_s: "8.33억", total: true }
-                ]
-            }
-        ],
-        bossSection: {
-            headerColor: "#a78bfa",
-            estherBar: "#a78bfa",
-            colName1: "나이트메어",
-            colName2: "하드",
-            colName3: "노말",
-            col1: "#a78bfa",
-            col2: "#f7ca54",
-            col3: "#34d399",
-            bosses: [
-                {
-                    name: "나이트메어",
-                    color: "#a78bfa",
-                    totalHp: "6조 204억",
-                    parts: [
-                        { name: "체력", pct: 82.1, color: "#a78bfa", legend: "기본체력 (300줄)", hp: "4조 9,436억" },
-                        { name: "실드", pct: 6.0, color: "#d1d5db", legend: "165실드 (22줄)", hp: "3,604억" },
-                        { name: "0줄", pct: 11.9, color: "#f87171", legend: "0줄 발악 (44줄)", hp: "7,163억" }
-                    ]
-                },
-                {
-                    name: "하드",
-                    color: "#f7ca54",
-                    totalHp: "3조 3,576억",
-                    parts: [
-                        { name: "체력", pct: 81.9, color: "#f7ca54", legend: "기본체력 (300줄)", hp: "2조 7,551억" },
-                        { name: "실드", pct: 6.0, color: "#d1d5db", legend: "165실드 (22줄)", hp: "2,033억" },
-                        { name: "0줄", pct: 11.9, color: "#f87171", legend: "0줄 발악 (44줄)", hp: "3,992억" }
-                    ]
-                },
-                {
-                    name: "노말",
-                    color: "#34d399",
-                    totalHp: "1조 6,481억",
-                    parts: [
-                        { name: "체력", pct: 82.1, color: "#34d399", legend: "기본체력 (300줄)", hp: "1조 3,523억" },
-                        { name: "실드", pct: 6.1, color: "#d1d5db", legend: "165실드 (22줄)", hp: "998억" },
-                        { name: "0줄", pct: 11.9, color: "#f87171", legend: "0줄 발악 (44줄)", hp: "1,959억" }
-                    ]
-                }
-            ],
-            esther: [
-                ["에아달린 히든 3칸", "약 3,690억", "약 2,043억", "약 997.5억"],
-                ["아델 3칸", "약 930억", "약 514억", "약 251억"],
-                ["아델 1칸", "약 700억", "약 387억", "약 189억"],
-                ["에아달린 1칸", "약 1,350억", "약 747억", "약 365억"]
-            ]
-        }
-    },
-
-    "abr-ex": {
-        sectionTitle: "아브렐슈드 EX",
-        intro: "<i>아브렐슈드 EX 레이드 26.05.20 ~ 26.06.17 패치전 까지</i>",
-        cards: [
-            {
-                tier: "normal",
-                level: "1720",
-                name: "아브 EX 노말",
-                tags: [{ text: "1관 아브렐슈드" }, { text: "악마" }, { text: "뇌속성 취약", weak: true }],
-                tank_dmg: "1,502",
-                tank_dps: "1.13억",
-                one_dmg: "1,669",
-                one_dps: "1.26억",
-                blood_dmg: "2,003",
-                blood_dps: "1.51억",
-                phases: [
-                    { label: "1페이즈 종료", sub: "335줄 / 누적 2분 20초", t_d: "215억", t_s: "1.54억", o_d: "239억", o_s: "1.71억", b_d: "287억", b_s: "2.05억" },
-                    { label: "2페이즈 종료", sub: "145줄 / 누적 11분 00초", t_d: "760억", t_s: "1.15억", o_d: "844억", o_s: "1.28억", b_d: "1,013억", b_s: "1.53억" },
-                    { label: "3페이즈 종료", sub: "0줄 진입 / 누적 17분 55초", t_d: "1,162억", t_s: "1.08억", o_d: "1,291억", o_s: "1.20억", b_d: "1,549억", b_s: "1.44억" },
-                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 22분 05초", t_d: "1,502억", t_s: "1.13억", o_d: "1,669억", o_s: "1.26억", b_d: "2,003억", b_s: "1.51억", total: true }
-                ]
-            },
-            {
-                tier: "hard",
-                level: "1750",
-                name: "아브 EX 하드",
-                tags: [{ text: "1관 아브렐슈드" }, { text: "악마" }, { text: "뇌속성 취약", weak: true }],
-                tank_dmg: "4,065",
-                tank_dps: "3.07억",
-                one_dmg: "4,515",
-                one_dps: "3.41억",
-                blood_dmg: "5,420",
-                blood_dps: "4.09억",
-                phases: [
-                    { label: "1페이즈 종료", sub: "335줄 / 누적 2분 20초", t_d: "579억", t_s: "4.14억", o_d: "643억", o_s: "4.59억", b_d: "772억", b_s: "5.51억" },
-                    { label: "2페이즈 종료", sub: "145줄 / 누적 11분 00초", t_d: "2,052억", t_s: "3.11억", o_d: "2,280억", o_s: "3.45억", b_d: "2,737억", b_s: "4.15억" },
-                    { label: "3페이즈 종료", sub: "0줄 진입 / 누적 17분 55초", t_d: "3,139억", t_s: "2.92억", o_d: "3,488억", o_s: "3.24억", b_d: "4,185억", b_s: "3.89억" },
-                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 22분 05초", t_d: "4,065억", t_s: "3.07억", o_d: "4,515억", o_s: "3.41억", b_d: "5,420억", b_s: "4.09억", total: true }
-                ]
-            },
-            {
-                tier: "nightmare",
-                level: "1770",
-                name: "아브 EX 나이트메어",
-                tags: [{ text: "1관 아브렐슈드" }, { text: "악마" }, { text: "뇌속성 취약", weak: true }],
-                tank_dmg: "9,228",
-                tank_dps: "6.96억",
-                one_dmg: "10,249",
-                one_dps: "7.73억",
-                blood_dmg: "12,304",
-                blood_dps: "9.29억",
-                phases: [
-                    { label: "1페이즈 종료", sub: "335줄 / 누적 2분 20초", t_d: "1,320.2억", t_s: "9.43억", o_d: "1,466.2억", o_s: "10.47억", b_d: "1,760.2억", b_s: "12.57억" },
-                    { label: "2페이즈 종료", sub: "145줄 / 누적 11분 00초", t_d: "4,669.7억", t_s: "7.08억", o_d: "5,186.5억", o_s: "7.86억", b_d: "6,226.3억", b_s: "9.43억" },
-                    { label: "3페이즈 종료", sub: "0줄 진입 / 누적 17분 55초", t_d: "7,141.2억", t_s: "6.64억", o_d: "7,931.5억", o_s: "7.38억", b_d: "9,521.6억", b_s: "8.86억" },
-                    { label: "🏆 최종 토벌 완료", sub: "레이드 종료 / 총 22분 05초", t_d: "9,228.0억", t_s: "6.96억", o_d: "10,249.2억", o_s: "7.73억", b_d: "12,304.0억", b_s: "9.29억", total: true }
-                ]
-            }
-        ],
-        bossSection: {
-            headerColor: "#a78bfa",
-            estherBar: "#f7ca54",
-            colName1: "나이트메어",
-            colName2: "하드",
-            colName3: "노말",
-            col1: "#a78bfa",
-            col2: "#f7ca54",
-            col3: "#34d399",
-            bosses: [
-                {
-                    name: "나이트메어",
-                    color: "#a78bfa",
-                    totalHp: "7조 3,669억",
-                    parts: [
-                        { name: "체력", pct: 73.5, color: "#a78bfa", legend: "기본 체력 (420줄)", hp: "5조 4,168억" },
-                        { name: "0줄", pct: 26.5, color: "#f87171", legend: "0줄 발악 (152줄)", hp: "1조 9,500억" }
-                    ]
-                },
-                {
-                    name: "하드",
-                    color: "#f7ca54",
-                    totalHp: "3조 2,449억",
-                    parts: [
-                        { name: "체력", pct: 73.5, color: "#f7ca54", legend: "기본 체력 (420줄)", hp: "2조 3,859억" },
-                        { name: "0줄", pct: 26.5, color: "#f87171", legend: "0줄 발악 (152줄)", hp: "8,589억" }
-                    ]
-                },
-                {
-                    name: "노말",
-                    color: "#34d399",
-                    totalHp: "1조 1,966억",
-                    parts: [
-                        { name: "체력", pct: 73.5, color: "#34d399", legend: "기본 체력 (420줄)", hp: "8,799억" },
-                        { name: "0줄", pct: 26.5, color: "#f87171", legend: "0줄 발악 (152줄)", hp: "3,167억" }
-                    ]
-                }
-            ],
-            esther: [
-                ["아제나 3칸", "약 1,009억", "약 451억", "약 162억"],
-                ["아제나 1칸", "약 1,135억", "약 508억", "약 182억"],
-                ["히든 아제나", "약 4,539억", "약 1,946억", "약 729억"],
-                ["니나브 3칸", "약 743억", "약 320억", "약 119억"],
-                ["니나브 1칸", "약 1,185억", "약 530억", "약 190억"],
-                ["구스토 1칸", "약 995억", "약 445억", "약 159억"]
-            ]
-        }
+    100% {
+        left: 145%;
+        opacity: 0;
     }
-};
-
-
-/* =============================================
-   세르카 보상 데이터
-   ============================================= */
-const serkaRewardData = {
-    "normal_gate1": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"880", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,760", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"12", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"4", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"1,300", name:"클리어 메달"}
-        ],
-        gold: "13,000", shard: "6,200",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,500", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"3,000", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"47", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"4", name:"고통의 가시"}
-        ],
-        moreGold: "", moreShard: "12,680"
-    },
-    "normal_gate2": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"5", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,100", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"2,200", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"15", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"6", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"2,100", name:"클리어 메달"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"17", name:"3티어 순환 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"8", name:"운명의 돌"}
-        ],
-        gold: "19,000", shard: "7,900",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"5", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"2,250", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"4,500", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"75", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"6", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"12", name:"3티어 순환 돌파석"}
-        ],
-        moreGold: "", moreShard: "18,900"
-    },
-    "hard_gate1": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"385", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"770", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"7", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"1,300", name:"클리어 메달"}
-        ],
-        gold: "17,500", shard: "8,300",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"750", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,500", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"30", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"}
-        ],
-        moreGold: "", moreShard: "17,500"
-    },
-    "hard_gate2": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"475", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"950", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"10", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"2,100", name:"클리어 메달"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"5", name:"4티어 전이 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
-        ],
-        gold: "26,500", shard: "10,100",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"1,130", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"2,260", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"45", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"4", name:"4티어 전이 돌파석"}
-        ],
-        moreGold: "", moreShard: "26,820"
-    },
-    "nightmare_gate1": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"405", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"810", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"8", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"1,300", name:"클리어 메달"}
-        ],
-        gold: "21,000", shard: "9,100",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"860", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,720", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"36", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"10", name:"고통의 가시"}
-        ],
-        moreGold: "", moreShard: "19,000"
-    },
-    "nightmare_gate2": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/newvehicle/newvehicle_151.png", count:"1", name:"마녀의 빗자루"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"500", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,000", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"12", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/tokenitem/tokenitem_88.png", count:"2,100", name:"클리어 메달"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"6", name:"4티어 전이 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
-        ],
-        gold: "33,000", shard: "11,000",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"1,430", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"2,860", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"60", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_0.png", count:"15", name:"고통의 가시"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"4", name:"4티어 전이 돌파석"}
-        ],
-        moreGold: "", moreShard: "32,200"
-    }
-};
-
-
-/* =============================================
-   지평의 성당 보상 데이터
-   ============================================= */
-const cathedralRewardData = {
-    "normal_gate1": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"7", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"820", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,640", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"9", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"4", name:"은총의 파편"}
-        ],
-        gold: "13,500", shard: "5,400",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"7", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,400", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"2,800", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"44", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"4", name:"은총의 파편"}
-        ],
-        moreGold: "", moreShard: "11,880"
-    },
-    "normal_gate2": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"960", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,920", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"12", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"6", name:"은총의 파편"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"15", name:"3티어 순환 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"8", name:"운명의 돌"}
-        ],
-        gold: "16,500", shard: "6,800",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"2,400", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"4,800", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"78", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"6", name:"은총의 파편"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"10", name:"3티어 순환 돌파석"}
-        ],
-        moreGold: "", moreShard: "6,800"
-    },
-    "hard_gate1": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"1", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"980", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"1,960", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"11", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"12", name:"은총의 파편"}
-        ],
-        gold: "16,000", shard: "6,800",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"8", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"1", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,680", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"3,360", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"53", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"12", name:"은총의 파편"}
-        ],
-        moreGold: "", moreShard: "14,250"
-    },
-    "hard_gate2": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"1,150", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"2,300", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"16", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"18", name:"은총의 파편"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"17", name:"3티어 순환 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
-        ],
-        gold: "24,000", shard: "8,600",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"9", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"2", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_88.png", count:"2,880", name:"운명의 파괴석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_89.png", count:"5,760", name:"운명의 수호석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_85.png", count:"94", name:"운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"18", name:"은총의 파편"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_12_87.png", count:"13", name:"3티어 순환 돌파석"}
-        ],
-        moreGold: "", moreShard: "24,200"
-    },
-    "nightmare_gate1": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"405", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"810", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"8", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"24", name:"은총의 파편"}
-        ],
-        gold: "20,000", shard: "9,100",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"3", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"860", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,720", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"36", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"24", name:"은총의 파편"}
-        ],
-        moreGold: "", moreShard: "19,000"
-    },
-    "nightmare_gate2": {
-        clearItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"500", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"1,000", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"12", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"36", name:"은총의 파편"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"6", name:"4티어 전이 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png", count:"10", name:"운명의 돌"}
-        ],
-        gold: "30,000", shard: "11,000",
-        moreItems: [
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png", count:"10", name:"4티어 비상의 돌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png", count:"4", name:"4티어 팔찌"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png", count:"1,430", name:"운명의 파괴석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png", count:"2,860", name:"운명의 수호석 결정"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png", count:"60", name:"위대한 운명의 돌파석"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_19.png", count:"36", name:"은총의 파편"},
-            {src:"https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png", count:"5", name:"4티어 전이 돌파석"}
-        ],
-        moreGold: "", moreShard: "32,200"
-    }
-};
-
-
-/* =============================================
-   벨가르딘 보상 데이터 (신규)
-   ============================================= */
-const BG_ICON = {
-    destroy: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_249.png",   // 운명의 파괴석 결정
-    guard: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_250.png",     // 운명의 수호석 결정
-    bracelet: "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_327.png",     // 4티어 팔찌
-    stone: "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_245.png",// 4티어 비상의 돌
-    breakGreat: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_251.png",// 위대한 운명의 돌파석
-    transfer: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_253.png",  // 4티어 전이 돌파석
-    fateStone: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_7_145.png",  // 운명의 돌
-    gold: "https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png",
-    shard: "https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png",
-    shadowOfCommand: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_46.png", // 사령의 잔영 (노말 전용)
-    handOfDeath: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_14_55.png"      // 죽음의 손 (하드/나메 전용)
-};
-
-const belgardinRewardData = {
-    "normal_gate1": {
-        clearItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"3", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"405", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"810", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"8", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.shadowOfCommand, count:"12", name:"사령의 잔영"}
-        ],
-        gold: "20,000", shard: "9,100",
-        moreItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"3", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"860", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"1,720", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"36", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.shadowOfCommand, count:"12", name:"사령의 잔영"}
-        ],
-        moreGold: "", moreShard: "19,000"
-    },
-    "normal_gate2": {
-        clearItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"500", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"1,000", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"12", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.shadowOfCommand, count:"18", name:"사령의 잔영"},
-            {src:BG_ICON.transfer, count:"6", name:"4티어 전이 돌파석"},
-            {src:BG_ICON.fateStone, count:"10", name:"운명의 돌"}
-        ],
-        gold: "30,000", shard: "11,000",
-        moreItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"1,430", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"2,860", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"60", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.shadowOfCommand, count:"18", name:"사령의 잔영"},
-            {src:BG_ICON.transfer, count:"5", name:"4티어 전이 돌파석"}
-        ],
-        moreGold: "", moreShard: "32,200"
-    },
-    "hard_gate1": {
-        clearItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"490", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"980", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"10", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
-        ],
-        gold: "25,000", shard: "10,920",
-        moreItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"4", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"1,130", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"2,260", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"43", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
-        ],
-        moreGold: "", moreShard: "22,800"
-    },
-    "hard_gate2": {
-        clearItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"600", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"1,200", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"15", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
-            {src:BG_ICON.transfer, count:"9", name:"4티어 전이 돌파석"},
-            {src:BG_ICON.fateStone, count:"10", name:"운명의 돌"}
-        ],
-        gold: "37,000", shard: "13,200",
-        moreItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"1,720", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"3,440", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"72", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
-            {src:BG_ICON.transfer, count:"6", name:"4티어 전이 돌파석"}
-        ],
-        moreGold: "", moreShard: "38,640"
-    },
-    "nightmare_gate1": {
-        clearItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"565", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"1,130", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"12", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
-        ],
-        gold: "30,000", shard: "12,550",
-        moreItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"5", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"1,300", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"2,600", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"49", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"12", name:"죽음의 손"}
-        ],
-        moreGold: "", moreShard: "26,220"
-    },
-    "nightmare_gate2": {
-        clearItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"6", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"690", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"1,380", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"18", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
-            {src:BG_ICON.transfer, count:"10", name:"4티어 전이 돌파석"},
-            {src:BG_ICON.fateStone, count:"10", name:"운명의 돌"}
-        ],
-        gold: "45,000", shard: "15,180",
-        moreItems: [
-            {src:BG_ICON.stone, count:"10", name:"4티어 비상의 돌"},
-            {src:BG_ICON.bracelet, count:"6", name:"4티어 팔찌"},
-            {src:BG_ICON.destroy, count:"1,980", name:"운명의 파괴석 결정"},
-            {src:BG_ICON.guard, count:"3,960", name:"운명의 수호석 결정"},
-            {src:BG_ICON.breakGreat, count:"83", name:"위대한 운명의 돌파석"},
-            {src:BG_ICON.handOfDeath, count:"18", name:"죽음의 손"},
-            {src:BG_ICON.transfer, count:"7", name:"4티어 전이 돌파석"}
-        ],
-        moreGold: "", moreShard: "44,440"
-    }
-};
-
-
-
-
-/* =============================================
-   레이드별 구간별(줄 수) 딜컷 데이터
-   ============================================= */
-const lineCutConfig = {
-    serka: {
-        gate1: {
-            total: 300,
-            points: [
-                { line: 300, desc: "시작" },
-                { line: 240, desc: "체스판 모루저가 패턴" },
-                { line: 200, desc: "돈까스 패턴" },
-                { line: 100, desc: "폭탄 안전지역 패턴" },
-                { line: 0,   desc: "클리어" }
-            ]
-        },
-        gate2: {
-            total: 300,
-            points: [
-                { line: 300, desc: "시작" },
-                { line: 240, desc: "분신 저가후 무력 패턴" },
-                { line: 195, desc: "멘트후 저가 무력 딜타임 패턴" },
-                { line: 120, desc: "분신 타임어택 패턴" },
-                { line: 60,  desc: "삼각 간파후 딜무력 패턴" },
-                { line: 0,   desc: "클리어" }
-            ]
-        }
-    },
-    cathedral: {
-        gate1: {
-            total: 200,
-            points: [
-                { line: 200, desc: "시작" },
-                { line: 160, desc: "중앙 종 저가 패턴" },
-                { line: 100, desc: "금은 줄 장판 실드 까기 패턴" },
-                { line: 60,  desc: "중앙 저가후 지형 감소 패턴" },
-                { line: 0,   desc: "클리어" }
-            ]
-        },
-        gate2: {
-            total: 200,
-            points: [
-                { line: 200, desc: "시작" },
-                { line: 150, desc: "" },
-                { line: 100, desc: "" },
-                { line: 50,  desc: "" },
-                { line: 0,   desc: "클리어" }
-            ]
-        }
-    },
-    belgardin: {
-        gate1: {
-            total: 300,
-            points: [
-                { line: 300, desc: "시작" },
-                { line: 240, desc: "저가 - 미역 - 저가 - 관카운터 패턴" },
-                { line: 190, desc: "파도 - 저가or웅크 - 싸다구 패턴" },
-                { line: 75,  desc: "3방향 무력 + 저가 + 카운터" },
-                { line: 0,   desc: "클리어" }
-            ]
-        },
-        gate2: {
-            total: 400,
-            points: [
-                { line: 400, desc: "시작" },
-                { line: 360, desc: "제물 쫄잡기 패턴" },
-                { line: 320, desc: "줄연결 쫄잡고 무력 및 게이지 딜 타임어택" },
-                { line: 280, desc: "붉은장판 3저가 3카운터" },
-                { line: 200, desc: "검은 마법사(검마) 무력화 패턴" },
-                { line: 100, desc: "앵그리버드" },
-                { line: 0,   desc: "클리어" }
-            ]
-        }
-    }
-};
-
-// 100% 클리어 기준값에서 역산해 구간별(줄 수) 요구 수치를 계산
-// progress = (총 줄 수 - 남은 줄 수) / 총 줄 수
-// ※ 시간은 실측 구간 타임이 없어 클리어타임 × progress로 선형 근사한 참고값입니다.
-function getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
-    const config = lineCutConfig[menu] && lineCutConfig[menu][gateKey];
-    if (!config) return [];
-
-    const total = config.total;
-
-    return config.points.map(p => {
-        const progress = (total - p.line) / total;
-        const elapsedSec = Math.round(totalSec * progress);
-
-        return {
-            line: p.line,
-            desc: p.desc,
-            progress,
-            tank: Math.round((fullTank || 0) * progress),
-            one: Math.round((fullOne || 0) * progress),
-            blood: Math.round((fullBlood || 0) * progress),
-            elapsedSec
-        };
-    });
 }
 
-function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
-    const rows = getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
-    if (!rows.length) {
-        return '<div class="coming-soon"><h3>준비중</h3><p>구간 데이터가 없습니다.</p></div>';
+@keyframes switchActiveAura {
+    0%, 80%, 100% {
+        box-shadow: 0 2px 12px rgba(99, 102, 241, .30);
     }
-
-    // [오류 해결] 에러를 유발하던 무의미한 config 관련 줄을 완전히 제거했습니다.
-
-    // 서폿 모드일 때 라벨을 강조 / 잔조로 동적 변경
-    const isSupport = currentRoleMode === "support";
-    const tankLabel = isSupport ? "강조" : "강투";
-    const bloodLabel = isSupport ? "잔조" : "잔혈";
-
-    const items = rows.map((r, idx) => {
-        const isStart = r.progress === 0;
-        const isLast = idx === rows.length - 1;
-        const timeLabel = `${String(Math.floor(r.elapsedSec / 60)).padStart(2, "0")}:${String(r.elapsedSec % 60).padStart(2, "0")}`;
-        const lineLabel = r.line === 0 ? "0줄 (클리어)" : `${r.line}줄`;
-
-        if (isStart) {
-            return `
-                <div class="line-cut-row line-cut-start">
-                    <div class="line-cut-marker">
-                        <span class="line-cut-dot start"></span>
-                        <span class="line-cut-connector"></span>
-                    </div>
-                    <div class="line-cut-start-label">${lineLabel} - 조우 시작</div>
-                </div>
-            `;
-        }
-
-        return `
-            <div class="line-cut-row ${isLast ? "line-cut-clear" : ""}">
-                <div class="line-cut-marker">
-                    <span class="line-cut-dot"></span>
-                    ${isLast ? "" : '<span class="line-cut-connector"></span>'}
-                </div>
-                <div class="line-cut-body">
-                    <div class="line-cut-label-row">
-                        <span class="line-cut-line-num">${lineLabel}</span>
-                        <span class="line-cut-time">누적 ${timeLabel} (근사)</span>
-                    </div>
-                    ${r.desc ? `<div class="line-cut-desc">${r.desc}</div>` : ""}
-                   
-                    <div class="line-cut-card">
-                        <div class="lc-tri tank">
-                            <span class="lc-tri-label">${tankLabel}</span>
-                            <span class="lc-tri-value">${fmt(r.tank)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-                        </div>
-                        <div class="lc-tri one">
-                            <span class="lc-tri-label">1인분</span>
-                            <span class="lc-tri-value">${fmt(r.one)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-                        </div>
-                        <div class="lc-tri blood">
-                            <span class="lc-tri-label">${bloodLabel}</span>
-                            <span class="lc-tri-value">${fmt(r.blood)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join("");
-
-    return `<div class="line-cut-timeline">${items}</div>`;
+    88% {
+        box-shadow:
+            0 2px 12px rgba(99, 102, 241, .34),
+            0 0 10px rgba(120, 210, 255, .16),
+            0 0 18px rgba(120, 210, 255, .08);
+    }
+    94% {
+        box-shadow:
+            0 2px 12px rgba(99, 102, 241, .30),
+            0 0 6px rgba(120, 210, 255, .10),
+            0 0 12px rgba(120, 210, 255, .05);
+    }
 }
 
-
-
-
-
-function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage, isSupport) {
-    const timeBadge = `전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초`;
-    const titleText = `${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName}`;
-    const sectionDivider = `<div class="precision-section-divider"><span>딜지분 상세보기</span></div>`;
-
-    const headLabels = isSupport
-        ? { share: "조력지분", dmg: "조력피해/억", dps: "조력 DPS" }
-        : { share: "딜지분", dmg: "피해/억", dps: "DPS" };
-
-    const percentTableHtml = `
-        <div class="table-wrap">
-            <table id="dataTable">
-                <thead><tr><th>${headLabels.share}</th><th>${headLabels.dmg}</th><th>${headLabels.dps}</th></tr></thead>
-                <tbody>${tableRowsHtml}</tbody>
-            </table>
-        </div>
-    `;
-
-    const hasLineCut = !!(lineCutConfig[menu] && lineCutConfig[menu][gateKey]);
-    const activeTab = hasLineCut ? (detailTabState[menu] || "percent") : "percent";
-
-    // 라인컷이 없으면 (세르카, 성당 등 구간별 데이터 없는 관문) - 상세 딜지분만 표시
-    if (!hasLineCut) {
-        return `
-            ${sectionDivider}
-            ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu, isSupport)}
-
-            <div class="precision-table-panel">
-                <div class="precision-table-head">
-                    <div class="precision-table-title">${titleText} 상세 딜지분</div>
-                    <div class="precision-table-badge" id="precisionTimeBadge">${timeBadge}</div>
-                </div>
-                ${percentTableHtml}
-            </div>
-        `;
-    }
-
-    // 라인컷 지원되는 관문 (벨가르딘 등) - 탭 노출
-    const tabBarHtml = `
-        <div class="detail-tab-bar">
-            <div class="detail-tabs">
-                <button type="button" class="detail-tab ${activeTab === "percent" ? "active" : ""}" data-detail-tab="percent" data-detail-menu="${menu}">상세 딜지분</button>
-                <button type="button" class="detail-tab ${activeTab === "lines" ? "active" : ""}" data-detail-tab="lines" data-detail-menu="${menu}">구간별 딜지분</button>
-            </div>
-            <div class="control-divider"></div>
-            ${makeRoleToggleHtml("compact")}
-        </div>
-    `;
-
-    if (activeTab === "lines") {
-        const fullTank = rowTank ? getDamage(rowTank) : 0;
-        const fullOne = rowOne ? getDamage(rowOne) : 0;
-        const fullBlood = rowBlood ? getDamage(rowBlood) : 0;
-        const lineTimelineHtml = makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
-
-        return `
-            ${sectionDivider}
-            ${tabBarHtml}
-
-            <div class="precision-table-panel">
-                <div class="line-cut-section-head">
-                    <div class="line-cut-section-title">${titleText} 구간별 딜지분</div>
-                    <div class="precision-table-badge" id="precisionTimeBadgeLines">${timeBadge}</div>
-                </div>
-                ${lineTimelineHtml}
-            </div>
-        `;
-    }
-
-    return `
-        ${sectionDivider}
-        ${tabBarHtml}
-        ${makePrecisionSummary(rowTank, rowOne, rowBlood, getDamage, totalSec, menu, isSupport)}
-
-        <div class="precision-table-panel">
-            <div class="precision-table-head">
-                <div class="precision-table-title">${titleText} 상세 딜지분</div>
-                <div class="precision-table-badge" id="precisionTimeBadgePercent">${timeBadge}</div>
-            </div>
-            ${percentTableHtml}
-        </div>
-    `;
+.side-divider,
+.sidebar-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #1e2030, transparent);
+    margin: 14px 0;
 }
 
+/* =============================================
+   가이드 버튼
+   ============================================= */
+.guide-trigger-wrap {
+    margin-top: 10px;
+}
+
+.guide-trigger {
+    width: 100%;
+    border: 1px solid #252836;
+    background: #1a1c24;
+    border-radius: 14px;
+    padding: 15px 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: .2s;
+    color: #e5e7eb;
+}
+
+.guide-trigger:hover {
+    border-color: #3b82f6;
+    background: #1d2130;
+}
+
+.guide-small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #4a7cff;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 800;
+}
+
+.guide-main {
+    font-size: 15px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.guide-accent {
+    color: #f7ca54;
+}
+
+/* =============================================
+   사이드바 메뉴 그룹
+   ============================================= */
+.menu-group {
+    margin-bottom: 6px;
+}
+
+.menu-group-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3b4563;
+    font-weight: 800;
+    padding: 0 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.menu-group-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #1a1d2e;
+}
+
+.menu-group-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-green { background: #34d399; }
+.dot-blue { background: #3b82f6; }
+.dot-amber { background: #f7ca54; }
+.dot-red { background: #f87171; }
+
+.menu-list,
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-item,
+.menu-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: all .2s;
+    text-align: left;
+    color: inherit;
+    font: inherit;
+}
+
+.menu-item:hover,
+.menu-btn:hover {
+    background: rgba(255, 255, 255, .03);
+    border-color: #1e2030;
+}
+
+.menu-item.active,
+.menu-btn.active {
+    background: linear-gradient(135deg, rgba(59, 130, 246, .12), rgba(99, 102, 241, .08));
+    border-color: rgba(99, 102, 241, .30);
+}
+
+.menu-btn.disabled {
+    opacity: .35;
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: grayscale(.7);
+}
+
+.menu-btn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.icon-green { background: rgba(52, 211, 153, .12); }
+.icon-blue { background: rgba(59, 130, 246, .12); }
+.icon-amber { background: rgba(247, 202, 84, .12); }
+.icon-red { background: rgba(248, 113, 113, .12); }
+
+.menu-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.menu-btn-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #c0c7d6;
+    white-space: nowrap;
+}
+
+.menu-item.active .menu-btn-name,
+.menu-btn.active .menu-btn-name {
+    color: #fff;
+}
+
+.menu-btn.disabled .menu-btn-name {
+    color: #4a5568;
+}
+
+.menu-btn-sub {
+    font-size: 10px;
+    color: #3b4563;
+    white-space: nowrap;
+}
+
+.menu-item.active .menu-btn-sub,
+.menu-btn.active .menu-btn-sub {
+    color: #6b7280;
+}
+
+.menu-btn-badge {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.badge-live {
+    background: rgba(52, 211, 153, .12);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, .25);
+}
+
+.badge-ended {
+    background: rgba(107, 114, 128, .12);
+    color: #6b7280;
+    border: 1px solid rgba(107, 114, 128, .25);
+}
+
+.badge-upcoming {
+    background: rgba(248, 113, 113, .10);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, .20);
+    font-size: 8px;
+    letter-spacing: .3px;
+}
+
+.badge-hot {
+    background: linear-gradient(135deg, rgba(251, 146, 60, .15), rgba(248, 113, 113, .12));
+    color: #fb923c;
+    border: 1px solid rgba(251, 146, 60, .30);
+    font-size: 9px;
+    letter-spacing: 1px;
+}
 
 
 
 
 
 /* =============================================
-   가디언 데이터
+   패치노트 - 미니 게시판형
    ============================================= */
-const gato1730Bosses = [
-    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
-];
-const gato1750Bosses = [
-    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
-];
-const gato1770Bosses = [
-    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
-];
-
-const gato1730AvailableBosses = [
-    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
-];
-const gato1750AvailableBosses = [
-    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
-];
-// 1770 티어는 시트에 15개 보스 데이터가 전부 존재 (엘버하스틱 포함 전체 오픈)
-const gato1770AvailableBosses = [
-    "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼",
-    "쿤겔라니움","하누마탄","데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
-];
-
-function isGato1730Available(boss) {
-    return gato1730AvailableBosses.includes(boss);
-}
-function isGato1750Available(boss) {
-    return gato1750AvailableBosses.includes(boss);
-}
-function isGato1770Available(boss) {
-    return gato1770AvailableBosses.includes(boss);
+.patch-section {
+    margin-top: 6px;
+    border: 1px solid #1a1d2e;
+    border-radius: 12px;
+    background: #11131b;
+    overflow: hidden;
 }
 
-const gato1730Layout = [
-    { boss:"루멘칼리고", startRow:66, shareCol:1, damageCol:3 },
-    { boss:"가르가디스", startRow:66, shareCol:9, damageCol:11 },
-    { boss:"스콜라키아", startRow:66, shareCol:17, damageCol:19 },
-    { boss:"크라티오스", startRow:98, shareCol:1, damageCol:3 },
-    { boss:"아게오로스", startRow:98, shareCol:9, damageCol:11 },
-    { boss:"드렉탈라스", startRow:98, shareCol:17, damageCol:19 },
-    { boss:"소나벨", startRow:130, shareCol:1, damageCol:3 },
-    { boss:"베스칼", startRow:130, shareCol:9, damageCol:11 },
-    { boss:"쿤겔라니움", startRow:266, shareCol:1, damageCol:3 },
-    { boss:"하누마탄", startRow:266, shareCol:9, damageCol:11 },
-    { boss:"데스칼루다", startRow:266, shareCol:17, damageCol:19 },
-    { boss:"이그렉시온", startRow:298, shareCol:1, damageCol:3 },
-    { boss:"벨가누스", startRow:298, shareCol:9, damageCol:11 },
-    { boss:"아카테스", startRow:298, shareCol:17, damageCol:19 },
-    { boss:"엘버하스틱", startRow:330, shareCol:1, damageCol:3 }
-];
+.patch-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 14px;
+    background: #151824;
+    border-bottom: 1px solid #1d2231;
+    margin-bottom: 0;
+}
 
-const gato1750Layout = [
-    { boss:"루멘칼리고", startRow:167, shareCol:1, damageCol:3 },
-    { boss:"가르가디스", startRow:167, shareCol:9, damageCol:11 },
-    { boss:"스콜라키아", startRow:167, shareCol:17, damageCol:19 },
-    { boss:"크라티오스", startRow:199, shareCol:1, damageCol:3 },
-    { boss:"아게오로스", startRow:199, shareCol:9, damageCol:11 },
-    { boss:"드렉탈라스", startRow:199, shareCol:17, damageCol:19 },
-    { boss:"소나벨", startRow:231, shareCol:1, damageCol:3 },
-    { boss:"베스칼", startRow:231, shareCol:9, damageCol:11 },
-    { boss:"쿤겔라니움", startRow:367, shareCol:1, damageCol:3 },
-    { boss:"하누마탄", startRow:367, shareCol:9, damageCol:11 },
-    { boss:"데스칼루다", startRow:367, shareCol:17, damageCol:19 },
-    { boss:"이그렉시온", startRow:399, shareCol:1, damageCol:3 },
-    { boss:"벨가누스", startRow:399, shareCol:9, damageCol:11 },
-    { boss:"아카테스", startRow:399, shareCol:17, damageCol:19 },
-    { boss:"엘버하스틱", startRow:431, shareCol:1, damageCol:3 }
-];
+.patch-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    background: rgba(34, 211, 238, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+}
 
-// 신규: 가디언 토벌 1770 (구글시트 466~658행대, 딜지분 25%~50% 구간)
-const gato1770Layout = [
-    { boss:"루멘칼리고", startRow:467, shareCol:1, damageCol:3 },
-    { boss:"가르가디스", startRow:467, shareCol:9, damageCol:11 },
-    { boss:"스콜라키아", startRow:467, shareCol:17, damageCol:19 },
-    { boss:"크라티오스", startRow:499, shareCol:1, damageCol:3 },
-    { boss:"아게오로스", startRow:499, shareCol:9, damageCol:11 },
-    { boss:"드렉탈라스", startRow:499, shareCol:17, damageCol:19 },
-    { boss:"소나벨", startRow:531, shareCol:1, damageCol:3 },
-    { boss:"베스칼", startRow:531, shareCol:9, damageCol:11 },
-    { boss:"쿤겔라니움", startRow:564, shareCol:1, damageCol:3 },
-    { boss:"하누마탄", startRow:564, shareCol:9, damageCol:11 },
-    { boss:"데스칼루다", startRow:564, shareCol:17, damageCol:19 },
-    { boss:"이그렉시온", startRow:596, shareCol:1, damageCol:3 },
-    { boss:"벨가누스", startRow:596, shareCol:9, damageCol:11 },
-    { boss:"아카테스", startRow:596, shareCol:17, damageCol:19 },
-    { boss:"엘버하스틱", startRow:628, shareCol:1, damageCol:3 }
-];
+.patch-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #22d3ee;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+}
 
-const gatoMeta = {
-    "루멘칼리고": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"암속성 취약", cls:"attr-dark" } },
-    "가르가디스": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"토속성 취약", cls:"attr-earth" } },
-    "스콜라키아": { type:{ text:"곤충", cls:"type-insect" }, attr:{ text:"토속성 취약", cls:"attr-earth" } },
-    "크라티오스": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"뇌속성 취약", cls:"attr-lightning" } },
-    "아게오로스": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"성속성 취약", cls:"attr-holy" } },
-    "드렉탈라스": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"화속성 취약", cls:"attr-fire" } },
-    "소나벨": { type:{ text:"정령", cls:"type-spirit" }, attr:{ text:"암속성 취약", cls:"attr-dark" } },
-    "베스칼": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"화속성 취약", cls:"attr-fire" } },
-    "쿤겔라니움": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"뇌속성 취약", cls:"attr-lightning" } },
-    "하누마탄": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"취약 없음", cls:"attr-none" } },
-    "데스칼루다": { type:{ text:"야수", cls:"type-beast" }, attr:{ text:"수속성 취약", cls:"attr-water" } },
-    "이그렉시온": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"화속성 취약", cls:"attr-fire" } },
-    "벨가누스": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"성속성 취약", cls:"attr-holy" } },
-    "아카테스": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"암속성 취약", cls:"attr-dark" } },
-    "엘버하스틱": { type:{ text:"고대", cls:"type-ancient" }, attr:{ text:"수속성 취약", cls:"attr-water" } }
-};
+.patch-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+}
+
+.patch-item {
+    display: grid;
+    grid-template-columns: 54px 1fr auto;
+    align-items: center;
+    column-gap: 10px;
+    min-height: 54px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #1a1d2e;
+    border-radius: 0;
+    box-sizing: border-box;
+    transition: background 0.15s ease;
+    cursor: pointer;
+}
+
+.patch-item:last-child {
+    border-bottom: none;
+}
+
+.patch-item:hover {
+    background: #171a25;
+    transform: none;
+}
+
+.patch-date {
+    width: 54px;
+    min-width: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.patch-date-month {
+    font-size: 10px;
+    font-weight: 800;
+    color: #4a7cff;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.patch-date-day {
+    font-size: 14px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.patch-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.patch-content-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #d7deeb;
+    line-height: 1.25;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.patch-content-desc {
+    font-size: 10px;
+    color: #667085;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.patch-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 999px;
+    font-size: 8px;
+    font-weight: 800;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ptag-new {
+    background: rgba(52, 211, 153, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.ptag-update {
+    background: rgba(247, 202, 84, 0.12);
+    color: #f7ca54;
+    border: 1px solid rgba(247, 202, 84, 0.2);
+}
+
+@media (max-width: 768px) {
+    .patch-header {
+        padding: 10px 12px;
+    }
+
+    .patch-list {
+        padding: 0;
+    }
+
+    .patch-item {
+        grid-template-columns: 48px 1fr auto;
+        column-gap: 8px;
+        min-height: 50px;
+        padding: 7px 10px;
+    }
+
+    .patch-date {
+        width: 48px;
+        min-width: 48px;
+    }
+
+    .patch-date-month {
+        font-size: 9px;
+    }
+
+    .patch-date-day {
+        font-size: 13px;
+    }
+
+    .patch-content-title {
+        font-size: 11px;
+    }
+
+    .patch-content-desc {
+        font-size: 9px;
+    }
+
+    .patch-tag {
+        min-width: 32px;
+        height: 17px;
+        font-size: 7px;
+        padding: 0 5px;
+    }
+}
+
+
+
+
 
 /* =============================================
-   가디언 티어별 보스 변수 (1730 / 1750 / 1770)
+   경매 계산기
    ============================================= */
-function getCurrentGuardianBoss() {
-    if (currentGuardianTier === "1730") return currentGatoBoss;
-    if (currentGuardianTier === "1750") return currentGato1750Boss;
-    return currentGato1770Boss;
+
+.right-column .auction-calc {
+    padding: 12px 14px;
+    margin-bottom: 6px;
 }
-function setCurrentGuardianBoss(boss) {
-    if (currentGuardianTier === "1730") currentGatoBoss = boss;
-    else if (currentGuardianTier === "1750") currentGato1750Boss = boss;
-    else currentGato1770Boss = boss;
+
+
+.auction-calc::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(200,165,90,.04), transparent 55%);
+    pointer-events: none;
 }
-function getGuardianBossListByTier(tier) {
-    if (tier === "1730") return gato1730Bosses;
-    if (tier === "1750") return gato1750Bosses;
-    return gato1770Bosses;
+
+.ac-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: nowrap;
+    gap: 8px;
 }
-function getGuardianAvailListByTier(tier) {
-    if (tier === "1730") return gato1730AvailableBosses;
-    if (tier === "1750") return gato1750AvailableBosses;
-    return gato1770AvailableBosses;
+
+.ac-header > div:first-child {
+    flex-shrink: 0;
+    white-space: nowrap;
 }
-function isGuardianBossAvailable(tier, boss) {
-    if (tier === "1730") return isGato1730Available(boss);
-    if (tier === "1750") return isGato1750Available(boss);
-    return isGato1770Available(boss);
+
+.ac-label {
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #c8a55a;
+    font-weight: 900;
+    margin-bottom: 2px;
+    white-space: nowrap;
 }
-function getGuardianParsedRows(tier, boss) {
-    if (tier === "1730") return parsedData.gato1730[boss] || [];
-    if (tier === "1750") return parsedData.gato1750[boss] || [];
-    return parsedData.gato1770[boss] || [];
+
+.ac-title {
+    font-size: 14px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.ac-toggle {
+    display: flex;
+    flex-shrink: 0;
+    background: #15171f;
+    border: 1px solid rgba(200,165,90,.16);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+    white-space: nowrap;
+}
+
+.ac-toggle-btn {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: #5a6178;
+    font-size: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.ac-toggle-btn:hover {
+    color: #c0c7d6;
+}
+
+.ac-toggle-btn.active {
+    background: linear-gradient(135deg, #c8a55a, #a8843a);
+    color: #1a1000;
+    box-shadow: 0 0 10px rgba(200,165,90,.22);
+}
+
+.ac-input-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #4a7cff;
+    font-weight: 900;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.ac-input-wrap {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 12px;
+}
+
+.ac-input {
+    width: 100%;
+    padding: 9px 36px 9px 12px;
+    border-radius: 10px;
+    background: #15171f;
+    border: 1px solid rgba(99,102,241,.3);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: right;
+    outline: 0;
+    transition: .15s;
+}
+
+.ac-input:focus {
+    border-color: rgba(99,102,241,.6);
+    background: #1e2030;
+    box-shadow: 0 0 0 2px rgba(99,102,241,.12);
+}
+
+.ac-input::placeholder {
+    color: rgba(255,255,255,.22);
+    font-size: 13px;
+}
+
+.ac-input-suffix {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 900;
+    color: #5a6178;
+    pointer-events: none;
+}
+
+.ac-breakeven {
+    position: relative;
+    z-index: 1;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: rgba(200,165,90,.06);
+    border: 1px solid rgba(200,165,90,.18);
+    margin-bottom: 10px;
+}
+
+.ac-breakeven-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.ac-breakeven-label {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #c8a55a;
+    font-weight: 900;
+}
+
+.ac-breakeven-sub {
+    font-size: 10px;
+    color: #5a6178;
+}
+
+.ac-breakeven-value {
+    font-size: 20px;
+    font-weight: 900;
+    color: #f7ca54;
+}
+
+.ac-breakeven-desc {
+    font-size: 10px;
+    color: #5a6178;
+    margin-top: 2px;
+}
+
+.ac-sep {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.ac-sep-line {
+    flex: 1;
+    height: 1px;
+    background: #1e2030;
+}
+
+.ac-sep-text {
+    font-size: 10px;
+    color: #5a6178;
+    font-weight: 900;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.ac-rates {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 5px;
+}
+
+.ac-rate-row {
+    border-radius: 9px;
+    padding: 8px 10px;
+    background: #15171f;
+    border: 1px solid #1e2030;
+    transition: .15s;
+}
+
+.ac-rate-row:hover {
+    background: #1a1c24;
+    border-color: #252836;
+}
+
+.ac-rate-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.ac-rate-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.ac-rate-pct {
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.ac-rate-desc {
+    font-size: 10px;
+    color: #5a6178;
+}
+
+.ac-rate-val {
+    font-size: 15px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.ac-bar-wrap {
+    height: 3px;
+    border-radius: 999px;
+    background: #1e2030;
+    overflow: hidden;
+}
+
+.ac-bar {
+    height: 100%;
+    border-radius: 999px;
+    transition: width .35s ease;
+}
+
+.rate-5 { color: #34d399; }
+.bar-5 { background: linear-gradient(90deg, #3b82f6, #34d399); }
+.rate-10 { color: #4a7cff; }
+.bar-10 { background: linear-gradient(90deg, #6366f1, #3b82f6); }
+
+/* =============================================
+   메인 공통
+   ============================================= */
+.main {
+    background: #0d0e14;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+    border-radius: 0 24px 24px 0;
+}
+
+.main.simple-quick-mode {
+    gap: 16px;
+}
+
+.topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.15;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #4a5568;
+}
+
+.title-meta {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.clock-box,
+.date {
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: #141620;
+    border: 1px solid #1e2030;
+    font-size: 13px;
+    color: #4a5568;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tabs.simple-tabs {
+    display: block;
+    width: 100%;
+}
+
+
+
+.content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 18px;
+    align-items: start;
+    width: 100% !important;
+}
+
+.main-col {
+    display: grid;
+    gap: 18px;
+    min-width: 0 !important;
+    overflow: hidden !important; /* ★ 중요: 왼쪽 영역이 넘쳐도 절대 우측 영역을 침범하거나 찌그러트리지 못하게 차단! */
+}
+
+.right-column {
+    width: 280px !important;
+    flex-shrink: 0 !important; /* ★ 중요: 우측 영역이 안쪽으로 찌그러지는 현상(Squeeze)을 물리적으로 원천 차단! */
+}
+
+/* 태블릿 대응 너비 피팅 */
+@media (max-width: 1180px) {
+    .content-grid {
+        grid-template-columns: minmax(0, 1fr) 250px !important;
+    }
+    .right-column {
+        width: 250px !important;
+    }
+}
+
+
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 /* =============================================
-   유틸 함수
+   우측 카드
    ============================================= */
-function makeBadge(text, cls) {
-    const emoji = getAttrEmoji(text, cls);
-    const finalText = emoji ? `${emoji} ${text}` : text;
-    return `<span class="badge ${cls}">${finalText}</span>`;
+.side-card {
+    padding: 20px;
+    border-radius: 18px;
+    background: #111320;
+    border: 1px solid #1a1d2e;
 }
 
-function fmt(v) {
-    return Number(v || 0).toLocaleString("ko-KR");
+.side-label,
+.side-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4a7cff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 14px;
 }
 
-function fmtPartyDps(v) {
-    return `${Number(v || 0).toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}억`;
+.time-card.simple-disabled {
+    opacity: .58;
+    filter: grayscale(.1);
+    pointer-events: none;
+    position: relative;
 }
 
-function toNum(v) {
-    if (v == null) return 0;
-    const t = String(v).replace(/,/g, "").replace(/"/g, "").trim();
-    const n = Number(t);
-    return isNaN(n) ? 0 : n;
+.time-card.simple-disabled::after {
+    content: "간편보기 상태에서는 비활성화";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid #252836;
+    background: rgba(10,14,24,.9);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1.35;
+    text-align: center;
+    z-index: 5;
 }
 
-function parseCSVLine(line) {
-    const result = [];
-    let current = "";
-    let inQuotes = false;
+.time-display,
+.time-main {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+}
 
-    for (let i = 0; i < line.length; i++) {
-        const ch = line[i];
-        if (ch === '"') {
-            if (inQuotes && line[i + 1] === '"') {
-                current += '"';
-                i++;
-            } else {
-                inQuotes = !inQuotes;
-            }
-        } else if (ch === "," && !inQuotes) {
-            result.push(current);
-            current = "";
-        } else {
-            current += ch;
-        }
+.time-base,
+.time-labels {
+    text-align: center;
+    font-size: 11px;
+    color: #3b4563;
+    margin-bottom: 16px;
+}
+
+.time-controls,
+.time-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.time-input-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.time-input,
+.time-input-box {
+    width: 68px;
+    height: 46px;
+    border-radius: 12px;
+    background: #141620;
+    border: 1px solid #1e2030;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    outline: none;
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.time-input-box::-webkit-inner-spin-button,
+.time-input-box::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.time-stepper {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.step-btn,
+.time-step-btn {
+    width: 24px;
+    height: 20px;
+    border-radius: 6px;
+    border: 1px solid #1e2030;
+    background: #141620;
+    color: #4a5568;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.time-sep,
+.time-divider {
+    height: 1px;
+    background: #1a1d2e;
+    margin-bottom: 14px;
+}
+
+.party-dps-box,
+.party-dps {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(247,202,84,.06);
+    border: 1px solid rgba(247,202,84,.15);
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #f7ca54;
+    margin-bottom: 10px;
+}
+
+.party-dps-box span,
+.party-dps .party-dps-value {
+    color: #fff;
+}
+
+.side-hint,
+.side-note,
+.info-text {
+    text-align: center;
+    font-size: 11px;
+    color: #3b4563;
+    line-height: 1.7;
+}
+
+.mode-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mode-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #141620;
+    font-size: 12px;
+}
+
+.mode-info-label {
+    color: #4a5568;
+    font-weight: 600;
+}
+
+.mode-info-value {
+    font-weight: 800;
+}
+
+.val-green { color: #34d399; }
+.val-blue { color: #60a5fa; }
+.val-gold { color: #f7ca54; }
+
+/* =============================================
+   상단 안내 + 레벨 탭
+   ============================================= */
+.simple-top-guide {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #111320 0%, #0f121b 100%);
+    border: 1px solid #1a1d2e;
+    margin-bottom: 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+
+.simple-top-guide-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.simple-top-guide-sub {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.simple-level-tabs {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 0;
+}
+
+.simple-level-tab {
+    position: relative;
+    min-width: 88px;
+    padding: 12px 14px 11px;
+    border-radius: 14px;
+    background: #151822;
+    border: 1px solid #23283a;
+    color: #778197;
+    cursor: pointer;
+    transition: .2s ease;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    overflow: visible;
+    isolation: isolate;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+}
+
+.simple-level-tab::before {
+    display: none !important;
+}
+
+.simple-level-tab:hover {
+    transform: translateY(-1px);
+    border-color: #323952;
+    background: #171b27;
+    color: #d5deea;
+}
+
+.simple-level-tab.active {
+    background: linear-gradient(180deg, #2a1d12 0%, #1a1511 100%);
+    border-color: rgba(255, 153, 51, .55);
+    color: #fff4e6;
+    box-shadow:
+        0 0 0 1px rgba(255, 153, 51, .18),
+        0 0 14px rgba(255, 140, 0, .22),
+        0 0 30px rgba(255, 140, 0, .14),
+        inset 0 0 18px rgba(255, 170, 70, .08);
+    animation: simpleTabHotPulse 2.4s ease-in-out infinite;
+}
+
+.simple-level-tab.active::before {
+    background: transparent;
+    box-shadow: none;
+    height: 0;
+}
+
+.simple-level-tab.active::after {
+    content: none;
+}
+
+.simple-level-tab-main {
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.simple-level-tab-sub {
+    font-size: 10px;
+    font-weight: 700;
+    opacity: .78;
+    line-height: 1;
+}
+
+/* =============================================
+   공통 배지
+   ============================================= */
+.badge,
+.meta-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.type-human     { background: rgba(59,130,246,.15); color: #93c5fd; }
+.type-ancient   { background: rgba(167,139,250,.15); color: #c4b5fd; }
+.type-demon     { background: rgba(251,146,60,.15); color: #fdba74; }
+.type-archdemon { background: rgba(248,113,113,.15); color: #fca5a5; }
+.type-divine    { background: rgba(125,211,252,.14); color: #bae6fd; }
+.type-beast     { background: rgba(180,140,100,.15); color: #d4b896; }
+.type-insect    { background: rgba(132,204,22,.12); color: #bef264; }
+.type-spirit    { background: rgba(34,211,238,.12); color: #a5f3fc; }
+
+.attr-fire      { background: rgba(251,146,60,.15); color: #fdba74; }
+.attr-holy      { background: rgba(253,224,71,.12); color: #fde68a; }
+.attr-dark      { background: rgba(167,139,250,.15); color: #c4b5fd; }
+.attr-earth     { background: rgba(180,140,100,.12); color: #d4b896; }
+.attr-lightning { background: rgba(253,224,71,.12); color: #fde68a; }
+.attr-water     { background: rgba(56,189,248,.12); color: #7dd3fc; }
+.attr-none      { background: rgba(255,255,255,.06); color: #9ca3af; }
+
+/* =============================================
+   간편보기 카드
+   ============================================= */
+.simple-view {
+    width: 100%;
+    display: grid;
+    gap: 14px;
+}
+
+.simple-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.simple-card {
+    background: #111320;
+    border: 1px solid #1a1d2e;
+    border-radius: 18px;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 16px;
+    transition: .2s ease;
+}
+
+.simple-card:hover {
+    transform: translateY(-2px);
+    border-color: #2a3147;
+    box-shadow: 0 12px 28px rgba(0,0,0,.28);
+}
+
+.simple-left {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.simple-node {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 900;
+    color: #0d1118;
+    flex-shrink: 0;
+}
+
+.b-green .simple-node  { background: #34d399; }
+.b-gold .simple-node   { background: #f7ca54; }
+.b-purple .simple-node { background: #a78bfa; }
+.b-orange .simple-node { background: #fb923c; }
+.b-gray .simple-node   { background: #6b7280; color: #fff; }
+
+.simple-right {
+    display: grid;
+    gap: 10px;
+}
+
+.simple-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.simple-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.simple-kind {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(251,146,60,.10);
+    border: 1px solid rgba(251,146,60,.18);
+    color: #fb923c;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.simple-rows {
+    display: grid;
+    gap: 8px;
+}
+
+.simple-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 11px 12px;
+    border-radius: 12px;
+    background: #151822;
+    border: 1px solid #1c2030;
+}
+
+.simple-row-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.gate-b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 6px;
+    background: #212536;
+    color: #98a2b3;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.boss-b {
+    font-size: 14px;
+    font-weight: 800;
+    color: #e5e7eb;
+}
+
+.simple-badges {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.simple-badges .badge,
+.simple-row .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    padding: 0 7px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 18px;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.range-b {
+    font-size: 15px;
+    font-weight: 900;
+    color: #f7ca54;
+    white-space: nowrap;
+}
+
+.range-b.preparing {
+    color: #f7ca54;
+    font-style: italic;
+}
+
+/* 골드바 */
+.simple-goldbar {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 12px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    border: 1px solid #202434;
+    margin-top: 4px;
+}
+
+.gold-item,
+.gold-total {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 88px;
+}
+
+.gold-item-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.gold-clear-label { color: #f7ca54; }
+.gold-bind-label  { color: #9ca3af; }
+
+.gold-total-label {
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .3px;
+}
+
+.gold-item-value {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.gold-clear-value { color: #f7ca54; }
+.gold-bind-value  { color: #e5e7eb; }
+
+.gold-total-value {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.gold-operator {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #3b4563;
+    font-weight: 900;
+    font-size: 15px;
+    padding-bottom: 2px;
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* =============================================
+   간편보기 상단 히어로
+   ============================================= */
+.simple-hero {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    padding: 24px;
+    background:
+        radial-gradient(circle at top right, rgba(99,102,241,.16), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(59,130,246,.10), transparent 30%),
+        linear-gradient(180deg, #131722 0%, #0f121b 100%);
+    border: 1px solid #20263a;
+    box-shadow: 0 18px 40px rgba(0,0,0,.28);
+    margin-bottom: 16px;
+}
+
+.simple-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.025) 35%, transparent 70%);
+    pointer-events: none;
+}
+
+.simple-hero-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+.simple-hero-left {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.simple-hero-copy {
+    display: block;
+}
+
+.simple-hero-kicker {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #6ea8ff;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.simple-hero-title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.simple-hero-title-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(251,146,60,.18), rgba(248,113,113,.16));
+    border: 1px solid rgba(251,146,60,.26);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 8px 18px rgba(251,146,60,.10);
+}
+
+.simple-hero-title {
+    font-size: 34px;
+    line-height: 1.08;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -.3px;
+}
+
+.simple-hero-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #8a94a8;
+    max-width: 720px;
+    margin-bottom: 0;
+}
+
+.simple-hero-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.simple-hero-pill {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+}
+
+.pill-level {
+    background: rgba(52,211,153,.06);
+    color: #86efac;
+    border-color: rgba(52,211,153,.14);
+}
+
+.pill-compare {
+    background: rgba(59,130,246,.06);
+    color: #93c5fd;
+    border-color: rgba(59,130,246,.14);
+}
+
+.pill-cut {
+    background: rgba(247,202,84,.06);
+    color: #fcd34d;
+    border-color: rgba(247,202,84,.14);
+}
+
+.simple-hero-right {
+    width: 208px;
+    display: grid;
+    gap: 8px;
+    flex: 0 0 208px;
+}
+
+.simple-hero-stat {
+    padding: 11px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.06);
+}
+
+.simple-hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.simple-hero-stat-value {
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+}
+
+.simple-hero-stat-sub {
+    font-size: 10px;
+    color: #7c879c;
+    margin-top: 3px;
+}
+
+/* =============================================
+   정밀 계산 / 가디언 공통 히어로
+   ============================================= */
+.precision-hero {
+    background: linear-gradient(180deg, #111320 0%, #0f121b 100%);
+    border: 1px solid #1a1d2e;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 16px 38px rgba(0,0,0,.25);
+}
+
+.precision-hero-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.precision-hero-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(99,102,241,.12));
+    border: 1px solid rgba(99,102,241,.26);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.precision-hero-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.precision-hero-mini {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #7dd3fc;
+    margin-bottom: 4px;
+}
+
+.precision-hero-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+
+.precision-hero-sub {
+    font-size: 12px;
+    color: #667085;
+}
+
+.precision-hero-badges {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+/* =============================================
+   공통 컨트롤 박스
+   ============================================= */
+.precision-control {
+    background: #111320;
+    border: 1px solid #1a1d2e;
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.precision-control-section {
+    margin-bottom: 18px;
+}
+
+.precision-control-section:last-child {
+    margin-bottom: 0;
+}
+
+.precision-control-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #4a7cff;
+    margin-bottom: 10px;
+}
+
+.precision-control-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #1e2030, transparent);
+    margin: 18px 0;
+}
+
+/* =============================================
+   세르카 / 성당 compact 선택 UI
+   ============================================= */
+.compact-precision-control {
+    display: grid;
+    gap: 16px;
+}
+
+.precision-inline-group {
+    display: grid;
+    gap: 8px;
+}
+
+.precision-diff-inline {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 66.6%;
+}
+
+.precision-gate-inline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 66.6%;
+}
+
+.precision-diff-chip {
+    min-width: 92px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #151822;
+    border: 1px solid #212536;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    cursor: pointer;
+    transition: .2s ease;
+    white-space: nowrap;
+}
+
+.precision-diff-chip:hover {
+    border-color: #3b4563;
+}
+
+.precision-diff-chip-check {
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+    min-height: 12px;
+}
+
+.precision-diff-chip-main {
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.precision-diff-chip-sub {
+    font-size: 10px;
+    color: #667085;
+    line-height: 1;
+}
+
+.precision-diff-chip.pd-green.active {
+    background: linear-gradient(135deg, rgba(52,211,153,.12), rgba(52,211,153,.04));
+    border-color: rgba(52,211,153,.35);
+    color: #34d399;
+}
+
+.precision-diff-chip.pd-gold.active {
+    background: linear-gradient(135deg, rgba(247,202,84,.12), rgba(247,202,84,.04));
+    border-color: rgba(247,202,84,.35);
+    color: #f7ca54;
+}
+
+.precision-diff-chip.pd-purple.active {
+    background: linear-gradient(135deg, rgba(167,139,250,.12), rgba(167,139,250,.04));
+    border-color: rgba(167,139,250,.35);
+    color: #a78bfa;
+}
+
+.precision-gate-chip {
+    position: relative;
+    min-width: 0;
+    min-height: 84px;
+    padding: 18px 14px 12px;
+    border-radius: 12px;
+    background: #151822;
+    border: 1px solid #212536;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.precision-gate-chip:hover {
+    border-color: #3b4563;
+}
+
+.precision-gate-chip.active {
+    background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,102,241,.08));
+    border-color: rgba(99,102,241,.35);
+    box-shadow: 0 4px 12px rgba(59,130,246,.12);
+}
+
+.precision-gate-chip.active::before {
+    content: "✓";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 900;
+    color: #60a5fa;
+    line-height: 1;
+    opacity: .9;
+}
+
+.precision-gate-chip-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 0;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.precision-gate-chip-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    text-align: center;
+}
+
+.precision-gate-chip-gate {
+    font-size: 16px;
+    font-weight: 900;
+    color: #60a5fa;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.precision-gate-chip-boss {
+    font-size: 14px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.precision-gate-chip-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 2px;
+}
+
+.precision-gate-chip-badges .badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 20px !important;
+    padding: 0 7px !important;
+    border-radius: 6px !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 18px !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+}
+
+.precision-gate-chip-badges .badge.type-human { background: rgba(59,130,246,.15) !important; color: #93c5fd !important; }
+.precision-gate-chip-badges .badge.type-ancient { background: rgba(167,139,250,.15) !important; color: #c4b5fd !important; }
+.precision-gate-chip-badges .badge.attr-none { background: rgba(255,255,255,.06) !important; color: #9ca3af !important; }
+.precision-gate-chip-badges .badge.attr-dark { background: rgba(167,139,250,.15) !important; color: #c4b5fd !important; }
+.precision-gate-chip-badges .badge.attr-holy { background: rgba(253,224,71,.12) !important; color: #fde68a !important; }
+
+.precision-gate-chip-main {
+    display: none !important;
+}
+
+/* =============================================
+   가디언 한 줄형 UI
+   ============================================= */
+.guardian-inline-control {
+    display: block;
+}
+
+.guardian-inline-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.guardian-tier-inline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+}
+
+.guardian-tier-chip {
+    min-width: 0;
+    min-height: 58px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #151822;
+    border: 1px solid #212536;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    transition: .2s ease;
+    position: relative;
+}
+
+.guardian-tier-chip:hover {
+    border-color: #3b4563;
+}
+
+.guardian-tier-chip.active {
+    background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,102,241,.08));
+    border-color: rgba(99,102,241,.35);
+    box-shadow: 0 4px 12px rgba(59,130,246,.12);
+    color: #fff;
+}
+
+.guardian-tier-chip-check {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+    min-width: 10px;
+}
+
+.guardian-tier-chip-stage {
+    font-size: 11px;
+    font-weight: 800;
+    color: #60a5fa;
+    line-height: 1;
+}
+
+.guardian-tier-chip-text {
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.guardian-select-inline {
+    width: 100%;
+    min-width: 0;
+}
+
+.guardian-dropdown {
+    position: relative;
+}
+
+.guardian-dropdown-trigger.compact {
+    min-height: 58px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    background: #151822;
+    border: 1px solid #212536;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.guardian-dropdown-trigger.compact:hover {
+    border-color: #3b4563;
+}
+
+.guardian-dropdown-trigger.open {
+    border-color: rgba(99,102,241,.4);
+    background: #181b2a;
+    border-radius: 14px 14px 0 0;
+}
+
+.gd-trigger-main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+}
+
+.gd-trigger-name {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.gd-trigger-name-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.gd-trigger-name-wrap .element-emoji {
+    font-size: 15px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.gd-trigger-badges {
+    display: flex;
+    gap: 5px;
+    flex-wrap: nowrap;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.gd-trigger-badges .badge,
+.gd-item-badges .badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 20px !important;
+    padding: 0 7px !important;
+    border-radius: 6px !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 18px !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    white-space: nowrap !important;
+}
+
+.gd-trigger-badges .badge.type-ancient,
+.gd-item-badges .badge.type-ancient { background: rgba(167,139,250,.15) !important; color: #c4b5fd !important; }
+
+.gd-trigger-badges .badge.type-beast,
+.gd-item-badges .badge.type-beast { background: rgba(180,140,100,.15) !important; color: #d4b896 !important; }
+
+.gd-trigger-badges .badge.type-insect,
+.gd-item-badges .badge.type-insect { background: rgba(132,204,22,.12) !important; color: #bef264 !important; }
+
+.gd-trigger-badges .badge.type-spirit,
+.gd-item-badges .badge.type-spirit { background: rgba(34,211,238,.12) !important; color: #a5f3fc !important; }
+
+.gd-trigger-badges .badge.attr-lightning,
+.gd-item-badges .badge.attr-lightning { background: rgba(253,224,71,.12) !important; color: #fde68a !important; }
+
+.gd-trigger-badges .badge.attr-dark,
+.gd-item-badges .badge.attr-dark { background: rgba(167,139,250,.15) !important; color: #c4b5fd !important; }
+
+.gd-trigger-badges .badge.attr-earth,
+.gd-item-badges .badge.attr-earth { background: rgba(180,140,100,.12) !important; color: #d4b896 !important; }
+
+.gd-trigger-badges .badge.attr-fire,
+.gd-item-badges .badge.attr-fire { background: rgba(251,146,60,.15) !important; color: #fdba74 !important; }
+
+.gd-trigger-badges .badge.attr-holy,
+.gd-item-badges .badge.attr-holy { background: rgba(253,224,71,.12) !important; color: #fde68a !important; }
+
+.gd-trigger-badges .badge.attr-water,
+.gd-item-badges .badge.attr-water { background: rgba(56,189,248,.12) !important; color: #7dd3fc !important; }
+
+.gd-trigger-badges .badge.attr-none,
+.gd-item-badges .badge.attr-none { background: rgba(255,255,255,.06) !important; color: #9ca3af !important; }
+
+.gd-trigger-arrow {
+    flex-shrink: 0;
+    margin-left: 4px;
+    font-size: 12px;
+    color: #667085;
+    transition: transform .25s ease;
+}
+
+.guardian-dropdown-trigger.open .gd-trigger-arrow {
+    transform: rotate(180deg);
+}
+
+.guardian-dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #151822;
+    border: 1px solid rgba(99,102,241,.25);
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    max-height: 380px;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 0 16px 40px rgba(0,0,0,.45);
+}
+
+.guardian-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.guardian-dropdown-list::-webkit-scrollbar-thumb {
+    background: #2d3348;
+    border-radius: 3px;
+}
+
+.gd-group-label {
+    padding: 10px 16px 6px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #3b4563;
+}
+
+.guardian-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: .15s ease;
+}
+
+.guardian-dropdown-item:hover {
+    background: rgba(255,255,255,.03);
+}
+
+.guardian-dropdown-item.gd-active {
+    background: linear-gradient(135deg, rgba(59,130,246,.16), rgba(99,102,241,.10));
+    box-shadow: inset 0 0 0 1px rgba(99,102,241,.35);
+}
+
+.guardian-dropdown-item.pending {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.gd-item-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #e5e7eb;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+.guardian-dropdown-item.gd-active .gd-item-name {
+    color: #fff;
+    font-weight: 900;
+}
+
+.gd-item-name-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.gd-item-name-wrap .element-emoji {
+    font-size: 14px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.gd-item-badges {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 170px;
+    flex-wrap: wrap;
+}
+
+.gd-item-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 2px rgba(59,130,246,.15);
+}
+
+.gd-pending-tag {
+    font-size: 9px;
+    font-weight: 800;
+    color: #f87171;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(248,113,113,.10);
+    border: 1px solid rgba(248,113,113,.18);
+    justify-self: end;
+}
+
+/* =============================================
+   요약 카드
+   ============================================= */
+.precision-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.precision-summary-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: #111320;
+    border: 1px solid #1a1d2e;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: .2s ease;
+}
+
+.precision-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.24);
+}
+
+.precision-summary-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.precision-card-tank::before { background: linear-gradient(90deg, #f7ca54, #fde68a); }
+.precision-card-one::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.precision-card-blood::before { background: linear-gradient(90deg, #a78bfa, #c4b5fd); }
+
+.precision-summary-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.precision-label-tank { color: #f7ca54; }
+.precision-label-one { color: #60a5fa; }
+.precision-label-blood { color: #a78bfa; }
+
+.precision-summary-share {
+    font-size: 11px;
+    color: #3b4563;
+    margin-bottom: 12px;
+}
+
+.precision-summary-dmg {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.precision-summary-unit {
+    font-size: 14px;
+    color: #667085;
+}
+
+.precision-summary-dps {
+    display: inline-flex;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    margin-top: 12px;
+}
+
+.precision-dps-tank {
+    background: rgba(247,202,84,.08);
+    color: #f7ca54;
+    border: 1px solid rgba(247,202,84,.15);
+}
+
+.precision-dps-one {
+    background: rgba(59,130,246,.08);
+    color: #60a5fa;
+    border: 1px solid rgba(59,130,246,.15);
+}
+
+.precision-dps-blood {
+    background: rgba(167,139,250,.08);
+    color: #a78bfa;
+    border: 1px solid rgba(167,139,250,.15);
+}
+
+/* =============================================
+   지분표 / 테이블
+   ============================================= */
+.precision-table-panel {
+    padding: 20px;
+    border-radius: 18px;
+    background: #111320;
+    border: 1px solid #1a1d2e;
+    box-shadow: 0 10px 24px rgba(0,0,0,.2);
+}
+
+.table-wrap {
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #1e2030;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background: #0f121b;
+}
+
+thead {
+    background: linear-gradient(90deg, #151822 0%, #1a1d2e 100%);
+    border-bottom: 2px solid #2d3348;
+}
+
+thead th {
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 900;
+    color: #aab4c8;
+    letter-spacing: .4px;
+    border: none !important;
+    background: linear-gradient(180deg, rgba(99,102,241,.08), rgba(99,102,241,.03)) !important;
+    border-bottom: 2px solid #2a3246 !important;
+}
+
+.precision-table-panel thead th:first-child,
+.table-panel thead th:first-child {
+    text-align: left !important;
+    padding-left: 82px !important;
+    width: 170px;
+}
+
+tbody td {
+    padding: 13px 16px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #d1d5db;
+    border-bottom: 1px solid #171a25;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+tbody tr:hover td {
+    background: rgba(255,255,255,.03);
+}
+
+.row-30 td {
+    background: rgba(247,202,84,.08) !important;
+    color: #fde68a !important;
+}
+
+.row-33 td {
+    background: rgba(59,130,246,.08) !important;
+    color: #bfdbfe !important;
+}
+
+.row-40 td {
+    background: rgba(167,139,250,.08) !important;
+    color: #e9d5ff !important;
+}
+
+.share-cell {
+    text-align: left !important;
+    vertical-align: middle;
+    padding: 13px 16px !important;
+}
+
+.share-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.share-tag-area {
+    width: 54px;
+    flex-shrink: 0;
+}
+
+.share-pct {
+    display: inline-block;
+    width: 44px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: #e0e0e0;
+    line-height: 1;
+}
+
+.row-30 .share-pct { color: #f7ca54; }
+.row-33 .share-pct { color: #60a5fa; }
+.row-40 .share-pct { color: #a78bfa; }
+
+.share-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.tag-30 { background: rgba(247,202,84,.15); color: #f7ca54; border: 1px solid rgba(247,202,84,.25); }
+.tag-33 { background: rgba(59,130,246,.15); color: #60a5fa; border: 1px solid rgba(59,130,246,.25); }
+.tag-40 { background: rgba(167,139,250,.15); color: #a78bfa; border: 1px solid rgba(167,139,250,.25); }
+
+.dps-cell {
+    padding: 13px 16px !important;
+}
+
+.dps-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    background: rgba(52,211,153,.08);
+    color: #34d399;
+    border: 1px solid rgba(52,211,153,.15);
+}
+
+.row-30 .dps-pill {
+    background: rgba(247,202,84,.08);
+    color: #f7ca54;
+    border-color: rgba(247,202,84,.15);
+}
+
+.row-33 .dps-pill {
+    background: rgba(59,130,246,.08);
+    color: #60a5fa;
+    border-color: rgba(59,130,246,.15);
+}
+
+.row-40 .dps-pill {
+    background: rgba(167,139,250,.08);
+    color: #a78bfa;
+    border-color: rgba(167,139,250,.15);
+}
+
+/* =============================================
+   EX 카드
+   ============================================= */
+.ex-dash-container {
+    width: 100%;
+}
+
+.ex-raid-card {
+    background: #1a1c24;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 14px;
+    border: 1px solid #252836;
+    cursor: pointer;
+    transition: all .2s;
+    position: relative;
+}
+
+.ex-raid-card:hover {
+    border-color: #3b4563;
+    background: #1e2030;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.4);
+}
+
+.ex-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.ex-left-section {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ex-level-badge {
+    color: #0d0e13;
+    font-weight: 900;
+    font-size: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.ex-card-normal .ex-level-badge { background: #34d399; }
+.ex-card-normal .ex-phase-title { color: #34d399; }
+.ex-card-hard .ex-level-badge { background: #f7ca54; }
+.ex-card-hard .ex-phase-title { color: #f7ca54; }
+.ex-card-nightmare .ex-level-badge { background: #a78bfa; }
+.ex-card-nightmare .ex-phase-title { color: #a78bfa; }
+
+.ex-raid-info-title h2 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.ex-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.ex-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: #252836;
+    color: #6b7280;
+}
+
+.ex-tag.ex-weakness {
+    background: rgba(247,202,84,.12);
+    color: #f7ca54;
+}
+
+.ex-right-section {
+    flex-shrink: 0;
+    width: 340px;
+}
+
+.ex-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: #15171f;
+    border: 1px solid #1e2030;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ex-stat-col {
+    padding: 10px 8px;
+    text-align: center;
+    border-right: 1px solid #1e2030;
+}
+
+.ex-stat-col:last-child { border-right: none; }
+
+.ex-stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.ex-stat-label.l-tank { color: #6b7280; }
+.ex-stat-label.l-one { color: #3b82f6; }
+.ex-stat-label.l-blood { color: #f7ca54; }
+
+.ex-stat-dmg {
+    font-size: 15px;
+    font-weight: 800;
+    color: #e0e0e0;
+    margin-bottom: 3px;
+    white-space: nowrap;
+}
+
+.ex-stat-dps {
+    font-size: 12px;
+    color: #34d399;
+    white-space: nowrap;
+}
+
+.ex-stat-col.col-blood {
+    background: rgba(247,202,84,.04);
+}
+
+.ex-stat-col.col-blood .ex-stat-dmg {
+    color: #f7ca54;
+}
+
+.ex-detail-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #6b7280;
+    border-top: 1px solid rgba(167,139,250,.15);
+    transition: color .2s;
+}
+
+.ex-detail-arrow {
+    transition: transform .3s;
+    font-size: 10px;
+}
+
+.ex-raid-card.ex-active .ex-detail-bar { color: #f7ca54; }
+.ex-raid-card.ex-active .ex-detail-arrow { transform: rotate(180deg); }
+
+.ex-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease-out;
+}
+
+.ex-raid-card.ex-active .ex-accordion-content {
+    max-height: 2000px;
+    border-top: 2px solid rgba(167,139,250,.25);
+    margin-top: 14px;
+    padding-top: 14px;
+}
+
+.ex-pc-table-view {
+    display: block;
+    width: 100%;
+}
+
+.ex-dps-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 13px;
+}
+
+.ex-dps-table th {
+    color: #9ca3af;
+    font-weight: 700;
+    padding: 12px 8px;
+    border-bottom: 2px solid rgba(167,139,250,.3);
+    font-size: 12px;
+    background: linear-gradient(180deg, rgba(167,139,250,.1), rgba(139,92,246,.03));
+}
+
+.ex-dps-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #2d3146;
+    border-right: 1px solid #252836;
+    color: #e0e0e0;
+}
+
+.ex-dps-table td:last-child { border-right: none; }
+
+.ex-dps-table tr:hover td {
+    background: #15171f;
+}
+
+.ex-phase-title {
+    text-align: left;
+    font-weight: 700;
+}
+
+.ex-phase-title span {
+    display: block;
+    font-size: 11px;
+    color: #5a6178;
+    font-weight: normal;
+    margin-top: 2px;
+}
+
+.ex-val-text {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: #fff;
+}
+
+.ex-dps-text {
+    display: block;
+    font-size: 11px;
+    color: #34d399;
+}
+
+.ex-col-highlight {
+    background: rgba(247,202,84,.06);
+}
+
+.ex-dps-table th.ex-col-highlight,
+.ex-dps-table td.ex-col-highlight .ex-val-text {
+    color: #f7ca54;
+}
+
+.ex-row-total td {
+    background: #15171f !important;
+    border-bottom: 2px solid #252836;
+}
+
+.ex-row-total .ex-phase-title {
+    color: #f87171;
+}
+
+.ex-mobile-list-view {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ex-m-phase-card {
+    background: #15171f;
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #1e2030;
+}
+
+.ex-m-phase-card.ex-m-total {
+    background: #1a1520;
+    border-color: #2d2040;
+}
+
+.ex-m-phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #1e2030;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+}
+
+.ex-m-phase-name { font-size: 13px; font-weight: 700; }
+.ex-m-phase-info { font-size: 11px; color: #5a6178; }
+
+.ex-m-grid-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    font-size: 12px;
+}
+
+.ex-m-label { color: #6b7280; }
+
+.ex-m-values {
+    text-align: right;
+    font-weight: 700;
+    color: #fff;
+}
+
+.ex-m-values .ex-m-dps {
+    color: #34d399;
+    font-size: 11px;
+    font-weight: normal;
+    margin-left: 6px;
+}
+
+.ex-m-highlight .ex-m-label {
+    color: #f7ca54;
+    font-weight: 700;
+}
+
+.ex-m-highlight .ex-m-values {
+    color: #f7ca54;
+}
+
+/* 보스 정보 / 에스더 */
+.boss-info-section {
+    margin-top: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background: #1a1c24;
+    border: 1px solid #252836;
+    border-radius: 12px;
+}
+
+.section-header .dot {
+    width: 4px;
+    height: 16px;
+    border-radius: 2px;
+}
+
+.section-header .section-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.warning-bar {
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    background: #1a1c24;
+    border: 1px solid #252836;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.boss-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.boss-card {
+    background: #1a1c24;
+    border: 1px solid #252836;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.boss-card-title {
+    font-weight: 800;
+    font-size: 15px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.boss-card-title .bar {
+    width: 4px;
+    height: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.boss-chart-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.boss-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.boss-label-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.boss-label-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.boss-label-name {
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.boss-label-pct {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.boss-donut-wrap {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.boss-donut {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.boss-donut-inner {
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+    background: #1a1c24;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+.boss-donut-title {
+    font-size: 9px;
+    color: #5a6178;
+}
+
+.boss-donut-val {
+    font-size: 10px;
+    font-weight: 800;
+    color: #e0e0e0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.boss-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 10px;
+}
+
+.boss-legend-row {
+    display: flex;
+    align-items: center;
+}
+
+.boss-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+.boss-legend-val {
+    margin-left: auto;
+    font-weight: 700;
+    color: #e0e0e0;
+    flex-shrink: 0;
+}
+
+.boss-total-row {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #1e2030;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.boss-total-label {
+    font-size: 12px;
+    color: #5a6178;
+}
+
+.boss-total-val {
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.esther-table {
+    background: #1a1c24;
+    border: 1px solid #252836;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.esther-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid #252836;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.esther-header .bar {
+    width: 4px;
+    height: 16px;
+    border-radius: 2px;
+}
+
+.esther-header span {
+    font-weight: 800;
+    font-size: 15px;
+    color: #fff;
+}
+
+.esther-cols {
+    display: flex;
+    padding: 10px 18px;
+    background: #15171f;
+    font-size: 12px;
+    color: #5a6178;
+    font-weight: 700;
+}
+
+.esther-cols div {
+    flex: 1;
+    text-align: right;
+}
+
+.esther-cols div:first-child {
+    flex: 1.2;
+    text-align: left;
+}
+
+.esther-row {
+    display: flex;
+    padding: 12px 18px;
+    border-top: 1px solid #1e2030;
+    font-size: 13px;
+    align-items: center;
+}
+
+.esther-row div {
+    flex: 1;
+    text-align: right;
+    font-weight: 700;
+    color: #e0e0e0;
+}
+
+.esther-row div:first-child {
+    flex: 1.2;
+    text-align: left;
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+/* =============================================
+   상태 / 모달
+   ============================================= */
+.coming-soon {
+    padding: 44px 20px;
+    text-align: center;
+    border-radius: 16px;
+    background: #1a1c24;
+    border: 1px dashed #252836;
+    color: #c0c7d6;
+}
+
+.coming-soon h3 {
+    margin: 0 0 10px;
+    color: #f7ca54;
+    font-size: 24px;
+}
+
+.coming-soon p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.status-bar,
+.status {
+    text-align: right;
+    font-size: 11px;
+    color: #2d3348;
+    padding-right: 2px;
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(4,8,16,.78);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal-backdrop.show {
+    display: flex;
+}
+
+.modal-card {
+    width: min(720px, 100%);
+    border-radius: 20px;
+    padding: 26px 24px 22px;
+    background: #13151c;
+    border: 1px solid #252836;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    position: relative;
+}
+
+.modal-top-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4a7cff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.modal-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+
+.modal-divider {
+    width: 100%;
+    height: 1px;
+    margin: 16px 0 18px;
+    background: #1e2030;
+}
+
+.modal-content {
+    color: #c0c7d6;
+    font-size: 15px;
+    line-height: 1.9;
+    word-break: keep-all;
+}
+
+.modal-content p {
+    margin: 0 0 14px;
+}
+
+.modal-content .point {
+    color: #f7ca54;
+    font-weight: 900;
+}
+
+.modal-content .subpoint {
+    color: #34d399;
+    font-weight: 800;
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #252836;
+    background: #1a1c24;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .18s ease;
+}
+
+.modal-close:hover {
+    background: #1e2030;
+    transform: rotate(90deg);
+}
+
+@keyframes simpleTabActiveAura {
+    0%, 100% {
+        box-shadow:
+            0 10px 22px rgba(0,0,0,.22),
+            0 0 0 1px rgba(74,124,255,.10),
+            0 0 10px rgba(74,124,255,.12),
+            0 0 18px rgba(74,124,255,.08),
+            inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+    50% {
+        box-shadow:
+            0 10px 22px rgba(0,0,0,.24),
+            0 0 0 1px rgba(74,124,255,.16),
+            0 0 18px rgba(74,124,255,.22),
+            0 0 34px rgba(74,124,255,.16),
+            inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+}
+/* =============================================
+   EX 상단 소개 박스
+   ============================================= */
+.ex-intro-box {
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: #151822;
+    border: 1px solid #252836;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ex-intro-title-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    background: #1f2433;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.ex-intro-desc {
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.6;
+}
+
+.ex-intro-purple {
+    background: linear-gradient(180deg, rgba(167,139,250,.08), rgba(21,24,34,1));
+    border-color: rgba(167,139,250,.22);
+}
+
+.ex-intro-purple .ex-intro-title-box {
+    background: linear-gradient(135deg, rgba(167,139,250,.20), rgba(139,92,246,.12));
+    border-color: rgba(167,139,250,.30);
+    color: #ddd6fe;
+}
+
+.ex-intro-gold {
+    background: linear-gradient(180deg, rgba(247,202,84,.08), rgba(21,24,34,1));
+    border-color: rgba(247,202,84,.22);
+}
+
+.ex-intro-gold .ex-intro-title-box {
+    background: linear-gradient(135deg, rgba(247,202,84,.20), rgba(245,158,11,.12));
+    border-color: rgba(247,202,84,.30);
+    color: #fde68a;
+}
+
+/* =============================================
+   반응형
+   ============================================= */
+@media (max-width: 1180px) {
+    .workspace {
+        grid-template-columns: 260px 1fr;
     }
 
-    result.push(current);
-    return result;
+    .content-grid {
+        grid-template-columns: 1fr 250px;
+    }
 }
 
-function percentNum(v) {
-    // 소수 딜지분(예: 16.60%)도 정확히 인식하도록 소수부까지 매칭
-    const m = String(v || "").match(/(\d+(?:\.\d+)?)%/);
-    return m ? Number(m[1]) : null;
-}
-
-// 메뉴별 강투/1인분/잔혈 기준 딜지분 (4인 레이드 vs 벨가르딘 8인 레이드)
-const PRECISION_SHARE_BY_MENU = {
-    default: { tank: 30, one: 33, blood: 40 },
-    belgardin: { tank: 15, one: 16.6, blood: 20 }
-};
-
-
-function getPrecisionShares(menu) {
-    return PRECISION_SHARE_BY_MENU[menu] || PRECISION_SHARE_BY_MENU.default;
-}
-
-
-function getRoleMultiplier() {
-    return currentRoleMode === "support" ? 1.25 : 1;
-}
-
-function floorTo1(n) {
-    return Math.floor(n * 10) / 10;
-}
-
-// 딜러표(dataRows)를 기준으로 서폿 강조컷/1인분/잔조컷 지점을 보간 계산
-// getDamage: row -> 피해량(억) 반환 함수
-
-
-
-
-
-// 딜러표(dataRows)를 기준으로 서폿 강조컷/1인분/잔조컷 지점을 보간 계산 및 테이블 정적 범위 변환
-function computeSupportConversion(dataRows, shares, getDamage) {
-    const sorted = dataRows
-        .filter(r => getDamage(r) > 0)
-        .sort((a, b) => a.share - b.share);
-
-    if (!sorted.length) return { rows: [], anchors: {} };
-
-    // 특정 %(share) 지점의 피해량을 두 인접 행 사이에서 선형 보간(역산)해 구함
-    function damageAtShare(share) {
-        for (let i = 0; i < sorted.length; i++) {
-            if (Math.abs(sorted[i].share - share) < 1e-9) {
-                return getDamage(sorted[i]);
-            }
-        }
-        for (let i = 0; i < sorted.length - 1; i++) {
-            const a = sorted[i], b = sorted[i + 1];
-            if (share > a.share && share < b.share) {
-                const da = getDamage(a), db = getDamage(b);
-                const frac = (share - a.share) / (b.share - a.share);
-                return da + frac * (db - da);
-            }
-        }
-        const last = sorted[sorted.length - 1];
-        const prev = sorted[sorted.length - 2];
-        if (prev && share > last.share) {
-            const da = getDamage(prev), db = getDamage(last);
-            const frac = (share - prev.share) / (last.share - prev.share);
-            return da + frac * (db - da);
-        }
-        const first = sorted[0];
-        const second = sorted[1];
-        if (second && share < first.share) {
-            const da = getDamage(first), db = getDamage(second);
-            const frac = (share - first.share) / (second.share - first.share);
-            return da + frac * (db - da);
-        }
-        return null;
+@media (max-width: 1024px) {
+    .workspace {
+        grid-template-columns: 1fr;
     }
 
-    // 목표 %는 기준% × 1.25로 이미 확정된 값이므로, 그 지점의 피해량만 보간
-    function makeAnchor(baseShare) {
-        const targetShare = Math.floor(baseShare * 1.25 * 10) / 10;
-        const dmg = damageAtShare(targetShare);
-        if (dmg == null) return null;
-        return { share: targetShare, damage: Math.floor(dmg) };
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #1a1d2e;
     }
 
-    const anchors = {
-        gangjo: makeAnchor(shares.tank),
-        ilinbun: makeAnchor(shares.one),
-        janjo: makeAnchor(shares.blood)
-    };
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-    // [핵심 변경] 8인 레이드(벨가르딘) 여부에 따라 정수 테이블의 범위를 동적으로 생성
-    const is8Man = (shares.tank === 15); // 벨가르딘은 강투 지분이 15%입니다.
-    const startShare = is8Man ? 15 : 35; // 8인은 15%부터, 4인은 35%부터 시작
-    const endShare = is8Man ? 35 : 55;   // 8인은 35%까지, 4인은 55%까지 표시
+@media (max-width: 980px) {
+    .guardian-inline-row {
+        grid-template-columns: 1fr;
+    }
 
-    const merged = [];
+    .precision-diff-inline,
+    .precision-gate-inline,
+    .guardian-tier-inline {
+        width: 100%;
+    }
+
+    .guardian-select-inline {
+        width: 100%;
+    }
+}
+
+@media (max-width: 860px) {
+    .simple-stack,
+    .precision-summary-cards,
+    .boss-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .app {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        border: none;
+    }
+
+    .sidebar,
+    .main {
+        padding: 16px;
+    }
+
+    .brand-title,
+    .hero {
+        font-size: 24px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .precision-hero-title {
+        font-size: 24px;
+    }
+
+    .precision-diff-inline,
+    .precision-gate-inline {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .precision-gate-chip {
+        min-width: 100%;
+    }
+
+    .guardian-dropdown-trigger.compact {
+        align-items: flex-start;
+    }
+
+    .simple-card {
+        grid-template-columns: 1fr;
+    }
+
+    .simple-level-tabs {
+        gap: 8px;
+    }
+
+    .simple-level-tab {
+        min-width: 78px;
+        padding: 10px 12px;
+        border-radius: 12px;
+    }
+
+    .simple-level-tab-main {
+        font-size: 14px;
+    }
+
+    .simple-level-tab-sub {
+        font-size: 9px;
+    }
+
+    .simple-hero {
+        padding: 20px;
+    }
+
+    .simple-hero-title {
+        font-size: 26px;
+    }
+
+    .simple-hero-top {
+        flex-wrap: wrap;
+    }
+
+    .simple-hero-right {
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    table {
+        min-width: 100% !important;
+    }
+
+    thead th,
+    tbody td {
+        padding: 8px 6px !important;
+        font-size: 12px !important;
+    }
+
+    .precision-table-panel thead th:first-child,
+    .table-panel thead th:first-child {
+        width: 120px !important;
+        padding-left: 70px !important;
+    }
+
+    .share-tag {
+        min-width: 30px;
+        height: 16px;
+        padding: 0 4px;
+        font-size: 8px;
+        border-radius: 3px;
+    }
+
+    .share-pct {
+        width: 36px;
+        font-size: 12px;
+    }
+
+    .dps-pill {
+        padding: 2px 6px;
+        font-size: 10px;
+    }
+
+    .patch-item {
+        padding: 8px 10px;
+    }
+
+    .patch-date-day {
+        font-size: 16px;
+    }
+
+    .modal-card {
+        padding: 24px 18px 18px;
+        border-radius: 18px;
+    }
+
+    .modal-title {
+        font-size: 22px;
+    }
+
+    .modal-content {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .ex-right-section {
+        width: 100%;
+    }
+
+    .ex-pc-table-view {
+        display: none;
+    }
+
+    .ex-mobile-list-view {
+        display: flex;
+    }
+}
+
+
+
+
+
+@media (max-width: 560px) {
+    .simple-hero-right {
+        grid-template-columns: 1fr;
+    }
+
+    .simple-hero-title {
+        font-size: 22px;
+    }
+
+    .simple-hero-desc {
+        font-size: 13px;
+    }
+
+    .simple-level-tabs {
+        gap: 8px;
+    }
+}
+
+
+
+/* =============================================
+   정밀 계산 상단 리디자인 v1
+   세르카 / 지평의 성당 / 가디언 토벌
+   ============================================= */
+
+.p-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    padding: 26px;
+    border: 1px solid #20263a;
+    box-shadow: 0 18px 40px rgba(0,0,0,.28);
+}
+
+.p-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.02) 40%, transparent 70%);
+    pointer-events: none;
+}
+
+.p-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.p-hero-left {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.p-hero-copy {
+    display: flex;
+    flex-direction: column;
+}
+
+.p-hero-right {
+    width: 220px;
+    flex: 0 0 220px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+    align-content: stretch;
+}
+
+.p-hero-kicker {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.p-hero-title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.p-hero-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.p-hero-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.p-hero-title {
+    font-size: 30px;
+    line-height: 1.08;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -.3px;
+}
+
+.p-hero-subtitle {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.p-hero-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.p-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.p-hero-desc {
+    font-size: 13px;
+    line-height: 1.75;
+    color: #7a8599;
+    max-width: 620px;
+}
+
+.p-hero-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.p-pill {
+    display: inline-flex;
+    align-items: center;
+    height: 30px;
+    padding: 0 11px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,.06);
+    background: rgba(255,255,255,.03);
+    color: #b9c3d4;
+}
+
+.p-pill.active {
+    border-color: rgba(255,255,255,.16);
+    background: rgba(255,255,255,.06);
+    color: #fff;
+}
+
+.p-stat {
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 94px;
+}
+
+.p-stat-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.p-stat-value {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+}
+
+/* =============================================
+   세르카
+   ============================================= */
+.hero-serka {
+    background:
+        radial-gradient(circle at top right, rgba(56,189,248,.14), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(59,130,246,.10), transparent 28%),
+        linear-gradient(180deg, #0f1520 0%, #0c0f18 100%);
+    border-color: rgba(56,189,248,.18);
+}
+
+.hero-serka .p-hero-kicker {
+    color: #7dd3fc;
+}
+
+.hero-serka .p-hero-icon {
+    background: linear-gradient(135deg, rgba(56,189,248,.20), rgba(59,130,246,.14));
+    border: 1px solid rgba(56,189,248,.28);
+    box-shadow: 0 8px 18px rgba(56,189,248,.10);
+}
+
+.hero-serka .p-hero-subtitle {
+    color: #7dd3fc;
+}
+
+.hero-serka .p-badge.b-type {
+    background: rgba(59,130,246,.15);
+    color: #93c5fd;
+}
+
+.hero-serka .p-badge.b-attr {
+    background: rgba(255,255,255,.06);
+    color: #b6c0cf;
+}
+
+.hero-serka .p-pill {
+    background: rgba(56,189,248,.06);
+    color: #7dd3fc;
+    border-color: rgba(56,189,248,.14);
+}
+
+.hero-serka .p-pill.active {
+    background: rgba(56,189,248,.14);
+    color: #e8f8ff;
+    border-color: rgba(56,189,248,.24);
+}
+
+.hero-serka .p-stat {
+    background: rgba(56,189,248,.04);
+    border-color: rgba(56,189,248,.10);
+}
+
+.hero-serka .p-stat-label {
+    color: #4a90b8;
+}
+
+/* =============================================
+   지평의 성당
+   ============================================= */
+.hero-cathedral {
+    background:
+        radial-gradient(circle at top left, rgba(167,139,250,.16), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(139,92,246,.10), transparent 30%),
+        linear-gradient(180deg, #12101e 0%, #0d0c16 100%);
+    border-color: rgba(167,139,250,.20);
+}
+
+.hero-cathedral .p-hero-kicker {
+    color: #c4b5fd;
+}
+
+.hero-cathedral .p-hero-icon {
+    background: linear-gradient(135deg, rgba(167,139,250,.22), rgba(139,92,246,.14));
+    border: 1px solid rgba(167,139,250,.30);
+    box-shadow: 0 8px 18px rgba(139,92,246,.12);
+}
+
+.hero-cathedral .p-hero-subtitle {
+    color: #c4b5fd;
+}
+
+.hero-cathedral .p-badge.b-type {
+    background: rgba(59,130,246,.15);
+    color: #93c5fd;
+}
+
+.hero-cathedral .p-badge.b-attr {
+    background: rgba(167,139,250,.15);
+    color: #c4b5fd;
+}
+
+.hero-cathedral .p-pill {
+    background: rgba(167,139,250,.06);
+    color: #c4b5fd;
+    border-color: rgba(167,139,250,.14);
+}
+
+.hero-cathedral .p-pill.active {
+    background: rgba(167,139,250,.14);
+    color: #f4efff;
+    border-color: rgba(167,139,250,.24);
+}
+
+.hero-cathedral .p-stat {
+    background: rgba(167,139,250,.04);
+    border-color: rgba(167,139,250,.10);
+}
+
+.hero-cathedral .p-stat-label {
+    color: #7c6cb5;
+}
+
+/* =============================================
+   가디언 토벌
+   ============================================= */
+.hero-guardian {
+    background:
+        radial-gradient(circle at top right, rgba(251,146,60,.14), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(248,113,113,.10), transparent 26%),
+        linear-gradient(180deg, #181210 0%, #100d0b 100%);
+    border-color: rgba(251,146,60,.20);
+}
+
+.hero-guardian .p-hero-kicker {
+    color: #fdba74;
+}
+
+.hero-guardian .p-hero-icon {
+    background: linear-gradient(135deg, rgba(251,146,60,.22), rgba(248,113,113,.14));
+    border: 1px solid rgba(251,146,60,.28);
+    box-shadow: 0 8px 18px rgba(251,146,60,.12);
+}
+
+.hero-guardian .p-hero-subtitle {
+    color: #fdba74;
+}
+
+.hero-guardian .p-badge.b-type {
+    background: rgba(180,140,100,.15);
+    color: #d4b896;
+}
+
+.hero-guardian .p-badge.b-attr {
+    background: rgba(253,224,71,.12);
+    color: #fde68a;
+}
+
+.hero-guardian .p-pill {
+    background: rgba(251,146,60,.06);
+    color: #fdba74;
+    border-color: rgba(251,146,60,.14);
+}
+
+.hero-guardian .p-pill.active {
+    background: rgba(251,146,60,.14);
+    color: #fff3e6;
+    border-color: rgba(251,146,60,.24);
+}
+
+.hero-guardian .p-stat {
+    background: rgba(251,146,60,.04);
+    border-color: rgba(251,146,60,.10);
+}
+
+.hero-guardian .p-stat-label {
+    color: #a07840;
+}
+
+/* =============================================
+   모바일
+   ============================================= */
+@media (max-width: 768px) {
+    .p-hero-inner {
+        flex-wrap: wrap;
+    }
+
+    .p-hero-right {
+        width: 100%;
+        flex: 1 1 100%;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: none;
+    }
+
+    .p-hero-title {
+        font-size: 24px;
+    }
+
+    .p-stat-value {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    .p-hero-right {
+        grid-template-columns: 1fr;
+    }
+
+    .p-hero-title {
+        font-size: 22px;
+    }
+
+    .p-hero-desc {
+        font-size: 12px;
+    }
+}
+
+#tabs:empty {
+    display: none;
+}
+
+.precision-table-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 0 2px;
+    flex-wrap: wrap;
+}
+
+.precision-table-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #5a6785;
+    line-height: 1.2;
+    letter-spacing: -.1px;
+}
+
+.precision-table-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(52,211,153,.10);
+    border: 1px solid rgba(52,211,153,.22);
+    color: #34d399;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+
+@media (max-width: 768px) {
+    .precision-table-head {
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+
+    .precision-table-title {
+        font-size: 14px;
+    }
+
+    .precision-table-badge {
+        height: 26px;
+        font-size: 10px;
+        padding: 0 10px;
+    }
+}
+
+/* =============================================
+   보상 위젯
+   ============================================= */
+.rw-widget {
+    width: 100%;
+    max-width: 320px;
+    background: #161926;
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #24293d;
+    color: #fff;
+    margin-top: 14px;
+}
+
+.rw-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #7c8ba1;
+    margin-bottom: 10px;
+    letter-spacing: .5px;
+}
+
+.rw-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.rw-slot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #0d0f17;
+    border: 1px solid #24293d;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.rw-slot img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+
+.rw-count {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    pointer-events: none;
+}
+
+.rw-currency {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #111422;
+    padding: 4px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.rw-currency-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #9ca3af;
+}
+
+.rw-currency-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.rw-gold {
+    color: #ffcc00;
+    font-weight: 800;
+}
+
+.rw-shard {
+    color: #d1adff;
+    font-weight: 800;
+}
+
+.rw-more-area {
+    margin-top: 10px;
+    border-top: 1px dashed #24293d;
+    padding-top: 8px;
+}
+
+.rw-more-btn {
+    width: 100%;
+    background: #1f2336;
+    border: 1px solid #24293d;
+    color: #a3b2cc;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background .2s;
+}
+
+.rw-more-btn:hover {
+    background: #282d45;
+}
+
+.rw-more-content {
+    display: none;
+    margin-top: 8px;
+    background: #1a1d2e;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.rw-more-content.rw-open {
+    display: block;
+}
+
+.rw-more-label {
+    font-size: 11px;
+    color: #e6a23c;
+    margin-bottom: 6px;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .rw-widget {
+        max-width: 100%;
+    }
+}
+
+/* =============================================
+   정밀 계산 선택 박스 우측 보상 위젯 배치
+   ============================================= */
+
+
+.precision-layout-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.precision-reward-standalone {
+    min-width: 0;
+}
+
+.precision-reward-standalone .rw-widget {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 0;
+    background: #111320;
+    border: 1px solid #1a1d2e;
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.precision-layout-split .precision-diff-inline,
+.precision-layout-split .precision-gate-inline {
+    width: 100%;
+}
+
+@media (max-width: 980px) {
+    .precision-layout-split {
+        grid-template-columns: 1fr;
+    }
+
+    .precision-reward-standalone .rw-widget {
+        max-width: 100%;
+    }
+}
+
+.precision-reward-standalone .rw-more-area {
+    position: relative;
+}
+
+.precision-reward-standalone .rw-more-content.rw-open {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    margin-top: 4px;
+    background: #1a1d2e;
+    border: 1px solid #24293d;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.45);
+}
+
+
+/* =============================================
+   모바일 숨김 처리
+   ============================================= */
+@media (max-width: 768px) {
+
+    /* 잔혈컷 간편보기 우측 카드 */
+    .simple-hero-right {
+        display: none !important;
+    }
+
+    /* 세르카/지평/가디언 상단 우측 카드 */
+    .p-hero-right {
+        display: none !important;
+    }
+
+    /* 강투컷 / 1인분 / 잔혈컷 요약 카드 */
+    .precision-summary-cards {
+        display: none !important;
+    }
+
+    /* 익스트림 레이드 메뉴 그룹 전체 */
+    .menu-group-title .dot-amber {
+        display: none;
+    }
+
+    .sidebar .menu-group:has(.dot-amber) {
+        display: none !important;
+    }
+
+    /* 익스트림 레이드 위 구분선 */
+    .sidebar .menu-group:has(.dot-amber) + .side-divider {
+        display: none !important;
+    }
+
+    /* 패치노트 */
+    .patch-section {
+        display: none !important;
+    }
+
+    /* 패치노트 위 구분선 */
+    .patch-section + .side-divider,
+    .side-divider:has(+ .patch-section) {
+        display: none !important;
+    }
+
+    /* 경매 계산기 */
+    .auction-calc {
+        display: none !important;
+    }
+}
+
+
+.badge-off {
+    background: rgba(248, 113, 113, .12);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, .25);
+}
+
+.menu-btn-off {
+    opacity: 1;
+    filter: none;
+}
+
+.menu-btn-off .menu-btn-name {
+    color: #c0c7d6;
+}
+
+.menu-btn-off .menu-btn-sub {
+    color: #f87171;
+}
+
+
+/* =============================================
+   간편보기 3칸 분리형 딜컷
+   ============================================= */
+.simple-row.has-triple-range {
+    align-items: center;
+}
+
+.triple-range {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.triple-part {
+    min-width: 62px;
+    padding: 6px 8px 5px;
+    border-radius: 10px;
+    border: 1px solid #262c3d;
+    background: #121622;
+    text-align: center;
+}
+
+.triple-part .t-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    margin-bottom: 3px;
+    color: #667085;
+}
+
+.triple-part .t-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.triple-part.tank {
+    background: rgba(247,202,84,.04);
+    border-color: rgba(247,202,84,.12);
+}
+
+.triple-part.tank .t-value {
+    color: #f7ca54;
+}
+
+.triple-part.one {
+    background: rgba(59,130,246,.05);
+    border-color: rgba(59,130,246,.14);
+}
+
+.triple-part.one .t-value {
+    color: #8db8ff;
+}
+
+.triple-part.blood {
+    background: rgba(167,139,250,.05);
+    border-color: rgba(167,139,250,.14);
+}
+
+.triple-part.blood .t-value {
+    color: #c4b5fd;
+}
+
+/* =============================================
+   빠른 보기 - 레이드별 잔혈컷
+   ============================================= */
+.badge-new {
+    background: rgba(59, 130, 246, .12);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, .25);
+    font-size: 9px;
+    letter-spacing: .5px;
+}
+
+
+
+.simple-controls-col .simple-raid-tab {
+    min-width: 0 !important;
+    flex: 1 1 0 !important;
+}
+
+.simple-raid-tab .simple-level-tab-main {
+    font-size: 14px;
+}
+
+.simple-raid-tab .simple-level-tab-sub {
+    font-size: 10px;
+}
+
+@media (max-width: 768px) {
+    .simple-raid-tab {
+        min-width: calc(25% - 6px);
+        flex: 1 1 calc(25% - 6px);
+        padding: 10px 8px;
+        border-radius: 12px;
+    }
+
+    .simple-raid-tab .simple-level-tab-main {
+        font-size: 11px;
+        line-height: 1.15;
+    }
+
+    .simple-raid-tab .simple-level-tab-sub {
+        font-size: 8px;
+        line-height: 1.1;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* =============================================
+   패치노트 미니 팝업
+   ============================================= */
+.patch-item {
+    cursor: pointer;
+}
+
+.patch-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 8, 16, .62);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1100;
+}
+
+.patch-modal-backdrop.show {
+    display: flex;
+}
+
+.patch-modal-card {
+    width: min(440px, 100%);
+    background: #13151c;
+    border: 1px solid #252836;
+    border-radius: 18px;
+    padding: 22px 20px 18px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.45);
+    position: relative;
+}
+
+.patch-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #252836;
+    background: #1a1c24;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .18s ease;
+}
+
+.patch-modal-close:hover {
+    background: #1e2030;
+    transform: rotate(90deg);
+}
+
+.patch-modal-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #22d3ee;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.patch-modal-date {
+    font-size: 12px;
+    color: #60a5fa;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.patch-modal-title {
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.patch-modal-desc {
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.6;
+}
+
+.patch-modal-divider {
+    height: 1px;
+    background: #1e2030;
+    margin: 16px 0 14px;
+}
+
+.patch-modal-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #d1d5db;
+    word-break: keep-all;
+}
+
+@media (max-width: 768px) {
+    .patch-modal-card {
+        width: min(100%, 420px);
+        padding: 20px 16px 16px;
+    }
+
+    .patch-modal-title {
+        font-size: 20px;
+    }
+
+    .patch-modal-body {
+        font-size: 13px;
+    }
+}
+
+/* =============================================
+   사이드바 브랜드 영역 - 심플 게임 사이트형
+   ============================================= */
+.brand-game {
+    display: grid;
+    gap: 0;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.brand-game::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 12px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(247,202,84,.18) 20%,
+        rgba(59,130,246,.18) 50%,
+        rgba(167,139,250,.18) 80%,
+        transparent 100%
+    );
+}
+
+.brand-game .brand-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4a7cff;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.brand-game .brand-main-title {
+    font-size: 31px;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -.7px;
+    margin-bottom: 6px;
+}
+
+.brand-game .brand-sub-title {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    color: #dbe7ff;
+    letter-spacing: .2px;
+    margin-bottom: 12px;
+}
+
+.brand-game .brand-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #8691a6;
+    margin: 0;
+}
+
+.brand-game .brand-tag-band {
+    position: relative;
+    margin-top: 12px;
+    padding: 0 0 14px 0;
+}
+
+.brand-game .brand-cut-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.brand-game .brand-cut-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.brand-game .brand-cut-tag.tag-tank {
+    background: rgba(247,202,84,.10);
+    color: #f7ca54;
+    border-color: rgba(247,202,84,.18);
+}
+
+.brand-game .brand-cut-tag.tag-one {
+    background: rgba(59,130,246,.10);
+    color: #8db8ff;
+    border-color: rgba(59,130,246,.18);
+}
+
+.brand-game .brand-cut-tag.tag-blood {
+    background: rgba(167,139,250,.12);
+    color: #c4b5fd;
+    border-color: rgba(167,139,250,.20);
+}
+
+.brand-game .brand-tag-band::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-top: 12px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(247,202,84,.18) 20%,
+        rgba(59,130,246,.18) 50%,
+        rgba(167,139,250,.18) 80%,
+        transparent 100%
+    );
+}
+
+@media (max-width: 768px) {
+    .brand-game::before {
+        margin-bottom: 10px;
+    }
+
+    .brand-game .brand-label {
+        margin-bottom: 10px;
+    }
+
+    .brand-game .brand-main-title {
+        font-size: 28px;
+    }
+
+    .brand-game .brand-sub-title {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    .brand-game .brand-desc {
+        font-size: 12px;
+    }
+
+    .brand-game .brand-tag-band {
+        margin-top: 10px;
+        padding: 0 0 12px 0;
+    }
+
+    .brand-game .brand-cut-tags {
+        gap: 6px;
+        justify-content: flex-start;
+    }
+
+    .brand-game .brand-cut-tag {
+        font-size: 10px;
+        height: 24px;
+        padding: 0 9px;
+    }
+
+    .brand-game .brand-tag-band::after {
+        margin-top: 10px;
+    }
+}
+
+
+/* =============================================
+   모바일 전용 - 사이드바 메뉴 최소화
+   ============================================= */
+@media (max-width: 768px) {
+    /* 메뉴 그룹 제목 간결하게 */
+    .menu-group-title {
+        padding: 0;
+        margin-bottom: 10px;
+        font-size: 11px;
+        letter-spacing: 1.4px;
+        color: #6b7280;
+    }
+
+    .menu-group-title::after {
+        display: none;
+    }
+
+    .menu-group-dot {
+        display: none;
+    }
+
+    /* 빠른보기: 2칸 */
+    .quick-group .menu-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    /* 정밀계산: 3칸 */
+    .precision-group .menu-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    /* 모바일에서 OFF/준비중 버튼 숨김 */
+    .precision-group .menu-btn-off,
+    .precision-group .menu-btn.disabled {
+        display: none !important;
+    }
+
+    /* 메뉴 버튼 자체를 사각형 간단 버튼으로 */
+    .quick-group .menu-item,
+    .quick-group .menu-btn,
+    .precision-group .menu-item,
+    .precision-group .menu-btn {
+        min-height: 46px;
+        padding: 10px 8px;
+        border-radius: 12px;
+        background: #151822;
+        border: 1px solid #23283a;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 0;
+    }
+
+    .quick-group .menu-item:hover,
+    .quick-group .menu-btn:hover,
+    .precision-group .menu-item:hover,
+    .precision-group .menu-btn:hover {
+        background: #171b27;
+        border-color: #323952;
+    }
+
+    .quick-group .menu-item.active,
+    .quick-group .menu-btn.active,
+    .precision-group .menu-item.active,
+    .precision-group .menu-btn.active {
+        background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,102,241,.08));
+        border-color: rgba(99,102,241,.35);
+        box-shadow: 0 4px 12px rgba(59,130,246,.10);
+    }
+
+    /* 아이콘 / 부가설명 / 배지 숨김 */
+    .quick-group .menu-btn-icon,
+    .quick-group .menu-btn-sub,
+    .quick-group .menu-btn-badge,
+    .precision-group .menu-btn-icon,
+    .precision-group .menu-btn-sub,
+    .precision-group .menu-btn-badge {
+        display: none !important;
+    }
+
+    /* 텍스트만 남기기 */
+    .quick-group .menu-btn-text,
+    .precision-group .menu-btn-text {
+        display: block;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .quick-group .menu-btn-name,
+    .precision-group .menu-btn-name {
+        display: block;
+        font-size: 12px;
+        font-weight: 800;
+        color: #cfd6e4;
+        white-space: normal;
+        line-height: 1.25;
+        text-align: center;
+    }
+
+    .quick-group .menu-item.active .menu-btn-name,
+    .quick-group .menu-btn.active .menu-btn-name,
+    .precision-group .menu-item.active .menu-btn-name,
+    .precision-group .menu-btn.active .menu-btn-name {
+        color: #fff;
+    }
+
+    /* 버튼 간격이 너무 위아래로 길어 보이지 않게 */
+    .menu-group {
+        margin-bottom: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   모바일 UI 최적화 종합 패키지 (홈 / 간편보기 / 정밀계산)
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. 모바일 홈 & 화면 전환
+   --------------------------------------------------------- */
+.mobile-home,
+.mobile-backbar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* 홈 모드 */
+    body.mobile-home-mode .sidebar {
+        display: block !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        padding: 16px !important;
+    }
+    body.mobile-home-mode .main {
+        display: none !important;
+    }
+   
+
+body.mobile-home-mode .sidebar > :not(.switch-wrap):not(.mobile-home):not(.patch-section) {
+    display: none !important;
+}
+
+    body.mobile-home-mode .mobile-home {
+        display: grid;
+        gap: 20px;
+        margin-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    /* 콘텐츠 모드 */
+    body.mobile-content-mode .sidebar {
+        display: none !important;
+    }
+    body.mobile-content-mode .main {
+        display: flex !important;
+        min-height: 100vh;
+    }
+    body.mobile-content-mode .mobile-backbar {
+        display: flex;
+        margin-bottom: 14px;
+    }
+
+    /* 뒤로가기 버튼 */
+    .mobile-back-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        padding: 0 14px;
+        border-radius: 10px;
+        border: 1px solid #252836;
+        background: #151822;
+        color: #dce4f2;
+        font-size: 13px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: .2s;
+    }
+    .mobile-back-btn:hover {
+        background: #171b27;
+    }
+
+    /* 브랜드 & 태그 */
+    .mobile-home-brand { display: grid; gap: 0; }
+    .mobile-home-brand .brand-label {
+        font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #4a7cff; font-weight: 800; margin-bottom: 12px;
+    }
+    .mobile-home-title-row {
+        display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px;
+    }
+    .mobile-home-brand .brand-main-title {
+        font-size: 28px; font-weight: 900; line-height: 1; color: #fff; letter-spacing: -.5px; margin-bottom: 6px;
+    }
+    .mobile-home-brand .brand-sub-title {
+        font-family: 'Do Hyeon', sans-serif; font-size: 24px; line-height: 1; color: #dbe7ff;
+    }
+    .mobile-home-brand .brand-desc {
+        font-size: 12px; line-height: 1.7; color: #8691a6; margin: 0 0 4px 0;
+    }
+    .mobile-home-brand .brand-tag-band {
+        position: relative; margin-top: 10px; padding: 0;
+    }
+    .mobile-home-brand .brand-cut-tags {
+        display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px;
+    }
+    .mobile-home-brand .brand-cut-tag {
+        display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 9px;
+        border-radius: 999px; font-size: 10px; font-weight: 800; white-space: nowrap; border: 1px solid rgba(255,255,255,.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    .mobile-home-brand .brand-cut-tag.tag-tank { background: rgba(247,202,84,.10); color: #f7ca54; border-color: rgba(247,202,84,.18); }
+    .mobile-home-brand .brand-cut-tag.tag-one { background: rgba(59,130,246,.10); color: #8db8ff; border-color: rgba(59,130,246,.18); }
+    .mobile-home-brand .brand-cut-tag.tag-blood { background: rgba(167,139,250,.12); color: #c4b5fd; border-color: rgba(167,139,250,.20); }
+
+    /* 안내 버튼 */
+    .mobile-home-guide {
+        flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px; min-height: 34px; padding: 0 10px;
+        border-radius: 10px; border: 1px solid #252836; background: #151822; color: #d5deea; font-size: 11px; font-weight: 800; cursor: pointer;
+    }
+
+    /* 섹션 & 버튼 */
+    .mobile-home-section { display: grid; gap: 10px; }
+    .mobile-home-section-title { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: #6b7280; font-weight: 900; }
+    .mobile-home-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .mobile-home-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+
+    .mobile-launch-btn {
+        min-height: 100px; padding: 16px 10px; border-radius: 16px; background: #151822; border: 1px solid #23283a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; transition: .2s ease;
+    }
+    .mobile-launch-btn.active {
+        background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,102,241,.08)); border-color: rgba(99,102,241,.35); box-shadow: 0 4px 12px rgba(59,130,246,.10);
+    }
+    .mobile-launch-btn .mlb-icon { font-size: 22px; line-height: 1; }
+    .mobile-launch-btn .mlb-main { display: block; font-size: 14px; font-weight: 800; color: #dce4f2; line-height: 1.3; white-space: normal; word-break: keep-all; }
+    .mobile-launch-btn.active .mlb-main { color: #fff; }
+    .mobile-launch-btn .mlb-sub { display: block; font-size: 10px; font-weight: 700; color: #667085; line-height: 1.2; }
+    .mobile-launch-btn.mlb-compact { min-height: 88px; padding: 14px 8px; }
+
+    /* 구분선 & 패치노트 */
+    .mobile-home-divider {
+        height: 1px; margin-top: 15px; margin-bottom: 15px;
+        background: linear-gradient(90deg, transparent 0%, rgba(247,202,84,.18) 20%, rgba(59,130,246,.18) 50%, rgba(167,139,250,.18) 80%, transparent 100%);
+    }
+    .mobile-home-patch .patch-header { padding: 0; margin-bottom: 15px; }
+    .mobile-home-patch .patch-list { display: flex; flex-direction: column; gap: 8px; max-height: none; overflow: visible; }
+    .mobile-home-patch .patch-item { padding: 10px; }
+    .mobile-home-patch .patch-content-title { font-size: 11px; }
+    .mobile-home-patch .patch-content-desc { font-size: 9px; }
+    .mobile-home-patch .patch-date { width: 52px; }
+    .mobile-home-patch .patch-date-month { font-size: 10px; }
+    .mobile-home-patch .patch-date-day { font-size: 14px; }
+
+    /* 높이/여백 정리 */
+    body.mobile-home-mode .app { margin-bottom: 10px !important; }
+    body.mobile-home-mode .workspace { min-height: auto !important; margin-bottom: 0 !important; padding-bottom: 0 !important; }
+    body.mobile-home-mode .sidebar { min-height: auto !important; height: auto !important; margin-bottom: 0 !important; padding-bottom: 22px !important; }
+    body.mobile-home-mode .mobile-home { margin-bottom: 0 !important; }
+}
+
+
+/* ---------------------------------------------------------
+   2. 간편보기 (레벨별/레이드별) 모바일
+   --------------------------------------------------------- */
+.simple-mobile-title-pack { display: none; }
+
+@media (max-width: 768px) {
+    /* 레이드별 잔혈컷 모바일 4칸 */
+    .simple-raid-tab {
+        min-width: calc(25% - 6px); flex: 1 1 calc(25% - 6px); padding: 10px 8px; border-radius: 12px;
+    }
+    .simple-raid-tab .simple-level-tab-main { font-size: 11px; line-height: 1.15; }
+    .simple-raid-tab .simple-level-tab-sub { font-size: 8px; line-height: 1.1; }
+
+    /* 카드 제목 묶음형 */
+    body.mobile-content-mode .simple-card { grid-template-columns: 1fr; }
+    body.mobile-content-mode .simple-card .simple-left { display: none !important; }
+    body.mobile-content-mode .simple-card .simple-title { display: none !important; }
+    body.mobile-content-mode .simple-card .simple-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
     
-    // 정해진 범위의 서폿 정수 지분율에 맞게 딜러 피해량을 선형 보간하여 행 생성
-    for (let s = startShare; s <= endShare; s++) {
-        const dmg = damageAtShare(s);
-        if (dmg !== null) {
-            merged.push({ share: s, damage: Math.floor(dmg), label: null });
-        }
+    body.mobile-content-mode .simple-card .simple-mobile-title-pack {
+        display: inline-flex; align-items: stretch; min-height: 34px; border-radius: 12px; overflow: hidden; background: #151822; border: 1px solid #23283a; box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
     }
-
-    // 강조컷, 1인분, 잔조컷 등의 특수 소수점 앵커(예: 37.5%, 41.2% 등)를 적재적소에 머지
-    Object.entries(anchors).forEach(([key, anchor]) => {
-        if (!anchor) return;
-        const dupIdx = merged.findIndex(r => Math.abs(r.share - anchor.share) < 1e-9);
-        if (dupIdx >= 0) {
-            merged[dupIdx].label = key;
-            merged[dupIdx].damage = anchor.damage;
-        } else {
-            merged.push({ share: anchor.share, damage: anchor.damage, label: key });
-        }
-    });
-
-    merged.sort((a, b) => a.share - b.share);
-
-    return { rows: merged, anchors };
-}
-
-
-
-
-
-
-
-
-
-
-function renderSupportShareCell(row) {
-    const tagMap = {
-        gangjo: { tag: "강조", cls: "tag-30" },
-        ilinbun: { tag: "1인분", cls: "tag-33" },
-        janjo: { tag: "잔조", cls: "tag-40" }
-    };
-    const info = row.label ? tagMap[row.label] : null;
-
-    const badgeSlot = info
-        ? `<div class="share-tag-area"><span class="share-tag ${info.cls}">${info.tag}</span></div>`
-        : `<div class="share-tag-area"></div>`;
-
-    const shareLabel = Number.isInteger(row.share) ? `${row.share}%` : `${row.share.toFixed(1)}%`;
-
-    return `
-        <td class="share-cell ${info ? "has-badge" : ""}">
-            <div class="share-row">
-                ${badgeSlot}
-                <span class="share-pct">${shareLabel}</span>
-            </div>
-        </td>
-    `;
-}
-
-
-const ROLE_TOOLTIP_HTML = `
-    <div class="rt-title">잔조컷에 대하여 💡</div>
-    <div class="rt-line"><strong>잔혈+찬조</strong> = 합성어로 <strong class="rt-purple">잔조컷</strong>으로 정의했습니다.</div>
-    <div class="rt-line"><strong>강투+찬조</strong> = 합성어로 <strong class="rt-orange">강조컷</strong>으로 정의했습니다.</div>
-    <div class="rt-line">오로지 <strong>조력 피해</strong>로만 이 수치를 확인합니다. </div>
-    <div class="rt-divider"></div>
-    <div class="rt-row"><span class="rt-tag rt-tag-orange">강조컷</span><span>딜러의 강투보다 살짝 우위</span></div>
-    <div class="rt-row"><span class="rt-tag rt-tag-blue">서폿 1인분</span><span>딜러의 1인분보다 살짝 우위</span></div>
-    <div class="rt-row"><span class="rt-tag rt-tag-purple">잔조컷</span><span>딜러의 잔혈보다 살짝 우위</span></div>
-    <div class="rt-line" style="margin-top:10px;">서폿은 기믹 대응과 케어를 동시 수행하기 때문에 전체적으로 딜러보다 살짝 우위에 속합니다.</div>
-    <div class="rt-line">수많은 서폿분들의 전분을 확인한 결과, 트라이~딜찍 기준 <strong>↑5%~50%</strong>까지 딜러 피해량과 조력 피해량의 차이가 있었습니다.</div>
-    <div class="rt-line">이 데이터를 종합해 로아뷰에서 찾은 <strong class="rt-green">황금배율</strong>로 서폿 잔조컷을 만들었습니다.</div>
-    <div class="rt-note">※ 이 계산법은 로아뷰에서 자체 제작한 방식으로, 절대적인 정답 수치는 아닙니다.</div>
-`;
-
-function makeRoleToggleHtml(variant) {
-    const isDealer = currentRoleMode === "dealer";
-    const boxCls = variant === "compact" ? "role-toggle-box compact" : "role-toggle-box";
-    return `
-        <div class="${boxCls}">
-            <div class="role-toggle-group">
-                <button type="button" class="role-toggle-btn role-dealer ${isDealer ? "active" : ""}" data-role="dealer">
-                    <span class="role-icon">⚔️</span>
-                    <span class="role-label">딜러 잔혈컷</span>
-                    <span class="role-check">${isDealer ? "✓" : "○"}</span>
-                </button>
-                <button type="button" class="role-toggle-btn role-support ${!isDealer ? "active" : ""}" data-role="support">
-                    <span class="role-icon">✚</span>
-                    <span class="role-label">서폿 잔조컷</span>
-                    <span class="role-check">${!isDealer ? "✓" : "○"}</span>
-                    <span class="role-info-tip" tabindex="0"><span class="role-info-icon">!</span></span>
-                </button>
-            </div>
-        </div>
-    `;
-}
-
-
-
-
-
-
-function bindRoleToggle() {
-    document.querySelectorAll(".role-toggle-btn[data-role]").forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (btn.dataset.role === currentRoleMode) return;
-            currentRoleMode = btn.dataset.role;
-
-            // 역할 토글 버튼 자체의 active 상태만 갱신 (전체 재렌더 방지)
-            document.querySelectorAll(".role-toggle-btn").forEach(b => {
-                const isActive = b.dataset.role === currentRoleMode;
-                b.classList.toggle("active", isActive);
-                const check = b.querySelector(".role-check");
-                if (check) check.textContent = isActive ? "✓" : "○";
-            });
-
-            renderTable();
-        });
-    });
-}
-
-
-
-
-
-/* =============================================
-   속성 이모지
-   ============================================= */
-function getAttrEmoji(text, cls) {
-    if (!cls || !cls.startsWith("attr-")) return "";
-
-    if (text.includes("속성 없음") || text.includes("취약 없음")) return "🔘";
-    if (text.includes("암속성")) return "👥​";
-    if (text.includes("성속성")) return "☀️​";
-    if (text.includes("화속성")) return "🔥";
-    if (text.includes("뇌속성")) return "⚡";
-    if (text.includes("토속성")) return "🧱​";
-    if (text.includes("수속성")) return "❄️​";
-
-    return "🔘";
-}
-
-function getWeakAttrEmojiOnly(text, cls) {
-    if (!cls || !cls.startsWith("attr-")) return "";
-    if (text.includes("속성 없음") || text.includes("취약 없음")) return "";
-    return getAttrEmoji(text, cls);
-}
-
-function getGuardianElementEmojiFromWeakness(attrText) {
-    if (!attrText) return "🔘";
-    if (attrText.includes("취약 없음") || attrText.includes("속성 없음")) return "🔘";
-    if (attrText.includes("암속성")) return "☀️​"; // 암속성 취약 = 성속성 몬스터
-    if (attrText.includes("성속성")) return "👥​"; // 성속성 취약 = 암속성 몬스터
-    if (attrText.includes("뇌속성")) return "❄️​"; // 뇌속성 취약 = 수속성 몬스터
-    if (attrText.includes("수속성")) return "🔥"; // 수속성 취약 = 화속성 몬스터
-    if (attrText.includes("토속성")) return "⚡"; // 토속성 취약 = 뇌속성 몬스터
-    if (attrText.includes("화속성")) return "🧱​"; // 화속성 취약 = 토속성 몬스터
-    return "🔘";
-}
-
-function getRaidElementEmojiFromAttr(attrText) {
-    if (!attrText) return "🔘";
-    if (attrText.includes("속성 없음") || attrText.includes("취약 없음")) return "🔘";
-    if (attrText.includes("암속성")) return "☀️​";
-    if (attrText.includes("성속성")) return "👥​";
-    if (attrText.includes("뇌속성")) return "❄️​";
-    if (attrText.includes("수속성")) return "🔥";
-    if (attrText.includes("토속성")) return "⚡";
-    if (attrText.includes("화속성")) return "🧱​";
-    return "🔘";
-}
-
-
-/* =============================================
-   시간 관련 함수
-   ============================================= */
-function updateTimeDisplay() {
-    let m = parseInt(document.getElementById("minutes").value || 0, 10);
-    let s = parseInt(document.getElementById("seconds").value || 0, 10);
-
-    if (isNaN(m) || m < 0) m = 0;
-    if (isNaN(s) || s < 0) s = 0;
-    if (s > 59) s = 59;
-
-    document.getElementById("minutes").value = m;
-    document.getElementById("seconds").value = s;
-    document.getElementById("timeDisplay").textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-}
-
-function setBaseTimeByMenu(menu, gateKey) {
-    const minutes = document.getElementById("minutes");
-    const seconds = document.getElementById("seconds");
-    const label = document.getElementById("timeBaseLabel");
-
-    if (menu === "guardian") {
-        minutes.value = 1;
-        seconds.value = 50;
-        label.textContent = "기본값: 1분 50초(110초)";
-    } else if (menu === "belgardin" && gateKey === "gate2") {
-        minutes.value = 13;
-        seconds.value = 0;
-        label.textContent = "기본값: 13분(780초)";
-    } else {
-        minutes.value = 10;
-        seconds.value = 0;
-        label.textContent = "기본값: 10분(600초)";
+    body.mobile-content-mode .simple-card .simple-mobile-node {
+        min-width: 52px; padding: 0 10px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; line-height: 1; color: #0d1118;
     }
-
-    updateTimeDisplay();
-}
-
-function getTotalSeconds() {
-    let m = parseInt(document.getElementById("minutes").value || 0, 10);
-    let s = parseInt(document.getElementById("seconds").value || 0, 10);
-
-    if (isNaN(m) || m < 0) m = 0;
-    if (isNaN(s) || s < 0) s = 0;
-    if (s > 59) s = 59;
-
-    document.getElementById("minutes").value = m;
-    document.getElementById("seconds").value = s;
-
-    return Math.max(1, 60 * m + s);
-}
-
-function changeTimeValue(target, step) {
-   if (currentMenu === "simple" || currentMenu === "raid-simple") return;
-
-    const input = document.getElementById(target);
-    let value = parseInt(input.value || 0, 10);
-    if (isNaN(value)) value = 0;
-    value += step;
-
-    if (target === "minutes") value = Math.max(0, value);
-    if (target === "seconds") value = Math.max(0, Math.min(59, value));
-
-    input.value = value;
-    renderTable();
-}
-
-/* =============================================
-   제목 / 메뉴 관련
-   ============================================= */
-function getRaidDisplayName(menu) {
-    if (menu === "serka") return "세르카";
-    if (menu === "cathedral") return "지평의 성당";
-    if (menu === "belgardin") return "벨가르딘";
-    return "";
-}
-
-function getContentName() {
-if (currentMenu === "raid-simple") {
-    return "레이드별 잔혈컷 👀";
-}
-    if (currentMenu === "simple") {
-        if (currentSimpleLevel === "egir-ex") return "에기르 EX 레이드 💠";
-        if (currentSimpleLevel === "abr-ex") return "아브렐슈드 EX 레이드 ⚡";
-        return "잔혈컷 간편보기 👀";
+    body.mobile-content-mode .simple-card .simple-mobile-name {
+        display: flex; align-items: center; padding: 0 12px; font-size: 14px; font-weight: 900; line-height: 1; color: #fff; white-space: nowrap;
     }
+    body.mobile-content-mode .simple-card.b-green .simple-mobile-node { background: #34d399; }
+    body.mobile-content-mode .simple-card.b-gold .simple-mobile-node { background: #f7ca54; }
+    body.mobile-content-mode .simple-card.b-purple .simple-mobile-node { background: #a78bfa; }
+    body.mobile-content-mode .simple-card.b-orange .simple-mobile-node { background: #fb923c; }
+    body.mobile-content-mode .simple-card.b-gray .simple-mobile-node { background: #6b7280; color: #fff; }
+    body.mobile-content-mode .simple-card .simple-kind { font-size: 10px; padding: 4px 8px; }
 
-    if (currentMenu === "guardian") {
-        const boss = getCurrentGuardianBoss();
-        return `가디언 토벌 : ${boss}`;
+    /* 관문 한 줄 정렬 */
+    body.mobile-content-mode .simple-row.has-triple-range {
+        display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px;
     }
-
-    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
-        const info = raidMeta[currentMenu][currentCombo];
-        return `${getRaidDisplayName(currentMenu)} : ${info.title.replace(/\s*\(.+\)/, "")} ${info.gateName}`;
+    body.mobile-content-mode .simple-row.has-triple-range .simple-row-left {
+        display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; min-width: 0;
     }
-
-    return "콘텐츠";
-}
-
-function getTableTitle() {
-   
-if (currentMenu === "raid-simple") {
-    return simpleRaidMeta[currentSimpleRaid]?.label || "레이드별 잔혈컷";
-}
-
- if (currentMenu === "simple") {
-        if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
-            return "DPS컷은 딱클 정도의 수치로 표기되었습니다.";
-        }
-        return simpleData[currentSimpleLevel]?.sectionTitle || "잔혈컷 간편보기";
-    }
-
-    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
-        const lv = raidMeta[currentMenu][currentCombo].title.match(/\((\d+)\)/);
-        return `입장레벨 : ${lv ? lv[1] : "-"}`;
-    }
-
-    return "";
-}
-
-function applyMenuFromQuery() {
-    if (isStandaloneLevelPage) {
-        currentMenu = "simple";
-        currentSimpleLevel = "1750";
-        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
-        document.querySelector('.menu-item[data-menu="simple"]')?.classList.add("active");
-        setBaseTimeByMenu(currentMenu);
-        return;
-    }
-
-    if (isStandaloneRaidPage) {
-        currentMenu = "raid-simple";
-        currentSimpleRaid = "cathedral";
-        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
-        document.querySelector('.menu-item[data-menu="raid-simple"]')?.classList.add("active");
-        setBaseTimeByMenu(currentMenu);
-        return;
-    }
-
-    if (isStandaloneSerkaPage) {
-        currentMenu = "serka";
-        currentCombo = "hard_gate1";
-        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
-        document.querySelector('.menu-item[data-menu="serka"]')?.classList.add("active");
-        setBaseTimeByMenu(currentMenu);
-        return;
-    }
-
-    if (isStandaloneCathedralPage) {
-        currentMenu = "cathedral";
-        currentCombo = "hard_gate1";
-        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
-        document.querySelector('.menu-item[data-menu="cathedral"]')?.classList.add("active");
-        setBaseTimeByMenu(currentMenu);
-        return;
-    }
-
-    if (isStandaloneBelgardinPage) {
-        currentMenu = "belgardin";
-        currentCombo = "hard_gate1";
-        document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
-        document.querySelector('.menu-item[data-menu="belgardin"]')?.classList.add("active");
-        setBaseTimeByMenu(currentMenu);
-        return;
-    }
-
-  // 수정
-if (isStandaloneGuardianPage) {
-    currentMenu = "guardian";
-
-    const guardianParams = new URLSearchParams(window.location.search);
-    const qTier = guardianParams.get("tier");
-    const qBoss = guardianParams.get("boss");
-
-    const validTiers = ["1730", "1750", "1770"];
-    currentGuardianTier = validTiers.includes(qTier) ? qTier : "1770";
-
-    const bossList = getGuardianBossListByTier(currentGuardianTier);
-  const resolvedBoss = (qBoss && bossList.includes(qBoss)) ? qBoss : getHgWeekBoss();
-
-    currentGatoBoss = resolvedBoss;
-    currentGato1750Boss = resolvedBoss;
-    currentGato1770Boss = resolvedBoss;
-
-    document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
-    document.querySelector('.menu-item[data-menu="guardian"]')?.classList.add("active");
-    setBaseTimeByMenu(currentMenu);
-    return;
-}
-
-    const menu = new URLSearchParams(window.location.search).get("menu");
-    if (!menu) return;
-
-  if (["serka", "cathedral", "belgardin", "guardian", "simple", "raid-simple", "egir-ex", "abr-ex"].includes(menu)) {
-        if (menu === "egir-ex" || menu === "abr-ex") {
-            currentMenu = "simple";
-            currentSimpleLevel = menu;
-        } else {
-            currentMenu = menu;
-        }
+    body.mobile-content-mode .simple-row.has-triple-range .gate-b { min-width: 38px; height: 24px; padding: 0 8px; font-size: 11px; flex-shrink: 0; }
+    body.mobile-content-mode .simple-row.has-triple-range .boss-b { font-size: 16px; font-weight: 900; line-height: 1; white-space: nowrap; flex-shrink: 0; }
+    body.mobile-content-mode .simple-row.has-triple-range .simple-badges { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; min-width: 0; overflow: hidden; }
+    body.mobile-content-mode .simple-row.has-triple-range .simple-badges .badge,
+    body.mobile-content-mode .simple-row.has-triple-range .simple-row .badge { height: 20px; padding: 0 7px; font-size: 10px; line-height: 18px; white-space: nowrap; flex-shrink: 0; }
     
-if (currentMenu === "serka") {
-    currentCombo = "hard_gate1";
-} else if (currentMenu === "cathedral") {
-    currentCombo = "hard_gate1";
-} else if (currentMenu === "belgardin") {
-    currentCombo = "hard_gate1";
-} else if (currentMenu === "guardian") {
-    currentGuardianTier = "1770";
-    currentGatoBoss = "루멘칼리고";
-    currentGato1750Boss = "루멘칼리고";
-    currentGato1770Boss = "루멘칼리고";
-} else if (currentMenu === "raid-simple") {
-    currentSimpleRaid = "cathedral";
-} else if (currentMenu === "simple" && currentSimpleLevel !== "egir-ex" && currentSimpleLevel !== "abr-ex") {
-    currentSimpleLevel = "1750";
-}
-
-        document.querySelectorAll(".menu-item").forEach(btn => {
-            btn.classList.toggle("active", btn.dataset.menu === menu || (menu === "simple" && btn.dataset.menu === "simple"));
-        });
-
-        setBaseTimeByMenu(currentMenu);
-    }
-}
-
-function renderTitleMeta() {
-    const box = document.getElementById("titleMeta");
-
-   if (currentMenu === "simple" || currentMenu === "raid-simple") {
-    box.innerHTML = "";
-    return;
-}
-
-    if (currentMenu === "guardian") {
-        const boss = getCurrentGuardianBoss();
-        const info = gatoMeta[boss];
-        box.innerHTML = `${makeBadge(info.type.text, info.type.cls)} ${makeBadge(info.attr.text, info.attr.cls)}`;
-        return;
-    }
-
-    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
-        const info = raidMeta[currentMenu][currentCombo];
-        box.innerHTML = `${makeBadge(info.type.text, info.type.cls)} ${makeBadge(info.attr.text, info.attr.cls)}`;
-        return;
-    }
-
-    box.innerHTML = "";
+    body.mobile-content-mode .simple-row.has-triple-range .triple-range { display: flex; flex-wrap: nowrap; justify-content: flex-end; gap: 4px; width: auto; }
+    body.mobile-content-mode .simple-row.has-triple-range .triple-part { min-width: 48px; padding: 4px 6px 3px; border-radius: 8px; }
+    body.mobile-content-mode .simple-row.has-triple-range .triple-part .t-label { font-size: 9px; margin-bottom: 2px; }
+    body.mobile-content-mode .simple-row.has-triple-range .triple-part .t-value { font-size: 12px; }
 }
 
 
-/* =============================================
-   심플 히어로 함수
-   ============================================= */
-
-function simpleHeroHtml() {
-    return `
-        <section class="simple-hero">
-            <div class="simple-hero-top">
-                <div class="simple-hero-left">
-                    <div class="simple-hero-copy">
-                        <div class="simple-hero-kicker">LOA VIEWER · SIMPLE MODE</div>
-
-                        <div class="simple-hero-title-row">
-                            <div class="simple-hero-title-icon">💠</div>
-                            <h2 class="simple-hero-title">레벨별 잔혈컷</h2>
-                        </div>
-
-                        <p class="simple-hero-desc">
-                            레벨별 강투 · 1인분 · 잔혈 컷을 한 번에 비교하고,
-                            각 관문의 수치를 빠르게 확인할 수 있습니다.
-                        </p>
-                    </div>
-
-                    <div class="simple-hero-pills">
-                        <span class="simple-hero-pill pill-level">레벨별 정리</span>
-                        <span class="simple-hero-pill pill-compare">빠른 비교</span>
-                        <span class="simple-hero-pill pill-cut">강투 · 1인분 · 잔혈</span>
-                    </div>
-                </div>
-
-                <div class="simple-hero-right">
-                    <div class="simple-hero-stat">
-                        <div class="simple-hero-stat-label">현재 선택</div>
-                        <div class="simple-hero-stat-value" id="simpleHeroCurrentLevel">${currentSimpleLevel}</div>
-                        <div class="simple-hero-stat-sub">골드 획득 우선 3개</div>
-                    </div>
-
-                    <div class="simple-hero-stat">
-                        <div class="simple-hero-stat-label">LEVEL RANGE</div>
-                        <div class="simple-hero-stat-value">1710 ~ 1780</div>
-                        <div class="simple-hero-stat-sub">추가 레이드는 아래 펼치기</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    `;
-}
-
-/* =============================================
-  헬퍼 함수
-   ============================================= */
-
-function getSimpleCardMapByTitle() {
-    const orderedLevels = ["1710", "1720", "1730", "1740", "1750", "1770", "1780"];
-    const map = {};
-
-    orderedLevels.forEach(level => {
-        const cards = simpleData[level]?.cards || [];
-        cards.forEach(card => {
-            if (!map[card.title]) {
-                map[card.title] = card;
-            }
-        });
-    });
-
-    return map;
-}
-
-
-function parseSimpleGoldValue(v) {
-    return Number(String(v || "").replace(/,/g, "").trim()) || 0;
-}
-
-function getSimpleCardRewardValue(card) {
-    if (!card) return 0;
-
-    const total = parseSimpleGoldValue(card.total);
-    if (total > 0) return total;
-
-    return parseSimpleGoldValue(card.gold) + parseSimpleGoldValue(card.bindGold);
-}
-
-function getSimpleCardNodeLevel(card) {
-    return Number(String(card?.node || "").replace(/[^0-9]/g, "")) || 0;
-}
-
-function getSimpleCardGroupKey(card) {
-    const title = card?.title || "";
-
-    if (title.includes("벨가르딘")) return "belgardin";
-    if (title.includes("세르카")) return "serka";
-    if (title.includes("성당")) return "cathedral";
-    if (title.includes("종막")) return "finale";
-    if (title.includes("4막")) return "act4";
-
-    return title;
-}
-
-function getSimpleAllBaseCards() {
-    return Object.values(getSimpleCardMapByTitle());
-}
-
-function pickBetterSimpleCard(prev, next) {
-    if (!prev) return next;
-    if (!next) return prev;
-
-    const prevNode = getSimpleCardNodeLevel(prev);
-    const nextNode = getSimpleCardNodeLevel(next);
-
-    if (nextNode !== prevNode) {
-        return nextNode > prevNode ? next : prev;
-    }
-
-    const prevReward = getSimpleCardRewardValue(prev);
-    const nextReward = getSimpleCardRewardValue(next);
-
-    if (nextReward !== prevReward) {
-        return nextReward > prevReward ? next : prev;
-    }
-
-    return prev;
-}
-
-function getSimpleLevelCardsByAccess(level) {
-    const lv = Number(level);
-    const allCards = getSimpleAllBaseCards().filter(card => getSimpleCardNodeLevel(card) <= lv);
-
-    const groupMap = {};
-
-    allCards.forEach(card => {
-        const groupKey = getSimpleCardGroupKey(card);
-        groupMap[groupKey] = pickBetterSimpleCard(groupMap[groupKey], card);
-    });
-
-    return Object.values(groupMap).sort((a, b) => {
-        const rewardDiff = getSimpleCardRewardValue(b) - getSimpleCardRewardValue(a);
-        if (rewardDiff !== 0) return rewardDiff;
-
-        const nodeDiff = getSimpleCardNodeLevel(b) - getSimpleCardNodeLevel(a);
-        if (nodeDiff !== 0) return nodeDiff;
-
-        return 0;
-    });
-}
-
-function getSimpleLevelCardSections(level) {
-    const cards = getSimpleLevelCardsByAccess(level);
-
-    return {
-        goldCards: cards.slice(0, 3),
-        extraCards: cards.slice(3)
-    };
-}
-
-function bindSimpleExtraToggle() {
-    const btn = document.getElementById("simpleExtraToggleBtn");
-    const panel = document.getElementById("simpleExtraPanel");
-    const text = document.getElementById("simpleExtraToggleText");
-    const arrow = document.getElementById("simpleExtraToggleArrow");
-
-    if (!btn || !panel || !text || !arrow) return;
-
-    btn.addEventListener("click", () => {
-        const isOpen = panel.classList.toggle("open");
-        btn.classList.toggle("open", isOpen);
-        text.textContent = isOpen ? "골드 미획득 레이드 접기" : "골드 미획득 레이드 펼치기";
-        arrow.textContent = isOpen ? "▲" : "▼";
-    });
-}
-
-
-
-
-function getSimpleRaidCards(raidKey) {
-    const meta = simpleRaidMeta[raidKey];
-    if (!meta) return [];
-
-    const cardMap = getSimpleCardMapByTitle();
-    return meta.titles.map(title => cardMap[title]).filter(Boolean);
-}
-
-function simpleRaidHeroHtml() {
-    const meta = simpleRaidMeta[currentSimpleRaid];
-    if (!meta) return "";
-
-    return `
-        <section class="simple-hero">
-            <div class="simple-hero-top">
-                <div class="simple-hero-left">
-                    <div class="simple-hero-copy">
-                        <div class="simple-hero-kicker">LOA VIEWER · RAID MODE</div>
-
-                        <div class="simple-hero-title-row">
-                            <div class="simple-hero-title-icon">${meta.icon}</div>
-                            <h2 class="simple-hero-title">레이드별 잔혈컷</h2>
-                        </div>
-
-                        <p class="simple-hero-desc">
-                          레이드별 강투 · 1인분 · 잔혈 컷을 한 번에 비교하고,
-                            각 관문의 수치를 빠르게 확인할 수 있습니다.
-                        </p>
-                    </div>
-
-                    <div class="simple-hero-pills">
-                        <span class="simple-hero-pill pill-level">레이드별 정리</span>
-                        <span class="simple-hero-pill pill-compare">간편 비교</span>
-                        <span class="simple-hero-pill pill-cut">강투 · 1인분 · 잔혈</span>
-                    </div>
-                </div>
-
-                <div class="simple-hero-right">
-                    <div class="simple-hero-stat">
-                        <div class="simple-hero-stat-label">현재 선택</div>
-                      <div class="simple-hero-stat-value" id="simpleHeroCurrentRaid">${meta.label}</div>
-                      <div class="simple-hero-stat-sub" id="simpleHeroCurrentRaidSub">${meta.sub}</div>
-                    </div>
-
-                    <div class="simple-hero-stat">
-                        <div class="simple-hero-stat-label">RAID INFO</div>
-                        <div class="simple-hero-stat-value">${meta.summary}</div>
-                        <div class="simple-hero-stat-sub">난이도 / 관문 기준 보기</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    `;
-}
-
-
-/* =============================================
-   탭 렌더링
-   ============================================= */
-
-function renderTabs() {
-    const el = document.getElementById("tabs");
-    el.classList.remove("simple-tabs");
-
-    if (currentMenu === "simple") {
-        el.classList.add("simple-tabs");
-        if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
-            el.innerHTML = "";
-            return;
-        }
-
-        const levels = ["1710", "1720", "1730", "1740", "1750", "1770", "1780"];
-
-        el.innerHTML = `
-            ${simpleHeroHtml()}
-
-            <div class="simple-grid-layout">
-                <div class="simple-controls-col simple-grid-left">
-                    <div class="simple-level-tabs">
-                        ${levels.map(lv => `
-                            <button class="simple-level-tab ${currentSimpleLevel === lv ? "active" : ""}" data-simple-level="${lv}">
-                                <span class="simple-level-tab-main">${lv}</span>
-                                <span class="simple-level-tab-sub">레이드</span>
-                            </button>
-                        `).join("")}
-                    </div>
-                    ${makeRoleToggleHtml()}
-
-                    <div class="simple-cards-full" id="simpleCardsFull"></div>
-                </div><!-- // .simple-grid-left 닫힘 -->
-
-                <div class="simple-grid-right" id="simpleGridRight"></div>
-            </div><!-- // .simple-grid-layout 닫힘 -->
-        `;
-
-   
-el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        if (btn.dataset.simpleLevel === currentSimpleLevel) return;
-        currentSimpleLevel = btn.dataset.simpleLevel;
-
-        // 탭 active 상태만 갱신 (우측 광고/경매계산기 영역 재생성 방지)
-        el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(b => {
-            b.classList.toggle("active", b.dataset.simpleLevel === currentSimpleLevel);
-        });
-
-        const heroVal = document.getElementById("simpleHeroCurrentLevel");
-        if (heroVal) heroVal.textContent = currentSimpleLevel;
-
-        renderTable();
-    });
-});
-
-
-        bindRoleToggle();
-
-        return;
-    }
-
-    if (currentMenu === "raid-simple") {
-        el.classList.add("simple-tabs");
-
-        const raids = ["cathedral", "serka", "belgardin", "finale", "act4"];
-
-        el.innerHTML = `
-            ${simpleRaidHeroHtml()}
-
-            <div class="simple-grid-layout">
-                <div class="simple-controls-col simple-grid-left">
-                    <div class="simple-level-tabs">
-                        ${raids.map(key => {
-                            const meta = simpleRaidMeta[key];
-                            return `
-                                <button class="simple-level-tab simple-raid-tab ${currentSimpleRaid === key ? "active" : ""}" data-simple-raid="${key}">
-                                    <span class="simple-level-tab-main">${meta.label}</span>
-                                    <span class="simple-level-tab-sub">${meta.sub}</span>
-                                </button>
-                            `;
-                        }).join("")}
-                    </div>
-                    ${makeRoleToggleHtml()}
-
-                    <div class="simple-cards-full" id="simpleCardsFull"></div>
-                </div><!-- // .simple-grid-left 닫힘 -->
-
-                <div class="simple-grid-right" id="simpleGridRight"></div>
-            </div><!-- // .simple-grid-layout 닫힘 -->
-        `;
-
-
-el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        if (btn.dataset.simpleRaid === currentSimpleRaid) return;
-        currentSimpleRaid = btn.dataset.simpleRaid;
-
-        el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(b => {
-            b.classList.toggle("active", b.dataset.simpleRaid === currentSimpleRaid);
-        });
-
-        const meta = simpleRaidMeta[currentSimpleRaid];
-        const heroVal = document.getElementById("simpleHeroCurrentRaid");
-        const heroSub = document.getElementById("simpleHeroCurrentRaidSub");
-        if (heroVal && meta) heroVal.textContent = meta.label;
-        if (heroSub && meta) heroSub.textContent = meta.sub;
-
-        renderTable();
-    });
-});
-
-
-        bindRoleToggle();
-
-        return;
-    }
-
-    el.innerHTML = "";
-}
-
-
-/* =============================================
-   CSV 파싱
-   ============================================= */
-function clearAllData() {
-    parsedData.serka = { normal: [], hard: [], nightmare: [] };
-    parsedData.cathedral = { normal: [], hard: [], nightmare: [] };
-    parsedData.belgardin = { normal: [], hard: [], nightmare: [] };
-    parsedData.gato1730 = {};
-    parsedData.gato1750 = {};
-    parsedData.gato1770 = {};
-}
-
-function parseBlock(lines, startRow, target) {
-    for (let i = startRow + 3; i < startRow + 29; i++) {
-        const cols = parseCSVLine(lines[i] || "");
-        const share = percentNum(cols[1]);
-        if (share) {
-            parsedData[target].normal.push({ share, g1: toNum(cols[3]), g2: toNum(cols[6]) });
-            parsedData[target].hard.push({ share, g1: toNum(cols[11]), g2: toNum(cols[14]) });
-            parsedData[target].nightmare.push({ share, g1: toNum(cols[19]), g2: toNum(cols[22]) });
-        }
-    }
-}
-
-function parseCathedral(lines) {
-    for (let i = 0; i < lines.length; i++) {
-        if ((lines[i] || "").includes("지평의 성당 1~3단계 딜지분 상세")) {
-            parseBlock(lines, i + 1, "cathedral");
-            return;
-        }
-    }
-}
-
-function parseSerka(lines) {
-    for (let i = 0; i < lines.length; i++) {
-        if ((lines[i] || "").includes("세르카 딜지분 상세")) {
-            parseBlock(lines, i + 1, "serka");
-            return;
-        }
-    }
-}
-
-// 신규: 벨가르딘 파싱 — 세르카/성당과 달리 난이도별로 딜지분 컬럼이 따로 존재
-// (노말 B열 / 하드 J열 / 나메 R열), 데이터 시작은 제목행+4(=670행 기준)
-function parseBelgardin(lines) {
-    // 공백 배치가 시트마다 미묘하게 다를 수 있어 "벨가르딘"+"딜지분"+"상세"가
-    // 같은 줄에 순서대로 있으면 매칭되도록 느슨하게 검사
-    const titleRe = /벨가르딘\s*딜지분\s*상세/;
-
-    for (let i = 0; i < lines.length; i++) {
-        if (titleRe.test(lines[i] || "")) {
-            const headerRow = i + 1; // 난이도 라벨행 (제목 다음 줄)
-            const dataStart = headerRow + 3; // 데이터 시작행 (제목행+4)
-            for (let r = dataStart; r < dataStart + 22; r++) {
-                const cols = parseCSVLine(lines[r] || "");
-
-                const shareNormal = percentNum(cols[1]);      // B열
-                if (shareNormal) {
-                    parsedData.belgardin.normal.push({ share: shareNormal, g1: toNum(cols[3]), g2: toNum(cols[6]) });
-                }
-
-                const shareHard = percentNum(cols[9]);         // J열
-                if (shareHard) {
-                    parsedData.belgardin.hard.push({ share: shareHard, g1: toNum(cols[11]), g2: toNum(cols[14]) });
-                }
-
-                const shareNightmare = percentNum(cols[17]);   // R열
-                if (shareNightmare) {
-                    parsedData.belgardin.nightmare.push({ share: shareNightmare, g1: toNum(cols[19]), g2: toNum(cols[22]) });
-                }
-            }
-
-            // 디버그용: 실제로 파싱된 행 수가 0이면 dataStart 오프셋이 틀렸을 가능성이 큼
-            if (
-                !parsedData.belgardin.normal.length &&
-                !parsedData.belgardin.hard.length &&
-                !parsedData.belgardin.nightmare.length
-            ) {
-                console.warn(
-                    `[벨가르딘 파싱] 제목은 찾았지만(줄 ${i}) 데이터가 비어있습니다. ` +
-                    `dataStart=${dataStart}행 부근을 시트에서 직접 확인해보세요. ` +
-                    `해당 행 원문: "${lines[dataStart] || "(없음)"}"`
-                );
-            }
-            return;
-        }
-    }
-
-    console.warn('[벨가르딘 파싱] CSV에서 "벨가르딘 딜지분 상세" 제목을 찾지 못했습니다. 시트 문구 또는 gid(탭)를 확인해주세요.');
-}
-
-function parseGato1730(lines) {
-    gato1730Bosses.forEach(b => { parsedData.gato1730[b] = []; });
-    gato1730Layout.forEach(layout => {
-        for (let i = layout.startRow + 3; i <= layout.startRow + 28; i++) {
-            const cols = parseCSVLine(lines[i] || "");
-            const share = percentNum(cols[layout.shareCol]);
-            if (share) {
-                parsedData.gato1730[layout.boss].push({ share, damage: toNum(cols[layout.damageCol]) });
-            }
-        }
-    });
-}
-
-function parseGato1750(lines) {
-    gato1750Bosses.forEach(b => { parsedData.gato1750[b] = []; });
-    gato1750Layout.forEach(layout => {
-        for (let i = layout.startRow + 3; i <= layout.startRow + 28; i++) {
-            const cols = parseCSVLine(lines[i] || "");
-            const share = percentNum(cols[layout.shareCol]);
-            if (share) {
-                parsedData.gato1750[layout.boss].push({ share, damage: toNum(cols[layout.damageCol]) });
-            }
-        }
-    });
-}
-
-// 신규: 가디언 토벌 1770 파싱 (딜지분 25%~50% 구간, startRow+3 ~ startRow+28)
-function parseGato1770(lines) {
-    gato1770Bosses.forEach(b => { parsedData.gato1770[b] = []; });
-    gato1770Layout.forEach(layout => {
-        for (let i = layout.startRow + 3; i <= layout.startRow + 28; i++) {
-            const cols = parseCSVLine(lines[i] || "");
-            const share = percentNum(cols[layout.shareCol]);
-            if (share) {
-                parsedData.gato1770[layout.boss].push({ share, damage: toNum(cols[layout.damageCol]) });
-            }
-        }
-    });
-}
-
-
-/* =============================================
-   테이블 렌더 헬퍼
-   ============================================= */
-function renderShareCell(share, menu) {
-    const shares = getPrecisionShares(menu);
-    const tagMap = {
-        [shares.tank]: { tag: "강투", cls: "tag-30" },
-        [shares.one]: { tag: "1인분", cls: "tag-33" },
-        [shares.blood]: { tag: "잔혈", cls: "tag-40" }
-    };
-
-    const info = tagMap[share];
-
-    const badgeSlot = info
-        ? `<div class="share-tag-area"><span class="share-tag ${info.cls}">${info.tag}</span></div>`
-        : `<div class="share-tag-area"></div>`;
-
-    const shareLabel = Number.isInteger(share) ? `${share}%` : `${share.toFixed(2).replace(/0$/, "")}%`;
-
-    return `
-        <td class="share-cell ${info ? "has-badge" : ""}">
-            <div class="share-row">
-                ${badgeSlot}
-                <span class="share-pct">${shareLabel}</span>
-            </div>
-        </td>
-    `;
-}
-
-function renderHead() {
-    document.getElementById("tableHead").innerHTML = "<tr><th>딜지분</th><th>피해/억</th><th>DPS</th></tr>";
-}
-
-function renderComingSoon(title, desc) {
-    document.getElementById("mainContent").innerHTML = `<div class="coming-soon"><h3>${title}</h3><p>${desc}</p></div>`;
-}
-
-function ensureTableWrap() {
-    document.getElementById("mainContent").innerHTML =
-        '<div class="table-wrap" id="tableWrap"><table id="dataTable"><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table></div>';
-}
-
-
-
-
-// 페이지 로드 시 최초 1회만 붙잡아두는 전역 참조.
-// HTML에 없다면 동적으로 직접 빌드하여 소실을 방지합니다.
-let persistentAuctionCalcEl = null;
-
-function getAuctionCalcEl() {
-    if (!persistentAuctionCalcEl) {
-        // 1. 먼저 HTML에 이미 경매 계산기가 존재하는지 찾아봅니다.
-        let el = document.querySelector(".auction-calc") || document.querySelector(".side-auction-link");
-        
-        // 2. [완벽 해결] HTML에 경매 계산기 태그가 없다면, JS가 똑같은 디자인으로 즉석 빌드합니다!
-        if (!el) {
-            el = document.createElement("a");
-            
-            // 현재 폴더 위치(루트 / 인지 dps / 인지)에 맞춰 올바른 상대 경로 지정
-            if (window.location.pathname === "/" || window.location.pathname === "/index.html" || window.location.pathname === "/index") {
-                el.href = "./tools/auction.html";
-            } else {
-                el.href = "../tools/auction.html";
-            }
-            
-            el.className = "side-card side-auction-link";
-            
-            // 기존 HTML에 선언되어 있던 럭셔리한 인라인 스타일 그대로 적용
-            el.style.display = "flex";
-            el.style.flexDirection = "column";
-            el.style.alignItems = "center";
-            el.style.justifyContent = "center";
-            el.style.gap = "6px";
-            el.style.padding = "12px";
-            el.style.textDecoration = "none";
-            el.style.color = "inherit";
-            el.style.borderColor = "rgba(247,202,84,.18)";
-            el.style.transition = "all .2s";
-            el.style.height = "119px";
-            
-            // 구조 삽입
-            el.innerHTML = `
-                <div style="font-size:24px;">🔨</div>
-                <div style="font-size:14px;font-weight:900;color:#f7ca54;">경매 계산기</div>
-                <div style="font-size:11px;color:#667085;text-align:center;line-height:1.45;">실시간 각인서 시세 +<br>손익분기점 계산</div>
-            `;
-        }
-        persistentAuctionCalcEl = el;
-    }
-    return persistentAuctionCalcEl;
-}
-
-
-
-
-
-
-
-
-
-
-
-function setClearTimeDisabled(disabled) {
-    const card = document.getElementById("timeCard");
-    if (!card) return;
-
-    card.classList.toggle("simple-disabled", disabled);
-    card.querySelectorAll("input, button").forEach(el => { el.disabled = disabled; });
-
-    const note = card.querySelector(".side-hint");
-    if (note) {
-        note.textContent = disabled ? "간편보기 상태에서는 비활성화" : "시간 변경 시 즉시 반영";
-    }
-}
-
-/* =============================================
-   골드바 HTML
-   ============================================= */
-
-
-function goldBarHtml(card) {
-    if (!card.gold && !card.bindGold) return "";
-
-    if (card.bindGold && !card.gold) {
-        return `
-            <div class="simple-goldbar">
-                <div class="gold-item">
-                    <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon">
-                        <span class="gold-bind-label">귀속 골드</span>
-                    </div>
-                    <div class="gold-item-value gold-bind-value">${card.bindGold}</div>
-                </div>
-            </div>
-        `;
-    }
-
-    if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
-        let orb = 0;
-        if (card.title && card.title.includes("노말")) orb = 150;
-        else if (card.title) orb = 200;
-
-        return `
-            <div class="simple-goldbar">
-                <div class="gold-item">
-                    <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
-                        <span class="gold-clear-label">클리어 골드</span>
-                    </div>
-                    <div class="gold-item-value gold-clear-value">${card.gold}</div>
-                </div>
-                <div class="gold-item">
-                    <div class="gold-item-label">
-                        <img src="../img/wing_orb.png" class="icon">
-                        <span class="gold-bind-label">재료</span>
-                    </div>
-                    <div class="gold-item-value gold-bind-value">x${orb}</div>
-                </div>
-            </div>
-        `;
-    }
-
-    if (card.bindGold) {
-        return `
-            <div class="simple-goldbar">
-                <div class="gold-item">
-                    <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
-                        <span class="gold-clear-label">클리어 골드</span>
-                    </div>
-                    <div class="gold-item-value gold-clear-value">${card.gold}</div>
-                </div>
-                <div class="gold-operator">+</div>
-                <div class="gold-item">
-                    <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon">
-                        <span class="gold-bind-label">귀속 골드</span>
-                    </div>
-                    <div class="gold-item-value gold-bind-value">${card.bindGold}</div>
-                </div>
-                <div class="gold-operator">=</div>
-                <div class="gold-total">
-                    <div class="gold-total-label">합계</div>
-                    <div class="gold-total-value">${card.total}</div>
-                </div>
-            </div>
-        `;
-    }
-
-    return `
-        <div class="simple-goldbar">
-            <div class="gold-item">
-                <div class="gold-item-label">
-                    <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
-                    <span class="gold-clear-label">클리어 골드</span>
-                </div>
-                <div class="gold-item-value gold-clear-value">${card.gold}</div>
-            </div>
-        </div>
-    `;
-}
-
-
-/* =============================================
-   칸분리형 HTML
-   ============================================= */
-
-function getSimpleRaidShareConfig(title = "") {
-    // 4인 레이드
-    if (title.includes("세르카") || title.includes("성당")) {
-        return {
-            bloodShare: 0.40,
-            oneShare: 1 / 3
-        };
-    }
-
-    // 8인 레이드 (4막, 종막, 벨가르딘)
-    return {
-        bloodShare: 0.20,
-        oneShare: 1 / 6
-    };
-}
-
-function parseSimpleRangeParts(rangeText, cardTitle) {
-    if (!rangeText || rangeText === "준비중") return null;
-
-    const parts = String(rangeText)
-        .split("-")
-        .map(v => v.trim())
-        .filter(Boolean);
-
-    // 이미 3개 값을 직접 적어둔 경우
-    if (parts.length === 3) {
-        const nums = parts.map(v => Number(String(v).replace(/,/g, "")));
-        if (nums.some(n => Number.isNaN(n))) return null;
-
-        return {
-            tank: Math.round(nums[0]),
-            one: Math.round(nums[1]),
-            blood: Math.round(nums[2])
-        };
-    }
-
-    // 기존처럼 2개만 적혀있는 경우: 강투 - 잔혈
-    if (parts.length === 2) {
-        const nums = parts.map(v => Number(String(v).replace(/,/g, "")));
-        if (nums.some(n => Number.isNaN(n))) return null;
-
-        const [tank, blood] = nums;
-        const config = getSimpleRaidShareConfig(cardTitle);
-
-        const total = blood / config.bloodShare;
-        const one = Math.round((total * config.oneShare) / 10) * 10; // 끝자리 0으로 정리
-
-        return {
-            tank: Math.round(tank),
-            one,
-            blood: Math.round(blood)
-        };
-    }
-
-    return null;
-}
-
-
-/* =============================================
-   간편보기 카드 HTML
-   ============================================= */
-function simpleCardHtml(card) {
-    const rows = card.rows.map(r => {
-        const badges = (r.badges || []).map(b => {
-            const emoji = getAttrEmoji(b.text, b.cls);
-            const finalText = emoji ? `${emoji} ${b.text}` : b.text;
-            return `<span class="badge ${b.cls}">${finalText}</span>`;
-        }).join("");
-
-      
-        const isPreparing = r.range === "준비중";
-        const rawRangeParts = parseSimpleRangeParts(r.range, card.title);
-        const roleMul = getRoleMultiplier();
-        const rangeParts = rawRangeParts
-            ? {
-                tank: Math.round(rawRangeParts.tank * roleMul),
-                one: Math.round(rawRangeParts.one * roleMul),
-                blood: Math.round(rawRangeParts.blood * roleMul)
-            }
-            : null;
-        const hasTripleRange = !!rangeParts && !isPreparing;
-
-
-
-         const isSupportModeCard = currentRoleMode === "support";
-        const tankLabel = isSupportModeCard ? "강조" : "강투";
-        const bloodLabel = isSupportModeCard ? "잔조" : "잔혈";
-
-        const rangeHtml = hasTripleRange
-            ? `
-                <div class="triple-range">
-                    <div class="triple-part tank">
-                        <span class="t-label">${tankLabel}</span>
-                        <span class="t-value">${rangeParts.tank}</span>
-                    </div>
-                    <div class="triple-part one">
-                        <span class="t-label">1인분</span>
-                        <span class="t-value">${rangeParts.one}</span>
-                    </div>
-                    <div class="triple-part blood">
-                        <span class="t-label">${bloodLabel}</span>
-                        <span class="t-value">${rangeParts.blood}</span>
-                    </div>
-                </div>
-            `
-            : `<span class="range-b ${isPreparing ? "preparing" : ""}">${r.range}</span>`;
-
-
-
-        return `
-            <div class="simple-row ${hasTripleRange ? "has-triple-range" : ""}" style="${isPreparing ? "min-height:56px;align-items:center;" : ""}">
-                <div class="simple-row-left">
-                    <span class="gate-b">${r.gate}</span>
-                    <span class="boss-b">${r.boss}</span>
-                    <span class="simple-badges">${badges}</span>
-                </div>
-
-                <div style="text-align:right;">
-                    ${rangeHtml}
-                    ${r.dpscut ? `<div style="font-size:14px;color:#d4bf8a;font-style:italic;margin-top:3px;">${r.dpscut}</div>` : ""}
-                </div>
-            </div>
-        `;
-    }).join("");
-
-    return `
-        <article class="simple-card ${card.theme}">
-            <div class="simple-left">
-                <div class="simple-node">${card.node}</div>
-            </div>
-
-            <div class="simple-right">
-                <div class="simple-head">
-                    <div class="simple-mobile-title-pack">
-                        <span class="simple-mobile-node">${card.node}</span>
-                        <span class="simple-mobile-name">${card.title}</span>
-                    </div>
-
-                    <h3 class="simple-title">${card.title}</h3>
-                    <div class="simple-kind">피해/억</div>
-                </div>
-
-                <div class="simple-rows">${rows}</div>
-                ${goldBarHtml(card)}
-            </div>
-        </article>
-    `;
-}
-
-
-/* =============================================
-   EX 전용 카드 HTML
-   ============================================= */
-window.toggleExAccordion = function(card) {
-    card.classList.toggle("ex-active");
-};
-
-function makeExCard(opt) {
-    return `
-        <div class="ex-raid-card ex-card-${opt.tier}" onclick="toggleExAccordion(this)">
-            <div class="ex-card-header">
-                <div class="ex-left-section">
-                    <div class="ex-level-badge">${opt.level}</div>
-                    <div class="ex-raid-info-title">
-                        <h2>${opt.name}</h2>
-                        <div class="ex-tags">
-                            ${opt.tags.map(t => `<span class="ex-tag${t.weak ? " ex-weakness" : ""}">${t.text}</span>`).join("")}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ex-right-section">
-                    <div class="ex-stats-grid">
-                        <div class="ex-stat-col">
-                            <div class="ex-stat-label l-tank">강투</div>
-                            <div class="ex-stat-dmg">${opt.tank_dmg}</div>
-                            <div class="ex-stat-dps">${opt.tank_dps}</div>
-                        </div>
-                        <div class="ex-stat-col">
-                            <div class="ex-stat-label l-one">1인분</div>
-                            <div class="ex-stat-dmg">${opt.one_dmg}</div>
-                            <div class="ex-stat-dps">${opt.one_dps}</div>
-                        </div>
-                        <div class="ex-stat-col col-blood">
-                            <div class="ex-stat-label l-blood">잔혈</div>
-                            <div class="ex-stat-dmg">${opt.blood_dmg}</div>
-                            <div class="ex-stat-dps">${opt.blood_dps}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ex-detail-bar">
-                <span>상세보기</span>
-                <span class="ex-detail-arrow">▼</span>
-            </div>
-
-            <div class="ex-accordion-content" onclick="event.stopPropagation();">
-                <div class="ex-pc-table-view">
-                    <table class="ex-dps-table">
-                        <thead>
-                            <tr>
-                                <th style="text-align:left;width:31%;">구간 (누적 기준)</th>
-                                <th style="width:23%;">강투 (15%)</th>
-                                <th style="width:23%;">1인분 (16.66%)</th>
-                                <th style="width:23%;" class="ex-col-highlight">잔혈 (20%)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${opt.phases.map(p => `
-                                <tr${p.total ? ' class="ex-row-total"' : ''}>
-                                    <td class="ex-phase-title">${p.label}<span>${p.sub}</span></td>
-                                    <td><span class="ex-val-text">${p.t_d}</span><span class="ex-dps-text">${p.t_s}</span></td>
-                                    <td><span class="ex-val-text">${p.o_d}</span><span class="ex-dps-text">${p.o_s}</span></td>
-                                    <td class="ex-col-highlight"><span class="ex-val-text">${p.b_d}</span><span class="ex-dps-text">${p.b_s}</span></td>
-                                </tr>
-                            `).join("")}
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="ex-mobile-list-view">
-                    ${opt.phases.map(p => `
-                        <div class="ex-m-phase-card${p.total ? " ex-m-total" : ""}">
-                            <div class="ex-m-phase-header">
-                                <span class="ex-m-phase-name ex-phase-title"${p.total ? ` style="color:${opt.tierColor};"` : ""}>${p.label}</span>
-                                <span class="ex-m-phase-info"${p.total ? ` style="color:${opt.tierColor};"` : ""}>${p.sub}</span>
-                            </div>
-                            <div class="ex-m-grid-row"><span class="ex-m-label">강투 (15%)</span><span class="ex-m-values">${p.t_d}<span class="ex-m-dps">${p.t_s}</span></span></div>
-                            <div class="ex-m-grid-row"><span class="ex-m-label">1인분 (16.6%)</span><span class="ex-m-values">${p.o_d}<span class="ex-m-dps">${p.o_s}</span></span></div>
-                            <div class="ex-m-grid-row ex-m-highlight"><span class="ex-m-label">잔혈 (20%)</span><span class="ex-m-values">${p.b_d}<span class="ex-m-dps">${p.b_s}</span></span></div>
-                        </div>
-                    `).join("")}
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-/* =============================================
-   보스 그래프 + 에스더 HTML
-   ============================================= */
-function makeBossSection(config) {
-    const bossCards = config.bosses.map(b => {
-        const totalPct = b.parts.reduce((acc, p) => acc + p.pct, 0);
-        let current = 0;
-        const gradient = b.parts.map(p => {
-            const start = current / totalPct * 100;
-            current += p.pct;
-            const end = current / totalPct * 100;
-            return `${p.color} ${start}% ${end}%`;
-        }).join(", ");
-
-        const labels = b.parts.map(p => `
-            <div class="boss-label-item">
-                <div class="boss-label-dot" style="background:${p.color};"></div>
-                <div>
-                    <div class="boss-label-name">${p.name}</div>
-                    <div class="boss-label-pct" style="color:${p.color};">${p.pct}%</div>
-                </div>
-            </div>
-        `).join("");
-
-        const legends = b.parts.map(p => `
-            <div class="boss-legend-row">
-                <div class="boss-legend-dot" style="background:${p.color};"></div>
-                ${p.legend}
-                <span class="boss-legend-val">${p.hp}</span>
-            </div>
-        `).join("");
-
-        return `
-            <div class="boss-card">
-                <div class="boss-card-title" style="color:${b.color};">
-                    <div class="bar" style="background:${b.color};"></div>${b.name}
-                </div>
-                <div class="boss-chart-row">
-                    <div class="boss-labels">${labels}</div>
-                    <div class="boss-donut-wrap">
-                        <div class="boss-donut" style="background:conic-gradient(from -90deg, ${gradient}); box-shadow:0 0 0 3px rgba(255,255,255,.03), 0 4px 14px rgba(0,0,0,.4);">
-                            <div class="boss-donut-inner">
-                                <div class="boss-donut-title">총 체력</div>
-                                <div class="boss-donut-val">${b.totalHp}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="boss-legend">${legends}</div>
-                <div class="boss-total-row">
-                    <span class="boss-total-label">총 체력</span>
-                    <span class="boss-total-val" style="color:${b.color};">${b.totalHp}</span>
-                </div>
-            </div>
-        `;
-    }).join("");
-
-    const estherRows = config.esther.map(r => `
-        <div class="esther-row">
-            <div>${r[0]}</div>
-            <div style="color:${config.col1};">${r[1]}</div>
-            <div style="color:${config.col2};">${r[2]}</div>
-            <div style="color:${config.col3};">${r[3]}</div>
-        </div>
-    `).join("");
-
-    return `
-        <div class="boss-info-section">
-            <div class="section-header">
-                <div class="dot" style="background:${config.headerColor};"></div>
-                <span class="section-title">보스 체력 정보</span>
-            </div>
-            <div class="warning-bar">⚠ 보스 체력정보 / 에스더 데미지는 직접 수작업으로 체크한 부분이라 정확하지 않을 수 있습니다.</div>
-            <div class="boss-grid">${bossCards}</div>
-            <div class="esther-table">
-                <div class="esther-header">
-                    <div class="bar" style="background:${config.estherBar};"></div>
-                    <span>에스더 데미지 기대값</span>
-                </div>
-                <div class="esther-cols">
-                    <div>에스더 스킬</div>
-                    <div style="color:${config.col1};">${config.colName1}</div>
-                    <div style="color:${config.col2};">${config.colName2}</div>
-                    <div style="color:${config.col3};">${config.colName3}</div>
-                </div>
-                ${estherRows}
-            </div>
-        </div>
-    `;
-}
-
-/* =============================================
-   EX / 간편보기 렌더
-   ============================================= */
-function renderExView(exKey) {
-    const data = exRaidData[exKey];
-    if (!data) return "<div class='coming-soon'><h3>준비중</h3></div>";
-
-    const tierColors = { normal: "#34d399", hard: "#f7ca54", nightmare: "#a78bfa" };
-    const cards = data.cards.map(c => makeExCard({ ...c, tierColor: tierColors[c.tier] || "#fff" })).join("");
-    const boss = data.bossSection ? makeBossSection(data.bossSection) : "";
-
-    const introTheme = exKey === "egir-ex" ? "ex-intro-purple" : "ex-intro-gold";
-
-    return `
-        <div class="simple-view">
-            <div class="ex-intro-box ${introTheme}">
-                <div class="ex-intro-title-box">${data.sectionTitle}</div>
-                <div class="ex-intro-desc">${data.intro}</div>
-            </div>
-            <div class="ex-dash-container">${cards}</div>
-            ${boss}
-        </div>
-    `;
-}
-
-function renderRaidSimpleView() {
-    const meta = simpleRaidMeta[currentSimpleRaid];
-    const cards = getSimpleRaidCards(currentSimpleRaid);
-    const target = document.getElementById("simpleCardsFull") || document.getElementById("mainContent");
-
-    if (!meta) {
-        if (target) {
-            target.innerHTML = ""; // 청소
-            target.insertAdjacentHTML("beforeend",
-                '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>');
-        }
-        return;
-    }
-
-    // [보완] 렌더링 전 타겟 클리어
-    if (target) {
-        target.innerHTML = "";
-    }
-
-    target.insertAdjacentHTML("beforeend", `
-        <div class="simple-view">
-            <div class="simple-stack">
-                ${cards.length > 0
-                    ? cards.map(simpleCardHtml).join("")
-                    : "<div class='coming-soon'><h3>준비중</h3><p>곧 업데이트 예정입니다.</p></div>"}
-            </div>
-        </div>
-    `);
-}
-
-
-
-
-function renderSimpleView() {
-    const defaultContent = document.getElementById("defaultSimpleContent");
-    if (defaultContent) defaultContent.remove();
-
-    if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
-        document.getElementById("mainContent").innerHTML = renderExView(currentSimpleLevel);
-        return;
-    }
-
-    const data = simpleData[currentSimpleLevel];
-    const target = document.getElementById("simpleCardsFull") || document.getElementById("mainContent");
-
-    if (!data) {
-        if (target) {
-            target.innerHTML = ""; // 기존 잔여물 청소
-            target.insertAdjacentHTML("beforeend",
-                '<div class="coming-soon"><h3>준비중</h3><p>데이터 준비중입니다.</p></div>');
-        }
-        return;
-    }
-
-    const { goldCards, extraCards } = getSimpleLevelCardSections(currentSimpleLevel);
-
-    // [보완] 카드를 덧붙이기 전에 기존 카드를 한 번 깨끗하게 비워줌
-    if (target) {
-        target.innerHTML = ""; 
-    }
-
-    target.insertAdjacentHTML("beforeend", `
-        <div class="simple-view">
-            <div class="simple-stack">
-                ${
-                    goldCards.length > 0
-                        ? goldCards.map(simpleCardHtml).join("")
-                        : "<div class='coming-soon'><h3>준비중</h3><p>곧 업데이트 예정입니다.</p></div>"
-                }
-                ${
-                    extraCards.length > 0
-                        ? `
-                            <div class="simple-extra-wrap">
-                                <button class="simple-extra-toggle" id="simpleExtraToggleBtn" type="button">
-                                    <span id="simpleExtraToggleText">골드 미획득 레이드 펼치기</span>
-                                    <span id="simpleExtraToggleArrow">▼</span>
-                                </button>
-                                <div class="simple-extra-panel" id="simpleExtraPanel">
-                                    <div class="simple-extra-stack">
-                                        ${extraCards.map(simpleCardHtml).join("")}
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                        : ""
-                }
-            </div>
-        </div>
-    `);
-
-    bindSimpleExtraToggle();
-}
-
-
-
-
-/* =============================================
-   파티 DPS
-   ============================================= */
-function getCurrentRowsForPartyDps() {
-    if (currentMenu === "simple") return [];
-
-    if (currentMenu === "guardian") {
-        const tier = currentGuardianTier;
-        const boss = getCurrentGuardianBoss();
-        const isAvail = isGuardianBossAvailable(tier, boss);
-        if (!isAvail) return [];
-        return getGuardianParsedRows(tier, boss);
-    }
-
-    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
-        const info = raidMeta[currentMenu][currentCombo];
-        return parsedData[currentMenu]?.[info.diffKey] || [];
-    }
-
-    return [];
-}
-
-function getDamageFromRow(row) {
-    if (!row) return 0;
-
-    if (currentMenu === "guardian") return row.damage || 0;
-
-    if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
-        return raidMeta[currentMenu][currentCombo].gateKey === "gate1"
-            ? row.g1 || 0
-            : row.g2 || 0;
-    }
-
-    return row.damage || 0;
-}
-
-function getPartyDpsValue() {
-    const rows = getCurrentRowsForPartyDps();
-    if (!rows.length) return null;
-
-    const shares = getPrecisionShares(currentMenu);
-    let found = null;
-    for (const share of [shares.one, shares.tank, shares.blood]) {
-        found = rows.find(r => r.share === share && getDamageFromRow(r) > 0);
-        if (found) break;
-    }
-
-    if (!found) found = rows.find(r => getDamageFromRow(r) > 0) || null;
-    if (!found) return null;
-
-    const dmg = getDamageFromRow(found);
-    const pct = (found.share || 0) / 100;
-    return (dmg && pct) ? dmg / pct / getTotalSeconds() : null;
-}
-
-function updatePartyDpsDisplay() {
-    const el = document.getElementById("partyDpsDisplay");
-    const isGuardianPending = currentMenu === "guardian" &&
-        !isGuardianBossAvailable(currentGuardianTier, getCurrentGuardianBoss());
-
-    if (currentMenu === "simple" || isGuardianPending) {
-        el.innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
-        return;
-    }
-
-    const val = getPartyDpsValue();
-    el.innerHTML = val !== null
-        ? `파티 DPS : <span class="party-dps-value">${fmtPartyDps(val)}</span>`
-        : '파티 DPS : <span class="party-dps-value">-</span>';
-}
-
-
-/* =============================================
-   가디언 히어로 바
-   ============================================= */
-
-function makeGuardianHero(tier, boss, bossInfo) {
-    const bossElementEmoji = getGuardianElementEmojiFromWeakness(bossInfo.attr.text);
-    const weakEmoji = getAttrEmoji(bossInfo.attr.text, bossInfo.attr.cls);
-    const stageText = tier === "1730" ? "잔영 : 1단계" : (tier === "1750" ? "잔영 : 2단계" : "잔영 : 3단계");
-
-    return `
-        <div class="p-hero hero-guardian">
-            <div class="p-hero-inner">
-                <div class="p-hero-left">
-                    <div class="p-hero-copy">
-                        <div class="p-hero-kicker">PRECISION · GUARDIAN RAID</div>
-
-                        <div class="p-hero-title-row">
-                            <div class="p-hero-icon">🐉</div>
-                            
-
-                            <div class="p-hero-title-wrap">
-                                <h2 class="p-hero-title">가디언 토벌<span class="p-hero-member-badge">4인</span></h2>
-                                <div class="p-hero-subtitle">${stageText}</div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="p-hero-badges">
-                            <span class="p-badge b-type">${bossInfo.type.text}</span>
-                            <span class="p-badge b-attr">${weakEmoji ? `${weakEmoji} ` : ""}${bossInfo.attr.text}</span>
-                        </div>
-
-                        <p class="p-hero-desc">
-                            레벨과 보스를 선택하면 해당 가디언의 딜지분과 DPS를 실시간으로 확인할 수 있습니다.
-                        </p>
-                        <p class="p-hero-desc" style="margin-top:6px;">
-                            가디언 토벌은 잔영 단계에 따라 요구 DPS가 크게 달라지며, 강투컷·1인분·잔혈컷 기준으로
-                            자신의 딜 기여도를 빠르게 비교할 수 있습니다.
-                        </p>
-                    </div>
-
-                    <div class="p-hero-pills">
-                        <span class="p-pill ${tier === "1730" ? "active" : ""}">1730 가디언</span>
-                        <span class="p-pill ${tier === "1750" ? "active" : ""}">1750 가디언</span>
-                        <span class="p-pill ${tier === "1770" ? "active" : ""}">1770 가디언</span>
-                    </div>
-                </div>
-
-                <div class="p-hero-right">
-                    <div class="p-stat">
-                        <div class="p-stat-label">입장 레벨</div>
-                        <div class="p-stat-value">${tier}</div>
-                    </div>
-
-                    <div class="p-stat">
-                        <div class="p-stat-label">보스명</div>
-                        <div class="p-stat-value">${bossElementEmoji} ${boss}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-
-/* =============================================
-   보상 위젯 HTML 생성
-   ============================================= */
-function getRewardDataSource(menu) {
-    if (menu === "serka") return serkaRewardData;
-    if (menu === "cathedral") return cathedralRewardData;
-    if (menu === "belgardin") return belgardinRewardData;
-    return null;
-}
-
-function makeRewardWidget(menu, comboKey) {
-    const dataSource = getRewardDataSource(menu);
-    const data = dataSource ? dataSource[comboKey] : null;
-    if (!data) return "";
-
-    const widgetId = `rewardWidget_${menu}`;
-    const moreId = `rewardMore_${menu}`;
-    const moreBtnId = `rewardMoreBtn_${menu}`;
-
-    const itemSlots = (items) => items.map(item =>
-        `<div class="rw-slot" title="${item.name}"><img src="${item.src}"><span class="rw-count">${item.count}</span></div>`
-    ).join("");
-
-    const goldLine = (gold) => gold ? `
-        <div class="rw-currency">
-            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png"><span>골드</span></div>
-            <span class="rw-gold">${gold}</span>
-        </div>` : "";
-
-    const shardLine = (shard) => shard ? `
-        <div class="rw-currency">
-            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png"><span>운명의 파편</span></div>
-            <span class="rw-shard">${shard}</span>
-        </div>` : "";
-
-    return `
-        <div class="rw-widget" id="${widgetId}">
-            <div class="rw-title">클리어 보상</div>
-            <div class="rw-grid">${itemSlots(data.clearItems)}</div>
-            ${goldLine(data.gold)}
-            ${shardLine(data.shard)}
-
-            <div class="rw-more-area">
-                <button class="rw-more-btn" id="${moreBtnId}" type="button">더보기 보상 열기 ▼</button>
-                <div class="rw-more-content" id="${moreId}">
-                    <div class="rw-more-label">더보기 고정보상</div>
-                    <div class="rw-grid">${itemSlots(data.moreItems)}</div>
-                    ${goldLine(data.moreGold)}
-                    ${shardLine(data.moreShard)}
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-function makeRewardWidgetMobile(menu, comboKey) {
-    const dataSource = getRewardDataSource(menu);
-    const data = dataSource ? dataSource[comboKey] : null;
-    if (!data) return "";
-
-    const moreId = `mobileRewardMore_${menu}`;
-    const moreBtnId = `mobileRewardMoreBtn_${menu}`;
-
-    const itemSlots = (items) => items.map(item =>
-        `<div class="rw-slot" title="${item.name}"><img src="${item.src}"><span class="rw-count">${item.count}</span></div>`
-    ).join("");
-
-    const goldLine = (gold) => gold ? `
-        <div class="rw-currency">
-            <div class="rw-currency-left">
-                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png">
-                <span>골드</span>
-            </div>
-            <span class="rw-gold">${gold}</span>
-        </div>` : "";
-
-    const shardLine = (shard) => shard ? `
-        <div class="rw-currency">
-            <div class="rw-currency-left">
-                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png">
-                <span>운명의 파편</span>
-            </div>
-            <span class="rw-shard">${shard}</span>
-        </div>` : "";
-
-    return `
-        <div class="rw-widget mobile-rw-widget">
-            <div class="rw-title">클리어 보상</div>
-            <div class="rw-grid">${itemSlots(data.clearItems)}</div>
-            ${goldLine(data.gold)}
-            ${shardLine(data.shard)}
-
-            <div class="rw-more-area">
-                <button class="rw-more-btn" id="${moreBtnId}" type="button">더보기 보상 열기 ▼</button>
-                <div class="rw-more-content" id="${moreId}">
-                    <div class="rw-more-label">더보기 고정보상</div>
-                    <div class="rw-grid">${itemSlots(data.moreItems)}</div>
-                    ${goldLine(data.moreGold)}
-                    ${shardLine(data.moreShard)}
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-function makeMobilePrecisionTools(menu, comboKey) {
-    const timeBtnId = `openMobileTimeBtn_${menu}`;
-    const rewardToggleId = `mobileRewardToggle_${menu}`;
-    const rewardBoxId = `mobileRewardBox_${menu}`;
-
-    return `
-        <div class="mobile-precision-tools">
-            <button class="mobile-precision-tool-btn" id="${timeBtnId}" type="button">
-                ⏱ 클리어 타임 입력
-            </button>
-
-            <button class="mobile-precision-tool-btn" id="${rewardToggleId}" type="button">
-                📦 클리어 보상 확대하기
-            </button>
-        </div>
-
-        <div class="mobile-reward-collapse" id="${rewardBoxId}">
-            ${makeRewardWidgetMobile(menu, comboKey)}
-        </div>
-    `;
-}
-
-function bindRewardMoreToggle(menu) {
-    const moreId = `rewardMore_${menu}`;
-    const moreBtnId = `rewardMoreBtn_${menu}`;
-    const btn = document.getElementById(moreBtnId);
-    const content = document.getElementById(moreId);
-    if (!btn || !content) return;
-
-    btn.addEventListener("click", () => {
-        const isOpen = content.classList.toggle("rw-open");
-        btn.textContent = isOpen ? "더보기 보상 닫기 ▲" : "더보기 보상 열기 ▼";
-    });
-}
-
-
-const RAID_MEMBER_COUNT = { serka: "4인", cathedral: "4인", belgardin: "8인" };
-
-function makeRaidPrecisionHero(menu, meta, currentDiff) {
-    const isSerka = menu === "serka";
-    const isCathedral = menu === "cathedral";
-    const raidTitle = getRaidDisplayName(menu);
-    const memberCount = RAID_MEMBER_COUNT[menu] || "";
-
-    const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : "hero-belgardin");
-    const kicker = isSerka ? "PRECISION · SERKA" : (isCathedral ? "PRECISION · CATHEDRAL" : "PRECISION · BELGARDIN");
-    const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : "🧛");
-    const subtitle = isSerka ? "그림자 레이드" : (isCathedral ? "어비스 던전" : "그림자 레이드");
-
-    const entryLevelMatch = meta.title.match(/\((\d+)\)/);
-    const entryLevel = entryLevelMatch ? entryLevelMatch[1] : "-";
-    const diffLabel = meta.title.replace(/\s*\(.+\)/, "");
-    const gateLabel = meta.gateName;
-    const attrEmoji = getAttrEmoji(meta.attr.text, meta.attr.cls);
-
-    const pills = isSerka
-        ? [
-            { key: "normal", text: "노말 · 1710" },
-            { key: "hard", text: "하드 · 1730" },
-            { key: "nightmare", text: "나메 · 1740" }
-        ]
-        : isCathedral
-        ? [
-            { key: "normal", text: "1단계 · 1700" },
-            { key: "hard", text: "2단계 · 1720" },
-            { key: "nightmare", text: "3단계 · 1750" }
-        ]
-        : [
-            { key: "normal", text: "노말 · 1750" },
-            { key: "hard", text: "하드 · 1770" },
-            { key: "nightmare", text: "나메 · 1780" }
-        ];
-
-    const shares = getPrecisionShares(menu);
-    const descLine = menu === "belgardin"
-        ? `강투컷은 15%, 1인분은 ${shares.one}%, 잔혈컷은 20% 딜지분 기준입니다 (8인 레이드 기준).`
-        : `강투컷은 파티 내 상위 기여도, 1인분은 인원수 기준 균등 분배, 잔혈컷은 압도적 기여 기준입니다.`;
-
-    return `
-        <div class="p-hero ${themeClass}">
-            <div class="p-hero-inner">
-                <div class="p-hero-left">
-                    <div class="p-hero-copy">
-                        <div class="p-hero-kicker">${kicker}</div>
-
-                        <div class="p-hero-title-row">
-                            <div class="p-hero-icon">${icon}</div>
-                           
-
-
-                            <div class="p-hero-title-wrap">
-                                <h2 class="p-hero-title">${raidTitle}<span class="p-hero-member-badge">${memberCount}</span></h2>
-                                <div class="p-hero-subtitle">${subtitle}</div>
-                            </div>
-                        </div>
-
-                        <div class="p-hero-badges">
-                            <span class="p-badge b-type">${meta.type.text}</span>
-
-
-
-                            <span class="p-badge b-attr">${attrEmoji ? `${attrEmoji} ` : ""}${meta.attr.text}</span>
-                        </div>
-
-                        <p class="p-hero-desc">
-                            클리어 시간을 직접 입력해 딜지분에 따른 DPS를 실시간으로 확인할 수 있습니다.
-                        </p>
-                        <p class="p-hero-desc" style="margin-top:6px;">
-                            ${descLine}
-                            같은 딜지분이라도 클리어 시간이 짧을수록 요구되는 DPS는 높아집니다.
-                        </p>
-                    </div>
-
-                    <div class="p-hero-pills">
-                        ${pills.map(p => `
-                            <span class="p-pill ${currentDiff === p.key ? "active" : ""}">${p.text}</span>
-                        `).join("")}
-                    </div>
-                </div>
-
-                <div class="p-hero-right">
-                    <div class="p-stat">
-                        <div class="p-stat-label">입장 레벨</div>
-                        <div class="p-stat-value">${entryLevel}</div>
-                    </div>
-
-                    <div class="p-stat">
-                        <div class="p-stat-label">난이도 · 관문</div>
-                        <div class="p-stat-value">${diffLabel} · ${gateLabel}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-
-/* =============================================
-   가디언 컨트롤
-   ============================================= */
-function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
-    const oldBosses = ["루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼"];
-
-    const tierChecks = ["1730", "1750", "1770"].map(t => {
-        const isActive = tier === t;
-
-        return `
-            <div class="guardian-tier-chip ${isActive ? "active" : ""}" data-tier="${t}">
-                <span class="guardian-tier-chip-check">${isActive ? "✓" : ""}</span>
-                <span class="guardian-tier-chip-text">${t}</span>
-            </div>
-        `;
-    }).join("");
-
-    const makeDropdownItem = (b) => {
-        const m = gatoMeta[b];
-        const isActive = b === boss;
-        const isAvail = availList.includes(b);
-        const baseEmoji = getGuardianElementEmojiFromWeakness(m.attr.text);
-
-        return `
-            <div class="guardian-dropdown-item ${isActive ? "gd-active" : ""} ${isAvail ? "" : "pending"}" data-boss="${b}">
-                <div class="gd-item-name">
-                    <span class="gd-item-name-wrap">
-                        <span class="element-emoji">${baseEmoji}</span>
-                        <span>${b}</span>
-                    </span>
-                </div>
-                <div class="gd-item-badges">
-                    ${makeBadge(m.type.text, m.type.cls)}
-                    ${makeBadge(m.attr.text, m.attr.cls)}
-                </div>
-                ${isActive ? '<div class="gd-item-check">✓</div>' : ""}
-                ${isAvail ? "" : '<span class="gd-pending-tag">준비중</span>'}
-            </div>
-        `;
-    };
-
-    const oldItems = bossList.filter(b => oldBosses.includes(b)).map(makeDropdownItem).join("");
-    const newItems = bossList.filter(b => !oldBosses.includes(b)).map(makeDropdownItem).join("");
-    const triggerEmoji = getGuardianElementEmojiFromWeakness(bossInfo.attr.text);
-
-    // 요청 반영: [1730][1750][1770] 티어 버튼을 한 줄로, 그 아래 줄에 보스 선택 드롭다운을 배치
-    // (guardian-inline-row를 1열로 강제 → 상단 guardian-top-tools(티어+시간버튼), 하단 guardian-select-inline(드롭다운) 순서로 쌓임)
-    return `
-        <div class="precision-control guardian-inline-control">
-            <div class="guardian-inline-row" style="display:grid;grid-template-columns:1fr;gap:12px;">
-                <div class="guardian-top-tools">
-                    <div class="guardian-tier-inline" style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:8px;">
-                        ${tierChecks}
-                    </div>
-
-                    <button class="guardian-mobile-time-btn" id="guardianMobileTimeBtn" type="button">
-                        ⏱ 클리어 타임 입력
-                    </button>
-                </div>
-
-                <div class="guardian-select-inline">
-                    <div class="guardian-dropdown">
-                        <div class="guardian-dropdown-trigger compact">
-                            <div class="gd-trigger-name">
-                                <span class="gd-trigger-name-wrap">
-                                    <span class="element-emoji">${triggerEmoji}</span>
-                                    <span>${boss}</span>
-                                </span>
-                            </div>
-                            <div class="gd-trigger-badges">
-                                ${makeBadge(bossInfo.type.text, bossInfo.type.cls)}
-                                ${makeBadge(bossInfo.attr.text, bossInfo.attr.cls)}
-                            </div>
-                            <div class="gd-trigger-arrow">▼</div>
-                        </div>
-
-                        <div class="guardian-dropdown-list" style="display:none;">
-                            <div class="gd-group-label">기존 가디언</div>
-                            ${oldItems}
-                            <div class="gd-group-label">신규 가디언</div>
-                            ${newItems}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-
-/* =============================================
-   공통 요약 카드 HTML
-   ============================================= */
-
-
-function makePrecisionSummary(rowTank, rowOne, rowBlood, getDmgFn, totalSec, menu, isSupport) {
-    const shares = getPrecisionShares(menu);
-    const fmtShare = (s) => Number.isInteger(s) ? s : s.toFixed(1);
-
-    const labels = isSupport
-        ? { tank: "강조컷", one: "1인분", blood: "잔조컷" }
-        : { tank: "강투컷", one: "1인분", blood: "잔혈컷" };
-
-   
-    const dpsLabel = isSupport ? "조력 DPS" : "DPS";
-
-    const makeCard = (key, labelCls, cardCls, dpsCls, defaultShare, row) => {
-        const dmg = row ? Math.floor(getDmgFn(row)) : 0;
-        const dps = row ? floorTo1(dmg / totalSec).toFixed(1) : "-";
-        const shareVal = (isSupport && row && row.share !== undefined) ? row.share : defaultShare;
-        return `
-            <div class="precision-summary-card ${cardCls}">
-                <div class="precision-summary-label ${labelCls}">${labels[key]}</div>
-                <div class="precision-summary-share">딜지분 ${fmtShare(shareVal)}%</div>
-                <div class="precision-summary-dmg">${fmt(dmg)}<span class="precision-summary-unit"> 억</span></div>
-                <div class="precision-summary-dps ${dpsCls}">${dpsLabel} ${dps}억</div>
-            </div>
-        `;
-    };
-
-
-
-    return `
-        <div class="precision-summary-cards">
-            ${makeCard("tank", "precision-label-tank", "precision-card-tank", "precision-dps-tank", shares.tank, rowTank)}
-            ${makeCard("one", "precision-label-one", "precision-card-one", "precision-dps-one", shares.one, rowOne)}
-            ${makeCard("blood", "precision-label-blood", "precision-card-blood", "precision-dps-blood", shares.blood, rowBlood)}
-        </div>
-    `;
-}
-
-
-
-/* =============================================
-   메인 테이블 렌더링
-   ============================================= */
-function renderTable() {
-    updateTimeDisplay();
-    const totalSec = getTotalSeconds();
-
-    const isSimpleQuickView =
-    currentMenu === "simple" &&
-    currentSimpleLevel !== "egir-ex" &&
-    currentSimpleLevel !== "abr-ex";
-
-const isRaidSimpleQuickView = currentMenu === "raid-simple";
-    const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin";
-    document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
-
-
-    // [개정판] 간편보기일 때 빈 공간(.content-grid)과 우측 컬럼(.right-column)까지 통째로 숨기기
-    const contentGrid = document.querySelector(".content-grid");
-    const rightCol = document.querySelector(".right-column");
-    if (currentMenu === "simple" || currentMenu === "raid-simple") {
-        if (contentGrid) contentGrid.style.setProperty("display", "none", "important");
-        if (rightCol) rightCol.style.setProperty("display", "none", "important");
-    } else {
-        if (contentGrid) contentGrid.style.display = ""; // 정밀계산일 때는 원래대로 노출
-        if (rightCol) rightCol.style.display = "";
+/* ---------------------------------------------------------
+   3. 정밀 계산 (세르카 / 성당 / 가디언)
+   --------------------------------------------------------- */
+.mobile-precision-tools, .mobile-reward-collapse { display: none; }
+.mobile-time-modal-backdrop { display: none !important; }
+.mobile-time-modal-backdrop.show { display: flex !important; }
+
+@media (max-width: 768px) {
+    /* 세르카 & 성당 구조 */
+    body.mobile-content-mode.mobile-precision-view .content-grid,
+    body.mobile-content-mode.mobile-precision-view .precision-layout-split { grid-template-columns: 1fr !important; }
+    body.mobile-content-mode.mobile-precision-view .right-column,
+    body.mobile-content-mode.mobile-precision-view .precision-reward-standalone { display: none !important; }
     
+    body.mobile-content-mode.mobile-precision-view .precision-diff-inline { width: 100% !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px; }
+    body.mobile-content-mode.mobile-precision-view .precision-gate-inline { width: 100% !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
+    
+    body.mobile-content-mode.mobile-precision-view .precision-gate-chip { min-height: 76px; padding: 14px 10px 10px; }
+    body.mobile-content-mode.mobile-precision-view .precision-gate-chip-content { margin-top: 6px; gap: 5px; }
+    body.mobile-content-mode.mobile-precision-view .precision-gate-chip-gate { font-size: 15px; }
+    body.mobile-content-mode.mobile-precision-view .precision-gate-chip-boss { font-size: 13px; }
+    body.mobile-content-mode.mobile-precision-view .precision-gate-chip-badges .badge { font-size: 9px !important; height: 18px !important; padding: 0 6px !important; line-height: 16px !important; }
+
+    /* 세르카/성당 도구 버튼 */
+    body.mobile-content-mode.mobile-precision-view .mobile-precision-tools { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    body.mobile-content-mode.mobile-precision-view .mobile-precision-tool-btn { flex: 1 1 calc(50% - 4px); min-height: 42px; border-radius: 12px; border: 1px solid #252836; background: #151822; color: #dce4f2; font-size: 12px; font-weight: 800; cursor: pointer; }
+    body.mobile-content-mode.mobile-precision-view .mobile-reward-collapse { display: none; margin-top: 10px; }
+    body.mobile-content-mode.mobile-precision-view .mobile-reward-collapse.open { display: block; }
+    body.mobile-content-mode.mobile-precision-view .mobile-rw-widget { max-width: 100%; margin-top: 0; background: #111320; border: 1px solid #1a1d2e; border-radius: 16px; padding: 14px; }
+
+    /* 시간 입력 팝업 */
+    .mobile-time-modal-backdrop.show { position: fixed; inset: 0; background: rgba(4,8,16,.78); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 18px; z-index: 1200; }
+    .mobile-time-modal-card { width: min(420px, 100%); border-radius: 18px; padding: 22px 18px 18px; background: #13151c; border: 1px solid #252836; box-shadow: 0 24px 60px rgba(0,0,0,.45); position: relative; }
+    .mobile-time-modal-close { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid #252836; background: #1a1c24; color: #fff; font-size: 18px; font-weight: 900; cursor: pointer; }
+    .mobile-time-modal-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #4a7cff; font-weight: 900; margin-bottom: 8px; }
+    .mobile-time-modal-title { font-size: 22px; font-weight: 900; color: #fff; margin: 0 0 10px; line-height: 1.2; }
+    .mobile-time-modal-divider { height: 1px; background: #1e2030; margin: 14px 0 16px; }
+    .mobile-time-modal-inputs { display: flex; gap: 10px; margin-bottom: 14px; }
+    .mobile-time-input-group { flex: 1; display: grid; gap: 6px; }
+    .mobile-time-input-label { font-size: 11px; font-weight: 800; color: #8a94a8; }
+    .mobile-time-input { width: 100%; height: 44px; border-radius: 12px; background: #141620; border: 1px solid #1e2030; color: #fff; font-size: 18px; font-weight: 800; text-align: center; outline: none; }
+    .mobile-time-preview { text-align: center; font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 14px; letter-spacing: 1px; }
+    .mobile-time-apply-btn { width: 100%; min-height: 44px; border-radius: 12px; border: 1px solid rgba(59,130,246,.28); background: linear-gradient(135deg, rgba(59,130,246,.16), rgba(99,102,241,.10)); color: #fff; font-size: 14px; font-weight: 900; cursor: pointer; }
+
+    /* 세르카 (파란색 글로우) */
+    .hero-serka ~ .precision-layout-split .precision-diff-chip.active, .hero-serka ~ .precision-layout-split .precision-diff-chip.pd-green.active, .hero-serka ~ .precision-layout-split .precision-diff-chip.pd-gold.active, .hero-serka ~ .precision-layout-split .precision-diff-chip.pd-purple.active {
+        background: linear-gradient(180deg, #12192a 0%, #0e1420 100%) !important; border-color: rgba(56, 189, 248, .55) !important; color: #e0f2fe !important; box-shadow: 0 0 0 1px rgba(56, 189, 248, .18), 0 0 14px rgba(56, 189, 248, .22), 0 0 30px rgba(56, 189, 248, .14), inset 0 0 18px rgba(56, 189, 248, .08) !important;
     }
+    .hero-serka ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-check, .hero-serka ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-main { color: #7dd3fc !important; }
+    .hero-serka ~ .precision-layout-split .precision-gate-chip.active {
+        background: linear-gradient(180deg, #12192a 0%, #0e1420 100%) !important; border-color: rgba(56, 189, 248, .55) !important; box-shadow: 0 0 0 1px rgba(56, 189, 248, .18), 0 0 14px rgba(56, 189, 248, .22), 0 0 30px rgba(56, 189, 248, .14), inset 0 0 18px rgba(56, 189, 248, .08) !important;
+    }
+    .hero-serka ~ .precision-layout-split .precision-gate-chip.active::before, .hero-serka ~ .precision-layout-split .precision-gate-chip.active .precision-gate-chip-gate { color: #7dd3fc !important; }
+
+    /* 성당 (보라색 글로우) */
+    .hero-cathedral ~ .precision-layout-split .precision-diff-chip.active, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.pd-green.active, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.pd-gold.active, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.pd-purple.active {
+        background: linear-gradient(180deg, #1a1228 0%, #120e1e 100%) !important; border-color: rgba(167, 139, 250, .55) !important; color: #f3e8ff !important; box-shadow: 0 0 0 1px rgba(167, 139, 250, .18), 0 0 14px rgba(167, 139, 250, .22), 0 0 30px rgba(167, 139, 250, .14), inset 0 0 18px rgba(167, 139, 250, .08) !important;
+    }
+    .hero-cathedral ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-check, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-main { color: #c4b5fd !important; }
+    .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active {
+        background: linear-gradient(180deg, #1a1228 0%, #120e1e 100%) !important; border-color: rgba(167, 139, 250, .55) !important; box-shadow: 0 0 0 1px rgba(167, 139, 250, .18), 0 0 14px rgba(167, 139, 250, .22), 0 0 30px rgba(167, 139, 250, .14), inset 0 0 18px rgba(167, 139, 250, .08) !important;
+    }
+    .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active::before, .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active .precision-gate-chip-gate { color: #c4b5fd !important; }
 
 
 
-    const shouldHideTopline =
-    isSimpleQuickView ||
-    isRaidSimpleQuickView ||
-    currentMenu === "guardian" ||
-    currentMenu === "serka" ||
-    currentMenu === "cathedral" ||
-    currentMenu === "belgardin" ||
-    currentMenu === "arc-grid";
 
-const tabsEl = document.getElementById("tabs");
-if (tabsEl) {
-    tabsEl.style.display = currentMenu === "arc-grid" ? "none" : "";
+
+    /* 가디언 토벌 (붉은 계열 & 2줄 구조) */
+    .hero-guardian {
+        background: radial-gradient(circle at top right, rgba(239, 68, 68, .14), transparent 28%), radial-gradient(circle at bottom left, rgba(248, 113, 113, .10), transparent 26%), linear-gradient(180deg, #1a1210 0%, #120d0b 100%) !important; border-color: rgba(239, 68, 68, .20) !important;
+    }
+    .hero-guardian .p-hero-kicker, .hero-guardian .p-hero-subtitle, .hero-guardian .p-badge.b-type, .hero-guardian .p-pill { color: #fca5a5 !important; }
+    .hero-guardian .p-hero-icon { background: linear-gradient(135deg, rgba(239, 68, 68, .22), rgba(248, 113, 113, .14)) !important; border: 1px solid rgba(239, 68, 68, .28) !important; box-shadow: 0 8px 18px rgba(239, 68, 68, .12) !important; }
+    .hero-guardian .p-badge.b-type { background: rgba(239, 68, 68, .15) !important; }
+    .hero-guardian .p-badge.b-attr { background: rgba(239, 68, 68, .10) !important; color: #fecaca !important; }
+    .hero-guardian .p-pill { background: rgba(239, 68, 68, .06) !important; border-color: rgba(239, 68, 68, .14) !important; }
+    .hero-guardian .p-pill.active { background: rgba(239, 68, 68, .14) !important; color: #fff1f1 !important; border-color: rgba(239, 68, 68, .24) !important; }
+    .hero-guardian .p-stat { background: rgba(239, 68, 68, .04) !important; border-color: rgba(239, 68, 68, .10) !important; }
+    .hero-guardian .p-stat-label { color: #b04040 !important; }
+
+    .guardian-tier-chip.active {
+        background: linear-gradient(135deg, rgba(239, 68, 68, .12), rgba(248, 113, 113, .08)) !important; border-color: rgba(239, 68, 68, .35) !important; box-shadow: 0 0 0 1px rgba(239, 68, 68, .18), 0 0 14px rgba(239, 68, 68, .22), 0 0 30px rgba(239, 68, 68, .14), inset 0 0 18px rgba(239, 68, 68, .08) !important; color: #fff !important;
+    }
+    .guardian-dropdown-item.gd-active { background: linear-gradient(135deg, rgba(239, 68, 68, .16), rgba(248, 113, 113, .10)) !important; box-shadow: inset 0 0 0 1px rgba(239, 68, 68, .35) !important; }
+    .gd-item-check { background: linear-gradient(135deg, #ef4444, #f87171) !important; box-shadow: 0 0 0 2px rgba(239, 68, 68, .15) !important; }
+
+    body.mobile-content-mode .guardian-inline-row { display: grid !important; grid-template-columns: 1fr; gap: 10px; align-items: stretch; }
+    body.mobile-content-mode .guardian-top-tools { display: flex; gap: 8px; align-items: stretch; }
+    body.mobile-content-mode .guardian-tier-inline { display: flex !important; gap: 8px; flex: 1; }
+    body.mobile-content-mode .guardian-tier-chip { flex: 1; min-width: 0; min-height: 48px; padding: 8px 10px; }
+    body.mobile-content-mode .guardian-tier-chip-check { top: 7px; }
+    body.mobile-content-mode .guardian-tier-chip-text { font-size: 13px; }
+
+    body.mobile-content-mode .guardian-mobile-time-btn {
+        flex: 0 0 112px; min-height: 48px; padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(239, 68, 68, .25); background: rgba(239, 68, 68, .08); color: #fca5a5; font-size: 11px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; white-space: nowrap; transition: .2s;
+    }
+    body.mobile-content-mode .guardian-mobile-time-btn:hover { background: rgba(239, 68, 68, .14); border-color: rgba(239, 68, 68, .35); }
+
+    body.mobile-content-mode .guardian-select-inline { width: 100%; min-width: 0; }
+    body.mobile-content-mode .guardian-dropdown-trigger.compact { min-height: 54px; align-items: center !important; padding: 10px 12px; }
+    body.mobile-content-mode .gd-trigger-name { display: flex; align-items: center; min-height: 20px; }
+    body.mobile-content-mode .gd-trigger-name-wrap { display: inline-flex; align-items: center; gap: 6px; line-height: 1; }
+    body.mobile-content-mode .gd-trigger-badges { display: flex; align-items: center; gap: 5px; }
+    body.mobile-content-mode .guardian-dropdown-item { min-height: 48px; align-items: center !important; }
+    body.mobile-content-mode .gd-item-name { display: flex; align-items: center; min-height: 20px; }
+    body.mobile-content-mode .gd-item-name-wrap { display: inline-flex; align-items: center; gap: 6px; line-height: 1; }
+    body.mobile-content-mode .gd-item-badges { display: flex; align-items: center; gap: 4px; }
+    body.mobile-content-mode .gd-item-check { display: flex; align-items: center; justify-content: center; }
+    
+    .guardian-mobile-time-wrap { display: none !important; }
 }
 
-    const topline = document.querySelector(".topline");
-    if (topline) {
-        topline.style.display = shouldHideTopline ? "none" : "";
+
+
+
+
+
+
+/* =============================================
+   모바일 - 클리어타임 카드 숨김
+   ============================================= */
+@media (max-width: 768px) {
+    body.mobile-content-mode #timeCard,
+    body.mobile-content-mode .time-card {
+        display: none !important;
     }
-
-    const mainEl = document.querySelector(".main");
-
-    if (mainEl) {
-       mainEl.classList.toggle("simple-quick-mode", isSimpleQuickView || isRaidSimpleQuickView);
-    }
-
-   if (isSimpleQuickView || isRaidSimpleQuickView) {
-        document.getElementById("contentTitle").textContent = "";
-        document.getElementById("tableTitle").textContent = "";
-        document.getElementById("titleMeta").innerHTML = "";
-    }
-
-    // EX 제목 특수 처리
-    if (currentMenu === "simple" && currentSimpleLevel === "egir-ex") {
-        document.getElementById("contentTitle").innerHTML =
-            '<span style="background:linear-gradient(90deg,#ff6b6b 0%,#ffd700 15%,#fffacd 30%,#6bcb77 45%,#ffd700 60%,#fffacd 75%,#ff9ff3 90%,#ffd700 100%);background-size:250% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer 2s linear infinite;filter:drop-shadow(0 0 7px rgba(255,215,0,0.85));">에기르 EX 레이드</span>';
-    } else if (currentMenu === "simple" && currentSimpleLevel === "abr-ex") {
-        document.getElementById("contentTitle").innerHTML =
-            '<span style="background:linear-gradient(90deg,#FFD60A 0%,#7E57C2 25%,#FFD60A 50%,#7E57C2 75%,#FFD60A 100%);background-size:250% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer 2s linear infinite;filter:drop-shadow(0 0 7px rgba(255,214,10,0.85));">아브렐슈드 EX 레이드</span>';
-    } else if (!isSimpleQuickView) {
-        document.getElementById("contentTitle").textContent = getContentName();
-    }
-
-    document.getElementById("tableTitle").textContent = getTableTitle();
-    renderTitleMeta();
-    document.getElementById("infoHint").innerHTML = getInfoHintText();
-
-if (currentMenu === "arc-grid") {
-    setClearTimeDisabled(true);
-    document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
-
-    document.getElementById("contentTitle").textContent = "";
-    document.getElementById("tableTitle").textContent = "";
-    document.getElementById("titleMeta").innerHTML = "";
-
-    if (typeof ArcGrid !== "undefined") {
-        ArcGrid.init(document.getElementById("mainContent"));
-    }
-
-    return;
-}
-
-
-if (currentMenu === "simple" || currentMenu === "raid-simple") {
-    setClearTimeDisabled(true);
-    document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
-    enableSimpleAdSlot();
-
-    if (currentMenu === "raid-simple") {
-        renderRaidSimpleView();
-    } else {
-        renderSimpleView();
-    }
-    return;
 }
 
 
 
-    setClearTimeDisabled(false);
-    disableSimpleAdSlot();
-
-    // === 가디언 토벌 ===
-    if (currentMenu === "guardian") {
-        document.getElementById("contentTitle").textContent = "";
-        document.getElementById("tableTitle").textContent = "";
-        document.getElementById("titleMeta").innerHTML = "";
-
-        const tier = currentGuardianTier;
-        const boss = getCurrentGuardianBoss();
-        const bossInfo = gatoMeta[boss];
-        const isAvail = isGuardianBossAvailable(tier, boss);
-        const bossList = getGuardianBossListByTier(tier);
-        const availList = getGuardianAvailListByTier(tier);
-
-              if (!isAvail) {
-            document.getElementById("mainContent").innerHTML = `
-                ${makeGuardianHero(tier, boss, bossInfo)}
-                ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
-                <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
-                ${makeRoleToggleHtml()}
-
-                <div class="coming-soon"><h3>${boss} 준비중</h3><p>해당 보스의 가디언 토벌 데이터는 순차적으로 공개됩니다.</p></div>
-            `;
-     
-        } else {
-           
-
-
-            const rows = getGuardianParsedRows(tier, boss);
-            const isSupportGuardian = currentRoleMode === "support";
-            const guardianShares = getPrecisionShares("guardian");
-
-            const getDmg = (r) => r.damage || 0;
-            const findRow = (share) => rows.find(r => r.share === share && getDmg(r) > 0);
-
-            let row30, row33, row40, effectiveGetDmg, guardianConv;
-
-            if (isSupportGuardian) {
-                guardianConv = computeSupportConversion(rows, guardianShares, getDmg);
-                row30 = guardianConv.anchors.gangjo;
-                row33 = guardianConv.anchors.ilinbun;
-                row40 = guardianConv.anchors.janjo;
-                effectiveGetDmg = (r) => r.damage;
-            } else {
-                row30 = findRow(30);
-                row33 = findRow(33);
-                row40 = findRow(40);
-                effectiveGetDmg = getDmg;
-            }
-
-            let tableRowsHtml;
-            if (isSupportGuardian) {
-                const gRows = guardianConv.rows;
-                tableRowsHtml = gRows.length
-                    ? gRows.map(r => {
-                        let cls = "";
-                        if (r.label === "gangjo") cls = "row-30";
-                        if (r.label === "ilinbun") cls = "row-33";
-                        if (r.label === "janjo") cls = "row-40";
-                        return `<tr class="${cls}">${renderSupportShareCell(r)}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
-                    }).join("")
-                    : '<tr><td colspan="3">데이터 없음</td></tr>';
-            } else {
-                tableRowsHtml = rows.length
-                    ? rows.map(r => {
-                        let cls = "";
-                        if (r.share === 30) cls = "row-30";
-                        if (r.share === 33) cls = "row-33";
-                        if (r.share === 40) cls = "row-40";
-                        return `<tr class="${cls}">${renderShareCell(r.share, "guardian")}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
-                    }).join("")
-                    : '<tr><td colspan="3">데이터 없음</td></tr>';
-            }
-
-                               document.getElementById("mainContent").innerHTML = `
-                ${makeGuardianHero(tier, boss, bossInfo)}
-                ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
-                <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
-                ${makeRoleToggleHtml()}
-                ${makePrecisionSummary(row30, row33, row40, effectiveGetDmg, totalSec, "guardian", isSupportGuardian)}
-
-
-                <div class="precision-table-panel">
-                    <div class="precision-table-head">
-                        <div class="precision-table-title">${boss} (${tier}) 상세 딜지분</div>
-                        <div class="precision-table-badge" id="precisionTimeBadge">전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초</div>
-                    </div>
-                                       <div class="table-wrap">
-                        <table id="dataTable">
-                            <thead>
-                                <tr>${isSupportGuardian
-                                    ? "<th>조력지분</th><th>조력피해/억</th><th>조력 DPS</th>"
-                                    : "<th>딜지분</th><th>피해/억</th><th>DPS</th>"}</tr>
-                            </thead>
-                            <tbody>${tableRowsHtml}</tbody>
-                        </table>
-                    </div>
-
-                </div>
-            `;
-        }
-
-        // 레벨 체크 이벤트
-        document.querySelectorAll(".guardian-tier-chip[data-tier]").forEach(el => {
-            el.addEventListener("click", () => {
-                currentGuardianTier = el.dataset.tier;
-                renderTable();
-            });
-        });
-
-        // 드롭다운 토글
-        const trigger = document.querySelector(".guardian-dropdown-trigger");
-        const list = document.querySelector(".guardian-dropdown-list");
-        if (trigger && list) {
-            trigger.addEventListener("click", () => {
-                const isOpen = list.style.display === "block";
-                list.style.display = isOpen ? "none" : "block";
-                trigger.classList.toggle("open", !isOpen);
-            });
-        }
-
-        // 보스 선택 이벤트
-        document.querySelectorAll(".guardian-dropdown-item[data-boss]").forEach(el => {
-            el.addEventListener("click", () => {
-                if (el.classList.contains("pending")) return;
-                const selectedBoss = el.dataset.boss;
-                setCurrentGuardianBoss(selectedBoss);
-                renderTable();
-            });
-        });
-
-  
-    const guardianMobileTimeBtn = document.getElementById("guardianMobileTimeBtn");
-    if (guardianMobileTimeBtn) {
-        guardianMobileTimeBtn.addEventListener("click", openMobileTimeModal);
+@media (max-width: 768px) {
+    body.mobile-home-mode .patch-section {
+        display: block !important;
     }
-        bindRoleToggle();
-        updatePartyDpsDisplay();
-        return;
-    }
-
-
-
-// === 세르카 / 성당 / 벨가르딘 ===
-if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin") {
-    document.getElementById("contentTitle").textContent = "";
-    document.getElementById("tableTitle").textContent = "";
-    document.getElementById("titleMeta").innerHTML = "";
-
-  
-
-    const meta = raidMeta[currentMenu][currentCombo];
-    const dataRows = parsedData[currentMenu]?.[meta.diffKey] || [];
-    const raidName = getRaidDisplayName(currentMenu);
-    const shares = getPrecisionShares(currentMenu);
-    const isSupport = currentRoleMode === "support";
-
-    const getDamage = (row) => meta.gateKey === "gate1" ? row.g1 : row.g2;
-    const findRow = (share) => dataRows.find(r => r.share === share && getDamage(r) > 0);
-
-    let rowTank, rowOne, rowBlood, effectiveGetDamage, supportConv;
-
-    if (isSupport) {
-        supportConv = computeSupportConversion(dataRows, shares, getDamage);
-        rowTank = supportConv.anchors.gangjo;
-        rowOne = supportConv.anchors.ilinbun;
-        rowBlood = supportConv.anchors.janjo;
-        effectiveGetDamage = (row) => row.damage;
-    } else {
-        rowTank = findRow(shares.tank);
-        rowOne = findRow(shares.one);
-        rowBlood = findRow(shares.blood);
-        effectiveGetDamage = getDamage;
-    }
-
-    const bossNames = currentMenu === "serka"
-        ? { gate1: "세르카", gate2: "코르부스" }
-        : currentMenu === "cathedral"
-        ? { gate1: "대주교", gate2: "광신의 인도자" }
-        : { gate1: "벨가르딘", gate2: "페투스" };
-
-    const groups = currentMenu === "serka"
-        ? [
-            { diffKey: "normal", label: "노말", level: "1710", cls: "pd-green" },
-            { diffKey: "hard", label: "하드", level: "1730", cls: "pd-gold" },
-            { diffKey: "nightmare", label: "나메", level: "1740", cls: "pd-purple" }
-        ]
-        : currentMenu === "cathedral"
-        ? [
-            { diffKey: "normal", label: "1단계", level: "1700", cls: "pd-green" },
-            { diffKey: "hard", label: "2단계", level: "1720", cls: "pd-gold" },
-            { diffKey: "nightmare", label: "3단계", level: "1750", cls: "pd-purple" }
-        ]
-        : [
-            { diffKey: "normal", label: "노말", level: "1750", cls: "pd-green" },
-            { diffKey: "hard", label: "하드", level: "1770", cls: "pd-gold" },
-            { diffKey: "nightmare", label: "나메", level: "1780", cls: "pd-purple" }
-        ];
-
-    const currentDiff = currentCombo.split("_")[0];
-    const currentGate = currentCombo.split("_")[1];
-
-  
-    let tableRowsHtml;
-
-    if (isSupport) {
-        const rows = supportConv.rows;
-        tableRowsHtml = rows.length
-            ? rows.map(r => {
-                let cls = "";
-                if (r.label === "gangjo") cls = "row-30";
-                if (r.label === "ilinbun") cls = "row-33";
-                if (r.label === "janjo") cls = "row-40";
-                return `<tr class="${cls}">${renderSupportShareCell(r)}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(r.damage / totalSec).toFixed(1)}억</span></td></tr>`;
-            }).join("")
-            : '<tr><td colspan="3">데이터 없음</td></tr>';
-    } else {
-        tableRowsHtml = dataRows.length
-            ? dataRows.map(r => {
-                let cls = "";
-                if (r.share === shares.tank) cls = "row-30";
-                if (r.share === shares.one) cls = "row-33";
-                if (r.share === shares.blood) cls = "row-40";
-                const dmg = getDamage(r);
-                return `<tr class="${cls}">${renderShareCell(r.share, currentMenu)}<td><span class="damage-wrap"><span class="damage-num">${fmt(dmg)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${floorTo1(dmg / totalSec).toFixed(1)}억</span></td></tr>`;
-            }).join("")
-            : '<tr><td colspan="3">데이터 없음</td></tr>';
-    }
-  
-
-    document.getElementById("mainContent").innerHTML = `
-        ${makeRaidPrecisionHero(currentMenu, meta, currentDiff)}
-
-                <div class="precision-layout-split">
-            <div class="precision-control compact-precision-control">
-                <div class="precision-inline-group">
-                    <div class="precision-control-label">난이도 선택</div>
-                    <div class="precision-diff-inline">
-                        ${groups.map(g => {
-                            const isActive = currentDiff === g.diffKey;
-                            return `
-                                <div class="precision-diff-chip ${isActive ? `${g.cls} active` : ""}" data-diff="${g.diffKey}">
-                                    <span class="precision-diff-chip-check">${isActive ? "✓" : ""}</span>
-                                    <span class="precision-diff-chip-main">${g.label}</span>
-                                    <span class="precision-diff-chip-sub">${g.level}</span>
-                                </div>
-                            `;
-                        }).join("")}
-                    </div>
-                </div>
-
-                <div class="precision-inline-group">
-                    <div class="precision-control-label">관문 선택</div>
-                    <div class="precision-gate-inline">
-                        <div class="precision-gate-chip ${currentGate === "gate1" ? "active" : ""}" data-gate="gate1">
-                            <div class="precision-gate-chip-content">
-                                <div class="precision-gate-chip-line">
-                                    <span class="precision-gate-chip-gate">1관</span>
-                                    <span class="precision-gate-chip-boss">${bossNames.gate1}</span>
-                                </div>
-                                <div class="precision-gate-chip-badges">
-                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate1`].type.text, raidMeta[currentMenu][`${currentDiff}_gate1`].type.cls)}
-                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate1`].attr.text, raidMeta[currentMenu][`${currentDiff}_gate1`].attr.cls)}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="precision-gate-chip ${currentGate === "gate2" ? "active" : ""}" data-gate="gate2">
-                            <div class="precision-gate-chip-content">
-                                <div class="precision-gate-chip-line">
-                                    <span class="precision-gate-chip-gate">2관</span>
-                                    <span class="precision-gate-chip-boss">${bossNames.gate2}</span>
-                                </div>
-                                <div class="precision-gate-chip-badges">
-                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate2`].type.text, raidMeta[currentMenu][`${currentDiff}_gate2`].type.cls)}
-                                    ${makeBadge(raidMeta[currentMenu][`${currentDiff}_gate2`].attr.text, raidMeta[currentMenu][`${currentDiff}_gate2`].attr.cls)}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                ${makeMobilePrecisionTools(currentMenu, currentDiff + "_" + meta.gateKey)}
-            </div>
-
-            <div class="precision-reward-standalone">
-                ${makeRewardWidget(currentMenu, currentDiff + "_" + meta.gateKey)}
-            </div>
-        </div>
-
-
-                ${buildSummaryAndDetailHtml(currentMenu, meta.gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, effectiveGetDamage, isSupport)}
-    `;
-
-
-
-    // 난이도 선택
-    document.querySelectorAll(".precision-diff-chip[data-diff]").forEach(el => {
-        el.addEventListener("click", () => {
-            const gate = currentCombo.split("_")[1];
-            currentCombo = `${el.dataset.diff}_${gate}`;
-            renderTable();
-        });
-    });
-
-    // 관문 선택
-    document.querySelectorAll(".precision-gate-chip[data-gate]").forEach(el => {
-        el.addEventListener("click", () => {
-            const diff = currentCombo.split("_")[0];
-            currentCombo = `${diff}_${el.dataset.gate}`;
-            if (currentMenu === "belgardin") {
-                setBaseTimeByMenu(currentMenu, el.dataset.gate);
-            }
-            renderTable();
-        });
-    });
-
-    bindRewardMoreToggle(currentMenu);
-
-document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const menu = btn.dataset.detailMenu || currentMenu;
-        detailTabState[menu] = btn.dataset.detailTab;
-        renderTable();
-    });
-});
-
-
-    const mobileTimeBtn = document.getElementById(`openMobileTimeBtn_${currentMenu}`);
-    const mobileRewardToggleBtn = document.getElementById(`mobileRewardToggle_${currentMenu}`);
-    const mobileRewardBox = document.getElementById(`mobileRewardBox_${currentMenu}`);
-
-    if (mobileTimeBtn) {
-        mobileTimeBtn.addEventListener("click", openMobileTimeModal);
-    }
-
-    if (mobileRewardToggleBtn && mobileRewardBox) {
-        mobileRewardToggleBtn.addEventListener("click", () => {
-            const isOpen = mobileRewardBox.classList.toggle("open");
-            mobileRewardToggleBtn.textContent = isOpen
-                ? "📦 클리어 보상 닫기"
-                : "📦 클리어 보상 확대하기";
-        });
-    }
-
-    const mobileRewardMoreBtn = document.getElementById(`mobileRewardMoreBtn_${currentMenu}`);
-    const mobileRewardMoreContent = document.getElementById(`mobileRewardMore_${currentMenu}`);
-
-  
-    if (mobileRewardMoreBtn && mobileRewardMoreContent) {
-        mobileRewardMoreBtn.addEventListener("click", () => {
-            const isOpen = mobileRewardMoreContent.classList.toggle("rw-open");
-            mobileRewardMoreBtn.textContent = isOpen ? "더보기 보상 닫기 ▲" : "더보기 보상 열기 ▼";
-        });
-    }
-
-    bindRoleToggle();
-    updatePartyDpsDisplay();
-    return;
 }
 
+
+
+/* =============================================
+   모바일 홈 - PC 메뉴그룹 타이틀 스타일 재사용
+   ============================================= */
+@media (max-width: 768px) {
+    body.mobile-home-mode .mobile-home-group-title {
+        padding: 0;
+        margin-bottom: 10px;
+        font-size: 11px;
+        letter-spacing: 1.6px;
+        color: #6b7280;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    body.mobile-home-mode .mobile-home-group-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #1a1d2e;
+    }
+
+    body.mobile-home-mode .mobile-home-group-title .menu-group-dot {
+        display: inline-block !important;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    body.mobile-home-mode .mobile-home-section + .mobile-home-section {
+        margin-top: 24px;
+    }
+}
+
+
+
+/* =============================================
+   모바일 간편보기 - 강투/1인분/잔혈 박스 아래줄로 내리기
+   ============================================= */
+@media (max-width: 768px) {
+    body.mobile-content-mode .simple-row.has-triple-range {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .simple-row-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+        min-width: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .gate-b {
+        min-width: 38px !important;
+        height: 24px !important;
+        padding: 0 8px !important;
+        font-size: 11px !important;
+        flex-shrink: 0 !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .boss-b {
+        font-size: 16px !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .simple-badges {
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        flex-wrap: wrap !important;
+        min-width: 0 !important;
+        overflow: visible !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .simple-badges .badge,
+    body.mobile-content-mode .simple-row.has-triple-range .simple-row .badge {
+        height: 20px !important;
+        padding: 0 7px !important;
+        font-size: 10px !important;
+        line-height: 18px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* 강투 / 1인분 / 잔혈 박스를 아래줄로 */
+    body.mobile-content-mode .simple-row.has-triple-range .triple-range {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+        width: 100% !important;
+        justify-content: stretch !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .triple-part {
+        min-width: 0 !important;
+        width: 100% !important;
+        padding: 5px 6px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .triple-part .t-label {
+        font-size: 9px !important;
+        margin-bottom: 2px !important;
+    }
+
+    body.mobile-content-mode .simple-row.has-triple-range .triple-part .t-value {
+        font-size: 12px !important;
+    }
+}
+
+
+
+/* =============================================
+   모바일 간편보기 - 1관 / 2관 구분감 강화
+   ============================================= */
+@media (max-width: 768px) {
+    body.mobile-content-mode .simple-card .simple-rows {
+        gap: 12px !important;
+    }
+
+    body.mobile-content-mode .simple-card .simple-row {
+        padding: 12px 12px !important;
+        border-color: #273046 !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, .10);
+    }
+
+    /* 두 번째 관문부터 위쪽 강조선 */
+    body.mobile-content-mode .simple-card .simple-row + .simple-row {
+        position: relative;
+    }
+
+    body.mobile-content-mode .simple-card .simple-row + .simple-row::before {
+        content: "";
+        position: absolute;
+        top: -7px;
+        left: 12px;
+        right: 12px;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,.08) 20%,
+            rgba(255,255,255,.16) 50%,
+            rgba(255,255,255,.08) 80%,
+            transparent 100%
+        );
+    }
+}
+
+
+
+/* =============================================
+   모바일 - 레벨별 탭 5개 한 줄 고정
+   ============================================= */
+@media (max-width: 768px) {
+    /* 레벨별 잔혈컷(1710~1750) 탭에만 적용 */
+    body.mobile-content-mode .simple-level-tabs:has(.simple-level-tab[data-simple-level]) {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+        width: 100%;
+    }
+
+    body.mobile-content-mode .simple-level-tabs:has(.simple-level-tab[data-simple-level]) .simple-level-tab[data-simple-level] {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 8px 4px !important;
+        border-radius: 10px !important;
+    }
+
+    body.mobile-content-mode .simple-level-tabs:has(.simple-level-tab[data-simple-level]) .simple-level-tab-main {
+        font-size: 12px !important;
+        line-height: 1 !important;
+    }
+
+    body.mobile-content-mode .simple-level-tabs:has(.simple-level-tab[data-simple-level]) .simple-level-tab-sub {
+        font-size: 7px !important;
+        line-height: 1 !important;
+        margin-top: 4px !important;
+        opacity: .8 !important;
+    }
 }
 
 
 /* =============================================
-   CSV 로드
+   가디언 모바일 전용 시간 버튼 - PC 숨김
    ============================================= */
-async function loadCSV() {
-    const statusEl = document.getElementById("status");
-    const CACHE_KEY = "loa_dps_csv_cache_v1";
+.guardian-mobile-time-btn {
+    display: none;
+}
 
-    try {
-        const cachedCsv = localStorage.getItem(CACHE_KEY);
-        if (cachedCsv) {
-            const cachedLines = cachedCsv.split(/\r?\n/);
-
-            clearAllData();
-            parseCathedral(cachedLines);
-            parseSerka(cachedLines);
-            parseBelgardin(cachedLines);
-            parseGato1730(cachedLines);
-            parseGato1750(cachedLines);
-            parseGato1770(cachedLines);
-
-            if (currentMenu !== "simple" && currentMenu !== "raid-simple") {
-                renderTabs();
-                renderTable();
-            }
-        }
-
-        const resp = await fetch(CSV_URL);
-        const csvText = await resp.text();
-        const lines = csvText.split(/\r?\n/);
-
-        localStorage.setItem(CACHE_KEY, csvText);
-
-        clearAllData();
-        parseCathedral(lines);
-        parseSerka(lines);
-        parseBelgardin(lines);
-        parseGato1730(lines);
-        parseGato1750(lines);
-        parseGato1770(lines);
-
-        if (currentMenu !== "simple" && currentMenu !== "raid-simple") {
-            renderTabs();
-            renderTable();
-
-            if (statusEl) {
-                statusEl.textContent = "연동 완료";
-                statusEl.style.display = "block";
-                setTimeout(() => { statusEl.style.display = "none"; }, 2000);
-            }
-        } else {
-            if (statusEl) {
-                statusEl.style.display = "none";
-            }
-        }
-    } catch (err) {
-        console.error(err);
-        if (statusEl) {
-            statusEl.style.display = "none";
-        }
+@media (max-width: 768px) {
+    body.mobile-content-mode .guardian-mobile-time-btn {
+        display: flex !important;
     }
 }
 
 /* =============================================
-   경매 계산기
+   모바일 - 간편보기 골드바 축소
    ============================================= */
-function acFmt(v) {
-    return Math.round(v).toLocaleString("ko-KR");
-}
-
-function calcBreakeven(price, members) {
-    return 0.95 * price * (members - 1) / members;
-}
-
-function calcRecommend(breakeven, margin) {
-    return breakeven / (1 + margin);
-}
-
-function acUpdate() {
-    const acPriceEl = document.getElementById("ac-price");
-    if (!acPriceEl) return;
-
-    const raw = (acPriceEl.value || "").replace(/,/g, "");
-    const price = parseInt(raw) || 0;
-
-    if (!price) {
-        document.getElementById("ac-be").textContent = "-";
-        document.getElementById("ac-be-desc").textContent = "거래소 가격을 입력하세요";
-        [5, 10].forEach(pct => {
-            document.getElementById(`ac-v${pct}`).textContent = "-";
-            document.getElementById(`ac-d${pct}`).textContent = "가격 입력 시 표시";
-            document.getElementById(`ac-bar${pct}`).style.width = "0%";
-        });
-        return;
+@media (max-width: 768px) {
+    .simple-goldbar {
+        gap: 6px;
+        padding: 10px;
+        flex-wrap: nowrap;
     }
 
-    const be = calcBreakeven(price, acMembers);
-    document.getElementById("ac-be").textContent = acFmt(be);
-    document.getElementById("ac-be-desc").textContent = "이 금액 이하로 입찰하면 이득";
+    .gold-item,
+    .gold-total {
+        min-width: 64px;
+        gap: 2px;
+    }
 
-    const r5 = calcRecommend(be, 0.05);
-    const r10 = calcRecommend(be, 0.1);
+    .gold-item-label,
+    .gold-total-label {
+        font-size: 9px;
+    }
 
-    document.getElementById("ac-v5").textContent = acFmt(r5);
-    document.getElementById("ac-d5").textContent = `${acFmt(r5)} 입찰 시 ${acFmt(be - r5)} 이득`;
-    document.getElementById("ac-bar5").style.width = "60%";
+    .gold-item-value,
+    .gold-total-value {
+        font-size: 13px;
+    }
 
-    document.getElementById("ac-v10").textContent = acFmt(r10);
-    document.getElementById("ac-d10").textContent = `${acFmt(r10)} 입찰 시 ${acFmt(be - r10)} 이득`;
-    document.getElementById("ac-bar10").style.width = "100%";
+    .gold-operator {
+        font-size: 12px;
+        padding-bottom: 1px;
+    }
+
+    .icon {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* 아크 그리드 모드: 우측 사이드 숨기기 & 메인 풀 와이드 */
+body.arc-grid-mode .right-column {
+    display: none !important;
+}
+
+body.arc-grid-mode .content-grid {
+    grid-template-columns: 1fr !important;
+}
+
+body.arc-grid-mode .main-col {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+body.arc-grid-mode #mainContent {
+    width: 100% !important;
+}
+
+
+.dot-purple {
+    background: #a78bfa;
+}
+
+
+.damage-unit {
+    font-size: 11px;
+    color: #4a5568;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.damage-wrap {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.damage-num {
+    display: inline-block;
+    min-width: 56px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.damage-unit {
+    display: inline-block;
+    width: 20px;
+    font-size: 11px;
+    color: #4a5568;
+    font-weight: 500;
+    margin-left: 2px;
+    text-align: left;
+}
+body.standalone-dps-page .sidebar {
+    display: none !important;
+}
+
+body.standalone-dps-page .workspace {
+    grid-template-columns: 1fr !important;
+}
+
+body.standalone-dps-page .main {
+    padding-top: 20px !important;
+}
+
+@media (min-width: 769px) {
+    body.standalone-dps-page .app {
+        width: min(1180px, calc(100% - 20px)) !important;
+    }
 }
 
 /* =============================================
-   가이드 모달
+   정밀 계산 우측 컬럼 스크롤 고정
    ============================================= */
-const guideModal = document.getElementById("guideModal");
-const openGuideBtn = document.getElementById("openGuideBtn");
-const closeGuideBtn = document.getElementById("closeGuideBtn");
-
-function openGuideModal() {
-    if (!guideModal) return;
-    guideModal.classList.add("show");
-    document.body.style.overflow = "hidden";
+body.standalone-dps-page .app {
+    overflow: visible !important;
 }
 
-function closeGuideModal() {
-    if (!guideModal) return;
-    guideModal.classList.remove("show");
-    document.body.style.overflow = "";
+body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+}
+
+
+.simple-extra-wrap {
+    margin-top: 18px;
+}
+
+
+.simple-extra-wrap {
+    margin-top: 18px;
+}
+
+
+
+.simple-extra-wrap {
+    margin-top: 16px;
+}
+
+.simple-extra-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    color: #e8edf7;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.simple-extra-toggle:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.12);
+    color: #ffffff;
+}
+
+.simple-extra-toggle.open {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.14);
+}
+
+.simple-extra-panel {
+    display: none;
+    margin-top: 14px;
+}
+
+.simple-extra-panel.open {
+    display: block;
+}
+
+.simple-extra-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .simple-extra-toggle {
+        font-size: 14px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        gap: 5px;
+    }
+
+    .simple-extra-wrap {
+        margin-top: 12px;
+    }
+
+    .simple-extra-panel {
+        margin-top: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =============================================
+   벨가르딘 - 붉은 글로우 / 무덤 석재 버전 (폭 안 줄어드는 수정본)
+   ============================================= */
+.hero-belgardin {
+background:
+radial-gradient(circle at top left, rgba(248,113,113,.16), transparent 26%),
+radial-gradient(circle at bottom right, rgba(225,29,72,.10), transparent 30%),
+linear-gradient(180deg, #1e1010 0%, #160c0c 100%);
+border-color: rgba(248,113,113,.20);
+}
+.hero-belgardin .p-hero-kicker {
+color: #fca5a5;
+}
+.hero-belgardin .p-hero-icon {
+background: linear-gradient(135deg, rgba(248,113,113,.22), rgba(225,29,72,.14));
+border: 1px solid rgba(248,113,113,.30);
+box-shadow: 0 8px 18px rgba(225,29,72,.12);
+}
+.hero-belgardin .p-hero-subtitle {
+color: #fca5a5;
+}
+.hero-belgardin .p-badge.b-type {
+background: rgba(239,68,68,.15);
+color: #fca5a5;
+}
+.hero-belgardin .p-badge.b-attr {
+background: rgba(248,113,113,.15);
+color: #fca5a5;
+}
+.hero-belgardin .p-pill {
+background: rgba(248,113,113,.06);
+color: #fca5a5;
+border-color: rgba(248,113,113,.14);
+}
+.hero-belgardin .p-pill.active {
+background: rgba(248,113,113,.14);
+color: #fff1f2;
+border-color: rgba(248,113,113,.24);
+}
+.hero-belgardin .p-stat {
+background: rgba(248,113,113,.04);
+border-color: rgba(248,113,113,.10);
+}
+.hero-belgardin .p-stat-label {
+color: #b56c6c;
+}
+
+
+
+
+/* =============================================
+   상세/구간별 딜지분 탭
+   ============================================= */
+
+.detail-tab-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: #111320;
+    border: 1px solid #1a1d2e;
+}
+
+
+.detail-tabs {
+    display: flex;
+    gap: 6px;
+    background: #151822;
+    border: 1px solid #23283a;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.detail-tab {
+    border: none;
+    background: transparent;
+    color: #667085;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .18s ease;
+    white-space: nowrap;
+}
+
+.detail-tab:hover {
+    color: #c0c7d6;
+}
+
+.detail-tab.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(99,102,241,.28);
 }
 
 /* =============================================
-   INFO
+   벨가르딘 구간별(줄 수) 잔혈컷 타임라인
    ============================================= */
-function getInfoHintText() {
-if (currentMenu === "raid-simple") {
-    return "레이드 기준으로 난이도별 강투 / 1인분 / 잔혈 컷을 비교할 수 있습니다.";
+.line-cut-timeline {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 4px 2px;
 }
+
+
+
+
+.line-cut-row {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 14px;
+    padding-bottom: 40px;
+}
+
+.line-cut-row.line-cut-clear {
+    padding-bottom: 4px;
+}
+
+
+
+
+.line-cut-marker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.line-cut-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59,130,246,.15);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.line-cut-row.line-cut-clear .line-cut-dot {
+    background: #34d399;
+    box-shadow: 0 0 0 4px rgba(52,211,153,.15);
+}
+
+.line-cut-connector {
+    width: 2px;
+    flex: 1;
+    margin-top: 4px;
+    background: linear-gradient(180deg, rgba(59,130,246,.5), rgba(59,130,246,.08));
+}
+
+.line-cut-body {
+    background: #111320;
+    border: 1px solid #1a1d2e;
+    border-radius: 14px;
+    padding: 14px 16px;
+}
+
+.line-cut-label-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.line-cut-line-num {
+    font-size: 17px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.line-cut-time {
+    font-size: 11px;
+    color: #667085;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.line-cut-desc {
+    font-size: 12px;
+    color: #8a94a8;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+
+
+
+.line-cut-card {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 8px;
+}
+
+.lc-tri {
+    padding: 8px 10px 7px;
+    border-radius: 10px;
+    border: 1px solid #262c3d;
+    background: #121622;
+    text-align: center;
+}
+
+.lc-tri-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    margin-bottom: 4px;
+    color: #667085;
+}
+
+.lc-tri-value {
+    display: block;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.lc-tri.tank {
+    background: rgba(247,202,84,.04);
+    border-color: rgba(247,202,84,.12);
+}
+.lc-tri.tank .lc-tri-value { color: #f7ca54; }
+
+.lc-tri.one {
+    background: rgba(59,130,246,.05);
+    border-color: rgba(59,130,246,.14);
+}
+.lc-tri.one .lc-tri-value { color: #8db8ff; }
+
+.lc-tri.blood {
+    background: rgba(167,139,250,.05);
+    border-color: rgba(167,139,250,.14);
+}
+.lc-tri.blood .lc-tri-value { color: #c4b5fd; }
+
+
+
+
+@media (max-width: 768px) {
+    .detail-tab-head {
+        flex-wrap: wrap;
+    }
+}
+
+
+
+.line-cut-row.line-cut-start {
+    padding-bottom: 16px;
+    align-items: center;
+}
+
+.line-cut-dot.start {
+    background: #667085;
+    box-shadow: 0 0 0 4px rgba(102,112,133,.15);
+}
+
+.line-cut-start-label {
+    font-size: 14px;
+    font-weight: 800;
+    color: #8a94a8;
+    padding-top: 1px;
+}
+
+
+
+
+
+.precision-section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0 4px;
+}
+
+.precision-section-divider::before,
+.precision-section-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+}
+
+.precision-section-divider span {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #4a5568;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+.line-cut-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 18px;
+    letter-spacing: -.2px;
+    padding-left: 12px;
+    position: relative;
+}
+
+.line-cut-section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    bottom: 1px;
+    width: 4px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #60a5fa, #a78bfa);
+}
+
+
+
+/* =============================================
+   상세딜지분 탭바 - 모바일 최적화 및 레이아웃 정의
+   ============================================= */
+
+@media (max-width: 768px) {
+
+    /* 모바일 - 좌측 정렬 및 경계선 표시 */
+    .detail-tab-bar {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important; /* 좌측 정렬로 변경 */
+        align-items: center !important;
+        padding: 5px 6px !important;
+        gap: 6px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    /* 모바일 - [상세/구간별] 탭과 [딜러/서폿] 토글 사이의 경계선 표시 */
+    .control-divider {
+        display: block !important;
+        width: 1px !important;
+        height: 24px !important;
+        background: #2a3147 !important;
+        flex-shrink: 0 !important;
+        margin: 0 2px !important;
+    }
+
+
+    /* 3. 상세 / 구간별 탭 버튼 압축 */
+    .detail-tabs {
+        display: flex !important;
+        gap: 2px !important;
+        padding: 2px !important;
+        background: #151822 !important;
+        border-radius: 8px !important;
+        flex-shrink: 0 !important; /* 찌그러짐 방지 */
+    }
+
+    .detail-tab {
+        padding: 5px 6px !important; /* 버튼 내부 여백 축소 */
+        font-size: 10px !important; /* 글자 크기 축소 */
+        font-weight: 800 !important;
+        border-radius: 6px !important;
+        white-space: nowrap !important;
+    }
+
+    /* 4. 딜러 / 서폿 토글 박스 모바일 너비 한정 */
+    .detail-tab-bar .role-toggle-box {
+        margin-top: 0 !important;
+        flex: 0 1 auto !important; /* 무조건 한 줄에 위치하도록 폭 확장 해제 */
+        min-width: 0 !important;
+        border-radius: 8px !important;
+        background: #10121c !important;
+    }
+
+    .role-toggle-box.compact {
+        padding: 2px !important;
+        border-radius: 8px !important;
+    }
+
+    .role-toggle-box.compact .role-toggle-btn {
+        padding: 5px 6px !important; /* 버튼 여백 대폭 축소 */
+        gap: 2px !important; /* 아이콘과 텍스트 완벽 밀착 */
+        border-radius: 6px !important;
+    }
+
+    .role-toggle-box.compact .role-label {
+        font-size: 10px !important; /* 텍스트 살짝 축소 */
+        font-weight: 800 !important;
+    }
+
+    .role-toggle-box.compact .role-icon {
+        font-size: 11px !important;
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    /* 5. [핵심] 모바일 한 줄 완벽 고정을 위해 체크 표시(✓, ○)를 숨김 */
+    .role-toggle-box.compact .role-check {
+        display: none !important;
+    }
+
+    /* 6. 서폿 느낌표(!) 아이콘 밀착 조절 및 크기 최적화 (가려짐 원천 방지) */
+    .role-toggle-box.compact .role-info-tip {
+        margin-left: 2px !important;
+        flex-shrink: 0 !important;
+    }
+
    
-if (currentMenu === "simple") {
-    if (currentSimpleLevel === "egir-ex" || currentSimpleLevel === "abr-ex") {
-        return "에스더가 포함된 추정 기준표입니다. 실전 오차가 있을 수 있습니다.";
-    }
-    return "해당 레벨에서 골드 획득 우선순위 3개를 먼저 보여주고, 나머지 입장 가능 레이드는 아래에서 펼쳐 볼 수 있습니다.";
-}
 
 
-    if (currentMenu === "serka" || currentMenu === "cathedral") {
-        return "클리어 타임을 입력하면 피해량과 DPS가 실시간으로 반영됩니다.";
-    }
 
-    if (currentMenu === "belgardin") {
-        return "벨가르딘은 8인 레이드로 강투 15% · 1인분 16.6% · 잔혈 20% 기준입니다. 클리어 타임을 입력하면 실시간 반영됩니다.";
+
+
+    /* 7. 구간별 딜지분 타임라인 모바일 레이아웃 최적화 */
+    .line-cut-section-title {
+        font-size: 14px !important;
+        margin-bottom: 12px !important;
+        padding-left: 8px !important;
     }
 
-    if (currentMenu === "guardian") {
-        return "레벨과 보스를 선택하면 해당 가디언의 딜지분과 DPS를 확인할 수 있습니다.";
+    .line-cut-row {
+        grid-template-columns: 16px 1fr !important;
+        gap: 8px !important;
+        padding-bottom: 24px !important;
     }
 
-    return "구글 시트 데이터를 읽어 옵니다.";
-}
-
-// 사이드바 메뉴
-document.querySelectorAll(".menu-item").forEach(btn => {
-    btn.addEventListener("click", () => {
-        if (btn.classList.contains("disabled")) return;
-
-        const menu = btn.dataset.menu;
-        if (!menu) return;
-
-        document.body.classList.remove("arc-grid-mode");
-
-        document.querySelectorAll(".menu-item").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        if (menu === "simple") {
-            currentMenu = "simple";
-            currentSimpleLevel = "1750";
-        }
-        else if (menu === "raid-simple") {
-            currentMenu = "raid-simple";
-            currentSimpleRaid = "cathedral";
-        }
-        else if (menu === "egir-ex") {
-            currentMenu = "simple";
-            currentSimpleLevel = "egir-ex";
-        }
-        else if (menu === "abr-ex") {
-            currentMenu = "simple";
-            currentSimpleLevel = "abr-ex";
-        }
-        else if (menu === "serka") {
-            currentMenu = "serka";
-            currentCombo = "hard_gate1";
-        }
-        else if (menu === "cathedral") {
-            currentMenu = "cathedral";
-            currentCombo = "hard_gate1";
-        }
-        else if (menu === "belgardin") {
-            currentMenu = "belgardin";
-            currentCombo = "hard_gate1";
-        }
-        else if (menu === "guardian") {
-            currentMenu = "guardian";
-            currentGuardianTier = "1770";
-            currentGatoBoss = "루멘칼리고";
-            currentGato1750Boss = "루멘칼리고";
-            currentGato1770Boss = "루멘칼리고";
-        }
-        else if (menu === "arc-grid") {
-            currentMenu = "arc-grid";
-            document.body.classList.add("arc-grid-mode");
-        }
-
-        setBaseTimeByMenu(currentMenu);
-        renderTabs();
-        renderTable();
-       updateCanonicalAndUrl(currentMenu);
-
-if (menu === "arc-grid") {
-    window.scrollTo({ top: 0, behavior: "auto" });
-}
-
-        if (isMobileViewport() && btn.classList.contains("mobile-launch-btn")) {
-            enterMobileContentMode();
-            window.scrollTo({ top: 0, behavior: "auto" });
-        }
-    });
-});
-
-// 시간 스텝 버튼
-document.querySelectorAll(".time-step-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        changeTimeValue(btn.dataset.stepTarget, parseInt(btn.dataset.step, 10));
-    });
-});
-
-// 시간 입력
-document.getElementById("minutes").addEventListener("input", () => {
-    if (currentMenu !== "simple") renderTable();
-});
-
-document.getElementById("seconds").addEventListener("input", () => {
-    if (currentMenu !== "simple") renderTable();
-});
-
-// 가이드 모달
-if (openGuideBtn) {
-    openGuideBtn.addEventListener("click", () => {
-        openGuideModal();
-    });
-}
-
-if (closeGuideBtn) {
-    closeGuideBtn.addEventListener("click", closeGuideModal);
-}
-
-if (guideModal) {
-    guideModal.addEventListener("click", e => {
-        if (e.target === guideModal) closeGuideModal();
-    });
-}
-
-document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && guideModal && guideModal.classList.contains("show")) {
-        closeGuideModal();
+    .line-cut-body {
+        padding: 10px 10px !important;
+        border-radius: 10px !important;
     }
-});
 
-/* =============================================
-   모바일 홈 / 콘텐츠 전환
-   ============================================= */
-const mobileGuideBtn = document.getElementById("mobileGuideBtn");
-const mobileBackBtn = document.getElementById("mobileBackBtn");
-
-function isMobileViewport() {
-    return window.innerWidth <= 768;
-}
-
-function enterMobileHomeMode() {
-    if (!isMobileViewport()) return;
-    document.body.classList.add("mobile-home-mode");
-    document.body.classList.remove("mobile-content-mode");
-}
-
-function enterMobileContentMode() {
-    if (!isMobileViewport()) return;
-    document.body.classList.add("mobile-content-mode");
-    document.body.classList.remove("mobile-home-mode");
-}
-
-function syncMobileShellMode() {
-    if (isMobileViewport()) {
-        if (
-            !document.body.classList.contains("mobile-home-mode") &&
-            !document.body.classList.contains("mobile-content-mode")
-        ) {
-            document.body.classList.add("mobile-home-mode");
-        }
-    } else {
-        document.body.classList.remove("mobile-home-mode", "mobile-content-mode");
+    .line-cut-line-num {
+        font-size: 14px !important;
     }
-}
 
-if (mobileGuideBtn) {
-    mobileGuideBtn.addEventListener("click", openGuideModal);
-}
+    .line-cut-time {
+        font-size: 9.5px !important;
+    }
 
-if (mobileBackBtn) {
-    mobileBackBtn.addEventListener("click", () => {
-        enterMobileHomeMode();
-        window.scrollTo({ top: 0, behavior: "auto" });
-    });
-}
+    .line-cut-desc {
+        font-size: 10.5px !important;
+        margin-bottom: 8px !important;
+    }
 
-window.addEventListener("resize", syncMobileShellMode);
-syncMobileShellMode();
+    .line-cut-card {
+        grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+        gap: 4px !important;
+    }
 
-/* =============================================
-   모바일 클리어 타임 팝업
-   ============================================= */
-const mobileTimeModal = document.getElementById("mobileTimeModal");
-const closeMobileTimeModalBtn = document.getElementById("closeMobileTimeModal");
-const applyMobileTimeBtn = document.getElementById("applyMobileTimeBtn");
-const mobileTimeMinutes = document.getElementById("mobileTimeMinutes");
-const mobileTimeSeconds = document.getElementById("mobileTimeSeconds");
-const mobileTimePreview = document.getElementById("mobileTimePreview");
+    .lc-tri {
+        padding: 5px 3px 4px !important;
+        border-radius: 8px !important;
+    }
 
-function updateMobileTimePreview() {
-    let m = parseInt(mobileTimeMinutes.value || 0, 10);
-    let s = parseInt(mobileTimeSeconds.value || 0, 10);
+    .lc-tri-label {
+        font-size: 8.5px !important;
+        margin-bottom: 2px !important;
+    }
 
-    if (isNaN(m) || m < 0) m = 0;
-    if (isNaN(s) || s < 0) s = 0;
-    if (s > 59) s = 59;
+    .lc-tri-value {
+        font-size: 11.5px !important;
+    }
 
-    mobileTimeMinutes.value = m;
-    mobileTimeSeconds.value = s;
-    mobileTimePreview.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-}
+    .line-cut-start-label {
+        font-size: 11px !important;
+    }
 
-function openMobileTimeModal() {
-    if (!mobileTimeModal) return;
-
-    const mainMinutes = document.getElementById("minutes");
-    const mainSeconds = document.getElementById("seconds");
-
-    mobileTimeMinutes.value = mainMinutes ? mainMinutes.value || 0 : 0;
-    mobileTimeSeconds.value = mainSeconds ? mainSeconds.value || 0 : 0;
-    updateMobileTimePreview();
-
-    mobileTimeModal.classList.add("show");
-    document.body.style.overflow = "hidden";
-}
-
-function closeMobileTimeModal() {
-    if (!mobileTimeModal) return;
-    mobileTimeModal.classList.remove("show");
-    document.body.style.overflow = "";
-}
-
-if (mobileTimeMinutes) {
-    mobileTimeMinutes.addEventListener("input", updateMobileTimePreview);
-}
-
-if (mobileTimeSeconds) {
-    mobileTimeSeconds.addEventListener("input", updateMobileTimePreview);
-}
-
-if (closeMobileTimeModalBtn) {
-    closeMobileTimeModalBtn.addEventListener("click", closeMobileTimeModal);
-}
-
-if (applyMobileTimeBtn) {
-    applyMobileTimeBtn.addEventListener("click", () => {
-        const mainMinutes = document.getElementById("minutes");
-        const mainSeconds = document.getElementById("seconds");
-
-        if (mainMinutes) mainMinutes.value = mobileTimeMinutes.value;
-        if (mainSeconds) mainSeconds.value = mobileTimeSeconds.value;
-
-        closeMobileTimeModal();
-        renderTable();
-    });
-}
-
-if (mobileTimeModal) {
-    mobileTimeModal.addEventListener("click", e => {
-        if (e.target === mobileTimeModal) closeMobileTimeModal();
-    });
-}
-
-// 경매 계산기 토글
-document.querySelectorAll(".ac-toggle-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.querySelectorAll(".ac-toggle-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        acMembers = parseInt(btn.dataset.m);
-        acUpdate();
-    });
-});
-
-// 경매 계산기 입력
-const acPriceInput = document.getElementById("ac-price");
-if (acPriceInput) {
-    acPriceInput.addEventListener("input", e => {
-        let val = e.target.value.replace(/,/g, "").replace(/[^0-9]/g, "");
-        e.target.value = val ? Number(val).toLocaleString("ko-KR") : "";
-        acUpdate();
-    });
+    .precision-section-divider span {
+        font-size: 9.5px !important;
+    }
 }
 
 /* =============================================
-   패치노트 미니 팝업
+   딜러 / 서폿 역할 토글 (기본 PC 데스크톱 스타일)
    ============================================= */
-const patchModal = document.getElementById("patchModal");
-const closePatchModalBtn = document.getElementById("closePatchModal");
-const patchModalDate = document.getElementById("patchModalDate");
-const patchModalTitle = document.getElementById("patchModalTitle");
-const patchModalDesc = document.getElementById("patchModalDesc");
-const patchModalBody = document.getElementById("patchModalBody");
-
-function openPatchModal(data) {
-    if (!patchModal) return;
-
-    patchModalDate.textContent = data.date || "";
-    patchModalTitle.textContent = data.title || "";
-    patchModalDesc.textContent = data.desc || "";
-    patchModalBody.innerHTML = data.body || "";
-
-    patchModal.classList.add("show");
-    document.body.style.overflow = "hidden";
+.role-toggle-box {
+    position: relative;
+    z-index: 60;
+    margin-top: 14px;
+    border-radius: 16px;
+    background: #10121c;
+    border: 1px solid #23283a;
+    overflow: visible;
 }
 
-function closePatchModal() {
-    if (!patchModal) return;
-    patchModal.classList.remove("show");
-    document.body.style.overflow = "";
+.role-toggle-group {
+    display: flex;
+    width: 100%;
 }
 
-document.querySelectorAll(".patch-item[data-patch-title]").forEach(item => {
-    item.addEventListener("click", () => {
-        openPatchModal({
-            date: item.dataset.patchDate,
-            title: item.dataset.patchTitle,
-            desc: item.dataset.patchDesc,
-            body: item.dataset.patchBody
-        });
-    });
-});
-
-if (closePatchModalBtn) {
-    closePatchModalBtn.addEventListener("click", closePatchModal);
+.role-toggle-btn {
+    flex: 1;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background .2s ease, box-shadow .2s ease;
+    white-space: nowrap;
 }
 
-if (patchModal) {
-    patchModal.addEventListener("click", e => {
-        if (e.target === patchModal) closePatchModal();
-    });
+.role-toggle-btn:hover {
+    background: rgba(255,255,255,.03);
 }
 
-document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && patchModal && patchModal.classList.contains("show")) {
-        closePatchModal();
-    }
-});
+.role-toggle-btn + .role-toggle-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 22%;
+    bottom: 22%;
+    width: 1px;
+    background: #23283a;
+}
+
+.role-toggle-btn:first-child { border-radius: 16px 0 0 16px; }
+.role-toggle-btn:last-child { border-radius: 0 16px 16px 0; }
+
+.role-toggle-box.compact .role-toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+.role-toggle-box.compact .role-toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+
+.role-toggle-btn.role-dealer.active {
+    background: linear-gradient(180deg, rgba(255,153,51,.14), rgba(255,153,51,.03));
+    box-shadow: inset 0 0 0 1px rgba(255,153,51,.4), 0 0 14px rgba(255,153,51,.14);
+}
+
+.role-toggle-btn.role-support.active {
+    background: linear-gradient(180deg, rgba(52,211,153,.14), rgba(52,211,153,.03));
+    box-shadow: inset 0 0 0 1px rgba(52,211,153,.4), 0 0 14px rgba(52,211,153,.14);
+}
+
+.role-icon {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    transition: filter .2s ease, opacity .2s ease;
+}
+
+.role-toggle-btn:not(.active) .role-icon { opacity: .45; }
+
+.role-label {
+    font-size: 15px;
+    font-weight: 900;
+    color: #5a6178;
+    transition: color .2s ease;
+    white-space: nowrap;
+}
+
+.role-toggle-btn.role-dealer.active .role-label { color: #ffb84d; }
+.role-toggle-btn.role-support.active .role-label { color: #34d399; }
+
+.role-check {
+    font-size: 15px;
+    font-weight: 900;
+    width: 18px;
+    text-align: center;
+    color: #3b4563;
+}
+
+.role-toggle-btn.role-dealer.active .role-check { color: #f7ca54; }
+.role-toggle-btn.role-support.active .role-check { color: #34d399; }
+
+/* 딜러 - 칼 이펙트 */
+.role-toggle-btn.role-dealer.active .role-icon {
+    animation: swordSwing .45s ease;
+    filter: drop-shadow(0 0 6px rgba(248,113,113,.55));
+}
+
+/* 서폿 - 힐 이펙트 */
+.role-toggle-btn.role-support.active .role-icon {
+    color: #34d399;
+    animation: healPulse 1.3s ease-in-out infinite;
+    filter: drop-shadow(0 0 7px rgba(52,211,153,.6));
+}
+
+@keyframes swordSwing {
+    0%   { transform: rotate(-30deg) scale(1); }
+    55%  { transform: rotate(12deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes healPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.18); opacity: .78; }
+}
 
 /* =============================================
-   초기화 실행
+   상세딜지분 탭바 - 데스크톱 컴팩트 토글 스타일 정의
    ============================================= */
-setBaseTimeByMenu("simple");
-applyMenuFromQuery();
-updateCanonicalAndUrl(currentMenu);
+.role-toggle-box.compact {
+    background: #151822;
+    border: 1px solid #23283a;
+    border-radius: 10px;
+    padding: 4px;
+}
 
-if (currentMenu === "simple" || currentMenu === "raid-simple") {
-    renderTabs();
-    renderTable();
+.role-toggle-box.compact .role-toggle-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+.role-toggle-box.compact .role-toggle-btn + .role-toggle-btn::before {
+    display: none;
+}
+
+.role-toggle-box.compact .role-icon {
+    font-size: 13px;
+    width: 16px;
+    height: 16px;
+}
+
+.role-toggle-box.compact .role-label { font-size: 12px; }
+.role-toggle-box.compact .role-check { font-size: 12px; width: 14px; }
+
+.role-toggle-box.compact .role-toggle-btn.active {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    box-shadow: 0 2px 10px rgba(99,102,241,.28);
+}
+
+.role-toggle-box.compact .role-toggle-btn.active .role-label,
+.role-toggle-box.compact .role-toggle-btn.active .role-icon,
+.role-toggle-box.compact .role-toggle-btn.active .role-check {
+    color: #fff;
+}
+
+/* =============================================
+   전분시간 배지 스위칭 (PC/모바일 위치 제어)
+   ============================================= */
+@media (min-width: 769px) {
+    .mobile-inline-badge {
+        display: none !important;
+    }
+    .detail-tab-bar .precision-table-badge {
+        display: inline-flex !important;
+    }
+    .detail-tab-bar .role-toggle-box {
+        margin-top: 0;
+        flex: 1 1 auto;
+        min-width: 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-inline-badge {
+        display: inline-flex !important;
+    }
+    .detail-tab-bar .precision-table-badge {
+        display: none !important;
+    }
+}
+
+/* =============================================
+   간편보기 - PC 뷰 포트 그리드 시스템 (삭제 복구 및 최적화)
+   ============================================= */
+.simple-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 18px;
+    align-items: start;
+}
+
+.simple-grid-left {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+}
+
+.simple-cards-full {
+    margin-top: 0;
+}
+
+.simple-grid-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 0;
+}
+
+@media (max-width: 1180px) {
+    .simple-grid-layout {
+        grid-template-columns: 1fr 250px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .simple-grid-layout {
+        grid-template-columns: 1fr;
+    }
+    .simple-grid-right {
+        display: none; /* 태블릿 및 모바일에서 우측 사이드 영역 제거 */
+    }
+    .simple-cards-full {
+        margin-top: 14px;
+    }
 }
 
 
 /* =============================================
-   서폿 툴팁 - 최초 원본 복구 및 오작동 완벽 해결 버전
+   PC 화면 - 상세/구간별 딜지분 제목과 전분시간 완벽한 우측 끝 정렬
    ============================================= */
-let sharedRoleTooltipEl = null;
 
-function ensureSharedRoleTooltip() {
-    if (sharedRoleTooltipEl) return sharedRoleTooltipEl;
-    const el = document.createElement("div");
-    el.className = "role-shared-tooltip";
-    el.innerHTML = ROLE_TOOLTIP_HTML;
-    document.body.appendChild(el);
-    sharedRoleTooltipEl = el;
-    return el;
+/* 상세 딜지분 제목 헤더 (PC) */
+.precision-table-head {
+    display: flex !important;
+    flex-direction: row !important; /* 가로 한 줄 정렬 */
+    justify-content: space-between !important; /* 좌측 끝과 우측 끝 배치 */
+    align-items: center !important; /* 세로 가운데 정렬 */
+    width: 100% !important;
+    margin-bottom: 14px !important;
 }
 
-function showSharedRoleTooltip(anchorEl) {
-    const tip = ensureSharedRoleTooltip();
-    tip.classList.add("show");
-
-    const rect = anchorEl.getBoundingClientRect();
-    const tipRect = tip.getBoundingClientRect();
-    const margin = 10;
-
-    let left = rect.left + rect.width / 2 - tipRect.width / 2;
-    left = Math.max(margin, Math.min(left, window.innerWidth - tipRect.width - margin));
-
-    let top = rect.top - tipRect.height - 12;
-    if (top < margin) {
-        top = rect.bottom + 12;
-    }
-
-    tip.style.left = `${left}px`;
-    tip.style.top = `${top}px`;
+/* 구간별 딜지분 제목 헤더 (PC) */
+.line-cut-section-head {
+    display: flex !important;
+    flex-direction: row !important; /* 가로 한 줄 정렬 */
+    justify-content: space-between !important; /* 좌측 끝과 우측 끝 배치 */
+    align-items: center !important; /* 세로 가운데 정렬 */
+    width: 100% !important;
+    margin-bottom: 18px !important;
 }
 
-function hideSharedRoleTooltip() {
-    if (sharedRoleTooltipEl) sharedRoleTooltipEl.classList.remove("show");
+/* 제목이 가로 공간을 다 차지해서 배지를 밀어내지 않도록 한정 */
+.precision-table-title,
+.line-cut-section-title {
+    margin-bottom: 0 !important;
+    flex: 0 1 auto !important;
 }
 
-// 1. 마우스 올렸을 때 작동 (최초 원본 로직)
-document.addEventListener("mouseover", (e) => {
-    const trigger = e.target.closest(".role-info-tip");
-    if (trigger) showSharedRoleTooltip(trigger);
-});
-
-document.addEventListener("mouseout", (e) => {
-    const trigger = e.target.closest(".role-info-tip");
-    if (trigger && !trigger.contains(e.relatedTarget)) hideSharedRoleTooltip();
-});
-
-document.addEventListener("focusin", (e) => {
-    const trigger = e.target.closest(".role-info-tip");
-    if (trigger) showSharedRoleTooltip(trigger);
-});
-
-document.addEventListener("focusout", (e) => {
-    const trigger = e.target.closest(".role-info-tip");
-    if (trigger) hideSharedRoleTooltip();
-});
-
-// 2. [완벽 해결] 느낌표 클릭 시 부모 버튼이 클릭되는 버그를 캡처링 단계에서 선제 차단
-document.addEventListener("click", (e) => {
-    const trigger = e.target.closest(".role-info-tip");
-    if (trigger) {
-        e.preventDefault();
-        e.stopPropagation(); // 부모 버튼 클릭 이벤트 발동 원천 봉쇄!
-
-        if (sharedRoleTooltipEl && sharedRoleTooltipEl.classList.contains("show")) {
-            hideSharedRoleTooltip();
-        } else {
-            showSharedRoleTooltip(trigger);
-        }
-    } else {
-        hideSharedRoleTooltip();
-    }
-}, true); // ← true(캡처링) 옵션이 버튼보다 이벤트를 먼저 가로챕니다.
-
-window.addEventListener("scroll", hideSharedRoleTooltip, true);
-window.addEventListener("resize", hideSharedRoleTooltip);
-
-
+/* 배지가 찌그러지지 않고 크기를 유지하며 우측 끝에 안착 */
+.precision-table-badge {
+    flex-shrink: 0 !important;
+}
 
 
 /* =============================================
-   우측 사이드바 및 구글 광고 제어 엔진 (3대장)
+   서폿 컷 안내 툴팁 - 최초 원본 스타일
+   ============================================= */
+.role-info-tip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+.role-info-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(52,211,153,.18);
+    border: 1px solid rgba(52,211,153,.45);
+    color: #34d399;
+    font-size: 10px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* 모바일 대응 */
+.role-toggle-box.compact .role-info-tip {
+    margin-left: 3px !important;
+}
+
+.role-toggle-box.compact .role-info-icon {
+    width: 13px !important;
+    height: 13px !important;
+    font-size: 8px !important;
+    line-height: 11px !important;
+}
+
+.role-toggle-btn.active .role-info-icon {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    color: #fff !important;
+}
+
+
+/* =============================================
+   지워졌던 서폿 툴팁 말풍선 본체 CSS 복구 (필수 추가)
    ============================================= */
 
-function enableSimpleAdSlot() {
-    const auctionCalc = getAuctionCalcEl();
-    const gridRight = document.getElementById("simpleGridRight");
-    const timeCard = document.getElementById("timeCard");
+/* 1. 말풍선 팝업 상자 본체 */
+.role-shared-tooltip {
+    position: fixed !important;
+    width: 300px !important;
+    max-width: min(300px, 88vw) !important;
+    padding: 16px 18px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(180deg, #16324a 0%, #0f2436 100%) !important;
+    border: 1px solid rgba(52, 211, 153, 0.4) !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(52, 211, 153, 0.08) !important;
+    color: #d7f5e8 !important;
+    font-size: 12px !important;
+    line-height: 1.65 !important;
+    text-align: left !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(4px) !important;
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease !important;
+    z-index: 999999 !important; /* 다른 어떤 요소보다 위에 보이도록 설정 */
+    pointer-events: none !important;
+}
 
-    if (timeCard) timeCard.style.display = "none";
+/* 2. 툴팁 활성화 상태 */
+.role-shared-tooltip.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
 
-    const infoHintEl = document.getElementById("infoHint");
-    const infoCard = infoHintEl ? infoHintEl.closest(".side-card") : null;
-    if (infoCard) infoCard.style.display = "none";
+/* 3. 말풍선 내부 텍스트 디자인 복구 */
+.role-shared-tooltip .rt-title {
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+    margin-bottom: 10px !important;
+}
 
-    const precisionAd = document.getElementById("precisionAdSlot");
-    if (precisionAd) precisionAd.style.display = "none";
+.role-shared-tooltip .rt-line {
+    margin-bottom: 6px !important;
+    color: #c9e8dc !important;
+}
 
-    if (!auctionCalc || !gridRight) return;
+.role-shared-tooltip strong {
+    color: #eafff5 !important;
+    font-weight: 800 !important;
+}
 
-    // 경매 계산기가 이미 gridRight의 첫 번째 자식이 아니면 맨 앞으로 이동
-    if (gridRight.firstElementChild !== auctionCalc) {
-        gridRight.insertBefore(auctionCalc, gridRight.firstElementChild || null);
-    }
+.role-shared-tooltip .rt-orange { color: #f7ca54 !important; }
+.role-shared-tooltip .rt-purple { color: #c4b5fd !important; }
+.role-shared-tooltip .rt-green { color: #34d399 !important; }
 
-    if (window.getComputedStyle(gridRight).display === "none") {
-        return;
-    }
+.role-shared-tooltip .rt-divider {
+    height: 1px !important;
+    background: rgba(52, 211, 153, 0.2) !important;
+    margin: 10px 0 !important;
+}
 
-    if (!gridRight.querySelector(".simple-ad-slot")) {
-        const adWrap = document.createElement("div");
-        adWrap.className = "side-card simple-ad-slot";
-        adWrap.innerHTML = `
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="autorelaxed"
-                 data-ad-client="ca-pub-6403244403995841"
-                 data-ad-slot="4495683701"></ins>
-        `;
-        gridRight.appendChild(adWrap);
+.role-shared-tooltip .rt-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-bottom: 6px !important;
+}
 
-        try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-            console.warn("애드센스 로드 실패 (안전하게 무시됨):", e);
-        }
+.role-shared-tooltip .rt-tag {
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    height: 20px !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+    font-size: 10.5px !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+}
+
+.role-shared-tooltip .rt-tag-orange { background: rgba(247, 202, 84, 0.18) !important; color: #f7ca54 !important; }
+.role-shared-tooltip .rt-tag-blue { background: rgba(59, 130, 246, 0.18) !important; color: #93c5fd !important; }
+.role-shared-tooltip .rt-tag-purple { background: rgba(167, 139, 250, 0.2) !important; color: #c4b5fd !important; }
+
+.role-shared-tooltip .rt-note {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    border-top: 1px dashed rgba(52, 211, 153, 0.2) !important;
+    font-size: 10.5px !important;
+    color: #7f9c93 !important;
+    line-height: 1.6 !important;
+}
+
+/* =============================================
+   레이드별 인원수 배지 테마컬러 커스텀 (벨가르딘 묻힘 버그 해결)
+   ============================================= */
+
+/* [기본 스타일] */
+.p-hero-member-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 9px;
+    margin-left: 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+/* 1. 세르카 (4인) - 파란색 테마 배지 */
+.hero-serka .p-hero-member-badge {
+    background: rgba(56, 189, 248, 0.12) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    color: #7dd3fc !important;
+}
+
+/* 2. 지평의 성당 (4인) - 보라색 테마 배지 */
+.hero-cathedral .p-hero-member-badge {
+    background: rgba(167, 139, 250, 0.12) !important;
+    border: 1px solid rgba(167, 139, 250, 0.3) !important;
+    color: #c4b5fd !important;
+}
+
+/* 3. 벨가르딘 (8인) - 빨간색 테마 배지 (묻힘 방지) */
+.hero-belgardin .p-hero-member-badge {
+    background: rgba(248, 113, 113, 0.12) !important; /* 확실한 붉은 톤배경 */
+    border: 1px solid rgba(248, 113, 113, 0.3) !important; /* 확실한 붉은 테두리 */
+    color: #fca5a5 !important; /* 화사한 라이트 로즈 컬러 글자 */
+    box-shadow: 0 0 10px rgba(248, 113, 113, 0.08) !important; /* 미세한 광원 효과 */
+}
+
+/* [모바일 기기 최적화 압축] */
+@media (max-width: 768px) {
+    .p-hero-member-badge {
+        height: 19px;
+        padding: 0 7px;
+        font-size: 10px;
+        margin-left: 6px;
     }
 }
 
 
+/* =============================================
+   가디언 토벌 인원수 배지 전용 커스텀 스타일 (완벽한 주황빛 매칭)
+   ============================================= */
 
-
-
-
-
-
-
-
-
-
-
-
-function disableSimpleAdSlot() {
-    const timeCard = document.getElementById("timeCard");
-    const auctionCalc = getAuctionCalcEl();
-    const aside = document.querySelector(".right-column");
-
-    if (timeCard) timeCard.style.display = "";
-
-    // [INFO 영구 제거] INFO 카드를 완전히 숨깁니다.
-    const infoHintEl = document.getElementById("infoHint");
-    const infoCard = infoHintEl ? infoHintEl.closest(".side-card") : null;
-    if (infoCard) infoCard.style.display = "none";
-
-    // 경매 계산기를 무조건 시계 카드(timeCard) 바로 다음 자리에 강제 배치
-    if (auctionCalc && aside) {
-        if (timeCard) {
-            timeCard.parentNode.insertBefore(auctionCalc, timeCard.nextSibling);
-        } else {
-            aside.prepend(auctionCalc);
-        }
-    }
-
-    // 정밀계산 모드로 복귀 시 맨 아래(경매 계산기 밑)에 멀티플렉스 광고 노출 및 정렬
-    enablePrecisionAdSlot();
+/* 4. 가디언 토벌 (4인) - 가디언 고유의 주황빛/오렌지 테마 배지 */
+.hero-guardian .p-hero-member-badge {
+    background: rgba(251, 146, 60, 0.12) !important; /* 가디언 시그니처 따뜻한 주황 배경 */
+    border: 1px solid rgba(251, 146, 60, 0.3) !important; /* 주황색 테두리 선 */
+    color: #fdba74 !important; /* 부드럽고 가독성 좋은 오렌지/골드 글자 */
+    box-shadow: 0 0 10px rgba(251, 146, 60, 0.08) !important; /* 은은한 주황빛 글로우 */
 }
 
+/* =============================================
+   PC/모바일 공통 - 레벨 버튼(7칸) 가로폭 100% 강제 확장 (토글 버튼과 폭 일치)
+   ============================================= */
 
-function enablePrecisionAdSlot() {
-    const timeCard = document.getElementById("timeCard");
-    const aside = document.querySelector(".right-column");
-    if (!timeCard || !aside) return;
+/* 1. 레벨 탭 컨테이너가 부모 폭(100%)을 꽉 채우고 줄바꿈을 절대 하지 않도록 고정 */
+.simple-level-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* 절대 줄바꿈 없음 */
+    width: 100% !important; /* 부모 너비 100% 꽉 채움 */
+    gap: 8px !important; /* 버튼들 사이의 간격 균일화 */
+    box-sizing: border-box !important;
+    margin-bottom: 0 !important;
+}
 
-    let adSlot = document.getElementById("precisionAdSlot");
-    const auctionCalc = getAuctionCalcEl();
+/* 2. 각 레벨 버튼(1710 ~ 1780)들이 공간을 정확히 7등분하여 꽉 채우도록 설정 */
+.simple-level-tabs .simple-level-tab {
+    flex: 1 1 0 !important; /* 남는 가로폭을 7개가 정확히 공평하게 나눠 가짐 */
+    min-width: 0 !important; /* 기존 고정 폭(88px) 간섭 강제 해제 */
+    max-width: none !important;
+    width: auto !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
 
-    // 광고판이 아직 없다면 새로 생성
-    if (!adSlot) {
-        adSlot = document.createElement("div");
-        adSlot.id = "precisionAdSlot";
-        adSlot.className = "side-card simple-ad-slot"; 
-        adSlot.style.marginTop = "14px";
-        adSlot.style.marginBottom = "0px";
-       
-adSlot.innerHTML = `
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="autorelaxed"
-                 data-ad-client="ca-pub-6403244403995841"
-                 data-ad-slot="3697074526"></ins>
-        `;
-
-        
-        // 경매 계산기(auctionCalc) 바로 아래에 광고 삽입
-        if (auctionCalc) {
-            auctionCalc.parentNode.insertBefore(adSlot, auctionCalc.nextSibling);
-        } else {
-            aside.appendChild(adSlot);
-        }
-
-        try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-            console.warn("정밀계산 전용 멀티플렉스 광고 로드 실패:", e);
-        }
-    } else {
-        // 이미 생성되어 있다면 화면에 노출
-        adSlot.style.display = "block";
-        
-        // 정렬이 꼬이더라도 무조건 경매 계산기 바로 밑으로 강제 재배치
-        if (auctionCalc && adSlot.previousSibling !== auctionCalc) {
-            auctionCalc.parentNode.insertBefore(adSlot, auctionCalc.nextSibling);
-        }
+/* 3. 모바일 화면(768px 이하)에서도 7등분 비율이 깨지지 않도록 부가 여백 최적화 */
+@media (max-width: 768px) {
+    .simple-level-tabs {
+        gap: 5px !important; /* 모바일에서는 간격을 살짝 좁힘 */
+    }
+    .simple-level-tabs .simple-level-tab {
+        padding: 8px 2px !important; /* 글자가 잘리지 않게 내부 여백 압축 */
+    }
+    .simple-level-tab-main {
+        font-size: 11px !important; /* 숫자 크기 최적화 */
+    }
+    .simple-level-tab-sub {
+        font-size: 7px !important; /* 하단 텍스트 최적화 */
+        margin-top: 2px !important;
     }
 }
 
 
+/* =============================================
+   간편보기 상태에서 유령 광고판 몸뚱아리 완벽 소멸 (빈 공터 원인 해결)
+   ============================================= */
 
 
-loadCSV();
-acUpdate();
+/* 간편보기 상태에서 유령 광고판 몸뚱아리 완벽 소멸 (빈 공터 원인 해결) */
+.main.simple-quick-mode .right-column .simple-ad-slot,
+.main.simple-quick-mode .right-column .side-card.simple-ad-slot {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* =============================================
+   우측 사이드바 3단 합체 통합 스티키 복원 (시계 + 계산기 + 광고)
+   ============================================= */
+
+/* 1. 우측 컬럼(.right-column) 자체에 다시 sticky를 부여하여 3단 카드를 한 통으로 묶어 내립니다. */
+body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
+    position: sticky !important;
+    top: 80px !important; /* 스크롤 내릴 때 고정될 상단 높이 */
+    align-self: start !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important; /* 카드와 카드 사이의 수려한 간격 */
+    width: 100% !important;
+    z-index: 50 !important;
+}
+
+
+/* =============================================
+   정밀계산용 수동 멀티플렉스 광고판 최종 가공 (최소 250px ~ 최대 720px 제한)
+   ============================================= */
+#precisionAdSlot,
+#precisionAdSlot.side-card {
+    background: transparent !important; /* 배경색 투명화 */
+    border: none !important; /* 사각형 선(표시선) 영구 삭제 */
+    box-shadow: none !important; /* 그림자 삭제 */
+    padding: 0 !important; /* 내부 여백 제거 */
+    
+    /* [안정화 장치] 최소 높이 보장막 및 최대 720px 철벽 차단 */
+    min-height: 250px !important; /* 로컬/대기 상태일 때 스크롤 급락 추락 방지 */
+    max-height: 720px !important; /* 구글 반응형 광고가 720px 이상으로 커지는 것 차단 */
+    overflow: hidden !important; /* 광고 콘텐츠가 720px 너머로 삐져나오는 것 원천 봉쇄 */
+    
+    width: 100% !important;
+    display: block !important;
+}
+
+
+/* 간편보기 광고판도 정밀계산과 동일하게 카드 껍데기 제거 */
+.right-column .simple-ad-slot,
+.simple-grid-right .simple-ad-slot {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    min-height: 250px !important;
+    max-height: 720px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+
+/* 사용하지 않는 임시 주머니 태그 완전 격리 숨김 */
+#stickySidebarWrap {
+    display: none !important;
+}
+
+#loaview-bottom-ad,
+.loaview-bottom-ad-wrap {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 20px auto 14px !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    min-height: 90px !important;
+    max-height: 280px !important;
+    overflow: hidden !important;
+}
