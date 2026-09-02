@@ -15,7 +15,34 @@ let currentSimpleRaid = "belgardin";
 let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
 let currentRoleMode = "dealer"; // "dealer" | "support"
 
-
+// ===== 수평 광고 노드 영구 보존용 헬퍼 함수 (파괴 및 새로고침 초기화 원천 차단) =====
+function setMainContentWithAdPreservation(htmlString) {
+    const adNode = document.getElementById("div-gpt-ad-1788303186629-0");
+    
+    // 광고 노드가 이미 존재하면 파괴되지 않게 메모리에 잠시 떼어놓음
+    if (adNode) {
+        adNode.parentNode.removeChild(adNode);
+    }
+    
+    document.getElementById("mainContent").innerHTML = htmlString;
+    
+    // 새 화면이 그려진 후, 광고 홀더(ad-container-placeholder)를 찾아 보존된 광고를 쏙 끼워넣음
+    const placeholder = document.getElementById("ad-container-placeholder");
+    if (placeholder) {
+        if (adNode) {
+            placeholder.appendChild(adNode);
+        } else {
+            // 최초 1회만 광고 노드를 정의하고 생성 (이후엔 계속 재활용 및 60초 타이머 영구 보존)
+            const adDiv = document.createElement("div");
+            adDiv.id = "div-gpt-ad-1788303186629-0";
+            adDiv.style.cssText = "min-width:320px;min-height:90px;";
+            placeholder.appendChild(adDiv);
+            try {
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
+            } catch(e) {}
+        }
+    }
+}
 
 
 // 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
@@ -3991,18 +4018,17 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
               if (!isAvail) {
            
 
-document.getElementById("mainContent").innerHTML = `
+
+setMainContentWithAdPreservation(`
     ${makeGuardianHero(tier, boss, bossInfo)}
 
-    <!-- 가디언 히어로 아래 대형 수평 광고 -->
+    <!-- 수평 광고 영구 보존용 홀더 -->
     <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
-      <div id="div-gpt-ad-1788303186629-0" style="min-width:320px;min-height:90px;"></div>
+      <div id="ad-container-placeholder"></div>
     </div>
     <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
 
     ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
-
-
 
 
                 <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
@@ -4061,16 +4087,20 @@ document.getElementById("mainContent").innerHTML = `
                     : '<tr><td colspan="3">데이터 없음</td></tr>';
             }
 
-                                                 document.getElementById("mainContent").innerHTML = `
+                                              
+
+                   setMainContentWithAdPreservation(`
     ${makeGuardianHero(tier, boss, bossInfo)}
 
-    <!-- 가디언 히어로 아래 대형 수평 광고 -->
+    <!-- 수평 광고 영구 보존용 홀더 -->
     <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
-      <div id="div-gpt-ad-1788303186629-0" style="min-width:320px;min-height:90px;"></div>
+      <div id="ad-container-placeholder"></div>
     </div>
     <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
 
     ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
+
+
     <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
 
 
@@ -4134,7 +4164,7 @@ document.getElementById("mainContent").innerHTML = `
         guardianMobileTimeBtn.addEventListener("click", openMobileTimeModal);
     }
 
-try { googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); }); } catch(e) {}
+
 
         bindRoleToggle();
         updatePartyDpsDisplay();
@@ -4232,13 +4262,24 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
 document.getElementById("mainContent").innerHTML = `
     ${makeRaidPrecisionHero(currentMenu, meta, currentDiff)}
 
-    <!-- 정밀계산 히어로 아래 수평 광고 -->
-    <div style="width:100%;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
-      <div id="div-gpt-ad-1788303186629-0" style="min-width:320px;min-height:90px;"></div>
+
+
+
+
+
+setMainContentWithAdPreservation(`
+    ${makeRaidPrecisionHero(currentMenu, meta, currentDiff)}
+
+    <!-- 수평 광고 영구 보존용 홀더 -->
+    <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
+      <div id="ad-container-placeholder"></div>
     </div>
     <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
 
             <div class="precision-layout-split">
+
+
+   
  
             <div class="precision-control compact-precision-control">
                 <div class="precision-inline-group">
@@ -4362,7 +4403,7 @@ document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
         });
     }
 
-try { googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); }); } catch(e) {}
+
 
     bindRoleToggle();
     updatePartyDpsDisplay();
