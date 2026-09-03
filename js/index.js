@@ -2458,7 +2458,7 @@ el.innerHTML = `
     ${simpleHeroHtml()}
     
     <!-- 대형 수평 광고판 -->
-   <div style="width: 100%; max-width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; margin: 14px auto 0;">
+   <div style="width: 100%; max-width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; margin: 14px auto 16px;">
       <div id='div-gpt-ad-1788303186629-0' style='min-width: 320px; min-height: 250px;'>
         <script>
           googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
@@ -2527,7 +2527,7 @@ el.innerHTML = `
     ${simpleRaidHeroHtml()}
     
     <!-- 대형 수평 광고판 -->
-    <div style="width: 100%; max-width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; margin: 14px auto 0;">
+    <div style="width: 100%; max-width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; margin: 14px auto 16px;">
       <div id='div-gpt-ad-1788303186629-0' style='min-width: 320px; min-height: 250px;'>
         <script>
           googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
