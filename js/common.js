@@ -1,1 +1,1297 @@
-const _0x321eeb=_0x56ac;function _0x2c6b(){const _0x3d9495=['rank/winrate','gnbDrawer','appendChild','prepend','transition','grade','\x22>레이드별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20','boxShadow','.html','index.html','bottom-ad-wrapper','bar','127.0.0.1','script','엘버하스틱','10456352LzsQVJ','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>TODAY\x20STAMP</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>완료</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>','/guide','remove','push','&order=date_key.desc','\x22\x20type=\x22button\x22>클래스\x20정보\x20<span\x20class=\x22gnb-caret\x22>▼</span></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','%</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guide-mini-bar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guide-mini-fill\x20','className','\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin:\x200\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>문의\x20페이지</a>\x20|\x0a<a\x20href=\x22mailto:dnjswjd10041@gmail.com\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin-left:\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>이메일\x20문의</a>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20</div>\x0a','getDate','module','/dps/','SS+','size','gr-ss','rank/class-win','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22guide-ratio-cell\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22guide-ratio-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22guide-ratio-pct\x22>','rank/tier','\x22\x20class=\x22gnb-link\x20','43660269VkOrvP','/class/','대세를\x20아주\x20잘\x20짚은\x20선택','inline-block','pubads','standalone-dps-page','application/json','has','trim','<br>OP\x20참여\x20완료</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','614211fLvRAU','date_key','gnb-drawer-open','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-guide-intro\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20토너먼트\x20결과에\x20따라\x20도장\x20등급이\x20부여됩니다.<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20SS\x20~\x20S\x20계열\x20등급은\x20메인\x20도장에\x20영구\x20유지됩니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','\x22>레벨별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','favor','cssText','type','createElement','offsetWidth','/privacy','dps/guardian','split','82980oVoRfX','\x22\x20type=\x22button\x22>잔혈컷\x20간편보기\x20<span\x20class=\x22gnb-caret\x22>▼</span></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','295gdXwJC','width\x20','endsWith','\x0a\x20\x20\x20\x20<header\x20class=\x22gnb\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-shell\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-bar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-hamburger\x22\x20id=\x22gnbHamburgerBtn\x22\x20type=\x22button\x22\x20aria-label=\x22메뉴\x20열기\x22\x20aria-expanded=\x22false\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span></span><span></span><span></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-brand\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','</tbody>\x0a\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20<p\x20class=\x22grade-guide-note\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20OP\x20토너먼트\x20누적\x20기준\x20·\x20막대는\x20최다\x20등급\x20대비\x20상대\x20비교<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20SS+\x20~\x20S-\x20획득\x20시\x20메인\x20도장에\x20영구\x20유지됩니다.\x0a\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20','tools/auction','active','div-gpt-ad-1788303186629-0','드렉탈라스','의도는\x20있었지만\x20결과는\x20아쉬움','0\x200\x200\x201px\x20rgba(255,120,170,.08)\x20inset,\x200\x200\x2018px\x20rgba(255,120,170,.10)','background','gr-f','.grade-stamp.like-stamp','0\x200\x200\x201px\x20rgba(255,107,107,.08)\x20inset,\x200\x200\x2018px\x20rgba(255,107,107,.10)','0\x200\x200\x201px\x20rgba(81,207,102,.08)\x20inset,\x200\x200\x2018px\x20rgba(81,207,102,.10)','body','rank/ranking','enableSingleRequest','lineHeight','linear-gradient(180deg,\x20rgba(255,120,170,.12),\x20rgba(255,255,255,.02))','가르가디스','linear-gradient(180deg,\x20rgba(255,215,0,.12),\x20rgba(255,255,255,.02))','\x22\x20class=\x22qm-item\x22><div\x20class=\x22qm-icon\x22>🔨</div><div\x20class=\x22qm-label\x22>경매계산기</div></a>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</nav>\x0a\x20\x20\x20\x20<div\x20class=\x22divider\x20common-divider-bottom\x22\x20style=\x22margin-top:20px;\x22><hr\x20class=\x22divider-line\x22></div>\x0a\x20\x20','getTime','getSlotElementId','크라티오스','<hr\x20class=\x22divider-line\x22>','\x22\x20class=\x22gnb-cta\x20op\x22>🏆\x20OP\x20토너먼트\x20참여</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/rank/ranking','values','common-shell','로망에\x20모든\x20걸\x20건\x20선택','contains','div','/class/synergy','style','guide','gnbDrawerClose','div-gpt-ad-1788305590281-0','\x22>시너지표</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','addSize','https://securepubads.g.doubleclick.net/tag/js/gpt.js','width','7647390Uisdzn','\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin-right:\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>사이트\x20소개</a>\x20|\x0a\x20\x20\x20\x20\x20\x20<a\x20href=\x22','refresh','\x22>토너먼트\x20시작하기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','ad-refresh-wrap','getMonth','이번\x20흐름과는\x20잘\x20안\x20맞는\x20선택','RPC\x20failed:\x20','maxWidth','\x22>클래스별\x20우승자\x20분석</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','localhost','\x0a\x20\x20\x20\x20\x20\x20<div\x20id=\x22div-gpt-ad-1788303186629-0\x22\x20class=\x22ad-slot-responsive\x22\x20style=\x22max-width:100%;overflow:hidden;\x22></div>\x0a\x20\x20\x20\x20','조금\x20비껴간\x20선택','insertBefore','tourney-ad-wrapper','cmd','stampGuideOverlay','origin','target','아게오로스','nextSibling','[style*=\x27border-top\x27]','/class/arc-grid','toFixed','slotRenderEnded','\x22>시세\x20정보</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>도장\x20정보</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-drawer-link\x22\x20id=\x22btnStampGuideMobile\x22\x20type=\x22button\x22>🏅\x20도장\x20안내</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</nav>\x0a\x20\x20\x20\x20</aside>\x0a\x0a\x20\x20\x20\x20<!--\x20도장\x20안내\x20통합\x20모달\x20-->\x0a\x20\x20\x20\x20<div\x20class=\x22stamp-modal-overlay\x22\x20id=\x22stampGuideOverlay\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-modal-combined\x22\x20role=\x22dialog\x22\x20aria-modal=\x22true\x22\x20aria-labelledby=\x22stampGuideTitle\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-modal-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20id=\x22stampGuideTitle\x22>🏅\x20도장\x20안내</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22stamp-modal-close\x22\x20id=\x22stampGuideClose\x22\x20type=\x22button\x22\x20aria-label=\x22닫기\x22>✕</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-modal-body\x22\x20id=\x22stampGuideBody\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-modal-loading\x22>불러오는\x20중...</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20','setAttribute','\x22>직각\x20랭킹보드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x0a\x20\x20\x20\x20\x20\x20','getSlots','querySelector','innerWidth','tournament_type','gr-d','querySelectorAll','쿤겔라니움','linear-gradient(180deg,\x20rgba(255,146,43,.12),\x20rgba(255,255,255,.02))','linear-gradient(180deg,\x20rgba(140,110,255,.16),\x20rgba(255,255,255,.02))','scripts','width:100%;max-width:100%;overflow:hidden;box-sizing:border-box;display:flex;justify-content:center;align-items:center;margin:14px\x20auto\x2014','localeCompare','\x22>가디언\x20토벌</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>직각\x20토너먼트</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/rank/','addService','false','<br>','\x22>밸런스\x20승률표</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','gr-c','aria-hidden','/index','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22guide-grade-cell\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>TODAY\x20STAMP</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>','ad-refresh-bar','의외성은\x20있었지만\x20효율은\x20낮음','<div\x20class=\x22common-aurora\x22></div>','.tools-page','getElementById','currentScript','정석에\x20가까운\x20안정픽','rgba(134,142,150,.30)','&visitor_key=eq.','replace','sort','POST','\x22\x20class=\x22qm-item\x22><div\x20class=\x22qm-icon\x22>💹</div><div\x20class=\x22qm-label\x22>시세정보</div></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','find','none','disconnect','/rest/v1/sessions','isIntersecting','class/arkPassive','/rank/winrate','rgba(255,215,0,.38)','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>','beforeend','\x22\x20class=\x22qm-item\x22><div\x20class=\x22qm-icon\x22>🏆</div><div\x20class=\x22qm-label\x22>직각<br>토너먼트</div></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/js/common.js','class/synergy','\x0a\x20\x20\x20\x20\x20\x20.gnb-cta-sub\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.12);\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.52);\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x205px\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x207px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20line-height:\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x20.18s\x20ease;\x0a\x20\x20\x20\x20\x20\x20\x20\x20white-space:\x20nowrap;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x0a\x0a\x0a\x0a.ad-refresh-wrap\x20{\x0a\x20\x20\x20\x20position:\x20relative;\x0a\x20\x20\x20\x20display:\x20inline-block;\x0a\x20\x20\x20\x20max-width:\x20100%;\x0a\x20\x20\x20\x20line-height:\x200;\x0a}\x0a.ad-refresh-bar\x20{\x0a\x20\x20\x20\x20position:\x20absolute;\x0a\x20\x20\x20\x20top:\x200;\x0a\x20\x20\x20\x20left:\x200;\x0a\x20\x20\x20\x20right:\x200;\x0a\x20\x20\x20\x20height:\x202px;\x0a\x20\x20\x20\x20width:\x200%;\x0a\x20\x20\x20\x20background:\x20rgba(255,\x20255,\x20255,\x200.12);\x0a\x20\x20\x20\x20z-index:\x2010;\x0a\x20\x20\x20\x20transition:\x20width\x20linear;\x0a}\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a.ad-slot-responsive\x20{\x0a\x20\x20\x20\x20min-width:\x20320px;\x0a\x20\x20\x20\x20min-height:\x2050px;\x0a}\x0a@media\x20(min-width:\x201024px)\x20{\x0a\x20\x20\x20\x20.ad-slot-responsive\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20min-height:\x2090px;\x0a\x20\x20\x20\x20}\x0a}\x0a\x0a\x0a\x0a\x0a\x20\x20\x20\x20\x20\x20.gnb-cta-sub:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,255,255,0.28);\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.82);\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.05);\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.gnb-cta-divider\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.14);\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200\x206px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20user-select:\x20none;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-overlay\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20display:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20\x20\x20\x20\x20inset:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(0,0,0,0.72);\x0a\x20\x20\x20\x20\x20\x20\x20\x20z-index:\x2010000;\x0a\x20\x20\x20\x20\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20align-items:\x20flex-start;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2028px\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20backdrop-filter:\x20blur(4px);\x0a\x20\x20\x20\x20\x20\x20\x20\x20overflow-y:\x20auto;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-overlay.active\x20{\x20display:\x20flex;\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-combined\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#1a1f2e;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.08);\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x20min(94vw,\x20700px);\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin:\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x2020px\x2060px\x20rgba(0,0,0,0.5);\x0a\x20\x20\x20\x20\x20\x20\x20\x20overflow:\x20hidden;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-header\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20\x20\x20justify-content:\x20space-between;\x0a\x20\x20\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2018px\x2022px\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-bottom:\x201px\x20solid\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20\x20\x20position:\x20sticky;\x0a\x20\x20\x20\x20\x20\x20\x20\x20top:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#1a1f2e;\x0a\x20\x20\x20\x20\x20\x20\x20\x20z-index:\x202;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-header\x20h3\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2016px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#fff;\x0a\x20\x20\x20\x20\x20\x20\x20\x20letter-spacing:\x20-0.02em;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-close\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.4);\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2018px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x204px\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x206px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x200.2s;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-close:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#fff;\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.1);\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2018px\x2022px\x2024px;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-modal-loading\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.42);\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2030px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.stamp-guide-intro\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012.5px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.48);\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2018px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20line-height:\x201.5;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20.grade-guide-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-collapse:\x20collapse;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.grade-guide-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.035);\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.48);\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x208px\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-bottom:\x201px\x20solid\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20\x20\x20position:\x20sticky;\x0a\x20\x20\x20\x20\x20\x20\x20\x20top:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20z-index:\x201;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.grade-guide-table\x20td\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x207px\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.62);\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-bottom:\x201px\x20solid\x20rgba(255,255,255,0.035);\x0a\x20\x20\x20\x20\x20\x20\x20\x20line-height:\x201.38;\x0a\x20\x20\x20\x20\x20\x20\x20\x20vertical-align:\x20middle;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-grade-cell\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x2048px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20\x20\x20\x20\x20white-space:\x20nowrap;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-desc-cell\x20{\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-ratio-cell\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x20150px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x20150px;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-ratio-wrap\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20gap:\x207px;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-ratio-pct\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x2038px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20right;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.74);\x0a\x20\x20\x20\x20\x20\x20\x20\x20flex-shrink:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-variant-numeric:\x20tabular-nums;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-bar\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20flex:\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20height:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x20999px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20overflow:\x20hidden;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20height:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x20999px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20width\x20.55s\x20ease;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill.ss\x20{\x20background:\x20linear-gradient(90deg,\x20#8c6eff,\x20#b49aff);\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill.s\x20\x20{\x20background:\x20linear-gradient(90deg,\x20#ffd700,\x20#ffe44d);\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill.a\x20\x20{\x20background:\x20linear-gradient(90deg,\x20#4dabf7,\x20#74c0fc);\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill.b\x20\x20{\x20background:\x20linear-gradient(90deg,\x20#51cf66,\x20#8ce99a);\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill.c\x20\x20{\x20background:\x20linear-gradient(90deg,\x20#868e96,\x20#adb5bd);\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill.d\x20\x20{\x20background:\x20linear-gradient(90deg,\x20#ff922b,\x20#ffa94d);\x20}\x0a\x20\x20\x20\x20\x20\x20.guide-mini-fill.f\x20\x20{\x20background:\x20linear-gradient(90deg,\x20#ff6b6b,\x20#ff8787);\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20.gr-ss\x20.guide-grade-cell\x20{\x20color:\x20#b49aff;\x20}\x0a\x20\x20\x20\x20\x20\x20.gr-s\x20\x20.guide-grade-cell\x20{\x20color:\x20#ffd700;\x20}\x0a\x20\x20\x20\x20\x20\x20.gr-a\x20\x20.guide-grade-cell\x20{\x20color:\x20#74c0fc;\x20}\x0a\x20\x20\x20\x20\x20\x20.gr-b\x20\x20.guide-grade-cell\x20{\x20color:\x20#8ce99a;\x20}\x0a\x20\x20\x20\x20\x20\x20.gr-c\x20\x20.guide-grade-cell\x20{\x20color:\x20#adb5bd;\x20}\x0a\x20\x20\x20\x20\x20\x20.gr-d\x20\x20.guide-grade-cell\x20{\x20color:\x20#ffa94d;\x20}\x0a\x20\x20\x20\x20\x20\x20.gr-f\x20\x20.guide-grade-cell\x20{\x20color:\x20#ff8787;\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20.grade-guide-note\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.28);\x0a\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20line-height:\x201.5;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20.gnb-drawer-nav\x20button.gnb-drawer-link\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.08);\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.62);\x0a\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x200.2s;\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.gnb-drawer-nav\x20button.gnb-drawer-link:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,255,255,0.2);\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.85);\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.04);\x0a\x20\x20\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20@media\x20(max-width:\x20760px)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20.gnb-cta-sub,\x20.gnb-cta-divider\x20{\x20display:\x20none;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.stamp-modal-combined\x20{\x20width:\x20100%;\x20border-radius:\x2012px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.stamp-modal-header\x20{\x20padding:\x2014px\x2016px\x2010px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.stamp-modal-body\x20{\x20padding:\x2014px\x2016px\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.grade-guide-table\x20{\x20font-size:\x2011px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.grade-guide-table\x20td,\x20.grade-guide-table\x20th\x20{\x20padding:\x206px\x207px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.guide-grade-cell\x20{\x20width:\x2040px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.guide-desc-cell\x20{\x20font-size:\x2010.5px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.guide-ratio-cell\x20{\x20width:\x20110px;\x20min-width:\x20110px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.guide-ratio-pct\x20{\x20width:\x2034px;\x20font-size:\x2010px;\x20}\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20','sizeMapping','\x22>세르카</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','linear-gradient(180deg,\x20rgba(134,142,150,.12),\x20rgba(255,255,255,.02))','.app','resize','/dps/belgardin','dps/raid','\x0a\x20\x20\x20\x20\x20\x20<table\x20class=\x22grade-guide-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>등급</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>설명</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>비율</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<tbody>','스콜라키아','\x22>레이드별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>잔혈컷\x20정밀계산</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22','rgba(255,107,107,.30)','/23371069561/loaview_top_refresh','a.gnb-drawer-link:not(.disabled)','enableServices','pathname','delete','나쁘진\x20않지만\x20살짝\x20아쉬운\x20선택','/tools/auction','stamp-modal-styles','parentNode','Escape','script[src*=\x22gpt.js\x22]','slot','이그렉시온','replaceState','gr-s','\x22\x20class=\x22gnb-cta\x20like\x22>💗\x20호감\x20토너먼트\x20참여</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</header>\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22divider\x20common-divider-top\x22><hr\x20class=\x22divider-line\x22></div>\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-overlay\x22\x20id=\x22gnbDrawerOverlay\x22></div>\x0a\x20\x20\x20\x20<aside\x20class=\x22gnb-drawer\x22\x20id=\x22gnbDrawer\x22\x20aria-hidden=\x22true\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','<br>호감\x20참여\x20완료</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','btnStampGuide','648599PCOPhe','defineSlot','hash','\x22>시세\x20정보</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</nav>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-cta-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-cta-sub\x22\x20id=\x22btnStampGuide\x22\x20type=\x22button\x22>🏅\x20도장\x20안내</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22gnb-cta-divider\x22>|</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','linear-gradient(180deg,\x20rgba(77,171,247,.12),\x20rgba(255,255,255,.02))','forEach','낭만은\x20있었던\x20선택','gnbDrawerOverlay','script[data-inquiry-script=\x22true\x22]','\x22>클래스별\x20우승자\x20분석</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','100%','/tools/','json','0\x200\x200\x201px\x20rgba(160,130,255,.10)\x20inset,\x200\x200\x2018px\x20rgba(140,110,255,.14)','padStart','defineSizeMapping','/index.html','/about','isArray','googletag','dps/level','\x22\x20type=\x22button\x22>직각\x20토너먼트\x20<span\x20class=\x22gnb-caret\x22>▼</span></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','click','gr-b','async','borderColor','https://khszfukekudyripouifm.supabase.co','/dps/raid','\x22>경매\x20계산기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','indexOf','?select=tournament_type,grade,date_key','최상위권\x20바로\x20아래의\x20고수픽','innerHTML','addEventListener','margin-top:14px;margin-bottom:16px;','getFullYear','\x22\x20type=\x22button\x22>편의\x20도구\x20<span\x20class=\x22gnb-caret\x22>▼</span></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','status','loadStampGuide\x20error:','src','메타와\x20거리가\x20있는\x20선택','privacy','observe','\x22>레벨별\x20보기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>벨가르딘</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>벨가르딘</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','/rank','\x22>지평의\x20성당</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','메타를\x20완전히\x20꿰뚫은\x20선택','\x22\x20class=\x22qm-item\x22><div\x20class=\x22qm-icon\x22>🧛</div><div\x20class=\x22qm-label\x22>정밀\x20계산</div></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','평범하거나\x20애매한\x20선택','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-guide-intro\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20토너먼트\x20결과에\x20따라\x20도장\x20등급이\x20부여됩니다.<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20SS\x20~\x20S\x20계열\x20등급은\x20메인\x20도장에\x20영구\x20유지됩니다.\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-modal-loading\x22>도장\x20정보를\x20불러오지\x20못했어요.</div>\x0a\x20\x20\x20\x20\x20\x20','\x22\x20type=\x22button\x22>잔혈컷\x20정밀계산\x20<span\x20class=\x22gnb-caret\x22>▼</span></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-dropdown\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>티어표\x20(최근\x2010일)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>밸런스\x20승률표</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>홈</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20','hostname','\x20등급\x20유지중</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','applyHomeTournamentStamps\x20error:','<div\x20id=\x22div-gpt-ad-1788378693057-0\x22\x20style=\x22min-width:320px;min-height:66px;max-width:100%;overflow:hidden;\x22></div>','/23371069561/loaview_side_right','0\x200\x200\x201px\x20rgba(134,142,150,.08)\x20inset,\x200\x200\x2018px\x20rgba(134,142,150,.10)','평균\x20이상\x20정도의\x20무난한\x20선택','from','우승권\x20흐름을\x20정확히\x20읽은\x20선택','/dps/cathedral','length','search','btnStampGuideMobile','display','div-gpt-ad-1788378693057-0','https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6403244403995841','toUpperCase','.page','8596602eBYzaT','\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin:\x200\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>개인정보처리방침</a>\x20|\x0a\x20\x20\x20\x20\x20\x20<a\x20href=\x22#\x22\x20data-open-inquiry\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin:\x200\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>간편문의</a>\x20|\x0a<a\x20href=\x22','includes','key','\x22>아크그리드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','build','아카테스','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>TOURNAMENT</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>OP</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>직각\x20토너먼트\x20진입\x20후<br>시즌\x20도장\x20표시</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','\x22>기간내\x20승률\x20변화\x20그래프</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20','\x22\x20class=\x22gnb-dropdown-link\x20','about','loa_tournament_visitor_key','static-footer','startsWith','stampGuideBody','Bearer\x20','linear-gradient(180deg,\x20rgba(255,107,107,.12),\x20rgba(255,255,255,.02))','rgba(81,207,102,.32)','floor','\x22>티어표\x20(최근\x2010일)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','\x22>아크그리드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','footer','dps/belgardin','rgba(255,146,43,.30)','crossOrigin','data-inquiry-script','rgba(160,130,255,.42)','/23371069561/loaview_side_left','\x22>승률\x20변화\x20그래프</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>클래스\x20정보</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','max','\x22\x20class=\x22gnb-drawer-link\x20','2MiNdkM','\x22\x20class=\x22gnb-brand-name\x22><img\x20src=\x22https://loaviewer.github.io/favicon.ico\x22\x20alt=\x22로아뷰\x22\x20class=\x22gnb-favicon\x22>\x20로아뷰<span\x20class=\x22gnb-brand-sub\x22>\x20·\x20LOA\x20VIEWER</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<nav\x20class=\x22gnb-nav\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul\x20class=\x22gnb-nav-list\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','add','visible','grade_count','\x22>시너지표</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','rgba(77,171,247,.34)','head','0\x200\x200\x201px\x20rgba(77,171,247,.08)\x20inset,\x200\x200\x2018px\x20rgba(77,171,247,.10)','test','\x22>·\x20홈으로</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-drawer-close\x22\x20id=\x22gnbDrawerClose\x22\x20type=\x22button\x22\x20aria-label=\x22메뉴\x20닫기\x22>✕</button>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<nav\x20class=\x22gnb-drawer-nav\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>잔혈컷\x20간편보기</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','true','베스칼','괜찮지만\x20임팩트는\x20살짝\x20부족','aria-expanded','DOMContentLoaded','slice','/class/arkPassive','currentTarget','\x22>경매\x20계산기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','map','linear-gradient(180deg,\x20rgba(81,207,102,.12),\x20rgba(255,255,255,.02))','insertAdjacentHTML','gnbHamburgerBtn','classList'];_0x2c6b=function(){return _0x3d9495;};return _0x2c6b();}(function(_0x51e923,_0x2faf88){const _0x15e6bb=_0x56ac,_0x491bbf=_0x51e923();while(!![]){try{const _0x16df3c=-parseInt(_0x15e6bb(0x101))/0x1*(-parseInt(_0x15e6bb(0x16a))/0x2)+parseInt(_0x15e6bb(0x1b0))/0x3+parseInt(_0x15e6bb(0x1bd))/0x4*(-parseInt(_0x15e6bb(0x1bf))/0x5)+-parseInt(_0x15e6bb(0x94))/0x6+-parseInt(_0x15e6bb(0x14b))/0x7+-parseInt(_0x15e6bb(0x192))/0x8+parseInt(_0x15e6bb(0x1a6))/0x9;if(_0x16df3c===_0x2faf88)break;else _0x491bbf['push'](_0x491bbf['shift']());}catch(_0x3cb9ef){_0x491bbf['push'](_0x491bbf['shift']());}}}(_0x2c6b,0xa3c6b),document[_0x321eeb(0x122)]('DOMContentLoaded',()=>{const _0x2c1a65=_0x321eeb,_0x47fcce=document[_0x2c1a65(0xcc)](_0x2c1a65(0x87));if(!_0x47fcce)return;const _0x2848f7=location[_0x2c1a65(0xf2)],_0x1cb539=location[_0x2c1a65(0x139)]===_0x2c1a65(0x18f)||location[_0x2c1a65(0x139)]===_0x2c1a65(0x9e);function _0x446734(_0x18329d){const _0x4e4295=_0x2c1a65;if(_0x18329d===_0x4e4295(0x111)||_0x18329d===_0x4e4295(0xc5))return'/';if(_0x18329d[_0x4e4295(0x1c1)]('/index.html'))return _0x18329d['slice'](0x0,-0xa)+'/';if(_0x18329d[_0x4e4295(0x1c1)](_0x4e4295(0xc5)))return _0x18329d[_0x4e4295(0x17a)](0x0,-0x5)+'/';if(_0x18329d[_0x4e4295(0x1c1)](_0x4e4295(0x18b)))return _0x18329d['slice'](0x0,-0x5);return _0x18329d;}const _0x467119=_0x1cb539?_0x2848f7:_0x446734(_0x2848f7);!_0x1cb539&&_0x467119!==_0x2848f7&&history[_0x2c1a65(0xfc)](null,'',_0x467119+location[_0x2c1a65(0x144)]+location[_0x2c1a65(0x103)]);const _0x4744fd=Array[_0x2c1a65(0x140)](document[_0x2c1a65(0xba)])[_0x2c1a65(0xd5)](_0x5a1194=>_0x5a1194[_0x2c1a65(0x128)][_0x2c1a65(0x14d)](_0x2c1a65(0xe0)))||document[_0x2c1a65(0xcd)],_0x58275d=_0x4744fd&&_0x4744fd[_0x2c1a65(0x128)][_0x2c1a65(0x14d)](_0x2c1a65(0xe0))?_0x4744fd[_0x2c1a65(0x128)][_0x2c1a65(0x1bc)](_0x2c1a65(0xe0))[0x0]+'/':location['origin']?location[_0x2c1a65(0xa5)]+'/':'./',_0x1146ad=_0x1cb539?_0x2c1a65(0x18b):'';function _0x34978a(_0x17d308){const _0x26cb3d=_0x2c1a65;if(_0x17d308==='/')return _0x467119==='/'||_0x467119===_0x26cb3d(0xc5)||_0x467119==='/index.html';return _0x467119===_0x17d308||_0x467119===_0x17d308+'/'||_0x467119===_0x17d308+_0x26cb3d(0x18b);}const _0x14d7cc=_0x467119[_0x2c1a65(0x14d)](_0x2c1a65(0x19e)),_0x294715=_0x34978a(_0x2c1a65(0x12f)),_0x1b17bc=_0x467119[_0x2c1a65(0x14d)](_0x2c1a65(0x10c)),_0x3a6e88=_0x467119[_0x2c1a65(0x14d)](_0x2c1a65(0x1a7)),_0x199038=_0x467119[_0x2c1a65(0x14d)](_0x2c1a65(0xbe)),_0x26f5a8=document[_0x2c1a65(0x1cf)][_0x2c1a65(0x182)][_0x2c1a65(0x89)](_0x2c1a65(0x1ab)),_0x1655ec=!_0x14d7cc&&!_0x294715&&!_0x1b17bc&&_0x34978a('/'),_0x2e6cd9=_0x34978a('/dps/level'),_0xfdfc0f=_0x34978a(_0x2c1a65(0x11c)),_0x302f54=_0x34978a('/dps/serka'),_0x46a11d=_0x34978a(_0x2c1a65(0x142)),_0x3ab4c9=_0x34978a(_0x2c1a65(0xe8)),_0x27e96d=_0x34978a('/dps/guardian'),_0x6bf23d=_0x34978a(_0x2c1a65(0x8b)),_0x3ec172=_0x34978a(_0x2c1a65(0xaa)),_0x9687c=_0x34978a(_0x2c1a65(0x17b)),_0x55ecd5=_0x34978a(_0x2c1a65(0xf5)),_0x1800d9=_0x34978a('/tools/market'),_0x3a0945=_0x34978a(_0x2c1a65(0x85)),_0x14deab=_0x34978a('/rank/tier'),_0x457c17=_0x34978a(_0x2c1a65(0xdb)),_0xf1d995=_0x34978a('/rank/class-win'),_0x2de738=_0x34978a('/rank/history'),_0x5b2b7e=_0x34978a(_0x2c1a65(0x112))||_0x34978a(_0x2c1a65(0x194))||_0x34978a(_0x2c1a65(0x1ba)),_0x20c233=_0x2e6cd9||_0xfdfc0f,_0x226472=_0x302f54||_0x46a11d||_0x3ab4c9||_0x27e96d,_0x14bc01=_0x6bf23d||_0x3ec172||_0x9687c,_0x2ca5fe=_0x55ecd5||_0x1800d9,_0x4e806b=_0x294715||_0x3a0945||_0x14deab||_0x457c17||_0xf1d995||_0x2de738||_0x199038,_0x491ffb=_0x1cb539?_0x58275d+_0x2c1a65(0x18c):''+_0x58275d,_0x14de00=_0x58275d+'rank'+_0x1146ad,_0xe215a9=_0x58275d+_0x2c1a65(0x115)+_0x1146ad,_0x2fe35c=_0x58275d+_0x2c1a65(0xe9)+_0x1146ad,_0x105ac8=_0x58275d+'dps/serka'+_0x1146ad,_0x5ed9fb=_0x58275d+'dps/cathedral'+_0x1146ad,_0x2c56a8=_0x58275d+_0x2c1a65(0x161)+_0x1146ad,_0x332d70=['루멘칼리고',_0x2c1a65(0x7d),_0x2c1a65(0xeb),_0x2c1a65(0x82),_0x2c1a65(0xa7),_0x2c1a65(0x1c7),'소나벨',_0x2c1a65(0x176),_0x2c1a65(0xb7),'하누마탄','데스칼루다',_0x2c1a65(0xfb),'벨가누스',_0x2c1a65(0x151),_0x2c1a65(0x191)],_0x1ac22f=new Date(0x7ea,0x6,0x1d,0xa,0x0,0x0),_0x1e1518=0xd;function _0x87734a(){const _0x4d5cf3=_0x2c1a65,_0x2a5b3f=new Date(),_0x26f4a5=_0x2a5b3f[_0x4d5cf3(0x80)]()-_0x1ac22f[_0x4d5cf3(0x80)](),_0x3a0165=Math[_0x4d5cf3(0x15d)](_0x26f4a5/(0x7*0x18*0x3c*0x3c*0x3e8)),_0x1355be=((_0x1e1518+_0x3a0165)%_0x332d70['length']+_0x332d70['length'])%_0x332d70['length'];return _0x332d70[_0x1355be];}const _0x248226=_0x87734a(),_0x33b02f=_0x58275d+_0x2c1a65(0x1bb)+_0x1146ad,_0x47dbf8=_0x58275d+_0x2c1a65(0x1c4)+_0x1146ad,_0xae475e=_0x58275d+'tools/market'+_0x1146ad,_0x2af0ad=_0x58275d+_0x2c1a65(0xe1)+_0x1146ad,_0xe74783=_0x58275d+'class/arc-grid'+_0x1146ad,_0x4b7e8d=_0x58275d+_0x2c1a65(0xda)+_0x1146ad,_0x1c186b=_0x58275d+_0x2c1a65(0x1d0)+_0x1146ad,_0x1e8f63=_0x58275d+_0x2c1a65(0x1a4)+_0x1146ad,_0x333bfa=_0x58275d+_0x2c1a65(0x183)+_0x1146ad,_0x465b43=_0x58275d+_0x2c1a65(0x1a2)+_0x1146ad,_0x1ec6d7=_0x58275d+'rank/history'+_0x1146ad,_0x5caefc=_0x58275d+_0x2c1a65(0x155)+_0x1146ad,_0x5a9683=_0x58275d+_0x2c1a65(0x8d)+_0x1146ad,_0x20ffac=_0x58275d+_0x2c1a65(0x12a)+_0x1146ad,_0x4c926b=_0x1655ec&&!_0x26f5a8,_0x5a2360=_0x2c1a65(0x11b),_0x2a11be='sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb',_0x187151='2026-04-07',_0x1ef55b=[_0x2c1a65(0x19f),'SS','SS-','S+','S','S-','A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F+','F','F-'],_0x83e7dd=new Set([_0x2c1a65(0x19f),'SS','SS-','S+','S','S-']),_0x269423={'SS+':_0x2c1a65(0x131),'SS':_0x2c1a65(0x141),'SS-':_0x2c1a65(0x120),'S+':_0x2c1a65(0x1a8),'S':'강한\x20직업을\x20잘\x20골라낸\x20선택','S-':'상위권\x20감각이\x20살아있는\x20선택','A+':_0x2c1a65(0xce),'A':'무난하면서도\x20꽤\x20좋은\x20선택','A-':_0x2c1a65(0x177),'B+':'감은\x20있었지만\x20폭발력은\x20약함','B':_0x2c1a65(0x13f),'B-':_0x2c1a65(0xf4),'C+':_0x2c1a65(0xa0),'C':_0x2c1a65(0x133),'C-':_0x2c1a65(0x1c8),'D+':_0x2c1a65(0xc9),'D':_0x2c1a65(0x129),'D-':_0x2c1a65(0x9a),'F+':_0x2c1a65(0x107),'F':'취향이\x20메타를\x20앞선\x20선택','F-':_0x2c1a65(0x88)};function _0x5b8936(){const _0x17b09f=_0x2c1a65;return localStorage['getItem'](_0x17b09f(0x156));}function _0x5a0b97(){const _0x126c97=_0x2c1a65,_0xa5ee=new Date();return _0xa5ee[_0x126c97(0x124)]()+'-'+String(_0xa5ee[_0x126c97(0x99)]()+0x1)[_0x126c97(0x10f)](0x2,'0')+'-'+String(_0xa5ee[_0x126c97(0x19c)]())[_0x126c97(0x10f)](0x2,'0');}function _0x3f02c8(_0x4e986c){if(!_0x4e986c)return'';const [_0x136d97,_0x4594ab,_0x4c469b]=_0x4e986c['split']('-');return _0x136d97['slice'](0x2)+'.'+_0x4594ab+'.'+_0x4c469b;}function _0x51a424(_0x265859){const _0x1c8f66=_0x2c1a65;return String(_0x265859||'')[_0x1c8f66(0x1ae)]()[_0x1c8f66(0x149)]()['replace'](/\s+/g,'')[_0x1c8f66(0xd1)](/등급/g,'');}function _0x481803(_0x8a2b6f){const _0x5d87e5=_0x2c1a65;return _0x1ef55b[_0x5d87e5(0x11e)](_0x51a424(_0x8a2b6f));}function _0x3f05a7(_0x5aa00c){return _0x83e7dd['has'](_0x51a424(_0x5aa00c));}function _0x75b2a6(_0x2cffa1){const _0x2a5fbb=_0x2c1a65,_0x5424fb=_0x51a424(_0x2cffa1);if(_0x5424fb[_0x2a5fbb(0x158)]('SS'))return'ss';if(_0x5424fb['startsWith']('S'))return's';if(_0x5424fb[_0x2a5fbb(0x158)]('A'))return'a';if(_0x5424fb[_0x2a5fbb(0x158)]('B'))return'b';if(_0x5424fb[_0x2a5fbb(0x158)]('C'))return'c';if(_0x5424fb[_0x2a5fbb(0x158)]('D'))return'd';return'f';}function _0x38c1d4(_0x322733){const _0x345cb3=_0x2c1a65,_0x509bbc=_0x51a424(_0x322733);if(_0x509bbc[_0x345cb3(0x158)]('SS'))return _0x345cb3(0x1a1);if(_0x509bbc[_0x345cb3(0x158)]('S'))return _0x345cb3(0xfd);if(_0x509bbc[_0x345cb3(0x158)]('A'))return'gr-a';if(_0x509bbc[_0x345cb3(0x158)]('B'))return _0x345cb3(0x118);if(_0x509bbc['startsWith']('C'))return _0x345cb3(0xc3);if(_0x509bbc[_0x345cb3(0x158)]('D'))return _0x345cb3(0xb5);return _0x345cb3(0x1cb);}function _0x4593cd(_0x5e9658,_0x2186df){const _0x3ef0e2=_0x2c1a65,_0x1e9e10=_0x51a424(_0x2186df);if(_0x1e9e10[_0x3ef0e2(0x158)]('SS')){_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x1ca)]=_0x3ef0e2(0xb9),_0x5e9658[_0x3ef0e2(0x8c)]['borderColor']=_0x3ef0e2(0x165),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x18a)]=_0x3ef0e2(0x10e);return;}if(_0x1e9e10[_0x3ef0e2(0x158)]('S')){_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x1ca)]=_0x3ef0e2(0x7e),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x11a)]=_0x3ef0e2(0xdc),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x18a)]='0\x200\x200\x201px\x20rgba(255,215,0,.10)\x20inset,\x200\x200\x2018px\x20rgba(255,215,0,.10)';return;}if(_0x1e9e10[_0x3ef0e2(0x158)]('A')){_0x5e9658['style'][_0x3ef0e2(0x1ca)]=_0x3ef0e2(0x105),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x11a)]=_0x3ef0e2(0x170),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x18a)]=_0x3ef0e2(0x172);return;}if(_0x1e9e10[_0x3ef0e2(0x158)]('B')){_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x1ca)]=_0x3ef0e2(0x17f),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x11a)]=_0x3ef0e2(0x15c),_0x5e9658['style'][_0x3ef0e2(0x18a)]=_0x3ef0e2(0x1ce);return;}if(_0x1e9e10[_0x3ef0e2(0x158)]('C')){_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x1ca)]=_0x3ef0e2(0xe5),_0x5e9658[_0x3ef0e2(0x8c)]['borderColor']=_0x3ef0e2(0xcf),_0x5e9658[_0x3ef0e2(0x8c)]['boxShadow']=_0x3ef0e2(0x13e);return;}if(_0x1e9e10[_0x3ef0e2(0x158)]('D')){_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x1ca)]=_0x3ef0e2(0xb8),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x11a)]=_0x3ef0e2(0x162),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x18a)]='0\x200\x200\x201px\x20rgba(255,146,43,.08)\x20inset,\x200\x200\x2018px\x20rgba(255,146,43,.10)';return;}_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x1ca)]=_0x3ef0e2(0x15b),_0x5e9658[_0x3ef0e2(0x8c)][_0x3ef0e2(0x11a)]=_0x3ef0e2(0xee),_0x5e9658[_0x3ef0e2(0x8c)]['boxShadow']=_0x3ef0e2(0x1cd);}const _0x1e095b=_0x2c1a65(0x1c2)+_0x491ffb+_0x2c1a65(0x16b)+_0x491ffb+_0x2c1a65(0x1a5)+(_0x1655ec||_0x5b2b7e?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x138)+(_0x20c233?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x1be)+_0xe215a9+_0x2c1a65(0x154)+(_0x2e6cd9?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x1b4)+_0x2fe35c+_0x2c1a65(0x154)+(_0xfdfc0f?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x189)+(_0x226472?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x135)+_0x105ac8+_0x2c1a65(0x154)+(_0x302f54?_0x2c1a65(0x1c5):'')+'\x22>세르카</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x5ed9fb+_0x2c1a65(0x154)+(_0x46a11d?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x130)+_0x2c56a8+'\x22\x20class=\x22gnb-dropdown-link\x20'+(_0x3ab4c9?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x12e)+_0x33b02f+_0x2c1a65(0x154)+(_0x27e96d?'active':'')+'\x22>가디언\x20토벌</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20'+(_0x4e806b?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x116)+_0x14de00+_0x2c1a65(0x154)+(_0x294715?_0x2c1a65(0x1c5):'')+'\x22>토너먼트\x20시작하기</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x1c186b+_0x2c1a65(0x154)+(_0x3a0945?_0x2c1a65(0x1c5):'')+'\x22>직각\x20랭킹보드</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x1e8f63+_0x2c1a65(0x154)+(_0x14deab?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x15e)+_0x333bfa+'\x22\x20class=\x22gnb-dropdown-link\x20'+(_0x457c17?_0x2c1a65(0x1c5):'')+_0x2c1a65(0xc2)+_0x465b43+_0x2c1a65(0x154)+(_0xf1d995?'active':'')+_0x2c1a65(0x9d)+_0x1ec6d7+_0x2c1a65(0x154)+(_0x2de738?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x153)+(_0x14bc01?'active':'')+_0x2c1a65(0x198)+_0x2af0ad+_0x2c1a65(0x154)+(_0x6bf23d?'active':'')+_0x2c1a65(0x16f)+_0xe74783+_0x2c1a65(0x154)+(_0x3ec172?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x15f)+_0x4b7e8d+'\x22\x20class=\x22gnb-dropdown-link\x20'+(_0x9687c?_0x2c1a65(0x1c5):'')+'\x22>아크패시브</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-dropdown-link\x20disabled\x22>캐릭터\x20정보\x20(준비중)</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li\x20class=\x22gnb-nav-item\x20has-submenu\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22gnb-trigger\x20'+(_0x2ca5fe?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x125)+_0x47dbf8+_0x2c1a65(0x154)+(_0x55ecd5?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x17d)+_0xae475e+_0x2c1a65(0x154)+(_0x1800d9?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x104)+_0x14de00+_0x2c1a65(0x84)+_0x14de00+_0x2c1a65(0xfe)+_0x491ffb+'\x22\x20class=\x22gnb-drawer-brand\x22><img\x20src=\x22https://loaviewer.github.io/favicon.ico\x22\x20alt=\x22로아뷰\x22\x20class=\x22gnb-favicon\x22>\x20로아뷰\x20<span\x20class=\x22gnb-drawer-brand-home\x20'+(_0x1655ec||_0x5b2b7e?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x174)+_0xe215a9+_0x2c1a65(0x169)+(_0x2e6cd9?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x12c)+_0x2fe35c+_0x2c1a65(0x169)+(_0xfdfc0f?_0x2c1a65(0x1c5):'')+_0x2c1a65(0xec)+_0x105ac8+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x302f54?_0x2c1a65(0x1c5):'')+_0x2c1a65(0xe4)+_0x5ed9fb+_0x2c1a65(0x169)+(_0x46a11d?_0x2c1a65(0x1c5):'')+'\x22>지평의\x20성당</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x2c56a8+_0x2c1a65(0x169)+(_0x3ab4c9?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x12d)+_0x33b02f+_0x2c1a65(0x169)+(_0x27e96d?_0x2c1a65(0x1c5):'')+_0x2c1a65(0xbd)+_0x14de00+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x294715?'active':'')+_0x2c1a65(0x97)+_0x1c186b+_0x2c1a65(0x169)+(_0x3a0945?_0x2c1a65(0x1c5):'')+_0x2c1a65(0xaf)+_0x1e8f63+_0x2c1a65(0x169)+(_0x14deab?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x136)+_0x333bfa+_0x2c1a65(0x169)+(_0x457c17?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x137)+_0x465b43+_0x2c1a65(0x169)+(_0xf1d995?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x10a)+_0x1ec6d7+_0x2c1a65(0x169)+(_0x2de738?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x167)+_0x2af0ad+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x6bf23d?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x90)+_0xe74783+_0x2c1a65(0x169)+(_0x3ec172?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x14f)+_0x4b7e8d+'\x22\x20class=\x22gnb-drawer-link\x20'+(_0x9687c?'active':'')+'\x22>아크패시브</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22javascript:void(0)\x22\x20class=\x22gnb-drawer-link\x20disabled\x22>캐릭터\x20정보</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-group-title\x22>편의\x20도구</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22gnb-drawer-links-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x47dbf8+_0x2c1a65(0x169)+(_0x55ecd5?_0x2c1a65(0x1c5):'')+_0x2c1a65(0x11d)+_0xae475e+_0x2c1a65(0x169)+(_0x1800d9?_0x2c1a65(0x1c5):'')+_0x2c1a65(0xad),_0x23414f='\x0a\x20\x20\x20\x20<section\x20class=\x22hero\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-inner\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-eyebrow\x22>LOA\x20VIEWER</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-title\x22>데이터로\x20보는<br><span\x20class=\x22hl\x22>로스트아크</span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-tags\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22hero-tag\x20blood\x22><span\x20class=\x22tag-dot\x22></span>잔혈컷\x20·\x20DPS</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22hero-tag\x20tier\x22><span\x20class=\x22tag-dot\x22></span>직각\x20티어</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22hero-tag\x20grid\x22><span\x20class=\x22tag-dot\x22></span>아크그리드</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22hero-right\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-rack\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grade-stamp\x20op\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>TOURNAMENT</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>OP</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>직각\x20토너먼트\x20진입\x20후<br>시즌\x20도장\x20표시</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grade-stamp\x20like-stamp\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>FAVORITE</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>호감</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>호감\x20토너먼트\x20진입\x20후<br>참여\x20도장\x20표시</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</section>\x0a\x20\x20\x20\x20<nav\x20class=\x22quickmenu\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22qm-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0xe215a9+'\x22\x20class=\x22qm-item\x22><div\x20class=\x22qm-icon\x22>💠</div><div\x20class=\x22qm-label\x22>레벨별<br>잔혈컷</div></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x2c56a8+_0x2c1a65(0x132)+_0xe74783+'\x22\x20class=\x22qm-item\x22><div\x20class=\x22qm-icon\x22><img\x20src=\x22https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_96.png\x22\x20alt=\x22\x22></div><div\x20class=\x22qm-label\x22>아크그리드</div></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x14de00+_0x2c1a65(0xdf)+_0xae475e+_0x2c1a65(0xd4)+_0x47dbf8+_0x2c1a65(0x7f),_0x199a4a='\x0a\x20\x20<div\x20style=\x22border-top:\x201px\x20solid\x20rgba(255,255,255,0.05);\x20margin-top:\x2020px;\x20padding-top:\x2015px;\x20padding-bottom:\x2025px;\x20font-size:\x2010px;\x20color:\x20#384967;\x20line-height:\x201.7;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20<div>©\x202026\x20LOA\x20VIEWER\x20·\x20All\x20Rights\x20Reserved.</div>\x0a\x20\x20\x20\x20<div>Not\x20associated\x20with\x20Smilegate\x20RPG\x20&\x20Smilegate\x20Stove.</div>\x0a\x20\x20\x20\x20<div>Data\x20based\x20on\x20Google\x20Sheets\x20·\x20Powered\x20by\x20Supabase\x20·\x20cloudtype\x20·\x20GitHub\x20Pages\x20·\x20GoatCounter</div>\x0a\x20\x20\x20\x20<div\x20style=\x22margin-top:\x206px;\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x5caefc+_0x2c1a65(0x95)+_0x5a9683+'\x22\x20style=\x22color:\x20#384967;\x20text-decoration:\x20none;\x20margin:\x200\x208px;\x20border-bottom:\x201px\x20solid\x20#233044;\x22>이용\x20가이드</a>\x20|\x0a\x20\x20\x20\x20\x20\x20<a\x20href=\x22'+_0x20ffac+_0x2c1a65(0x14c)+_0x58275d+'contact'+_0x1146ad+_0x2c1a65(0x19b);function _0xaba08c(){const _0x34be1b=_0x2c1a65;if(document[_0x34be1b(0xb2)](_0x34be1b(0x109)))return;const _0x2f9db1=document['createElement'](_0x34be1b(0x190));_0x2f9db1[_0x34be1b(0x1b7)]=_0x34be1b(0x19d),_0x2f9db1[_0x34be1b(0x128)]=_0x58275d+'js/inquiry.js',_0x2f9db1[_0x34be1b(0xae)](_0x34be1b(0x164),'true'),document[_0x34be1b(0x1cf)][_0x34be1b(0x185)](_0x2f9db1);}_0xaba08c();const _0x17dc75=_0x2c1a65(0xca);_0x47fcce['innerHTML']=_0x17dc75+_0x1e095b+(_0x4c926b&&!document[_0x2c1a65(0xb2)]('.hero')?_0x23414f:'');if(!document[_0x2c1a65(0xcc)]('stamp-modal-styles')){const _0x559384=document['createElement']('style');_0x559384['id']=_0x2c1a65(0xf6),_0x559384['textContent']=_0x2c1a65(0xe2),document[_0x2c1a65(0x171)]['appendChild'](_0x559384);}const _0x5bdb00=document['querySelector'](_0x2c1a65(0x14a))||document['querySelector']('.auction-page')||document[_0x2c1a65(0xb2)](_0x2c1a65(0xcb))||document['querySelector'](_0x2c1a65(0xe6))||document[_0x2c1a65(0x1cf)],_0x58172a=document[_0x2c1a65(0xcc)](_0x2c1a65(0x157));!_0x58172a&&_0x5bdb00[_0x2c1a65(0x180)](_0x2c1a65(0xde),_0x199a4a);const _0x3b49ca=document[_0x2c1a65(0xcc)](_0x2c1a65(0x181)),_0x201831=document[_0x2c1a65(0xcc)](_0x2c1a65(0x184)),_0x356712=document[_0x2c1a65(0xcc)](_0x2c1a65(0x108)),_0x523dae=document['getElementById'](_0x2c1a65(0x8e));function _0x253803(){const _0x523284=_0x2c1a65;document[_0x523284(0x1cf)][_0x523284(0x182)]['add'](_0x523284(0x1b2)),_0x3b49ca?.[_0x523284(0xae)](_0x523284(0x178),_0x523284(0x175)),_0x201831?.[_0x523284(0xae)](_0x523284(0xc4),_0x523284(0xc0));}function _0x189268(){const _0x111863=_0x2c1a65;document[_0x111863(0x1cf)][_0x111863(0x182)]['remove'](_0x111863(0x1b2)),_0x3b49ca?.['setAttribute'](_0x111863(0x178),_0x111863(0xc0)),_0x201831?.['setAttribute'](_0x111863(0xc4),_0x111863(0x175));}_0x3b49ca?.[_0x2c1a65(0x122)](_0x2c1a65(0x117),()=>{const _0x3c7aef=_0x2c1a65;document[_0x3c7aef(0x1cf)]['classList'][_0x3c7aef(0x89)](_0x3c7aef(0x1b2))?_0x189268():_0x253803();}),_0x356712?.['addEventListener'](_0x2c1a65(0x117),_0x189268),_0x523dae?.[_0x2c1a65(0x122)](_0x2c1a65(0x117),_0x189268),_0x201831?.[_0x2c1a65(0xb6)](_0x2c1a65(0xf0))[_0x2c1a65(0x106)](_0x122876=>{const _0x5c50dc=_0x2c1a65;_0x122876['addEventListener'](_0x5c50dc(0x117),_0x189268);}),window['addEventListener'](_0x2c1a65(0xe7),()=>{const _0x280be8=_0x2c1a65;if(window[_0x280be8(0xb3)]>0x2f8)_0x189268();});function _0x3a61f1(_0x331d36){const _0x58af76=_0x2c1a65;document[_0x58af76(0xcc)](_0x331d36)?.[_0x58af76(0x182)][_0x58af76(0x16c)](_0x58af76(0x1c5));}function _0xfeb42e(_0x3fc408){const _0x11432b=_0x2c1a65;document[_0x11432b(0xcc)](_0x3fc408)?.['classList'][_0x11432b(0x195)](_0x11432b(0x1c5));}function _0x19aef9(_0x56de0c,_0x569359){const _0x243b89=_0x2c1a65;let _0x3192bf='';const _0x345742=Math[_0x243b89(0x168)](..._0x1ef55b[_0x243b89(0x17e)](_0x1c516c=>_0x56de0c[_0x1c516c]||0x0),0x1);for(const _0x4f3fbe of _0x1ef55b){const _0x1ebefa=_0x38c1d4(_0x4f3fbe),_0x355b6c=_0x269423[_0x4f3fbe]||'',_0x1f6f9c=_0x56de0c[_0x4f3fbe]||0x0,_0x50a7b1=_0x569359>0x0?_0x1f6f9c/_0x569359*0x64:0x0,_0x581c53=_0x50a7b1[_0x243b89(0xab)](0x1),_0x4675a5=_0x345742>0x0?_0x1f6f9c/_0x345742*0x64:0x0,_0x4fadb6=_0x1f6f9c>0x0?Math[_0x243b89(0x168)](_0x4675a5,0x6):0x0,_0x3a247b=_0x75b2a6(_0x4f3fbe);_0x3192bf+=_0x243b89(0xed)+_0x1ebefa+_0x243b89(0xc6)+_0x4f3fbe+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22guide-desc-cell\x22>'+_0x355b6c+_0x243b89(0x1a3)+_0x581c53+_0x243b89(0x199)+_0x3a247b+'\x22\x20style=\x22width:'+_0x4fadb6+'%\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20';}return _0x243b89(0xea)+_0x3192bf+_0x243b89(0x1c3);}async function _0x289978(){const _0x4a6ba6=_0x2c1a65,_0x53132=document[_0x4a6ba6(0xcc)](_0x4a6ba6(0x159));if(!_0x53132)return;_0x53132[_0x4a6ba6(0x121)]='\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-guide-intro\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20토너먼트\x20결과에\x20따라\x20도장\x20등급이\x20부여됩니다.<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20SS\x20~\x20S\x20계열\x20등급은\x20메인\x20도장에\x20영구\x20유지됩니다.\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-modal-loading\x22>등급표를\x20불러오는\x20중...</div>\x0a\x20\x20\x20\x20';try{const _0x3a54f4=await fetch(_0x5a2360+'/rest/v1/rpc/get_grade_distribution',{'method':_0x4a6ba6(0xd3),'headers':{'Content-Type':_0x4a6ba6(0x1ac),'apikey':_0x2a11be,'Authorization':'Bearer\x20'+_0x2a11be},'body':JSON['stringify']({'p_type':'op','p_start_date':_0x187151})});if(!_0x3a54f4['ok'])throw new Error(_0x4a6ba6(0x9b)+_0x3a54f4[_0x4a6ba6(0x126)]);const _0x63584=await _0x3a54f4[_0x4a6ba6(0x10d)](),_0x1b8c8f={};_0x1ef55b[_0x4a6ba6(0x106)](_0x32a243=>{_0x1b8c8f[_0x32a243]=0x0;});let _0x3ed902=0x0;if(Array[_0x4a6ba6(0x113)](_0x63584))for(const _0x312393 of _0x63584){const _0x63d148=_0x51a424(_0x312393[_0x4a6ba6(0x188)]),_0x265d3c=parseInt(_0x312393[_0x4a6ba6(0x16e)],0xa)||0x0;_0x1ef55b[_0x4a6ba6(0x14d)](_0x63d148)&&(_0x1b8c8f[_0x63d148]=_0x265d3c,_0x3ed902+=_0x265d3c);}_0x53132[_0x4a6ba6(0x121)]=_0x4a6ba6(0x1b3)+_0x19aef9(_0x1b8c8f,_0x3ed902)+_0x4a6ba6(0xb0);}catch(_0x104e8d){console['error'](_0x4a6ba6(0x127),_0x104e8d),_0x53132['innerHTML']=_0x4a6ba6(0x134);}}function _0x3f5b8d(_0x7ddc12,_0x5d424e){const _0x165ce4=_0x2c1a65;if(!_0x7ddc12||!_0x5d424e)return![];const _0x3b7962=_0x51a424(_0x7ddc12),[_0x4f1640,_0x39ffc1,_0x551e50]=_0x5d424e[_0x165ce4(0x1bc)]('-')[_0x165ce4(0x17e)](Number),_0x3979f4=new Date(_0x4f1640,_0x39ffc1-0x1,_0x551e50,0x0,0x0,0x0,0x0),_0x4a3d8b=new Date();if(_0x3b7962['startsWith']('SS')){const _0x14fc62=new Date(_0x3979f4[_0x165ce4(0x124)](),_0x3979f4[_0x165ce4(0x99)]()+0x3,0x0,0x17,0x3b,0x3b,0x3e7);return _0x4a3d8b<=_0x14fc62;}if(_0x3b7962[_0x165ce4(0x158)]('S')){const _0x56a1a3=new Date(_0x3979f4['getFullYear'](),_0x3979f4[_0x165ce4(0x99)]()+0x1,0x0,0x17,0x3b,0x3b,0x3e7);return _0x4a3d8b<=_0x56a1a3;}return![];}async function _0x247055(){const _0x5b06ac=_0x2c1a65;if(!_0x4c926b)return;const _0x24f50b=document[_0x5b06ac(0xb2)]('.grade-stamp.op'),_0x54f858=document[_0x5b06ac(0xb2)](_0x5b06ac(0x1cc));if(!_0x24f50b&&!_0x54f858)return;const _0x3d6ded=_0x5b8936();if(!_0x3d6ded)return;try{const _0x4c080c=_0x5a2360+_0x5b06ac(0xd8)+_0x5b06ac(0x11f)+(_0x5b06ac(0xd0)+encodeURIComponent(_0x3d6ded))+_0x5b06ac(0x197),_0x426098=await fetch(_0x4c080c,{'headers':{'apikey':_0x2a11be,'Authorization':_0x5b06ac(0x15a)+_0x2a11be}});if(!_0x426098['ok'])return;const _0x8051d4=await _0x426098['json']();if(!Array[_0x5b06ac(0x113)](_0x8051d4)||!_0x8051d4[_0x5b06ac(0x143)])return;const _0x4c9631=_0x5a0b97(),_0xaf3891=_0x8051d4[_0x5b06ac(0xd5)](_0x1aa948=>_0x1aa948[_0x5b06ac(0xb4)]==='op'&&_0x1aa948[_0x5b06ac(0x1b1)]===_0x4c9631),_0x270418=_0x8051d4['find'](_0x484d75=>_0x484d75['tournament_type']===_0x5b06ac(0x1b5)&&_0x484d75[_0x5b06ac(0x1b1)]===_0x4c9631),_0x3008b4=_0x8051d4['filter'](_0x1515a2=>_0x1515a2['tournament_type']==='op'&&_0x3f05a7(_0x1515a2[_0x5b06ac(0x188)])&&_0x3f5b8d(_0x1515a2['grade'],_0x1515a2[_0x5b06ac(0x1b1)]))[_0x5b06ac(0xd2)]((_0x112153,_0x574dda)=>{const _0x7a85e1=_0x5b06ac,_0x20c85b=_0x481803(_0x112153['grade']),_0x5d91c3=_0x481803(_0x574dda[_0x7a85e1(0x188)]);if(_0x20c85b!==_0x5d91c3)return _0x20c85b-_0x5d91c3;return String(_0x574dda[_0x7a85e1(0x1b1)]||'')[_0x7a85e1(0xbc)](String(_0x112153[_0x7a85e1(0x1b1)]||''));})[0x0];if(_0x3008b4&&_0x24f50b){const _0x17cdb0=_0x51a424(_0x3008b4[_0x5b06ac(0x188)]);_0x24f50b[_0x5b06ac(0x121)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>BEST\x20GRADE</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>'+_0x17cdb0+_0x5b06ac(0xdd)+_0x3f02c8(_0x3008b4[_0x5b06ac(0x1b1)])+_0x5b06ac(0xc1)+_0x17cdb0+_0x5b06ac(0x13a),_0x4593cd(_0x24f50b,_0x17cdb0);}else{if(_0xaf3891&&_0x24f50b){const _0x36d320=_0x51a424(_0xaf3891[_0x5b06ac(0x188)])||'완료';_0x24f50b['innerHTML']=_0x5b06ac(0xc7)+_0x36d320+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>'+_0x3f02c8(_0xaf3891[_0x5b06ac(0x1b1)])+_0x5b06ac(0x1af),_0x4593cd(_0x24f50b,_0x36d320);}else _0x24f50b&&(_0x24f50b[_0x5b06ac(0x121)]=_0x5b06ac(0x152),_0x24f50b['style'][_0x5b06ac(0x1ca)]='',_0x24f50b[_0x5b06ac(0x8c)][_0x5b06ac(0x11a)]='',_0x24f50b['style'][_0x5b06ac(0x18a)]='');}if(_0x270418&&_0x54f858)_0x54f858[_0x5b06ac(0x121)]=_0x5b06ac(0x193)+_0x3f02c8(_0x270418[_0x5b06ac(0x1b1)])+_0x5b06ac(0xff),_0x54f858[_0x5b06ac(0x8c)][_0x5b06ac(0x1ca)]=_0x5b06ac(0x7c),_0x54f858[_0x5b06ac(0x8c)][_0x5b06ac(0x11a)]='rgba(255,120,170,.32)',_0x54f858[_0x5b06ac(0x8c)][_0x5b06ac(0x18a)]=_0x5b06ac(0x1c9);else _0x54f858&&(_0x54f858[_0x5b06ac(0x121)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-kicker\x22>FAVORITE</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-title\x22>호감</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stamp-desc\x22>호감\x20토너먼트\x20진입\x20후<br>참여\x20도장\x20표시</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x54f858[_0x5b06ac(0x8c)][_0x5b06ac(0x1ca)]='',_0x54f858['style'][_0x5b06ac(0x11a)]='',_0x54f858[_0x5b06ac(0x8c)][_0x5b06ac(0x18a)]='');}catch(_0x1b479e){console['error'](_0x5b06ac(0x13b),_0x1b479e);}}_0x247055(),document[_0x2c1a65(0xcc)](_0x2c1a65(0x100))?.[_0x2c1a65(0x122)](_0x2c1a65(0x117),async()=>{_0x3a61f1('stampGuideOverlay'),await _0x289978();}),document[_0x2c1a65(0xcc)](_0x2c1a65(0x145))?.['addEventListener'](_0x2c1a65(0x117),async()=>{_0x189268(),_0x3a61f1('stampGuideOverlay'),await _0x289978();}),document[_0x2c1a65(0xcc)]('stampGuideClose')?.[_0x2c1a65(0x122)](_0x2c1a65(0x117),()=>{const _0x59c527=_0x2c1a65;_0xfeb42e(_0x59c527(0xa4));}),document[_0x2c1a65(0xcc)](_0x2c1a65(0xa4))?.[_0x2c1a65(0x122)](_0x2c1a65(0x117),_0x2ffe12=>{const _0x469eb3=_0x2c1a65;if(_0x2ffe12[_0x469eb3(0xa6)]===_0x2ffe12[_0x469eb3(0x17c)])_0xfeb42e(_0x469eb3(0xa4));}),document[_0x2c1a65(0x122)]('keydown',_0xe39e46=>{const _0x56bb1c=_0x2c1a65;_0xe39e46[_0x56bb1c(0x14e)]===_0x56bb1c(0xf8)&&(_0x189268(),_0xfeb42e(_0x56bb1c(0xa4)));});}));if(!document[_0x321eeb(0xb2)]('script[src*=\x22adsbygoogle.js\x22]')){const autoAdsScript=document[_0x321eeb(0x1b8)](_0x321eeb(0x190));autoAdsScript['async']=!![],autoAdsScript[_0x321eeb(0x128)]=_0x321eeb(0x148),autoAdsScript[_0x321eeb(0x163)]='anonymous',document[_0x321eeb(0x171)][_0x321eeb(0x185)](autoAdsScript);}if(!document[_0x321eeb(0xb2)](_0x321eeb(0xf9))){const gptScript=document[_0x321eeb(0x1b8)](_0x321eeb(0x190));gptScript[_0x321eeb(0x119)]=!![],gptScript[_0x321eeb(0x128)]=_0x321eeb(0x92),document[_0x321eeb(0x171)][_0x321eeb(0x185)](gptScript);}function _0x56ac(_0x1382be,_0x4abb06){_0x1382be=_0x1382be-0x7b;const _0x2c6bb3=_0x2c6b();let _0x56ac42=_0x2c6bb3[_0x1382be];return _0x56ac42;}window['googletag']=window[_0x321eeb(0x114)]||{'cmd':[]},googletag[_0x321eeb(0xa3)][_0x321eeb(0x196)](function(){const _0x1cee79=_0x321eeb,_0x2084c6=/\/dps\/(serka|cathedral|belgardin|guardian)(\.html)?$/[_0x1cee79(0x173)](location[_0x1cee79(0xf2)]),_0x5bc5eb=_0x2084c6?[[0x2d8,0x5a],[0x140,0x64],[0x140,0x32]]:[[0x3ca,0xfa],[0x2d8,0x5a],[0x140,0x64],[0x140,0x32]],_0x2e4a81=googletag[_0x1cee79(0xe3)]()[_0x1cee79(0x91)]([0x400,0x0],_0x2084c6?[[0x2d8,0x5a]]:[[0x3ca,0xfa],[0x2d8,0x5a]])[_0x1cee79(0x91)]([0x0,0x0],[[0x140,0x64],[0x140,0x32]])[_0x1cee79(0x150)]();googletag[_0x1cee79(0x102)](_0x1cee79(0xef),_0x5bc5eb,_0x1cee79(0x1c6))[_0x1cee79(0x110)](_0x2e4a81)[_0x1cee79(0xbf)](googletag[_0x1cee79(0x1aa)]());const _0x39977a=googletag[_0x1cee79(0xe3)]()[_0x1cee79(0x91)]([0x400,0x0],[[0x12c,0x258],[0x12c,0xfa]])[_0x1cee79(0x91)]([0x0,0x0],[[0x12c,0xfa]])[_0x1cee79(0x150)]();googletag[_0x1cee79(0x102)](_0x1cee79(0x166),[[0x12c,0x258],[0x12c,0xfa]],_0x1cee79(0x8f))['defineSizeMapping'](_0x39977a)[_0x1cee79(0xbf)](googletag['pubads']());const _0x98630b=googletag[_0x1cee79(0xe3)]()['addSize']([0x400,0x0],[[0x2d8,0x5a]])[_0x1cee79(0x91)]([0x0,0x0],[[0x140,0x32]])['build']();googletag[_0x1cee79(0x102)](_0x1cee79(0x13d),[[0x2d8,0x5a],[0x140,0x32]],_0x1cee79(0x147))['defineSizeMapping'](_0x98630b)[_0x1cee79(0xbf)](googletag[_0x1cee79(0x1aa)]()),googletag[_0x1cee79(0x1aa)]()[_0x1cee79(0x1d1)](),googletag[_0x1cee79(0xf1)]();}),window['googletag']=window[_0x321eeb(0x114)]||{'cmd':[]},googletag[_0x321eeb(0xa3)][_0x321eeb(0x196)](function(){const _0x5de0bf=_0x321eeb;googletag[_0x5de0bf(0x1aa)]()['enableSingleRequest'](),googletag[_0x5de0bf(0xf1)]();const _0x12c769=0x7530,_0x3ef577={},_0x55f1a5=googletag[_0x5de0bf(0x1aa)]()[_0x5de0bf(0xb1)](),_0x5a772b=new Set(_0x55f1a5[_0x5de0bf(0x17e)](_0x1babdb=>_0x1babdb[_0x5de0bf(0x81)]()));function _0x25ab86(_0x56d4d5,_0x490c60){const _0x247c5d=_0x5de0bf,_0x4cf3d5=_0x56d4d5[_0x247c5d(0x81)]();if(_0x3ef577[_0x4cf3d5])return;const _0x94f589=document[_0x247c5d(0x1b8)](_0x247c5d(0x8a));_0x94f589['className']=_0x247c5d(0x98),_0x94f589[_0x247c5d(0x8c)][_0x247c5d(0x146)]=_0x247c5d(0x1a9),_0x94f589[_0x247c5d(0x8c)][_0x247c5d(0x9c)]=_0x247c5d(0x10b),_0x94f589[_0x247c5d(0x8c)][_0x247c5d(0x7b)]='0',_0x490c60[_0x247c5d(0xf7)][_0x247c5d(0xa1)](_0x94f589,_0x490c60),_0x94f589[_0x247c5d(0x185)](_0x490c60);const _0x3920fa=document[_0x247c5d(0x1b8)](_0x247c5d(0x8a));_0x3920fa[_0x247c5d(0x19a)]=_0x247c5d(0xc8),_0x94f589[_0x247c5d(0x185)](_0x3920fa),_0x3ef577[_0x4cf3d5]={'slot':_0x56d4d5,'visible':![],'bar':_0x3920fa},_0x6eb0db[_0x247c5d(0x12b)](_0x490c60),_0x5a772b[_0x247c5d(0xf3)](_0x4cf3d5);}_0x55f1a5[_0x5de0bf(0x106)](_0x23fcd2=>{const _0x3a8a01=_0x5de0bf,_0x740941=_0x23fcd2[_0x3a8a01(0x81)](),_0x1acbe1=document[_0x3a8a01(0xcc)](_0x740941);if(_0x1acbe1)_0x25ab86(_0x23fcd2,_0x1acbe1);});if(_0x5a772b[_0x5de0bf(0x1a0)]>0x0){const _0x5e90a4=new MutationObserver(()=>{const _0x2ee15b=_0x5de0bf;_0x55f1a5[_0x2ee15b(0x106)](_0x277074=>{const _0x50a8a5=_0x2ee15b,_0x2fb39a=_0x277074[_0x50a8a5(0x81)]();if(!_0x5a772b[_0x50a8a5(0x1ad)](_0x2fb39a))return;const _0xceace9=document[_0x50a8a5(0xcc)](_0x2fb39a);if(_0xceace9)_0x25ab86(_0x277074,_0xceace9);});if(_0x5a772b[_0x2ee15b(0x1a0)]===0x0)_0x5e90a4[_0x2ee15b(0xd7)]();});_0x5e90a4[_0x5de0bf(0x12b)](document[_0x5de0bf(0x1cf)],{'childList':!![],'subtree':!![]});}function _0x328c85(_0x5d163b){const _0x893aa5=_0x5de0bf;_0x5d163b['style'][_0x893aa5(0x187)]=_0x893aa5(0xd6),_0x5d163b[_0x893aa5(0x8c)][_0x893aa5(0x93)]='0%',void _0x5d163b[_0x893aa5(0x1b9)],_0x5d163b[_0x893aa5(0x8c)][_0x893aa5(0x187)]=_0x893aa5(0x1c0)+_0x12c769/0x3e8+'s\x20linear',_0x5d163b[_0x893aa5(0x8c)][_0x893aa5(0x93)]=_0x893aa5(0x10b);}const _0x6eb0db=new IntersectionObserver(_0x25d243=>{const _0x601ed3=_0x5de0bf;_0x25d243[_0x601ed3(0x106)](_0x1e3f69=>{const _0x5c3765=_0x601ed3,_0x23f968=_0x1e3f69['target']['id'];_0x3ef577[_0x23f968]&&(_0x3ef577[_0x23f968][_0x5c3765(0x16d)]=_0x1e3f69[_0x5c3765(0xd9)],_0x1e3f69[_0x5c3765(0xd9)]?_0x328c85(_0x3ef577[_0x23f968]['bar']):(_0x3ef577[_0x23f968][_0x5c3765(0x18e)][_0x5c3765(0x8c)][_0x5c3765(0x187)]=_0x5c3765(0xd6),_0x3ef577[_0x23f968][_0x5c3765(0x18e)][_0x5c3765(0x8c)][_0x5c3765(0x93)]='0%'));});},{'threshold':0.5});googletag['pubads']()[_0x5de0bf(0x122)](_0x5de0bf(0xac),_0x4bca6a=>{const _0xe37fdd=_0x5de0bf,_0x28aa5c=_0x4bca6a[_0xe37fdd(0xfa)][_0xe37fdd(0x81)](),_0x3134be=_0x3ef577[_0x28aa5c];_0x3134be&&_0x3134be[_0xe37fdd(0x16d)]&&_0x328c85(_0x3134be['bar']);}),setInterval(()=>{const _0x39d355=_0x5de0bf,_0x2c8188=Object[_0x39d355(0x86)](_0x3ef577)['filter'](_0x2b9b41=>_0x2b9b41[_0x39d355(0x16d)]);_0x2c8188[_0x39d355(0x143)]>0x0&&(googletag[_0x39d355(0x1aa)]()[_0x39d355(0x96)](_0x2c8188[_0x39d355(0x17e)](_0x258d44=>_0x258d44[_0x39d355(0xfa)])),_0x2c8188[_0x39d355(0x106)](_0x4afadd=>_0x328c85(_0x4afadd[_0x39d355(0x18e)])));},_0x12c769);}),document[_0x321eeb(0x122)](_0x321eeb(0x179),()=>{const _0x49a3a2=_0x321eeb,_0x54d738=document[_0x49a3a2(0xb2)]('.tournament-hero,\x20.winrate-hero,\x20.tier-hero,\x20.ranking-hero,\x20.history-hero,\x20.classwin-hero,\x20.synergy-hero,\x20.hero-arc-grid,\x20.hero-arc-passive,\x20\x20.market-hero');if(_0x54d738&&!document['getElementById'](_0x49a3a2(0xa2))){const _0x2ef0c8=document[_0x49a3a2(0x1b8)]('div');_0x2ef0c8['id']=_0x49a3a2(0xa2),_0x2ef0c8['style'][_0x49a3a2(0x1b6)]=_0x49a3a2(0xbb),_0x2ef0c8[_0x49a3a2(0x121)]=_0x49a3a2(0x9f),_0x54d738[_0x49a3a2(0xf7)][_0x49a3a2(0xa1)](_0x2ef0c8,_0x54d738[_0x49a3a2(0xa8)]);const _0x402258=document[_0x49a3a2(0x1b8)](_0x49a3a2(0x8a));_0x402258[_0x49a3a2(0x19a)]='divider\x20common-divider-bottom',_0x402258[_0x49a3a2(0x8c)][_0x49a3a2(0x1b6)]=_0x49a3a2(0x123),_0x402258['innerHTML']=_0x49a3a2(0x83),_0x2ef0c8['parentNode']['insertBefore'](_0x402258,_0x2ef0c8[_0x49a3a2(0xa8)]);try{googletag[_0x49a3a2(0xa3)][_0x49a3a2(0x196)](function(){const _0x4d522a=_0x49a3a2;googletag[_0x4d522a(0x146)](_0x4d522a(0x1c6));});}catch(_0x13d932){}}}),document[_0x321eeb(0x122)](_0x321eeb(0x179),()=>{const _0x494ac4=_0x321eeb,_0x18548b=document[_0x494ac4(0xb2)]('.common-footer')||document[_0x494ac4(0xb2)](_0x494ac4(0x160))||document[_0x494ac4(0xb2)](_0x494ac4(0xa9));if(_0x18548b&&!document[_0x494ac4(0xcc)](_0x494ac4(0x18d))){const _0x2ec744=document[_0x494ac4(0x1b8)](_0x494ac4(0x8a));_0x2ec744['id']='bottom-ad-wrapper',_0x2ec744[_0x494ac4(0x8c)][_0x494ac4(0x1b6)]='width:100%;max-width:1200px;display:flex;justify-content:center;align-items:center;margin:20px\x20auto\x2014px;min-height:90px;',_0x2ec744[_0x494ac4(0x121)]=_0x494ac4(0x13c),_0x18548b[_0x494ac4(0x186)](_0x2ec744);try{googletag[_0x494ac4(0xa3)]['push'](function(){const _0x1a5d95=_0x494ac4;googletag[_0x1a5d95(0x146)](_0x1a5d95(0x147));});}catch(_0x3a9699){}}});
+// console.log("common.js loaded");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const shell = document.getElementById("common-shell");
+  if (!shell) return;
+
+  const rawPath = location.pathname;
+
+  const isLocalhost =
+    location.hostname === "127.0.0.1" ||
+    location.hostname === "localhost";
+
+  function cleanPathname(pathname) {
+    if (pathname === "/index.html" || pathname === "/index") return "/";
+    if (pathname.endsWith("/index.html")) return pathname.slice(0, -10) + "/";
+    if (pathname.endsWith("/index")) return pathname.slice(0, -5) + "/";
+   if (pathname.endsWith(".html")) return pathname.slice(0, -5);
+    return pathname;
+  }
+
+  const path = isLocalhost ? rawPath : cleanPathname(rawPath);
+
+  if (!isLocalhost && path !== rawPath) {
+    history.replaceState(null, "", path + location.search + location.hash);
+  }
+
+  const commonScript =
+    Array.from(document.scripts).find((s) => s.src.includes("/js/common.js")) ||
+    document.currentScript;
+
+  const siteRoot =
+    commonScript && commonScript.src.includes("/js/common.js")
+      ? commonScript.src.split("/js/common.js")[0] + "/"
+      : (location.origin ? location.origin + "/" : "./");
+
+  const ext = isLocalhost ? ".html" : "";
+
+  function matchesPath(target) {
+    if (target === "/") {
+      return path === "/" || path === "/index" || path === "/index.html";
+    }
+    return path === target || path === `${target}/` || path === `${target}.html`;
+  }
+
+  const isDps = path.includes("/dps/");
+  const isRank = matchesPath("/rank");
+  const isTools = path.includes("/tools/");
+  const isClass = path.includes("/class/");
+  const isRankDir = path.includes("/rank/");
+  const isStandaloneDpsPage = document.body.classList.contains("standalone-dps-page");
+
+  const isHome = !isDps && !isRank && !isTools && matchesPath("/");
+
+  const isLevelPage = matchesPath("/dps/level");
+  const isRaidLevelPage = matchesPath("/dps/raid");
+  const isSerkaPage = matchesPath("/dps/serka");
+  const isCathedralPage = matchesPath("/dps/cathedral");
+  const isBelgardinPage = matchesPath("/dps/belgardin");
+  const isGuardianPage = matchesPath("/dps/guardian");
+
+  const isSynergyPage = matchesPath("/class/synergy");
+  const isArcGridPage = matchesPath("/class/arc-grid");
+  const isArkPassivePage = matchesPath("/class/arkPassive");
+
+  const isAuctionPage = matchesPath("/tools/auction");
+  const isMarketPage = matchesPath("/tools/market");
+
+  const isRankingPage = matchesPath("/rank/ranking");
+  const isTierPage = matchesPath("/rank/tier");
+  const isWinratePage = matchesPath("/rank/winrate");
+  const isClassWinPage = matchesPath("/rank/class-win");
+  const isHistoryPage = matchesPath("/rank/history");
+
+  const isInfoPage =
+    matchesPath("/about") || matchesPath("/guide") || matchesPath("/privacy");
+
+  const isSimpleGroupActive = isLevelPage || isRaidLevelPage;
+  const isPrecisionGroupActive = isSerkaPage || isCathedralPage || isBelgardinPage || isGuardianPage;
+  const isClassGroupActive = isSynergyPage || isArcGridPage || isArkPassivePage;
+  const isToolsGroupActive = isAuctionPage || isMarketPage;
+
+  const isRankGroupActive =
+    isRank || isRankingPage || isTierPage || isWinratePage || isClassWinPage || isHistoryPage || isRankDir;
+
+  const homeHref = isLocalhost ? `${siteRoot}index.html` : `${siteRoot}`;
+  const rankHref = `${siteRoot}rank${ext}`;
+  const levelHref = `${siteRoot}dps/level${ext}`;
+  const raidHref = `${siteRoot}dps/raid${ext}`;
+  const serkaHref = `${siteRoot}dps/serka${ext}`;
+  const cathedralHref = `${siteRoot}dps/cathedral${ext}`;
+  const belgardinHref = `${siteRoot}dps/belgardin${ext}`;
+  
+
+
+
+
+// ===== 가디언 토벌 이번주 로테이션 계산 =====
+const HG_BOSSES = [
+  "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스",
+  "드렉탈라스","소나벨","베스칼","쿤겔라니움","하누마탄",
+  "데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
+];
+const HG_ANCHOR = new Date(2026, 6, 29, 10, 0, 0);
+const HG_ANCHOR_IDX = 13;
+function getHgWeekBoss() {
+  const now = new Date();
+  const diff = now.getTime() - HG_ANCHOR.getTime();
+  const weeks = Math.floor(diff / (7 * 24 * 60 * 60 * 1000));
+  const idx = ((HG_ANCHOR_IDX + weeks) % HG_BOSSES.length + HG_BOSSES.length) % HG_BOSSES.length;
+  return HG_BOSSES[idx];
+}
+const hgWeekBoss = getHgWeekBoss();
+const guardianHref = `${siteRoot}dps/guardian${ext}`;
+
+
+
+
+
+
+  const auctionHref = `${siteRoot}tools/auction${ext}`;
+  const marketHref = `${siteRoot}tools/market${ext}`;
+  const synergyHref = `${siteRoot}class/synergy${ext}`;
+  const arcGridHref = `${siteRoot}class/arc-grid${ext}`;
+  const arkPassiveHref = `${siteRoot}class/arkPassive${ext}`;
+  const rankingHref = `${siteRoot}rank/ranking${ext}`;
+  const tierHref = `${siteRoot}rank/tier${ext}`;
+  const winrateHref = `${siteRoot}rank/winrate${ext}`;
+  const classWinHref = `${siteRoot}rank/class-win${ext}`;
+  const historyHref = `${siteRoot}rank/history${ext}`;
+  const aboutHref = `${siteRoot}about${ext}`;
+  const guideHref = `${siteRoot}guide${ext}`;
+  const privacyHref = `${siteRoot}privacy${ext}`;
+
+  const showHero = isHome && !isStandaloneDpsPage;
+
+  // ===== 공용 상수 =====
+  const SUPABASE_URL = "https://khszfukekudyripouifm.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb";
+  const GRADE_DIST_START_DATE = "2026-04-07";
+
+  const GRADE_ORDER = [
+    "SS+", "SS", "SS-",
+    "S+", "S", "S-",
+    "A+", "A", "A-",
+    "B+", "B", "B-",
+    "C+", "C", "C-",
+    "D+", "D", "D-",
+    "F+", "F", "F-"
+  ];
+
+  const PERSISTENT_GRADES = new Set([
+    "SS+", "SS", "SS-",
+    "S+", "S", "S-"
+  ]);
+
+  const GRADE_DESC = {
+    "SS+": "메타를 완전히 꿰뚫은 선택",
+    "SS":  "우승권 흐름을 정확히 읽은 선택",
+    "SS-": "최상위권 바로 아래의 고수픽",
+    "S+":  "대세를 아주 잘 짚은 선택",
+    "S":   "강한 직업을 잘 골라낸 선택",
+    "S-":  "상위권 감각이 살아있는 선택",
+    "A+":  "정석에 가까운 안정픽",
+    "A":   "무난하면서도 꽤 좋은 선택",
+    "A-":  "괜찮지만 임팩트는 살짝 부족",
+    "B+":  "감은 있었지만 폭발력은 약함",
+    "B":   "평균 이상 정도의 무난한 선택",
+    "B-":  "나쁘진 않지만 살짝 아쉬운 선택",
+    "C+":  "조금 비껴간 선택",
+    "C":   "평범하거나 애매한 선택",
+    "C-":  "의도는 있었지만 결과는 아쉬움",
+    "D+":  "의외성은 있었지만 효율은 낮음",
+    "D":   "메타와 거리가 있는 선택",
+    "D-":  "이번 흐름과는 잘 안 맞는 선택",
+    "F+":  "낭만은 있었던 선택",
+    "F":   "취향이 메타를 앞선 선택",
+    "F-":  "로망에 모든 걸 건 선택"
+  };
+
+  function getVisitorKey() {
+    return localStorage.getItem("loa_tournament_visitor_key");
+  }
+
+  function getDateKey() {
+    const n = new Date();
+    return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`;
+  }
+
+  function formatStampDate(dk) {
+    if (!dk) return "";
+    const [y, m, d] = dk.split("-");
+    return `${y.slice(2)}.${m}.${d}`;
+  }
+
+  function normalizeFullGrade(grade) {
+    return String(grade || "").trim().toUpperCase().replace(/\s+/g, "").replace(/등급/g, "");
+  }
+
+  function getGradeRank(grade) {
+    return GRADE_ORDER.indexOf(normalizeFullGrade(grade));
+  }
+
+  function isPersistentGrade(grade) {
+    return PERSISTENT_GRADES.has(normalizeFullGrade(grade));
+  }
+
+  function getGradeBarClass(grade) {
+    const g = normalizeFullGrade(grade);
+    if (g.startsWith("SS")) return "ss";
+    if (g.startsWith("S")) return "s";
+    if (g.startsWith("A")) return "a";
+    if (g.startsWith("B")) return "b";
+    if (g.startsWith("C")) return "c";
+    if (g.startsWith("D")) return "d";
+    return "f";
+  }
+
+  function getGradeRowClass(grade) {
+    const g = normalizeFullGrade(grade);
+    if (g.startsWith("SS")) return "gr-ss";
+    if (g.startsWith("S")) return "gr-s";
+    if (g.startsWith("A")) return "gr-a";
+    if (g.startsWith("B")) return "gr-b";
+    if (g.startsWith("C")) return "gr-c";
+    if (g.startsWith("D")) return "gr-d";
+    return "gr-f";
+  }
+
+  function paintOpCardByGrade(card, grade) {
+    const g = normalizeFullGrade(grade);
+    if (g.startsWith("SS")) {
+      card.style.background = "linear-gradient(180deg, rgba(140,110,255,.16), rgba(255,255,255,.02))";
+      card.style.borderColor = "rgba(160,130,255,.42)";
+      card.style.boxShadow = "0 0 0 1px rgba(160,130,255,.10) inset, 0 0 18px rgba(140,110,255,.14)";
+      return;
+    }
+    if (g.startsWith("S")) {
+      card.style.background = "linear-gradient(180deg, rgba(255,215,0,.12), rgba(255,255,255,.02))";
+      card.style.borderColor = "rgba(255,215,0,.38)";
+      card.style.boxShadow = "0 0 0 1px rgba(255,215,0,.10) inset, 0 0 18px rgba(255,215,0,.10)";
+      return;
+    }
+    if (g.startsWith("A")) {
+      card.style.background = "linear-gradient(180deg, rgba(77,171,247,.12), rgba(255,255,255,.02))";
+      card.style.borderColor = "rgba(77,171,247,.34)";
+      card.style.boxShadow = "0 0 0 1px rgba(77,171,247,.08) inset, 0 0 18px rgba(77,171,247,.10)";
+      return;
+    }
+    if (g.startsWith("B")) {
+      card.style.background = "linear-gradient(180deg, rgba(81,207,102,.12), rgba(255,255,255,.02))";
+      card.style.borderColor = "rgba(81,207,102,.32)";
+      card.style.boxShadow = "0 0 0 1px rgba(81,207,102,.08) inset, 0 0 18px rgba(81,207,102,.10)";
+      return;
+    }
+    if (g.startsWith("C")) {
+      card.style.background = "linear-gradient(180deg, rgba(134,142,150,.12), rgba(255,255,255,.02))";
+      card.style.borderColor = "rgba(134,142,150,.30)";
+      card.style.boxShadow = "0 0 0 1px rgba(134,142,150,.08) inset, 0 0 18px rgba(134,142,150,.10)";
+      return;
+    }
+    if (g.startsWith("D")) {
+      card.style.background = "linear-gradient(180deg, rgba(255,146,43,.12), rgba(255,255,255,.02))";
+      card.style.borderColor = "rgba(255,146,43,.30)";
+      card.style.boxShadow = "0 0 0 1px rgba(255,146,43,.08) inset, 0 0 18px rgba(255,146,43,.10)";
+      return;
+    }
+    card.style.background = "linear-gradient(180deg, rgba(255,107,107,.12), rgba(255,255,255,.02))";
+    card.style.borderColor = "rgba(255,107,107,.30)";
+    card.style.boxShadow = "0 0 0 1px rgba(255,107,107,.08) inset, 0 0 18px rgba(255,107,107,.10)";
+  }
+
+  // ===== GNB =====
+  const gnbHtml = `
+    <header class="gnb">
+      <div class="gnb-shell">
+        <div class="gnb-bar">
+          <button class="gnb-hamburger" id="gnbHamburgerBtn" type="button" aria-label="메뉴 열기" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="gnb-brand">
+            <a href="${homeHref}" class="gnb-brand-name"><img src="https://loaviewer.github.io/favicon.ico" alt="로아뷰" class="gnb-favicon"> 로아뷰<span class="gnb-brand-sub"> · LOA VIEWER</span></a>
+          </div>
+          <nav class="gnb-nav">
+            <ul class="gnb-nav-list">
+              <li class="gnb-nav-item">
+                <a href="${homeHref}" class="gnb-link ${(isHome || isInfoPage) ? "active" : ""}">홈</a>
+              </li>
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isSimpleGroupActive ? "active" : ""}" type="button">잔혈컷 간편보기 <span class="gnb-caret">▼</span></button>
+                <div class="gnb-dropdown">
+                  <a href="${levelHref}" class="gnb-dropdown-link ${isLevelPage ? "active" : ""}">레벨별 보기</a>
+                  <a href="${raidHref}" class="gnb-dropdown-link ${isRaidLevelPage ? "active" : ""}">레이드별 보기</a>
+                </div>
+              </li>
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isPrecisionGroupActive ? "active" : ""}" type="button">잔혈컷 정밀계산 <span class="gnb-caret">▼</span></button>
+                <div class="gnb-dropdown">
+                  <a href="${serkaHref}" class="gnb-dropdown-link ${isSerkaPage ? "active" : ""}">세르카</a>
+                  <a href="${cathedralHref}" class="gnb-dropdown-link ${isCathedralPage ? "active" : ""}">지평의 성당</a>
+                  <a href="${belgardinHref}" class="gnb-dropdown-link ${isBelgardinPage ? "active" : ""}">벨가르딘</a>
+                  <a href="${guardianHref}" class="gnb-dropdown-link ${isGuardianPage ? "active" : ""}">가디언 토벌</a>
+                </div>
+              </li>
+             
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isRankGroupActive ? "active" : ""}" type="button">직각 토너먼트 <span class="gnb-caret">▼</span></button>
+                <div class="gnb-dropdown">
+                  <a href="${rankHref}" class="gnb-dropdown-link ${isRank ? "active" : ""}">토너먼트 시작하기</a>
+                  <a href="${rankingHref}" class="gnb-dropdown-link ${isRankingPage ? "active" : ""}">직각 랭킹보드</a>
+                  <a href="${tierHref}" class="gnb-dropdown-link ${isTierPage ? "active" : ""}">티어표 (최근 10일)</a>
+                  <a href="${winrateHref}" class="gnb-dropdown-link ${isWinratePage ? "active" : ""}">밸런스 승률표</a>
+                  <a href="${classWinHref}" class="gnb-dropdown-link ${isClassWinPage ? "active" : ""}">클래스별 우승자 분석</a>
+                  <a href="${historyHref}" class="gnb-dropdown-link ${isHistoryPage ? "active" : ""}">기간내 승률 변화 그래프</a>
+                </div>
+              </li>
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isClassGroupActive ? "active" : ""}" type="button">클래스 정보 <span class="gnb-caret">▼</span></button>
+                <div class="gnb-dropdown">
+                  <a href="${synergyHref}" class="gnb-dropdown-link ${isSynergyPage ? "active" : ""}">시너지표</a>
+                  <a href="${arcGridHref}" class="gnb-dropdown-link ${isArcGridPage ? "active" : ""}">아크그리드</a>
+                  <a href="${arkPassiveHref}" class="gnb-dropdown-link ${isArkPassivePage ? "active" : ""}">아크패시브</a>
+                  <a href="javascript:void(0)" class="gnb-dropdown-link disabled">캐릭터 정보 (준비중)</a>
+                </div>
+              </li>
+              <li class="gnb-nav-item has-submenu">
+                <button class="gnb-trigger ${isToolsGroupActive ? "active" : ""}" type="button">편의 도구 <span class="gnb-caret">▼</span></button>
+                <div class="gnb-dropdown">
+                  <a href="${auctionHref}" class="gnb-dropdown-link ${isAuctionPage ? "active" : ""}">경매 계산기</a>
+                  <a href="${marketHref}" class="gnb-dropdown-link ${isMarketPage ? "active" : ""}">시세 정보</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <div class="gnb-cta-group">
+            <button class="gnb-cta-sub" id="btnStampGuide" type="button">🏅 도장 안내</button>
+            <span class="gnb-cta-divider">|</span>
+            <a href="${rankHref}" class="gnb-cta op">🏆 OP 토너먼트 참여</a>
+            <a href="${rankHref}" class="gnb-cta like">💗 호감 토너먼트 참여</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="divider common-divider-top"><hr class="divider-line"></div>
+
+    <div class="gnb-drawer-overlay" id="gnbDrawerOverlay"></div>
+    <aside class="gnb-drawer" id="gnbDrawer" aria-hidden="true">
+      <div class="gnb-drawer-header">
+        <a href="${homeHref}" class="gnb-drawer-brand"><img src="https://loaviewer.github.io/favicon.ico" alt="로아뷰" class="gnb-favicon"> 로아뷰 <span class="gnb-drawer-brand-home ${(isHome || isInfoPage) ? "active" : ""}">· 홈으로</span></a>
+        <button class="gnb-drawer-close" id="gnbDrawerClose" type="button" aria-label="메뉴 닫기">✕</button>
+      </div>
+      <nav class="gnb-drawer-nav">
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">잔혈컷 간편보기</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${levelHref}" class="gnb-drawer-link ${isLevelPage ? "active" : ""}">레벨별 보기</a>
+            <a href="${raidHref}" class="gnb-drawer-link ${isRaidLevelPage ? "active" : ""}">레이드별 보기</a>
+          </div>
+        </div>
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">잔혈컷 정밀계산</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${serkaHref}" class="gnb-drawer-link ${isSerkaPage ? "active" : ""}">세르카</a>
+            <a href="${cathedralHref}" class="gnb-drawer-link ${isCathedralPage ? "active" : ""}">지평의 성당</a>
+            <a href="${belgardinHref}" class="gnb-drawer-link ${isBelgardinPage ? "active" : ""}">벨가르딘</a>
+            <a href="${guardianHref}" class="gnb-drawer-link ${isGuardianPage ? "active" : ""}">가디언 토벌</a>
+          </div>
+        </div>
+       
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">직각 토너먼트</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${rankHref}" class="gnb-drawer-link ${isRank ? "active" : ""}">토너먼트 시작하기</a>
+            <a href="${rankingHref}" class="gnb-drawer-link ${isRankingPage ? "active" : ""}">직각 랭킹보드</a>
+            <a href="${tierHref}" class="gnb-drawer-link ${isTierPage ? "active" : ""}">티어표 (최근 10일)</a>
+            <a href="${winrateHref}" class="gnb-drawer-link ${isWinratePage ? "active" : ""}">밸런스 승률표</a>
+            <a href="${classWinHref}" class="gnb-drawer-link ${isClassWinPage ? "active" : ""}">클래스별 우승자 분석</a>
+            <a href="${historyHref}" class="gnb-drawer-link ${isHistoryPage ? "active" : ""}">승률 변화 그래프</a>
+          </div>
+        </div>
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">클래스 정보</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${synergyHref}" class="gnb-drawer-link ${isSynergyPage ? "active" : ""}">시너지표</a>
+            <a href="${arcGridHref}" class="gnb-drawer-link ${isArcGridPage ? "active" : ""}">아크그리드</a>
+            <a href="${arkPassiveHref}" class="gnb-drawer-link ${isArkPassivePage ? "active" : ""}">아크패시브</a>
+            <a href="javascript:void(0)" class="gnb-drawer-link disabled">캐릭터 정보</a>
+          </div>
+        </div>
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">편의 도구</div>
+          <div class="gnb-drawer-links-grid">
+            <a href="${auctionHref}" class="gnb-drawer-link ${isAuctionPage ? "active" : ""}">경매 계산기</a>
+            <a href="${marketHref}" class="gnb-drawer-link ${isMarketPage ? "active" : ""}">시세 정보</a>
+          </div>
+        </div>
+        <div class="gnb-drawer-group">
+          <div class="gnb-drawer-group-title">도장 정보</div>
+          <div class="gnb-drawer-links-grid">
+            <button class="gnb-drawer-link" id="btnStampGuideMobile" type="button">🏅 도장 안내</button>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- 도장 안내 통합 모달 -->
+    <div class="stamp-modal-overlay" id="stampGuideOverlay">
+      <div class="stamp-modal-combined" role="dialog" aria-modal="true" aria-labelledby="stampGuideTitle">
+        <div class="stamp-modal-header">
+          <h3 id="stampGuideTitle">🏅 도장 안내</h3>
+          <button class="stamp-modal-close" id="stampGuideClose" type="button" aria-label="닫기">✕</button>
+        </div>
+        <div class="stamp-modal-body" id="stampGuideBody">
+          <div class="stamp-modal-loading">불러오는 중...</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // ===== 히어로 =====
+  const heroExtraHtml = `
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-eyebrow">LOA VIEWER</div>
+         <div class="hero-title">데이터로 보는<br><span class="hl">로스트아크</span></div>
+          <div class="hero-tags">
+            <span class="hero-tag blood"><span class="tag-dot"></span>잔혈컷 · DPS</span>
+            <span class="hero-tag tier"><span class="tag-dot"></span>직각 티어</span>
+            <span class="hero-tag grid"><span class="tag-dot"></span>아크그리드</span>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="stamp-rack">
+            <div class="grade-stamp op">
+              <div class="stamp-kicker">TOURNAMENT</div>
+              <div class="stamp-title">OP</div>
+              <div class="stamp-desc">직각 토너먼트 진입 후<br>시즌 도장 표시</div>
+            </div>
+            <div class="grade-stamp like-stamp">
+              <div class="stamp-kicker">FAVORITE</div>
+              <div class="stamp-title">호감</div>
+              <div class="stamp-desc">호감 토너먼트 진입 후<br>참여 도장 표시</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <nav class="quickmenu">
+      <div class="qm-row">
+        <a href="${levelHref}" class="qm-item"><div class="qm-icon">💠</div><div class="qm-label">레벨별<br>잔혈컷</div></a>
+        <a href="${belgardinHref}" class="qm-item"><div class="qm-icon">🧛</div><div class="qm-label">정밀 계산</div></a>
+        <a href="${arcGridHref}" class="qm-item"><div class="qm-icon"><img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_13_96.png" alt=""></div><div class="qm-label">아크그리드</div></a>
+        <a href="${rankHref}" class="qm-item"><div class="qm-icon">🏆</div><div class="qm-label">직각<br>토너먼트</div></a>
+        <a href="${marketHref}" class="qm-item"><div class="qm-icon">💹</div><div class="qm-label">시세정보</div></a>
+        <a href="${auctionHref}" class="qm-item"><div class="qm-icon">🔨</div><div class="qm-label">경매계산기</div></a>
+      </div>
+    </nav>
+    <div class="divider common-divider-bottom" style="margin-top:20px;"><hr class="divider-line"></div>
+  `;
+
+ const footerHtml = `
+  <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; padding-top: 15px; padding-bottom: 25px; font-size: 10px; color: #384967; line-height: 1.7; text-align: center;">
+    <div>© 2026 LOA VIEWER · All Rights Reserved.</div>
+    <div>Not associated with Smilegate RPG & Smilegate Stove.</div>
+    <div>Data based on Google Sheets · Powered by Supabase · cloudtype · GitHub Pages · GoatCounter</div>
+    <div style="margin-top: 6px; font-weight: bold;">
+      <a href="${aboutHref}" style="color: #384967; text-decoration: none; margin-right: 8px; border-bottom: 1px solid #233044;">사이트 소개</a> |
+      <a href="${guideHref}" style="color: #384967; text-decoration: none; margin: 0 8px; border-bottom: 1px solid #233044;">이용 가이드</a> |
+      <a href="${privacyHref}" style="color: #384967; text-decoration: none; margin: 0 8px; border-bottom: 1px solid #233044;">개인정보처리방침</a> |
+      <a href="#" data-open-inquiry style="color: #384967; text-decoration: none; margin: 0 8px; border-bottom: 1px solid #233044;">간편문의</a> |
+<a href="${siteRoot}contact${ext}" style="color: #384967; text-decoration: none; margin: 0 8px; border-bottom: 1px solid #233044;">문의 페이지</a> |
+<a href="mailto:dnjswjd10041@gmail.com" style="color: #384967; text-decoration: none; margin-left: 8px; border-bottom: 1px solid #233044;">이메일 문의</a>
+    </div>
+  </div>
+`;
+
+function loadInquiryScript() {
+  if (document.querySelector('script[data-inquiry-script="true"]')) return;
+
+  const script = document.createElement("script");
+  script.type = "module";
+  script.src = `${siteRoot}js/inquiry.js`;
+  script.setAttribute("data-inquiry-script", "true");
+  document.body.appendChild(script);
+}
+
+loadInquiryScript();
+
+
+
+  const auroraHtml = `<div class="common-aurora"></div>`;
+
+  shell.innerHTML = auroraHtml + gnbHtml + (showHero && !document.querySelector(".hero") ? heroExtraHtml : "");
+
+  // ===== 스타일 =====
+  if (!document.getElementById("stamp-modal-styles")) {
+    const modalStyle = document.createElement("style");
+    modalStyle.id = "stamp-modal-styles";
+    modalStyle.textContent = `
+      .gnb-cta-sub {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.12);
+        color: rgba(255,255,255,0.52);
+        padding: 5px 10px;
+        border-radius: 7px;
+        font-size: 11px;
+        line-height: 1;
+        cursor: pointer;
+        transition: all .18s ease;
+        white-space: nowrap;
+      }
+
+
+
+
+.ad-refresh-wrap {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 0;
+}
+.ad-refresh-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    width: 0%;
+    background: rgba(255, 255, 255, 0.12);
+    z-index: 10;
+    transition: width linear;
+}
+
+
+
+
+
+
+
+
+.ad-slot-responsive {
+    min-width: 320px;
+    min-height: 50px;
+}
+@media (min-width: 1024px) {
+    .ad-slot-responsive {
+        min-height: 90px;
+    }
+}
+
+
+
+
+      .gnb-cta-sub:hover {
+        border-color: rgba(255,255,255,0.28);
+        color: rgba(255,255,255,0.82);
+        background: rgba(255,255,255,0.05);
+      }
+      .gnb-cta-divider {
+        color: rgba(255,255,255,0.14);
+        font-size: 14px;
+        margin: 0 6px;
+        user-select: none;
+      }
+
+      .stamp-modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.72);
+        z-index: 10000;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 28px 14px;
+        backdrop-filter: blur(4px);
+        overflow-y: auto;
+      }
+      .stamp-modal-overlay.active { display: flex; }
+
+      .stamp-modal-combined {
+        background: #1a1f2e;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        width: min(94vw, 700px);
+        margin: auto;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        overflow: hidden;
+      }
+      .stamp-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 22px 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        position: sticky;
+        top: 0;
+        background: #1a1f2e;
+        z-index: 2;
+      }
+      .stamp-modal-header h3 {
+        margin: 0;
+        font-size: 16px;
+        color: #fff;
+        letter-spacing: -0.02em;
+      }
+      .stamp-modal-close {
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.4);
+        font-size: 18px;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+      .stamp-modal-close:hover {
+        color: #fff;
+        background: rgba(255,255,255,0.1);
+      }
+      .stamp-modal-body {
+        padding: 18px 22px 24px;
+      }
+      .stamp-modal-loading {
+        text-align: center;
+        color: rgba(255,255,255,0.42);
+        padding: 30px 0;
+        font-size: 13px;
+      }
+      .stamp-guide-intro {
+        font-size: 12.5px;
+        color: rgba(255,255,255,0.48);
+        margin-bottom: 18px;
+        line-height: 1.5;
+      }
+
+      .grade-guide-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+      .grade-guide-table th {
+        background: rgba(255,255,255,0.035);
+        color: rgba(255,255,255,0.48);
+        padding: 8px 10px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      .grade-guide-table td {
+        padding: 7px 10px;
+        color: rgba(255,255,255,0.62);
+        border-bottom: 1px solid rgba(255,255,255,0.035);
+        line-height: 1.38;
+        vertical-align: middle;
+      }
+      .guide-grade-cell {
+        width: 48px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .guide-desc-cell { }
+      .guide-ratio-cell {
+        width: 150px;
+        min-width: 150px;
+      }
+      .guide-ratio-wrap {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .guide-ratio-pct {
+        width: 38px;
+        text-align: right;
+        font-size: 11px;
+        color: rgba(255,255,255,0.74);
+        flex-shrink: 0;
+        font-variant-numeric: tabular-nums;
+      }
+      .guide-mini-bar {
+        flex: 1;
+        height: 8px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .guide-mini-fill {
+        height: 100%;
+        border-radius: 999px;
+        transition: width .55s ease;
+      }
+      .guide-mini-fill.ss { background: linear-gradient(90deg, #8c6eff, #b49aff); }
+      .guide-mini-fill.s  { background: linear-gradient(90deg, #ffd700, #ffe44d); }
+      .guide-mini-fill.a  { background: linear-gradient(90deg, #4dabf7, #74c0fc); }
+      .guide-mini-fill.b  { background: linear-gradient(90deg, #51cf66, #8ce99a); }
+      .guide-mini-fill.c  { background: linear-gradient(90deg, #868e96, #adb5bd); }
+      .guide-mini-fill.d  { background: linear-gradient(90deg, #ff922b, #ffa94d); }
+      .guide-mini-fill.f  { background: linear-gradient(90deg, #ff6b6b, #ff8787); }
+
+      .gr-ss .guide-grade-cell { color: #b49aff; }
+      .gr-s  .guide-grade-cell { color: #ffd700; }
+      .gr-a  .guide-grade-cell { color: #74c0fc; }
+      .gr-b  .guide-grade-cell { color: #8ce99a; }
+      .gr-c  .guide-grade-cell { color: #adb5bd; }
+      .gr-d  .guide-grade-cell { color: #ffa94d; }
+      .gr-f  .guide-grade-cell { color: #ff8787; }
+
+      .grade-guide-note {
+        margin-top: 12px;
+        font-size: 11px;
+        color: rgba(255,255,255,0.28);
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      .gnb-drawer-nav button.gnb-drawer-link {
+        background: none;
+        border: 1px solid rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.62);
+        cursor: pointer;
+        text-align: center;
+        font-size: 13px;
+        padding: 10px 8px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        width: 100%;
+      }
+      .gnb-drawer-nav button.gnb-drawer-link:hover {
+        border-color: rgba(255,255,255,0.2);
+        color: rgba(255,255,255,0.85);
+        background: rgba(255,255,255,0.04);
+      }
+
+      @media (max-width: 760px) {
+        .gnb-cta-sub, .gnb-cta-divider { display: none; }
+        .stamp-modal-combined { width: 100%; border-radius: 12px; }
+        .stamp-modal-header { padding: 14px 16px 10px; }
+        .stamp-modal-body { padding: 14px 16px 20px; }
+        .grade-guide-table { font-size: 11px; }
+        .grade-guide-table td, .grade-guide-table th { padding: 6px 7px; }
+        .guide-grade-cell { width: 40px; }
+        .guide-desc-cell { font-size: 10.5px; }
+        .guide-ratio-cell { width: 110px; min-width: 110px; }
+        .guide-ratio-pct { width: 34px; font-size: 10px; }
+      }
+    `;
+    document.head.appendChild(modalStyle);
+  }
+
+  // ===== 푸터 삽입 =====
+const footerTarget =
+  document.querySelector(".page") ||
+  document.querySelector(".auction-page") ||
+  document.querySelector(".tools-page") ||
+  document.querySelector(".app") ||
+  document.body;
+
+const hasStaticFooter = document.getElementById("static-footer");
+
+if (!hasStaticFooter) {
+  footerTarget.insertAdjacentHTML("beforeend", footerHtml);
+}
+
+  // ===== 모바일 드로어 =====
+  const hamburgerBtn = document.getElementById("gnbHamburgerBtn");
+  const drawer = document.getElementById("gnbDrawer");
+  const drawerOverlay = document.getElementById("gnbDrawerOverlay");
+  const drawerCloseBtn = document.getElementById("gnbDrawerClose");
+
+  function openDrawer() {
+    document.body.classList.add("gnb-drawer-open");
+    hamburgerBtn?.setAttribute("aria-expanded", "true");
+    drawer?.setAttribute("aria-hidden", "false");
+  }
+
+  function closeDrawer() {
+    document.body.classList.remove("gnb-drawer-open");
+    hamburgerBtn?.setAttribute("aria-expanded", "false");
+    drawer?.setAttribute("aria-hidden", "true");
+  }
+
+  hamburgerBtn?.addEventListener("click", () => {
+    document.body.classList.contains("gnb-drawer-open") ? closeDrawer() : openDrawer();
+  });
+
+  drawerOverlay?.addEventListener("click", closeDrawer);
+  drawerCloseBtn?.addEventListener("click", closeDrawer);
+
+  drawer?.querySelectorAll("a.gnb-drawer-link:not(.disabled)").forEach((link) => {
+    link.addEventListener("click", closeDrawer);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) closeDrawer();
+  });
+
+  // ===== 모달 유틸 =====
+  function openModal(id) {
+    document.getElementById(id)?.classList.add("active");
+  }
+  function closeModal(id) {
+    document.getElementById(id)?.classList.remove("active");
+  }
+
+  // ===== 도장 안내 모달 =====
+  function buildCombinedTableHtml(counts, total) {
+    let rows = "";
+
+    const maxCount = Math.max(...GRADE_ORDER.map((g) => counts[g] || 0), 1);
+
+    for (const grade of GRADE_ORDER) {
+      const cls = getGradeRowClass(grade);
+      const desc = GRADE_DESC[grade] || "";
+      const count = counts[grade] || 0;
+      const realPct = total > 0 ? ((count / total) * 100) : 0;
+      const displayPct = realPct.toFixed(1);
+
+      const relativeWidth = maxCount > 0 ? (count / maxCount) * 100 : 0;
+      const visualWidth = count > 0 ? Math.max(relativeWidth, 6) : 0;
+
+      const barCls = getGradeBarClass(grade);
+
+      rows += `
+        <tr class="${cls}">
+          <td class="guide-grade-cell">${grade}</td>
+          <td class="guide-desc-cell">${desc}</td>
+          <td class="guide-ratio-cell">
+            <div class="guide-ratio-wrap">
+              <span class="guide-ratio-pct">${displayPct}%</span>
+              <div class="guide-mini-bar">
+                <div class="guide-mini-fill ${barCls}" style="width:${visualWidth}%"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+
+    return `
+      <table class="grade-guide-table">
+        <thead>
+          <tr>
+            <th>등급</th>
+            <th>설명</th>
+            <th>비율</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p class="grade-guide-note">
+        OP 토너먼트 누적 기준 · 막대는 최다 등급 대비 상대 비교<br>
+        SS+ ~ S- 획득 시 메인 도장에 영구 유지됩니다.
+      </p>
+    `;
+  }
+
+  async function loadStampGuide() {
+    const body = document.getElementById("stampGuideBody");
+    if (!body) return;
+
+    body.innerHTML = `
+      <div class="stamp-guide-intro">
+        토너먼트 결과에 따라 도장 등급이 부여됩니다.<br>
+        SS ~ S 계열 등급은 메인 도장에 영구 유지됩니다.
+      </div>
+      <div class="stamp-modal-loading">등급표를 불러오는 중...</div>
+    `;
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_grade_distribution`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`
+        },
+        body: JSON.stringify({
+          p_type: "op",
+          p_start_date: GRADE_DIST_START_DATE
+        })
+      });
+
+      if (!res.ok) throw new Error(`RPC failed: ${res.status}`);
+
+      const data = await res.json();
+
+      const counts = {};
+      GRADE_ORDER.forEach((g) => { counts[g] = 0; });
+      let total = 0;
+
+      if (Array.isArray(data)) {
+        for (const row of data) {
+          const g = normalizeFullGrade(row.grade);
+          const c = parseInt(row.grade_count, 10) || 0;
+          if (GRADE_ORDER.includes(g)) {
+            counts[g] = c;
+            total += c;
+          }
+        }
+      }
+
+      body.innerHTML = `
+        <div class="stamp-guide-intro">
+          토너먼트 결과에 따라 도장 등급이 부여됩니다.<br>
+          SS ~ S 계열 등급은 메인 도장에 영구 유지됩니다.
+        </div>
+        ${buildCombinedTableHtml(counts, total)}
+      `;
+    } catch (e) {
+      console.error("loadStampGuide error:", e);
+      body.innerHTML = `
+        <div class="stamp-guide-intro">
+          토너먼트 결과에 따라 도장 등급이 부여됩니다.<br>
+          SS ~ S 계열 등급은 메인 도장에 영구 유지됩니다.
+        </div>
+        <div class="stamp-modal-loading">도장 정보를 불러오지 못했어요.</div>
+      `;
+    }
+  }
+
+  // ===== 메인 도장 =====
+  // 등급 도장이 유효한지(만료되지 않았는지) 확인하는 헬퍼 함수
+  function isStampActive(grade, dateKey) {
+    if (!grade || !dateKey) return false;
+    const g = normalizeFullGrade(grade);
+    const [y, m, d] = dateKey.split("-").map(Number);
+    const baseDate = new Date(y, m - 1, d, 0, 0, 0, 0);
+    const now = new Date();
+
+    if (g.startsWith("SS")) {
+      // SS등급: 획득한 달을 포함하여 3달째 되는 날의 말일 23:59:59초까지 유효
+      const expireAt = new Date(baseDate.getFullYear(), baseDate.getMonth() + 3, 0, 23, 59, 59, 999);
+      return now <= expireAt;
+    }
+    if (g.startsWith("S")) {
+      // S등급: 획득한 달의 말일 23:59:59초까지 유효
+      const expireAt = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, 0, 23, 59, 59, 999);
+      return now <= expireAt;
+    }
+    return false;
+  }
+
+  async function applyHomeTournamentStamps() {
+    if (!showHero) return;
+
+    const opCard = document.querySelector(".grade-stamp.op");
+    const favorCard = document.querySelector(".grade-stamp.like-stamp");
+    if (!opCard && !favorCard) return;
+
+    const visitorKey = getVisitorKey();
+    if (!visitorKey) return;
+
+    try {
+      const url =
+        `${SUPABASE_URL}/rest/v1/sessions` +
+        `?select=tournament_type,grade,date_key` +
+        `&visitor_key=eq.${encodeURIComponent(visitorKey)}` +
+        `&order=date_key.desc`;
+
+      const res = await fetch(url, {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`
+        }
+      });
+
+      if (!res.ok) return;
+
+      const data = await res.json();
+      if (!Array.isArray(data) || !data.length) return;
+
+      const todayKey = getDateKey();
+
+      const todayOpRow = data.find(
+        (r) => r.tournament_type === "op" && r.date_key === todayKey
+      );
+
+      const todayFavorRow = data.find(
+        (r) => r.tournament_type === "favor" && r.date_key === todayKey
+      );
+
+      // S, SS 등급 중 '아직 유효기간이 만료되지 않은' 가장 높은 등급을 찾습니다.
+      const bestOpRow = data
+        .filter((r) => r.tournament_type === "op" && isPersistentGrade(r.grade) && isStampActive(r.grade, r.date_key))
+        .sort((a, b) => {
+          const aR = getGradeRank(a.grade);
+          const bR = getGradeRank(b.grade);
+          if (aR !== bR) return aR - bR;
+          return String(b.date_key || "").localeCompare(String(a.date_key || ""));
+        })[0];
+
+      if (bestOpRow && opCard) {
+        const g = normalizeFullGrade(bestOpRow.grade);
+        opCard.innerHTML = `
+          <div class="stamp-kicker">BEST GRADE</div>
+          <div class="stamp-title">${g}</div>
+          <div class="stamp-desc">${formatStampDate(bestOpRow.date_key)}<br>${g} 등급 유지중</div>
+        `;
+        paintOpCardByGrade(opCard, g);
+      } else if (todayOpRow && opCard) {
+        const g = normalizeFullGrade(todayOpRow.grade) || "완료";
+        opCard.innerHTML = `
+          <div class="stamp-kicker">TODAY STAMP</div>
+          <div class="stamp-title">${g}</div>
+          <div class="stamp-desc">${formatStampDate(todayOpRow.date_key)}<br>OP 참여 완료</div>
+        `;
+        paintOpCardByGrade(opCard, g);
+      } else if (opCard) {
+        // 만료된 등급도 없고 오늘 참여도 안 했다면 원래 기본 스탬프로 돌려놓습니다.
+        opCard.innerHTML = `
+          <div class="stamp-kicker">TOURNAMENT</div>
+          <div class="stamp-title">OP</div>
+          <div class="stamp-desc">직각 토너먼트 진입 후<br>시즌 도장 표시</div>
+        `;
+        // 카드 스타일도 기본으로 리셋
+        opCard.style.background = "";
+        opCard.style.borderColor = "";
+        opCard.style.boxShadow = "";
+      }
+
+      if (todayFavorRow && favorCard) {
+        favorCard.innerHTML = `
+          <div class="stamp-kicker">TODAY STAMP</div>
+          <div class="stamp-title">완료</div>
+          <div class="stamp-desc">${formatStampDate(todayFavorRow.date_key)}<br>호감 참여 완료</div>
+        `;
+        favorCard.style.background = "linear-gradient(180deg, rgba(255,120,170,.12), rgba(255,255,255,.02))";
+        favorCard.style.borderColor = "rgba(255,120,170,.32)";
+        favorCard.style.boxShadow = "0 0 0 1px rgba(255,120,170,.08) inset, 0 0 18px rgba(255,120,170,.10)";
+   
+      } else if (favorCard) {
+        // 오늘 호감 참여가 없다면 기본 상태로 돌려놓습니다.
+        favorCard.innerHTML = `
+          <div class="stamp-kicker">FAVORITE</div>
+          <div class="stamp-title">호감</div>
+          <div class="stamp-desc">호감 토너먼트 진입 후<br>참여 도장 표시</div>
+        `;
+        favorCard.style.background = "";
+        favorCard.style.borderColor = "";
+        favorCard.style.boxShadow = "";
+      }
+
+
+    } catch (e) {
+      console.error("applyHomeTournamentStamps error:", e);
+    }
+  }
+
+  applyHomeTournamentStamps();
+
+
+
+  // ===== 모달 이벤트 =====
+  document.getElementById("btnStampGuide")?.addEventListener("click", async () => {
+    openModal("stampGuideOverlay");
+    await loadStampGuide();
+  });
+
+  document.getElementById("btnStampGuideMobile")?.addEventListener("click", async () => {
+    closeDrawer();
+    openModal("stampGuideOverlay");
+    await loadStampGuide();
+  });
+
+  document.getElementById("stampGuideClose")?.addEventListener("click", () => {
+    closeModal("stampGuideOverlay");
+  });
+
+  document.getElementById("stampGuideOverlay")?.addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) closeModal("stampGuideOverlay");
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeDrawer();
+      closeModal("stampGuideOverlay");
+    }
+  });
+});
+
+
+// ===== 구글 애드매니저(GAM) 라이브러리 및 광고 정의 동적 로드 =====
+
+if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
+  const autoAdsScript = document.createElement("script");
+  autoAdsScript.async = true;
+  autoAdsScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6403244403995841";
+  autoAdsScript.crossOrigin = "anonymous";
+  document.head.appendChild(autoAdsScript);
+}
+
+if (!document.querySelector('script[src*="gpt.js"]')) {
+  const gptScript = document.createElement("script");
+  gptScript.async = true;
+  gptScript.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
+  document.head.appendChild(gptScript);
+}
+
+
+
+window.googletag = window.googletag || {cmd: []};
+googletag.cmd.push(function() {
+  const isPrecisionGroupActive = /\/dps\/(serka|cathedral|belgardin|guardian)(\.html)?$/.test(location.pathname);
+
+  // 정밀계산 페이지: 728x90 이하만 / 그 외: 970x250까지 허용
+  const topAllSizes = isPrecisionGroupActive
+    ? [[728, 90], [320, 100], [320, 50]]
+    : [[970, 250], [728, 90], [320, 100], [320, 50]];
+
+  const topMapping = googletag.sizeMapping()
+    .addSize([1024, 0], isPrecisionGroupActive ? [[728, 90]] : [[970, 250], [728, 90]])
+    .addSize([0, 0], [[320, 100], [320, 50]])
+    .build();
+
+  googletag.defineSlot('/23371069561/loaview_top_refresh', topAllSizes, 'div-gpt-ad-1788303186629-0')
+    .defineSizeMapping(topMapping)
+    .addService(googletag.pubads());
+
+  const sideMapping = googletag.sizeMapping()
+    .addSize([1024, 0], [[300, 600], [300, 250]])
+    .addSize([0, 0], [[300, 250]])
+    .build();
+
+  googletag.defineSlot('/23371069561/loaview_side_left', [[300, 600], [300, 250]], 'div-gpt-ad-1788305590281-0')
+    .defineSizeMapping(sideMapping)
+    .addService(googletag.pubads());
+
+  const bottomMapping = googletag.sizeMapping()
+    .addSize([1024, 0], [[728, 90]])
+    .addSize([0, 0], [[320, 50]])
+    .build();
+
+  googletag.defineSlot('/23371069561/loaview_side_right', [[728, 90], [320, 50]], 'div-gpt-ad-1788378693057-0')
+    .defineSizeMapping(bottomMapping)
+    .addService(googletag.pubads());
+
+ 
+
+
+  googletag.pubads().enableSingleRequest();
+  googletag.enableServices();
+
+  // ===== 자동 새로고침 + 진행바 (30초 주기, 화면에 보일 때만) =====
+  const REFRESH_INTERVAL = 30000;
+  const refreshTargets = {};
+
+  const allSlots = googletag.pubads().getSlots();
+  const pendingSlotIds = new Set(allSlots.map(s => s.getSlotElementId()));
+
+  function startBarAnimation(bar) {
+    bar.style.transition = "none";
+    bar.style.width = "0%";
+    void bar.offsetWidth;
+    bar.style.transition = `width ${REFRESH_INTERVAL / 1000}s linear`;
+    bar.style.width = "100%";
+  }
+
+  // ① observer2를 먼저 선언 (setupSlotBar보다 위에 있어야 함)
+  const observer2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      if (refreshTargets[id]) {
+        refreshTargets[id].visible = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          startBarAnimation(refreshTargets[id].bar);
+        } else {
+          refreshTargets[id].bar.style.transition = "none";
+          refreshTargets[id].bar.style.width = "0%";
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+
+  // ② 슬롯 하나를 등록하는 함수
+  function setupSlotBar(slot, el) {
+    const slotId = slot.getSlotElementId();
+    if (refreshTargets[slotId]) return;
+
+    const wrap = document.createElement("div");
+    wrap.className = "ad-refresh-wrap";
+    wrap.style.display = "inline-block";
+    wrap.style.maxWidth = "100%";
+    wrap.style.lineHeight = "0";
+
+    el.parentNode.insertBefore(wrap, el);
+    wrap.appendChild(el);
+
+    const bar = document.createElement("div");
+    bar.className = "ad-refresh-bar";
+    wrap.appendChild(bar);
+
+    refreshTargets[slotId] = { slot, visible: false, bar };
+    observer2.observe(el);
+
+    pendingSlotIds.delete(slotId);
+  }
+
+  // ③ 이미 있는 슬롯은 바로 등록
+  allSlots.forEach(slot => {
+    const slotId = slot.getSlotElementId();
+    const el = document.getElementById(slotId);
+    if (el) setupSlotBar(slot, el);
+  });
+
+  // ④ 아직 없는 슬롯(정밀계산 페이지 등)은 나타날 때까지 지켜봄
+  if (pendingSlotIds.size > 0) {
+    const domWatcher = new MutationObserver(() => {
+      allSlots.forEach(slot => {
+        const slotId = slot.getSlotElementId();
+        if (!pendingSlotIds.has(slotId)) return;
+        const el = document.getElementById(slotId);
+        if (el) setupSlotBar(slot, el);
+      });
+      if (pendingSlotIds.size === 0) domWatcher.disconnect();
+    });
+    domWatcher.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // ⑤ 광고가 완전히 로드된 직후 바 시작
+  googletag.pubads().addEventListener('slotRenderEnded', (event) => {
+    const slotId = event.slot.getSlotElementId();
+    const target = refreshTargets[slotId];
+    if (target && target.visible) {
+      startBarAnimation(target.bar);
+    }
+  });
+
+  // ⑥ 주기적으로 새로고침 (보이는 슬롯만) + 바 재시작
+  setInterval(() => {
+    const visibleTargets = Object.values(refreshTargets).filter(t => t.visible);
+    if (visibleTargets.length > 0) {
+      googletag.pubads().refresh(visibleTargets.map(t => t.slot));
+      visibleTargets.forEach(t => startBarAnimation(t.bar));
+    }
+  }, REFRESH_INTERVAL);
+
+
+
+
+
+// ===== 토너먼트 히어로 아래 광고 + 구분선 자동 삽입 =====
+document.addEventListener("DOMContentLoaded", () => {
+
+const tourneyHero = document.querySelector(".tournament-hero, .winrate-hero, .tier-hero, .ranking-hero, .history-hero, .classwin-hero, .synergy-hero, .hero-arc-grid, .hero-arc-passive,  .market-hero");
+
+  if (tourneyHero && !document.getElementById("tourney-ad-wrapper")) {
+    const adBox = document.createElement("div");
+    adBox.id = "tourney-ad-wrapper";
+  
+
+    adBox.style.cssText = "width:100%;max-width:100%;overflow:hidden;box-sizing:border-box;display:flex;justify-content:center;align-items:center;margin:14px auto 14";
+   adBox.innerHTML = `
+      <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="max-width:100%;overflow:hidden;"></div>
+    `;
+
+
+    tourneyHero.parentNode.insertBefore(adBox, tourneyHero.nextSibling);
+
+    const divider = document.createElement("div");
+    divider.className = "divider common-divider-bottom";
+    divider.style.cssText = "margin-top:14px;margin-bottom:16px;";
+    divider.innerHTML = '<hr class="divider-line">';
+    adBox.parentNode.insertBefore(divider, adBox.nextSibling);
+
+    try {
+      googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-1788303186629-0');
+      });
+    } catch (e) {}
+  }
+});
+
+
+// ===== 하단 새로고침 배너 (푸터 위) 자동 삽입 =====
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".common-footer") || document.querySelector("footer") || document.querySelector("[style*='border-top']");
+  if (footer && !document.getElementById("bottom-ad-wrapper")) {
+    const adBox = document.createElement("div");
+    adBox.id = "bottom-ad-wrapper";
+    adBox.style.cssText = "width:100%;max-width:1200px;display:flex;justify-content:center;align-items:center;margin:20px auto 14px;min-height:90px;";
+    
+    adBox.innerHTML = `<div id="div-gpt-ad-1788378693057-0" style="min-width:320px;min-height:66px;max-width:100%;overflow:hidden;"></div>`;
+
+     footer.prepend(adBox);
+
+    try {
+      googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-1788378693057-0');
+      });
+    } catch (e) {}
+  }
+});
+
+
