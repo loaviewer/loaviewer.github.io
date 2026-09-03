@@ -3910,8 +3910,8 @@ function renderTable() {
     currentSimpleLevel !== "abr-ex";
 
 const isRaidSimpleQuickView = currentMenu === "raid-simple";
-    const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin";
-    document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
+const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin" || currentMenu === "guardian";
+document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
 
 
     // [개정판] 간편보기일 때 빈 공간(.content-grid)과 우측 컬럼(.right-column)까지 통째로 숨기기
