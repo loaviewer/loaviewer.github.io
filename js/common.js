@@ -1175,6 +1175,8 @@ googletag.cmd.push(function() {
   }, { threshold: 0.5 });
 
   // ② 슬롯 하나를 등록하는 함수
+
+
   function setupSlotBar(slot, el) {
     const slotId = slot.getSlotElementId();
     if (refreshTargets[slotId]) return;
@@ -1194,6 +1196,15 @@ googletag.cmd.push(function() {
 
     refreshTargets[slotId] = { slot, visible: false, bar };
     observer2.observe(el);
+
+    // 광고 크기가 바뀔 때마다 wrap 폭을 실시간으로 동기화
+    const resizeObs = new ResizeObserver(entriesRO => {
+      for (const entry of entriesRO) {
+        const w = entry.contentRect.width;
+        if (w > 0) wrap.style.width = w + "px";
+      }
+    });
+    resizeObs.observe(el);
 
     pendingSlotIds.delete(slotId);
   }
@@ -1219,28 +1230,16 @@ googletag.cmd.push(function() {
     domWatcher.observe(document.body, { childList: true, subtree: true });
   }
 
-  // ⑤ 광고가 완전히 로드된 직후 바 시작 + wrap 폭 고정
-  googletag.pubads().addEventListener('slotRenderEnded', (event) => {
-    const slotId = event.slot.getSlotElementId();
-    const target = refreshTargets[slotId];
-    if (!target) return;
 
-    // 광고 로드 완료 후 실제 렌더링된 폭을 wrap에 고정
-    const el = document.getElementById(slotId);
-    if (el) {
-      requestAnimationFrame(() => {
-        const actualWidth = el.getBoundingClientRect().width;
-        if (actualWidth > 0) {
-          const wrap = el.closest(".ad-refresh-wrap");
-          if (wrap) wrap.style.width = actualWidth + "px";
-        }
-      });
-    }
+// ⑤ 광고가 완전히 로드된 직후 바 시작
+googletag.pubads().addEventListener('slotRenderEnded', (event) => {
+  const slotId = event.slot.getSlotElementId();
+  const target = refreshTargets[slotId];
+  if (target && target.visible) {
+    startBarAnimation(target.bar);
+  }
+});
 
-    if (target.visible) {
-      startBarAnimation(target.bar);
-    }
-  });
 
   // ⑥ 주기적으로 새로고침 (보이는 슬롯만) + 바 재시작
   setInterval(() => {
