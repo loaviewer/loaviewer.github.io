@@ -999,12 +999,11 @@ body {
 
 .content-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
+    grid-template-columns: minmax(0, 1fr) 310px;
     gap: 18px;
     align-items: start;
     width: 100% !important;
 }
-
 .main-col {
     display: grid;
     gap: 18px;
@@ -1012,28 +1011,30 @@ body {
     overflow: hidden !important; /* ★ 중요: 왼쪽 영역이 넘쳐도 절대 우측 영역을 침범하거나 찌그러트리지 못하게 차단! */
 }
 
+
+
 .right-column {
-    width: 280px !important;
+    width: 310px !important;
     flex-shrink: 0 !important; /* ★ 중요: 우측 영역이 안쪽으로 찌그러지는 현상(Squeeze)을 물리적으로 원천 차단! */
 }
-
 /* 태블릿 대응 너비 피팅 */
 @media (max-width: 1180px) {
     .content-grid {
-        grid-template-columns: minmax(0, 1fr) 250px !important;
+        grid-template-columns: minmax(0, 1fr) 300px !important;
     }
     .right-column {
-        width: 250px !important;
+        width: 300px !important;
     }
 }
-
-
-
 .right-column {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
+
+
+
+
 
 /* =============================================
    우측 카드
