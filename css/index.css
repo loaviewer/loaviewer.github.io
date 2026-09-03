@@ -6668,26 +6668,24 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
    ============================================= */
 #precisionAdSlot,
 #precisionAdSlot.side-card {
-    background: transparent !important; /* 배경색 투명화 */
-    border: none !important; /* 사각형 선(표시선) 영구 삭제 */
-    box-shadow: none !important; /* 그림자 삭제 */
-    padding: 0 !important; /* 내부 여백 제거 */
-    
-    /* [안정화 장치] 최소 높이 보장막 및 최대 720px 철벽 차단 */
-    min-height: 250px !important; /* 로컬/대기 상태일 때 스크롤 급락 추락 방지 */
-    max-height: 720px !important; /* 구글 반응형 광고가 720px 이상으로 커지는 것 차단 */
-    overflow: hidden !important; /* 광고 콘텐츠가 720px 너머로 삐져나오는 것 원천 봉쇄 */
-    
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;   /* ← 이 줄 추가 */
+    box-shadow: none !important;
+    padding: 0 !important;
+    min-height: 250px !important;
+    max-height: 720px !important;
+    overflow: hidden !important;
     width: 100% !important;
     display: block !important;
 }
-
 
 /* 간편보기 광고판도 정밀계산과 동일하게 카드 껍데기 제거 */
 .right-column .simple-ad-slot,
 .simple-grid-right .simple-ad-slot {
     background: transparent !important;
     border: none !important;
+    border-radius: 0 !important;   /* ← 이 줄 추가 */
     box-shadow: none !important;
     padding: 0 !important;
     min-height: 250px !important;
