@@ -1237,7 +1237,7 @@ googletag.cmd.push(function() {
     }
   }, REFRESH_INTERVAL);
 
-
+});
 
 
 
