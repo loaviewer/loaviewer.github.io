@@ -1219,11 +1219,25 @@ googletag.cmd.push(function() {
     domWatcher.observe(document.body, { childList: true, subtree: true });
   }
 
-  // ⑤ 광고가 완전히 로드된 직후 바 시작
+  // ⑤ 광고가 완전히 로드된 직후 바 시작 + wrap 폭 고정
   googletag.pubads().addEventListener('slotRenderEnded', (event) => {
     const slotId = event.slot.getSlotElementId();
     const target = refreshTargets[slotId];
-    if (target && target.visible) {
+    if (!target) return;
+
+    // 광고 로드 완료 후 실제 렌더링된 폭을 wrap에 고정
+    const el = document.getElementById(slotId);
+    if (el) {
+      requestAnimationFrame(() => {
+        const actualWidth = el.getBoundingClientRect().width;
+        if (actualWidth > 0) {
+          const wrap = el.closest(".ad-refresh-wrap");
+          if (wrap) wrap.style.width = actualWidth + "px";
+        }
+      });
+    }
+
+    if (target.visible) {
       startBarAnimation(target.bar);
     }
   });
