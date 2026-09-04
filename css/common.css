@@ -299,7 +299,14 @@ body.gnb-drawer-open{
 /* =============================================
    메인 홈 히어로 (.hero)
    ============================================= */
-.hero{position:relative;padding:16px 0 30px !important;min-height:0;}
+
+.hero{
+  position:relative;
+  padding:16px 0 30px !important;
+  min-height: 220px; /* CLS 방지: 히어로 영역 높이 예약 */
+}
+
+
 .hero-inner{max-width:var(--container-width);margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:32px;min-height:196px;} /* 너비 및 패딩 피팅 */
 .hero-left{flex:1 1 560px;min-width:0;}
 .hero-eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-soft);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
@@ -334,7 +341,14 @@ body.gnb-drawer-open{
 
 /* quickmenu */
 .quickmenu{max-width:var(--container-width);margin:0 auto;padding:6px 20px 0;} /* 너비 및 패딩 피팅 */
-.qm-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;}
+
+.qm-row{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+  min-height: 110px; /* CLS 방지: 퀵메뉴 높이 예약 */
+}
+
 .qm-item{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:18px 10px;border-radius:16px;background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.045);transition:all .22s ease;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;}
 .qm-item::before{content:"";position:absolute;inset:0;border-radius:16px;background:radial-gradient(120px 90px at 50% -10%,rgba(91,156,245,.0),transparent 70%);transition:background .25s ease;pointer-events:none;}
 .qm-item:hover{transform:translateY(-3px);border-color:rgba(91,156,245,.30);background:rgba(91,156,245,.05);box-shadow:0 14px 30px rgba(91,156,245,.14),0 0 0 1px rgba(91,156,245,.06) inset;}
@@ -697,8 +711,15 @@ body.standalone-arc-grid-page .common-divider-top {
     box-shadow: none !important;
 }
 
+/* CLS 추가 방지 */
+.loaview-top-ad-wrap {
+    min-height: 90px;
+}
 
 /* 메인 홈페이지 광고 좌측 쏠림 수정 - 강제 중앙 정렬 */
+
+
+
 body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-top-ad-wrap,
 body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wrap {
     margin-left: auto !important;
@@ -710,6 +731,16 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
     overflow: hidden !important;
     box-sizing: border-box !important;
 }
+
+/* CLS 추가 방지 - 하단 광고 */
+.loaview-bottom-ad-wrap,
+#bottom-ad-wrapper {
+    min-height: 90px;
+}
+
+
+
+
 
 /* =============================================
    양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
