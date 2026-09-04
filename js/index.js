@@ -36,8 +36,13 @@ function setMainContentWithAdPreservation(heroHtml, bodyHtml) {
 
         const placeholder = document.getElementById("ad-container-placeholder");
         const adDiv = document.createElement("div");
-        adDiv.id = "div-gpt-ad-1788303186629-0";
-        adDiv.style.cssText = "min-width:320px;min-height:90px;";
+        
+
+
+adDiv.id = "div-gpt-ad-1788303186629-0";
+adDiv.style.cssText = "min-width:320px;min-height:90px;width:100%;";
+
+
         placeholder.appendChild(adDiv);
         try {
             googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
@@ -4986,14 +4991,18 @@ function enableSimpleAdSlot() {
     if (!gridRight.querySelector("#div-gpt-ad-1788305590281-0")) {
         const adWrap = document.createElement("div");
         adWrap.className = "side-card simple-ad-slot";
-        adWrap.innerHTML = `
+       
+
+
+adWrap.innerHTML = `
             <!-- /23371069561/loaview_side_left -->
-            <div id='div-gpt-ad-1788305590281-0' style='min-width: 300px; min-height: 250px;'>
+            <div id='div-gpt-ad-1788305590281-0' style='min-width: 300px; min-height: 250px; width:100%;'>
               <script>
                 googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788305590281-0'); });
               </script>
             </div>
         `;
+
         gridRight.appendChild(adWrap);
     }
 }
