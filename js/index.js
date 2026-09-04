@@ -5023,20 +5023,23 @@ function disableSimpleAdSlot() {
     // 정밀계산 멀티플렉스 광고 호출 제거
 }
 
+
+
+
+
 function enablePrecisionAdSlot() {
     const timeCard = document.getElementById("timeCard");
     const aside = document.querySelector(".right-column");
     if (!timeCard || !aside) return;
 
     let adSlot = document.getElementById("precisionAdSlot");
-    const auctionCalc = getAuctionCalcEl();
 
     if (!adSlot) {
         adSlot = document.createElement("div");
         adSlot.id = "precisionAdSlot";
-        adSlot.className = "side-card simple-ad-slot"; 
-        adSlot.style.marginTop = "14px";
-        adSlot.style.marginBottom = "0px";
+        adSlot.className = "side-card simple-ad-slot";
+        adSlot.style.marginTop = "0px";
+        adSlot.style.marginBottom = "14px";
         adSlot.innerHTML = `
             <!-- /23371069561/loaview_side_left -->
             <div id='div-gpt-ad-1788305590281-0' style='min-width: 300px; min-height: 250px;'>
@@ -5045,21 +5048,14 @@ function enablePrecisionAdSlot() {
               </script>
             </div>
         `;
-
-        if (auctionCalc) {
-            auctionCalc.parentNode.insertBefore(adSlot, auctionCalc.nextSibling);
-        } else {
-            aside.appendChild(adSlot);
-        }
-    } else {
-        adSlot.style.display = "block";
-        if (auctionCalc && adSlot.previousSibling !== auctionCalc) {
-            auctionCalc.parentNode.insertBefore(adSlot, auctionCalc.nextSibling);
-        }
     }
+
+    // 사이드바 맨 위(타임카드보다 먼저)에 항상 고정 배치
+    if (aside.firstElementChild !== adSlot) {
+        aside.insertBefore(adSlot, aside.firstElementChild || null);
+    }
+    adSlot.style.display = "block";
 }
-
-
 
 
 
