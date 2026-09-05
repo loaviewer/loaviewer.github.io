@@ -1848,6 +1848,7 @@ const ROLE_TOOLTIP_HTML = `
     <div class="rt-title">잔조컷에 대하여 💡</div>
     <div class="rt-line"><strong>잔혈+찬조</strong> = 합성어로 <strong class="rt-purple">잔조컷</strong>으로 정의했습니다.</div>
     <div class="rt-line"><strong>강투+찬조</strong> = 합성어로 <strong class="rt-orange">강조컷</strong>으로 정의했습니다.</div>
+     <div class="rt-line">서폿의 <strong>풀케어+비슷한 전투력 딜러</strong> 기준이며</div>
     <div class="rt-line">오로지 <strong>조력 피해</strong>로만 이 수치를 확인합니다. </div>
     <div class="rt-divider"></div>
     <div class="rt-row"><span class="rt-tag rt-tag-orange">강조컷</span><span>딜러의 강투보다 살짝 우위</span></div>
