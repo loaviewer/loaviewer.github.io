@@ -20,6 +20,8 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 // [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
 // mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
 // 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
+
+
 function setMainContentWithAdPreservation(heroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     let heroSlot = document.getElementById("precisionHeroSlot");
@@ -27,12 +29,13 @@ function setMainContentWithAdPreservation(heroHtml, bodyHtml) {
     if (!heroSlot) {
         mainContent.innerHTML = `
             <div id="precisionHeroSlot"></div>
-            <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 0;">
+            <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 <div id="ad-container-placeholder"></div>
             </div>
-            <div class="divider common-divider-bottom" style="margin-top:14px;margin-bottom:16px;"><hr class="divider-line"></div>
+            <div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
             <div id="precisionBodySlot"></div>
         `;
+
 
         const placeholder = document.getElementById("ad-container-placeholder");
         const adDiv = document.createElement("div");
@@ -582,7 +585,13 @@ const simpleRaidMeta = {
     }
 };
 
-
+const simpleRaidKickerMap = {
+    cathedral: "CATHEDRAL",
+    serka: "SERKA",
+    belgardin: "BELGARDIN",
+    finale: "FINALE",
+    act4: "ACT4"
+};
 
 /* =============================================
    EX 레이드 UI 데이터
@@ -1848,7 +1857,6 @@ const ROLE_TOOLTIP_HTML = `
     <div class="rt-title">잔조컷에 대하여 💡</div>
     <div class="rt-line"><strong>잔혈+찬조</strong> = 합성어로 <strong class="rt-purple">잔조컷</strong>으로 정의했습니다.</div>
     <div class="rt-line"><strong>강투+찬조</strong> = 합성어로 <strong class="rt-orange">강조컷</strong>으로 정의했습니다.</div>
-     <div class="rt-line">서폿의 <strong>풀케어+비슷한 전투력 딜러</strong> 기준이며</div>
     <div class="rt-line">오로지 <strong>조력 피해</strong>로만 이 수치를 확인합니다. </div>
     <div class="rt-divider"></div>
     <div class="rt-row"><span class="rt-tag rt-tag-orange">강조컷</span><span>딜러의 강투보다 살짝 우위</span></div>
@@ -2439,6 +2447,67 @@ function simpleRaidHeroHtml() {
 }
 
 
+
+
+function simpleLevelMiniHeroHtml() {
+    return `
+        <div class="p-hero p-mini-hero hero-simple-neutral">
+            <div class="p-mini-hero-row">
+                <div class="p-mini-hero-left">
+                    <span class="p-hero-kicker" style="margin-bottom:0;">PRECISION · LEVEL</span>
+                    <span class="p-mini-hero-divider"></span>
+                    <div class="p-hero-icon p-hero-icon-sm">💠</div>
+                    <span class="p-mini-hero-title" id="simpleMiniHeroLevelTitle">${currentSimpleLevel}</span>
+                </div>
+                <div class="simple-mini-hero-stats">
+                    <div class="simple-mini-hero-badge badge-accent">
+                        <span class="badge-label">레벨 범위</span>
+                        <span class="badge-value">1710~1780</span>
+                    </div>
+                    <div class="simple-mini-hero-badge badge-purple">
+                        <span class="badge-label">우선순위</span>
+                        <span class="badge-value">골드 3개</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function simpleRaidMiniHeroHtml() {
+    const meta = simpleRaidMeta[currentSimpleRaid];
+    if (!meta) return "";
+
+    const eng = simpleRaidKickerMap[currentSimpleRaid] || "";
+
+    return `
+        <div class="p-hero p-mini-hero hero-simple-neutral">
+            <div class="p-mini-hero-row">
+                <div class="p-mini-hero-left">
+                    <span class="p-hero-kicker" style="margin-bottom:0;" id="simpleMiniHeroRaidKicker">PRECISION · ${eng}</span>
+                    <span class="p-mini-hero-divider"></span>
+                    <div class="p-hero-icon p-hero-icon-sm">${meta.icon}</div>
+                    <span class="p-mini-hero-title" id="simpleMiniHeroRaidTitle">${meta.label}</span>
+                </div>
+                <div class="simple-mini-hero-stats">
+                    <div class="simple-mini-hero-badge badge-accent">
+                        <span class="badge-label">레이드 유형</span>
+                        <span class="badge-value" id="simpleMiniHeroRaidSummary">${meta.summary}</span>
+                    </div>
+                    <div class="simple-mini-hero-badge badge-purple">
+                        <span class="badge-label">인원</span>
+                        <span class="badge-value" id="simpleMiniHeroRaidSub">${meta.sub}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
+
+
+
 /* =============================================
    탭 렌더링
    ============================================= */
@@ -2463,17 +2532,15 @@ function renderTabs() {
 el.innerHTML = `
     ${simpleHeroHtml()}
     
-    <!-- 대형 수평 광고판 -->
-   <div style="width: 100%; max-width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; margin: 14px auto 16px;">
-      <div id='div-gpt-ad-1788303186629-0' class='ad-slot-responsive'>
-        <script>
-          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
-        </script>
-      </div>
+    <!-- 대형 수평 광고판 (정밀계산과 동일 여백 / PC 970x250 · 모바일 90px) -->
+   <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+      <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
     </div>
     
- <!-- 그라데이션 구분선 (Option A) -->
-<div class="divider common-divider-bottom" style="margin-top: 14px; margin-bottom: 16px;"><hr class="divider-line"></div>
+ <!-- 그라데이션 구분선 (정밀계산과 동일 여백) -->
+<div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
+
+${simpleLevelMiniHeroHtml()}
 
     <div class="simple-grid-layout">
 
@@ -2498,6 +2565,17 @@ el.innerHTML = `
             </div><!-- // .simple-grid-layout 닫힘 -->
         `;
 
+    // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh
+    try {
+        window.googletag = window.googletag || { cmd: [] };
+        googletag.cmd.push(function () {
+            const id = "div-gpt-ad-1788303186629-0";
+            googletag.display(id);
+            const slot = googletag.pubads().getSlots().find((s) => s.getSlotElementId() === id);
+            if (slot) googletag.pubads().refresh([slot]);
+        });
+    } catch (e) {}
+
    
 el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -2511,6 +2589,13 @@ el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
 
         const heroVal = document.getElementById("simpleHeroCurrentLevel");
         if (heroVal) heroVal.textContent = currentSimpleLevel;
+
+
+        const miniHeroVal = document.getElementById("simpleMiniHeroLevelTitle");
+        if (miniHeroVal) miniHeroVal.textContent = currentSimpleLevel;
+
+  
+
 
         renderTable();
     });
@@ -2532,24 +2617,25 @@ el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
 el.innerHTML = `
     ${simpleRaidHeroHtml()}
     
-    <!-- 대형 수평 광고판 -->
-    <div style="width: 100%; max-width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; margin: 14px auto 16px;">
-      <div id='div-gpt-ad-1788303186629-0' class='ad-slot-responsive'>
-        <script>
-          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
-        </script>
-      </div>
+    <!-- 대형 수평 광고판 (정밀계산과 동일 여백 / PC 970x250 · 모바일 90px) -->
+    <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+      <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
     </div>
     
-    <!-- 그라데이션 구분선 (Option A) -->
+    <!-- 그라데이션 구분선 (정밀계산과 동일 여백) -->
     
-<div class="divider common-divider-bottom" style="margin-top: 14px; margin-bottom: 16px;"><hr class="divider-line"></div>
+<div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
+
+   
+
+${simpleRaidMiniHeroHtml()}
 
     <div class="simple-grid-layout">
 
-
-
                 <div class="simple-controls-col simple-grid-left">
+
+
+
                     <div class="simple-level-tabs">
                         ${raids.map(key => {
                             const meta = simpleRaidMeta[key];
@@ -2570,6 +2656,17 @@ el.innerHTML = `
             </div><!-- // .simple-grid-layout 닫힘 -->
         `;
 
+    // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh
+    try {
+        window.googletag = window.googletag || { cmd: [] };
+        googletag.cmd.push(function () {
+            const id = "div-gpt-ad-1788303186629-0";
+            googletag.display(id);
+            const slot = googletag.pubads().getSlots().find((s) => s.getSlotElementId() === id);
+            if (slot) googletag.pubads().refresh([slot]);
+        });
+    } catch (e) {}
+
 
 el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -2585,6 +2682,16 @@ el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
         const heroSub = document.getElementById("simpleHeroCurrentRaidSub");
         if (heroVal && meta) heroVal.textContent = meta.label;
         if (heroSub && meta) heroSub.textContent = meta.sub;
+        
+                const miniKicker = document.getElementById("simpleMiniHeroRaidKicker");
+        const miniTitle = document.getElementById("simpleMiniHeroRaidTitle");
+        const miniSummary = document.getElementById("simpleMiniHeroRaidSummary");
+        const miniSub = document.getElementById("simpleMiniHeroRaidSub");
+        if (miniKicker && meta) miniKicker.textContent = `PRECISION · ${simpleRaidKickerMap[currentSimpleRaid] || ""}`;
+        if (miniTitle && meta) miniTitle.textContent = meta.label;
+        if (miniSummary && meta) miniSummary.textContent = meta.summary;
+        if (miniSub && meta) miniSub.textContent = meta.sub; 
+
 
         renderTable();
     });
@@ -2824,9 +2931,74 @@ function getAuctionCalcEl() {
     return persistentAuctionCalcEl;
 }
 
+// ===== 빠른 이동 카드 (경매 계산기 바로 위, 사이드 안내용) =====
+
+const QUICK_MOVE_PAGES = {
+    level:     { label: "레벨별",        href: "level.html" },
+    raid:      { label: "레이드별",      href: "raid.html" },
+    serka:     { label: "세르카",        href: "serka.html" },
+    cathedral: { label: "지평의 성당",   href: "cathedral.html" },
+    belgardin: { label: "벨가르딘",      href: "belgardin.html" },
+    guardian:  { label: "가디언 토벌",   href: "guardian.html" },
+};
+const QUICK_MOVE_SIMPLE_GROUP = ["level", "raid"];
+const QUICK_MOVE_PRECISION_GROUP = ["serka", "cathedral", "belgardin", "guardian"];
+const QUICK_MOVE_SYNERGY_LINK = { label: "시너지표", href: "../class/synergy.html" };
+
+
+function getCurrentDpsPageKey() {
+    const match = window.location.pathname.match(/\/dps\/(level|raid|serka|belgardin|cathedral|guardian)(\.html)?$/);
+    return match ? match[1] : null;
+}
 
 
 
+function getAuctionHref() {
+    if (window.location.pathname === "/" || window.location.pathname === "/index.html" || window.location.pathname === "/index") {
+        return "./tools/auction.html";
+    }
+    return "../tools/auction.html";
+}
+
+let persistentQuickMoveEl = null;
+function getQuickMoveEl() {
+    if (persistentQuickMoveEl) return persistentQuickMoveEl;
+
+    const current = getCurrentDpsPageKey();
+    if (!current) return null;
+
+    let order = [];
+    if (QUICK_MOVE_SIMPLE_GROUP.includes(current)) {
+        order = QUICK_MOVE_SIMPLE_GROUP;
+    } else if (QUICK_MOVE_PRECISION_GROUP.includes(current)) {
+        order = QUICK_MOVE_PRECISION_GROUP;
+    } else {
+        return null;
+    }
+
+    const items = order.map((key) => ({ key, label: QUICK_MOVE_PAGES[key].label, href: QUICK_MOVE_PAGES[key].href }));
+    items.push({ key: "synergy", label: QUICK_MOVE_SYNERGY_LINK.label, href: QUICK_MOVE_SYNERGY_LINK.href });
+    items.push({ key: "auction", label: "경매계산기", href: getAuctionHref() });
+
+    const group = document.createElement("div");
+    group.className = "quick-move-group";
+
+    const header = document.createElement("div");
+    header.className = "quick-move-gold-title";
+    header.textContent = "빠른 이동 ↗";
+    group.appendChild(header);
+
+    items.forEach((item) => {
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.className = "quick-move-gold-link" + (item.key === current ? " active" : "");
+        a.textContent = item.label;
+        group.appendChild(a);
+    });
+
+    persistentQuickMoveEl = group;
+    return persistentQuickMoveEl;
+}
 
 
 
@@ -3511,21 +3683,39 @@ function makeGuardianHero(tier, boss, bossInfo) {
                     </div>
                 </div>
 
-                <div class="p-hero-right">
-                    <div class="p-stat">
-                        <div class="p-stat-label">입장 레벨</div>
-                        <div class="p-stat-value">${tier}</div>
-                    </div>
+           
+            </div>
+        </div>
+    `;
+}
 
-                    <div class="p-stat">
-                        <div class="p-stat-label">보스명</div>
-                        <div class="p-stat-value">${bossElementEmoji} ${boss}</div>
+function makeGuardianMiniHero(tier, boss, bossInfo) {
+    const bossElementEmoji = getGuardianElementEmojiFromWeakness(bossInfo.attr.text);
+
+    return `
+        <div class="p-hero p-mini-hero hero-guardian">
+            <div class="p-mini-hero-row">
+                <div class="p-mini-hero-left">
+                    <span class="p-hero-kicker" style="margin-bottom:0;">PRECISION · GUARDIAN RAID</span>
+                    <span class="p-mini-hero-divider"></span>
+                    <div class="p-hero-icon p-hero-icon-sm">🐉</div>
+                    <span class="p-mini-hero-title">가디언 토벌</span>
+                </div>
+                <div class="p-mini-hero-stats">
+                    <div>
+                        <div class="p-stat-label" style="margin-bottom:0;">입장 레벨</div>
+                        <div class="p-mini-hero-title">${tier}</div>
+                    </div>
+                    <div>
+                        <div class="p-stat-label" style="margin-bottom:0;">보스명</div>
+                        <div class="p-mini-hero-title">${bossElementEmoji} ${boss}</div>
                     </div>
                 </div>
             </div>
         </div>
     `;
 }
+
 
 
 /* =============================================
@@ -3753,22 +3943,48 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
                     </div>
                 </div>
 
-                <div class="p-hero-right">
-                    <div class="p-stat">
-                        <div class="p-stat-label">입장 레벨</div>
-                        <div class="p-stat-value">${entryLevel}</div>
-                    </div>
+             
+            </div>
+        </div>
+    `;
+}
 
-                    <div class="p-stat">
-                        <div class="p-stat-label">난이도 · 관문</div>
-                        <div class="p-stat-value">${diffLabel} · ${gateLabel}</div>
+function makeRaidMiniHero(menu, meta) {
+    const isSerka = menu === "serka";
+    const isCathedral = menu === "cathedral";
+    const raidTitle = getRaidDisplayName(menu);
+    const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : "hero-belgardin");
+    const kicker = isSerka ? "PRECISION · SERKA" : (isCathedral ? "PRECISION · CATHEDRAL" : "PRECISION · BELGARDIN");
+    const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : "🧛");
+
+    const entryLevelMatch = meta.title.match(/\((\d+)\)/);
+    const entryLevel = entryLevelMatch ? entryLevelMatch[1] : "-";
+    const diffLabel = meta.title.replace(/\s*\(.+\)/, "");
+    const gateLabel = meta.gateName;
+
+    return `
+        <div class="p-hero p-mini-hero ${themeClass}">
+            <div class="p-mini-hero-row">
+                <div class="p-mini-hero-left">
+                    <span class="p-hero-kicker" style="margin-bottom:0;">${kicker}</span>
+                    <span class="p-mini-hero-divider"></span>
+                    <div class="p-hero-icon p-hero-icon-sm">${icon}</div>
+                    <span class="p-mini-hero-title">${raidTitle}</span>
+                </div>
+                <div class="p-mini-hero-stats">
+                    <div>
+                        <div class="p-stat-label" style="margin-bottom:0;">입장 레벨</div>
+                        <div class="p-mini-hero-title">${entryLevel}</div>
+                    </div>
+                    <div>
+                        <div class="p-stat-label" style="margin-bottom:0;">난이도 · 관문</div>
+                        <div class="p-mini-hero-title">${diffLabel} · ${gateLabel}</div>
                     </div>
                 </div>
             </div>
         </div>
     `;
 }
-
 
 /* =============================================
    가디언 컨트롤
@@ -3999,6 +4215,12 @@ if (currentMenu === "arc-grid") {
 if (currentMenu === "simple" || currentMenu === "raid-simple") {
     setClearTimeDisabled(true);
     document.getElementById("partyDpsDisplay").innerHTML = '파티 DPS : <span class="party-dps-value">-</span>';
+
+    // 정밀계산에서 쓰던 mainContent 광고 슬롯(동일 ID)이 남아 있으면
+    // 간편보기 쪽 display()가 숨겨진 쪽을 잡는 문제가 생기므로 비움
+    const mainContent = document.getElementById("mainContent");
+    if (mainContent) mainContent.innerHTML = "";
+
     enableSimpleAdSlot();
 
     if (currentMenu === "raid-simple") {
@@ -4035,6 +4257,7 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
 setMainContentWithAdPreservation(
     makeGuardianHero(tier, boss, bossInfo),
     `
+    ${makeGuardianMiniHero(tier, boss, bossInfo)}
     ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
 
     <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
@@ -4095,16 +4318,17 @@ setMainContentWithAdPreservation(
             }
 
                                               
-
-                   setMainContentWithAdPreservation(
+setMainContentWithAdPreservation(
     makeGuardianHero(tier, boss, bossInfo),
     `
+    ${makeGuardianMiniHero(tier, boss, bossInfo)}
     ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
 
     <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
 
     ${makeRoleToggleHtml()}
     ${makePrecisionSummary(row30, row33, row40, effectiveGetDmg, totalSec, "guardian", isSupportGuardian)}
+                
 
     <div class="precision-table-panel">
         <div class="precision-table-head">
@@ -4262,6 +4486,8 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
 setMainContentWithAdPreservation(
     makeRaidPrecisionHero(currentMenu, meta, currentDiff),
     `
+
+${makeRaidMiniHero(currentMenu, meta)}
             <div class="precision-layout-split">
 
 
@@ -4961,11 +5187,11 @@ window.addEventListener("scroll", hideSharedRoleTooltip, true);
 window.addEventListener("resize", hideSharedRoleTooltip);
 
 /* =============================================
-   우측 사이드바 제어 엔진 (멀티플렉스 광고 제거 버전)
+   우측 사이드바 제어 엔진
    ============================================= */
 
 function enableSimpleAdSlot() {
-    const auctionCalc = getAuctionCalcEl();
+    const quickMove = getQuickMoveEl();
     const gridRight = document.getElementById("simpleGridRight");
     const timeCard = document.getElementById("timeCard");
 
@@ -4978,33 +5204,14 @@ function enableSimpleAdSlot() {
     const precisionAd = document.getElementById("precisionAdSlot");
     if (precisionAd) precisionAd.style.display = "none";
 
-    if (!auctionCalc || !gridRight) return;
+    if (!gridRight) return;
 
-    if (gridRight.firstElementChild !== auctionCalc) {
-        gridRight.insertBefore(auctionCalc, gridRight.firstElementChild || null);
+    if (quickMove) {
+        gridRight.insertBefore(quickMove, gridRight.firstElementChild || null);
     }
 
     if (window.getComputedStyle(gridRight).display === "none") {
         return;
-    }
-
-    // 경매 계산기 아래 수직 광고 생성
-    if (!gridRight.querySelector("#div-gpt-ad-1788305590281-0")) {
-        const adWrap = document.createElement("div");
-        adWrap.className = "side-card simple-ad-slot";
-       
-
-
-adWrap.innerHTML = `
-            <!-- /23371069561/loaview_side_left -->
-            <div id='div-gpt-ad-1788305590281-0' style='min-width: 300px; min-height: 250px; width:100%;'>
-              <script>
-                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788305590281-0'); });
-              </script>
-            </div>
-        `;
-
-        gridRight.appendChild(adWrap);
     }
 }
 
@@ -5012,7 +5219,7 @@ adWrap.innerHTML = `
 
 function disableSimpleAdSlot() {
     const timeCard = document.getElementById("timeCard");
-    const auctionCalc = getAuctionCalcEl();
+    const quickMove = getQuickMoveEl();
     const aside = document.querySelector(".right-column");
 
     if (timeCard) timeCard.style.display = "";
@@ -5021,16 +5228,10 @@ function disableSimpleAdSlot() {
     const infoCard = infoHintEl ? infoHintEl.closest(".side-card") : null;
     if (infoCard) infoCard.style.display = "none";
 
-    // 경매 계산기를 시계 카드(timeCard) 바로 다음 자리에 배치
-    if (auctionCalc && aside) {
-        if (timeCard) {
-            timeCard.parentNode.insertBefore(auctionCalc, timeCard.nextSibling);
-        } else {
-            aside.prepend(auctionCalc);
-        }
+    if (aside && quickMove) {
+        const afterTimeCard = timeCard ? timeCard.nextSibling : (aside.firstElementChild || null);
+        aside.insertBefore(quickMove, afterTimeCard);
     }
-    
-    // 정밀계산 멀티플렉스 광고 호출 제거
 }
 
 
@@ -5042,29 +5243,13 @@ function enablePrecisionAdSlot() {
     const aside = document.querySelector(".right-column");
     if (!timeCard || !aside) return;
 
-    let adSlot = document.getElementById("precisionAdSlot");
-
-    if (!adSlot) {
-        adSlot = document.createElement("div");
-        adSlot.id = "precisionAdSlot";
-        adSlot.className = "side-card simple-ad-slot";
-        adSlot.style.marginTop = "0px";
-        adSlot.style.marginBottom = "14px";
-        adSlot.innerHTML = `
-            <!-- /23371069561/loaview_side_left -->
-            <div id='div-gpt-ad-1788305590281-0' style='min-width: 300px; min-height: 250px;'>
-              <script>
-                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788305590281-0'); });
-              </script>
-            </div>
-        `;
-    }
-
-    // 사이드바 맨 위(타임카드보다 먼저)에 항상 고정 배치
-    if (aside.firstElementChild !== adSlot) {
-        aside.insertBefore(adSlot, aside.firstElementChild || null);
-    }
-    adSlot.style.display = "block";
+    // 수직 광고는 이제 사이드 안이 아니라 화면 좌우 고정 레일(common.js의
+    // anchor-side-rail)에서 표시하므로, 여기서는 더 이상 삽입하지 않는다.
+    // 예전에 삽입했던 사이드 내부 광고 슬롯이 남아있다면 정리한다.
+    const oldAdSlot = document.getElementById("precisionAdSlot");
+    if (oldAdSlot) oldAdSlot.style.display = "none";
+    const oldAdSlot2 = document.getElementById("precisionAdSlot2");
+    if (oldAdSlot2) oldAdSlot2.style.display = "none";
 }
 
 
