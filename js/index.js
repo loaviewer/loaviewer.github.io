@@ -1,6 +1,4 @@
-/* =============================================
-   전역 변수 & 상수
-   ============================================= */
+
 const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsijdMziekQaZ-wBTWrobncY/export?format=csv&gid=0";
 
 let currentMenu = "simple";
@@ -14,12 +12,6 @@ let acMembers = 4;
 let currentSimpleRaid = "belgardin";
 let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
 let currentRoleMode = "dealer"; // "dealer" | "support"
-
-
-
-// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
-// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
-// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
 
 
 function setMainContentWithAdPreservation(heroHtml, bodyHtml) {
@@ -59,7 +51,7 @@ adDiv.style.cssText = "min-width:320px;min-height:90px;width:100%;";
 }
 
 
-// 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
+
 const HG_BOSSES = [
   "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스",
   "드렉탈라스","소나벨","베스칼","쿤겔라니움","하누마탄",
@@ -1857,14 +1849,17 @@ const ROLE_TOOLTIP_HTML = `
     <div class="rt-title">잔조컷에 대하여 💡</div>
     <div class="rt-line"><strong>잔혈+찬조</strong> = 합성어로 <strong class="rt-purple">잔조컷</strong>으로 정의했습니다.</div>
     <div class="rt-line"><strong>강투+찬조</strong> = 합성어로 <strong class="rt-orange">강조컷</strong>으로 정의했습니다.</div>
+    <div class="rt-line">서폿의 <strong>풀 케어 + 비슷한 스펙 딜러</strong> 기준이며,</div>
     <div class="rt-line">오로지 <strong>조력 피해</strong>로만 이 수치를 확인합니다. </div>
     <div class="rt-divider"></div>
     <div class="rt-row"><span class="rt-tag rt-tag-orange">강조컷</span><span>딜러의 강투보다 살짝 우위</span></div>
     <div class="rt-row"><span class="rt-tag rt-tag-blue">서폿 1인분</span><span>딜러의 1인분보다 살짝 우위</span></div>
     <div class="rt-row"><span class="rt-tag rt-tag-purple">잔조컷</span><span>딜러의 잔혈보다 살짝 우위</span></div>
-    <div class="rt-line" style="margin-top:10px;">서폿은 기믹 대응과 케어를 동시 수행하기 때문에 전체적으로 딜러보다 살짝 우위에 속합니다.</div>
+    <div class="rt-divider"></div>
+    <div class="rt-line" style="margin-top:10px;">서폿은 기믹 대응과 케어를 동시에 수행하기 때문에 전체적으로 딜러보다 살짝 우위에 속합니다.</div>
     <div class="rt-line">수많은 서폿분들의 전분을 확인한 결과, 트라이~딜찍 기준 <strong>↑5%~50%</strong>까지 딜러 피해량과 조력 피해량의 차이가 있었습니다.</div>
-    <div class="rt-line">이 데이터를 종합해 로아뷰에서 찾은 <strong class="rt-green">황금배율</strong>로 서폿 잔조컷을 만들었습니다.</div>
+    <div class="rt-divider"></div>
+    <div class="rt-line">이 데이터를 종합해 로아뷰에서 찾은 <strong class="rt-green">황금 비율</strong>로 서폿 잔조컷을 만들었습니다.</div>
     <div class="rt-note">※ 이 계산법은 로아뷰에서 자체 제작한 방식으로, 절대적인 정답 수치는 아닙니다.</div>
 `;
 
