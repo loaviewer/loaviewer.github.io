@@ -6337,6 +6337,9 @@ color: #b56c6c;
     flex-direction: column;
     gap: 14px;
     min-height: 0;
+    position: sticky;
+    top: 80px;
+    align-self: start;
 }
 
 @media (max-width: 1180px) {
@@ -6596,6 +6599,283 @@ color: #b56c6c;
     box-shadow: 0 0 10px rgba(251, 146, 60, 0.08) !important; /* 은은한 주황빛 글로우 */
 }
 
+
+
+.p-mini-hero {
+    padding: 14px 20px !important;
+    margin-bottom: 18px;
+}
+
+.p-mini-hero-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.p-mini-hero-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.p-mini-hero-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(255,255,255,.15);
+}
+
+.p-mini-hero-title {
+    font-size: 15px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.p-hero-icon-sm {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+}
+
+.p-mini-hero-stats {
+    display: flex;
+    gap: 16px;
+}
+
+
+.hero-simple-neutral {
+    background: linear-gradient(180deg, #10131c 0%, #0c0f16 100%);
+    border-color: rgba(139,148,255,.18);
+}
+
+.hero-simple-neutral .p-hero-kicker {
+    color: #93c5fd;
+}
+
+.hero-simple-neutral .p-hero-icon {
+    background: rgba(139,148,255,.12);
+    border: 1px solid rgba(139,148,255,.22);
+}
+
+.simple-mini-hero-stats {
+    display: flex;
+    gap: 8px;
+}
+
+.simple-mini-hero-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.06);
+}
+
+.simple-mini-hero-badge .badge-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+}
+
+.simple-mini-hero-badge .badge-value {
+    font-size: 14px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.simple-mini-hero-badge.badge-accent {
+    background: rgba(59,130,246,.12);
+}
+
+.simple-mini-hero-badge.badge-accent .badge-label {
+    color: #93c5fd;
+}
+
+.simple-mini-hero-badge.badge-purple {
+    background: rgba(167,139,250,.12);
+}
+
+.simple-mini-hero-badge.badge-purple .badge-label {
+    color: #c4b5fd;
+}
+
+/* =============================================
+   미니 히어로 모바일 전용 정리 (가독성 · 대칭)
+   - 상단: 아이콘 + 타이틀 (킥커는 작게 한 줄)
+   - 하단: 통계 배지 2칸 균등 그리드
+   - simple / precision / guardian 구조 모두 동일한 룩
+   ============================================= */
+@media (max-width: 768px) {
+    .p-mini-hero {
+        padding: 12px 14px !important;
+        margin-bottom: 14px !important;
+        border-radius: 16px !important;
+    }
+
+    .p-mini-hero-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+        flex-wrap: nowrap !important;
+    }
+
+    /* 왼쪽 영역: 킥커 / 아이콘+타이틀을 세로로 정리 */
+    .p-mini-hero-left {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 8px 10px !important;
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    .p-mini-hero .p-hero-kicker {
+        flex: 1 0 100% !important;
+        margin-bottom: 0 !important;
+        font-size: 9px !important;
+        letter-spacing: 1.6px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .p-mini-hero-divider {
+        display: none !important;
+    }
+
+    .p-mini-hero .p-hero-icon.p-hero-icon-sm,
+    .p-mini-hero .p-hero-icon-sm {
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 9px !important;
+        font-size: 14px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .p-mini-hero-title {
+        font-size: 15px !important;
+        font-weight: 900 !important;
+        line-height: 1.2 !important;
+        min-width: 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* 통계 영역: 2칸 균등 그리드 (simple / precision 공통) */
+    .p-mini-hero-stats,
+    .simple-mini-hero-stats {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    /* simple 배지 */
+    .simple-mini-hero-badge {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 8px 10px !important;
+        border-radius: 10px !important;
+        gap: 2px !important;
+        min-height: 52px !important;
+        justify-content: center !important;
+    }
+
+    .simple-mini-hero-badge .badge-label {
+        font-size: 9px !important;
+        letter-spacing: 0.4px !important;
+    }
+
+    .simple-mini-hero-badge .badge-value {
+        font-size: 13px !important;
+        line-height: 1.25 !important;
+        text-align: center !important;
+        word-break: keep-all !important;
+    }
+
+    /* precision / guardian 통계 블록 → 배지와 동일한 카드 룩으로 통일 */
+    .p-mini-hero-stats > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 3px !important;
+        padding: 8px 10px !important;
+        min-height: 52px !important;
+        border-radius: 10px !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        min-width: 0 !important;
+    }
+
+    .p-mini-hero-stats .p-stat-label {
+        margin-bottom: 0 !important;
+        font-size: 9px !important;
+        letter-spacing: 0.8px !important;
+        line-height: 1.2 !important;
+        opacity: 0.85;
+    }
+
+    .p-mini-hero-stats .p-mini-hero-title {
+        font-size: 13px !important;
+        font-weight: 900 !important;
+        line-height: 1.25 !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        word-break: keep-all !important;
+    }
+
+    /* 테마별 통계 카드 살짝 톤 맞춤 */
+    .hero-serka .p-mini-hero-stats > div {
+        background: rgba(56, 189, 248, 0.08) !important;
+        border-color: rgba(56, 189, 248, 0.14) !important;
+    }
+    .hero-cathedral .p-mini-hero-stats > div {
+        background: rgba(167, 139, 250, 0.08) !important;
+        border-color: rgba(167, 139, 250, 0.14) !important;
+    }
+    .hero-belgardin .p-mini-hero-stats > div {
+        background: rgba(248, 113, 113, 0.08) !important;
+        border-color: rgba(248, 113, 113, 0.14) !important;
+    }
+    .hero-guardian .p-mini-hero-stats > div {
+        background: rgba(251, 146, 60, 0.08) !important;
+        border-color: rgba(251, 146, 60, 0.14) !important;
+    }
+    .hero-simple-neutral .simple-mini-hero-badge.badge-accent {
+        background: rgba(59, 130, 246, 0.12) !important;
+    }
+    .hero-simple-neutral .simple-mini-hero-badge.badge-purple {
+        background: rgba(167, 139, 250, 0.12) !important;
+    }
+}
+
+/* =============================================
+   간편보기 상단 광고 — 정밀계산과 동일한 모바일 자리(90px)
+   PC는 기존 대형 수평(250px) 유지
+   ============================================= */
+.simple-top-ad-wrap .ad-slot-responsive {
+    min-height: 90px;
+}
+@media (min-width: 1024px) {
+    .simple-top-ad-wrap .ad-slot-responsive {
+        min-height: 250px;
+    }
+}
+
+
 /* =============================================
    PC/모바일 공통 - 레벨 버튼(7칸) 가로폭 100% 강제 확장 (토글 버튼과 폭 일치)
    ============================================= */
@@ -6680,7 +6960,9 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
    정밀계산용 수동 멀티플렉스 광고판 최종 가공 (최소 250px ~ 최대 720px 제한)
    ============================================= */
 #precisionAdSlot,
-#precisionAdSlot.side-card {
+#precisionAdSlot.side-card,
+#precisionAdSlot2,
+#precisionAdSlot2.side-card {
     background: transparent !important;
     border: none !important;
     border-radius: 0 !important;   /* ← 이 줄 추가 */
@@ -6726,4 +7008,88 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
     min-height: 90px !important;
     max-height: 280px !important;
     overflow: hidden !important;
+}
+
+
+.quick-move-group {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    background: #111320;
+    border: 1px solid rgba(247,202,84,.15);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.quick-move-gold-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f7ca54;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.quick-move-gold-link {
+    display: block;
+    padding: 16px;
+    border-radius: 10px;
+    background: #1a1c24;
+    border: 1px solid rgba(247,202,84,.10);
+    color: #e5e7eb;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.quick-move-gold-link:hover {
+    border-color: rgba(247,202,84,.35);
+    background: #1d2130;
+    color: #fff;
+}
+
+.quick-move-gold-link.active {
+    background: linear-gradient(180deg, #2a1d12 0%, #1a1511 100%);
+    border-color: rgba(255,153,51,.55);
+    color: #fff4e6;
+    font-weight: 900;
+    box-shadow:
+        0 0 0 1px rgba(255,153,51,.18),
+        0 0 14px rgba(255,140,0,.22);
+}
+
+
+
+.quick-move-gold-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f7ca54;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.quick-move-gold-link {
+    display: block;
+    padding: 12px;
+    border-radius: 10px;
+    background: #1a1c24;
+    border: 1px solid rgba(247,202,84,.10);
+    color: #e5e7eb;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.quick-move-gold-link:hover {
+    border-color: rgba(247,202,84,.35);
+    background: #1d2130;
+    color: #fff;
 }
