@@ -800,3 +800,18 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
         white-space: nowrap !important;
     }
 }
+/* =============================================
+   좌우 고정 사이드 광고 레일 (anchor rail, 인벤 스타일)
+   - position: fixed 로 브라우저 화면 자체에 붙어서 스크롤해도 항상 같은 자리 유지
+   - 좌/우 위치(left)는 common.js가 본문 박스(.app 등) 실제 위치를 계산해서
+     인라인 스타일로 지정함 (본문 바로 옆에 붙도록). 여기서는 고정값을 주지 않음.
+   - 본문 옆에 붙일 공간이 없으면 common.js가 display:none으로 숨김.
+   ============================================= */
+.anchor-side-rail {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    min-height: 600px;
+    z-index: 100;
+    display: none; /* 초기값: JS가 위치/사이즈 계산 후 block으로 전환 */
+}
