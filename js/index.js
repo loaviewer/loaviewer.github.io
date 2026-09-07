@@ -1,4 +1,6 @@
-
+/* =============================================
+   전역 변수 & 상수
+   ============================================= */
 const CSV_URL = "https://docs.google.com/spreadsheets/d/1v4gfG-Lr0iFmiP0PXtVTsijdMziekQaZ-wBTWrobncY/export?format=csv&gid=0";
 
 let currentMenu = "simple";
@@ -12,6 +14,12 @@ let acMembers = 4;
 let currentSimpleRaid = "belgardin";
 let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
 let currentRoleMode = "dealer"; // "dealer" | "support"
+
+
+
+// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
+// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
+// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
 
 
 function setMainContentWithAdPreservation(heroHtml, bodyHtml) {
@@ -51,7 +59,7 @@ adDiv.style.cssText = "min-width:320px;min-height:90px;width:100%;";
 }
 
 
-
+// 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
 const HG_BOSSES = [
   "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스",
   "드렉탈라스","소나벨","베스칼","쿤겔라니움","하누마탄",
