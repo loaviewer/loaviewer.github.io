@@ -31,7 +31,7 @@ body {
 
 
 .app {
-    width: min(1480px, calc(100% - 20px));
+    width: min(1180px, calc(100% - 20px));
     margin: 20px auto;
     border-radius: 24px;
     border: 1px solid #1a1d2e;
@@ -6702,176 +6702,9 @@ color: #b56c6c;
     color: #c4b5fd;
 }
 
-/* =============================================
-   미니 히어로 모바일 전용 정리 (가독성 · 대칭)
-   - 상단: 아이콘 + 타이틀 (킥커는 작게 한 줄)
-   - 하단: 통계 배지 2칸 균등 그리드
-   - simple / precision / guardian 구조 모두 동일한 룩
-   ============================================= */
 @media (max-width: 768px) {
-    .p-mini-hero {
-        padding: 12px 14px !important;
-        margin-bottom: 14px !important;
-        border-radius: 16px !important;
-    }
-
-    .p-mini-hero-row {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        justify-content: flex-start !important;
-        gap: 10px !important;
-        flex-wrap: nowrap !important;
-    }
-
-    /* 왼쪽 영역: 킥커 / 아이콘+타이틀을 세로로 정리 */
-    .p-mini-hero-left {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        gap: 8px 10px !important;
-        min-width: 0 !important;
-        width: 100% !important;
-    }
-
-    .p-mini-hero .p-hero-kicker {
-        flex: 1 0 100% !important;
-        margin-bottom: 0 !important;
-        font-size: 9px !important;
-        letter-spacing: 1.6px !important;
-        line-height: 1.2 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    .p-mini-hero-divider {
-        display: none !important;
-    }
-
-    .p-mini-hero .p-hero-icon.p-hero-icon-sm,
-    .p-mini-hero .p-hero-icon-sm {
-        width: 28px !important;
-        height: 28px !important;
-        border-radius: 9px !important;
-        font-size: 14px !important;
-        flex-shrink: 0 !important;
-    }
-
-    .p-mini-hero-title {
-        font-size: 15px !important;
-        font-weight: 900 !important;
-        line-height: 1.2 !important;
-        min-width: 0 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    /* 통계 영역: 2칸 균등 그리드 (simple / precision 공통) */
-    .p-mini-hero-stats,
-    .simple-mini-hero-stats {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 8px !important;
-        width: 100% !important;
-        flex: none !important;
-    }
-
-    /* simple 배지 */
     .simple-mini-hero-badge {
-        width: 100% !important;
-        box-sizing: border-box !important;
-        padding: 8px 10px !important;
-        border-radius: 10px !important;
-        gap: 2px !important;
-        min-height: 52px !important;
-        justify-content: center !important;
-    }
-
-    .simple-mini-hero-badge .badge-label {
-        font-size: 9px !important;
-        letter-spacing: 0.4px !important;
-    }
-
-    .simple-mini-hero-badge .badge-value {
-        font-size: 13px !important;
-        line-height: 1.25 !important;
-        text-align: center !important;
-        word-break: keep-all !important;
-    }
-
-    /* precision / guardian 통계 블록 → 배지와 동일한 카드 룩으로 통일 */
-    .p-mini-hero-stats > div {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 3px !important;
-        padding: 8px 10px !important;
-        min-height: 52px !important;
-        border-radius: 10px !important;
-        background: rgba(255, 255, 255, 0.06) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
-        box-sizing: border-box !important;
-        text-align: center !important;
-        min-width: 0 !important;
-    }
-
-    .p-mini-hero-stats .p-stat-label {
-        margin-bottom: 0 !important;
-        font-size: 9px !important;
-        letter-spacing: 0.8px !important;
-        line-height: 1.2 !important;
-        opacity: 0.85;
-    }
-
-    .p-mini-hero-stats .p-mini-hero-title {
-        font-size: 13px !important;
-        font-weight: 900 !important;
-        line-height: 1.25 !important;
-        white-space: normal !important;
-        overflow: visible !important;
-        text-overflow: unset !important;
-        word-break: keep-all !important;
-    }
-
-    /* 테마별 통계 카드 살짝 톤 맞춤 */
-    .hero-serka .p-mini-hero-stats > div {
-        background: rgba(56, 189, 248, 0.08) !important;
-        border-color: rgba(56, 189, 248, 0.14) !important;
-    }
-    .hero-cathedral .p-mini-hero-stats > div {
-        background: rgba(167, 139, 250, 0.08) !important;
-        border-color: rgba(167, 139, 250, 0.14) !important;
-    }
-    .hero-belgardin .p-mini-hero-stats > div {
-        background: rgba(248, 113, 113, 0.08) !important;
-        border-color: rgba(248, 113, 113, 0.14) !important;
-    }
-    .hero-guardian .p-mini-hero-stats > div {
-        background: rgba(251, 146, 60, 0.08) !important;
-        border-color: rgba(251, 146, 60, 0.14) !important;
-    }
-    .hero-simple-neutral .simple-mini-hero-badge.badge-accent {
-        background: rgba(59, 130, 246, 0.12) !important;
-    }
-    .hero-simple-neutral .simple-mini-hero-badge.badge-purple {
-        background: rgba(167, 139, 250, 0.12) !important;
-    }
-}
-
-/* =============================================
-   간편보기 상단 광고 — 정밀계산과 동일한 모바일 자리(90px)
-   PC는 기존 대형 수평(250px) 유지
-   ============================================= */
-.simple-top-ad-wrap .ad-slot-responsive {
-    min-height: 90px;
-}
-@media (min-width: 1024px) {
-    .simple-top-ad-wrap .ad-slot-responsive {
-        min-height: 250px;
+        padding: 5px 10px;
     }
 }
 
@@ -7092,4 +6925,21 @@ body.standalone-dps-page .main:not(.simple-quick-mode) .right-column {
     border-color: rgba(247,202,84,.35);
     background: #1d2130;
     color: #fff;
+}
+
+
+
+/* === FORCE APP WIDTH 1120 ALIGN WITH GNB === */
+.app,
+body.standalone-dps-page .app {
+  width: min(1120px, calc(100% - 60px)) !important;
+  max-width: 1120px !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 768px) {
+  .app,
+  body.standalone-dps-page .app {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
