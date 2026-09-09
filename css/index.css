@@ -7384,27 +7384,35 @@ body.standalone-dps-page .app {
     border-radius: 7px;
 }
 
+
+
 .bi-role-badge {
-    height: 40px;
-    padding: 0 13px;
-    font-size: 13px;
-    border-radius: 9px;
-    gap: 5px;
+    height: 36px;
+    padding: 0 11px;
+    font-size: 12px;
+    border-radius: 8px;
+    gap: 4px;
 }
 
 .bi-role-badge-icon {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .bi-hero-icon-chip.bi-mini {
-    width: 40px;
-    height: 40px;
-    border-radius: 9px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
 }
 
 .bi-hero-icon-chip.bi-mini img {
-    padding: 5px;
+    padding: 4px;
 }
+
+
+
+
+
+
 
 
 /* 미니히어로 배틀아이템 - 선택형 옵션들 사이 "+" 구분자 */
