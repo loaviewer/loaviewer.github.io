@@ -14,6 +14,7 @@ let acMembers = 4;
 let currentSimpleRaid = "belgardin";
 let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
 let currentRoleMode = "dealer"; // "dealer" | "support"
+let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
 
 
@@ -22,41 +23,50 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 // 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
 
 
-function setMainContentWithAdPreservation(heroHtml, bodyHtml) {
-    const mainContent = document.getElementById("mainContent");
-    let heroSlot = document.getElementById("precisionHeroSlot");
 
-    if (!heroSlot) {
-        mainContent.innerHTML = `
-            <div id="precisionHeroSlot"></div>
-            <div style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
-                <div id="ad-container-placeholder"></div>
+function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
+    const mainContent = document.getElementById("mainContent");
+    const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
+    let bodySlot = document.getElementById("precisionBodySlot");
+
+    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
+    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
+    if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
+        heroSlot.innerHTML = `
+            <div id="precisionBigHeroSlot"></div>
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
+            <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+                <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
             </div>
             <div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
-            <div id="precisionBodySlot"></div>
+            <div id="precisionMiniHeroSlot"></div>
         `;
 
-
-        const placeholder = document.getElementById("ad-container-placeholder");
-        const adDiv = document.createElement("div");
-        
-
-
-adDiv.id = "div-gpt-ad-1788303186629-0";
-adDiv.style.cssText = "min-width:320px;min-height:90px;width:100%;";
-
-
-        placeholder.appendChild(adDiv);
+        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
         try {
-            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1788303186629-0'); });
-        } catch(e) {}
-
-        heroSlot = document.getElementById("precisionHeroSlot");
+            window.googletag = window.googletag || { cmd: [] };
+            googletag.cmd.push(function () {
+                const id = "div-gpt-ad-1788303186629-0";
+                googletag.display(id);
+                const slot = googletag.pubads().getSlots().find((s) => s.getSlotElementId() === id);
+                if (slot) googletag.pubads().refresh([slot]);
+            });
+        } catch (e) {}
     }
 
-    heroSlot.innerHTML = heroHtml;
-    document.getElementById("precisionBodySlot").innerHTML = bodyHtml;
+    if (!bodySlot) {
+        mainContent.innerHTML = `<div id="precisionBodySlot"></div>`;
+        bodySlot = document.getElementById("precisionBodySlot");
+    }
+
+    const bigHeroSlot = document.getElementById("precisionBigHeroSlot");
+    const miniHeroSlot = document.getElementById("precisionMiniHeroSlot");
+    if (bigHeroSlot) bigHeroSlot.innerHTML = heroHtml;
+    if (miniHeroSlot) miniHeroSlot.innerHTML = miniHeroHtml;
+    bodySlot.innerHTML = bodyHtml;
 }
+
+
 
 
 // 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
@@ -278,6 +288,97 @@ const raidMeta = {
         }
     }
 };
+
+/* =============================================
+   레이드 추천 배틀아이템 로드아웃 (히어로 / 미니히어로)
+   ============================================= */
+// fixed: 항상 표시되는 고정 아이템 이름
+// choiceGroups: 선택형 그룹들. 그룹마다 [옵션 이름 배열]이며, 첫 번째 옵션이 기본 선택값.
+// 지금은 노말/하드/나메가 전부 같은 로드아웃이라 gate 단위로만 저장하고,
+// 나중에 난이도별로 값이 달라지면 diffKey를 써서 분기하면 됨(아래 getRaidBattleLoadout 참고).
+
+
+const RAID_BATTLE_ITEMS = {
+    serka: {
+        gate1: {
+            dealer: {
+                fixed: ["정령의 회복약", "아드로핀 물약", "암흑 수류탄", "성스러운 부적"],
+                choiceGroups: []
+            },
+            support: {
+                fixed: ["정령의 회복약", "각성 물약", "암흑 수류탄", "성스러운 부적"],
+                choiceGroups: []
+            }
+        },
+        gate2: {
+            dealer: {
+                fixed: ["정령의 회복약", "아드로핀 물약", "암흑 수류탄"],
+                choiceGroups: [["코르부스 툴 라크의 그림자", "파괴 폭탄"]]
+            },
+            support: {
+                fixed: ["정령의 회복약", "각성 물약", "암흑 수류탄"],
+                choiceGroups: [["코르부스 툴 라크의 그림자", "파괴 폭탄", "부식 폭탄"]]
+            }
+        }
+    },
+    cathedral: {
+        gate1: {
+            dealer: {
+                fixed: ["정령의 회복약", "아드로핀 물약", "암흑 수류탄"],
+                choiceGroups: [["빛나는 성스러운 부적", "성스러운 부적"]]
+            },
+            support: {
+                fixed: ["정령의 회복약", "암흑 수류탄", "각성 물약"],
+                choiceGroups: [["빛나는 성스러운 부적", "성스러운 부적"]]
+            }
+        },
+        gate2: {
+            dealer: {
+                fixed: ["정령의 회복약", "아드로핀 물약", "암흑 수류탄", "파괴 폭탄"],
+                choiceGroups: []
+            },
+            support: {
+                fixed: ["정령의 회복약", "각성 물약", "암흑 수류탄", "파괴 폭탄"],
+                choiceGroups: []
+            }
+        }
+    },
+    belgardin: {
+        gate1: {
+            dealer: {
+                fixed: ["정령의 회복약", "아드로핀 물약", "암흑 수류탄", "페투스 안 크라그마의 그림자"],
+                choiceGroups: []
+            },
+            support: {
+                fixed: ["정령의 회복약", "각성 물약" , "암흑 수류탄"],
+                choiceGroups: [["빛나는 성스러운 부적", "코르부스 툴 라크의 그림자"]]
+            }
+        },
+        gate2: {
+            dealer: {
+                fixed: ["정령의 회복약", "아드로핀 물약", "암흑 수류탄"],
+                choiceGroups: [["페투스 안 크라그마의 그림자", "코르부스 툴 라크의 그림자"]]
+            },
+            support: {
+                fixed: ["정령의 회복약", "각성 물약", "암흑 수류탄"],
+                choiceGroups: [["코르부스 툴 라크의 그림자", "페투스 안 크라그마의 그림자"]]
+            }
+        }
+    }
+};
+
+
+
+
+
+function getRaidBattleLoadout(menu, diffKey, gateKey, role) {
+    const raidData = RAID_BATTLE_ITEMS[menu];
+    if (!raidData) return null;
+    const gateData = raidData[gateKey];
+    if (!gateData) return null;
+    return gateData[role] || null;
+}
+
 
 /* =============================================
    간편보기 기본 데이터
@@ -1873,20 +1974,31 @@ const ROLE_TOOLTIP_HTML = `
 
 function makeRoleToggleHtml(variant) {
     const isDealer = currentRoleMode === "dealer";
-    const boxCls = variant === "compact" ? "role-toggle-box compact" : "role-toggle-box";
+    const isHero = variant === "hero";
+    const boxCls = variant === "compact"
+        ? "role-toggle-box compact"
+        : isHero
+        ? "role-toggle-box compact hero-role"
+        : "role-toggle-box";
+    const dealerLabel = isHero ? "딜러" : "딜러 잔혈컷";
+    const suppLabel = isHero ? "서폿" : "서폿 잔조컷";
+    // 큰 히어로(hero variant)에는 "!" 안내 툴팁을 노출하지 않음 — 잔조컷 안내는 아래쪽 잔조컷 토글에만 표시
+    const infoTipHtml = isHero
+        ? ""
+        : `<span class="role-info-tip" tabindex="0"><span class="role-info-icon">!</span></span>`;
     return `
         <div class="${boxCls}">
             <div class="role-toggle-group">
                 <button type="button" class="role-toggle-btn role-dealer ${isDealer ? "active" : ""}" data-role="dealer">
                     <span class="role-icon">⚔️</span>
-                    <span class="role-label">딜러 잔혈컷</span>
+                    <span class="role-label">${dealerLabel}</span>
                     <span class="role-check">${isDealer ? "✓" : "○"}</span>
                 </button>
                 <button type="button" class="role-toggle-btn role-support ${!isDealer ? "active" : ""}" data-role="support">
                     <span class="role-icon">✚</span>
-                    <span class="role-label">서폿 잔조컷</span>
+                    <span class="role-label">${suppLabel}</span>
                     <span class="role-check">${!isDealer ? "✓" : "○"}</span>
-                    <span class="role-info-tip" tabindex="0"><span class="role-info-icon">!</span></span>
+                    ${infoTipHtml}
                 </button>
             </div>
         </div>
@@ -1897,6 +2009,21 @@ function makeRoleToggleHtml(variant) {
 
 
 
+
+// 미니히어로 전용 - 클릭 불가, 현재 currentRoleMode만 보여주는 정적 배지
+// (딜러/서폿 전환은 큰 히어로 토글 + 하단 잔혈컷/잔조컷 버튼에서만 가능)
+function makeRoleBadgeHtml() {
+    const isDealer = currentRoleMode === "dealer";
+    const roleCls = isDealer ? "role-badge-dealer" : "role-badge-support";
+    const icon = isDealer ? "⚔" : "+";
+    const label = isDealer ? "딜러" : "서폿";
+    return `
+        <div class="bi-role-badge ${roleCls}">
+            <span class="bi-role-badge-icon">${icon}</span>
+            <span class="bi-role-badge-label">${label}</span>
+        </div>
+    `;
+}
 
 function bindRoleToggle() {
     document.querySelectorAll(".role-toggle-btn[data-role]").forEach(btn => {
@@ -2462,7 +2589,7 @@ function simpleLevelMiniHeroHtml() {
                     <div class="p-hero-icon p-hero-icon-sm">💠</div>
                     <span class="p-mini-hero-title" id="simpleMiniHeroLevelTitle">${currentSimpleLevel}</span>
                 </div>
-                <div class="simple-mini-hero-stats">
+                <div class="simple-mini-hero-stats level-range-stats">
                     <div class="simple-mini-hero-badge badge-accent">
                         <span class="badge-label">레벨 범위</span>
                         <span class="badge-value">1710~1780</span>
@@ -3670,13 +3797,9 @@ function makeGuardianHero(tier, boss, bossInfo) {
                             <span class="p-badge b-attr">${weakEmoji ? `${weakEmoji} ` : ""}${bossInfo.attr.text}</span>
                         </div>
 
-                        <p class="p-hero-desc">
-                            레벨과 보스를 선택하면 해당 가디언의 딜지분과 DPS를 실시간으로 확인할 수 있습니다.
-                        </p>
-                        <p class="p-hero-desc" style="margin-top:6px;">
-                            가디언 토벌은 잔영 단계에 따라 요구 DPS가 크게 달라지며, 강투컷·1인분·잔혈컷 기준으로
-                            자신의 딜 기여도를 빠르게 비교할 수 있습니다.
-                        </p>
+                       <p class="p-hero-desc">
+    레벨과 보스를 선택하면 잔영 단계별 강투·1인분·잔혈 컷 딜지분과 DPS를 실시간으로 확인할 수 있습니다.
+</p>
                     </div>
 
                     <div class="p-hero-pills">
@@ -3864,6 +3987,131 @@ function bindRewardMoreToggle(menu) {
 
 const RAID_MEMBER_COUNT = { serka: "4인", cathedral: "4인", belgardin: "8인" };
 
+
+
+let biOutsideClickBound = false;
+
+function biIconChip(itemName, opts) {
+    opts = opts || {};
+    const item = window.BattleItemsAPI ? window.BattleItemsAPI.findByName(itemName) : null;
+    const src = item ? window.BattleItemsAPI.toCdnUrl(item.icon) : "";
+    const sizeCls = opts.mini ? " bi-mini" : "";
+    return `
+        <div class="bi-hero-icon-chip${sizeCls}" data-item-name="${itemName}">
+            <img src="${src}" alt="${itemName}" loading="lazy"
+                 onerror="this.src='https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_0.png'">
+        </div>
+    `;
+}
+
+function biChoiceToggleChip(groupIdx, options, selectedIdx) {
+    const current = options[selectedIdx] || options[0];
+    const curItem = window.BattleItemsAPI ? window.BattleItemsAPI.findByName(current) : null;
+    const curSrc = curItem ? window.BattleItemsAPI.toCdnUrl(curItem.icon) : "";
+
+    const rows = options.map((name, idx) => {
+        const optItem = window.BattleItemsAPI ? window.BattleItemsAPI.findByName(name) : null;
+        const optSrc = optItem ? window.BattleItemsAPI.toCdnUrl(optItem.icon) : "";
+        return `
+            <div class="bi-reco-row ${idx === selectedIdx ? "active" : ""}" data-idx="${idx}" data-item-name="${name}" title="${name}">
+                <img src="${optSrc}" alt="${name}"
+                     onerror="this.src='https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_0.png'">
+            </div>
+        `;
+    }).join("");
+
+    return `
+        <div class="bi-choice-wrap" data-group-idx="${groupIdx}">
+            <div class="bi-hero-icon-chip bi-choice-toggle" data-group-toggle="${groupIdx}">
+                <div class="bi-hero-icon-chip-inner" data-item-name="${current}">
+                    <img src="${curSrc}" alt="${current}"
+                         onerror="this.src='https://cdn-lostark.game.onstove.com/efui_iconatlas/battle_item/battle_item_01_0.png'">
+                </div>
+                <span class="bi-open-tag"><span class="bi-open-arrow">▼</span>열기</span>
+            </div>
+            <div class="bi-choice-drawer" data-drawer="${groupIdx}">${rows}</div>
+        </div>
+    `;
+}
+
+function buildHeroBattleIconsHtml(menu, diffKey, gateKey, role, gateLabel) {
+    const loadout = getRaidBattleLoadout(menu, diffKey, gateKey, role);
+    if (!loadout) return "";
+
+    const fixedHtml = loadout.fixed.map(name => biIconChip(name)).join("");
+
+    const choiceHtml = loadout.choiceGroups.map((options, groupIdx) => {
+        const stateKey = `${menu}_${gateKey}_${role}_${groupIdx}`;
+        const selectedIdx = battleItemChoiceState[stateKey] || 0;
+        return biChoiceToggleChip(groupIdx, options, selectedIdx);
+    }).join("");
+
+    const gateBadgeHtml = gateLabel ? `<div class="bi-hero-gate-badge">${gateLabel}</div>` : "";
+
+    return `<div class="bi-hero-icons-row" data-bi-menu="${menu}" data-bi-gate="${gateKey}" data-bi-role="${role}">${gateBadgeHtml}${fixedHtml}${choiceHtml}</div>`;
+}
+
+function buildMiniBattleIconsHtml(menu, diffKey, gateKey, role) {
+    const loadout = getRaidBattleLoadout(menu, diffKey, gateKey, role);
+    if (!loadout) return "";
+
+    // 고정 아이템은 구분자 없이 그대로 나열하고, 선택형 그룹 안의 옵션들 사이에만 "+"를 넣어
+    // "여러 옵션 중 하나"라는 걸 시각적으로 구분함 (기본값은 항상 각 그룹의 첫 번째 옵션)
+    const fixedHtml = loadout.fixed.map(name => biIconChip(name, { mini: true })).join("");
+    const choiceHtml = loadout.choiceGroups
+        .map(options => options.map(name => biIconChip(name, { mini: true })).join(`<span class="bi-mini-plus">+</span>`))
+        .join("");
+
+    return `<div class="bi-mini-icons-row">${fixedHtml}${choiceHtml}</div>`;
+}
+
+function bindRaidBattleItemIcons() {
+    // 마우스오버 툴팁 (히어로 고정/선택아이콘 + 서랍 안 아이템 + 미니히어로 아이콘 전부)
+    if (window.BattleItemsAPI) {
+        document.querySelectorAll(
+            ".bi-hero-icon-chip[data-item-name], .bi-hero-icon-chip-inner[data-item-name], .bi-reco-row[data-item-name]"
+        ).forEach(el => {
+            window.BattleItemsAPI.bindTooltip(el, el.dataset.itemName);
+        });
+    }
+
+    // 선택형 서랍 열기/닫기 (한 번에 하나만 열리는 아코디언 방식)
+    document.querySelectorAll(".bi-choice-toggle[data-group-toggle]").forEach(toggle => {
+        toggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const wrap = toggle.closest(".bi-choice-wrap");
+            const drawer = wrap ? wrap.querySelector(".bi-choice-drawer") : null;
+            if (!drawer) return;
+            const willOpen = !drawer.classList.contains("open");
+
+            document.querySelectorAll(".bi-choice-drawer.open").forEach(d => d.classList.remove("open"));
+            document.querySelectorAll(".bi-choice-toggle.open").forEach(t => t.classList.remove("open"));
+
+            if (willOpen) {
+                drawer.classList.add("open");
+                toggle.classList.add("open");
+            }
+        });
+    });
+
+    // 서랍은 열기/닫기만 가능한 "보기 전용" — 안의 아이템을 눌러도 선택이 바뀌지 않음
+    // (예전엔 여기서 클릭 시 battleItemChoiceState를 바꾸고 renderTable()을 다시 불렀지만,
+    //  요청에 따라 다른 추천 옵션이 뭐가 있는지 확인만 하는 용도로 변경함)
+
+    // 바깥 클릭 시 열린 서랍 닫기 (리스너 중복 등록 방지)
+    if (!biOutsideClickBound) {
+        biOutsideClickBound = true;
+        document.addEventListener("click", () => {
+            document.querySelectorAll(".bi-choice-drawer.open").forEach(d => d.classList.remove("open"));
+            document.querySelectorAll(".bi-choice-toggle.open").forEach(t => t.classList.remove("open"));
+        });
+    }
+}
+
+
+
+
+
 function makeRaidPrecisionHero(menu, meta, currentDiff) {
     const isSerka = menu === "serka";
     const isCathedral = menu === "cathedral";
@@ -3899,10 +4147,18 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
             { key: "nightmare", text: "나메 · 1780" }
         ];
 
-    const shares = getPrecisionShares(menu);
-    const descLine = menu === "belgardin"
-        ? `강투컷은 15%, 1인분은 ${shares.one}%, 잔혈컷은 20% 딜지분 기준입니다 (8인 레이드 기준).`
-        : `강투컷은 파티 내 상위 기여도, 1인분은 인원수 기준 균등 분배, 잔혈컷은 압도적 기여 기준입니다.`;
+    const heroBattleIconsHtml = buildHeroBattleIconsHtml(menu, meta.diffKey, meta.gateKey, currentRoleMode, gateLabel);
+    const hasHeroItems = !!heroBattleIconsHtml;
+    // 딜러/서폿 토글은 배틀아이템 데이터 유무와 상관없이 항상 노출 (지평/벨가르딘처럼 아직 데이터가 없어도 토글은 보여야 함)
+    const heroRightBlock = `
+                <div class="p-hero-right bi-hero-items-wrap">
+                    <div class="bi-hero-items-header" style="justify-content:flex-end;">
+                        ${makeRoleToggleHtml("hero")}
+                    </div>
+                    ${hasHeroItems ? `<div class="bi-hero-items-label">추천 배틀아이템</div>` : ""}
+                    ${heroBattleIconsHtml}
+                </div>
+    `;
 
     return `
         <div class="p-hero ${themeClass}">
@@ -3914,7 +4170,6 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
                         <div class="p-hero-title-row">
                             <div class="p-hero-icon">${icon}</div>
                            
-
 
                             <div class="p-hero-title-wrap">
                                 <h2 class="p-hero-title">${raidTitle}<span class="p-hero-member-badge">${memberCount}</span></h2>
@@ -3931,22 +4186,18 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
                         </div>
 
                         <p class="p-hero-desc">
-                            클리어 시간을 직접 입력해 딜지분에 따른 DPS를 실시간으로 확인할 수 있습니다.
-                        </p>
-                        <p class="p-hero-desc" style="margin-top:6px;">
-                            ${descLine}
-                            같은 딜지분이라도 클리어 시간이 짧을수록 요구되는 DPS는 높아집니다.
-                        </p>
+    클리어 시간을 입력하면 강투·1인분·잔혈 컷 딜지분별 DPS를 실시간으로 확인할 수 있습니다.
+</p>
                     </div>
 
                     <div class="p-hero-pills">
                         ${pills.map(p => `
-                            <span class="p-pill ${currentDiff === p.key ? "active" : ""}">${p.text}</span>
+                            <span class="p-pill diff-${p.key} ${currentDiff === p.key ? "active" : ""}">${p.text}</span>
                         `).join("")}
                     </div>
                 </div>
 
-             
+                ${heroRightBlock}
             </div>
         </div>
     `;
@@ -3957,7 +4208,6 @@ function makeRaidMiniHero(menu, meta) {
     const isCathedral = menu === "cathedral";
     const raidTitle = getRaidDisplayName(menu);
     const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : "hero-belgardin");
-    const kicker = isSerka ? "PRECISION · SERKA" : (isCathedral ? "PRECISION · CATHEDRAL" : "PRECISION · BELGARDIN");
     const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : "🧛");
 
     const entryLevelMatch = meta.title.match(/\((\d+)\)/);
@@ -3965,29 +4215,36 @@ function makeRaidMiniHero(menu, meta) {
     const diffLabel = meta.title.replace(/\s*\(.+\)/, "");
     const gateLabel = meta.gateName;
 
+
+
+
+    const miniBattleIconsHtml = buildMiniBattleIconsHtml(menu, meta.diffKey, meta.gateKey, currentRoleMode);
+    const miniLoadoutBlock = miniBattleIconsHtml ? `
+                <div class="bi-mini-loadout-inline">
+                    ${makeRoleBadgeHtml()}
+                    ${miniBattleIconsHtml}
+                </div>
+    ` : "";
+
     return `
         <div class="p-hero p-mini-hero ${themeClass}">
             <div class="p-mini-hero-row">
                 <div class="p-mini-hero-left">
-                    <span class="p-hero-kicker" style="margin-bottom:0;">${kicker}</span>
-                    <span class="p-mini-hero-divider"></span>
                     <div class="p-hero-icon p-hero-icon-sm">${icon}</div>
                     <span class="p-mini-hero-title">${raidTitle}</span>
+                    <span class="p-mini-diff-badge diff-${meta.diffKey}">${diffLabel}</span>
+                    <span class="p-mini-gate-badge">${gateLabel}</span>
+                    <span class="p-mini-level-badge">${entryLevel}</span>
                 </div>
-                <div class="p-mini-hero-stats">
-                    <div>
-                        <div class="p-stat-label" style="margin-bottom:0;">입장 레벨</div>
-                        <div class="p-mini-hero-title">${entryLevel}</div>
-                    </div>
-                    <div>
-                        <div class="p-stat-label" style="margin-bottom:0;">난이도 · 관문</div>
-                        <div class="p-mini-hero-title">${diffLabel} · ${gateLabel}</div>
-                    </div>
-                </div>
+
+                ${miniLoadoutBlock}
             </div>
         </div>
     `;
 }
+
+
+
 
 /* =============================================
    가디언 컨트롤
@@ -4259,8 +4516,8 @@ if (currentMenu === "simple" || currentMenu === "raid-simple") {
 
 setMainContentWithAdPreservation(
     makeGuardianHero(tier, boss, bossInfo),
+    makeGuardianMiniHero(tier, boss, bossInfo),
     `
-    ${makeGuardianMiniHero(tier, boss, bossInfo)}
     ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
 
     <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
@@ -4320,12 +4577,12 @@ setMainContentWithAdPreservation(
                     : '<tr><td colspan="3">데이터 없음</td></tr>';
             }
 
-                                              
-setMainContentWithAdPreservation(
+               setMainContentWithAdPreservation(
     makeGuardianHero(tier, boss, bossInfo),
+    makeGuardianMiniHero(tier, boss, bossInfo),
     `
-    ${makeGuardianMiniHero(tier, boss, bossInfo)}
-    ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}
+    ${makeGuardianControl(tier, boss, bossList, availList, bossInfo)}                               
+
 
     <div class="precision-section-divider"><span>가디언 토벌 딜지분 상세보기</span></div>
 
@@ -4488,11 +4745,10 @@ if (currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "b
 
 setMainContentWithAdPreservation(
     makeRaidPrecisionHero(currentMenu, meta, currentDiff),
+    makeRaidMiniHero(currentMenu, meta),
     `
 
-${makeRaidMiniHero(currentMenu, meta)}
             <div class="precision-layout-split">
-
 
 
    
@@ -4620,7 +4876,7 @@ document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
     }
 
 
-
+    bindRaidBattleItemIcons();
     bindRoleToggle();
     updatePartyDpsDisplay();
     return;
