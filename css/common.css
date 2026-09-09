@@ -3,7 +3,7 @@
   --line:rgba(255,255,255,.07);--gold:#e8b84b;--gold-soft:#f3d488;--purple:#9b7ef0;
   --blue:#5b9cf5;--red:#e85454;--green:#3cc78c;
 
-
+  /* ★ 메인 페이지와 완벽 일치를 위한 사이트 전체 가로폭 변수 */
   --container-width: 1160px;
 }
 
@@ -11,14 +11,16 @@
 html, body {
     overflow-x: hidden;
     overflow-x: clip;
-  
+    /* 폰트가 늦게 로드돼도 레이아웃이 덜 움직이게 */
     font-synthesis: none;
     text-rendering: optimizeLegibility;
 }
 
 .common-topbar{display:none;}
 
-
+/* =============================================
+   GNB (상단 메뉴바)
+   ============================================= */
 .gnb{position:sticky;top:0;z-index:500;padding:8px 0 0;}
 .gnb-shell{max-width:var(--container-width);margin:0 auto;padding:0 20px;} /* 너비 및 패딩 피팅 */
 .gnb-bar{display:flex;align-items:center;gap:18px;min-height:56px;padding:0 16px;border-radius:14px;background:rgba(8,10,17,.82);border:1px solid rgba(255,255,255,.05);backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 10px 36px rgba(0,0,0,.35);position:relative;}
@@ -80,7 +82,9 @@ html, body {
 .gnb-cta.op{background:linear-gradient(135deg,var(--gold),#c99527);color:#1a1300;box-shadow:0 8px 20px rgba(232,184,75,.18);}
 .gnb-cta.like{background:linear-gradient(135deg,#ff9dbf,#ff719d);color:#2a0916;box-shadow:0 8px 20px rgba(255,113,157,.18);}
 
-
+/* =============================================
+   햄버거 버튼 (모바일 전용)
+   ============================================= */
 .gnb-hamburger{
   display:none;
   flex-direction:column;
@@ -129,7 +133,9 @@ body.gnb-drawer-open .gnb-hamburger span:nth-child(3){
   transform:translateY(-6px) rotate(-45deg);
 }
 
-
+/* =============================================
+   왼쪽 드로어 메뉴 (모바일 전용)
+   ============================================= */
 .gnb-drawer-overlay{
   position:fixed;
   inset:0;
@@ -590,7 +596,9 @@ body.standalone-rank-page .qm-row {
   }
 }
 
-
+/* =============================================
+   공통 푸터
+   ============================================= */
 .common-footer {
     width: 100%;
     margin-top: 40px;
@@ -635,7 +643,9 @@ body.standalone-rank-page .qm-row {
     }
 }
 
-
+/* =============================================
+   공통 오로라 배경 (전체 화면 꽉 차게 복원 + 정적 최적화)
+   ============================================= */
 .common-aurora {
     position: fixed;
     inset: 0;                    
@@ -684,12 +694,16 @@ body.standalone-rank-page .qm-row {
     }
 }
 
-
+/* =============================================
+   아크그리드 전용: 헤더 아래 이중 구분선 제거
+   ============================================= */
 body.standalone-arc-grid-page .common-divider-top {
     display: none;
 }
 
-
+/* =============================================
+   모든 페이지(서브페이지 포함) z-index 강제 초기화
+   ============================================= */
 .page, 
 .auction-page, 
 .tools-page, 
@@ -698,7 +712,9 @@ body.standalone-arc-grid-page .common-divider-top {
     z-index: auto !important;
 }
 
-
+/* =============================================
+   구글 애드센스 자동 광고 강제 파기(Collapse) 방지
+   ============================================= */
 .google-auto-placed ins.adsbygoogle {
     display: block !important;
     width: 100% !important;
@@ -712,7 +728,9 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-
+/* =============================================
+   상단 가로 배너 광고 전용 레이아웃 설정 (너비 피팅 반영)
+   ============================================= */
 
 
 .main .loaview-top-ad-wrap {
@@ -734,14 +752,14 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-
+/* CLS 추가 방지 - 상단 광고 */
 .loaview-top-ad-wrap {
     min-height: 90px;
     height: 90px;
     overflow: hidden;
 }
 
-
+/* CLS 추가 방지 - 하단 광고 */
 .loaview-bottom-ad-wrap,
 #bottom-ad-wrapper {
     min-height: 90px;
@@ -750,7 +768,7 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-
+/* 메인 홈페이지 광고 좌측 쏠림 수정 - 강제 중앙 정렬 */
 
 
 
@@ -771,7 +789,9 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
 
 
 
-
+/* =============================================
+   양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
+   ============================================= */
 .loaview-side-ad-wrap {
     position: fixed;
     top: 50%;
@@ -790,7 +810,9 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
     height: 600px !important;
 }
 
-
+/* =============================================
+   메인 홈 히어로 간격 미세조정 패치 (GNB 아래 간격 축소)
+   ============================================= */
 .hero {
     position: relative !important;
     padding: 16px 0 30px !important;
@@ -825,6 +847,13 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
         white-space: nowrap !important;
     }
 }
+/* =============================================
+   좌우 고정 사이드 광고 레일 (anchor rail, 인벤 스타일)
+   - position: fixed 로 브라우저 화면 자체에 붙어서 스크롤해도 항상 같은 자리 유지
+   - 좌/우 위치(left)는 common.js가 본문 박스(.app 등) 실제 위치를 계산해서
+     인라인 스타일로 지정함 (본문 바로 옆에 붙도록). 여기서는 고정값을 주지 않음.
+   - 본문 옆에 붙일 공간이 없으면 common.js가 display:none으로 숨김.
+   ============================================= */
 
 
 
