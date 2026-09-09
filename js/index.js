@@ -4252,12 +4252,13 @@ function makeRaidMiniHero(menu, meta) {
 function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
     const oldBosses = ["루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스","드렉탈라스","소나벨","베스칼"];
 
+    const tierColorMap = { "1730": "gt-green", "1750": "gt-gold", "1770": "gt-purple" };
     const tierChecks = ["1730", "1750", "1770"].map(t => {
         const isActive = tier === t;
+        const cls = tierColorMap[t];
 
         return `
-            <div class="guardian-tier-chip ${isActive ? "active" : ""}" data-tier="${t}">
-                <span class="guardian-tier-chip-check">${isActive ? "✓" : ""}</span>
+            <div class="guardian-tier-chip ${isActive ? `${cls} active` : ""}" data-tier="${t}">
                 <span class="guardian-tier-chip-text">${t}</span>
             </div>
         `;
@@ -4281,7 +4282,6 @@ function makeGuardianControl(tier, boss, bossList, availList, bossInfo) {
                     ${makeBadge(m.type.text, m.type.cls)}
                     ${makeBadge(m.attr.text, m.attr.cls)}
                 </div>
-                ${isActive ? '<div class="gd-item-check">✓</div>' : ""}
                 ${isAvail ? "" : '<span class="gd-pending-tag">준비중</span>'}
             </div>
         `;
@@ -4748,7 +4748,7 @@ setMainContentWithAdPreservation(
     makeRaidMiniHero(currentMenu, meta),
     `
 
-            <div class="precision-layout-split">
+            <div class="precision-layout-split menu-${currentMenu}">
 
 
    
@@ -4756,12 +4756,12 @@ setMainContentWithAdPreservation(
             <div class="precision-control compact-precision-control">
                 <div class="precision-inline-group">
                     <div class="precision-control-label">난이도 선택</div>
-                    <div class="precision-diff-inline">
+                    <div class="precision-diff-inline" id="precisionDiffInline">
+                        <div class="precision-switch-thumb precision-diff-thumb ${groups.find(g => g.diffKey === currentDiff).cls}" id="precisionDiffThumb"></div>
                         ${groups.map(g => {
                             const isActive = currentDiff === g.diffKey;
                             return `
                                 <div class="precision-diff-chip ${isActive ? `${g.cls} active` : ""}" data-diff="${g.diffKey}">
-                                    <span class="precision-diff-chip-check">${isActive ? "✓" : ""}</span>
                                     <span class="precision-diff-chip-main">${g.label}</span>
                                     <span class="precision-diff-chip-sub">${g.level}</span>
                                 </div>
@@ -4772,7 +4772,8 @@ setMainContentWithAdPreservation(
 
                 <div class="precision-inline-group">
                     <div class="precision-control-label">관문 선택</div>
-                    <div class="precision-gate-inline">
+                    <div class="precision-gate-inline" id="precisionGateInline">
+                        <div class="precision-switch-thumb precision-gate-thumb" id="precisionGateThumb"></div>
                         <div class="precision-gate-chip ${currentGate === "gate1" ? "active" : ""}" data-gate="gate1">
                             <div class="precision-gate-chip-content">
                                 <div class="precision-gate-chip-line">
@@ -4879,10 +4880,38 @@ document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
     bindRaidBattleItemIcons();
     bindRoleToggle();
     updatePartyDpsDisplay();
+    positionPrecisionSwitchThumbs();
     return;
 }
 
 }
+
+/* =============================================
+   난이도/관문 슬라이딩 스위치 썸(thumb) 위치 계산
+   ============================================= */
+function positionPrecisionSwitchThumb(trackId, thumbId) {
+    const track = document.getElementById(trackId);
+    const thumb = document.getElementById(thumbId);
+    if (!track || !thumb) return;
+
+    const activeBtn = track.querySelector(".active");
+    if (!activeBtn) return;
+
+    const trackRect = track.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+
+    thumb.style.transform = `translateX(${Math.round(btnRect.left - trackRect.left - 6)}px)`;
+    thumb.style.width = `${Math.ceil(btnRect.width)}px`;
+}
+
+function positionPrecisionSwitchThumbs() {
+    positionPrecisionSwitchThumb("precisionDiffInline", "precisionDiffThumb");
+    positionPrecisionSwitchThumb("precisionGateInline", "precisionGateThumb");
+}
+
+window.addEventListener("resize", () => {
+    positionPrecisionSwitchThumbs();
+});
 
 
 /* =============================================
