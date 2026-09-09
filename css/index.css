@@ -6845,6 +6845,14 @@ color: #b56c6c;
     gap: 28px;
     flex-wrap: wrap;
 }
+@media (max-width: 480px) {
+    .p-mini-hero-row {
+        gap: 14px;
+    }
+    .p-mini-hero-left {
+        gap: 8px;
+    }
+}
 
 .p-mini-hero-left {
     display: flex;
@@ -6862,6 +6870,7 @@ color: #b56c6c;
     font-size: 18px;
     font-weight: 900;
     color: #fff;
+    white-space: nowrap;
 }
 
 .p-hero-icon-sm {
@@ -7214,6 +7223,8 @@ body.standalone-dps-page .app {
 .p-mini-diff-badge {
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
     height: 24px;
     padding: 0 9px;
     border-radius: 6px;
@@ -7223,6 +7234,8 @@ body.standalone-dps-page .app {
     background: rgba(255,255,255,.04);
     color: #b9c3d4;
 }
+
+
 .p-mini-diff-badge.diff-normal {
     background: rgba(52,211,153,.14);
     border-color: rgba(52,211,153,.35);
@@ -7243,6 +7256,8 @@ body.standalone-dps-page .app {
 .p-mini-gate-badge {
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
     height: 24px;
     padding: 0 9px;
     border-radius: 6px;
@@ -7257,6 +7272,8 @@ body.standalone-dps-page .app {
 .p-mini-level-badge {
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
     height: 24px;
     padding: 0 9px;
     border-radius: 6px;
