@@ -1003,14 +1003,25 @@ body {
     gap: 8px;
 }
 
+
 .tabs.simple-tabs {
     display: block;
     width: 100%;
 }
 
+#precisionHeroSlot {
+    display: block;
+}
 
+#precisionBigHeroSlot {
+    margin-bottom: 18px;
+}
 
 .content-grid {
+
+
+
+
     display: grid;
     grid-template-columns: minmax(0, 1fr) 310px;
     gap: 18px;
@@ -3694,8 +3705,8 @@ tbody tr:hover td {
 }
 
 .p-hero-right {
-    width: 220px;
-    flex: 0 0 220px;
+    width: 320px;
+    flex: 0 0 320px;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     gap: 8px;
@@ -3822,6 +3833,222 @@ tbody tr:hover td {
     color: #fff;
     line-height: 1.15;
 }
+
+
+/* =============================================
+   추천 배틀아이템 - 히어로 / 미니히어로 공통
+   ============================================= */
+.bi-hero-toprightgroup {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    z-index: 2;
+}
+
+.p-hero-right.bi-hero-items-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bi-hero-items-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.bi-hero-items-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #7a8599;
+    letter-spacing: .5px;
+}
+
+.bi-hero-icons-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.bi-hero-icon-chip {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #0f1320;
+    border: 1px solid #232538;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.bi-hero-icon-chip img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+}
+
+.bi-hero-icon-chip-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: #0f1320;
+    border: 1px solid #232538;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bi-hero-icon-chip-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+}
+
+.bi-choice-wrap {
+    position: relative;
+}
+
+.bi-choice-toggle {
+    cursor: pointer;
+}
+
+.bi-open-tag {
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px 6px 3px 5px;
+    border-radius: 20px;
+    background: #1b1f30;
+    border: 1px solid #232538;
+    font-size: 9px;
+    font-weight: 800;
+    color: #e5e7eb;
+    white-space: nowrap;
+    box-shadow: 0 3px 8px rgba(0,0,0,.4);
+    pointer-events: none;
+}
+
+.bi-open-arrow {
+    font-size: 7px;
+    color: #f7ca54;
+    display: inline-block;
+    transition: transform .15s ease;
+}
+
+.bi-choice-toggle.open .bi-open-arrow {
+    transform: rotate(180deg);
+}
+
+.bi-choice-drawer {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    display: none;
+    flex-direction: row;
+    gap: 6px;
+    z-index: 20;
+    background: #171b2b;
+    border: 1px solid #232538;
+    border-radius: 12px;
+    padding: 7px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.4);
+}
+
+.bi-choice-drawer.open {
+    display: flex;
+}
+
+.bi-reco-row {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #12141f;
+    border: 1px solid transparent;
+    transition: border-color .12s ease, background .12s ease;
+}
+
+.bi-reco-row:hover {
+    background: #1f2436;
+}
+
+.bi-reco-row.active {
+    border-color: #f7ca54;
+    background: rgba(247,202,84,.16);
+}
+
+.bi-reco-row img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.bi-mini-loadout-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 26px;
+    border-left: 1px solid #232538;
+    flex-wrap: wrap;
+}
+
+.bi-mini-icons-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.bi-hero-icon-chip.bi-mini {
+    width: 33px;
+    height: 33px;
+    border-radius: 8px;
+}
+
+.bi-hero-icon-chip.bi-mini img {
+    padding: 4px;
+}
+
+@media (max-width: 768px) {
+    .bi-hero-toprightgroup {
+        position: static;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+
+    .p-hero-right.bi-hero-items-wrap {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .bi-mini-loadout-inline {
+        border-left: none;
+        padding-left: 0;
+        padding-top: 8px;
+        border-top: 1px dashed #232538;
+        flex-basis: 100%;
+        order: 3;
+    }
+}
+
 
 /* =============================================
    세르카
@@ -6606,11 +6833,16 @@ color: #b56c6c;
     margin-bottom: 18px;
 }
 
+#precisionMiniHeroSlot .p-mini-hero {
+    margin-bottom: 0px !important;
+}
+
+
 .p-mini-hero-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    justify-content: center;
+    gap: 28px;
     flex-wrap: wrap;
 }
 
@@ -6627,21 +6859,33 @@ color: #b56c6c;
 }
 
 .p-mini-hero-title {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 900;
     color: #fff;
 }
 
 .p-hero-icon-sm {
-    width: 26px !important;
-    height: 26px !important;
+    width: 38px !important;
+    height: 38px !important;
     border-radius: 8px !important;
-    font-size: 13px !important;
+    font-size: 25px !important;
 }
 
 .p-mini-hero-stats {
     display: flex;
     gap: 16px;
+}
+
+@media (max-width: 768px) {
+    /* 간편보기 · 레벨별: 레벨 범위 / 우선순위 카드 숨김 (레이드별의 레이드 유형/인원 카드는 유지) */
+    .level-range-stats {
+        display: none;
+    }
+
+    /* 정밀계산 · 가디언 토벌: 입장 레벨 / 보스명 전체 숨김 */
+    .hero-guardian .p-mini-hero-stats {
+        display: none;
+    }
 }
 
 
@@ -6668,7 +6912,7 @@ color: #b56c6c;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 10px;
     padding: 6px 14px;
     border-radius: 10px;
     background: rgba(255,255,255,.06);
@@ -6942,4 +7186,224 @@ body.standalone-dps-page .app {
     width: 100% !important;
     max-width: 100% !important;
   }
+}
+
+/* =============================================
+   난이도별 색상 코딩 (세르카 / 지평의 성당 / 벨가르딘 공통)
+   노말=초록 · 하드=골드(주황빛) · 나메=보라
+   레이드 테마(.hero-serka/.hero-cathedral/.hero-belgardin) 개별 오버라이드보다
+   뒤에 위치시켜 난이도별 색이 항상 우선 적용되게 함
+   ============================================= */
+.p-pill.diff-normal.active {
+    background: linear-gradient(135deg, rgba(52,211,153,.16), rgba(52,211,153,.05)) !important;
+    border-color: rgba(52,211,153,.4) !important;
+    color: #34d399 !important;
+}
+.p-pill.diff-hard.active {
+    background: linear-gradient(135deg, rgba(247,202,84,.16), rgba(247,202,84,.05)) !important;
+    border-color: rgba(247,202,84,.4) !important;
+    color: #f7ca54 !important;
+}
+.p-pill.diff-nightmare.active {
+    background: linear-gradient(135deg, rgba(167,139,250,.16), rgba(167,139,250,.05)) !important;
+    border-color: rgba(167,139,250,.4) !important;
+    color: #a78bfa !important;
+}
+
+/* 미니히어로 - 난이도 배지 (제목 옆) */
+.p-mini-diff-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.04);
+    color: #b9c3d4;
+}
+.p-mini-diff-badge.diff-normal {
+    background: rgba(52,211,153,.14);
+    border-color: rgba(52,211,153,.35);
+    color: #34d399;
+}
+.p-mini-diff-badge.diff-hard {
+    background: rgba(247,202,84,.14);
+    border-color: rgba(247,202,84,.35);
+    color: #f7ca54;
+}
+.p-mini-diff-badge.diff-nightmare {
+    background: rgba(167,139,250,.14);
+    border-color: rgba(167,139,250,.35);
+    color: #a78bfa;
+}
+
+/* 미니히어로 - 관문 배지 (제목 옆, 파란색 고정) */
+.p-mini-gate-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid rgba(96,165,250,.3);
+    background: rgba(96,165,250,.12);
+    color: #60a5fa;
+}
+
+/* 미니히어로 - 입장 레벨 배지 (관문 배지 옆, 무채색 기본 스타일) */
+.p-mini-level-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.04);
+    color: #b9c3d4;
+}
+
+/* =============================================
+   미니히어로 - 딜러/서폿 자동 배지 (클릭 불가, 정적 표시)
+   전환은 큰 히어로 상단 토글 + 하단 잔혈컷/잔조컷 버튼에서만 가능
+   ============================================= */
+.bi-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 33px;
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.bi-role-badge-icon {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.bi-role-badge-label {
+    line-height: 1;
+}
+
+.bi-role-badge.role-badge-dealer {
+    background: rgba(239,68,68,.13);
+    border: 1px solid rgba(239,68,68,.4);
+    color: #ff9d9d;
+}
+
+.bi-role-badge.role-badge-support {
+    background: rgba(52,211,153,.14);
+    border: 1px solid rgba(52,211,153,.4);
+    color: #34d399;
+}
+
+
+/* =============================================
+   큰 히어로 - 딜러/서폿 토글 전용 스타일 (hero-role)
+   라벨을 "딜러"/"서폿"으로 축약하고, 서폿 선택 시 초록으로 강조
+   (compact의 강제 블루/화이트 처리를 무시하도록 더 구체적인 선택자 사용)
+   ============================================= */
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-dealer.active {
+    background: linear-gradient(135deg, rgba(96,165,250,.20), rgba(99,102,241,.10)) !important;
+    box-shadow: 0 2px 10px rgba(99,102,241,.24) !important;
+}
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-dealer.active .role-label,
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-dealer.active .role-icon,
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-dealer.active .role-check {
+    color: #dbeafe !important;
+}
+
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-support.active {
+    background: linear-gradient(135deg, rgba(52,211,153,.20), rgba(52,211,153,.06)) !important;
+    box-shadow: 0 2px 10px rgba(52,211,153,.24) !important;
+}
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-support.active .role-label,
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-support.active .role-icon,
+.role-toggle-box.compact.hero-role .role-toggle-btn.role-support.active .role-check {
+    color: #34d399 !important;
+}
+
+/* =============================================
+   큰 히어로 - 추천 배틀아이템 줄 왼쪽 관문 배지 ([1관]/[2관])
+   ============================================= */
+.bi-hero-gate-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 800;
+    border: 1px solid rgba(96,165,250,.3);
+    background: rgba(96,165,250,.12);
+    color: #60a5fa;
+    flex-shrink: 0;
+}
+
+/* 큰 히어로 선택형 서랍 - 보기 전용 (클릭해도 선택 안 바뀜) */
+.bi-choice-drawer .bi-reco-row {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* =============================================
+   미니히어로 - 배지/영역 크기 확대
+   [하드][2관] 배지: 1단계 확대 / 딜러·서폿 배지 + 배틀아이템: 2단계 확대
+   ============================================= */
+.p-mini-diff-badge,
+.p-mini-gate-badge,
+.p-mini-level-badge {
+    height: 28px;
+    padding: 0 11px;
+    font-size: 13px;
+    border-radius: 7px;
+}
+
+.bi-role-badge {
+    height: 40px;
+    padding: 0 13px;
+    font-size: 13px;
+    border-radius: 9px;
+    gap: 5px;
+}
+
+.bi-role-badge-icon {
+    font-size: 14px;
+}
+
+.bi-hero-icon-chip.bi-mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+}
+
+.bi-hero-icon-chip.bi-mini img {
+    padding: 5px;
+}
+
+
+/* 미니히어로 배틀아이템 - 선택형 옵션들 사이 "+" 구분자 */
+.bi-mini-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 900;
+    color: #f7ca54;
+    flex-shrink: 0;
+}
+
+/* 큰 히어로 헤더 줄 안에 들어가는 토글이라 기본 margin-top 제거 */
+.role-toggle-box.compact.hero-role {
+    margin-top: 0;
 }
