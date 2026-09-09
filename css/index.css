@@ -1897,44 +1897,91 @@ body {
 }
 
 .precision-diff-inline {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
+    gap: 5px;
     width: 66.6%;
+    background: #0e0f17;
+    border: 1px solid #1e2130;
+    border-radius: 14px;
+    padding: 6px;
+    overflow: hidden;
 }
 
 .precision-gate-inline {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    gap: 5px;
     width: 66.6%;
+    background: #0e0f17;
+    border: 1px solid #1e2130;
+    border-radius: 14px;
+    padding: 6px;
+    overflow: hidden;
+}
+
+.precision-switch-thumb {
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 6px;
+    border-radius: 9px;
+    border: 1px solid transparent;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.precision-diff-thumb.pd-green {
+    background: linear-gradient(135deg, rgba(52,211,153,.22), rgba(52,211,153,.08));
+    border-color: rgba(52,211,153,.45);
+    box-shadow: 0 0 12px rgba(52,211,153,.16);
+}
+
+.precision-diff-thumb.pd-gold {
+    background: linear-gradient(135deg, rgba(247,202,84,.22), rgba(247,202,84,.08));
+    border-color: rgba(247,202,84,.45);
+    box-shadow: 0 0 12px rgba(247,202,84,.16);
+}
+
+.precision-diff-thumb.pd-purple {
+    background: linear-gradient(135deg, rgba(167,139,250,.22), rgba(167,139,250,.08));
+    border-color: rgba(167,139,250,.45);
+    box-shadow: 0 0 12px rgba(167,139,250,.16);
+}
+
+.precision-gate-thumb {
+    background: linear-gradient(135deg, rgba(14,116,144,.55), rgba(8,90,110,.30));
+    border-color: rgba(56,189,248,.65);
+    box-shadow: 0 0 12px rgba(56,189,248,.25);
 }
 
 .precision-diff-chip {
-    min-width: 92px;
+    position: relative;
+    z-index: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    min-width: 0;
     padding: 10px 12px;
-    border-radius: 12px;
-    background: #151822;
-    border: 1px solid #212536;
+    border-radius: 9px;
+    background: transparent;
+    border: none;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2px;
     cursor: pointer;
-    transition: .2s ease;
+    transition: color .2s ease;
     white-space: nowrap;
+    color: #8a93a8;
+    font-family: inherit;
 }
 
-.precision-diff-chip:hover {
-    border-color: #3b4563;
-}
-
-.precision-diff-chip-check {
-    font-size: 11px;
-    font-weight: 900;
-    line-height: 1;
-    min-height: 12px;
+.precision-diff-chip:focus,
+.precision-diff-chip:focus-visible {
+    outline: none;
 }
 
 .precision-diff-chip-main {
@@ -1950,60 +1997,40 @@ body {
 }
 
 .precision-diff-chip.pd-green.active {
-    background: linear-gradient(135deg, rgba(52,211,153,.12), rgba(52,211,153,.04));
-    border-color: rgba(52,211,153,.35);
     color: #34d399;
 }
 
 .precision-diff-chip.pd-gold.active {
-    background: linear-gradient(135deg, rgba(247,202,84,.12), rgba(247,202,84,.04));
-    border-color: rgba(247,202,84,.35);
     color: #f7ca54;
 }
 
 .precision-diff-chip.pd-purple.active {
-    background: linear-gradient(135deg, rgba(167,139,250,.12), rgba(167,139,250,.04));
-    border-color: rgba(167,139,250,.35);
     color: #a78bfa;
 }
 
 .precision-gate-chip {
     position: relative;
+    z-index: 1;
+    -webkit-appearance: none;
+    appearance: none;
     min-width: 0;
     min-height: 84px;
     padding: 18px 14px 12px;
-    border-radius: 12px;
-    background: #151822;
-    border: 1px solid #212536;
+    border-radius: 9px;
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     cursor: pointer;
     transition: .2s ease;
+    font-family: inherit;
 }
 
-.precision-gate-chip:hover {
-    border-color: #3b4563;
-}
-
-.precision-gate-chip.active {
-    background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,102,241,.08));
-    border-color: rgba(99,102,241,.35);
-    box-shadow: 0 4px 12px rgba(59,130,246,.12);
-}
-
-.precision-gate-chip.active::before {
-    content: "✓";
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    font-weight: 900;
-    color: #60a5fa;
-    line-height: 1;
-    opacity: .9;
+.precision-gate-chip:focus,
+.precision-gate-chip:focus-visible {
+    outline: none;
 }
 
 .precision-gate-chip-content {
@@ -2015,7 +2042,7 @@ body {
     gap: 6px;
     min-width: 0;
     text-align: center;
-    margin-top: 8px;
+    margin-top: 0;
 }
 
 .precision-gate-chip-line {
@@ -2118,11 +2145,25 @@ body {
     border-color: #3b4563;
 }
 
-.guardian-tier-chip.active {
-    background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,102,241,.08));
-    border-color: rgba(99,102,241,.35);
-    box-shadow: 0 4px 12px rgba(59,130,246,.12);
-    color: #fff;
+.guardian-tier-chip.gt-green.active {
+    background: linear-gradient(135deg, rgba(52,211,153,.18), rgba(52,211,153,.08));
+    border-color: rgba(52,211,153,.45);
+    box-shadow: 0 4px 12px rgba(52,211,153,.16);
+    color: #34d399;
+}
+
+.guardian-tier-chip.gt-gold.active {
+    background: linear-gradient(135deg, rgba(247,202,84,.18), rgba(247,202,84,.08));
+    border-color: rgba(247,202,84,.45);
+    box-shadow: 0 4px 12px rgba(247,202,84,.16);
+    color: #f7ca54;
+}
+
+.guardian-tier-chip.gt-purple.active {
+    background: linear-gradient(135deg, rgba(167,139,250,.18), rgba(167,139,250,.08));
+    border-color: rgba(167,139,250,.45);
+    box-shadow: 0 4px 12px rgba(167,139,250,.16);
+    color: #a78bfa;
 }
 
 .guardian-tier-chip-check {
@@ -4005,23 +4046,26 @@ tbody tr:hover td {
     gap: 10px;
     padding-left: 26px;
     border-left: 1px solid #232538;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.bi-mini-loadout-inline::-webkit-scrollbar {
+    display: none;
+}
+
+.bi-mini-loadout-inline > * {
+    flex-shrink: 0;
 }
 
 .bi-mini-icons-row {
     display: flex;
+    align-items: center;
+    height: 36px;
     gap: 6px;
-    flex-wrap: wrap;
-}
-
-.bi-hero-icon-chip.bi-mini {
-    width: 33px;
-    height: 33px;
-    border-radius: 8px;
-}
-
-.bi-hero-icon-chip.bi-mini img {
-    padding: 4px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -4106,6 +4150,10 @@ tbody tr:hover td {
     color: #4a90b8;
 }
 
+.menu-serka .precision-gate-chip-gate {
+    color: #7dd3fc;
+}
+
 /* =============================================
    지평의 성당
    ============================================= */
@@ -4162,6 +4210,10 @@ tbody tr:hover td {
     color: #7c6cb5;
 }
 
+.menu-cathedral .precision-gate-chip-gate {
+    color: #c4b5fd;
+}
+
 /* =============================================
    가디언 토벌
    ============================================= */
@@ -4216,6 +4268,10 @@ tbody tr:hover td {
 
 .hero-guardian .p-stat-label {
     color: #a07840;
+}
+
+.menu-guardian .precision-gate-chip-gate {
+    color: #fdba74;
 }
 
 /* =============================================
@@ -5359,29 +5415,7 @@ body.mobile-home-mode .sidebar > :not(.switch-wrap):not(.mobile-home):not(.patch
     .mobile-time-preview { text-align: center; font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 14px; letter-spacing: 1px; }
     .mobile-time-apply-btn { width: 100%; min-height: 44px; border-radius: 12px; border: 1px solid rgba(59,130,246,.28); background: linear-gradient(135deg, rgba(59,130,246,.16), rgba(99,102,241,.10)); color: #fff; font-size: 14px; font-weight: 900; cursor: pointer; }
 
-    /* 세르카 (파란색 글로우) */
-    .hero-serka ~ .precision-layout-split .precision-diff-chip.active, .hero-serka ~ .precision-layout-split .precision-diff-chip.pd-green.active, .hero-serka ~ .precision-layout-split .precision-diff-chip.pd-gold.active, .hero-serka ~ .precision-layout-split .precision-diff-chip.pd-purple.active {
-        background: linear-gradient(180deg, #12192a 0%, #0e1420 100%) !important; border-color: rgba(56, 189, 248, .55) !important; color: #e0f2fe !important; box-shadow: 0 0 0 1px rgba(56, 189, 248, .18), 0 0 14px rgba(56, 189, 248, .22), 0 0 30px rgba(56, 189, 248, .14), inset 0 0 18px rgba(56, 189, 248, .08) !important;
-    }
-    .hero-serka ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-check, .hero-serka ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-main { color: #7dd3fc !important; }
-    .hero-serka ~ .precision-layout-split .precision-gate-chip.active {
-        background: linear-gradient(180deg, #12192a 0%, #0e1420 100%) !important; border-color: rgba(56, 189, 248, .55) !important; box-shadow: 0 0 0 1px rgba(56, 189, 248, .18), 0 0 14px rgba(56, 189, 248, .22), 0 0 30px rgba(56, 189, 248, .14), inset 0 0 18px rgba(56, 189, 248, .08) !important;
-    }
-    .hero-serka ~ .precision-layout-split .precision-gate-chip.active::before, .hero-serka ~ .precision-layout-split .precision-gate-chip.active .precision-gate-chip-gate { color: #7dd3fc !important; }
-
-    /* 성당 (보라색 글로우) */
-    .hero-cathedral ~ .precision-layout-split .precision-diff-chip.active, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.pd-green.active, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.pd-gold.active, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.pd-purple.active {
-        background: linear-gradient(180deg, #1a1228 0%, #120e1e 100%) !important; border-color: rgba(167, 139, 250, .55) !important; color: #f3e8ff !important; box-shadow: 0 0 0 1px rgba(167, 139, 250, .18), 0 0 14px rgba(167, 139, 250, .22), 0 0 30px rgba(167, 139, 250, .14), inset 0 0 18px rgba(167, 139, 250, .08) !important;
-    }
-    .hero-cathedral ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-check, .hero-cathedral ~ .precision-layout-split .precision-diff-chip.active .precision-diff-chip-main { color: #c4b5fd !important; }
-    .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active {
-        background: linear-gradient(180deg, #1a1228 0%, #120e1e 100%) !important; border-color: rgba(167, 139, 250, .55) !important; box-shadow: 0 0 0 1px rgba(167, 139, 250, .18), 0 0 14px rgba(167, 139, 250, .22), 0 0 30px rgba(167, 139, 250, .14), inset 0 0 18px rgba(167, 139, 250, .08) !important;
-    }
-    .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active::before, .hero-cathedral ~ .precision-layout-split .precision-gate-chip.active .precision-gate-chip-gate { color: #c4b5fd !important; }
-
-
-
-
+    /* 난이도(precision-diff)는 레이드와 무관하게 그린/골드/퍼플 고정색을 그대로 사용합니다. */
 
     /* 가디언 토벌 (붉은 계열 & 2줄 구조) */
     .hero-guardian {
@@ -5396,8 +5430,14 @@ body.mobile-home-mode .sidebar > :not(.switch-wrap):not(.mobile-home):not(.patch
     .hero-guardian .p-stat { background: rgba(239, 68, 68, .04) !important; border-color: rgba(239, 68, 68, .10) !important; }
     .hero-guardian .p-stat-label { color: #b04040 !important; }
 
-    .guardian-tier-chip.active {
-        background: linear-gradient(135deg, rgba(239, 68, 68, .12), rgba(248, 113, 113, .08)) !important; border-color: rgba(239, 68, 68, .35) !important; box-shadow: 0 0 0 1px rgba(239, 68, 68, .18), 0 0 14px rgba(239, 68, 68, .22), 0 0 30px rgba(239, 68, 68, .14), inset 0 0 18px rgba(239, 68, 68, .08) !important; color: #fff !important;
+    .guardian-tier-chip.gt-green.active {
+        background: linear-gradient(135deg, rgba(52, 211, 153, .18), rgba(52, 211, 153, .08)) !important; border-color: rgba(52, 211, 153, .45) !important; box-shadow: 0 4px 12px rgba(52, 211, 153, .16) !important; color: #34d399 !important;
+    }
+    .guardian-tier-chip.gt-gold.active {
+        background: linear-gradient(135deg, rgba(247, 202, 84, .18), rgba(247, 202, 84, .08)) !important; border-color: rgba(247, 202, 84, .45) !important; box-shadow: 0 4px 12px rgba(247, 202, 84, .16) !important; color: #f7ca54 !important;
+    }
+    .guardian-tier-chip.gt-purple.active {
+        background: linear-gradient(135deg, rgba(167, 139, 250, .18), rgba(167, 139, 250, .08)) !important; border-color: rgba(167, 139, 250, .45) !important; box-shadow: 0 4px 12px rgba(167, 139, 250, .16) !important; color: #a78bfa !important;
     }
     .guardian-dropdown-item.gd-active { background: linear-gradient(135deg, rgba(239, 68, 68, .16), rgba(248, 113, 113, .10)) !important; box-shadow: inset 0 0 0 1px rgba(239, 68, 68, .35) !important; }
     .gd-item-check { background: linear-gradient(135deg, #ef4444, #f87171) !important; box-shadow: 0 0 0 2px rgba(239, 68, 68, .15) !important; }
@@ -5917,6 +5957,9 @@ border-color: rgba(248,113,113,.10);
 color: #b56c6c;
 }
 
+.menu-belgardin .precision-gate-chip-gate {
+    color: #fca5a5;
+}
 
 
 
@@ -6841,9 +6884,11 @@ color: #b56c6c;
 .p-mini-hero-row {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 28px;
     flex-wrap: wrap;
+    min-height: 42px;
+    width: 100%;
 }
 @media (max-width: 480px) {
     .p-mini-hero-row {
@@ -6893,6 +6938,11 @@ color: #b56c6c;
 
     /* 정밀계산 · 가디언 토벌: 입장 레벨 / 보스명 전체 숨김 */
     .hero-guardian .p-mini-hero-stats {
+        display: none;
+    }
+
+    /* 간편보기 · 레벨별/레이드별 미니히어로: PRECISION · LEVEL / PRECISION · CATHEDRAL 등 문구 숨김 */
+    .hero-simple-neutral .p-hero-kicker {
         display: none;
     }
 }
@@ -7421,7 +7471,7 @@ body.standalone-dps-page .app {
     align-items: center;
     justify-content: center;
     width: 16px;
-    height: 40px;
+    height: 36px;
     font-size: 15px;
     font-weight: 900;
     color: #f7ca54;
