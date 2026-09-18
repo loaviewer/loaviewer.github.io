@@ -17,24 +17,16 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
 
-
-// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
-// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
-// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
-
-
-
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
-    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
+
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
+          
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
             </div>
@@ -42,7 +34,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
+      
         try {
             window.googletag = window.googletag || { cmd: [] };
             googletag.cmd.push(function () {
@@ -69,7 +61,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
 
 
 
-// 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
+
 const HG_BOSSES = [
   "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스",
   "드렉탈라스","소나벨","베스칼","쿤겔라니움","하누마탄",
@@ -3162,7 +3154,7 @@ function goldBarHtml(card) {
             <div class="simple-goldbar">
                 <div class="gold-item">
                     <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon" alt="">
                         <span class="gold-bind-label">귀속 골드</span>
                     </div>
                     <div class="gold-item-value gold-bind-value">${card.bindGold}</div>
@@ -3180,14 +3172,14 @@ function goldBarHtml(card) {
             <div class="simple-goldbar">
                 <div class="gold-item">
                     <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon" alt="">
                         <span class="gold-clear-label">클리어 골드</span>
                     </div>
                     <div class="gold-item-value gold-clear-value">${card.gold}</div>
                 </div>
                 <div class="gold-item">
                     <div class="gold-item-label">
-                        <img src="../img/wing_orb.png" class="icon">
+                        <img src="../img/wing_orb.png" class="icon" alt="">
                         <span class="gold-bind-label">재료</span>
                     </div>
                     <div class="gold-item-value gold-bind-value">x${orb}</div>
@@ -3201,7 +3193,7 @@ function goldBarHtml(card) {
             <div class="simple-goldbar">
                 <div class="gold-item">
                     <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon" alt="">
                         <span class="gold-clear-label">클리어 골드</span>
                     </div>
                     <div class="gold-item-value gold-clear-value">${card.gold}</div>
@@ -3209,7 +3201,7 @@ function goldBarHtml(card) {
                 <div class="gold-operator">+</div>
                 <div class="gold-item">
                     <div class="gold-item-label">
-                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon">
+                        <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_16.png" class="icon" alt="">
                         <span class="gold-bind-label">귀속 골드</span>
                     </div>
                     <div class="gold-item-value gold-bind-value">${card.bindGold}</div>
@@ -3227,7 +3219,7 @@ function goldBarHtml(card) {
         <div class="simple-goldbar">
             <div class="gold-item">
                 <div class="gold-item-label">
-                    <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon">
+                    <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" class="icon" alt="">
                     <span class="gold-clear-label">클리어 골드</span>
                 </div>
                 <div class="gold-item-value gold-clear-value">${card.gold}</div>
@@ -3864,18 +3856,18 @@ function makeRewardWidget(menu, comboKey) {
     const moreBtnId = `rewardMoreBtn_${menu}`;
 
     const itemSlots = (items) => items.map(item =>
-        `<div class="rw-slot" title="${item.name}"><img src="${item.src}"><span class="rw-count">${item.count}</span></div>`
+        `<div class="rw-slot" title="${item.name}"><img src="${item.src}" alt="${item.name}" loading="lazy"><span class="rw-count">${item.count}</span></div>`
     ).join("");
 
     const goldLine = (gold) => gold ? `
         <div class="rw-currency">
-            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png"><span>골드</span></div>
+            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" alt="골드"><span>골드</span></div>
             <span class="rw-gold">${gold}</span>
         </div>` : "";
 
     const shardLine = (shard) => shard ? `
         <div class="rw-currency">
-            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png"><span>운명의 파편</span></div>
+            <div class="rw-currency-left"><img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png" alt="운명의 파편"><span>운명의 파편</span></div>
             <span class="rw-shard">${shard}</span>
         </div>` : "";
 
@@ -3908,13 +3900,13 @@ function makeRewardWidgetMobile(menu, comboKey) {
     const moreBtnId = `mobileRewardMoreBtn_${menu}`;
 
     const itemSlots = (items) => items.map(item =>
-        `<div class="rw-slot" title="${item.name}"><img src="${item.src}"><span class="rw-count">${item.count}</span></div>`
+        `<div class="rw-slot" title="${item.name}"><img src="${item.src}" alt="${item.name}" loading="lazy"><span class="rw-count">${item.count}</span></div>`
     ).join("");
 
     const goldLine = (gold) => gold ? `
         <div class="rw-currency">
             <div class="rw-currency-left">
-                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png">
+                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_4.png" alt="골드">
                 <span>골드</span>
             </div>
             <span class="rw-gold">${gold}</span>
@@ -3923,7 +3915,7 @@ function makeRewardWidgetMobile(menu, comboKey) {
     const shardLine = (shard) => shard ? `
         <div class="rw-currency">
             <div class="rw-currency-left">
-                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png">
+                <img class="rw-currency-icon" src="https://cdn-lostark.game.onstove.com/efui_iconatlas/money/money_15.png" alt="운명의 파편">
                 <span>운명의 파편</span>
             </div>
             <span class="rw-shard">${shard}</span>
@@ -5531,9 +5523,7 @@ function enablePrecisionAdSlot() {
     const aside = document.querySelector(".right-column");
     if (!timeCard || !aside) return;
 
-    // 수직 광고는 이제 사이드 안이 아니라 화면 좌우 고정 레일(common.js의
-    // anchor-side-rail)에서 표시하므로, 여기서는 더 이상 삽입하지 않는다.
-    // 예전에 삽입했던 사이드 내부 광고 슬롯이 남아있다면 정리한다.
+   
     const oldAdSlot = document.getElementById("precisionAdSlot");
     if (oldAdSlot) oldAdSlot.style.display = "none";
     const oldAdSlot2 = document.getElementById("precisionAdSlot2");
