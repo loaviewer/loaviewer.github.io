@@ -1,8 +1,4 @@
-/* ========================================
-   아크그리드 전용 CSS
-   ======================================== */
 
-/* 전체 컨테이너 */
 #arcGridApp {
     color: #cbd5e1;
     padding: 6px 0px 0px 8px;
@@ -12,11 +8,7 @@
 }
 
 
-/* ========================================
-   직업 선택 - 카테고리형
-   최신 게임 사이트 느낌으로 리뉴얼: 카테고리는 컬러 배지,
-   직업 버튼은 CSS 그리드로 셀 크기 통일(옵션2 스타일)
-   ======================================== */
+
 #jobGrid {
     background: #11131e;
     border: 1px solid #1e293b;
@@ -106,9 +98,7 @@
     pointer-events: none;
 }
 
-/* ========================================
-   선택된 직업 표시 - 아이콘이 박스 안에 고정, 튀어나오지 않음
-   ======================================== */
+
 .arc-selected-thumb {
     width: 48px;
     height: 48px;
@@ -142,9 +132,6 @@
 
 
 
-/* ========================================
-   직업 헤더 + 각인 탭
-   ======================================== */
 #classHeaderPanel {
     background:
         linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%),
@@ -293,7 +280,7 @@
 .grade-btn {
     background: #161925;
     border: 1px solid #1e293b;
-    color: #64748b;
+    color: #7885a5;
     padding: 6px 14px;
     font-size: 12px;
     font-weight: bold;
@@ -338,7 +325,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #475569;
+    color: #7885a5;
     font-size: 14px;
     border-style: dashed;
     background: #0d0f17;
@@ -428,7 +415,7 @@
 
 .card-basic-info {
     font-size: 12px;
-    color: #64748b;
+    color: #7885a5;
     line-height: 1.8;
 }
 
@@ -467,7 +454,7 @@
 }
 
 .card-section-gray {
-    color: #64748b;
+    color: #7885a5;
     font-size: 13px;
 }
 
@@ -595,7 +582,7 @@
 
 .m-arc-select optgroup {
     background: #11131e;
-    color: #64748b;
+    color: #7885a5;
     font-weight: 700;
     font-size: 13px;
 }
@@ -643,7 +630,7 @@
 }
 
 .m-arc-job-placeholder {
-    color: #475569;
+    color: #7885a5;
     font-size: 20px;
     font-weight: 700;
 }
@@ -667,7 +654,7 @@
     border: 1px solid transparent;
     border-bottom: none;
     border-radius: 8px 8px 0 0;
-    color: #64748b;
+    color: #7885a5;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
@@ -748,7 +735,7 @@
     border-radius: 4px;
     background: rgba(22, 25, 37, 0.85);
     border: 1px solid #1e293b;
-    color: #64748b;
+    color: #7885a5;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -899,7 +886,7 @@
     background: #0d0f17;
     border: 1px solid #1e293b;
     border-radius: 12px;
-    color: #475569;
+    color: #7885a5;
     font-size: 13px;
     font-weight: 600;
 }
@@ -1080,7 +1067,7 @@
         background: #0d0f17;
         border: 1px solid #1e293b;
         border-radius: 12px;
-        color: #475569;
+        color: #7885a5;
         font-size: 13px;
         font-weight: 600;
     }
@@ -1165,7 +1152,7 @@
     content: "▼";
     margin-left: auto;
     font-size: 11px;
-    color: #64748b;
+    color: #7885a5;
 }
 
 .custom-core-select.open .custom-core-trigger {
@@ -1283,7 +1270,7 @@
         content: "▼";
         margin-left: auto;
         font-size: 11px;
-        color: #64748b;
+        color: #7885a5;
     }
 
     .m-custom-core-select.open .m-custom-core-trigger {
@@ -1367,7 +1354,7 @@
 .custom-core-trigger:disabled {
     background: #0d0f17;
     border-color: #1a2230;
-    color: #475569;
+    color: #7885a5;
     cursor: not-allowed;
     opacity: 0.6;
     box-shadow: none;
