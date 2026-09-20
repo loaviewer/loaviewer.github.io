@@ -1,6 +1,6 @@
 
 html:has(body.standalone-arc-passive-page) {
-    
+   
     overflow-y: auto;
     scrollbar-gutter: stable;
 }
@@ -19,17 +19,13 @@ html:has(body.standalone-arc-passive-page) {
     position: relative;
 }
 
-/* ========================================
-   아크패시브 전용 페이지 상단 라인 정리 (아크그리드와 동일)
-   ======================================== */
+
 body.standalone-dps-page #arkPassiveApp {
     margin-top: -6px;
     border-top: none;
 }
 
-/* ========================================
-   상단 히어로 (아크그리드 hero-arc-grid와 동일한 톤/구조로 통일)
-   ======================================== */
+
 .hero-arc-passive {
     position: relative;
     overflow: hidden;
@@ -1830,34 +1826,14 @@ body.standalone-dps-page #arkPassiveApp {
     font-weight: 400;
     font-size: 14px;
 }
+
+
 /* ========================================
-   상단 광고 배너 아래 여백 (PC 전용)
-   .loaview-top-ad-wrap는 common.js가 삽입하는 공통 광고 영역이라
-   기본적으로 margin-bottom이 없어서 바로 아래 직업 버튼과 붙어있었음.
+   상단 광고 아래 여백 (PC 전용)
+   광고는 common.js가 #tourney-ad-wrapper로 삽입하며 margin이 인라인 스타일이라 !important 필요
    ======================================== */
 @media (min-width: 769px) {
-    body.standalone-arc-passive-page .loaview-top-ad-wrap {
-        margin-bottom: 48px;
-        position: relative; /* 아래 구분선(::after) 기준점 */
-    }
-
-    /* 광고와 직업 버튼 사이 여백 중간에 사이트 공통 톤(파랑→보라→골드)의
-       구분선을 하나 넣음. common.css의 .divider-line과 같은 그라데이션. */
-    body.standalone-arc-passive-page .loaview-top-ad-wrap::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -25px;
-        height: 1px;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(91,156,245,.18) 15%,
-            rgba(155,126,240,.22) 50%,
-            rgba(232,184,75,.18) 85%,
-            transparent
-        );
-        pointer-events: none;
+    body.standalone-arc-passive-page #tourney-ad-wrapper {
+        margin-bottom: 48px !important;
     }
 }
