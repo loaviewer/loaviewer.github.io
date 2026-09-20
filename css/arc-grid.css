@@ -9,125 +9,180 @@
 
 
 
-#jobGrid {
-    background: #11131e;
-    border: 1px solid #1e293b;
+.arc-class-select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 44px 8px 10px;
+    background: linear-gradient(180deg, #182234 0%, #0e131f 100%);
+    border: 1px solid rgba(56, 189, 248, .45);
     border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    box-shadow:
+        0 0 10px rgba(56, 189, 248, .16),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: all 0.18s ease;
 }
 
-.arc-job-category {
+.arc-class-select:hover {
+    border-color: #38bdf8;
+    box-shadow:
+        0 0 16px rgba(56, 189, 248, .28),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.arc-class-thumb {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #0b0d14;
+    border: 2px solid #38bdf8;
+    box-shadow: 0 0 8px rgba(56, 189, 248, .4);
     display: flex;
     align-items: center;
-    gap: 14px;
-    min-height: 32px;
-}
-
-.arc-job-category + .arc-job-category {
-    padding-top: 14px;
-    border-top: 1px solid #1a2233;
-}
-
-.arc-job-cat-label {
+    justify-content: center;
+    overflow: hidden;
     flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 78px;
-    height: 36px;
-    padding: 0 12px;
-    border-radius: 999px;
-    background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    color: #7dd3fc;
-    white-space: nowrap;
 }
 
-.arc-job-cat-list {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
-    gap: 8px;
+.arc-class-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.arc-job-btn {
-    height: 36px;
-    padding: 0 8px;
-    border-radius: 8px;
-    border: 1px solid #263247;
-    background: rgba(255, 255, 255, .03);
-    color: #94a3b8;
-    font-size: 12px;
+.arc-class-placeholder {
+    color: #475569;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 0.1px;
-    cursor: pointer;
-    transition: all .16s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    white-space: nowrap;
+}
+
+.arc-class-label {
+    flex: 1;
+    min-width: 0;
+    color: #7dd3fc;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.arc-job-btn:hover:not(.disabled):not(.active) {
-    background: rgba(56, 189, 248, .08);
-    border-color: rgba(56, 189, 248, .30);
-    color: #e2e8f0;
-}
-
-.arc-job-btn.active {
-    background: rgba(56, 189, 248, .14);
-    border-color: #38bdf8;
-    color: #7dd3fc;
-    font-weight: 800;
-    box-shadow: 0 0 0 1px rgba(56,189,248,.20);
-}
-
-.arc-job-btn.disabled {
-    opacity: .25;
-    cursor: not-allowed;
-    pointer-events: none;
+.arc-class-select:not(.picked) .arc-class-label {
+    color: #6f93ac;
+    font-weight: 700;
 }
 
 
-.arc-selected-thumb {
-    width: 48px;
-    height: 48px;
+.arc-class-chev {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    border: 2px solid #38bdf8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, .3);
-    object-fit: cover;
-    flex-shrink: 0;
-    background: #0b0d14;
+    background: rgba(56, 189, 248, .12);
+    border: 1px solid rgba(56, 189, 248, .40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #7dd3fc;
+    pointer-events: none;
+    transition: all 0.18s ease;
+    z-index: 1;
+}
+
+.arc-class-select:hover .arc-class-chev {
+    background: rgba(56, 189, 248, .22);
+    border-color: #38bdf8;
 }
 
 
-@media (max-width: 768px) {
-    .arc-job-category {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .arc-job-cat-label {
-        width: auto;
-    }
-
-    .arc-job-btn {
-        height: 32px;
-        padding: 0 10px;
-        font-size: 11px;
-    }
+.arc-class-select-native {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    opacity: 0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    z-index: 2;
+    accent-color: #38bdf8;
 }
+
+.arc-class-select-native optgroup {
+    background: #0e131f;
+    color: #5ba8d6;
+    font-weight: 800;
+    font-size: 11.5px;
+    font-family: 'Inter', 'Malgun Gothic', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 14px 6px;
+ 
+    text-decoration: underline;
+    text-decoration-color: rgba(91, 168, 214, .35);
+    text-underline-offset: 5px;
+}
+
+.arc-class-select-native option {
+    background: #0e131f;
+    color: #c3cee2;
+    font-weight: 500;
+    font-size: 14.5px;
+    font-family: 'Inter', 'Malgun Gothic', sans-serif;
+    padding: 9px 16px 9px 22px;
+}
+
+.arc-class-select-native option:checked {
+    background: #38bdf8;
+    color: #0b0f18;
+    font-weight: 700;
+}
+
+
+.arc-class-select-native option[value=""] {
+    color: #6f7d99;
+    font-weight: 600;
+    font-style: italic;
+    padding-bottom: 11px;
+}
+
+.arc-class-select-native option[value=""]:checked {
+    background: #182234;
+    color: #8fb4d6;
+}
+
+
+.style-tab-placeholder {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: #4a5872;
+    cursor: not-allowed;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    box-sizing: border-box;
+    letter-spacing: 0.2px;
+}
+
+.style-tab-placeholder:last-child {
+    border-right: none;
+}
+
 
 
 
@@ -141,35 +196,14 @@
     padding: 16px;
     margin-bottom: 24px;
     display: grid;
-    grid-template-columns: minmax(200px, auto) 1fr;
+    grid-template-columns: 400px 1fr;
     gap: 12px;
     align-items: stretch;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
-#selectedJobTitle {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 14px;
-    min-height: 64px;
-    padding: 8px 22px 8px 8px;
-    overflow: hidden;
-
-    font-size: 17px;
-    white-space: nowrap;
 
 
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: #e8c383;
-    background: rgba(255, 255, 255, 0.03);
-    border: none;
-    border-radius: 14px;
-    box-sizing: border-box;
-    text-align: center;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-}
 
 #styleToggleTabs {
     display: grid;
@@ -189,7 +223,7 @@
     background: transparent;
     color: #7f8ea3;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
     border: none;
     border-right: 1px solid rgba(255,255,255,0.08);
@@ -792,7 +826,6 @@
     }
 
     /* PC 전용 요소 숨김 */
-    #jobGrid,
     #coreSelectRow,
     .divider,
     #resultRow {
@@ -804,14 +837,14 @@
         padding: 12px;
     }
 
-    #selectedJobTitle {
+    .arc-class-select {
         min-height: 52px;
         font-size: 16px;
         gap: 10px;
         padding: 6px 16px 6px 6px;
     }
 
-    .arc-selected-thumb {
+    .arc-class-thumb {
         width: 40px;
         height: 40px;
     }
