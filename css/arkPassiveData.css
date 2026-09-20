@@ -1,6 +1,6 @@
 
 html:has(body.standalone-arc-passive-page) {
- 
+    
     overflow-y: auto;
     scrollbar-gutter: stable;
 }
@@ -19,13 +19,17 @@ html:has(body.standalone-arc-passive-page) {
     position: relative;
 }
 
-
+/* ========================================
+   아크패시브 전용 페이지 상단 라인 정리 (아크그리드와 동일)
+   ======================================== */
 body.standalone-dps-page #arkPassiveApp {
     margin-top: -6px;
     border-top: none;
 }
 
-
+/* ========================================
+   상단 히어로 (아크그리드 hero-arc-grid와 동일한 톤/구조로 통일)
+   ======================================== */
 .hero-arc-passive {
     position: relative;
     overflow: hidden;
@@ -1833,7 +1837,7 @@ body.standalone-dps-page #arkPassiveApp {
    ======================================== */
 @media (min-width: 769px) {
     body.standalone-arc-passive-page .loaview-top-ad-wrap {
-        margin-bottom: 24px;
+        margin-bottom: 48px;
         position: relative; /* 아래 구분선(::after) 기준점 */
     }
 
@@ -1844,7 +1848,7 @@ body.standalone-dps-page #arkPassiveApp {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: -13px;
+        bottom: -25px;
         height: 1px;
         background: linear-gradient(
             90deg,
