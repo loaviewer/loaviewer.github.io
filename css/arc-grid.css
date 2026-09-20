@@ -1615,3 +1615,10 @@ body.standalone-dps-page #arcGridApp {
     color: #7dd3fc;
     white-space: nowrap;
 }
+
+@media (min-width: 769px) {
+    body.standalone-arc-grid-page #tourney-ad-wrapper {
+        margin-bottom: 48px !important;
+    }
+}
+
