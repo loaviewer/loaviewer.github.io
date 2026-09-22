@@ -3,7 +3,7 @@
   --line:rgba(255,255,255,.07);--gold:#e8b84b;--gold-soft:#f3d488;--purple:#9b7ef0;
   --blue:#5b9cf5;--red:#e85454;--green:#3cc78c;
 
-
+ 
   --container-width: 1160px;
 }
 
@@ -646,10 +646,9 @@ body.standalone-rank-page .qm-row {
     }
 }
 
-/* =============================================
-   공통 오로라 배경 (전체 화면 꽉 차게 복원 + 정적 최적화)
-   ============================================= */
+
 .common-aurora {
+    display: none;
     position: fixed;
     inset: 0;                    
     z-index: -99999 !important;
@@ -697,16 +696,12 @@ body.standalone-rank-page .qm-row {
     }
 }
 
-/* =============================================
-   아크그리드 전용: 헤더 아래 이중 구분선 제거
-   ============================================= */
+
 body.standalone-arc-grid-page .common-divider-top {
     display: none;
 }
 
-/* =============================================
-   모든 페이지(서브페이지 포함) z-index 강제 초기화
-   ============================================= */
+
 .page, 
 .auction-page, 
 .tools-page, 
@@ -715,9 +710,7 @@ body.standalone-arc-grid-page .common-divider-top {
     z-index: auto !important;
 }
 
-/* =============================================
-   구글 애드센스 자동 광고 강제 파기(Collapse) 방지
-   ============================================= */
+
 .google-auto-placed ins.adsbygoogle {
     display: block !important;
     width: 100% !important;
@@ -731,9 +724,7 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-/* =============================================
-   상단 가로 배너 광고 전용 레이아웃 설정 (너비 피팅 반영)
-   ============================================= */
+
 
 
 .main .loaview-top-ad-wrap {
@@ -755,22 +746,21 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-/* CLS 추가 방지 - 상단 광고 */
+
 .loaview-top-ad-wrap {
     min-height: 90px;
     height: 90px;
     overflow: hidden;
 }
 
-/* CLS 추가 방지 - 하단 광고 */
+
 .loaview-bottom-ad-wrap,
 #bottom-ad-wrapper {
     min-height: 90px;
     overflow: hidden;
 }
 
-/* CLS 추가 방지 - 정밀계산/간편보기 상단 대형 반응형 배너(970x250 · 728x90 · 320x100 · 320x50)
-   로드 전이거나 노필(no-fill)일 때 자리가 0으로 접혀서 "닫혀있는 것처럼" 보이는 문제 방지 */
+
 .simple-top-ad-wrap,
 .ad-slot-responsive {
     display: block;
@@ -785,7 +775,7 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-/* 메인 홈페이지 광고 좌측 쏠림 수정 - 강제 중앙 정렬 */
+
 
 
 
@@ -806,9 +796,7 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
 
 
 
-/* =============================================
-   양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
-   ============================================= */
+
 .loaview-side-ad-wrap {
     position: fixed;
     top: 50%;
@@ -827,9 +815,7 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
     height: 600px !important;
 }
 
-/* =============================================
-   메인 홈 히어로 간격 미세조정 패치 (GNB 아래 간격 축소)
-   ============================================= */
+
 .hero {
     position: relative !important;
     padding: 16px 0 30px !important;
@@ -864,13 +850,7 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
         white-space: nowrap !important;
     }
 }
-/* =============================================
-   좌우 고정 사이드 광고 레일 (anchor rail, 인벤 스타일)
-   - position: fixed 로 브라우저 화면 자체에 붙어서 스크롤해도 항상 같은 자리 유지
-   - 좌/우 위치(left)는 common.js가 본문 박스(.app 등) 실제 위치를 계산해서
-     인라인 스타일로 지정함 (본문 바로 옆에 붙도록). 여기서는 고정값을 주지 않음.
-   - 본문 옆에 붙일 공간이 없으면 common.js가 display:none으로 숨김.
-   ============================================= */
+
 
 
 
