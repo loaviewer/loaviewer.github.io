@@ -3,7 +3,7 @@
   --line:rgba(255,255,255,.07);--gold:#e8b84b;--gold-soft:#f3d488;--purple:#9b7ef0;
   --blue:#5b9cf5;--red:#e85454;--green:#3cc78c;
 
- 
+  
   --container-width: 1160px;
 }
 
@@ -11,7 +11,7 @@
 html, body {
     overflow-x: hidden;
     overflow-x: clip;
-    /* 폰트가 늦게 로드돼도 레이아웃이 덜 움직이게 */
+   
     font-synthesis: none;
     text-rendering: optimizeLegibility;
 }
@@ -646,7 +646,9 @@ body.standalone-rank-page .qm-row {
     }
 }
 
-
+/* =============================================
+   공통 오로라 배경 (전체 화면 꽉 차게 복원 + 정적 최적화)
+   ============================================= */
 .common-aurora {
     display: none;
     position: fixed;
@@ -696,12 +698,16 @@ body.standalone-rank-page .qm-row {
     }
 }
 
-
+/* =============================================
+   아크그리드 전용: 헤더 아래 이중 구분선 제거
+   ============================================= */
 body.standalone-arc-grid-page .common-divider-top {
     display: none;
 }
 
-
+/* =============================================
+   모든 페이지(서브페이지 포함) z-index 강제 초기화
+   ============================================= */
 .page, 
 .auction-page, 
 .tools-page, 
@@ -710,7 +716,9 @@ body.standalone-arc-grid-page .common-divider-top {
     z-index: auto !important;
 }
 
-
+/* =============================================
+   구글 애드센스 자동 광고 강제 파기(Collapse) 방지
+   ============================================= */
 .google-auto-placed ins.adsbygoogle {
     display: block !important;
     width: 100% !important;
@@ -724,7 +732,9 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-
+/* =============================================
+   상단 가로 배너 광고 전용 레이아웃 설정 (너비 피팅 반영)
+   ============================================= */
 
 
 .main .loaview-top-ad-wrap {
@@ -746,21 +756,22 @@ body.standalone-arc-grid-page .common-divider-top {
 
 
 
-
+/* CLS 추가 방지 - 상단 광고 */
 .loaview-top-ad-wrap {
     min-height: 90px;
     height: 90px;
     overflow: hidden;
 }
 
-
+/* CLS 추가 방지 - 하단 광고 */
 .loaview-bottom-ad-wrap,
 #bottom-ad-wrapper {
     min-height: 90px;
     overflow: hidden;
 }
 
-
+/* CLS 추가 방지 - 정밀계산/간편보기 상단 대형 반응형 배너(970x250 · 728x90 · 320x100 · 320x50)
+   로드 전이거나 노필(no-fill)일 때 자리가 0으로 접혀서 "닫혀있는 것처럼" 보이는 문제 방지 */
 .simple-top-ad-wrap,
 .ad-slot-responsive {
     display: block;
@@ -773,9 +784,47 @@ body.standalone-arc-grid-page .common-divider-top {
     }
 }
 
+/* =============================================
+   토너먼트/랭크 계열 상단 광고 CLS 방지
+   - 로드 전부터 PC 250px / 모바일 100px 자리를 예약
+   - "좁다가 확 열리는" 레이아웃 점프 방지
+   ============================================= */
+#tourney-ad-wrapper,
+.tourney-top-ad-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin: 14px auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#tourney-ad-wrapper .ad-slot-responsive,
+.tourney-top-ad-wrap .ad-slot-responsive {
+  width: 100%;
+  max-width: 970px;
+  min-height: 100px;
+  display: block !important;
+}
+@media (min-width: 1024px) {
+  #tourney-ad-wrapper,
+  .tourney-top-ad-wrap {
+    min-height: 250px;
+  }
+  #tourney-ad-wrapper .ad-slot-responsive,
+  .tourney-top-ad-wrap .ad-slot-responsive {
+    min-height: 250px;
+  }
+}
 
 
 
+
+/* 메인 홈페이지 광고 좌측 쏠림 수정 - 강제 중앙 정렬 */
 
 
 
@@ -796,7 +845,9 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
 
 
 
-
+/* =============================================
+   양쪽 사이드 스티키 광고 레이아웃 [v3 수정본]
+   ============================================= */
 .loaview-side-ad-wrap {
     position: fixed;
     top: 50%;
@@ -815,7 +866,9 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
     height: 600px !important;
 }
 
-
+/* =============================================
+   메인 홈 히어로 간격 미세조정 패치 (GNB 아래 간격 축소)
+   ============================================= */
 .hero {
     position: relative !important;
     padding: 16px 0 30px !important;
