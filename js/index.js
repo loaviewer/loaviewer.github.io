@@ -27,7 +27,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
- 
+  
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
@@ -2754,75 +2754,85 @@ function renderTabs() {
 
         const levels = ["1710", "1720", "1730", "1740", "1750", "1770", "1780"];
 
-        // ★ 광고 슬롯 보존: 최초 1회만 뼈대(히어로+광고+미니히어로+그리드)를 만들고
-        // 이후에는 광고 노드를 절대 건드리지 않음 (정밀계산과 동일한 방식)
-        if (!document.getElementById("simpleBigHeroSlot")) {
-            el.innerHTML = `
-                <div id="simpleBigHeroSlot"></div>
-                <!-- 대형 수평 광고판 (정밀계산과 동일 / PC 970x250 · 모바일 90px) - 한 번만 생성 후 유지 -->
-                <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
-                    <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
-                </div>
-                <div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
-                <div id="simpleMiniHeroSlot"></div>
-                <div class="simple-grid-layout">
-                    <div class="simple-controls-col simple-grid-left">
-                        <div class="simple-level-tabs" id="simpleLevelTabs"></div>
-                        <div id="simpleRoleToggleSlot"></div>
-                        <div class="simple-cards-full" id="simpleCardsFull"></div>
+       
+
+
+
+el.innerHTML = `
+    ${simpleHeroHtml()}
+    
+    <!-- 대형 수평 광고판 (정밀계산과 동일 여백 / PC 970x250 · 모바일 90px) -->
+   <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+      <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
+    </div>
+    
+ <!-- 그라데이션 구분선 (정밀계산과 동일 여백) -->
+<div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
+
+${simpleLevelMiniHeroHtml()}
+
+    <div class="simple-grid-layout">
+
+
+
+
+                <div class="simple-controls-col simple-grid-left">
+                    <div class="simple-level-tabs">
+                        ${levels.map(lv => `
+                            <button class="simple-level-tab ${currentSimpleLevel === lv ? "active" : ""}" data-simple-level="${lv}">
+                                <span class="simple-level-tab-main">${lv}</span>
+                                <span class="simple-level-tab-sub">레이드</span>
+                            </button>
+                        `).join("")}
                     </div>
-                    <div class="simple-grid-right" id="simpleGridRight"></div>
-                </div>
-            `;
+                    ${makeRoleToggleHtml()}
 
-            try {
-                window.googletag = window.googletag || { cmd: [] };
-                googletag.cmd.push(function () {
-                    const id = "div-gpt-ad-1788303186629-0";
-                    googletag.display(id);
-                    const slot = googletag.pubads().getSlots().find((s) => s.getSlotElementId() === id);
-                    if (slot) googletag.pubads().refresh([slot]);
-                });
-            } catch (e) {}
-        }
+                    <div class="simple-cards-full" id="simpleCardsFull"></div>
+                </div><!-- // .simple-grid-left 닫힘 -->
 
-        const bigHero = document.getElementById("simpleBigHeroSlot");
-        const miniHero = document.getElementById("simpleMiniHeroSlot");
-        const levelTabs = document.getElementById("simpleLevelTabs");
-        const roleSlot = document.getElementById("simpleRoleToggleSlot");
+                <div class="simple-grid-right" id="simpleGridRight"></div>
+            </div><!-- // .simple-grid-layout 닫힘 -->
+        `;
 
-        if (bigHero) bigHero.innerHTML = simpleHeroHtml();
-        if (miniHero) miniHero.innerHTML = simpleLevelMiniHeroHtml();
-        if (levelTabs) {
-            levelTabs.innerHTML = levels.map(lv => `
-                <button class="simple-level-tab ${currentSimpleLevel === lv ? "active" : ""}" data-simple-level="${lv}">
-                    <span class="simple-level-tab-main">${lv}</span>
-                    <span class="simple-level-tab-sub">레이드</span>
-                </button>
-            `).join("");
-        }
-        if (roleSlot) roleSlot.innerHTML = makeRoleToggleHtml();
+    // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh
+    try {
+        window.googletag = window.googletag || { cmd: [] };
+        googletag.cmd.push(function () {
+            const id = "div-gpt-ad-1788303186629-0";
+            googletag.display(id);
+            const slot = googletag.pubads().getSlots().find((s) => s.getSlotElementId() === id);
+            if (slot) googletag.pubads().refresh([slot]);
+        });
+    } catch (e) {}
 
-        el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
-            btn.addEventListener("click", () => {
-                if (btn.dataset.simpleLevel === currentSimpleLevel) return;
-                currentSimpleLevel = btn.dataset.simpleLevel;
+   
+el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        if (btn.dataset.simpleLevel === currentSimpleLevel) return;
+        currentSimpleLevel = btn.dataset.simpleLevel;
 
-                el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(b => {
-                    b.classList.toggle("active", b.dataset.simpleLevel === currentSimpleLevel);
-                });
-
-                const heroVal = document.getElementById("simpleHeroCurrentLevel");
-                if (heroVal) heroVal.textContent = currentSimpleLevel;
-
-                const miniHeroVal = document.getElementById("simpleMiniHeroLevelTitle");
-                if (miniHeroVal) miniHeroVal.textContent = currentSimpleLevel;
-
-                renderTable();
-            });
+        // 탭 active 상태만 갱신 (우측 광고/경매계산기 영역 재생성 방지)
+        el.querySelectorAll(".simple-level-tab[data-simple-level]").forEach(b => {
+            b.classList.toggle("active", b.dataset.simpleLevel === currentSimpleLevel);
         });
 
+        const heroVal = document.getElementById("simpleHeroCurrentLevel");
+        if (heroVal) heroVal.textContent = currentSimpleLevel;
+
+
+        const miniHeroVal = document.getElementById("simpleMiniHeroLevelTitle");
+        if (miniHeroVal) miniHeroVal.textContent = currentSimpleLevel;
+
+  
+
+
+        renderTable();
+    });
+});
+
+
         bindRoleToggle();
+
         return;
     }
 
@@ -2831,86 +2841,94 @@ function renderTabs() {
 
         const raids = ["cathedral", "serka", "belgardin", "finale", "act4"];
 
-        // ★ 광고 슬롯 보존: 최초 1회만 뼈대 생성, 이후 광고 노드 유지
-        if (!document.getElementById("simpleRaidBigHeroSlot")) {
-            el.innerHTML = `
-                <div id="simpleRaidBigHeroSlot"></div>
-                <!-- 대형 수평 광고판 (정밀계산과 동일) - 한 번만 생성 후 유지 -->
-                <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
-                    <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
-                </div>
-                <div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
-                <div id="simpleRaidMiniHeroSlot"></div>
-                <div class="simple-grid-layout">
-                    <div class="simple-controls-col simple-grid-left">
-                        <div class="simple-level-tabs" id="simpleRaidTabs"></div>
-                        <div id="simpleRaidRoleToggleSlot"></div>
-                        <div class="simple-cards-full" id="simpleCardsFull"></div>
+    
+
+el.innerHTML = `
+    ${simpleRaidHeroHtml()}
+    
+    <!-- 대형 수평 광고판 (정밀계산과 동일 여백 / PC 970x250 · 모바일 90px) -->
+    <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+      <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
+    </div>
+    
+    <!-- 그라데이션 구분선 (정밀계산과 동일 여백) -->
+    
+<div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
+
+   
+
+${simpleRaidMiniHeroHtml()}
+
+    <div class="simple-grid-layout">
+
+                <div class="simple-controls-col simple-grid-left">
+
+
+
+                    <div class="simple-level-tabs">
+                        ${raids.map(key => {
+                            const meta = simpleRaidMeta[key];
+                            return `
+                                <button class="simple-level-tab simple-raid-tab ${currentSimpleRaid === key ? "active" : ""}" data-simple-raid="${key}">
+                                    <span class="simple-level-tab-main">${meta.label}</span>
+                                    <span class="simple-level-tab-sub">${meta.sub}</span>
+                                </button>
+                            `;
+                        }).join("")}
                     </div>
-                    <div class="simple-grid-right" id="simpleGridRight"></div>
-                </div>
-            `;
+                    ${makeRoleToggleHtml()}
 
-            try {
-                window.googletag = window.googletag || { cmd: [] };
-                googletag.cmd.push(function () {
-                    const id = "div-gpt-ad-1788303186629-0";
-                    googletag.display(id);
-                    const slot = googletag.pubads().getSlots().find((s) => s.getSlotElementId() === id);
-                    if (slot) googletag.pubads().refresh([slot]);
-                });
-            } catch (e) {}
-        }
+                    <div class="simple-cards-full" id="simpleCardsFull"></div>
+                </div><!-- // .simple-grid-left 닫힘 -->
 
-        const bigHero = document.getElementById("simpleRaidBigHeroSlot");
-        const miniHero = document.getElementById("simpleRaidMiniHeroSlot");
-        const raidTabs = document.getElementById("simpleRaidTabs");
-        const roleSlot = document.getElementById("simpleRaidRoleToggleSlot");
+                <div class="simple-grid-right" id="simpleGridRight"></div>
+            </div><!-- // .simple-grid-layout 닫힘 -->
+        `;
 
-        if (bigHero) bigHero.innerHTML = simpleRaidHeroHtml();
-        if (miniHero) miniHero.innerHTML = simpleRaidMiniHeroHtml();
-        if (raidTabs) {
-            raidTabs.innerHTML = raids.map(key => {
-                const meta = simpleRaidMeta[key];
-                return `
-                    <button class="simple-level-tab simple-raid-tab ${currentSimpleRaid === key ? "active" : ""}" data-simple-raid="${key}">
-                        <span class="simple-level-tab-main">${meta.label}</span>
-                        <span class="simple-level-tab-sub">${meta.sub}</span>
-                    </button>
-                `;
-            }).join("");
-        }
-        if (roleSlot) roleSlot.innerHTML = makeRoleToggleHtml();
+    // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh
+    try {
+        window.googletag = window.googletag || { cmd: [] };
+        googletag.cmd.push(function () {
+            const id = "div-gpt-ad-1788303186629-0";
+            googletag.display(id);
+            const slot = googletag.pubads().getSlots().find((s) => s.getSlotElementId() === id);
+            if (slot) googletag.pubads().refresh([slot]);
+        });
+    } catch (e) {}
 
-        el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
-            btn.addEventListener("click", () => {
-                if (btn.dataset.simpleRaid === currentSimpleRaid) return;
-                currentSimpleRaid = btn.dataset.simpleRaid;
 
-                el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(b => {
-                    b.classList.toggle("active", b.dataset.simpleRaid === currentSimpleRaid);
-                });
+el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        if (btn.dataset.simpleRaid === currentSimpleRaid) return;
+        currentSimpleRaid = btn.dataset.simpleRaid;
 
-                const meta = simpleRaidMeta[currentSimpleRaid];
-                const heroVal = document.getElementById("simpleHeroCurrentRaid");
-                const heroSub = document.getElementById("simpleHeroCurrentRaidSub");
-                if (heroVal && meta) heroVal.textContent = meta.label;
-                if (heroSub && meta) heroSub.textContent = meta.sub;
-
-                const miniKicker = document.getElementById("simpleMiniHeroRaidKicker");
-                const miniTitle = document.getElementById("simpleMiniHeroRaidTitle");
-                const miniSummary = document.getElementById("simpleMiniHeroRaidSummary");
-                const miniSub = document.getElementById("simpleMiniHeroRaidSub");
-                if (miniKicker && meta) miniKicker.textContent = `PRECISION · ${simpleRaidKickerMap[currentSimpleRaid] || ""}`;
-                if (miniTitle && meta) miniTitle.textContent = meta.label;
-                if (miniSummary && meta) miniSummary.textContent = meta.summary;
-                if (miniSub && meta) miniSub.textContent = meta.sub;
-
-                renderTable();
-            });
+        el.querySelectorAll(".simple-raid-tab[data-simple-raid]").forEach(b => {
+            b.classList.toggle("active", b.dataset.simpleRaid === currentSimpleRaid);
         });
 
+        const meta = simpleRaidMeta[currentSimpleRaid];
+        const heroVal = document.getElementById("simpleHeroCurrentRaid");
+        const heroSub = document.getElementById("simpleHeroCurrentRaidSub");
+        if (heroVal && meta) heroVal.textContent = meta.label;
+        if (heroSub && meta) heroSub.textContent = meta.sub;
+        
+                const miniKicker = document.getElementById("simpleMiniHeroRaidKicker");
+        const miniTitle = document.getElementById("simpleMiniHeroRaidTitle");
+        const miniSummary = document.getElementById("simpleMiniHeroRaidSummary");
+        const miniSub = document.getElementById("simpleMiniHeroRaidSub");
+        if (miniKicker && meta) miniKicker.textContent = `PRECISION · ${simpleRaidKickerMap[currentSimpleRaid] || ""}`;
+        if (miniTitle && meta) miniTitle.textContent = meta.label;
+        if (miniSummary && meta) miniSummary.textContent = meta.summary;
+        if (miniSub && meta) miniSub.textContent = meta.sub; 
+
+
+        renderTable();
+    });
+});
+
+
         bindRoleToggle();
+
         return;
     }
 
@@ -3151,7 +3169,7 @@ const QUICK_MOVE_PAGES = {
     cathedral: { label: "지평의 성당",   href: "cathedral.html" },
     belgardin: { label: "벨가르딘",      href: "belgardin.html" },
     guardian:  { label: "가디언 토벌",   href: "guardian.html" },
-    extreme:   { label: "익스트림",      href: "extreme.html" },
+    extreme:   { label: "🚧 익스트림 🚧", href: null, disabled: true },
 };
 const QUICK_MOVE_SIMPLE_GROUP = ["level", "raid"];
 const QUICK_MOVE_PRECISION_GROUP = ["serka", "cathedral", "belgardin", "guardian", "extreme"];
@@ -3188,7 +3206,12 @@ function getQuickMoveEl() {
         return null;
     }
 
-    const items = order.map((key) => ({ key, label: QUICK_MOVE_PAGES[key].label, href: QUICK_MOVE_PAGES[key].href }));
+    const items = order.map((key) => ({
+        key,
+        label: QUICK_MOVE_PAGES[key].label,
+        href: QUICK_MOVE_PAGES[key].href,
+        disabled: !!QUICK_MOVE_PAGES[key].disabled
+    }));
     items.push({ key: "synergy", label: QUICK_MOVE_SYNERGY_LINK.label, href: QUICK_MOVE_SYNERGY_LINK.href });
     items.push({ key: "auction", label: "경매계산기", href: getAuctionHref() });
 
@@ -3201,6 +3224,15 @@ function getQuickMoveEl() {
     group.appendChild(header);
 
     items.forEach((item) => {
+        if (item.disabled || !item.href) {
+            const span = document.createElement("span");
+            span.className = "quick-move-gold-link disabled";
+            span.setAttribute("aria-disabled", "true");
+            span.style.cssText = "opacity:0.45;cursor:default;pointer-events:none;";
+            span.textContent = item.label;
+            group.appendChild(span);
+            return;
+        }
         const a = document.createElement("a");
         a.href = item.href;
         a.className = "quick-move-gold-link" + (item.key === current ? " active" : "");
