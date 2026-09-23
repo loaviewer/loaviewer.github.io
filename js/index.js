@@ -31,7 +31,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-           
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
             </div>
@@ -39,7 +39,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-      
+       
         try {
             window.googletag = window.googletag || { cmd: [] };
             googletag.cmd.push(function () {
