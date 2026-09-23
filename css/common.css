@@ -3,7 +3,7 @@
   --line:rgba(255,255,255,.07);--gold:#e8b84b;--gold-soft:#f3d488;--purple:#9b7ef0;
   --blue:#5b9cf5;--red:#e85454;--green:#3cc78c;
 
-  
+
   --container-width: 1160px;
 }
 
@@ -784,44 +784,6 @@ body.standalone-arc-grid-page .common-divider-top {
     }
 }
 
-/* =============================================
-   토너먼트/랭크 계열 상단 광고 CLS 방지
-   - 로드 전부터 PC 250px / 모바일 100px 자리를 예약
-   - "좁다가 확 열리는" 레이아웃 점프 방지
-   ============================================= */
-#tourney-ad-wrapper,
-.tourney-top-ad-wrap {
-  width: 100%;
-  max-width: 100%;
-  margin: 14px auto;
-  overflow: hidden;
-  box-sizing: border-box;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  min-height: 100px;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-#tourney-ad-wrapper .ad-slot-responsive,
-.tourney-top-ad-wrap .ad-slot-responsive {
-  width: 100%;
-  max-width: 970px;
-  min-height: 100px;
-  display: block !important;
-}
-@media (min-width: 1024px) {
-  #tourney-ad-wrapper,
-  .tourney-top-ad-wrap {
-    min-height: 250px;
-  }
-  #tourney-ad-wrapper .ad-slot-responsive,
-  .tourney-top-ad-wrap .ad-slot-responsive {
-    min-height: 250px;
-  }
-}
-
-
 
 
 /* 메인 홈페이지 광고 좌측 쏠림 수정 - 강제 중앙 정렬 */
@@ -903,7 +865,13 @@ body:not(.standalone-dps-page):not(.standalone-rank-page) .loaview-bottom-ad-wra
         white-space: nowrap !important;
     }
 }
-
+/* =============================================
+   좌우 고정 사이드 광고 레일 (anchor rail, 인벤 스타일)
+   - position: fixed 로 브라우저 화면 자체에 붙어서 스크롤해도 항상 같은 자리 유지
+   - 좌/우 위치(left)는 common.js가 본문 박스(.app 등) 실제 위치를 계산해서
+     인라인 스타일로 지정함 (본문 바로 옆에 붙도록). 여기서는 고정값을 주지 않음.
+   - 본문 옆에 붙일 공간이 없으면 common.js가 display:none으로 숨김.
+   ============================================= */
 
 
 
@@ -943,5 +911,34 @@ body.standalone-rank-page .app {
   body.standalone-rank-page .app {
     width: 100% !important;
     max-width: 100% !important;
+  }
+}
+#tourney-ad-wrapper,
+.tourney-top-ad-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin: 14px auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+#tourney-ad-wrapper .ad-slot-responsive,
+.tourney-top-ad-wrap .ad-slot-responsive {
+  width: 100%;
+  max-width: 970px;
+  min-height: 100px;
+  display: block !important;
+}
+@media (min-width: 1024px) {
+  #tourney-ad-wrapper,
+  .tourney-top-ad-wrap {
+    min-height: 250px;
+  }
+  #tourney-ad-wrapper .ad-slot-responsive,
+  .tourney-top-ad-wrap .ad-slot-responsive {
+    min-height: 250px;
   }
 }
