@@ -1780,7 +1780,7 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
     const shieldLines = (config.shieldLines && config.shieldLines[diffKey]) || 36;
     const p1EndSec = scaleSec(config.points[config.points.length - 1].sec);
     rows.push({
-        phase: 2, kind: "shieldStart", line: shieldLines, desc: "속성 변환 (뇌속성 → 무속성) · 종족 변환 (고대 → 정령)",
+        phase: 2, kind: "shieldStart", line: shieldLines, desc: "종족 변환 (고대 → 정령)",
         progress: split.p1Frac, elapsedSec: p1EndSec
     });
     rows.push({
