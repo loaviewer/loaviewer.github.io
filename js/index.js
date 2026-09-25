@@ -1691,7 +1691,7 @@ const lineCutConfig = {
             // CLEAR TIME을 바꾸면 이 시간들이 비례해서 늘고 줄어듦 (피해량은 그대로, DPS만 변함)
             total: 500,
             shieldSec: 120,
-            shieldLines: { normal: 36, hard: 36, nightmare: 73 },
+            shieldLines: { normal: 36, hard: 36, nightmare: 45 },
             points: [
                 { line: 500, sec: 0,    desc: "시작" },
                 { line: 425, sec: 180,  desc: "심상 달리기",       nmClearNote: true },
