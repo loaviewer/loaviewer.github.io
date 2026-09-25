@@ -20,14 +20,14 @@ let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}`
 
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
-    const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
+    const heroSlot = document.getElementById("precisionHeroSlot"); 
     let bodySlot = document.getElementById("precisionBodySlot");
 
-
+ 
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-          
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
             </div>
@@ -35,7 +35,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-      
+        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
         try {
             window.googletag = window.googletag || { cmd: [] };
             googletag.cmd.push(function () {
@@ -1910,7 +1910,7 @@ function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, ful
                     <div class="line-cut-label-row">
                         <div class="line-cut-line-wrap">
                             <span class="line-cut-line-num">${lineLabel}</span>
-                            ${r.nmNoteTime ? `<span class="line-cut-nm-badge">전분 기준 클각 <b>${r.nmNoteTime}</b>분</span>` : ""}
+                            ${r.nmNoteTime ? `<span class="line-cut-nm-badge">전분 기준 클각 <b>${r.nmNoteTime}</b>분/초</span>` : ""}
                         </div>
                         <span class="line-cut-time">누적 ${mmss(r.elapsedSec)}</span>
                     </div>
@@ -2756,7 +2756,7 @@ function applyMenuFromQuery() {
     if (isStandaloneExtremePage) {
         currentMenu = "extreme";
         currentExtremeRaid = "mordum";
-        currentCombo = "hard_gate1";
+        currentCombo = "nightmare_gate1";
         document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
         document.querySelector('.menu-item[data-menu="extreme"]')?.classList.add("active");
         setBaseTimeByMenu(currentMenu);
