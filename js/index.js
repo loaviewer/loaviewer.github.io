@@ -18,20 +18,16 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
 
-
-
-
-
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-  
+
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
+          
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
             </div>
@@ -39,7 +35,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-       
+      
         try {
             window.googletag = window.googletag || { cmd: [] };
             googletag.cmd.push(function () {
@@ -164,8 +160,6 @@ const parsedData = {
     cathedral: { normal: [], hard: [], nightmare: [] },
     belgardin: { normal: [], hard: [], nightmare: [] },
     extreme: {
-        egir:    { normal: [], hard: [], nightmare: [] },
-        abrel:   { normal: [], hard: [], nightmare: [] },
         mordum:  { normal: [], hard: [], nightmare: [] },
         jongmak: { normal: [], hard: [], nightmare: [] }
     },
@@ -293,94 +287,265 @@ const raidMeta = {
         }
     },
     extreme: {
-        egir: {
-            normal_gate1: {
-                diffKey: "normal", gateKey: "gate1",
-                title: "노말 (1720)", gateName: "1관",
-                type: { text: "고대", cls: "type-ancient" },
-                attr: { text: "속성 없음", cls: "attr-none" }
-            },
-            hard_gate1: {
-                diffKey: "hard", gateKey: "gate1",
-                title: "하드 (1750)", gateName: "1관",
-                type: { text: "고대", cls: "type-ancient" },
-                attr: { text: "속성 없음", cls: "attr-none" }
-            },
-            nightmare_gate1: {
-                diffKey: "nightmare", gateKey: "gate1",
-                title: "나메 (1770)", gateName: "1관",
-                type: { text: "고대", cls: "type-ancient" },
-                attr: { text: "속성 없음", cls: "attr-none" }
-            }
-        },
-        abrel: {
-            normal_gate1: {
-                diffKey: "normal", gateKey: "gate1",
-                title: "노말 (1720)", gateName: "1관",
-                type: { text: "악마", cls: "type-demon" },
-                attr: { text: "뇌속성 취약", cls: "attr-lightning" }
-            },
-            hard_gate1: {
-                diffKey: "hard", gateKey: "gate1",
-                title: "하드 (1750)", gateName: "1관",
-                type: { text: "악마", cls: "type-demon" },
-                attr: { text: "뇌속성 취약", cls: "attr-lightning" }
-            },
-            nightmare_gate1: {
-                diffKey: "nightmare", gateKey: "gate1",
-                title: "나메 (1770)", gateName: "1관",
-                type: { text: "악마", cls: "type-demon" },
-                attr: { text: "뇌속성 취약", cls: "attr-lightning" }
-            }
-        },
-        // TODO: 아이템 레벨 확정되면 title 값 교체 (오늘 10시 패치, 현재는 임시값)
         mordum: {
             normal_gate1: {
                 diffKey: "normal", gateKey: "gate1",
-                title: "노말 (미정)", gateName: "1관",
+                title: "노말 (1730)", gateName: "1관",
                 type: { text: "고대", cls: "type-ancient" },
-                attr: { text: "토속성 취약", cls: "attr-earth" }
+                attr: { text: "토속성 취약", cls: "attr-earth" },
+                phase2: { type: { text: "정령", cls: "type-spirit" }, attr: { text: "속성 없음", cls: "attr-none" } },
+                ready: true
             },
             hard_gate1: {
                 diffKey: "hard", gateKey: "gate1",
-                title: "하드 (미정)", gateName: "1관",
+                title: "하드 (1770)", gateName: "1관",
                 type: { text: "고대", cls: "type-ancient" },
-                attr: { text: "토속성 취약", cls: "attr-earth" }
+                attr: { text: "토속성 취약", cls: "attr-earth" },
+                phase2: { type: { text: "정령", cls: "type-spirit" }, attr: { text: "속성 없음", cls: "attr-none" } },
+                ready: true
             },
             nightmare_gate1: {
                 diffKey: "nightmare", gateKey: "gate1",
-                title: "나메 (미정)", gateName: "1관",
+                title: "나메 (1780)", gateName: "1관",
                 type: { text: "고대", cls: "type-ancient" },
-                attr: { text: "토속성 취약", cls: "attr-earth" }
+                attr: { text: "토속성 취약", cls: "attr-earth" },
+                phase2: { type: { text: "정령", cls: "type-spirit" }, attr: { text: "속성 없음", cls: "attr-none" } },
+                ready: true
             }
         },
-        // TODO: 종막 오픈(2주 후) 시점에 실제 데이터로 교체, 그 전까지는 비활성 버튼만 노출
+        // 종막 EX: 2주 후 오픈 전까지는 버튼만 노출, 클릭하면 "준비중" 안내만 표시
         jongmak: {
-            normal_gate1: {
-                diffKey: "normal", gateKey: "gate1",
-                title: "노말 (미정)", gateName: "1관",
-                type: { text: "-", cls: "" },
-                attr: { text: "-", cls: "" }
-            },
-            hard_gate1: {
-                diffKey: "hard", gateKey: "gate1",
-                title: "하드 (미정)", gateName: "1관",
-                type: { text: "-", cls: "" },
-                attr: { text: "-", cls: "" }
-            },
-            nightmare_gate1: {
-                diffKey: "nightmare", gateKey: "gate1",
-                title: "나메 (미정)", gateName: "1관",
-                type: { text: "-", cls: "" },
-                attr: { text: "-", cls: "" }
-            }
+            comingSoon: true
         }
     }
 };
 
 /* =============================================
-   레이드 추천 배틀아이템 로드아웃 (히어로 / 미니히어로)
+   모르둠 EX 하드코딩 데이터 (구글시트 연동 없음)
+   - 딜러 6인 기준 실효 딜량(100% 풀) 및 강투/1인분/잔혈 지분 anchor
+   - 단위: 억 (원 단위 raw 값을 1e8로 나눠서 저장)
+   - 나이트메어만 확정, 노말/하드는 추후 확정되면 추가
    ============================================= */
+const MORDUM_EX_DATA = {
+    normal: {
+        totalSec: 1320,
+        effectiveDamage: 23523.07052353, // 딜러6인 실효 딜량 100% 풀 (억) = 총 체력 - 에스더 - 서폿
+        shares: { tank: 15, one: 16.6, blood: 20 }
+    },
+    hard: {
+        totalSec: 1320,
+        effectiveDamage: 57077.18898577,
+        shares: { tank: 15, one: 16.6, blood: 20 }
+    },
+    nightmare: {
+        totalSec: 1320, // 22분 (1구간 20분 + 2구간 발악쉴드 2분)
+        effectiveDamage: 163098.73709291, // 딜러6인 실효 딜량 100% 풀 (억)
+        shares: { tank: 15, one: 16.6, blood: 20 }
+    }
+};
+
+// 보스 정보 패널용 요약 데이터 (단위: 억). player = 딜러 몫(실효딜량), esther+support = 자동 차감분
+// 2026-09-25 체력 DB 수정본 반영 (나메 발악 쉴드 체력 오류 수정, 하드/노말도 소폭 보정)
+const MORDUM_BOSS_INFO = {
+    normal:    { totalHp: 25712.72052353,  shieldHp: 1740.54744791,  estherTotal: 2107.15,  supportTotal: 82.5,  player: 23523.07052353 },
+    hard:      { totalHp: 64599.72898577,  shieldHp: 4362.84623604,  estherTotal: 7385.04,  supportTotal: 137.5, player: 57077.18898577 },
+    nightmare: { totalHp: 186576.61709291, shieldHp: 15310.95666391, estherTotal: 23257.88, supportTotal: 220.0, player: 163098.73709291 }
+};
+
+function formatEokAbbrev(eok) {
+    if (eok >= 10000) return (eok / 10000).toFixed(2) + "조";
+    return fmt(Math.round(eok)) + "억";
+}
+
+// "약 19.63조" / "약 4,374억" 형태 (보스 정보 패널용)
+function formatEokApprox(eok) {
+    return "약 " + formatEokAbbrev(eok);
+}
+
+/* =============================================
+   모르둠 에스더 스킬 피해량 (원 단위, 제거 체력은 1페이즈 500줄 기준)
+   dmg 배열 순서: [나메(EX), 하드, 노말]
+   ============================================= */
+const MORDUM_ESTHER_DIFF_INDEX = { nightmare: 0, hard: 1, normal: 2 };
+const MORDUM_ESTHER_GROUPS = [
+    {
+        key: "shandi", name: "샨디", symbol: "❖", tone: "244,114,182",
+        skills: [
+            { name: "샨디 3칸", cells: 3, pct: 1.63, lines: 8.15, tone: "244,114,182", dmg: [279163026499, 98186118882, 39074642113] },
+            { name: "샨디 1칸", cells: 1, pct: 1.31, lines: 6.55, tone: "251,113,133", dmg: [224358015162, 78910316402, 31403546729] }
+        ]
+    },
+    {
+        key: "vahun", name: "바훈", symbol: "◈", tone: "56,189,248",
+        skills: [
+            { name: "바훈 3칸", cells: 3, pct: 1.10, lines: 5.50, tone: "56,189,248", dmg: [188392226472, 66260571025, 26369390383] },
+            { name: "바훈 1칸", cells: 1, pct: 1.00, lines: 5.00, tone: "96,165,250", dmg: [171265660429, 60236882750, 23972173076] },
+            { name: "바훈 1칸 (무력 추뎀)", cells: 1, pct: 2.02, lines: 10.10, tone: "34,211,238", dmg: [345956634067, 121678503154, 48423789613] },
+            { name: "히든바훈 3칸", cells: 3, pct: 4.05, lines: 20.25, tone: "167,139,250", dmg: [693625924737, 243959375136, 97087300956] }
+        ]
+    },
+    {
+        key: "bastian", name: "바스티안", symbol: "✦", tone: "251,146,60",
+        skills: [
+            { name: "바스티안 3칸", cells: 3, pct: 1.32, lines: 6.60, tone: "251,146,60", dmg: [226070671766, 79512685230, 31643268460] },
+            { name: "바스티안 1칸", cells: 1, pct: 1.05, lines: 5.25, tone: "251,191,36", dmg: [179828943450, 63248726887, 25170781729] },
+            { name: "바스티안 1칸 (쉴드 추뎀)", cells: 1, pct: 2.10, lines: 10.50, tone: "250,204,21", dmg: [359657886901, 126497453774, 50341563459] }
+        ]
+    }
+];
+
+function getMordumDiffLabel(diffKey) {
+    return diffKey === "normal" ? "노말" : diffKey === "hard" ? "하드" : "나메";
+}
+
+// 보스 정보 패널 (왼쪽 그래프: 1페이즈 체력 + 발악쉴드 체력 / 오른쪽 체력 요약)
+function makeMordumBossInfoPanel(diffKey) {
+    const info = MORDUM_BOSS_INFO[diffKey];
+    if (!info) return "";
+
+    const p1Hp = info.totalHp - info.shieldHp;            // 1페이즈 500줄 체력
+    const p1Ratio = p1Hp / info.totalHp;
+    const p2Ratio = info.shieldHp / info.totalHp;         // 2페이즈 발악쉴드 체력
+    const deduct = info.estherTotal + info.supportTotal;  // 에스더 + 서폿 딜값
+
+    // ----- 도넛 그래프 (SVG) -----
+    const R = 42;
+    const C = 2 * Math.PI * R;
+    const GAP = 4;
+    const len1 = Math.max(C * p1Ratio - GAP, 0);
+    const len2 = Math.max(C * p2Ratio - GAP, 0);
+
+    const donut = `
+        <svg class="mbi-donut" viewBox="0 0 110 110" role="img" aria-label="1페이즈 체력 ${(p1Ratio * 100).toFixed(1)}%, 발악 실드 ${(p2Ratio * 100).toFixed(1)}%">
+            <defs>
+                <linearGradient id="mbiGradP1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#7dd3fc"/>
+                    <stop offset="1" stop-color="#2563eb"/>
+                </linearGradient>
+                <linearGradient id="mbiGradP2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#fef08a"/>
+                    <stop offset="1" stop-color="#f59e0b"/>
+                </linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="51" fill="none" stroke="rgba(148,163,184,.14)" stroke-width="1" stroke-dasharray="2 4"/>
+            <circle cx="55" cy="55" r="${R}" fill="none" stroke="#1b2033" stroke-width="12"/>
+            <circle class="mbi-arc-p1" cx="55" cy="55" r="${R}" fill="none" stroke="url(#mbiGradP1)" stroke-width="12"
+                stroke-dasharray="${len1.toFixed(2)} ${(C - len1).toFixed(2)}" transform="rotate(-90 55 55)"/>
+            <circle class="mbi-arc-p2" cx="55" cy="55" r="${R}" fill="none" stroke="url(#mbiGradP2)" stroke-width="12"
+                stroke-dasharray="${len2.toFixed(2)} ${(C - len2).toFixed(2)}" stroke-dashoffset="${(-C * p1Ratio).toFixed(2)}" transform="rotate(-90 55 55)"/>
+            <text class="mbi-donut-cap" x="55" y="50" text-anchor="middle">총 체력</text>
+            <text class="mbi-donut-val" x="55" y="67" text-anchor="middle">${formatEokAbbrev(info.totalHp)}</text>
+        </svg>
+    `;
+
+    const detailOpen = mordumDetailOpen;
+
+    return `
+        <div class="side-card mordum-boss-info-card mbi-card">
+            <div class="side-label">모르둠 EX - ${getMordumDiffLabel(diffKey)} 보스정보</div>
+            <div class="mbi-body">
+                <div class="mbi-chart">${donut}</div>
+                <div class="mbi-legend">
+                    <div class="mbi-legend-item p1">
+                        <span class="mbi-legend-name"><i class="mbi-dot p1"></i>1페이즈</span>
+                        <b>${(p1Ratio * 100).toFixed(1)}%</b>
+                    </div>
+                    <div class="mbi-legend-item p2">
+                        <span class="mbi-legend-name"><i class="mbi-dot p2"></i>발악 실드</span>
+                        <b>${(p2Ratio * 100).toFixed(1)}%</b>
+                        <span class="mbi-legend-note">1페이즈 대비 ${(info.shieldHp / p1Hp * 100).toFixed(2)}%</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="mbi-more-btn" id="mordumDetailBtn" type="button">${detailOpen ? "모르둠 상세보기 ▲" : "모르둠 상세보기 ▼"}</button>
+
+            <div class="mbi-more-content ${detailOpen ? "mbi-open" : ""}" id="mordumDetailContent">
+                <div class="mbi-lines">
+                    <div class="mbi-row mbi-total">
+                        <span class="mbi-label">보스 총 체력 :</span>
+                        <b>${formatEokApprox(info.totalHp)}</b>
+                    </div>
+                    <div class="mbi-row mbi-sub p1">
+                        <span class="mbi-label"><span class="mbi-branch">ㄴ</span>1페이즈 500줄 체력 :</span>
+                        <b>${formatEokApprox(p1Hp)}</b>
+                    </div>
+                    <div class="mbi-row mbi-sub p2">
+                        <span class="mbi-label"><span class="mbi-branch">ㄴ</span>2페이즈 발악 실드 :</span>
+                        <b>${formatEokApprox(info.shieldHp)}</b>
+                    </div>
+                    <div class="mbi-row mbi-sub mbi-deduct">
+                        <span class="mbi-label"><span class="mbi-branch">ㄴ</span>에스더 및 변수 차감값 :</span>
+                        <b>${formatEokApprox(deduct)}</b>
+                    </div>
+                </div>
+
+                ${makeMordumEstherList(diffKey)}
+            </div>
+        </div>
+    `;
+}
+
+// 에스더별 딜량 (샨디 / 바훈 / 바스티안 그룹별, 카드 폭에 맞춘 세로 태그 목록)
+function makeMordumEstherList(diffKey) {
+    const idx = MORDUM_ESTHER_DIFF_INDEX[diffKey];
+    if (idx === undefined) return "";
+
+    const groupsHtml = MORDUM_ESTHER_GROUPS.map(g => {
+        const tags = g.skills.map(sk => {
+            const eok = Math.round(sk.dmg[idx] / 1e8);
+            const pips = Array.from({ length: sk.cells }, () => "<i></i>").join("");
+
+            // "바훈 1칸 (무력 추뎀)" -> 이름 / 보조 문구로 분리
+            const m = sk.name.match(/^(.*?)\s*\((.+)\)$/);
+            const mainName = m ? m[1] : sk.name;
+            const note = m ? m[2] : "";
+
+            return `
+                <div class="mordum-esther-tag" style="--tone:${sk.tone}" title="1페이즈 체력의 ${sk.pct.toFixed(2)}%">
+                    <span class="me-pips">${pips}</span>
+                    <span class="me-namebox">
+                        <span class="me-name">${mainName}</span>
+                        ${note ? `<span class="me-note">${note}</span>` : ""}
+                    </span>
+                    <span class="me-dmg">약 ${fmt(eok)}억</span>
+                    <span class="me-line">${sk.lines.toFixed(2)}줄</span>
+                </div>
+            `;
+        }).join("");
+
+        return `
+            <div class="mordum-esther-group" style="--tone:${g.tone}">
+                <div class="mordum-esther-group-name"><span class="me-sym">${g.symbol}</span>${g.name}</div>
+                <div class="mordum-esther-tags">${tags}</div>
+            </div>
+        `;
+    }).join("");
+
+    return `
+        <div class="mordum-esther-list">
+            <div class="mordum-esther-title">${getMordumDiffLabel(diffKey)} 에스더 딜량</div>
+            <div class="mordum-esther-sub">에스더 스킬 1회당 딜량 / 제거되는 1페이즈 체력 줄 수</div>
+            ${groupsHtml}
+        </div>
+    `;
+}
+
+// 모르둠 상세보기 열림 상태 (난이도를 바꿔도 유지)
+let mordumDetailOpen = false;
+
+function bindMordumDetailToggle() {
+    const btn = document.getElementById("mordumDetailBtn");
+    const content = document.getElementById("mordumDetailContent");
+    if (!btn || !content) return;
+
+    btn.addEventListener("click", () => {
+        mordumDetailOpen = content.classList.toggle("mbi-open");
+        btn.textContent = mordumDetailOpen ? "모르둠 상세보기 ▲" : "모르둠 상세보기 ▼";
+    });
+}
+
+
 // fixed: 항상 표시되는 고정 아이템 이름
 // choiceGroups: 선택형 그룹들. 그룹마다 [옵션 이름 배열]이며, 첫 번째 옵션이 기본 선택값.
 // 지금은 노말/하드/나메가 전부 같은 로드아웃이라 gate 단위로만 저장하고,
@@ -451,6 +616,18 @@ const RAID_BATTLE_ITEMS = {
             support: {
                 fixed: ["정령의 회복약", "각성 물약", "암흑 수류탄"],
                 choiceGroups: [["코르부스 툴 라크의 그림자", "페투스 안 크라그마의 그림자"]]
+            }
+        }
+    },
+    mordum: {
+        gate1: {
+            dealer: {
+                fixed: ["정령의 회복약", "아드로핀 물약", "암흑 수류탄"],
+                choiceGroups: [["성스러운 부적", "파괴 폭탄"]]
+            },
+            support: {
+                fixed: ["정령의 회복약", "암흑 수류탄", "부식 폭탄"],
+                choiceGroups: [["성스러운 부적", "각성 물약"]]
             }
         }
     }
@@ -1506,6 +1683,26 @@ const lineCutConfig = {
                 { line: 0,   desc: "클리어" }
             ]
         }
+    },
+    mordum: {
+        gate1: {
+            // 1페이즈: 500줄 -> 0줄(변환, 클리어 아님) / 2페이즈: 발악쉴드 -> 클리어
+            // sec = 시작부터 누적 시간(초), 기본 22분(1320초) = 1페이즈 20분 + 발악쉴드 2분
+            // CLEAR TIME을 바꾸면 이 시간들이 비례해서 늘고 줄어듦 (피해량은 그대로, DPS만 변함)
+            total: 500,
+            shieldSec: 120,
+            shieldLines: { normal: 36, hard: 36, nightmare: 73 },
+            points: [
+                { line: 500, sec: 0,    desc: "시작" },
+                { line: 425, sec: 180,  desc: "심상 달리기",       nmClearNote: true },
+                { line: 325, sec: 430,  desc: "색상 안전지대",     nmClearNote: true },
+                { line: 275, sec: 550,  desc: "5연속 모루 저가",   nmClearNote: true },
+                { line: 200, sec: 720,  desc: "빨왼 파오 구슬",     nmClearNote: true },
+                { line: 160, sec: 830,  desc: "망치파괴후 안전지대", nmClearNote: true },
+                { line: 100, sec: 970,  desc: "3결투",             nmClearNote: true },
+                { line: 0,   sec: 1200, desc: "변환 (클리어 아님) · 1페이즈 종료" }
+            ]
+        }
     }
 };
 
@@ -1534,7 +1731,205 @@ function getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
     });
 }
 
-function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
+/* =============================================
+   모르둠 EX 전용 구간별 딜지분 (1페이즈 / 2페이즈 발악쉴드 분리)
+   - 1페이즈: 500줄 -> 0줄(변환) = 20분(1200초)
+   - 2페이즈: 발악쉴드(나메 73줄 / 하드·노말 36줄) = 2분(120초)
+   - 발악쉴드 비율 = 발악쉴드 체력 / (총 체력 - 발악쉴드 체력)
+     -> 나메 14.60%, 하드·노말 7.26% (MORDUM_BOSS_INFO에서 그대로 역산)
+   - 딜러 실효딜량(100% 풀)을 1페이즈 : 2페이즈 = 1 : 발악쉴드비율 로 나눠서 배분
+   ============================================= */
+function getMordumPhaseSplit(diffKey) {
+    const info = MORDUM_BOSS_INFO[diffKey];
+    const shieldRatio = info ? info.shieldHp / (info.totalHp - info.shieldHp) : 0;
+    const p2Frac = shieldRatio / (1 + shieldRatio); // 전체 딜량 중 2페이즈(발악쉴드) 몫
+    return { shieldRatio, p1Frac: 1 - p2Frac, p2Frac };
+}
+
+function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
+    const config = lineCutConfig.mordum.gate1;
+    const split = getMordumPhaseSplit(diffKey);
+
+    // 기준 시간(22분 = 1320초) 대비 CLEAR TIME 비율만큼 모든 구간 시간을 늘리고 줄임
+    const baseTotalSec = config.points[config.points.length - 1].sec + config.shieldSec;
+    const f = totalSec > 0 ? totalSec / baseTotalSec : 1;
+    const scaleSec = (sec) => Math.round(sec * f);
+
+    const rows = [];
+
+    // 1페이즈: 500줄 -> 0줄(변환)
+    config.points.forEach(p => {
+        const p1Progress = (config.total - p.line) / config.total;   // 1페이즈 내 진행도
+        const progress = p1Progress * split.p1Frac;                  // 전체 딜량 대비 진행도
+        // "전분 기준 클각" = CLEAR TIME 입력과 무관하게 항상 원래 기준(22분) 시각으로 표시
+        const nmNoteTime = (diffKey === "nightmare" && p.nmClearNote)
+            ? `${String(Math.floor(p.sec / 60)).padStart(2, "0")}:${String(p.sec % 60).padStart(2, "0")}`
+            : null;
+        rows.push({
+            phase: 1,
+            kind: p.line === config.total ? "start" : (p.line === 0 ? "phaseEnd" : "normal"),
+            line: p.line,
+            desc: p.desc,
+            nmNoteTime,
+            progress,
+            elapsedSec: scaleSec(p.sec)
+        });
+    });
+
+    // 2페이즈: 발악쉴드 시작 -> 0줄 클리어 (1페이즈에 이어서 22분까지)
+    const shieldLines = (config.shieldLines && config.shieldLines[diffKey]) || 36;
+    const p1EndSec = scaleSec(config.points[config.points.length - 1].sec);
+    rows.push({
+        phase: 2, kind: "shieldStart", line: shieldLines, desc: "속성 변환 (뇌속성 → 무속성) · 종족 변환 (고대 → 정령)",
+        progress: split.p1Frac, elapsedSec: p1EndSec
+    });
+    rows.push({
+        phase: 2, kind: "clear", line: 0, desc: "발악쉴드 파괴 · 클리어",
+        progress: 1, elapsedSec: Math.max(totalSec, p1EndSec)
+    });
+
+    // 누적 피해량 + 구간 피해량 + 구간 DPS (직전 줄 ~ 해당 줄)
+    const fulls = { tank: fullTank || 0, one: fullOne || 0, blood: fullBlood || 0 };
+    let prev = null;
+
+    rows.forEach(r => {
+        const raw = {
+            tank: fulls.tank * r.progress,
+            one: fulls.one * r.progress,
+            blood: fulls.blood * r.progress
+        };
+        const cum = {
+            tank: Math.floor(raw.tank + 1e-9),
+            one: Math.floor(raw.one + 1e-9),
+            blood: Math.floor(raw.blood + 1e-9)
+        };
+
+        r.tank = cum.tank;
+        r.one = cum.one;
+        r.blood = cum.blood;
+
+        if (r.kind === "start") {
+            prev = { raw, cum, sec: r.elapsedSec };
+            return;
+        }
+        if (r.kind === "shieldStart") return; // 라벨만 표시 (직전 = 0줄 변환 유지)
+
+        const segSec = prev ? Math.max(r.elapsedSec - prev.sec, 0) : 0;
+        r.segSec = segSec;
+
+        ["tank", "one", "blood"].forEach(k => {
+            const rawDiff = raw[k] - (prev ? prev.raw[k] : 0);
+            r["seg" + k] = cum[k] - (prev ? prev.cum[k] : 0);
+            r["dps" + k] = segSec > 0 ? floorTo1(rawDiff / segSec) : 0;
+        });
+
+        // 마지막 "클리어" 지점은 그 구간(2분)만의 DPS가 아니라,
+        // 상단 요약 카드와 같은 "전체 클리어 타임 기준 평균 DPS"로 표시
+        if (r.kind === "clear" && totalSec > 0) {
+            ["tank", "one", "blood"].forEach(k => {
+                r["dps" + k] = floorTo1(raw[k] / totalSec);
+            });
+        }
+
+        prev = { raw, cum, sec: r.elapsedSec };
+    });
+
+    return { rows, split, shieldLines };
+}
+
+function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, fullBlood) {
+    const { rows } = getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood);
+
+    const isSupport = currentRoleMode === "support";
+    const tankLabel = isSupport ? "강조" : "강투";
+    const bloodLabel = isSupport ? "잔조" : "잔혈";
+
+    const unit = '<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span>';
+    const mmss = (sec) => `${String(Math.floor(sec / 60)).padStart(2, "0")}:${String(sec % 60).padStart(2, "0")}`;
+    const minSec = (sec) => `${Math.floor(sec / 60)}분 ${String(sec % 60).padStart(2, "0")}초`;
+
+    const dpsUnit = '<span class="lc-dps-unit">억</span>';
+    const triHtml = (cls, label, value, dps) => `
+        <div class="lc-tri ${cls}">
+            <span class="lc-tri-label">${label}</span>
+            <span class="lc-tri-value">${fmt(value)}${unit}</span>
+            <span class="lc-tri-dps">DPS ${dps.toFixed(1)}${dpsUnit}</span>
+        </div>
+    `;
+
+    const cardHtml = (r) => `
+        <div class="line-cut-card">
+            ${triHtml("tank", tankLabel, r.tank, r.dpstank)}
+            ${triHtml("one", "1인분", r.one, r.dpsone)}
+            ${triHtml("blood", bloodLabel, r.blood, r.dpsblood)}
+        </div>
+    `;
+
+    const items = rows.map(r => {
+        // 시작 지점은 라벨만 (카드 없음)
+        if (r.kind === "start") {
+            return `
+                <div class="line-cut-row line-cut-start">
+                    <div class="line-cut-marker">
+                        <span class="line-cut-dot start"></span>
+                        <span class="line-cut-connector"></span>
+                    </div>
+                    <div class="line-cut-start-label">${r.line}줄 - 조우 시작 (1 페이즈)</div>
+                </div>
+            `;
+        }
+
+        // 발악쉴드 시작 지점 (2페이즈) - 위(0줄 변환)/아래(클리어)와 세로선으로 이어짐
+        if (r.kind === "shieldStart") {
+            return `
+                <div class="line-cut-row line-cut-start line-cut-shield-start">
+                    <div class="line-cut-marker">
+                        <span class="line-cut-dot start"></span>
+                        <span class="line-cut-connector"></span>
+                    </div>
+                    <div class="line-cut-start-label">
+                        ${r.line}줄 (실드) - 발악 시작 (2 페이즈)
+                        <div class="line-cut-start-sub">${r.desc}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const isClear = r.kind === "clear";
+        const isPhaseEnd = r.kind === "phaseEnd";
+        const lineLabel = isClear ? "0줄 (실드 · 클리어)" : (isPhaseEnd ? "0줄 (변환)" : `${r.line}줄`);
+        const rowCls = isClear ? "line-cut-clear" : (isPhaseEnd ? "line-cut-phase-end" : "");
+
+        return `
+            <div class="line-cut-row ${rowCls}">
+                <div class="line-cut-marker">
+                    <span class="line-cut-dot"></span>
+                    ${isClear ? "" : '<span class="line-cut-connector"></span>'}
+                </div>
+                <div class="line-cut-body">
+                    <div class="line-cut-label-row">
+                        <div class="line-cut-line-wrap">
+                            <span class="line-cut-line-num">${lineLabel}</span>
+                            ${r.nmNoteTime ? `<span class="line-cut-nm-badge">전분 기준 클각 <b>${r.nmNoteTime}</b>분</span>` : ""}
+                        </div>
+                        <span class="line-cut-time">누적 ${mmss(r.elapsedSec)}</span>
+                    </div>
+                    ${r.desc ? `<div class="line-cut-desc">${r.desc}</div>` : ""}
+                    ${cardHtml(r)}
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    return `<div class="line-cut-timeline">${items}</div>`;
+}
+
+function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, diffKey) {
+    // 모르둠 EX는 1페이즈(500줄)와 2페이즈(발악쉴드)를 나눠서 계산
+    if (menu === "mordum") {
+        return makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, fullBlood);
+    }
+
     const rows = getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
     if (!rows.length) {
         return '<div class="coming-soon"><h3>준비중</h3><p>구간 데이터가 없습니다.</p></div>';
@@ -1657,7 +2052,7 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
         const fullTank = rowTank ? getDamage(rowTank) : 0;
         const fullOne = rowOne ? getDamage(rowOne) : 0;
         const fullBlood = rowBlood ? getDamage(rowBlood) : 0;
-        const lineTimelineHtml = makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
+        const lineTimelineHtml = makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, meta && meta.diffKey);
 
         return `
             ${sectionDivider}
@@ -1899,7 +2294,8 @@ function percentNum(v) {
 // 메뉴별 강투/1인분/잔혈 기준 딜지분 (4인 레이드 vs 벨가르딘 8인 레이드)
 const PRECISION_SHARE_BY_MENU = {
     default: { tank: 30, one: 33, blood: 40 },
-    belgardin: { tank: 15, one: 16.6, blood: 20 }
+    belgardin: { tank: 15, one: 16.6, blood: 20 },
+    mordum: { tank: 15, one: 16.6, blood: 20 }
 };
 
 
@@ -2214,6 +2610,10 @@ function setBaseTimeByMenu(menu, gateKey) {
         minutes.value = 13;
         seconds.value = 0;
         label.textContent = "기본값: 13분(780초)";
+    } else if (menu === "extreme") {
+        minutes.value = 22;
+        seconds.value = 0;
+        label.textContent = "기본값: 22분(1320초)";
     } else {
         minutes.value = 10;
         seconds.value = 0;
@@ -2259,6 +2659,7 @@ function getRaidDisplayName(menu) {
     if (menu === "serka") return "세르카";
     if (menu === "cathedral") return "지평의 성당";
     if (menu === "belgardin") return "벨가르딘";
+    if (menu === "mordum") return "모르둠 EX";
     return "";
 }
 
@@ -3169,7 +3570,7 @@ const QUICK_MOVE_PAGES = {
     cathedral: { label: "지평의 성당",   href: "cathedral.html" },
     belgardin: { label: "벨가르딘",      href: "belgardin.html" },
     guardian:  { label: "가디언 토벌",   href: "guardian.html" },
-    extreme:   { label: "🚧 익스트림 🚧", href: null, disabled: true },
+    extreme:   { label: "익스트림",      href: "extreme.html" },
 };
 const QUICK_MOVE_SIMPLE_GROUP = ["level", "raid"];
 const QUICK_MOVE_PRECISION_GROUP = ["serka", "cathedral", "belgardin", "guardian", "extreme"];
@@ -3224,6 +3625,13 @@ function getQuickMoveEl() {
     group.appendChild(header);
 
     items.forEach((item) => {
+        // 레이드 계열 링크와 기타(시너지표·경매계산기) 링크 사이 구분선
+        if (item.key === "synergy") {
+            const divider = document.createElement("div");
+            divider.className = "quick-move-divider";
+            group.appendChild(divider);
+        }
+
         if (item.disabled || !item.href) {
             const span = document.createElement("span");
             span.className = "quick-move-gold-link disabled";
@@ -3825,6 +4233,17 @@ function getCurrentRowsForPartyDps() {
         return parsedData[currentMenu]?.[info.diffKey] || [];
     }
 
+    if (currentMenu === "extreme") {
+        if (currentExtremeRaid !== "mordum") return [];
+        const meta = raidMeta.extreme.mordum[currentCombo];
+        const data = meta && MORDUM_EX_DATA[meta.diffKey];
+        if (!data) return [];
+        const shares = data.shares;
+        const shareList = [10, 11, 12, 13, 14, 15, 16, shares.one, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+            .filter((v, i, arr) => arr.indexOf(v) === i);
+        return shareList.map(s => ({ share: s, damage: data.effectiveDamage * s / 100 }));
+    }
+
     return [];
 }
 
@@ -3846,7 +4265,8 @@ function getPartyDpsValue() {
     const rows = getCurrentRowsForPartyDps();
     if (!rows.length) return null;
 
-    const shares = getPrecisionShares(currentMenu);
+    const shareMenu = currentMenu === "extreme" ? currentExtremeRaid : currentMenu;
+    const shares = getPrecisionShares(shareMenu);
     let found = null;
     for (const share of [shares.one, shares.tank, shares.blood]) {
         found = rows.find(r => r.share === share && getDamageFromRow(r) > 0);
@@ -4099,7 +4519,7 @@ function bindRewardMoreToggle(menu) {
 }
 
 
-const RAID_MEMBER_COUNT = { serka: "4인", cathedral: "4인", belgardin: "8인" };
+const RAID_MEMBER_COUNT = { serka: "4인", cathedral: "4인", belgardin: "8인", mordum: "8인" };
 
 
 
@@ -4229,13 +4649,14 @@ function bindRaidBattleItemIcons() {
 function makeRaidPrecisionHero(menu, meta, currentDiff) {
     const isSerka = menu === "serka";
     const isCathedral = menu === "cathedral";
+    const isMordum = menu === "mordum";
     const raidTitle = getRaidDisplayName(menu);
     const memberCount = RAID_MEMBER_COUNT[menu] || "";
 
-    const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : "hero-belgardin");
-    const kicker = isSerka ? "PRECISION · SERKA" : (isCathedral ? "PRECISION · CATHEDRAL" : "PRECISION · BELGARDIN");
-    const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : "🧛");
-    const subtitle = isSerka ? "그림자 레이드" : (isCathedral ? "어비스 던전" : "그림자 레이드");
+    const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : (isMordum ? "hero-mordum" : "hero-belgardin"));
+    const kicker = isSerka ? "PRECISION · SERKA" : (isCathedral ? "PRECISION · CATHEDRAL" : (isMordum ? "PRECISION · MORDUM EX" : "PRECISION · BELGARDIN"));
+    const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : (isMordum ? "⚡" : "🧛"));
+    const subtitle = isSerka ? "그림자 레이드" : (isCathedral ? "어비스 던전" : (isMordum ? "익스트림 레이드" : "그림자 레이드"));
 
     const entryLevelMatch = meta.title.match(/\((\d+)\)/);
     const entryLevel = entryLevelMatch ? entryLevelMatch[1] : "-";
@@ -4254,6 +4675,12 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
             { key: "normal", text: "1단계 · 1700" },
             { key: "hard", text: "2단계 · 1720" },
             { key: "nightmare", text: "3단계 · 1750" }
+        ]
+        : isMordum
+        ? [
+            { key: "normal", text: "노말 · 1730" },
+            { key: "hard", text: "하드 · 1770" },
+            { key: "nightmare", text: "나메 · 1780" }
         ]
         : [
             { key: "normal", text: "노말 · 1750" },
@@ -4320,9 +4747,10 @@ function makeRaidPrecisionHero(menu, meta, currentDiff) {
 function makeRaidMiniHero(menu, meta) {
     const isSerka = menu === "serka";
     const isCathedral = menu === "cathedral";
+    const isMordum = menu === "mordum";
     const raidTitle = getRaidDisplayName(menu);
-    const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : "hero-belgardin");
-    const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : "🧛");
+    const themeClass = isSerka ? "hero-serka" : (isCathedral ? "hero-cathedral" : (isMordum ? "hero-mordum" : "hero-belgardin"));
+    const icon = isSerka ? "🧹" : (isCathedral ? "⛪" : (isMordum ? "⚡" : "🧛"));
 
     const entryLevelMatch = meta.title.match(/\((\d+)\)/);
     const entryLevel = entryLevelMatch ? entryLevelMatch[1] : "-";
@@ -4494,6 +4922,174 @@ function makePrecisionSummary(rowTank, rowOne, rowBlood, getDmgFn, totalSec, men
 
 
 /* =============================================
+   익스트림 (모르둠 EX / 종막 EX) 렌더링 — 구글시트 연동 없이 하드코딩
+   ============================================= */
+function bindExtremeTabs() {
+    document.querySelectorAll("[data-extreme-raid]").forEach(el => {
+        el.addEventListener("click", () => {
+            if (currentExtremeRaid === el.dataset.extremeRaid) return;
+            currentExtremeRaid = el.dataset.extremeRaid;
+            currentCombo = "hard_gate1";
+            renderTable();
+        });
+    });
+    document.querySelectorAll("[data-extreme-diff]").forEach(el => {
+        el.addEventListener("click", () => {
+            const nextCombo = el.dataset.extremeDiff + "_gate1";
+            if (currentCombo === nextCombo) return;
+            currentCombo = nextCombo;
+            setBaseTimeByMenu("extreme");
+            renderTable();
+        });
+    });
+    // 벨가르딘 등 다른 정밀계산 페이지는 renderTable()의 serka/cathedral/belgardin
+    // 전용 블록 끝에서 이 두 가지를 바인딩하는데, 익스트림은 그 블록을 안 타므로 직접 바인딩
+    document.querySelectorAll(".detail-tab[data-detail-tab]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const menu = btn.dataset.detailMenu || currentMenu;
+            detailTabState[menu] = btn.dataset.detailTab;
+            renderTable();
+        });
+    });
+    bindRoleToggle();
+}
+
+function renderExtremeSection(totalSec) {
+    document.getElementById("contentTitle").textContent = "";
+    document.getElementById("tableTitle").textContent = "";
+    document.getElementById("titleMeta").innerHTML = "";
+
+    // ===== 모르둠 EX (현재 유일하게 활성화된 레이드) =====
+    const meta = raidMeta.extreme.mordum[currentCombo] || raidMeta.extreme.mordum.hard_gate1;
+    const isSupport = currentRoleMode === "support";
+
+    // 레이드 선택 - 벨가르딘 "관문 선택"과 같은 슬라이딩 스위치 UI
+    const raidGroupHtml = `
+        <div class="precision-inline-group">
+            <div class="precision-control-label">레이드 선택</div>
+            <div class="precision-gate-inline" id="precisionGateInline">
+                <div class="precision-switch-thumb precision-gate-thumb" id="precisionGateThumb"></div>
+
+                <div class="precision-gate-chip ${currentExtremeRaid === "mordum" ? "active" : ""}" data-extreme-raid="mordum">
+                    <div class="precision-gate-chip-content">
+                        <div class="precision-gate-chip-line">
+                            <span class="precision-gate-chip-gate">모르둠</span>
+                            <span class="precision-gate-chip-boss">EX</span>
+                        </div>
+                        <div class="precision-gate-chip-badges">
+                            ${makeBadge(meta.type.text, meta.type.cls)}
+                            ${makeBadge(meta.attr.text, meta.attr.cls)}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="precision-gate-chip is-disabled" aria-disabled="true">
+                    <div class="precision-gate-chip-content">
+                        <div class="precision-gate-chip-line">
+                            <span class="precision-gate-chip-gate">종막</span>
+                            <span class="precision-gate-chip-boss">EX</span>
+                        </div>
+                        <div class="precision-gate-chip-badges">
+                            <span class="badge attr-none">10/21 오픈</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // 난이도 선택 - 벨가르딘과 같은 슬라이딩 스위치 UI (노말=초록 · 하드=골드 · 나메=보라)
+    const diffGroups = [
+        { diffKey: "normal", label: "노말", level: "1730", cls: "pd-green" },
+        { diffKey: "hard", label: "하드", level: "1770", cls: "pd-gold" },
+        { diffKey: "nightmare", label: "나메", level: "1780", cls: "pd-purple" }
+    ];
+    const activeDiffGroup = diffGroups.find(g => g.diffKey === meta.diffKey) || diffGroups[1];
+
+    const diffGroupHtml = `
+        <div class="precision-inline-group">
+            <div class="precision-control-label">난이도 선택</div>
+            <div class="precision-diff-inline" id="precisionDiffInline">
+                <div class="precision-switch-thumb precision-diff-thumb ${activeDiffGroup.cls}" id="precisionDiffThumb"></div>
+                ${diffGroups.map(g => {
+                    const isActive = meta.diffKey === g.diffKey;
+                    return `
+                        <div class="precision-diff-chip ${isActive ? `${g.cls} active` : ""}" data-extreme-diff="${g.diffKey}">
+                            <span class="precision-diff-chip-main">${g.label}</span>
+                            <span class="precision-diff-chip-sub">${g.level}</span>
+                        </div>
+                    `;
+                }).join("")}
+            </div>
+        </div>
+    `;
+
+    // 벨가르딘처럼 레이드/난이도 선택을 한 카드로 묶고 폭을 넓힘 (오른쪽은 보스 정보)
+    const topRowBlock = `
+        <div class="mordum-top-row">
+            <div class="mordum-controls-col">
+                <div class="precision-control compact-precision-control mordum-ex-controls">
+                    ${raidGroupHtml}
+                    ${diffGroupHtml}
+                </div>
+            </div>
+            ${makeMordumBossInfoPanel(meta.diffKey)}
+        </div>
+    `;
+
+    const data = MORDUM_EX_DATA[meta.diffKey];
+    const shares = data.shares;
+    const shareList = [10, 11, 12, 13, 14, 15, 16, shares.one, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+        .filter((v, i, arr) => arr.indexOf(v) === i)
+        .sort((a, b) => a - b);
+
+    const rows = shareList.map(s => ({ share: s, damage: data.effectiveDamage * s / 100 }));
+
+    let rowTank, rowOne, rowBlood, effectiveGetDamage, tableRowsHtml;
+
+    if (isSupport) {
+        // 서폿 강조컷 / 1인분 / 잔조컷 = 딜러 강투컷 / 1인분 / 잔혈컷 지분 x1.25 (벨가르딘과 동일한 환산)
+        const supportConv = computeSupportConversion(rows, shares, (row) => row.damage);
+        rowTank = supportConv.anchors.gangjo;
+        rowOne = supportConv.anchors.ilinbun;
+        rowBlood = supportConv.anchors.janjo;
+        effectiveGetDamage = (row) => row.damage;
+
+        tableRowsHtml = supportConv.rows.length
+            ? supportConv.rows.map(r => {
+                const dps = floorTo1(r.damage / totalSec).toFixed(1);
+                return `<tr>${renderSupportShareCell(r)}<td>${fmt(r.damage)}</td><td><span class="dps-pill">${dps}억</span></td></tr>`;
+            }).join("")
+            : '<tr><td colspan="3">데이터 없음</td></tr>';
+    } else {
+        rowTank = rows.find(r => Math.abs(r.share - shares.tank) < 0.0001);
+        rowOne = rows.find(r => Math.abs(r.share - shares.one) < 0.0001);
+        rowBlood = rows.find(r => Math.abs(r.share - shares.blood) < 0.0001);
+        effectiveGetDamage = (row) => row.damage;
+
+        tableRowsHtml = rows.map(r => {
+            const dmg = Math.floor(r.damage);
+            const dps = floorTo1(r.damage / totalSec).toFixed(1);
+            return `<tr>${renderShareCell(r.share, "mordum")}<td>${fmt(dmg)}</td><td><span class="dps-pill">${dps}억</span></td></tr>`;
+        }).join("");
+    }
+
+    setMainContentWithAdPreservation(
+        makeRaidPrecisionHero("mordum", meta, meta.diffKey),
+        makeRaidMiniHero("mordum", meta),
+        `
+        ${topRowBlock}
+        ${buildSummaryAndDetailHtml("mordum", "gate1", "모르둠 EX", meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, effectiveGetDamage, isSupport)}
+        `
+    );
+
+    bindExtremeTabs();
+    bindMordumDetailToggle();
+    bindRaidBattleItemIcons();
+    positionPrecisionSwitchThumbs();
+}
+
+/* =============================================
    메인 테이블 렌더링
    ============================================= */
 function renderTable() {
@@ -4506,7 +5102,7 @@ function renderTable() {
     currentSimpleLevel !== "abr-ex";
 
 const isRaidSimpleQuickView = currentMenu === "raid-simple";
-const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin" || currentMenu === "guardian";
+const isMobilePrecisionView = currentMenu === "serka" || currentMenu === "cathedral" || currentMenu === "belgardin" || currentMenu === "guardian" || currentMenu === "extreme";
 document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
 
 
@@ -4531,6 +5127,7 @@ document.body.classList.toggle("mobile-precision-view", isMobilePrecisionView);
     currentMenu === "serka" ||
     currentMenu === "cathedral" ||
     currentMenu === "belgardin" ||
+    currentMenu === "extreme" ||
     currentMenu === "arc-grid";
 
 const tabsEl = document.getElementById("tabs");
@@ -4569,6 +5166,15 @@ if (tabsEl) {
     document.getElementById("tableTitle").textContent = getTableTitle();
     renderTitleMeta();
     document.getElementById("infoHint").innerHTML = getInfoHintText();
+
+    if (currentMenu === "extreme") {
+        setClearTimeDisabled(false);
+        disableSimpleAdSlot();
+        enablePrecisionAdSlot();
+        renderExtremeSection(totalSec);
+        updatePartyDpsDisplay();
+        return;
+    }
 
 if (currentMenu === "arc-grid") {
     setClearTimeDisabled(true);
