@@ -18,12 +18,20 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
 
+
+// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
+// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
+// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
+
+
+
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
-    const heroSlot = document.getElementById("precisionHeroSlot"); 
+    const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
- 
+    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
+    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
@@ -338,18 +346,19 @@ const MORDUM_EX_DATA = {
         shares: { tank: 15, one: 16.6, blood: 20 }
     },
     nightmare: {
-        totalSec: 1320, // 22분 (1구간 20분 + 2구간 발악쉴드 2분)
-        effectiveDamage: 163098.73709291, // 딜러6인 실효 딜량 100% 풀 (억)
+        totalSec: 1214, // 20분 14초 (1구간 18분 24초 + 2구간 발악쉴드 1분 50초) — 체력 8% 하향 (기존 22분 x0.92)
+        effectiveDamage: 150050.62891058, // 딜러6인 실효 딜량 100% 풀 (억) = 총 체력 - 에스더 - 서폿
         shares: { tank: 15, one: 16.6, blood: 20 }
     }
 };
 
 // 보스 정보 패널용 요약 데이터 (단위: 억). player = 딜러 몫(실효딜량), esther+support = 자동 차감분
 // 2026-09-25 체력 DB 수정본 반영 (나메 발악 쉴드 체력 오류 수정, 하드/노말도 소폭 보정)
+// 나메: 보스 기본체력 8% 하향 반영 (1페이즈 체력 157,564.18837755억 확정값 / 발악쉴드·에스더 딜량 동일 비율, 서폿 딜은 시간 x0.92)
 const MORDUM_BOSS_INFO = {
     normal:    { totalHp: 25712.72052353,  shieldHp: 1740.54744791,  estherTotal: 2107.15,  supportTotal: 82.5,  player: 23523.07052353 },
     hard:      { totalHp: 64599.72898577,  shieldHp: 4362.84623604,  estherTotal: 7385.04,  supportTotal: 137.5, player: 57077.18898577 },
-    nightmare: { totalHp: 186576.61709291, shieldHp: 15310.95666391, estherTotal: 23257.88, supportTotal: 220.0, player: 163098.73709291 }
+    nightmare: { totalHp: 171650.24891058, shieldHp: 14086.06053303, estherTotal: 21397.22, supportTotal: 202.4, player: 150050.62891058 }
 };
 
 function formatEokAbbrev(eok) {
@@ -371,25 +380,25 @@ const MORDUM_ESTHER_GROUPS = [
     {
         key: "shandi", name: "샨디", symbol: "❖", tone: "244,114,182",
         skills: [
-            { name: "샨디 3칸", cells: 3, pct: 1.63, lines: 8.15, tone: "244,114,182", dmg: [279163026499, 98186118882, 39074642113] },
-            { name: "샨디 1칸", cells: 1, pct: 1.31, lines: 6.55, tone: "251,113,133", dmg: [224358015162, 78910316402, 31403546729] }
+            { name: "샨디 3칸", cells: 3, pct: 1.63, lines: 8.15, tone: "244,114,182", dmg: [256829627055, 98186118882, 39074642113] },
+            { name: "샨디 1칸", cells: 1, pct: 1.31, lines: 6.55, tone: "251,113,133", dmg: [206409086775, 78910316402, 31403546729] }
         ]
     },
     {
         key: "vahun", name: "바훈", symbol: "◈", tone: "56,189,248",
         skills: [
-            { name: "바훈 3칸", cells: 3, pct: 1.10, lines: 5.50, tone: "56,189,248", dmg: [188392226472, 66260571025, 26369390383] },
-            { name: "바훈 1칸", cells: 1, pct: 1.00, lines: 5.00, tone: "96,165,250", dmg: [171265660429, 60236882750, 23972173076] },
-            { name: "바훈 1칸 (무력 추뎀)", cells: 1, pct: 2.02, lines: 10.10, tone: "34,211,238", dmg: [345956634067, 121678503154, 48423789613] },
-            { name: "히든바훈 3칸", cells: 3, pct: 4.05, lines: 20.25, tone: "167,139,250", dmg: [693625924737, 243959375136, 97087300956] }
+            { name: "바훈 3칸", cells: 3, pct: 1.10, lines: 5.50, tone: "56,189,248", dmg: [173320607215, 66260571025, 26369390383] },
+            { name: "바훈 1칸", cells: 1, pct: 1.00, lines: 5.00, tone: "96,165,250", dmg: [157564188378, 60236882750, 23972173076] },
+            { name: "바훈 1칸 (무력 추뎀)", cells: 1, pct: 2.02, lines: 10.10, tone: "34,211,238", dmg: [318279660523, 121678503154, 48423789613] },
+            { name: "히든바훈 3칸", cells: 3, pct: 4.05, lines: 20.25, tone: "167,139,250", dmg: [638134962929, 243959375136, 97087300956] }
         ]
     },
     {
         key: "bastian", name: "바스티안", symbol: "✦", tone: "251,146,60",
         skills: [
-            { name: "바스티안 3칸", cells: 3, pct: 1.32, lines: 6.60, tone: "251,146,60", dmg: [226070671766, 79512685230, 31643268460] },
-            { name: "바스티안 1칸", cells: 1, pct: 1.05, lines: 5.25, tone: "251,191,36", dmg: [179828943450, 63248726887, 25170781729] },
-            { name: "바스티안 1칸 (쉴드 추뎀)", cells: 1, pct: 2.10, lines: 10.50, tone: "250,204,21", dmg: [359657886901, 126497453774, 50341563459] }
+            { name: "바스티안 3칸", cells: 3, pct: 1.32, lines: 6.60, tone: "251,146,60", dmg: [207984728658, 79512685230, 31643268460] },
+            { name: "바스티안 1칸", cells: 1, pct: 1.05, lines: 5.25, tone: "251,191,36", dmg: [165442397796, 63248726887, 25170781729] },
+            { name: "바스티안 1칸 (쉴드 추뎀)", cells: 1, pct: 2.10, lines: 10.50, tone: "250,204,21", dmg: [330884795593, 126497453774, 50341563459] }
         ]
     }
 ];
@@ -1746,24 +1755,87 @@ function getMordumPhaseSplit(diffKey) {
     return { shieldRatio, p1Frac: 1 - p2Frac, p2Frac };
 }
 
+/* =============================================
+   모르둠 나메 EX 에스더 택틱 + 체력 하향 시간 보정
+   - 구간별 유저 딜 = 구간 체력 - (그 구간에서 쓰는 에스더 딜량) - (서폿 딜)
+   - 서폿 딜은 1페이즈 시간(초)에 비례해 골고루 배분 (서폿 총딜 / 1페이즈 초)
+   - 키 = 해당 에스더를 쓰는 구간의 '끝 줄'
+       500~425  바훈 3칸        / 390~325  바스 3칸 / 320~275  바스 3칸
+       159~100  바스 3칸+1칸    / 50~0     히든바훈 3칸
+       발악쉴드  바스 3칸 + 바스 1칸(쉴드 추뎀)
+   - 나메는 체력 8% 하향으로 구간 시간(클각)도 x0.92 (500~425줄 3:00 -> 2:46)
+   ============================================= */
+const MORDUM_TIME_SCALE = { normal: 1, hard: 1, nightmare: 0.92 };
+const MORDUM_NM_TACTIC = {
+    p1: {
+        425: ["바훈 3칸"],
+        325: ["바스티안 3칸"],
+        275: ["바스티안 3칸"],
+        100: ["바스티안 3칸", "바스티안 1칸"],
+        0:   ["히든바훈 3칸"]
+    },
+    shield: ["바스티안 3칸", "바스티안 1칸 (쉴드 추뎀)"]
+};
+
+// 에스더 스킬 이름 -> 해당 난이도 딜량 (억)
+function getMordumEstherEok(skillName, diffKey) {
+    const idx = MORDUM_ESTHER_DIFF_INDEX[diffKey];
+    for (const g of MORDUM_ESTHER_GROUPS) {
+        const sk = g.skills.find(s => s.name === skillName);
+        if (sk) return sk.dmg[idx] / 1e8;
+    }
+    return 0;
+}
+
+// 나메: 각 줄 지점까지의 '누적 유저 딜 / 딜러 실효 딜량' 진행도 (에스더 택틱 + 서폿 균등 반영)
+function getMordumNmCumProgress(diffKey, config) {
+    const info = MORDUM_BOSS_INFO[diffKey];
+    const ts = MORDUM_TIME_SCALE[diffKey] || 1;
+    const pts = config.points;
+    const baseSec = pts.map(p => Math.round(p.sec * ts));
+    const p1Hp = info.totalHp - info.shieldHp;
+    const supportPerSec = info.supportTotal / baseSec[baseSec.length - 1]; // 서폿 초당 딜 (억/초)
+
+    const cum = [0];
+    let acc = 0;
+    for (let i = 1; i < pts.length; i++) {
+        const sectionHp = p1Hp * (pts[i - 1].line - pts[i].line) / config.total;
+        const esther = (MORDUM_NM_TACTIC.p1[pts[i].line] || [])
+            .reduce((a, name) => a + getMordumEstherEok(name, diffKey), 0);
+        const support = supportPerSec * (baseSec[i] - baseSec[i - 1]);
+        acc += sectionHp - esther - support;
+        cum.push(acc / info.player);
+    }
+    return cum;
+}
+
 function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
     const config = lineCutConfig.mordum.gate1;
     const split = getMordumPhaseSplit(diffKey);
 
-    // 기준 시간(22분 = 1320초) 대비 CLEAR TIME 비율만큼 모든 구간 시간을 늘리고 줄임
-    const baseTotalSec = config.points[config.points.length - 1].sec + config.shieldSec;
+    // 난이도별 구간 시간 보정 (나메 x0.92)
+    const ts = MORDUM_TIME_SCALE[diffKey] || 1;
+    const ptSec = (p) => Math.round(p.sec * ts);
+    const lastPtSec = ptSec(config.points[config.points.length - 1]);
+    const shieldBaseSec = Math.round(config.shieldSec * ts);
+
+    // 나메는 에스더 택틱 기준 누적 진행도, 노말/하드는 기존 줄 수 비례
+    const tacticCum = diffKey === "nightmare" ? getMordumNmCumProgress(diffKey, config) : null;
+
+    // 기준 시간(나메 20분 14초 / 노말·하드 22분) 대비 CLEAR TIME 비율만큼 모든 구간 시간을 늘리고 줄임
+    const baseTotalSec = lastPtSec + shieldBaseSec;
     const f = totalSec > 0 ? totalSec / baseTotalSec : 1;
     const scaleSec = (sec) => Math.round(sec * f);
 
     const rows = [];
 
     // 1페이즈: 500줄 -> 0줄(변환)
-    config.points.forEach(p => {
+    config.points.forEach((p, i) => {
         const p1Progress = (config.total - p.line) / config.total;   // 1페이즈 내 진행도
-        const progress = p1Progress * split.p1Frac;                  // 전체 딜량 대비 진행도
-        // "전분 기준 클각" = CLEAR TIME 입력과 무관하게 항상 원래 기준(22분) 시각으로 표시
+        const progress = tacticCum ? tacticCum[i] : p1Progress * split.p1Frac;   // 전체 딜량 대비 진행도
+        // "전분 기준 클각" = CLEAR TIME 입력과 무관하게 항상 원래 기준(나메 20분 14초) 시각으로 표시
         const nmNoteTime = (diffKey === "nightmare" && p.nmClearNote)
-            ? `${String(Math.floor(p.sec / 60)).padStart(2, "0")}:${String(p.sec % 60).padStart(2, "0")}`
+            ? `${String(Math.floor(ptSec(p) / 60)).padStart(2, "0")}:${String(ptSec(p) % 60).padStart(2, "0")}`
             : null;
         rows.push({
             phase: 1,
@@ -1772,16 +1844,16 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
             desc: p.desc,
             nmNoteTime,
             progress,
-            elapsedSec: scaleSec(p.sec)
+            elapsedSec: scaleSec(ptSec(p))
         });
     });
 
     // 2페이즈: 발악쉴드 시작 -> 0줄 클리어 (1페이즈에 이어서 22분까지)
     const shieldLines = (config.shieldLines && config.shieldLines[diffKey]) || 36;
-    const p1EndSec = scaleSec(config.points[config.points.length - 1].sec);
+    const p1EndSec = scaleSec(lastPtSec);
     rows.push({
         phase: 2, kind: "shieldStart", line: shieldLines, desc: "종족 변환 (고대 → 정령)",
-        progress: split.p1Frac, elapsedSec: p1EndSec
+        progress: tacticCum ? tacticCum[tacticCum.length - 1] : split.p1Frac, elapsedSec: p1EndSec
     });
     rows.push({
         phase: 2, kind: "clear", line: 0, desc: "발악쉴드 파괴 · 클리어",
@@ -2610,6 +2682,11 @@ function setBaseTimeByMenu(menu, gateKey) {
         minutes.value = 13;
         seconds.value = 0;
         label.textContent = "기본값: 13분(780초)";
+    } else if (menu === "extreme" && currentExtremeRaid === "mordum" && String(currentCombo).startsWith("nightmare")) {
+        // 모르둠 나메: 체력 8% 하향 반영 (22분 x0.92)
+        minutes.value = 20;
+        seconds.value = 14;
+        label.textContent = "기본값: 20분 14초(1214초)";
     } else if (menu === "extreme") {
         minutes.value = 22;
         seconds.value = 0;
