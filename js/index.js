@@ -467,7 +467,7 @@ function makeMordumBossInfoPanel(diffKey) {
                 </div>
             </div>
 
-            <button class="mbi-more-btn" id="mordumDetailBtn" type="button">${detailOpen ? "모르둠 상세보기 (10/03) ▲" : "모르둠 상세보기 (10/03) ▼"}</button>
+            <button class="mbi-more-btn" id="mordumDetailBtn" type="button">${detailOpen ? "모르둠 상세보기 ▲" : "모르둠 상세보기 ▼"}</button>
 
             <div class="mbi-more-content ${detailOpen ? "mbi-open" : ""}" id="mordumDetailContent">
                 <div class="mbi-lines">
@@ -4839,6 +4839,11 @@ function makeRaidMiniHero(menu, meta) {
 
 
 
+    // 모르둠 나메 전용: 입장레벨 오른쪽 '10/03 패치적용' 심볼 (별도 CSS 없이 인라인 스타일로 동작)
+    const patchBadgeHtml = (isMordum && meta.diffKey === "nightmare")
+        ? `<span class="p-mini-patch-badge" style="display:inline-flex;align-items:center;flex-shrink:0;white-space:nowrap;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.2px;color:#6ee7b7;background:rgba(16,185,129,.14);border:1px solid rgba(52,211,153,.45);">10/03 패치적용</span>`
+        : "";
+
     const miniBattleIconsHtml = buildMiniBattleIconsHtml(menu, meta.diffKey, meta.gateKey, currentRoleMode);
     const miniLoadoutBlock = miniBattleIconsHtml ? `
                 <div class="bi-mini-loadout-inline">
@@ -4856,6 +4861,7 @@ function makeRaidMiniHero(menu, meta) {
                     <span class="p-mini-diff-badge diff-${meta.diffKey}">${diffLabel}</span>
                     <span class="p-mini-gate-badge">${gateLabel}</span>
                     <span class="p-mini-level-badge">${entryLevel}</span>
+                    ${patchBadgeHtml}
                 </div>
 
                 ${miniLoadoutBlock}
