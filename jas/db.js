@@ -70,8 +70,8 @@ var SPECIAL_SKILL_ICONS = {
   "중력 가중 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/dt_skill/dt_skill_01_20.png",
   "심판자 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
   "신앙 스킬": {
-    "홀리나이트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
-    "발키리": "https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_24.png",
+  "홀리나이트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
+  "발키리": "https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_24.png",
   "음양 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/yy_skill/yy_skill_01_3.png"
   },
   "떠오르는 달": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_yy/ark_passive_yy_8.png",
@@ -713,7 +713,7 @@ const SPEC_BY_CLASS = {
 
 
 
-// [초정밀 교정] 친구가 직접 전달해준 인게임 툴팁 실측 데이터베이스 구축 (단위: %)
+
 
 
 const ENGRAVE_REGISTRY = {
@@ -918,7 +918,7 @@ const EVOLUTION_EFFECTS = [
   { name: "잔재된 기운 공속", aliases: ["잔재된기운", "잔재된 기운"], stat: "atkSpeed", maxLv: 3, values: [6.0, 9.0, 12.0], category: 2, condition: "버스트 사용 시 30초", group: "깨달음" },
   { name: "잔재된 기운 이속", aliases: ["잔재된기운", "잔재된 기운"], stat: "moveSpeed", maxLv: 3, values: [6.0, 9.0, 12.0], category: 2, condition: "버스트 사용 시 30초", group: "깨달음" },
   { name: "잠식 제어", aliases: ["잠식제어", "잠식 제어"], stat: "critRate", maxLv: 3, values: [3.0, 6.0, 10.0], category: 1, condition: "완벽한억제 루트", group: "깨달음" },
-  { name: "혼돈 강화", aliases: ["혼돈강화", "혼돈 강화"], stat: "critRate", maxLv: 3, values: [10.0, 20.0, 30.0], category: 2, condition: "악마화 中", group: "깨달음" },
+{ name: "혼돈 강화", aliases: ["혼돈강화", "혼돈 강화"], stat: "critRate", maxLv: 3, values: [10.0, 20.0, 30.0], category: 2, condition: "악마화 中", group: "깨달음", classOnly: ["데모닉"] },
   { name: "유령 무희", aliases: ["유령무희", "유령 무희"], stat: "critRate", maxLv: 3, values: [3.0, 6.0, 10.0], category: 2, condition: "페르소나 전환 시", group: "깨달음" },
   { name: "달의 소리", aliases: ["달의소리", "달의 소리"], stat: "atkSpeed", maxLv: 3, values: [10.0, 10.0, 10.0], category: 1, condition: "페르소나 상태 (상시 유지로 간주, 아덴(페르소나) 라벨로 표시)", group: "깨달음" },
   { name: "곡예사", aliases: ["곡예사"], stat: "critDmg", maxLv: 5, values: [3.0, 6.0, 9.0, 12.0, 15.0], category: 3, condition: "페르소나 급습", group: "깨달음" },
@@ -926,7 +926,7 @@ const EVOLUTION_EFFECTS = [
   { name: "비열한 칼날", aliases: ["비열한칼날", "비열한 칼날"], stat: "critRate", maxLv: 3, values: [20.0, 20.0, 20.0], category: 3, condition: "쉐도우나이프", group: "도약", skill: "쉐도우 나이프" },
   { name: "그림자 맹수 치적", aliases: ["그림자맹수", "그림자 맹수"], stat: "critRate", maxLv: 3, values: [10.0, 20.0, 30.0], category: 3, condition: "피니쉬스텝", group: "도약", skill: "피니쉬 스텝" },
   { name: "그림자 맹수 치피", aliases: ["그림자맹수", "그림자 맹수"], stat: "critDmg", maxLv: 3, values: [5.0, 10.0, 15.0], category: 3, condition: "페르소나 적중", group: "도약", skill: "피니쉬 스텝" },
-  { name: "피냄새", aliases: ["피냄새", "피 냄새"], stat: "critRate", maxLv: 3, values: [18.0, 20.0, 23.0], category: 2, condition: "혼돈게이지 풀 시", group: "깨달음" },
+  { name: "피냄새 (혼돈)", aliases: ["피냄새", "피 냄새"], stat: "critRate", maxLv: 3, values: [18.0, 20.0, 23.0], category: 2, condition: "혼돈게이지 풀 시", group: "깨달음" },
   { name: "암살자의 발자취", aliases: ["암살자의발자취", "암살자의 발자취"], stat: "critRate", maxLv: 3, values: [10.0, 15.0, 20.0], category: 3, condition: "피니쉬스텝 백어택", group: "도약", skill: "피니쉬 스텝" },
   { name: "영혼친화력", aliases: ["영혼친화력", "영혼 친화력"], stat: "critRate", maxLv: 3, values: [3.0, 8.0, 14.0], category: 1, condition: "상시", group: "깨달음" },
   { name: "어둠의 장송곡", aliases: ["어둠의장송곡", "어둠의 장송곡"], stat: "critDmg", maxLv: 3, values: [15.0, 30.0, 45.0], category: 3, condition: "사신화+데스피날레", group: "도약", skill: "데스 피날레" },
@@ -1020,11 +1020,11 @@ const IDENTITY_BUFFS = {
     "버스트": { buff_name:"아츠 활성(3버)", type:"toggle", stats:{ attack_speed:20.0, move_speed:10.0, attack_power_percent:30.0 } }
      },
   "리퍼": {
-    "갈증": { buff_name:"혼돈맥스", type:"toggle", stats:{ crit_rate:15.0, attack_speed:10.0, move_speed:10.0 } },
+    "갈증": { buff_name:"혼돈", type:"toggle", stats:{ attack_speed:10.0, move_speed:10.0 } },
     "달의 소리": { buff_name:"페르소나", type:"toggle", stats:{ move_speed:10.0 } }
   },
   "데모닉": {
-    "멈출 수 없는 충동": { buff_name:"악마화", type:"toggle", stats:{ attack_speed:20.0, move_speed:20.0 } }
+    "멈출 수 없는 충동": { buff_name:"악마화", type:"toggle", stats:{  move_speed:20.0 } }
   },
   "창술사": {
     "절정": { buff_name:"집중 스탠스", type:"toggle", stats:{ attack_speed:15.0 } }
@@ -1051,14 +1051,7 @@ const IDENTITY_BUFFS = {
       ampKeyword: "금강선공의 효과"
     }
   },
-
-
-
-
-
-  "소서리스": {
-    "점화": { buff_name:"마력 해방", type:"toggle", stats:{ crit_rate:25.0, crit_damage:50.0 } }
-  },
+ 
   "데빌헌터": {
     "강화 무기": { buff_name:"스탠스 치적(상시)", type:"permanent", stats:{ crit_rate:22.0 } }
   },
