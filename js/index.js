@@ -467,7 +467,7 @@ function makeMordumBossInfoPanel(diffKey) {
                 </div>
             </div>
 
-            <button class="mbi-more-btn" id="mordumDetailBtn" type="button">${detailOpen ? "모르둠 상세보기 ▲" : "모르둠 상세보기 ▼"}</button>
+            <button class="mbi-more-btn" id="mordumDetailBtn" type="button">${detailOpen ? "모르둠 상세보기 (10/03) ▲" : "모르둠 상세보기 (10/03) ▼"}</button>
 
             <div class="mbi-more-content ${detailOpen ? "mbi-open" : ""}" id="mordumDetailContent">
                 <div class="mbi-lines">
