@@ -19,10 +19,6 @@ let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}`
 
 
 
-// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
-// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
-// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
-
 
 
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
@@ -30,12 +26,11 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
-    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
+
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
+         
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
             </div>
@@ -43,7 +38,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
+       
         try {
             window.googletag = window.googletag || { cmd: [] };
             googletag.cmd.push(function () {
@@ -346,19 +341,19 @@ const MORDUM_EX_DATA = {
         shares: { tank: 15, one: 16.6, blood: 20 }
     },
     nightmare: {
-        totalSec: 1214, // 20분 14초 (1구간 18분 24초 + 2구간 발악쉴드 1분 50초) — 체력 8% 하향 (기존 22분 x0.92)
-        effectiveDamage: 150050.62891058, // 딜러6인 실효 딜량 100% 풀 (억) = 총 체력 - 에스더 - 서폿
+        totalSec: 1320, // 22분 (1구간 20분 + 2구간 발악쉴드 2분)
+        effectiveDamage: 150033.02891058, // 딜러6인 실효 딜량 100% 풀 (억) = 총 체력 - 에스더 - 서폿
         shares: { tank: 15, one: 16.6, blood: 20 }
     }
 };
 
 // 보스 정보 패널용 요약 데이터 (단위: 억). player = 딜러 몫(실효딜량), esther+support = 자동 차감분
 // 2026-09-25 체력 DB 수정본 반영 (나메 발악 쉴드 체력 오류 수정, 하드/노말도 소폭 보정)
-// 나메: 보스 기본체력 8% 하향 반영 (1페이즈 체력 157,564.18837755억 확정값 / 발악쉴드·에스더 딜량 동일 비율, 서폿 딜은 시간 x0.92)
+// 나메: 보스 기본체력 8% 하향 반영 (1페이즈 체력 157,564.18837755억 확정값 / 발악쉴드·에스더 딜량 동일 비율, 시간·서폿 딜은 기존 유지)
 const MORDUM_BOSS_INFO = {
     normal:    { totalHp: 25712.72052353,  shieldHp: 1740.54744791,  estherTotal: 2107.15,  supportTotal: 82.5,  player: 23523.07052353 },
     hard:      { totalHp: 64599.72898577,  shieldHp: 4362.84623604,  estherTotal: 7385.04,  supportTotal: 137.5, player: 57077.18898577 },
-    nightmare: { totalHp: 171650.24891058, shieldHp: 14086.06053303, estherTotal: 21397.22, supportTotal: 202.4, player: 150050.62891058 }
+    nightmare: { totalHp: 171650.24891058, shieldHp: 14086.06053303, estherTotal: 21397.22, supportTotal: 220.0, player: 150033.02891058 }
 };
 
 function formatEokAbbrev(eok) {
@@ -1763,9 +1758,9 @@ function getMordumPhaseSplit(diffKey) {
        500~425  바훈 3칸        / 390~325  바스 3칸 / 320~275  바스 3칸
        159~100  바스 3칸+1칸    / 50~0     히든바훈 3칸
        발악쉴드  바스 3칸 + 바스 1칸(쉴드 추뎀)
-   - 나메는 체력 8% 하향으로 구간 시간(클각)도 x0.92 (500~425줄 3:00 -> 2:46)
+   - 구간 시간(클각)은 기존 그대로 22분 기준 (MORDUM_TIME_SCALE.nightmare = 1, 500~425줄 3:00)
    ============================================= */
-const MORDUM_TIME_SCALE = { normal: 1, hard: 1, nightmare: 0.92 };
+const MORDUM_TIME_SCALE = { normal: 1, hard: 1, nightmare: 1 };
 const MORDUM_NM_TACTIC = {
     p1: {
         425: ["바훈 3칸"],
@@ -1822,7 +1817,7 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
     // 나메는 에스더 택틱 기준 누적 진행도, 노말/하드는 기존 줄 수 비례
     const tacticCum = diffKey === "nightmare" ? getMordumNmCumProgress(diffKey, config) : null;
 
-    // 기준 시간(나메 20분 14초 / 노말·하드 22분) 대비 CLEAR TIME 비율만큼 모든 구간 시간을 늘리고 줄임
+    // 기준 시간(22분) 대비 CLEAR TIME 비율만큼 모든 구간 시간을 늘리고 줄임
     const baseTotalSec = lastPtSec + shieldBaseSec;
     const f = totalSec > 0 ? totalSec / baseTotalSec : 1;
     const scaleSec = (sec) => Math.round(sec * f);
@@ -1833,7 +1828,7 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
     config.points.forEach((p, i) => {
         const p1Progress = (config.total - p.line) / config.total;   // 1페이즈 내 진행도
         const progress = tacticCum ? tacticCum[i] : p1Progress * split.p1Frac;   // 전체 딜량 대비 진행도
-        // "전분 기준 클각" = CLEAR TIME 입력과 무관하게 항상 원래 기준(나메 20분 14초) 시각으로 표시
+        // "전분 기준 클각" = CLEAR TIME 입력과 무관하게 항상 원래 기준(22분) 시각으로 표시
         const nmNoteTime = (diffKey === "nightmare" && p.nmClearNote)
             ? `${String(Math.floor(ptSec(p) / 60)).padStart(2, "0")}:${String(ptSec(p) % 60).padStart(2, "0")}`
             : null;
@@ -2682,11 +2677,6 @@ function setBaseTimeByMenu(menu, gateKey) {
         minutes.value = 13;
         seconds.value = 0;
         label.textContent = "기본값: 13분(780초)";
-    } else if (menu === "extreme" && currentExtremeRaid === "mordum" && String(currentCombo).startsWith("nightmare")) {
-        // 모르둠 나메: 체력 8% 하향 반영 (22분 x0.92)
-        minutes.value = 20;
-        seconds.value = 14;
-        label.textContent = "기본값: 20분 14초(1214초)";
     } else if (menu === "extreme") {
         minutes.value = 22;
         seconds.value = 0;
