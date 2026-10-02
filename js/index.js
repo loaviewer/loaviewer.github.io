@@ -19,6 +19,10 @@ let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}`
 
 
 
+// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
+// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
+// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
+
 
 
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
@@ -26,11 +30,12 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-
+    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
+    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-         
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 <div id="div-gpt-ad-1788303186629-0" class="ad-slot-responsive" style="min-width:320px;width:100%;"></div>
             </div>
@@ -38,7 +43,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-       
+        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
         try {
             window.googletag = window.googletag || { cmd: [] };
             googletag.cmd.push(function () {
@@ -1693,6 +1698,7 @@ const lineCutConfig = {
             // 1페이즈: 500줄 -> 0줄(변환, 클리어 아님) / 2페이즈: 발악쉴드 -> 클리어
             // sec = 시작부터 누적 시간(초), 기본 22분(1320초) = 1페이즈 20분 + 발악쉴드 2분
             // CLEAR TIME을 바꾸면 이 시간들이 비례해서 늘고 줄어듦 (피해량은 그대로, DPS만 변함)
+            // nmSec = 나메 전용 누적 시간(초). 있으면 나메에서만 sec 대신 사용 (275~200줄 +20초: 160~100줄 -10초, 100~0줄 -10초)
             total: 500,
             shieldSec: 120,
             shieldLines: { normal: 36, hard: 36, nightmare: 45 },
@@ -1701,9 +1707,9 @@ const lineCutConfig = {
                 { line: 425, sec: 180,  desc: "심상 달리기",       nmClearNote: true },
                 { line: 325, sec: 430,  desc: "색상 안전지대",     nmClearNote: true },
                 { line: 275, sec: 550,  desc: "5연속 모루 저가",   nmClearNote: true },
-                { line: 200, sec: 720,  desc: "빨왼 파오 구슬",     nmClearNote: true },
-                { line: 160, sec: 830,  desc: "망치파괴후 안전지대", nmClearNote: true },
-                { line: 100, sec: 970,  desc: "3결투",             nmClearNote: true },
+                { line: 200, sec: 720,  nmSec: 740, desc: "빨왼 파오 구슬",     nmClearNote: true },
+                { line: 160, sec: 830,  nmSec: 850, desc: "망치파괴후 안전지대", nmClearNote: true },
+                { line: 100, sec: 970,  nmSec: 980, desc: "3결투",             nmClearNote: true },
                 { line: 0,   sec: 1200, desc: "변환 (클리어 아님) · 1페이즈 종료" }
             ]
         }
@@ -1773,6 +1779,12 @@ const MORDUM_NM_TACTIC = {
 };
 
 // 에스더 스킬 이름 -> 해당 난이도 딜량 (억)
+// 구간 누적 시간(초): 나메는 nmSec(있으면) 우선, 이후 난이도별 시간 보정(MORDUM_TIME_SCALE) 적용
+function getMordumPointSec(p, diffKey) {
+    const base = (diffKey === "nightmare" && p.nmSec !== undefined) ? p.nmSec : p.sec;
+    return Math.round(base * (MORDUM_TIME_SCALE[diffKey] || 1));
+}
+
 function getMordumEstherEok(skillName, diffKey) {
     const idx = MORDUM_ESTHER_DIFF_INDEX[diffKey];
     for (const g of MORDUM_ESTHER_GROUPS) {
@@ -1787,7 +1799,7 @@ function getMordumNmCumProgress(diffKey, config) {
     const info = MORDUM_BOSS_INFO[diffKey];
     const ts = MORDUM_TIME_SCALE[diffKey] || 1;
     const pts = config.points;
-    const baseSec = pts.map(p => Math.round(p.sec * ts));
+    const baseSec = pts.map(p => getMordumPointSec(p, diffKey));
     const p1Hp = info.totalHp - info.shieldHp;
     const supportPerSec = info.supportTotal / baseSec[baseSec.length - 1]; // 서폿 초당 딜 (억/초)
 
@@ -1810,7 +1822,7 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
 
     // 난이도별 구간 시간 보정 (나메 x0.92)
     const ts = MORDUM_TIME_SCALE[diffKey] || 1;
-    const ptSec = (p) => Math.round(p.sec * ts);
+    const ptSec = (p) => getMordumPointSec(p, diffKey);
     const lastPtSec = ptSec(config.points[config.points.length - 1]);
     const shieldBaseSec = Math.round(config.shieldSec * ts);
 
