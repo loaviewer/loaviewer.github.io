@@ -942,3 +942,72 @@ body.standalone-rank-page .app {
     min-height: 250px;
   }
 }
+
+
+/* =============================================
+   중앙 가로배너 (AdSense, 새로고침 없음)
+   - PC: 기존 970x250 자리를 그대로 확보(레이아웃 점프 방지), 모바일은 100px
+   - 실제 광고 크기는 구글이 자리 폭에 맞춰 선택
+   ============================================= */
+.loaview-center-ad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 970px;
+    margin: 0 auto;
+    min-height: 100px;
+    overflow: hidden;
+}
+.loaview-center-ad ins.adsbygoogle {
+    flex: 1 1 auto;
+    width: 100%;
+}
+@media (min-width: 1024px) {
+    .loaview-center-ad { min-height: 250px; }
+}
+
+/* =============================================
+   하단 고정(스티키) 광고 (Ad Manager 970x90 / 728x90)
+   ============================================= */
+.loaview-sticky-ad {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 24px; /* 화면 아래에서 띄우는 간격 (메인 퀵메뉴는 40px) */
+    margin: 0 auto;
+    width: max-content;
+    max-width: calc(100% - 24px);
+    z-index: 55; /* 메인 퀵메뉴 독(60), 모달(99998)보다 아래 */
+    display: none;
+    padding: 6px;
+    line-height: 0;
+    background: rgba(10, 12, 22, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+.loaview-sticky-ad.is-on { display: block; }
+.loaview-sticky-ad.is-empty { visibility: hidden; } /* 광고 로드 전/빈 응답일 땐 안 보이게 */
+.loaview-sticky-ad-slot { min-width: 728px; min-height: 90px; }
+/* 스티키가 본문/푸터를 가리지 않도록 페이지 맨 아래 여백 */
+body.has-sticky-ad { padding-bottom: 140px; }
+@media (max-width: 759px) {
+    .loaview-sticky-ad { display: none !important; }
+    body.has-sticky-ad { padding-bottom: 0; }
+}
+
+/* 로컬 미리보기(is-preview): 광고가 비어도 970x90 자리를 점선 박스로 표시 */
+.loaview-sticky-ad.is-preview .loaview-sticky-ad-slot { min-width: 970px; min-height: 90px; }
+.loaview-sticky-ad.is-preview .loaview-sticky-ad-slot:empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(255, 255, 255, 0.22);
+    border-radius: 6px;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.loaview-sticky-ad.is-preview .loaview-sticky-ad-slot:empty::before { content: "광고 자리 (970x90) · 미리보기"; }
