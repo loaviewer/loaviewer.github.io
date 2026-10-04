@@ -1011,3 +1011,22 @@ body.has-sticky-ad { padding-bottom: 140px; }
     line-height: 1.2;
 }
 .loaview-sticky-ad.is-preview .loaview-sticky-ad-slot:empty::before { content: "광고 자리 (970x90) · 미리보기"; }
+
+
+/* =============================================
+   모바일: 간편보기/정밀보기 광고 ↔ 미니 히어로 사이 간격 축소
+   (원래: 광고 아래 40px + 구분선 위 40px + 구분선 아래 70px + 광고 자리 최소 100px)
+   ============================================= */
+@media (max-width: 768px) {
+    html body .simple-top-ad-wrap {
+        margin: 8px auto 10px !important;
+        min-height: 0 !important;
+    }
+    html body .simple-top-ad-wrap .loaview-center-ad {
+        min-height: 50px;
+    }
+    html body .simple-top-ad-wrap + .divider {
+        margin-top: 10px !important;
+        margin-bottom: 14px !important;
+    }
+}
