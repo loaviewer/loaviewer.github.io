@@ -978,7 +978,7 @@ body.standalone-rank-page .app {
     margin: 0 auto;
     width: max-content;
     max-width: calc(100% - 24px);
-    z-index: 55; /* 메인 퀵메뉴 독(60), 모달(99998)보다 아래 */
+    z-index: 300; /* 본문 요소(토글 60·보상더보기 200 등)보다 위, 상단 메뉴(500)·모달(1000+)보다 아래 */
     display: none;
     padding: 6px;
     line-height: 0;
