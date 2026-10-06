@@ -974,24 +974,25 @@ body.standalone-rank-page .app {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 24px; /* 화면 아래에서 띄우는 간격 (메인 퀵메뉴는 40px) */
+    bottom: 0; /* 창 가장자리에 붙임 (Ad Manager 스티키 가이드: 가장자리에서 떠 있으면 안 됨) */
     margin: 0 auto;
     width: max-content;
-    max-width: calc(100% - 24px);
+    max-width: 100%;
     z-index: 300; /* 본문 요소(토글 60·보상더보기 200 등)보다 위, 상단 메뉴(500)·모달(1000+)보다 아래 */
     display: none;
     padding: 6px;
     line-height: 0;
     background: rgba(10, 12, 22, 0.94);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.35);
 }
 .loaview-sticky-ad.is-on { display: block; }
 .loaview-sticky-ad.is-empty { visibility: hidden; } /* 광고 로드 전/빈 응답일 땐 안 보이게 */
 .loaview-sticky-ad-slot { min-width: 728px; min-height: 90px; }
 /* 스티키가 본문/푸터를 가리지 않도록 페이지 맨 아래 여백 */
-body.has-sticky-ad { padding-bottom: 140px; }
+body.has-sticky-ad { padding-bottom: 120px; }
 @media (max-width: 759px) {
     .loaview-sticky-ad { display: none !important; }
     body.has-sticky-ad { padding-bottom: 0; }
