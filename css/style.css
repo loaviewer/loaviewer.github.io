@@ -1555,3 +1555,78 @@ img{display:block;max-width:100%;}
 
 /* 아크 그리드 제목과 코어 박스 사이 간격 */
 .arkg-core{margin-top:8px;}
+
+/* ===== 스킬탭: 레벨 부족으로 비활성인 트라이포드 ===== */
+.skill-list .tp.locked .tp-icon{border-color:rgba(255,255,255,.12);background:#1a1f2e;}
+.skill-list .tp.locked .tp-icon img{filter:grayscale(1) brightness(.55);opacity:.55;}
+.skill-list .tp.locked .tp-num{background:#3a4152;color:#8b94a8;}
+.skill-list .tp.locked .tp-name{color:var(--muted-2);opacity:.6;}
+
+/* ===== 스킬탭 상단 태그: 작게, 항상 한 줄 ===== */
+.skill-summary .sum-bar{flex-wrap:nowrap;gap:6px;padding:10px 14px;overflow-x:auto;scrollbar-width:none;}
+.skill-summary .sum-bar::-webkit-scrollbar{display:none;}
+.skill-summary .sum-sp{font-size:12px;margin-right:2px;white-space:nowrap;flex:none;}
+.skill-summary .stag{font-size:10.5px;padding:3px 8px;border-radius:7px;flex:none;}
+
+/* ===== 초각성 / 각성기 구역 ===== */
+.skill-list .sk-sep{height:1px;margin:12px 4px 8px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);}
+.skill-list .sp-card{border-radius:14px;padding:12px 16px;border:1px solid var(--border);position:relative;overflow:hidden;}
+.skill-list .sp-it{display:flex;align-items:center;gap:10px;min-width:0;cursor:default;}
+.skill-list .sp-nw{min-width:0;}
+.skill-list .sp-it .sk-cd{font-size:14px;}
+/* 초각성: 금빛 */
+.skill-list .sp-card.hyper{border-color:rgba(240,208,96,.5);
+  background:linear-gradient(110deg,rgba(240,208,96,.18),rgba(255,255,255,.02) 60%);box-shadow:0 0 20px rgba(240,208,96,.12),inset 0 0 0 1px rgba(240,208,96,.08);}
+.skill-list .sp-card.hyper .sk-icon{border-color:#f0d060;box-shadow:0 0 10px rgba(240,208,96,.45);}
+.skill-list .sp-card.hyper .sk-lv{background:linear-gradient(90deg,#f0d060,#ffb84d);}
+.skill-list .sp-card.hyper .sk-name{font-size:15px;}
+/* 각성기: 색 묶음 */
+.skill-list .sp-grp-hd{font-size:10.5px;font-weight:900;letter-spacing:.4px;margin-bottom:8px;}
+.skill-list .sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.skill-list .sp-card.awk.blue{border-color:rgba(90,168,255,.5);background:linear-gradient(110deg,rgba(60,130,255,.18),rgba(255,255,255,.02) 60%);box-shadow:0 0 18px rgba(80,160,255,.1);}
+.skill-list .sp-card.awk.blue .sp-grp-hd{color:#7fbcff;}
+.skill-list .sp-card.awk.blue .sk-icon{border-color:#5aa8ff;}
+.skill-list .sp-card.awk.blue .sk-lv{background:#5aa8ff;}
+.skill-list .sp-card.awk.red{border-color:rgba(255,106,90,.5);background:linear-gradient(110deg,rgba(255,80,60,.18),rgba(255,255,255,.02) 60%);box-shadow:0 0 18px rgba(255,100,80,.1);}
+.skill-list .sp-card.awk.red .sp-grp-hd{color:#ff8f80;}
+.skill-list .sp-card.awk.red .sk-icon{border-color:#ff6a5a;}
+.skill-list .sp-card.awk.red .sk-lv{background:#ff6a5a;}
+.skill-list .sp-card.awk.etc .sp-grp-hd{color:var(--muted);}
+
+/* 기본 피해량 / 비활성 초각스킬 */
+.skill-list .sp-it.off{opacity:.38;}
+.skill-list .sp-it.off .sk-icon img{filter:grayscale(1);}
+.skill-list .sp-it.off .sk-icon{border-color:rgba(255,255,255,.2);box-shadow:none;}
+.skill-list .sp-it.off .sk-lv{background:#4a5266;color:#cfd7e8;}
+
+/* 아크패시브 스킬 카드 (연가비기 등) */
+.skill-list .sp-card.ark{border-color:rgba(131,233,255,.45);background:linear-gradient(110deg,rgba(131,233,255,.14),rgba(255,255,255,.02) 60%);box-shadow:0 0 18px rgba(131,233,255,.1);}
+.skill-list .sp-card.ark .sk-icon{border-color:#83E9FF;}
+.skill-list .sp-card.ark .sk-lv{background:#83E9FF;}
+.skill-list .sp-it .sk-cd.ark-lv{color:#83E9FF;}
+
+.skill-list .sp-grid.one{grid-template-columns:1fr;}
+.skill-list .sp-chip{display:inline-block;margin-left:8px;padding:1px 7px;border-radius:6px;font-size:10px;font-weight:800;color:#e9b663;background:rgba(238,168,57,.12);border:1px solid rgba(238,168,57,.3);vertical-align:middle;}
+
+/* 각성기/초각성기: 클래스 공통 단일 카드 */
+.skill-list .sp-card.awk{border-color:rgba(155,126,240,.45);background:linear-gradient(110deg,rgba(155,126,240,.16),rgba(255,255,255,.02) 60%);box-shadow:0 0 18px rgba(155,126,240,.1);}
+.skill-list .sp-card.awk .sp-grp-hd{color:#b9a3ff;}
+.skill-list .sp-card.awk .sk-icon{border-color:#9b7ef0;}
+.skill-list .sp-card.awk .sk-lv{background:#f0d060;}
+.skill-list .sp-card.awk .sk-lv.hy2{background:#c9a8ff;}
+.skill-list .sp-row-sep{height:1px;margin:10px 0;background:linear-gradient(90deg,rgba(255,255,255,.12),transparent);}
+
+/* ===== 그 외 장착 보석 (아이덴티티 등) ===== */
+.skill-list .og-hd{margin:4px 4px 8px;font-size:12px;font-weight:800;color:#e6ebf7;}
+.skill-list .og-hd span{margin-left:8px;font-size:10px;font-weight:600;color:var(--muted);}
+.skill-list .og-list{display:flex;flex-direction:column;gap:8px;}
+.skill-list .og-it{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.025);}
+.skill-list .og-skill{display:flex;align-items:center;gap:8px;min-width:0;margin-right:auto;}
+.skill-list .og-skill img,.skill-list .og-ph{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:#151922;object-fit:cover;}
+.skill-list .og-ph{display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--muted);}
+.skill-list .og-skill b{font-size:13px;color:#fff;}
+.skill-list .og-skill em{font-style:normal;font-size:10px;font-weight:800;color:#8fb4ff;}
+.skill-list .og-gem{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:9px;font-size:11px;font-weight:800;color:#e6ebf7;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);}
+.skill-list .og-gem img{width:20px;height:20px;border-radius:50%;}
+.skill-list .og-gem.empty{border-style:dashed;color:var(--muted);background:none;font-weight:600;}
+.skill-list .og-gem.empty i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid rgba(255,255,255,.2);font-size:10px;}
