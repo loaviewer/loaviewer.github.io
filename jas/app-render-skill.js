@@ -31,6 +31,52 @@ function formatCdBaseLabel(sec) {
   return sec + "초";
 }
 
+// ===== 재감 적용 토글 (상단 태그 클릭으로 적용/비적용) =====
+function cdOpt() { return window.__cdOpt = window.__cdOpt || { swift: true, gem: true, evo: true, mana: true }; }
+function cdParams(s) {
+  var o = cdOpt(), ark = window.__arkCdPct || { mana: 0, all: 1 };
+  return {
+    swift: o.swift ? (window.__swiftCdPct || 0) : 0,
+    gem: o.gem ? (window.__gemMap?.[s.Name]?.coolPct || 0) : 0,
+    mana: o.mana ? ark.mana : 0,
+    all: o.evo ? ark.all : 1
+  };
+}
+
+// ===== 스킬 속성 (부위 파괴 / 무력화 / 공격 타입 / 슈퍼아머 / 카운터) 아이콘 칩 =====
+// 툴팁(또는 정보 표)에서 속성 읽기 → { part, groggy, attack, armor, counter }
+function skillAttrs(s) {
+  var out = {}, tip = parseTip(s.Tooltip);
+  if (!tip) return out;
+  (function walk(n) {
+    if (typeof n === "string") {
+      n.split(/<br\s*\/?>/i).forEach(line => {
+        var t = strip(line).trim();
+        var m = t.match(/^(부위\s*파괴|무력화|공격\s*타입|슈퍼아머|카운터)\s*:\s*(.+)$/);
+        if (!m) return;
+        var key = m[1].replace(/\s+/g, ""), v = m[2].trim();
+        if (key === "부위파괴") { var lv = v.match(/(\d+)/); if (lv && +lv[1] > 0) out.part = "Lv." + lv[1]; }
+        else if (key === "무력화") { if (v && v !== "없음") out.groggy = v; }
+        else if (key === "공격타입") out.attack = v;
+        else if (key === "슈퍼아머") out.armor = v;
+        else if (key === "카운터") { if (/가능/.test(v)) out.counter = "카운터"; }
+      });
+    } else if (n && typeof n === "object") Object.keys(n).forEach(k => walk(n[k]));
+  })(tip);
+  return out;
+}
+function attrChipsHtml(a) {
+  if (!a) return "";
+  var chip = (cls, text) => `<span class="at at-${cls}">${text}</span>`;
+  var h = "";
+  if (a.counter) h += chip("counter", "카운터");
+  if (a.attack) h += chip("attack", a.attack);            // 백 어택 / 헤드 어택 등
+  if (a.part) h += chip("part", "파괴 " + a.part);
+  if (a.groggy) h += chip("groggy", "무력 " + a.groggy);
+  if (a.armor) h += chip("armor", a.armor);               // 경직 면역 / 피격이상 면역
+  return h ? `<div class="sk-attrs">${h}</div>` : "";
+}
+
 function applyCdHtml(cdLine, s) {
   var base = parseCdSeconds(cdLine);
   if (!base) return cdLine;
@@ -46,9 +92,7 @@ function applyCdHtml(cdLine, s) {
       if (dm) tpCut += parseFloat(dm[1]);
     }
   }
-  var swift = window.__swiftCdPct || 0;
-  var gem = window.__gemMap?.[s.Name]?.coolPct || 0;
-  var ark = window.__arkCdPct || { mana: 0, all: 1 };
+  var cp = cdParams(s), swift = cp.swift, gem = cp.gem, ark = { mana: cp.mana, all: cp.all };
   var arkMana = isManaSkill(s) ? ark.mana : 0;
   var timeRe = /(\d+\s*분(?:\s*\d+(?:\.\d+)?\s*초)?|\d+(?:\.\d+)?\s*초)/;
   var oldM = String(cdLine).match(timeRe);
@@ -85,9 +129,7 @@ function effCdBadge(s) {
     }
   }
   if (!base) return "";
-  var swift = window.__swiftCdPct || 0;
-  var gem = window.__gemMap?.[s.Name]?.coolPct || 0;
-  var ark = window.__arkCdPct || { mana: 0, all: 1 };
+  var cp = cdParams(s), swift = cp.swift, gem = cp.gem, ark = { mana: cp.mana, all: cp.all };
   var arkMana = isManaSkill(s) ? ark.mana : 0;
   var eff = Math.max(0, base - tpCut) * (1 - swift / 100) * (1 - gem / 100) * (1 - arkMana / 100) * ark.all;
   return `<div class="sk-cd">${eff.toFixed(2)}초</div>`;
@@ -122,6 +164,27 @@ function groupTripods(tripods) {
   }).filter(Boolean);
 }
 
+// 초각스킬/각성기/초각성기처럼 API에 설명이 없는 스킬의 설명 (인벤 기준: 스킬 이름 → 설명 HTML)
+var SKILL_DESC = {
+  // "스킬이름": "설명 문장… <b>12,345</b>의 피해를 준다.",
+};
+var __descIdx = null;
+function skillDescOf(name) {
+  var norm = x => String(x || "").replace(/\s+/g, "");
+  var k = norm(name);
+  for (var key in SKILL_DESC) if (norm(key) === k) return SKILL_DESC[key];
+  // 별도 데이터 파일(skill-desc.js)의 설명: 줄바꿈 처리 + 숫자 강조
+  var data = window.SKILL_DESC_DATA;
+  if (!data) return "";
+  if (!__descIdx || __descIdx.src !== data) {
+    __descIdx = { src: data, map: {} };
+    for (var dk in data) __descIdx.map[norm(dk)] = data[dk];
+  }
+  var t = __descIdx.map[k];
+  if (!t) return "";
+  return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\n/g, "<br>")
+    .replace(/(\d[\d,]*(?:\.\d+)?%?)/g, '<span class="dnum">$1</span>');
+}
 function buildSkillTipHtml(s) {
   var tip = parseTip(s.Tooltip);
   if (!tip) return buildTipHtml(s.Tooltip, s.Name);
@@ -153,6 +216,7 @@ function buildSkillTipHtml(s) {
       ${cdLine ? `<div class="tip-line">${applyCdHtml(cdLine, s)}</div>` : ""}
       ${manaLine ? `<div class="tip-line muted">${manaLine}</div>` : ""}
     </div>
+    ${skillDescOf(s.Name) ? `<div class="tip-bd" style="padding-top:8px;padding-bottom:6px;font-size:11px;line-height:1.5;color:#c7cee0;">${skillDescOf(s.Name)}</div>` : ""}
     ${infoHtml ? `<div class="tip-info"><div class="tip-info-line">${infoHtml}</div></div>` : ""}
     ${tpHtml ? `<div class="tip-tp-wrap">${tpHtml}</div>` : ""}`;
 }
@@ -239,7 +303,7 @@ function sortSkillsForDisplay(skills, gemMap) {
 }
 
 // ===== 초각성 / 각성기 구역 =====
-// 아크패시브 도약 노드 설명에 이름이 나오는 초각스킬은 활성, 나머지는 비활성 (하나도 못 찾으면 전부 활성)
+// 아크패시브 도약 노드 설명에 이름이 나오는 초각스킬은 활성, 나머지는 비활성 (도약 노드를 안 찍어 하나도 없으면 전부 비활성)
 function splitHyperSkills(list) {
   if (!list.length) return { active: [], inactive: [] };
   var ap = window.__fullData && window.__fullData.ArkPassive;
@@ -247,7 +311,7 @@ function splitHyperSkills(list) {
   var leap = effs.filter(e => /도약/.test((e.Name || "") + " " + (e.Description || "")));
   var txt = JSON.stringify(leap.length ? leap : effs);
   var hit = list.filter(s => s.Name && txt.indexOf(s.Name) >= 0);
-  if (!hit.length) return { active: list, inactive: [] };
+  if (!hit.length) return effs.length ? { active: [], inactive: list } : { active: list, inactive: [] };
   return { active: hit, inactive: list.filter(s => hit.indexOf(s) < 0) };
 }
 // 아크패시브 노드로 얻는 스킬 (스킬 데이터에는 없고 ArkPassive.Effects에만 있음). 필요하면 이름 추가
@@ -340,9 +404,8 @@ function arkIconOf(n) {
 }
 // 재사용 대기시간에 신속 / 아크패시브 재감 적용
 function arkSkillEffCd(base) {
-  var swift = window.__swiftCdPct || 0;
-  var ark = window.__arkCdPct || { mana: 0, all: 1 };
-  return base * (1 - swift / 100) * ark.all;
+  var cp = cdParams({ Name: "" });
+  return base * (1 - cp.swift / 100) * cp.all;
 }
 // 노드 툴팁에서 가장 긴 설명 문구(원본 색 서식 유지) 추출
 function arkNodeDescHtml(eff) {
@@ -392,7 +455,8 @@ function arkSkillTipHtml(n) {
     ${info.desc ? `<div class="tip-bd" style="padding-top:8px;padding-bottom:4px;font-size:11px;line-height:1.5;color:#c7cee0;">${info.desc}</div>` : ""}
     ${nodeDesc ? `<div class="tip-bd" style="padding-top:6px;"><div class="tip-sec-title">${n.cat}${n.tier ? " " + n.tier + "티어" : ""}${n.node && n.node !== n.name ? " · " + n.node : ""} · 아크 패시브 레벨 ${n.lv || "-"}</div><div style="font-size:11px;line-height:1.55;color:#b6bed2;">${nodeDesc}</div></div>` : ""}`;
 }
-function buildSpecialSection(specials) {
+function buildSpecialSection(specials, gemMap) {
+  gemMap = gemMap || {};
   var hyperAll = specials.filter(s => s.SkillType === 1);
   // API가 주는 원래 순서 유지: "각성기(100) 바로 다음에 이어지는 초각성기(101)"가 한 쌍
   var awk = specials.filter(s => (s.SkillType || 0) >= 100);
@@ -418,6 +482,7 @@ function buildSpecialSection(specials) {
       <div class="sk-icon">${s.Icon ? `<img src="${s.Icon}" alt="" loading="lazy">` : ""}</div>
       <div class="sp-nw"><div class="sk-lv${badgeCls ? " " + badgeCls : ""}">${badge}</div><div class="sk-name">${shortName || s.Name || "-"}</div></div>
       ${effCdBadge(s)}
+      ${attrChipsHtml(skillAttrs(s))}
     </div>`;
   }
 
@@ -451,19 +516,27 @@ function buildSpecialSection(specials) {
     html += `<div class="sp-card awk etc"><div class="sp-grp-hd">특수 스킬</div><div class="sp-grid">`
       + others.map(x => it(x, x.Type || "특수")).join("") + `</div></div>`;
   }
-  // 아크패시브 스킬 (연가비기 등)
+  // 아크패시브 스킬 (연가비기 등): 속성 칩 + (아이덴티티로 장착된) 보석
   if (arks.length) {
+    var gemOf = nm => { var k = String(nm || "").replace(/\s+/g, ""); for (var g in gemMap) if (g.replace(/\s+/g, "") === k) return gemMap[g]; return null; };
     arkHtml = `<div class="sp-card ark"><div class="sp-grid${arks.length === 1 ? " one" : ""}">` + arks.map((n, i) => {
       var info = arkInfoOf(n.name);
-      var chips = [info.partLv ? `부위 파괴 Lv.${info.partLv}` : "", info.groggy ? `무력화 ${info.groggy}` : "", info.attack || "", info.armor || ""].filter(Boolean)
-        .map(c => `<span class="sp-chip">${c}</span>`).join("");
+      var chips = attrChipsHtml({
+        part: info.partLv ? "Lv." + info.partLv : "", groggy: info.groggy, attack: info.attack, armor: info.armor
+      });
       var cdTxt = info.cd ? `<div class="sk-cd ark-lv">${arkSkillEffCd(info.cd).toFixed(2)}초</div>` : "";
+      var gm = gemOf(n.name);
+      var gemHtml = gm && (gm.dmg || gm.cool) ? `<div class="gems">
+          <div class="gem op" data-ag="${i}" data-agt="dmg"><div class="gem-circle${gm.dmg ? " g-" + gm.dmgGrade : " empty"}">${gm.dmgIcon ? `<img class="gem-icon" src="${gm.dmgIcon}" alt="">` : ""}</div>${gm.dmg ? `<span class="gem-txt">${gm.dmg}겁</span>` : ""}</div>
+          <div class="gem rd" data-ag="${i}" data-agt="cool"><div class="gem-circle${gm.cool ? " g-" + gm.coolGrade : " empty"}">${gm.coolIcon ? `<img class="gem-icon" src="${gm.coolIcon}" alt="">` : ""}</div>${gm.cool ? `<span class="gem-txt">${gm.cool}작</span>` : ""}</div>
+        </div>` : "";
+      n._gm = gm;
       return `
       <div class="sp-it" data-ark="${i}">
         <div class="sk-icon">${arkIconOf(n) ? `<img src="${arkIconOf(n)}" alt="" loading="lazy">` : ""}</div>
         <div class="sp-nw"><div class="sk-lv">${n.cat}${n.tier ? " " + n.tier + "티어" : ""}${n.lv ? " · Lv." + n.lv : ""}</div>
-          <div class="sk-name">${n.name}${chips}</div></div>
-        ${cdTxt}
+          <div class="sk-name">${n.name}</div></div>
+        ${gemHtml}${cdTxt}${chips}
       </div>`;
     }).join("") + `</div></div>`;
   }
@@ -500,7 +573,9 @@ function renderSkills(skillsData, gemData) {
   );
   // 아이덴티티 스킬: 스킬 데이터에는 없지만 보석이 장착된 스킬 (그 아래)
   var allSkillNames = new Set((skillsData || []).map(x => x.Name));
-  var identitySkills = Object.keys(gemMap).filter(n => n && !allSkillNames.has(n))
+  var normK = x => String(x || "").replace(/\s+/g, "");
+  var arkNameSet = new Set(arkSkillNodes().map(n => normK(n.name)));   // 아크패시브 스킬 카드에 보석을 합쳐 보여줄 스킬
+  var identitySkills = Object.keys(gemMap).filter(n => n && !allSkillNames.has(n) && !arkNameSet.has(normK(n)))
     .map(n => ({ Name: n, Icon: gemSkillIcon(gemData, n, skillsData), Level: null, Tripods: [], _identity: true }));
   var skills = normalSkills.concat(lv1GemSkills, identitySkills);
 
@@ -523,22 +598,30 @@ function renderSkills(skillsData, gemData) {
     for (var s of normalSkills) {
       if ((gemMap[s.Name] || {}).coolPct) { hasGemCool = true; break; }
     }
+    var o = cdOpt();
+    var tog = (key, cls, text) => `<span class="stag ${cls} tog ${o[key] ? "on" : "off"}" data-cd="${key}" title="클릭: ${o[key] ? "비적용으로 변경" : "적용으로 변경"}"><i class="chk"></i>${text}</span>`;
     var tags = [
       cnt ? `<span class="stag gold">카운터 ${cnt}</span>` : "",
       gro ? `<span class="stag purple">무력화 ${gro}</span>` : "",
       brk ? `<span class="stag violet">부위 파괴 ${brk}</span>` : "",
-      swift ? `<span class="stag green">신속재감 ${swift.toFixed(2)}%</span>` : "",
-      hasGemCool ? `<span class="stag cyan">보석 재감 적용</span>` : "",
-      ark.mana ? `<span class="stag cyan">마나재감 ${ark.mana.toFixed(1)}%</span>` : "",
-      arkAllPct > 0.001 ? `<span class="stag cyan">진화재감 ${arkAllPct.toFixed(2)}%</span>` : ""
+      swift ? tog("swift", "green", `신속재감 ${swift.toFixed(2)}%`) : "",
+      hasGemCool ? tog("gem", "cyan", "보석 재감 적용") : "",
+      ark.mana ? tog("mana", "cyan", `마나재감 ${ark.mana.toFixed(1)}%`) : "",
+      arkAllPct > 0.001 ? tog("evo", "cyan", `진화재감 ${arkAllPct.toFixed(2)}%`) : ""
     ].join("");
     sumEl.innerHTML = `<div class="sum-bar">${sp}${tags}</div>`;
+    sumEl.onclick = e => {
+      var t = e.target.closest(".stag[data-cd]");
+      if (!t) return;
+      var oo = cdOpt(); oo[t.dataset.cd] = !oo[t.dataset.cd];
+      renderSkills(skillsData, gemData);
+    };
   }
 
   // 트라이포드 단계별 해금 레벨: 1단계 Lv.4 / 2단계 Lv.7 / 3단계 Lv.10
   var TP_UNLOCK_LV = [4, 7, 10];
 
-  var spSec = buildSpecialSection(specialSkills);
+  var spSec = buildSpecialSection(specialSkills, gemMap);
   listEl.innerHTML = spSec.hyperHtml + skills.map((s, si) => {
     var tiers = groupTripods(s.Tripods);
     var tpCells = s._identity ? '<div class="tp"></div><div class="tp"></div><div class="tp"></div>' : [0, 1, 2].map(i => {
@@ -567,6 +650,7 @@ function renderSkills(skillsData, gemData) {
           <div class="sk-name">${s.Name || "-"}</div>
         </div>
         ${s._identity ? "" : effCdBadge(s)}
+        ${s._identity ? "" : attrChipsHtml(skillAttrs(s))}
       </div>
       <div class="tripods">${tpCells}</div>
       <div class="gems">
@@ -592,15 +676,24 @@ function renderSkills(skillsData, gemData) {
     try { bindTip(el, arkSkillTipHtml(n)); } catch (e) { try { bindTip(el, buildTipHtml(n.eff.ToolTip, n.name)); } catch (e2) {} }
   });
 
+  listEl.querySelectorAll(".gem[data-ag]").forEach(el => {
+    var n = spSec.arks[+el.dataset.ag], gm = (n && n._gm) || {};
+    var t = el.dataset.agt === "cool" ? gm.coolTip : gm.dmgTip;
+    var nm = el.dataset.agt === "cool" ? gm.coolName : gm.dmgName;
+    if (t) bindTip(el, buildTipHtml(t, strip(nm || "")));
+  });
+
   listEl.querySelectorAll(".sk-main").forEach(el => {
     var s = skills[+el.dataset.si];
+    if (!s) return;
     bindTip(el, s._identity
-      ? `<div class="tip-hd">${s.Name}</div><div class="tip-bd" style="color:#9aa6c4;font-size:11px;">아이덴티티 스킬 · 스킬창에 없는 스킬</div>`
+      ? `<div class="tip-hd">${s.Name}</div><div class="tip-bd" style="color:#9aa6c4;font-size:11px;">아이덴티티 스킬 · 스킬창에 없는 스킬</div>${skillDescOf(s.Name) ? `<div class="tip-bd" style="padding-top:6px;font-size:11px;line-height:1.5;color:#c7cee0;">${skillDescOf(s.Name)}</div>` : ""}`
       : buildSkillTipHtml(s));
   });
 
   listEl.querySelectorAll(".gems .gem[data-gt]").forEach(el => {
     var s = skills[+el.dataset.si];
+    if (!s) return;
     var gm = gemMap[s.Name] || {};
     var t = el.dataset.gt === "cool" ? gm.coolTip : gm.dmgTip;
     var n = el.dataset.gt === "cool" ? gm.coolName : gm.dmgName;
@@ -609,10 +702,12 @@ function renderSkills(skillsData, gemData) {
 
   listEl.querySelectorAll(".tp[data-si]").forEach(el => {
     var s = skills[+el.dataset.si];
+    if (!s) return;
     var g = groupTripods(s.Tripods).find(x => x.tier === +el.dataset.tier);
     if (!g) return;
     var opts = g.options.map(o => `
       <div class="tp-opt ${o.IsSelected ? "selected" : "dim"}">
+        <span class="opt-ic"${o.Icon ? ` style="background-image:url('${o.Icon}')"` : ""}></span>
         <div class="opt-body">
           <div class="opt-name">${o.Name || ""}</div>
           <div class="opt-desc">${o.Tooltip || ""}</div>
@@ -625,6 +720,7 @@ function renderSkills(skillsData, gemData) {
 
   listEl.querySelectorAll(".rune-cell[data-si]").forEach(el => {
     var s = skills[+el.dataset.si];
+    if (!s) return;
     if (s.Rune) bindTip(el, buildTipHtml(s.Rune.Tooltip, s.Rune.Name));
   });
 }
