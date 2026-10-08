@@ -1630,3 +1630,75 @@ img{display:block;max-width:100%;}
 .skill-list .og-gem img{width:20px;height:20px;border-radius:50%;}
 .skill-list .og-gem.empty{border-style:dashed;color:var(--muted);background:none;font-weight:600;}
 .skill-list .og-gem.empty i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid rgba(255,255,255,.2);font-size:10px;}
+
+
+
+
+
+/* ================= [SKILL-ADD 시작] 스킬탭 추가 스타일 (이전에 붙여넣은 [추가] 블록은 지우고 이걸로 교체) ================= */
+
+/* --- 스킬 속성 칩 (파괴 / 무력 / 공격 타입 / 면역 / 카운터): 가로 배치 --- */
+.sk-attrs{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+.at{display:inline-flex;align-items:center;padding:1px 8px;border-radius:6px;font-size:10px;font-weight:800;line-height:1.5;border:1px solid;white-space:nowrap;}
+.at-part{color:#c4b0ff;background:rgba(155,126,240,.12);border-color:rgba(155,126,240,.35);}
+.at-groggy{color:#e0b3ff;background:rgba(200,120,255,.1);border-color:rgba(200,120,255,.3);}
+.at-attack{color:#e9b663;background:rgba(238,168,57,.12);border-color:rgba(238,168,57,.3);}
+.at-armor{color:#8fb4ff;background:rgba(90,150,255,.12);border-color:rgba(90,150,255,.32);}
+.at-counter{color:#ffcf6b;background:rgba(232,184,75,.14);border-color:rgba(232,184,75,.4);}
+
+/* --- 스킬명 오른쪽에 뱃지 (베스티지 [14레벨] / 초각성기 / 각성기) --- */
+.skill-list .sk-name-wrap,.skill-list .sp-nw{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0;}
+.skill-list .sk-name-wrap .sk-name,.skill-list .sp-nw .sk-name{order:1;}
+.skill-list .sk-name-wrap .sk-lv,.skill-list .sp-nw .sk-lv{order:2;margin:0;}
+
+/* --- 스킬 행: 윗줄(아이콘·이름·뱃지·쿨타임), 속성 칩은 아이콘 아래 줄에 간격을 두고 가로 배치 --- */
+.skill-list .row{grid-template-columns:270px 1fr 96px 56px;}
+.skill-list .row .sk-main{display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+  grid-template-areas:"ic nm cd" "at at at";column-gap:10px;row-gap:8px;align-items:center;}
+.skill-list .row .sk-main .sk-icon{grid-area:ic;}
+.skill-list .row .sk-main .sk-name-wrap{grid-area:nm;}
+.skill-list .row .sk-main .sk-cd{grid-area:cd;}
+.skill-list .row .sk-main .sk-attrs{grid-area:at;margin-top:0;}
+
+/* --- 초각스킬 / 각성기 / 깨달음 스킬 카드 항목도 같은 구조 --- */
+.skill-list .sp-it{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;
+  grid-template-areas:"ic nm gm cd" "at at at at";column-gap:10px;row-gap:8px;align-items:center;}
+.skill-list .sp-it .sk-icon{grid-area:ic;}
+.skill-list .sp-it .sp-nw{grid-area:nm;}
+.skill-list .sp-it .gems{grid-area:gm;margin-left:0;justify-self:end;}
+.skill-list .sp-it .sk-cd{grid-area:cd;}
+.skill-list .sp-it .sk-attrs{grid-area:at;margin-top:0;}
+
+/* --- 상단 재감 태그: 크기 + 클릭 토글(체크=적용) + 켜짐 상태 회전 테두리 --- */
+.skill-summary .stag{font-size:12px;padding:6px 12px;border-radius:9px;}   /* ← 크기는 여기서 조절 */
+.skill-summary .stag.tog{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px;position:relative;}
+.skill-summary .stag .chk{width:13px;height:13px;border-radius:4px;border:1.5px solid currentColor;display:inline-block;position:relative;flex:none;}
+.skill-summary .stag.on .chk{background:currentColor;box-shadow:0 0 7px currentColor;}
+.skill-summary .stag.on .chk::after{content:"";position:absolute;left:3px;top:0;width:3.5px;height:7px;border:solid #0b0e14;border-width:0 2px 2px 0;transform:rotate(45deg);}
+.skill-summary .stag.off{opacity:.45;filter:grayscale(.6);text-decoration:line-through;}
+.skill-summary .stag.tog:hover{filter:brightness(1.2);}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg;}
+.skill-summary .stag.tog.on::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;pointer-events:none;
+  background:conic-gradient(from var(--ang),transparent 0deg,transparent 215deg,currentColor 300deg,#fff 345deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  animation:stagSpin 2.6s linear infinite;}
+@keyframes stagSpin{to{--ang:360deg;}}
+@media (prefers-reduced-motion:reduce){.skill-summary .stag.tog.on::after{animation:none;}}
+
+/* --- 트라이포드 툴팁: 옵션 아이콘 (배경 이미지 방식: 툴팁 전체의 img 크기 제한 규칙 영향 없음) --- */
+#loa-tip .tp-opt{align-items:center;gap:10px;}
+#loa-tip .tp-opt .opt-ic{flex:0 0 40px;width:40px;height:40px;min-width:40px;border-radius:10px;display:block;
+  background-color:#151922;background-size:contain;background-position:center;background-repeat:no-repeat;border:1px solid rgba(255,255,255,.14);}
+#loa-tip .tp-opt.selected .opt-ic{border-color:var(--green);box-shadow:0 0 8px rgba(60,199,140,.45);}
+#loa-tip .tp-opt.dim .opt-ic{filter:grayscale(1) brightness(.75);}
+#loa-tip .tp-opt .opt-body{min-width:0;flex:1;}
+
+/* --- 아크패시브 스킬 카드 안의 보석 --- */
+.skill-list .sp-it .gems{display:flex;flex-direction:row;gap:10px;align-items:center;}
+.skill-list .sp-it .gems + .sk-cd{margin-left:6px;}
+
+/* --- 스킬 설명 속 숫자 강조 --- */
+#loa-tip .dnum{color:#9be28a;font-weight:700;}
+
+/* ================= [SKILL-ADD 끝] ================= */
