@@ -1702,3 +1702,56 @@ img{display:block;max-width:100%;}
 #loa-tip .dnum{color:#9be28a;font-weight:700;}
 
 /* ================= [SKILL-ADD 끝] ================= */
+
+
+/* ================= [INFO-ADD 시작] 정보 탭 추가 스타일 (style.css 맨 아래에 붙여넣기, 기존 [SKILL-ADD] 블록과 별개) ================= */
+
+/* --- 장비/악세/보석 툴팁 헤더: 스킬 툴팁처럼 아이콘 + 이름 + 보조 줄 --- */
+#loa-tip .tip-hd.tip-hd-item{display:flex;align-items:center;gap:12px;padding:11px 16px 10px;}
+#loa-tip .tip-ic2{position:relative;display:block;flex:0 0 44px;width:44px;height:44px;border-radius:10px;
+  border:1.5px solid rgba(255,255,255,.22);box-shadow:0 2px 8px rgba(0,0,0,.4);}
+#loa-tip .tip-ic2 i{position:absolute;right:-6px;bottom:-6px;width:21px;height:21px;border-radius:50%;
+  background:#151922 center/cover no-repeat;border:1.5px solid #0f121a;box-shadow:0 1px 4px rgba(0,0,0,.6);}
+#loa-tip .tip-hd-item .tip-hd-name{font-size:13.5px;font-weight:900;line-height:1.4;}
+#loa-tip .tip-hd-sub{font-size:11px;font-weight:600;color:#aab3c8;line-height:1.45;}
+
+/* --- 툴팁 구분선 정리: 헤더 아래 1개 + 꼬리(분해불가 등) 위 1개만 --- */
+#loa-tip .tip-bd.tip-grp{padding:9px 16px 11px;}
+#loa-tip .tg-main > div{padding:1px 0;}
+#loa-tip .tg-main .tip-sec:not(:has(.tip-sec-title)){margin-top:1px;}
+#loa-tip .tg-main .tip-sec:has(.tip-sec-title){margin-top:10px;}   /* 효과 박스 사이는 선 없이 간격만 */
+#loa-tip .tg-main > :first-child{margin-top:0;}
+#loa-tip .tg-foot{margin-top:10px;padding-top:9px;border-top:1px solid rgba(255,255,255,.08);}
+#loa-tip .tg-foot > div{padding:1px 0;}
+
+/* --- 팔찌 툴팁 구분선 정리: 섹션 제목(팔찌 효과 / 아크 패시브 포인트 효과) 위에만 선 --- */
+#loa-tip .tip-bd.bt-bd{padding:6px 16px 10px;}
+#loa-tip .bt-row{padding:2px 0;border-top:none;}
+#loa-tip .bt-row.bt-sec-title{margin-top:10px;padding-top:9px;border-top:1px solid rgba(255,255,255,.08);}
+#loa-tip .bt-row.bt-sec-title:first-child{margin-top:0;padding-top:2px;border-top:none;}
+#loa-tip .bt-row.bt-stats{padding:4px 0 6px;}
+#loa-tip .bt-row.bt-opt{padding:5px 0;}
+
+/* --- 팔찌 옵션별 효율 툴팁 --- */
+#loa-tip .tip-hd.beff-hd{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 16px;}
+#loa-tip .beff-t{font-size:13px;font-weight:900;color:#fff;}
+#loa-tip .beff-sum{font-size:12px;font-weight:800;white-space:nowrap;}
+#loa-tip .tip-bd.beff-bd{padding:8px 10px 10px;display:flex;flex-direction:column;gap:2px;}
+#loa-tip .beff-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:5px 8px;border-radius:7px;}
+#loa-tip .beff-row:nth-child(odd){background:rgba(255,255,255,.04);}
+#loa-tip .beff-n{min-width:0;color:#e7ecf6;font-size:11.5px;font-weight:600;line-height:1.45;}
+#loa-tip .beff-v{flex:none;color:#ffd200;font-size:12px;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums;}
+
+/* ================= [INFO-ADD 끝] ================= */
+
+/* [ACC-FIX 시작] 상/중/하 배지 글자 흰색, 팔찌 특성 칩 한 줄, 품질바 */
+.item-opts .badge.sang,.item-opts .badge.jung,.item-opts .badge.ha{color:#fff !important}
+#loa-tip .bt-g-hi,#loa-tip .bt-g-mid,#loa-tip .bt-g-lo{color:#fff !important}
+.bracelet-stat{flex-wrap:nowrap !important}
+.item-ic-wrap .q-bar{box-sizing:border-box}
+/* [ACC-FIX 끝] */
+
+/* [ACC-FIX2] 테두리 있는 악세: 래퍼를 프레임 폭에 맞추고 품질바는 프레임 폭 100% */
+.item-ic-wrap.has-frame{width:fit-content !important;min-width:0}
+.item-ic-wrap.has-frame .item-ic{width:40px;height:40px;border:0}
+.item-ic-wrap.has-frame .q-bar{width:100% !important;box-sizing:border-box}
