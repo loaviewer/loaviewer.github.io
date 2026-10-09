@@ -80,8 +80,8 @@ function formatBraceletOpts(body, itemGrade) {
     }
   }
   var html = "";
-  var boxStyle = "display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border:1px solid rgba(255,255,255,.12);border-radius:5px;background:rgba(255,255,255,.04);font-size:11px;";
-  var wrapStyle = "display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;";
+  var boxStyle = "display:inline-flex;align-items:center;gap:4px;padding:3px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px;background:rgba(255,255,255,.04);font-size:11px;white-space:nowrap;flex:0 0 auto;";
+  var wrapStyle = "display:flex;flex-wrap:nowrap;gap:4px;margin-bottom:6px;white-space:nowrap;";
   var statBoxes = [];
   for (var a = 0; a < combatStatItems.length; a++) {
     var s = combatStatItems[a];
@@ -99,7 +99,7 @@ function formatBraceletOpts(body, itemGrade) {
     var opt = specialItems[c];
     var grade = opt[itemGrade] || opt["고대"] || opt["유물"] || "";
     var g = getGradeColorClass(grade);
-    var badgeStyle = "display:inline-block;min-width:20px;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:800;text-align:center;background:" + g.color + "22;color:" + g.color + ";border:1px solid " + g.color + "66;";
+    var badgeStyle = "display:inline-block;min-width:20px;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:800;text-align:center;background:" + g.color + "22;color:#fff;border:1px solid " + g.color + "66;";
     var badgeHtml = grade ? '<span style="' + badgeStyle + '">' + grade + '</span>' : '<span style="' + badgeStyle + '">-</span>';
     var displayName = opt.initial || "특수 옵션";
     displayName = displayName.replace(/([+\-][\d.]+%?)/g, '<b style="color:' + g.color + ';font-weight:800;">$1</b>');
@@ -267,7 +267,7 @@ function renderGear(list, avatarList) {
         img.loading = "lazy";
         var gs = gradeStyle(item.Grade);
         img.style.borderColor = gs.c + "55";
-        img.style.background = gs.bg;
+        img.style.background = ancientIconBg(item.Grade, gs.bg);
         bindTip(img, buildTipHtml(item.Tooltip, item.Name));
         box.appendChild(img);
       } else {
@@ -318,7 +318,7 @@ function renderGear(list, avatarList) {
       var level = upgradeMatch ? parseInt(upgradeMatch[1], 10) : 0;
       if (level < 20) hasBorder = false;
     }
-    var iconWrap = makeIconWithQuality(eq.Icon, qv, g.bg, g.c + "44", hasBorder);
+    var iconWrap = makeIconWithQuality(eq.Icon, qv, ancientIconBg(eq.Grade, g.bg), g.c + "44", hasBorder);
     var mid = document.createElement("div"); mid.className = "item-mid";
     mid.style.marginLeft = "8px";
     var nm = document.createElement("div");
@@ -408,7 +408,7 @@ function renderGear(list, avatarList) {
       continue;
     }
 
-    var iconWrap2 = makeIconWithQuality(eq2.Icon, qv2, g2.bg, g2.c + "44", false, accBorderImg);
+    var iconWrap2 = makeIconWithQuality(eq2.Icon, qv2, ancientIconBg(eq2.Grade, g2.bg), g2.c + "44", false, accBorderImg);
     var mid2 = document.createElement("div"); mid2.className = "item-mid";
     var opts = document.createElement("div"); opts.className = "item-opts";
     opts.style.marginLeft = "19px";
@@ -451,16 +451,16 @@ function renderGear(list, avatarList) {
         effBadge.style.cssText = "display:inline-block;width:fit-content;margin:6px auto 0 auto;padding:3px 8px;background:" + effGlow + ";color:#ffffff;font-size:12px;font-weight:800;text-align:center;border-radius:4px;line-height:1.3;box-shadow:0 1px 4px rgba(0,0,0,.4);border:1px solid " + effColor + "80;cursor:help;letter-spacing:-0.2px;white-space:nowrap;";
         effBadge.textContent = effVal.toFixed(2) + "%";
 
-        var tooltipHtml = '<div class="tip-hd">📿 팔찌 옵션별 효율</div><div class="tip-bd" style="padding:6px 0 2px 0;">';
+        var tooltipHtml = '<div class="tip-hd beff-hd"><span class="beff-t">팔찌 옵션별 효율</span><span class="beff-sum" style="color:' + effColor + '">합계 ' + effVal.toFixed(2) + '%</span></div><div class="tip-bd beff-bd">';
         for (var r = 0; r < braceletEff.rows.length; r++) {
-          tooltipHtml += '<div style="display:flex;justify-content:space-between;gap:40px;font-size:11px;margin-bottom:5px;line-height:1.4;"><span style="color:#e7ecf6;">' + braceletEff.rows[r].name + '</span><b style="color:#ffd200;">+' + braceletEff.rows[r].pct.toFixed(2) + '%</b></div>';
+          tooltipHtml += '<div class="beff-row"><span class="beff-n">' + braceletEff.rows[r].name + '</span><b class="beff-v">+' + braceletEff.rows[r].pct.toFixed(2) + '%</b></div>';
         }
         tooltipHtml += '</div>';
         bindTip(effBadge, tooltipHtml);
 
         effBadge.addEventListener("mouseenter", function() {
           var t = document.getElementById("loa-tip");
-          if (t) { t.style.setProperty("min-width", "360px", "important"); t.style.setProperty("max-width", "500px", "important"); }
+          if (t) { t.style.setProperty("min-width", "320px", "important"); t.style.setProperty("max-width", "440px", "important"); }
         });
         effBadge.addEventListener("mouseleave", function() {
           var t = document.getElementById("loa-tip");

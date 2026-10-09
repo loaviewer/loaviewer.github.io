@@ -79,6 +79,9 @@ function qBarClass(qv) {
 
 
 // 🎯 [핵심 함수] 아이콘 생성기 (찌그러짐 방지 로직 주입)
+var ACC_FRAME_PAD_RATIO = 0.1; // 악세 테두리(마름모 장식 돌출) 여백 / 아이콘 크기 (4px @ 40px). 파란 사각 테두리가 아이콘 가장자리와 안 맞으면 조절
+function stripBars(s) { return String(s == null ? "" : s).replace(/\|/g, "").replace(/^\s+|\s+$/g, ""); }
+var EQ_BORDER_OUT_RATIO = 0.08; // 장비(투구/무기 등) 테두리 확장 비율 (3.2px @ 40px). 더 키우려면 올리세요
 function makeIconWithQuality(iconUrl, qv, gradeBg, gradeBorder, withBorder, borderImage) {
   // 📏 아이콘 크기 변수 (여기만 수정하면 전체가 바뀝니다)
   var iconSize = "40px"; 
@@ -89,16 +92,22 @@ function makeIconWithQuality(iconUrl, qv, gradeBg, gradeBorder, withBorder, bord
   // 🎯 부모 높이에 따라 늘어나지 않게 고정
   wrap.style.cssText = "position:relative; display:flex; flex-direction:column; align-items:center; align-self:flex-start; flex-shrink:0;";
 
+  if (borderImage) { wrap.className += " has-frame"; wrap.style.width = "fit-content"; }
   var imgContainer = document.createElement("div");
   // 테두리 패딩을 포함한 컨테이너 크기 계산
   imgContainer.style.cssText = "position:relative; line-height:0; display:block; width:fit-content; height:fit-content;";
   
   if (borderImage) {
-    imgContainer.style.backgroundImage = "url(" + borderImage + ")";
-    imgContainer.style.backgroundSize = "100% 100%";
-    imgContainer.style.backgroundPosition = "center";
-    imgContainer.style.padding = "4.5px"; // 악세 테두리 여백
-    imgContainer.style.boxSizing = "border-box";
+    // 테두리는 아이콘 크기에 비례(ACC_FRAME_PAD_RATIO) — 아이콘이 커지면 테두리도 같이 커짐
+    var framePad = Math.round(parseFloat(iconSize) * ACC_FRAME_PAD_RATIO * 10) / 10;
+    // 프레임은 아이콘 "위"에 덮는 오버레이 (공식 홈처럼: 파란 사각 테두리 + 4방향 마름모 장식이 아이콘 위로 걸침)
+    imgContainer.style.padding = framePad + "px";
+    imgContainer.style.boxSizing = "content-box";
+    imgContainer.dataset.framed = "1";
+    var frameOv = document.createElement("div");
+    frameOv.className = "acc-frame-ov";
+    frameOv.style.cssText = "position:absolute;inset:0;z-index:2;pointer-events:none;background:url(" + borderImage + ") center/100% 100% no-repeat;";
+    imgContainer.appendChild(frameOv);
   }
 
   var img = document.createElement("img");
@@ -115,13 +124,15 @@ function makeIconWithQuality(iconUrl, qv, gradeBg, gradeBorder, withBorder, bord
   img.style.minHeight = iconSize;
 
   if (gradeBg) img.style.background = gradeBg;
+  if (borderImage) img.style.borderRadius = "0";
   if (gradeBorder) img.style.borderColor = gradeBorder;
   imgContainer.appendChild(img);
 
   if (withBorder) {
     var bd = document.createElement("div");
     bd.className = "eq-border";
-    bd.style.cssText = "position:absolute; top:0; left:0; width:100%; height:100%; box-sizing:border-box; pointer-events:none;";
+    var bdOut = Math.round(parseFloat(iconSize) * EQ_BORDER_OUT_RATIO * 10) / 10; // 장비 테두리가 아이콘 밖으로 나가는 두께
+    bd.style.cssText = "position:absolute; top:-" + bdOut + "px; left:-" + bdOut + "px; width:calc(100% + " + (bdOut * 2) + "px); height:calc(100% + " + (bdOut * 2) + "px); box-sizing:border-box; pointer-events:none; z-index:2;";
     imgContainer.appendChild(bd);
   }
 
@@ -131,7 +142,8 @@ function makeIconWithQuality(iconUrl, qv, gradeBg, gradeBorder, withBorder, bord
     var bar = document.createElement("div");
     bar.className = "q-bar " + (qBarClass(qv) || "mid");
     // 🎯 품질바 너비도 아이콘 크기에 맞춤
-    bar.style.width = iconSize;
+    bar.style.width = borderImage ? "100%" : iconSize;
+    bar.style.boxSizing = "border-box";
     var fill = document.createElement("div");
     fill.className = "q-fill";
     fill.style.width = Math.min(100, Math.max(0, qv)) + "%";
@@ -182,6 +194,31 @@ function engBulletHtml(sliceX, sliceW, targetW) {
   return `<span class="eng-bullet tip-eng-bullet" style="width:${targetW}px;height:${targetH}px"><img class="tip-eng-sprite" src="${ENG_SPRITE}" alt="" style="left:${left}px!important;width:${bgW}px!important;height:${bgH}px!important"></span>`;
 }
 
+// 고대 장비/악세 아이콘 배경 (4티어 보석 배경과 같은 그라데이션)
+var ANCIENT_ICON_BG = "linear-gradient(135deg,#473b2b,#e8d092)";
+function ancientIconBg(grade, bg) { return grade === "고대" ? ANCIENT_ICON_BG : bg; }
+
+// 스킬 이름 → 스킬 아이콘 (스킬 목록 → 보석 효과 목록 순서로 탐색, 띄어쓰기 무시)
+function skillIconByName(name) {
+  var fd = window.__fullData || {}, k = String(name || "").replace(/\s+/g, "");
+  if (!k) return "";
+  var hit = (fd.ArmorySkills || []).find(function(x) { return String(x.Name || "").replace(/\s+/g, "") === k; });
+  if (hit && hit.Icon) return hit.Icon;
+  var eff = fd.ArmoryGem && fd.ArmoryGem.Effects;
+  var arr = Array.isArray(eff) ? eff : ((eff && eff.Skills) || []);
+  hit = arr.find(function(x) { return x && String(x.Name || "").replace(/\s+/g, "") === k; });
+  return (hit && hit.Icon) || "";
+}
+
+// 아이콘이 있는 툴팁 헤더 (스킬 툴팁과 같은 모양: 아이콘 + 이름 + 보조 줄)
+function tipItemHeaderHtml(nameHtml, icon, badgeIcon, subs, borderColor, iconBg) {
+  var bg = "url('" + icon + "') center/cover no-repeat" + (iconBg ? "," + iconBg : "");
+  var ic = '<span class="tip-ic2" style="background:' + bg + ";" + (borderColor ? "border-color:" + borderColor + ";" : "") + '">' +
+    (badgeIcon ? '<i style="background-image:url(\'' + badgeIcon + '\')"></i>' : "") + "</span>";
+  return '<div class="tip-hd tip-hd-item">' + ic + '<div class="tip-hd-text"><div class="tip-hd-name">' + nameHtml + "</div>" +
+    subs.map(function(s) { return '<div class="tip-hd-sub">' + s + "</div>"; }).join("") + "</div></div>";
+}
+
 function buildTipHtml(raw, title) {
   var tip = parseTip(raw);
   if (!tip) {
@@ -189,39 +226,56 @@ function buildTipHtml(raw, title) {
     return t ? `<div class="tip-hd">${title || ""}</div><div class="tip-bd">${t}</div>` : "";
   }
   if (brIsBraceletTip(tip)) return buildBraceletTipHtml(tip, title);
-  var hd = "", bd = "";
+  var nameHtml = "", icon = "", subs = [], grade = "";
+  var main = [], foot = [], seenSec = false;
+  // 본문(main): 효과 박스 앞뒤 안내 줄 / 꼬리(foot): 효과 박스 뒤에 오는 안내 줄(분해불가 등)
+  function put(html, isSec) {
+    if (isSec) { seenSec = true; main.push(html); }
+    else (seenSec ? foot : main).push(html);
+  }
   for (var k of Object.keys(tip).sort()) {
     var v = tip[k];
     if (!v?.type) continue;
-    if (v.type === "NameTagBox") hd = `<div class="tip-hd">${v.value || title || ""}</div>`;
+    if (v.type === "NameTagBox") nameHtml = v.value || title || "";
     else if (v.type === "CommonSkillTitle" && v.value) {
       var left = v.value.leftText || "";
       var cat = v.value.name || "";
-      if (left || cat) bd += `<div class="tip-muted tip-line">${cat ? cat + " · " : ""}${left}</div>`;
+      if (left || cat) put(`<div class="tip-muted tip-line">${cat ? cat + " · " : ""}${left}</div>`, false);
     } else if (v.type === "ItemTitle" && v.value) {
-      bd += `<div>${v.value.leftStr0 || ""}</div>`;
-      if (v.value.leftStr2) bd += `<div class="tip-muted">${v.value.leftStr2}</div>`;
-      if (v.value.qualityValue != null && v.value.qualityValue >= 0)
-        bd += `<div class="tip-muted">품질 ${v.value.qualityValue}</div>`;
+      var l0 = v.value.leftStr0 || "", l2 = v.value.leftStr2 || "";
+      var qv = (v.value.qualityValue != null && v.value.qualityValue >= 0) ? v.value.qualityValue : null;
+      var ip = v.value.slotData && v.value.slotData.iconPath;
+      if (ip) {
+        icon = ip;
+        var gm0 = /(일반|고급|희귀|영웅|전설|유물|고대|에스더)/.exec(strip(l0));
+        grade = gm0 ? gm0[1] : "";
+        if (l0) subs.push(l0);
+        var s2 = l2; if (qv != null) s2 += (s2 ? " · " : "") + "품질 " + qv;
+        if (s2) subs.push(s2);
+      } else {
+        put(`<div>${l0}</div>`, false);
+        if (l2) put(`<div class="tip-muted">${l2}</div>`, false);
+        if (qv != null) put(`<div class="tip-muted">품질 ${qv}</div>`, false);
+      }
     } else if (v.type === "ItemPartBox" && v.value) {
-      bd += `<div class="tip-sec"><div class="tip-sec-title">${v.value.Element_000 || ""}</div><div>${v.value.Element_001 || ""}</div></div>`;
+      put(`<div class="tip-sec"><div class="tip-sec-title">${v.value.Element_000 || ""}</div><div>${v.value.Element_001 || ""}</div></div>`, true);
     } else if (v.type === "SingleTextBox" && v.value) {
       var t = strip(v.value);
       if (/판매\s*불가|파괴\s*불가|분해\s*불가|거래\s*불가/.test(t) && t.length < 40)
-        bd += `<div class="tip-sec tip-warn">${t}</div>`;
+        put(`<div class="tip-sec tip-warn">${stripBars(t)}</div>`, false);
       else if (/판매|파괴|분해/.test(t) && t.length > 30) { }
       else if (/거래 제한|캐릭터 귀속|효과 부여 불가/.test(t))
-        bd += `<div class="tip-sec tip-muted">${v.value}</div>`;
+        put(`<div class="tip-sec tip-muted">${stripBars(v.value)}</div>`, false);
       else if (!/가디언|레이드|획득처/.test(t))
-        bd += `<div class="tip-sec tip-muted">${v.value}</div>`;
+        put(`<div class="tip-sec tip-muted">${stripBars(v.value)}</div>`, false);
     } else if (v.type === "MultiTextBox" && v.value) {
       var rawHtml = String(v.value || "");
       var t = strip(rawHtml);
       if (/거래\s*불가/.test(t) && t.length < 40) {
-        bd += `<div class="tip-sec tip-warn">${t}</div>`;
+        put(`<div class="tip-sec tip-warn">${stripBars(t)}</div>`, false);
       } else if (t) {
-        var body = rawHtml.replace(/\|\|/g, "<br>").replace(/<BR\s*\/?>/gi, "<br>").replace(/(<br\s*\/?>\s*)+$/i, "");
-        bd += `<div class="tip-sec tip-line">${body}</div>`;
+        var body = rawHtml.replace(/\|\|/g, "<br>").replace(/\|/g, "").replace(/<BR\s*\/?>/gi, "<br>").replace(/(<br\s*\/?>\s*)+$/i, "");
+        put(`<div class="tip-sec tip-line">${body}</div>`, false);
       }
     } else if (v.type === "IndentStringGroup" && v.value) {
       var top = v.value.topStr || "";
@@ -230,12 +284,24 @@ function buildTipHtml(raw, title) {
       for (var ck of Object.keys(cs)) {
         if (cs[ck]?.contentStr) lines += `<div>${cs[ck].contentStr}</div>`;
       }
-      bd += `<div class="tip-sec"><div class="tip-sec-title">${top}</div>${lines}</div>`;
+      put(`<div class="tip-sec"><div class="tip-sec-title">${top}</div>${lines}</div>`, true);
     }
   }
-  if (!hd && title) hd = `<div class="tip-hd">${title}</div>`;
-  if (!bd && !hd) return "";
-  return `${hd}<div class="tip-bd tip-div">${bd}</div>`;
+  var hd;
+  if (icon) {
+    var nc = /color\s*=\s*['"]?(#[0-9a-fA-F]{3,8})/i.exec(String(nameHtml));
+    var isGem = /보석/.test(strip(nameHtml));
+    var gemSkill = isGem ? parseGemSkillName({ Tooltip: raw }) : "";
+    var skIcon = gemSkill ? skillIconByName(gemSkill) : "";
+    var gbg = ancientIconBg(grade, grade ? gradeStyle(grade).bg : "");
+    // 보석: 해당 스킬 아이콘을 크게, 보석 아이콘은 작은 배지로
+    hd = skIcon ? tipItemHeaderHtml(nameHtml, skIcon, icon, subs, nc ? nc[1] : "", "")
+                : tipItemHeaderHtml(nameHtml, icon, "", subs, nc ? nc[1] : "", gbg);
+  } else {
+    hd = nameHtml ? `<div class="tip-hd">${nameHtml}</div>` : (title ? `<div class="tip-hd">${title}</div>` : "");
+  }
+  if (!main.length && !foot.length && !hd) return "";
+  return `${hd}<div class="tip-bd tip-grp">${main.length ? `<div class="tg tg-main">${main.join("")}</div>` : ""}${foot.length ? `<div class="tg tg-foot">${foot.join("")}</div>` : ""}</div>`;
 }
 
 // ===== 팔찌 툴팁 (옵션 분리 · 상/중/하 배지 · 아이콘 · 구분선) =====
@@ -278,7 +344,7 @@ function brSegments(html) {
   function reopen() { return stack.join(""); }
   function pushSeg() { segs.push(cur + closeAll()); cur = reopen(); }
   while ((m = re.exec(s))) {
-    if (m.index > last) cur += brEsc(brDecode(s.slice(last, m.index)));
+    if (m.index > last) cur += brEsc(brDecode(s.slice(last, m.index))).replace(/\|/g, "");
     last = re.lastIndex;
     var closing = m[1] === "/", tag = m[2].toUpperCase();
     if (tag === "BR") pushSeg();
@@ -386,7 +452,7 @@ function buildBraceletTipHtml(tip, title) {
       var raw = String(v.value || ""), t = strip(raw);
       if (v.type === "SingleTextBox" && /판매|파괴|분해/.test(t) && t.length > 30 && !/판매\s*불가|파괴\s*불가|분해\s*불가|거래\s*불가/.test(t)) continue;
       if (/가디언|레이드|획득처/.test(t) && !/거래 제한|캐릭터 귀속|효과 부여 불가/.test(t)) continue;
-      if (/판매\s*불가|파괴\s*불가|분해\s*불가|거래\s*불가/.test(t) && t.length < 40) rows.push('<div class="bt-row bt-warn">' + t + "</div>");
+      if (/판매\s*불가|파괴\s*불가|분해\s*불가|거래\s*불가/.test(t) && t.length < 40) rows.push('<div class="bt-row bt-warn">' + stripBars(t) + "</div>");
       else brSegments(raw.replace(/\|\|/g, "<br>")).forEach(function(sg) {
         rows.push('<div class="bt-row ' + (/효과 부여 불가/.test(sg.text) ? "bt-warn" : "bt-info") + '">' + sg.html + "</div>");
       });
