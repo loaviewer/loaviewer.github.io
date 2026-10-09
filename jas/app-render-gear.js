@@ -162,7 +162,10 @@ function renderEng(eng) {
     var stoneLv = e.AbilityStoneLevel;
     var stoneHtml = stoneLv != null ? '<span class="eng-tip-chip">' + engBulletHtml(3, 18, 13) + '<span class="eng-tip-chip-t">Lv.' + stoneLv + '</span></span>' : "";
     var ptsHtml = pts != null ? '<span class="eng-tip-chip">' + engBulletHtml(114, 27, 18) + '<span class="eng-tip-chip-t">x ' + pts + '</span></span>' : "";
-    var tipHtml = '<div class="eng-tip-hd"><span class="eng-tip-name" style="color:' + relicC + '">' + (e.Name || "") + '</span><span class="eng-tip-chips">' + stoneHtml + ptsHtml + '</span></div>' + (desc ? '<div class="tip-bd eng-tip-bd">' + desc + '</div>' : "");
+    var icHtml = '<span class="eng-tip-ic" style="background:' + (iconUrl ? "url('" + iconUrl + "') center/cover no-repeat, " : "") + g.bg + ';border-color:' + g.c + '88">' + (iconUrl ? "" : (e.Name || "?").charAt(0)) + '</span>';
+    var descLines = String(desc).replace(/<BR\s*\/?>/gi, "\n").split(/\n|(?<=다\.)\s+/).map(function(x) { return x.trim(); }).filter(Boolean);
+    var descHtml = descLines.map(function(x) { return '<div class="eng-tip-line">' + x + '</div>'; }).join("");
+    var tipHtml = '<div class="tip-hd eng-tip-hd2">' + icHtml + '<div class="eng-tip-tx"><div class="eng-tip-name" style="color:' + relicC + '">' + (e.Name || "") + '</div><div class="eng-tip-chips">' + stoneHtml + ptsHtml + '</div></div></div>' + (descHtml ? '<div class="tip-bd eng-tip-bd">' + descHtml + '</div>' : "");
     if (desc || stoneHtml || ptsHtml) bindTip(row, tipHtml);
     list.appendChild(row);
   }
