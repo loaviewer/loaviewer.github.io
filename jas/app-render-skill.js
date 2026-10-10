@@ -309,8 +309,14 @@ function splitHyperSkills(list) {
   var ap = window.__fullData && window.__fullData.ArkPassive;
   var effs = (ap && ap.Effects) || [];
   var leap = effs.filter(e => /도약/.test((e.Name || "") + " " + (e.Description || "")));
-  var txt = JSON.stringify(leap.length ? leap : effs);
-  var hit = list.filter(s => s.Name && txt.indexOf(s.Name) >= 0);
+  // 띄어쓰기/HTML 태그/"묵법 : " 같은 접두어 차이를 무시하고 비교 (예: 스킬 "묵법 : 미르 새김" ↔ 노드 설명 "미르새김")
+  var nz = t => String(t || "").replace(/<[^>]*>/g, "").replace(/\\n|\s+/g, "");
+  var txt = nz(JSON.stringify(leap.length ? leap : effs));
+  var hit = list.filter(s => {
+    if (!s.Name) return false;
+    var full = nz(s.Name), short = nz(String(s.Name).replace(/^[^:]+:\s*/, ""));
+    return txt.indexOf(full) >= 0 || (short && txt.indexOf(short) >= 0);
+  });
   if (!hit.length) return effs.length ? { active: [], inactive: list } : { active: list, inactive: [] };
   return { active: hit, inactive: list.filter(s => hit.indexOf(s) < 0) };
 }
