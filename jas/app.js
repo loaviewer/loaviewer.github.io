@@ -291,18 +291,38 @@ function render(data) {
   art.appendChild(info);
 
   const rows = el("div", "art-rows");
-  const addRow = (label, value, cls) => {
+  const addRow = (label, value, cls, color) => {
     const r = el("div", "art-row");
     r.appendChild(el("span", "art-k", label));
-    r.appendChild(el("span", "art-v" + (cls ? " " + cls : ""), value));
+    const v = el("span", "art-v" + (cls ? " " + cls : ""), value);
+    if (color) { v.style.color = color; v.style.fontWeight = "800"; }
+    r.appendChild(v);
     rows.appendChild(r);
   };
-  addRow("서버", p.ServerName || "-");
-  addRow("원정대", p.ExpeditionLevel != null ? "Lv." + p.ExpeditionLevel : "-");
+  addRow("서버", p.ServerName || "-", "", p.ServerName ? "#e8b84b" : "");
+  addRow("원정대", p.ExpeditionLevel != null ? "Lv." + p.ExpeditionLevel : "-", "", p.ExpeditionLevel != null ? "#7fd1ff" : "");
   addRow("칭호", p.Title || "-", p.Title ? titleGradeClass(p.Title) : "");
   addRow("길드", p.GuildName || "-", p.GuildName ? "art-guild" : "");
-  addRow("PVP", p.PvpGradeName || "-");
-  addRow("영지", p.TownName ? `Lv.${p.TownLevel ?? "-"} ${p.TownName}` : "-");
+  addRow("영지", p.TownName ? `Lv.${p.TownLevel ?? "-"} ${p.TownName}` : "-", "", p.TownName ? "#3cc78c" : "");
+  { // 명예: 프로필에 명예 관련 값이 있을 때만 표시
+    const hk = Object.keys(p).find(k => /honor|명예/i.test(k));
+    if (hk && p[hk] != null && p[hk] !== "") addRow("명예", String(p[hk]), "", "#c4b5fd");
+  }
+  { // 우측 상단: 최근 갱신 (이 사이트가 데이터를 불러온 시각 기준, 서버 장애 시 저장본 시각)
+    const hit = window.__cacheHit && /\/all$/.test(window.__cacheHit.url);
+    const at = hit ? window.__cacheHit.t : Date.now();
+    const u = el("div", "art-upd");
+    u.style.cssText = "position:absolute;top:12px;right:12px;z-index:3;font-size:11px;font-weight:700;color:#cfd8ee;background:rgba(8,12,24,.62);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:3px 9px;backdrop-filter:blur(4px)";
+    const paint = () => {
+      const m = Math.floor((Date.now() - at) / 60000);
+      const txt = m < 1 ? "최근" : m < 60 ? m + "분전" : Math.floor(m / 60) + "시간전";
+      u.innerHTML = '<span style="color:#8d9bb8;font-weight:600">갱신</span> ' + txt + (hit ? " (저장본)" : "");
+    };
+    paint();
+    art.appendChild(u);
+    clearInterval(window.__updTimer);
+    window.__updTimer = setInterval(() => { if (!u.isConnected) return clearInterval(window.__updTimer); paint(); }, 20000);
+  }
   art.appendChild(rows);
   window.$("pName").textContent = p.CharacterName || "-";
   window.$("pClass").textContent = [p.CharacterClassName, data.ArkPassive?.Title].filter(Boolean).join(" · ") || "-";

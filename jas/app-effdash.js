@@ -232,7 +232,8 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   const swiftAsPct = extractStatTooltipPct("신속", /공격\s*속도가\s*([0-9.]+)\s*%\s*증가/);
   const swiftMsPct = extractStatTooltipPct("신속", /이동\s*속도가\s*([0-9.]+)\s*%\s*증가/);
 
-  let desireOn = true;
+  const __isSup = typeof checkIsSupportMode === "function" && checkIsSupportMode(fullData, window.__charClass); // 서폿은 축복의 여신에 갈망 포함
+  let desireOn = !__isSup;
 
   function extractSpecAmpPct(keyword) {
     const s = (stats || []).find(x => x.Type === "특화");
@@ -815,7 +816,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
     }
     buffs.innerHTML = `
       <div class="buff-row"><label><input type="checkbox" id="buffMeal" checked disabled> 영지 요리 공이속 +${BUFF_MEAL}%</label><span class="locked">상시 · 잠금</span></div>
-      <div class="buff-row"><label><input type="checkbox" id="buffDesire" checked> 갈망 버프 공이속 +${BUFF_DESIRE}%</label><span style="color:#FFB84D;font-size:10px;font-weight:700">활성 전용</span></div>
+      ${__isSup ? "" : `<div class="buff-row"><label><input type="checkbox" id="buffDesire" checked> 갈망 버프 공이속 +${BUFF_DESIRE}%</label><span style="color:#FFB84D;font-size:10px;font-weight:700">활성 전용</span></div>`}
       ${identityRow}
     `;
     const cb = buffs.querySelector("#buffDesire");
