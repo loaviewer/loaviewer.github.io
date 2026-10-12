@@ -686,6 +686,12 @@ function fillEffDash(stats, equipList, fullData, statMap) {
               <div class="mc-sub-line"><span>원본 치적</span><b>${truncate2(critTotal)}%</b></div>
               <div class="mc-sub-line"><span>전환 진피</span><b>+${round2(mg.convEvo)}%</b></div>
               <div class="mc-sub-line total"><span>총 진피</span><b>+${round2(mg.evoDmgAdd)}% / ${round2(mg.maxEff)}%</b></div>
+              ${(function () {
+                if (mg.evoDmgAdd >= mg.maxEff - 0.005) return `<div class="mc-sub-line ok"><span>최대 효율 달성</span><b>✓</b></div>`;
+                const needCrit = Math.max(0, 80 + (mg.maxEff - mg.baseEvo) / mg.convRate - critTotal);
+                const perPct = (critStat > 0 && critFromStat > 0) ? critStat / critFromStat : 27.9;
+                return `<div class="mc-sub-line need"><span>풀 효율까지 치명타 적중률 ${round2(needCrit)}% 부족</span><b>치명 약 +${Math.ceil(needCrit * perPct)}</b></div>`;
+              })()}
             `);
           } else if (activeNode === "eum") {
             const sn = window.calcSonicBreakthrough ? window.calcSonicBreakthrough(as, ms, window.__eumLv | 0) : {evoDmg:0, maxLimit:0};
@@ -698,6 +704,27 @@ function fillEffDash(stats, equipList, fullData, statMap) {
               <div class="mc-sub-line"><span>공속</span><b>${as.toFixed(2)}%</b></div>
               <div class="mc-sub-line"><span>이속</span><b>${ms.toFixed(2)}%</b></div>
               <div class="mc-sub-line total"><span>진피</span><b>${sn.evoDmg.toFixed(2)}% / ${sn.maxLimit.toFixed(2)}%</b></div>
+              ${(function () {
+                if (sn.evoDmg >= sn.maxLimit - 0.005) return `<div class="mc-sub-line ok"><span>최대 효율 달성</span><b>✓</b></div>`;
+                const lv = window.__eumLv | 0, K = 0.017178;   // 신속 1pt = 공속·이속 각 0.017178%
+                let needSw = null;
+                for (let sw = 1; sw <= 4000; sw++) {
+                  const t = window.calcSonicBreakthrough(as + sw * K, ms + sw * K, lv);
+                  if (t.evoDmg >= sn.maxLimit - 0.005) { needSw = sw; break; }
+                }
+                let needSum = null;   // 공이속을 자유롭게 배분할 때 필요한 합계 (공속 140 / 이속 140 기준 충족 이후)
+                for (let d = 0.1; d <= 150; d += 0.1) {
+                  let ok = false;
+                  for (let a = 0; a <= d + 1e-9; a += 0.5) {
+                    if (window.calcSonicBreakthrough(as + a, ms + (d - a), lv).evoDmg >= sn.maxLimit - 0.005) { ok = true; break; }
+                  }
+                  if (ok) { needSum = d; break; }
+                }
+                let h = "";
+                if (needSum != null) h += `<div class="mc-sub-line need"><span>풀 효율까지 공속+이속 합 부족</span><b>${round2(needSum)}%</b></div>`;
+                if (needSw != null) h += `<div class="mc-sub-line need"><span>신속 스탯으로 채운다면</span><b>신속 약 +${needSw}</b></div>`;
+                return h;
+              })()}
             `);
           } else if (activeNode === "ipsik") {
             const ip = window.calcStandingStriker ? window.calcStandingStriker(window.__ipsikLv | 0) : {efficiency:0, maxEff:21};
