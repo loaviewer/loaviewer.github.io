@@ -1992,5 +1992,11 @@ img{display:block;max-width:100%;}
 .recent{position:relative;z-index:2000 !important;}
 .recent-list{z-index:2001 !important;}
 
-/* [EFF-SUB] */
+/* [EFF-SUB] 스텟보드 부제 가독성 */
 .eff-sub{color:#fff !important;opacity:.9;}
+
+/* [SUM-CODE] 스킬 요약바: 재감 라벨 + 우측 끝 스킬코드 버튼 */
+.skill-summary .sum-sp{color:#9fb0cf;letter-spacing:.02em;}
+.skill-summary .sum-code{flex:none;margin-left:auto;position:sticky;right:0;padding:6px 12px;border-radius:9px;font:800 12px/1 inherit;font-family:inherit;color:#e8b84b;background:#12161f;border:1px solid rgba(232,184,75,.45);cursor:pointer;white-space:nowrap;box-shadow:-10px 0 10px #0d1119;}
+.skill-summary .sum-code:hover{background:rgba(232,184,75,.14);}
+.skill-summary .sum-code:disabled{opacity:.7;cursor:default;}
