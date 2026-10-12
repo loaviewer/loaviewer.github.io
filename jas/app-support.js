@@ -58,6 +58,7 @@
         R.brand.acc += sumN(t, /낙인력 \+([\d.]+)%/g);
       } else if (/팔찌/.test(e.Type)) {
         R.atk.bracelet += sumN(t, /아군 공격력 강화 효과가 ([\d.]+)% 증가/g);
+        R.atk.bracelet += sumN(t, /아군 공격력 강화 효과 \+([\d.]+)%/g);
         R.dmg.bracelet += sumN(t, /아군 피해량 강화 효과 \+([\d.]+)%/g);
         R.brand.bracelet += sumN(t, /낙인력 \+([\d.]+)%/g);
         R.brand.br = bracelet(t.replace(/\s+/g, ""));
@@ -73,7 +74,7 @@
     (ag.Slots || []).forEach(function (s) {
       var t = coreText(s.Tooltip, s.Point || 0);
       R.atk.core += sumN(t, /아군 공격력 강화 효과가 ([\d.]+)%/g);
-      all(t, /(\S+\s\S+의\s)?아군 피해량 강화 효과가 ([\d.]+)%/g).forEach(function (m) {
+      all(t, /(\S*의\s)?아군 피해량 강화 효과가 ([\d.]+)%/g).forEach(function (m) {
         if (m[1]) R.dmg.identity.push({ name: m[1].replace(/의\s*$/, ""), v: parseFloat(m[2]) });
         else R.dmg.core += parseFloat(m[2]);
       });
@@ -95,6 +96,14 @@
     if (rk) R.brand.karma = Math.min(parseInt(rk[1], 10), 6);
     var gems = (fd.ArmoryGem || {}).Gems || [];
     gems.forEach(function (g) { R.atk.gem += sumN(flat(g.Tooltip), /아군 공격력 강화 효과[^%]{0,12}?([\d.]+)% 증가/g); });
+    // 보석 지원 효과 (서폿 보석): 공증에도 그대로 합산
+    if (!R.atk.gem) {
+      var ge = (fd.ArmoryGem || {}).Effects, ga = Array.isArray(ge) ? ge : ((ge && ge.Skills) || []);
+      ga.forEach(function (x) {
+        var m = flat(x.Description || x.Tooltip || "").match(/지원 효과\s*\+?\s*([\d.]+)\s*%/);
+        if (m) R.atk.gem = Math.max(R.atk.gem, parseFloat(m[1]));
+      });
+    }
     return R;
   }
 
@@ -149,7 +158,7 @@
       var m = flat(e).match(/기본 효과의\s*([\d.]+)\s*%\s*에\s*해당/);
       if (m && !hit) hit = parseFloat(m[1]);
     });
-    return hit ? 1 + hit / 100 : (fb || 1.2);
+    return hit ? 1 + (hit + (fb === 1.23 ? 3 : 0)) / 100 : (fb || 1.2);
   }
   function sub(l, v, cls) { if (/^[+-]?0(\.0+)?%$/.test(String(v).trim())) return ""; return '<div class="mc-sub-line' + (cls ? " " + cls : "") + '"><span>' + l + "</span><b>" + v + "</b></div>"; }
   function card(id, label, icon, valueHtml, drawer, color) {
@@ -210,6 +219,7 @@
     });
     var specBuff = specRows.filter(function (r) { return /버프 효율/.test(r.k); })[0];
     var idSum = D.identity.reduce(function (t, x) { return t + x.v; }, 0);
+    var idAria = D.identity.filter(function (x) { return /아리아/.test(x.name); }).reduce(function (t, x) { return t + x.v; }, 0);
     var dDraw = sub("기본 효과", "10%") + sub("액세서리", "+" + r2(D.acc) + "%") + sub("팔찌", "+" + r2(D.bracelet) + "%") +
       sub("아크패시브", "+" + r2(D.passive) + "%") + sub("아크그리드 코어", "+" + r2(D.core) + "%") +
       sub("아크그리드 젬", "+" + r2(D.grid) + "%");
@@ -243,10 +253,11 @@
       dMain = "+" + r2((aura + just) / 2) + '% <small style="font-size:13px;color:#9aa8c7">평균</small>';
     } else {
       // 바드 아리아 / 발키리 신의 증명 = 10% × (1 + 상시)
-      // 초각성 버프(용맹의 세레나데 / 빛의 해방) = 기본 × 1.2 × (1 + 상시[+코어]) × (1 + 특화 버프효율) × (1 + 보석 지원효과)  (근사식)
+      // 초각성 버프(용맹의 세레나데 / 빛의 해방) = 기본 × 1.2 × (1 + 상시[+코어]) × (1 + 특화 버프효율) × (1 + 보석 지원효과)  (근사식, 코드 노드 문구 미검출 시 경험값 1.22~1.23)
       var isBard = /바드/.test(cls), isVal = /발키리/.test(cls);
       var pn = isBard ? "아리아" : isVal ? "신의 증명" : "상시 버프";
-      var pv = 10 * (1 + dSum / 100);
+      var pvSum = dSum + (isBard ? idAria : 0);
+      var pv = 10 * (1 + pvSum / 100);
       if (isBard || isVal) {
         var sp3 = specRows.filter(function (r) { return /버프 효율/.test(r.k); })[0];
         var gs = (function () {
@@ -256,13 +267,13 @@
         })();
         var an = isBard ? "용맹의 세레나데" : "빛의 해방";
         var abase = isBard ? 15 : 10;              // 세레나데: 3버블 기준 15%
-        var aSumX = isBard ? dSum + idSum : dSum;  // 바드는 세레나데 코어(+20%) 포함
+        var aSumX = isBard ? dSum + (idSum - idAria) : dSum;  // 바드: 세레나데 전용 코어만 포함 (아리아 전용 코어 제외)
         var av = abase * codeMul(fd, isBard ? 1.23 : 1.22) * (1 + aSumX / 100) * (1 + (sp3 ? sp3.v : 0) / 100) * (1 + gs / 100);
         dDraw = '<div class="mc-sub-line"><span style="color:#ffb84d">' + an + '</span><b>+' + r2(av) + "%</b></div>" +
-          sub("└ 기본 효과", abase + "%" + (isBard ? " (3버블)" : "")) + sub("└ 상시 합계", "+" + r2(aSumX) + "%") +
+          sub("└ 기본 효과", abase + "%" + (isBard ? " (3버블)" : "")) + sub("└ 상시 합계" + (isBard ? " (코어 포함)" : ""), "+" + r2(aSumX) + "%") +
           sub("└ 특화 버프 효율", "+" + r2(sp3 ? sp3.v : 0) + "%") + sub("└ 보석 지원 효과", "+" + r2(gs) + "%") +
           '<div class="mc-sub-line"><span style="color:#3cc78c">' + pn + '</span><b>+' + r2(pv) + "%</b></div>" +
-          sub("└ 기본 효과", "10%") + sub("└ 상시 합계", "+" + r2(dSum) + "%") +
+          sub("└ 기본 효과", "10%") + sub("└ 상시 합계" + (isBard ? " (코어 포함)" : ""), "+" + r2(pvSum) + "%") +
           "";
         dMain = "+" + r2((av + pv) / 2) + '% <small style="font-size:13px;color:#9aa8c7">평균</small>';
       } else {
@@ -272,8 +283,8 @@
     }
 
     // 낙인
-    var bSum = B.acc + B.bracelet + B.passive + B.core + B.grid + B.karma; // 입식 등 진화 노드(B.evo)는 별도 곱연산
-    var brandDmg = BASE_BRAND * (1 + B.evo / 100) * (1 + bSum / 100);
+    var bSum = B.acc + B.bracelet + B.passive + B.core + B.grid + B.karma + B.evo; // 진화 노드 낙인력도 합산
+    var brandDmg = BASE_BRAND * (1 + bSum / 100);
     var coreMul = 1 + B.coreDmg / 100;
     // 정열의 춤사위(진화 노드): "정열의 춤 N : 진화형 피해 X% 증가" → 기준 딜러 진화형 피해(약 86.9%) 위에서 총 피해 증가율로 환산
     var passion = 0;
@@ -283,12 +294,17 @@
     });
     passion = r2(passion);
     var total = (1 + brandDmg / 100) * (1 + passion / 100) * coreMul * B.br.mul;
-    var bDraw = subc("낙인력 합계", r2(bSum) + "%", "#d9a8ff") + sub("└ 액세서리", "+" + r2(B.acc) + "%") +
-      sub("└ 팔찌", "+" + r2(B.bracelet) + "%") + sub("└ 아크패시브", "+" + r2(B.passive) + "%") + sub("└ 진화 카르마", "+" + r2(B.karma) + "%") +
-      sub("진화 노드 낙인력 (별도 곱)", "+" + r2(B.evo) + "%") +
-      sub("└ 아크그리드 코어", "+" + r2(B.core) + "%") + sub("└ 아크그리드 젬", "+" + r2(B.grid) + "%") +
-      subc("낙인 딜증", "+" + r2(brandDmg) + "%", "#ffb84d") + sub("코어 낙인 피해", "+" + r2(B.coreDmg) + "%") +
-      sub("정열의 춤사위", "+" + passion + "%") + B.br.rows.map(function (r) { return sub("팔찌 · " + r.k, "+" + r2(r.v) + "%"); }).join("") + sub("팔찌 효과 합계", "+" + r2((B.br.mul - 1) * 100) + "%");
+    var bDraw = subc("상시 적용 딜증 (아래 4개를 곱한 값)", "+" + r2((total - 1) * 100) + "%", "#fff") +
+      subc("① 낙인 딜증 = 기본 10% × (1 + 낙인력 합계)", "+" + r2(brandDmg) + "%", "#ffb84d") +
+      subc("└ 낙인력 합계", "+" + r2(bSum) + "%", "#d9a8ff") +
+      sub("　└ 액세서리", "+" + r2(B.acc) + "%") + sub("　└ 팔찌", "+" + r2(B.bracelet) + "%") +
+      sub("　└ 아크패시브", "+" + r2(B.passive) + "%") + sub("　└ 진화 카르마", "+" + r2(B.karma) + "%") +
+      sub("　└ 진화 노드", "+" + r2(B.evo) + "%") +
+      sub("　└ 아크그리드 코어", "+" + r2(B.core) + "%") + sub("　└ 아크그리드 젬", "+" + r2(B.grid) + "%") +
+      subc("② 정열의 춤사위 딜증", "+" + passion + "%", "#ffb84d") +
+      subc("③ 아크그리드 코어 (낙인 피해)", "+" + r2(B.coreDmg) + "%", "#ffb84d") +
+      subc("④ 팔찌 효과 (상시 디버프 환산)", "+" + r2((B.br.mul - 1) * 100) + "%", "#ffb84d") +
+      B.br.rows.map(function (r) { return sub("　└ " + r.k, "+" + r2(r.v) + "%"); }).join("");
 
     var skAll = fd.ArmorySkills || [];
     var awake = skAll.filter(function (x) { return x.Icon && ((x.SkillType || 0) >= 100); })[0] || skAll.filter(function (x) { return x.Icon && (x.Level || 0) > 1; })[0] || skAll.filter(function (x) { return x.Icon; })[0];
