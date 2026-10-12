@@ -607,16 +607,32 @@ function renderSkills(skillsData, gemData) {
     var o = cdOpt();
     var tog = (key, cls, text) => `<span class="stag ${cls} tog ${o[key] ? "on" : "off"}" data-cd="${key}" title="클릭: ${o[key] ? "비적용으로 변경" : "적용으로 변경"}"><i class="chk"></i>${text}</span>`;
     var tags = [
-      cnt ? `<span class="stag gold">카운터 ${cnt}</span>` : "",
-      gro ? `<span class="stag purple">무력화 ${gro}</span>` : "",
-      brk ? `<span class="stag violet">부위 파괴 ${brk}</span>` : "",
       swift ? tog("swift", "green", `신속재감 ${swift.toFixed(2)}%`) : "",
       hasGemCool ? tog("gem", "cyan", "보석 재감 적용") : "",
       ark.mana ? tog("mana", "cyan", `마나재감 ${ark.mana.toFixed(1)}%`) : "",
       arkAllPct > 0.001 ? tog("evo", "cyan", `진화재감 ${arkAllPct.toFixed(2)}%`) : ""
     ].join("");
-    sumEl.innerHTML = `<div class="sum-bar">${sp}${tags}</div>`;
-    sumEl.onclick = e => {
+    var cdLabel = `<span class="sum-sp">재감 효과</span>`;
+    var codeBtn = `<button type="button" class="sum-code" title="게임 스킬 창에 붙여넣을 수 있는 스킬 코드를 복사합니다">스킬코드</button>`;
+    sumEl.innerHTML = `<div class="sum-bar">${cdLabel}${tags}${codeBtn}</div>`;
+    sumEl.onclick = async e => {
+      var cb = e.target.closest(".sum-code");
+      if (cb) {
+        if (cb.disabled) return;
+        var nm = ((window.__fullData || {}).ArmoryProfile || {}).CharacterName || "";
+        if (!nm) return;
+        var say = (t, ms) => { cb.textContent = t; if (ms) setTimeout(() => { cb.textContent = "스킬코드"; cb.disabled = false; }, ms); };
+        cb.disabled = true; say("불러오는 중…");
+        try {
+          var rs = await fetch(`${window.PROXY}/character/${encodeURIComponent(nm)}/skillcode`);
+          var js = await rs.json();
+          if (!js.ok || !js.code) throw new Error(js.error || "fail");
+          try { await navigator.clipboard.writeText(js.code); }
+          catch (e2) { var ta = document.createElement("textarea"); ta.value = js.code; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+          say("복사됨 ✓", 1800);
+        } catch (e3) { say("가져오지 못했습니다", 2500); }
+        return;
+      }
       var t = e.target.closest(".stag[data-cd]");
       if (!t) return;
       var oo = cdOpt(); oo[t.dataset.cd] = !oo[t.dataset.cd];
