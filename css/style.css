@@ -1987,3 +1987,10 @@ img{display:block;max-width:100%;}
   border:1px solid rgba(155,126,240,.25);box-shadow:0 6px 18px rgba(0,0,0,.4);
 }
 /* [SKILL-DECO 끝] */
+
+/* [RECENT-Z] 최근 검색 드롭다운이 열린 카드 서랍 위로 오도록 */
+.recent{position:relative;z-index:2000 !important;}
+.recent-list{z-index:2001 !important;}
+
+/* [EFF-SUB] */
+.eff-sub{color:#fff !important;opacity:.9;}
