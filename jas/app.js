@@ -280,7 +280,26 @@ function render(data) {
 
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
   const info = el("div", "art-info");
-  const apTitle = data.ArkPassive?.Title;
+  const AP_SHORT = {
+    "고독한 기사":"고기","전투 태세":"전태","광기":"광기","광전사의 비기":"비기",
+    "분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
+    "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자",
+    "초심":"초심","오의 강화":"오의","충격 단련":"충단","체술":"체술",
+    "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제",
+    "오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
+    "전술 탄환":"전탄","핸드 거너":"핸건","화력 강화":"화강","포격 강화":"포강",
+    "죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
+    "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시",
+    "상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
+    "진실된 용맹":"진용","절실한 구원":"절구","점화":"점화","환류":"환류",
+    "버스트":"버스트","잔재된 기운":"잔재","멈출 수 없는 충동":"충동",
+    "완벽한 억제":"억제","달의 소리":"달소","갈증":"갈증",
+    "만월의 집행자":"만월","만개":"만개","그믐의 경계":"그믐","회귀":"회귀","이슬비":"이슬비",
+    "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화":"업화","드레드 로어":"드드",
+    "시간 관리자":"시간","공간 검사":"공간"
+  };
+  const apRaw = data.ArkPassive?.Title;
+  const apTitle = apRaw ? (AP_SHORT[String(apRaw).trim()] || apRaw) : apRaw;
   info.appendChild(el("div", "art-class", `Lv. ${p.CharacterLevel ?? "-"} ${p.CharacterClassName || ""}${apTitle ? " #" + apTitle : ""}`));
   info.appendChild(el("div", "art-name", p.CharacterName || "-"));
   const nums = el("div", "art-nums");
@@ -289,6 +308,25 @@ function render(data) {
   nums.appendChild(r1); nums.appendChild(r2);
   info.appendChild(nums);
   art.appendChild(info);
+  { // 엠블럼 / 심볼: 캐릭터 이미지 좌하단에 작게 표시
+    window.__embWrap = null;
+    const dec = p.Decorations || {};
+    const urls = [];
+    const pushU = (x) => { const u = typeof x === "string" ? x : (x && (x.Icon || x.Image || x.Url)); if (u && /^https?:/.test(u)) urls.push(u); };
+    (Array.isArray(dec.Emblems) ? dec.Emblems.slice(-1) : []).forEach(pushU);   // 로스트아크 화면처럼 마지막 엠블럼 1개만
+    if (urls.length) {
+      const wrap = el("div", "art-emblems");
+      wrap.style.cssText = "display:flex;gap:8px;align-items:center;justify-content:flex-start;margin-top:10px";
+      urls.forEach((u, idx) => {
+        const im = document.createElement("img");
+        im.src = u; im.alt = ""; im.loading = "lazy";
+        im.style.cssText = "position:static !important;transform:none !important;top:auto !important;left:auto !important;height:34px !important;width:auto !important;max-width:52px !important;object-fit:contain !important;-webkit-mask-image:none !important;mask-image:none !important;opacity:1 !important;filter:drop-shadow(0 2px 4px rgba(0,0,0,.7))";
+        im.onerror = () => im.remove();
+        wrap.appendChild(im);
+      });
+      info.appendChild(wrap);
+    }
+  }
 
   const rows = el("div", "art-rows");
   const addRow = (label, value, cls, color) => {
