@@ -2000,3 +2000,134 @@ img{display:block;max-width:100%;}
 .skill-summary .sum-code{flex:none;margin-left:auto;position:sticky;right:0;padding:6px 12px;border-radius:9px;font:800 12px/1 inherit;font-family:inherit;color:#e8b84b;background:#12161f;border:1px solid rgba(232,184,75,.45);cursor:pointer;white-space:nowrap;box-shadow:-10px 0 10px #0d1119;}
 .skill-summary .sum-code:hover{background:rgba(232,184,75,.14);}
 .skill-summary .sum-code:disabled{opacity:.7;cursor:default;}
+
+/* [SUM-2ROW] 스킬 요약: 한 개의 바 안에 2줄 (특성 / 재감+스킬코드) */
+.skill-summary .sum-bar.sum-2row{flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:6px;padding:8px 14px;overflow:visible;}
+.skill-summary .sum-2row .sum-r1,.skill-summary .sum-2row .sum-r2{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0;}
+.skill-summary .sum-2row .sum-r1{padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.07);}
+.skill-summary .sum-2row .stag{padding:4px 10px;font-size:11.5px;border-radius:8px;}
+.skill-summary .sum-2row .stag b{font-weight:900;margin-left:2px;}
+.skill-summary .stag.slate{color:#b9c3d9;background:rgba(150,165,195,.12);border-color:rgba(150,165,195,.3);}
+.skill-summary .sum-2row .sum-code{position:static;box-shadow:none;margin-left:auto;padding:4px 11px;}
+
+/* [SUM-LAYOUT] 스킬 요약: [스킬포인트 링] [특성/재감 바] [스킬코드 상자] */
+.skill-summary{flex-wrap:nowrap;align-items:stretch;gap:10px;}
+.skill-summary .sum-bar.sum-2row{flex:1 1 0;min-width:0;justify-content:center;}
+.skill-summary .sum-ring,.skill-summary .sum-code-box{flex:none;background:linear-gradient(180deg,rgba(16,20,30,.96),rgba(11,14,22,.98));border:1px solid rgba(255,255,255,.09);border-radius:14px;}
+.skill-summary .sum-ring{position:relative;width:104px;display:flex;align-items:center;justify-content:center;padding:8px 0 18px;}
+.skill-summary .sum-ring svg{display:block;}
+.skill-summary .sum-ring-t{position:absolute;left:0;right:0;top:50%;transform:translateY(-62%);text-align:center;line-height:1.05;pointer-events:none;}
+.skill-summary .sum-ring-t b{display:block;font-size:17px;font-weight:900;color:#fff;}
+.skill-summary .sum-ring-t span{display:block;font-size:10.5px;font-weight:700;color:var(--muted,#8b95ad);}
+.skill-summary .sum-ring-l{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:10.5px;font-weight:800;color:var(--muted,#8b95ad);}
+.skill-summary .sum-code-box{width:132px;padding:8px;display:flex;}
+.skill-summary .sum-code-box .sum-code{position:static;box-shadow:none;margin:0;width:100%;min-height:56px;border-radius:10px;font-size:15px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#e8b84b;background:rgba(232,184,75,.08);border:1px solid rgba(232,184,75,.5);cursor:pointer;}
+.skill-summary .sum-code-box .sum-code small{font-size:10.5px;font-weight:700;opacity:.8;}
+.skill-summary .sum-code-box .sum-code:hover{background:rgba(232,184,75,.18);}
+@media (max-width:640px){.skill-summary{flex-wrap:wrap;}.skill-summary .sum-bar.sum-2row{flex-basis:100%;order:3;}.skill-summary .sum-code-box{flex:1;}}
+
+/* [SUM-HERO] 스킬 요약: 상자 1개로 묶은 히어로 */
+.skill-summary{position:relative;display:flex;flex-wrap:nowrap;align-items:center;gap:0;padding:14px 20px;margin-bottom:16px;overflow:hidden;
+  background:radial-gradient(120% 160% at 0% 0%,rgba(110,125,255,.34),transparent 55%),radial-gradient(90% 140% at 100% 100%,rgba(232,184,75,.16),transparent 60%),linear-gradient(180deg,#1b2145,#121733);
+  border:1px solid rgba(140,155,255,.5);border-radius:18px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 10px 30px rgba(70,85,220,.28),0 0 28px rgba(123,140,255,.18);}
+.skill-summary::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#8f9cff,#e8b84b);}
+.skill-summary .sum-ring,.skill-summary .sum-code-box,.skill-summary .sum-bar.sum-2row{background:none;border:0;border-radius:0;box-shadow:none;}
+.skill-summary .sum-ring{width:96px;padding:2px 0 16px;margin-right:6px;}
+.skill-summary .sum-ring circle:first-child{stroke:rgba(255,255,255,.14);}
+.skill-summary .sum-ring circle:last-child{stroke:#9aa7ff;filter:drop-shadow(0 0 5px rgba(140,155,255,.8));}
+.skill-summary .sum-ring-t b{font-size:19px;}
+.skill-summary .sum-ring-t span,.skill-summary .sum-ring-l{color:#aab4e6;}
+.skill-summary .sum-bar.sum-2row{flex:1 1 0;padding:0 22px;gap:9px;border-left:1px solid rgba(255,255,255,.14);border-right:1px solid rgba(255,255,255,.14);}
+.skill-summary .sum-2row .sum-r1{border-bottom:0;padding-bottom:0;}
+.skill-summary .sum-2row .sum-sp{color:#c9d2ff;font-weight:900;}
+.skill-summary .sum-2row .stag{font-size:12.5px;padding:5px 11px;}
+.skill-summary .sum-code-box{width:auto;padding:0 0 0 22px;}
+.skill-summary .sum-code-box .sum-code{width:122px;min-height:60px;font-size:16px;color:#1a1405;background:linear-gradient(180deg,#f3c75a,#d9a02f);border:0;box-shadow:0 4px 14px rgba(232,184,75,.35);}
+.skill-summary .sum-code-box .sum-code small{color:#3b2a05;opacity:.85;}
+.skill-summary .sum-code-box .sum-code:hover{background:linear-gradient(180deg,#ffd76e,#e6ad37);}
+@media (max-width:760px){.skill-summary{flex-wrap:wrap;gap:12px;padding:14px 16px;}.skill-summary .sum-bar.sum-2row{flex-basis:100%;order:3;border:0;padding:0;}.skill-summary .sum-code-box{flex:1;padding:0;}.skill-summary .sum-code-box .sum-code{width:100%;}}
+
+/* [SUM-HERO2] 컴팩트 + 모르둠 카드풍 배경/테두리 (크기 아닌 색감만) */
+.skill-summary{padding:8px 16px;margin-bottom:14px;border-radius:16px;
+  background:radial-gradient(90% 140% at 0% 0%,rgba(52,98,200,.38),transparent 62%),linear-gradient(135deg,#102349 0%,#0d1428 52%,#2b2309 100%);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 8px 24px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.03) inset;}
+.skill-summary::before{left:0;right:0;top:0;bottom:auto;width:auto;height:2px;background:linear-gradient(90deg,#3f7cff,#e8b84b);}
+.skill-summary .sum-ring{width:78px;padding:0 0 13px;margin-right:2px;}
+.skill-summary .sum-ring svg{width:52px;height:52px;}
+.skill-summary .sum-ring-t{transform:translateY(-68%);}
+.skill-summary .sum-ring-t b{font-size:15px;}
+.skill-summary .sum-ring-t span{font-size:9px;}
+.skill-summary .sum-ring-l{bottom:0;font-size:9.5px;}
+.skill-summary .sum-bar.sum-2row{padding:0 16px;gap:5px;border-color:rgba(255,255,255,.12);}
+.skill-summary .sum-2row .sum-r1,.skill-summary .sum-2row .sum-r2{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:5px;}
+.skill-summary .sum-2row .sum-r1::-webkit-scrollbar,.skill-summary .sum-2row .sum-r2::-webkit-scrollbar{display:none;}
+.skill-summary .sum-2row .stag{font-size:11.5px;padding:3px 8px;flex:none;}
+.skill-summary .sum-2row .sum-sp{font-size:11.5px;flex:none;}
+.skill-summary .sum-code-box{padding:0 0 0 16px;}
+.skill-summary .sum-code-box .sum-code{width:104px;min-height:44px;font-size:14px;gap:1px;}
+.skill-summary .sum-code-box .sum-code small{font-size:9.5px;}
+
+/* [SUM-HERO3] 톤 다운: 아래 스킬 카드들과 같은 어두운 패널 계열 + 절제된 포인트 */
+.skill-summary{padding:8px 16px;margin-bottom:10px;border-radius:14px;
+  background:linear-gradient(90deg,rgba(60,90,170,.16),rgba(16,20,30,.96) 38%,rgba(11,14,22,.98));
+  border:1px solid rgba(255,255,255,.1);box-shadow:none;}
+.skill-summary::before{height:2px;opacity:.55;background:linear-gradient(90deg,#4f7dff,rgba(232,184,75,.8));}
+.skill-summary .sum-bar.sum-2row{border-color:rgba(255,255,255,.08);}
+.skill-summary .sum-code-box .sum-code{background:rgba(232,184,75,.1);color:#f0c254;border:1px solid rgba(232,184,75,.55);box-shadow:none;}
+.skill-summary .sum-code-box .sum-code small{color:#d9b25a;opacity:.85;}
+.skill-summary .sum-code-box .sum-code:hover{background:rgba(232,184,75,.2);}
+.skill-summary .sum-ring circle:last-child{filter:none;stroke:#8a98ff;}
+
+/* [TIP-NAME-LEFT] 툴팁 헤더 이름/부제 좌측 정렬 고정 (API의 P ALIGN=CENTER 무력화) */
+#loa-tip .tip-hd-text,#loa-tip .tip-hd-name,#loa-tip .tip-hd-name *,#loa-tip .tip-hd-sub{text-align:left !important;}
+#loa-tip .tip-hd-name p,#loa-tip .tip-hd-name div{margin:0;padding:0;display:inline;}
+
+/* [TIP-GRADE-BORDER] 아이템 툴팁 등급색 테두리 (살짝) */
+.tip-gm{display:none !important;}
+#loa-tip:has(.tip-gm[data-g="고급"]){border-color:rgba(141,249,1,.55) !important;}
+#loa-tip:has(.tip-gm[data-g="희귀"]){border-color:rgba(0,176,250,.55) !important;}
+#loa-tip:has(.tip-gm[data-g="영웅"]){border-color:rgba(206,67,252,.6) !important;}
+#loa-tip:has(.tip-gm[data-g="전설"]){border-color:rgba(249,174,0,.6) !important;}
+#loa-tip:has(.tip-gm[data-g="유물"]){border-color:rgba(250,93,0,.6) !important;}
+#loa-tip:has(.tip-gm[data-g="고대"]){border-color:rgba(227,199,161,.55) !important;}
+#loa-tip:has(.tip-gm[data-g="에스더"]){border-color:rgba(60,242,230,.55) !important;}
+
+/* [EXP-CARD-LUX] 원정대 캐릭터 슬롯: 은은한 금박 테두리 + 자개빛 광택 + 모서리 장식 (과하지 않게) */
+.exp-card{
+  position:relative;overflow:hidden;
+  border:1px solid transparent !important;
+  background:
+    linear-gradient(180deg,rgba(18,22,33,.97),rgba(11,14,22,.99)) padding-box,
+    linear-gradient(135deg,rgba(232,184,75,.62),rgba(255,255,255,.07) 30%,rgba(232,184,75,.16) 58%,rgba(232,184,75,.5)) border-box !important;
+  box-shadow:0 4px 18px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,244,214,.07) !important;
+  transition:box-shadow .2s ease,transform .2s ease;
+}
+/* 자개 광택: 대각선으로 스치는 옅은 무지갯빛 */
+.exp-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:
+    linear-gradient(115deg,transparent 12%,rgba(150,225,255,.055) 30%,rgba(255,170,220,.05) 42%,rgba(255,226,150,.06) 54%,transparent 72%),
+    radial-gradient(120% 90% at 0% 0%,rgba(255,236,190,.07),transparent 55%);
+}
+/* 모서리 금박 장식 (좌상/우하) */
+.exp-card::after{
+  content:"";position:absolute;inset:4px;pointer-events:none;border-radius:11px;
+  background:
+    linear-gradient(rgba(232,184,75,.7),rgba(232,184,75,.7)) top left/12px 1px no-repeat,
+    linear-gradient(rgba(232,184,75,.7),rgba(232,184,75,.7)) top left/1px 12px no-repeat,
+    linear-gradient(rgba(232,184,75,.55),rgba(232,184,75,.55)) bottom right/12px 1px no-repeat,
+    linear-gradient(rgba(232,184,75,.55),rgba(232,184,75,.55)) bottom right/1px 12px no-repeat;
+}
+.exp-card > *{position:relative;z-index:1;}
+.exp-card:hover{box-shadow:0 6px 22px rgba(0,0,0,.5),0 0 14px rgba(232,184,75,.14),inset 0 1px 0 rgba(255,244,214,.1) !important;transform:translateY(-1px);}
+/* 아바타 금테 */
+.exp-card .exp-avatar{border:1.5px solid rgba(232,184,75,.55) !important;box-shadow:0 0 0 2px rgba(11,14,22,.9),0 0 0 3px rgba(232,184,75,.18);}
+/* 현재 보고 있는 캐릭터는 푸른 테두리 유지 */
+.exp-card.active{
+  background:
+    linear-gradient(180deg,rgba(20,26,40,.97),rgba(11,15,24,.99)) padding-box,
+    linear-gradient(135deg,rgba(110,175,255,.9),rgba(255,255,255,.08) 35%,rgba(232,184,75,.3) 62%,rgba(110,175,255,.75)) border-box !important;
+  box-shadow:0 0 0 1px rgba(91,156,245,.55),0 4px 20px rgba(91,156,245,.2) !important;
+}
