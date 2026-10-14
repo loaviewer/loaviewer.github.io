@@ -1,5 +1,18 @@
 // ===== 스킬 탭 렌더링 (app-render-skill.js) =====
 
+
+// 스킬 룬 등급색 (전설=주황금, 유물=적주황 으로 구분)
+function runeStyle(grade) {
+  var T = {
+    "고급": { c: "#8DF901", bg: "rgba(141,249,1,.16)" },
+    "희귀": { c: "#00B0FA", bg: "rgba(0,176,250,.16)" },
+    "영웅": { c: "#CE43FC", bg: "rgba(206,67,252,.16)" },
+    "전설": { c: "#F9AE00", bg: "rgba(249,174,0,.18)" },
+    "유물": { c: "#FA5D00", bg: "rgba(250,93,0,.2)" }
+  };
+  return T[grade] || gradeStyle(grade);
+}
+
 function isManaSkill(s) {
   var tip = parseTip(s.Tooltip);
   if (!tip) return false;
@@ -586,42 +599,60 @@ function renderSkills(skillsData, gemData) {
   var skills = normalSkills.concat(lv1GemSkills, identitySkills);
 
   if (sumEl) {
-    var pts = window.__skillPts || {};
-    var cnt = 0, gro = 0, brk = 0;
+    var cnt = 0, gro = 0, brk = 0, stiff = 0, hitImm = 0, statusImm = 0;
     for (var s of normalSkills) {
       var f = skillTraitFlags(s);
       if (f.counter) cnt++;
       if (f.groggy) gro++;
       if (f.brk) brk++;
+      var ar = String((skillAttrs(s).armor) || "");
+      if (/경직\s*면역/.test(ar)) stiff++;
+      if (/피격\s*이상\s*면역/.test(ar)) hitImm++;
+      if (/상태\s*이상\s*면역/.test(ar)) statusImm++;
     }
     var swift = window.__swiftCdPct || 0;
     var ark = window.__arkCdPct || { mana: 0, all: 1 };
     var arkAllPct = (1 - ark.all) * 100;
-    var sp = pts.total
-      ? `<span class="sum-sp">SP <b>${pts.used ?? "-"}/${pts.total}</b></span>`
-      : `<span class="sum-sp">스킬 <b>${normalSkills.length}개</b></span>`;
     var hasGemCool = false;
     for (var s of normalSkills) {
       if ((gemMap[s.Name] || {}).coolPct) { hasGemCool = true; break; }
     }
     var o = cdOpt();
     var tog = (key, cls, text) => `<span class="stag ${cls} tog ${o[key] ? "on" : "off"}" data-cd="${key}" title="클릭: ${o[key] ? "비적용으로 변경" : "적용으로 변경"}"><i class="chk"></i>${text}</span>`;
+    var trait = (cls, label, n) => n > 0 ? `<span class="stag ${cls}">${label} <b>${n}</b></span>` : "";
+    var row1 = [
+      trait("gold", "카운터", cnt), trait("purple", "무력화", gro), trait("violet", "부위 파괴", brk),
+      trait("slate", "경직 면역", stiff), trait("slate", "피격이상 면역", hitImm), trait("slate", "상태이상 면역", statusImm)
+    ].join("");
     var tags = [
       swift ? tog("swift", "green", `신속재감 ${swift.toFixed(2)}%`) : "",
       hasGemCool ? tog("gem", "cyan", "보석 재감 적용") : "",
       ark.mana ? tog("mana", "cyan", `마나재감 ${ark.mana.toFixed(1)}%`) : "",
       arkAllPct > 0.001 ? tog("evo", "cyan", `진화재감 ${arkAllPct.toFixed(2)}%`) : ""
     ].join("");
-    var cdLabel = `<span class="sum-sp">재감 효과</span>`;
-    var codeBtn = `<button type="button" class="sum-code" title="게임 스킬 창에 붙여넣을 수 있는 스킬 코드를 복사합니다">스킬코드</button>`;
-    sumEl.innerHTML = `<div class="sum-bar">${cdLabel}${tags}${codeBtn}</div>`;
+    var codeBtn = `<button type="button" class="sum-code" title="게임 스킬 창에 붙여넣을 수 있는 스킬 코드를 복사합니다">스킬코드<small>복사</small></button>`;
+    var pts = window.__skillPts || {};
+    var ringBox = "";
+    if (pts.total) {
+      var used = Number(pts.used) || 0, tot = Number(pts.total) || 1;
+      var R = 27, C = 2 * Math.PI * R, dash = Math.max(0, Math.min(1, used / tot)) * C;
+      ringBox = `<div class="sum-ring" title="스킬 포인트 ${used} / ${tot}"><svg viewBox="0 0 70 70" width="66" height="66" aria-hidden="true">` +
+        `<circle cx="35" cy="35" r="${R}" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="7"/>` +
+        `<circle cx="35" cy="35" r="${R}" fill="none" stroke="#7b8cff" stroke-width="7" stroke-linecap="round" stroke-dasharray="${dash.toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 35 35)"/></svg>` +
+        `<div class="sum-ring-t"><b>${used}</b><span>/ ${tot}</span></div><div class="sum-ring-l">스킬 포인트</div></div>`;
+    }
+    sumEl.innerHTML = ringBox +
+      `<div class="sum-bar sum-2row">` +
+      (row1 ? `<div class="sum-r1">${row1}</div>` : "") +
+      `<div class="sum-r2"><span class="sum-sp">재감 효과</span>${tags}</div></div>` +
+      `<div class="sum-code-box">${codeBtn}</div>`;
     sumEl.onclick = async e => {
       var cb = e.target.closest(".sum-code");
       if (cb) {
         if (cb.disabled) return;
         var nm = ((window.__fullData || {}).ArmoryProfile || {}).CharacterName || "";
         if (!nm) return;
-        var say = (t, ms) => { cb.textContent = t; if (ms) setTimeout(() => { cb.textContent = "스킬코드"; cb.disabled = false; }, ms); };
+        var say = (t, ms) => { cb.textContent = t; if (ms) setTimeout(() => { cb.innerHTML = "스킬코드<small>복사</small>"; cb.disabled = false; }, ms); };
         cb.disabled = true; say("불러오는 중…");
         try {
           var rs = await fetch(`${window.PROXY}/character/${encodeURIComponent(nm)}/skillcode`);
@@ -660,7 +691,7 @@ function renderSkills(skillsData, gemData) {
 
     var gm = gemMap[s.Name] || {};
     var rune = s._identity ? '<div class="rune-wrap"></div>' : s.Rune
-      ? `<div class="rune-wrap"><div class="rune-cell" data-si="${si}" style="background:${gradeStyle(s.Rune.Grade).bg};border-color:${gradeStyle(s.Rune.Grade).c}"><img src="${s.Rune.Icon || ""}" alt="" loading="lazy"></div><div class="rune-name" style="color:${gradeStyle(s.Rune.Grade).c}">${s.Rune.Name || ""}</div></div>`
+      ? `<div class="rune-wrap"><div class="rune-cell" data-si="${si}" style="background:${runeStyle(s.Rune.Grade).bg};border-color:${runeStyle(s.Rune.Grade).c}"><img src="${s.Rune.Icon || ""}" alt="" loading="lazy"></div><div class="rune-name" style="color:${runeStyle(s.Rune.Grade).c}">${s.Rune.Name || ""}</div></div>`
       : `<div class="rune-wrap"><div class="rune-cell empty">-</div></div>`;
 
     return `
@@ -743,6 +774,6 @@ function renderSkills(skillsData, gemData) {
   listEl.querySelectorAll(".rune-cell[data-si]").forEach(el => {
     var s = skills[+el.dataset.si];
     if (!s) return;
-    if (s.Rune) bindTip(el, buildTipHtml(s.Rune.Tooltip, s.Rune.Name));
+    if (s.Rune) bindTip(el, buildTipHtml(s.Rune.Tooltip, s.Rune.Name, s.Rune.Icon, runeStyle(s.Rune.Grade).c));
   });
 }

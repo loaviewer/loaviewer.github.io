@@ -372,6 +372,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
     const critTotal = critTotalBase + (window.__backAtk10Checked ? 10 : 0) + giminhamCritBonus;
     
     window.__realCritRate = critTotal;
+    window.__realAs = as; window.__realMs = ms;
     window.__realCritDmg = critDmgTotal;
 
     const activeEvo = window.__activeEvoNode;
@@ -796,13 +797,14 @@ function fillEffDash(stats, equipList, fullData, statMap) {
       }
       if (bItem) {
         bCard.style.display = "block";
-        const bEff = calcBraceletEfficiency(bItem, {
+        let bEff = calcBraceletEfficiency(bItem, {
           critRate: critTotal,
           critDmg: critDmgTotal,
           weaponAtk: bag.weaponAtk || 265000,
           mainStat: bag.mainStat || 500000,
           extraDmg: bag.extraDmg || 39.5
         });
+        bEff = window.braceletApplySpeed ? window.braceletApplySpeed(bItem, bEff) : bEff;
         if (bEff && bEff.totalEff > 0) {
           if (bVal) bVal.textContent = bEff.totalEff.toFixed(2) + "%";
           
@@ -817,7 +819,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
                          <span style="color:#ffd200;">팔찌 효율 :</span> <span style="color:${dynColor};">+${bEff.totalEff.toFixed(2)}%</span>
                        </div>`;
           for (let br = 0; br < bEff.rows.length; br++) {
-            bHtml += '<div class="mc-sub-line"><span>' + bEff.rows[br].name + '</span><b>+' + bEff.rows[br].pct.toFixed(2) + '%</b></div>';
+            bHtml += '<div class="mc-sub-line"><span>' + (window.brColorize ? window.brColorize(bEff.rows[br].name, bItem) : bEff.rows[br].name) + '</span><b>+' + bEff.rows[br].pct.toFixed(2) + '%</b></div>';
           }
           setDrawer("#braceletEffCard", bHtml);
         } else {
@@ -898,3 +900,50 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   // 🎯 세팅이 끝난 후 최종적으로 paint() 실행
   paint();
 }
+
+// ===== 팔찌 공이속 옵션 효율 (스탯 보드 팔찌 카드 + 장비 툴팁 공용) =====
+// 팔찌의 "공격 및 이동 속도 +N%" 를 뺀 상태와 비교 → 음속돌파 / 돌격대장 / 공속·이속 실효율
+// 공속·이속은 기본 100% + 최대 40% (140%) 까지만 유효
+window.braceletApplySpeed = function (bItem, bEff) {
+  try {
+    const as0 = window.__realAs, ms0 = window.__realMs;
+    if (!bItem || as0 == null || ms0 == null) return bEff;
+    const SPD = { asPerPct: 0.22, msPerPct: 0.11 };   // 공속 1%p당 효율 0.22% / 이속 1%p당 효율 0.11%
+    const t = String(bItem.Tooltip || "").replace(/\\r\\n|\\n|\\r/g, " ").replace(/\\"/g, '"').replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    let vFix = 0, m;
+    const re = /공격\s*및\s*이동\s*속도가\s*([0-9.]+)\s*%\s*증가/g;
+    while ((m = re.exec(t))) { if (/중첩/.test(t.slice(m.index, m.index + m[0].length + 30))) continue; vFix += parseFloat(m[1]); }
+    const vStk = /공격\s*적중\s*시\s*매\s*초.*공격\s*및\s*이동\s*속도가\s*1\s*%\s*증가.*최대\s*6\s*중첩/.test(t) ? 6 : 0;
+    if (vFix + vStk <= 0) return bEff;
+
+    const apT = String(window.__fullData?.ArkPassive?.Title || "").replace(/\s+/g, "");
+    const asBoost = ((window.__charClass === "디스트로이어" && apT.indexOf("중력수련") >= 0) ||
+                     (window.__charClass === "브레이커" && apT.indexOf("수라의길") >= 0)) ? 1.4 : 1;   // 중수 디트 / 수라 브레이커: 공속 효율 ×1.4
+    const lv = window.__eumLv | 0;
+    // 공이속 v 를 뺀 상태와 비교한 효율(합연산: 공속 + 이속 + 돌격대장 + 음속돌파)
+    const eff = (v) => {
+      if (v <= 0) return 0;
+      const as1 = Math.max(0, as0 - v), ms1 = Math.max(0, ms0 - v);
+      const asC0 = Math.min(as0, 40), asC1 = Math.min(as1, 40), msC0 = Math.min(ms0, 40), msC1 = Math.min(ms1, 40);
+      let g = (asC0 - asC1) * SPD.asPerPct * asBoost + (msC0 - msC1) * SPD.msPerPct;
+      if (window.__dolDaeRate != null) g += window.__dolDaeRate * (msC0 - msC1) / 100;
+      if (window.__activeEvoNode === "eum" && lv > 0 && typeof calcSonicBreakthrough === "function") {
+        const a = calcSonicBreakthrough(as0, ms0, lv).evoDmg, b = calcSonicBreakthrough(as1, ms1, lv).evoDmg;
+        g += ((186.9 + a) / (186.9 + b) - 1) * 100;
+      }
+      return g;
+    };
+    const gStk = eff(vStk), gFix = eff(vFix), gAll = eff(vStk + vFix);
+
+    const rows = (bEff && bEff.rows ? bEff.rows : []).map(r => Object.assign({}, r));
+    if (vStk > 0) {
+      const r = rows.find(x => /무공/.test(x.name || "") && /공이속/.test(x.name || ""));
+      if (r) { r.pct = ((1 + r.pct / 100) * (1 + gStk / 100) - 1) * 100; r.name = r.name.replace(/\s*\(6중첩\)\s*$/, "") + " (6중첩)"; }
+      else rows.push({ name: "공격 적중 시 공이속 1% (6중첩)", pct: gStk });
+    }
+    if (vFix > 0) rows.push({ name: "공이속 +" + (Math.round(vFix * 100) / 100) + "%", pct: gFix });
+
+    const base = (bEff && bEff.totalEff > 0) ? bEff.totalEff : 0;
+    return { totalEff: ((1 + base / 100) * (1 + gAll / 100) - 1) * 100, rows: rows };
+  } catch (e) { return bEff; }
+};

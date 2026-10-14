@@ -14,6 +14,56 @@ function getGradeColorClass(grade) {
   return { cls: "none", color: "#7c88a5" };
 }
 
+
+// ===== 팔찌 툴팁(API FONT 색상) → 수치 색상 맵 / 라벨 색칠 =====
+window.brColorMap = function (html) {
+  var map = { stat: {}, num: {} };
+  try {
+    var h = String(html == null ? "" : html);
+    var re = /<font[^>]*?color\s*=\s*\\?['"]?(#[0-9a-fA-F]{3,8})\\?['"]?[^>]*>\s*([+-]?\s*[0-9][0-9,]*(?:\.[0-9]+)?\s*%?)\s*<\/font>/gi, m;
+    while ((m = re.exec(h))) {
+      var raw = m[2].replace(/\s+/g, "").replace(/^[+-]/, "");
+      var key = String(parseFloat(raw.replace(/,/g, ""))) + (/%$/.test(raw) ? "%" : "");
+      var pre = h.slice(Math.max(0, m.index - 160), m.index).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      var sm = /(치명|특화|신속|제압|인내|숙련|힘|민첩|지능)\s*[+]?\s*$/.exec(pre);
+      if (sm && !/%$/.test(raw)) { if (!map.stat[sm[1]]) map.stat[sm[1]] = m[1]; }
+      else if (!map.num[key]) map.num[key] = m[1];
+    }
+  } catch (e) {}
+  return map;
+};
+window.brColorize = function (label, item) {
+  var esc = function (x) { return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
+  try {
+    var map = window.brColorMap(item && item.Tooltip);
+    var sm = /^(치명|특화|신속|제압|인내|숙련|힘|민첩|지능)\s*\+?\s*([0-9,]+)$/.exec(String(label).trim());
+    if (sm && map.stat[sm[1]]) return esc(sm[1]) + ' <span style="color:' + map.stat[sm[1]] + ';font-weight:800">+' + esc(sm[2]) + '</span>';
+    // DB 옵션(initial 문구)과 일치하면 정보 탭과 같은 등급색(상/중/하)으로 수치 색칠
+    var base = String(label).replace(/\s*\(6중첩\)\s*$/, "").trim();
+    var ig = item && item.Grade, gc = null;
+    var scan = function (o) {
+      if (gc || !o || o.initial !== base) return;
+      var gr = o[ig] || o["고대"] || o["유물"] || "";
+      if (gr) gc = getGradeColorClass(gr).color;
+    };
+    var d1 = window.BRACELET_EFFECTS || (typeof BRACELET_EFFECTS !== "undefined" ? BRACELET_EFFECTS : null);
+    if (d1) Object.keys(d1).forEach(function (c) { Object.keys(d1[c] || {}).forEach(function (k) { scan(d1[c][k]); }); });
+    var d2 = window.BRACELET_OPTIONS_DB || (typeof BRACELET_OPTIONS_DB !== "undefined" ? BRACELET_OPTIONS_DB : null);
+    if (d2) Object.keys(d2).forEach(function (k) { scan(d2[k]); });
+    if (gc) {
+      return String(label).split(/([+-]?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?!\d|\s*중첩))/).map(function (tok, i) {
+        return i % 2 === 0 ? esc(tok) : '<span style="color:' + gc + ';font-weight:800">' + esc(tok) + '</span>';
+      }).join("");
+    }
+    return String(label).split(/([+-]?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?!\d|\s*중첩))/).map(function (tok, i) {
+      if (i % 2 === 0) return esc(tok);
+      var raw = tok.replace(/^[+-]/, "");
+      var key = String(parseFloat(raw.replace(/,/g, ""))) + (/%$/.test(raw) ? "%" : "");
+      return map.num[key] ? '<span style="color:' + map.num[key] + ';font-weight:800">' + esc(tok) + '</span>' : esc(tok);
+    }).join("");
+  } catch (e) { return esc(label); }
+};
+
 function getCombatStatColor(val) {
   var v = parseInt(String(val).replace(/,/g, ""), 10) || 0;
   if (v >= 111) return "#ffd200";
@@ -83,10 +133,11 @@ function formatBraceletOpts(body, itemGrade) {
   var boxStyle = "display:inline-flex;align-items:center;gap:4px;padding:3px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px;background:rgba(255,255,255,.04);font-size:11px;white-space:nowrap;flex:0 0 auto;";
   var wrapStyle = "display:flex;flex-wrap:nowrap;gap:4px;margin-bottom:6px;white-space:nowrap;";
   var statBoxes = [];
+  var brCm = window.brColorMap(body);
   for (var a = 0; a < combatStatItems.length; a++) {
     var s = combatStatItems[a];
-    var color = getCombatStatColor(s.val);
-    statBoxes.push('<span style="' + boxStyle + '"><span style="color:#fff;font-weight:600;">' + s.name + '</span><b style="color:' + color + ';font-weight:800;">' + s.val + '</b></span>');
+    var color = (brCm.stat[s.name]) || getCombatStatColor(s.val);
+    statBoxes.push('<span style="' + boxStyle + '"><span style="color:#fff;font-weight:600;">' + s.name + '</span><b style="color:' + color + ';font-weight:800;">+' + s.val + '</b></span>');
   }
   for (var b = 0; b < mainStatItems.length; b++) {
     var ms = mainStatItems[b];
@@ -102,7 +153,7 @@ function formatBraceletOpts(body, itemGrade) {
     var badgeStyle = "display:inline-block;min-width:20px;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:800;text-align:center;background:" + g.color + "22;color:#fff;border:1px solid " + g.color + "66;";
     var badgeHtml = grade ? '<span style="' + badgeStyle + '">' + grade + '</span>' : '<span style="' + badgeStyle + '">-</span>';
     var displayName = opt.initial || "특수 옵션";
-    displayName = displayName.replace(/([+\-][\d.]+%?)/g, '<b style="color:' + g.color + ';font-weight:800;">$1</b>');
+    displayName = displayName.replace(/([+\-]?\d(?:[\d,]*\d)?(?:\.\d+)?%?)/g, '<b style="color:' + g.color + ';font-weight:800;">$1</b>');
     html += '<span class="line">' + badgeHtml + ' <span class="opt-name" style="color:#e7ecf6;">' + displayName + '</span></span>';
   }
   return html;
@@ -434,6 +485,7 @@ function renderGear(list, avatarList) {
         extraDmg: bag.extraDmg || 39.5
       });
 
+      if (window.braceletApplySpeed) braceletEff = window.braceletApplySpeed(eq2, braceletEff);
       if (braceletEff && braceletEff.totalEff > 0) {
         var effVal = braceletEff.totalEff;
         var effColor = "#ffffff";
@@ -456,7 +508,7 @@ function renderGear(list, avatarList) {
 
         var tooltipHtml = '<div class="tip-hd beff-hd"><span class="beff-t">팔찌 옵션별 효율</span><span class="beff-sum" style="color:' + effColor + '">합계 ' + effVal.toFixed(2) + '%</span></div><div class="tip-bd beff-bd">';
         for (var r = 0; r < braceletEff.rows.length; r++) {
-          tooltipHtml += '<div class="beff-row"><span class="beff-n">' + braceletEff.rows[r].name + '</span><b class="beff-v">+' + braceletEff.rows[r].pct.toFixed(2) + '%</b></div>';
+          tooltipHtml += '<div class="beff-row"><span class="beff-n">' + window.brColorize(braceletEff.rows[r].name, eq2) + '</span><b class="beff-v">+' + braceletEff.rows[r].pct.toFixed(2) + '%</b></div>';
         }
         tooltipHtml += '</div>';
         bindTip(effBadge, tooltipHtml);
@@ -976,7 +1028,11 @@ function renderExpedition(siblings, currentProfile) {
     if (!groups.has(server)) groups.set(server, []);
     groups.get(server).push(c);
   });
-  container.innerHTML = Array.from(groups.entries()).map(function(entry) {
+  var lvOf = function(c) { return parseFloat(String(c.ItemAvgLevel || "0").replace(/,/g, "")) || 0; };
+  var groupMax = function(list) { return list.reduce(function(m, c) { return Math.max(m, lvOf(c)); }, 0); };
+  container.innerHTML = Array.from(groups.entries()).sort(function(x, y) {
+    return groupMax(y[1]) - groupMax(x[1]);   // 장비레벨이 가장 높은 캐릭터가 있는 서버를 맨 위로
+  }).map(function(entry) {
     var server = entry[0]; var list = entry[1];
     var sorted = list.slice().sort(function(a, b) {
       var av = parseFloat(String(a.ItemAvgLevel || "0").replace(/,/g, "")) || 0;

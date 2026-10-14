@@ -338,7 +338,7 @@
     var specVal = spec ? parseInt(String(spec.Value).replace(/,/g, ""), 10) || 0 : 0;
     host.style.display = "";
     host.innerHTML =
-      '<div style="grid-column:1/-1;font-weight:800;color:#e8b84b;font-size:14px;margin:6px 2px 0">서폿 버프 효과</div>' +
+      '<div style="grid-column:1/-1;font-weight:800;color:#e8b84b;font-size:13px;line-height:16px;margin:-6px 2px -6px">서폿 버프 효과</div>' +
       card("supAtkCard", "공증 효과", ic1, "+" + fmt(inc) + ' <small style="font-size:13px;color:#9aa8c7">(+' + r2(aSum) + "%)</small>", aDraw, "#7fd1ff") +
       card("supDmgCard", "피증 효과", ic2, dMain, dDraw, "#ff9d6e") +
       card("supBrandCard", "낙인 및 상시 버프", ic3, "+" + r2((total - 1) * 100) + "%", bDraw, "#d9a8ff") +

@@ -313,7 +313,7 @@ function render(data) {
     const dec = p.Decorations || {};
     const urls = [];
     const pushU = (x) => { const u = typeof x === "string" ? x : (x && (x.Icon || x.Image || x.Url)); if (u && /^https?:/.test(u)) urls.push(u); };
-    (Array.isArray(dec.Emblems) ? dec.Emblems.slice(-1) : []).forEach(pushU);   // 로스트아크 화면처럼 마지막 엠블럼 1개만
+    (Array.isArray(dec.Emblems) ? dec.Emblems : []).forEach(pushU);   // 엠블럼 전부 표시 (심볼 제외)
     if (urls.length) {
       const wrap = el("div", "art-emblems");
       wrap.style.cssText = "display:flex;gap:8px;align-items:center;justify-content:flex-start;margin-top:10px";
@@ -328,6 +328,7 @@ function render(data) {
     }
   }
 
+
   const rows = el("div", "art-rows");
   const addRow = (label, value, cls, color) => {
     const r = el("div", "art-row");
@@ -341,10 +342,12 @@ function render(data) {
   addRow("원정대", p.ExpeditionLevel != null ? "Lv." + p.ExpeditionLevel : "-", "", p.ExpeditionLevel != null ? "#7fd1ff" : "");
   addRow("칭호", p.Title || "-", p.Title ? titleGradeClass(p.Title) : "");
   addRow("길드", p.GuildName || "-", p.GuildName ? "art-guild" : "");
-  addRow("영지", p.TownName ? `Lv.${p.TownLevel ?? "-"} ${p.TownName}` : "-", "", p.TownName ? "#3cc78c" : "");
+  addRow("영지", p.TownName ? `Lv.${p.TownLevel ?? "-"} ${p.TownName}` : "-", "", p.TownName ? "#c8a2ff" : "");
   { // 명예: 프로필에 명예 관련 값이 있을 때만 표시
     const hk = Object.keys(p).find(k => /honor|명예/i.test(k));
-    if (hk && p[hk] != null && p[hk] !== "") addRow("명예", String(p[hk]), "", "#c4b5fd");
+    if (hk && p[hk] != null && p[hk] !== "") { const hv = parseInt(String(p[hk]).replace(/[^0-9]/g, ""), 10) || 0;
+      const hc = hv >= 1000 ? "#F9AE00" : hv >= 500 ? "#CE43FC" : hv >= 300 ? "#00B0FA" : hv >= 100 ? "#8DF901" : "#aeb6c6";
+      addRow("명예", String(p[hk]), "", hc); }
   }
   { // 우측 상단: 최근 갱신 (이 사이트가 데이터를 불러온 시각 기준, 서버 장애 시 저장본 시각)
     const hit = window.__cacheHit && /\/all$/.test(window.__cacheHit.url);

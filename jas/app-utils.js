@@ -211,7 +211,10 @@ function skillIconByName(name) {
 }
 
 // 아이콘이 있는 툴팁 헤더 (스킬 툴팁과 같은 모양: 아이콘 + 이름 + 보조 줄)
+function tipGradeMark(g) { return g ? '<span class="tip-gm" data-g="' + g + '"></span>' : ""; }
+
 function tipItemHeaderHtml(nameHtml, icon, badgeIcon, subs, borderColor, iconBg) {
+  nameHtml = String(nameHtml == null ? "" : nameHtml).replace(/^((?:<[^>]+>)*)(?:\s|&nbsp;)+/i, "$1");   // 이름 앞 공백 제거(좌측 정렬 유지)
   var bg = "url('" + icon + "') center/cover no-repeat" + (iconBg ? "," + iconBg : "");
   var ic = '<span class="tip-ic2" style="background:' + bg + ";" + (borderColor ? "border-color:" + borderColor + ";" : "") + '">' +
     (badgeIcon ? '<i style="background-image:url(\'' + badgeIcon + '\')"></i>' : "") + "</span>";
@@ -219,7 +222,7 @@ function tipItemHeaderHtml(nameHtml, icon, badgeIcon, subs, borderColor, iconBg)
     subs.map(function(s) { return '<div class="tip-hd-sub">' + s + "</div>"; }).join("") + "</div></div>";
 }
 
-function buildTipHtml(raw, title) {
+function buildTipHtml(raw, title, fallbackIcon, borderOverride) {
   var tip = parseTip(raw);
   if (!tip) {
     var t = strip(raw) || title || "";
@@ -246,7 +249,7 @@ function buildTipHtml(raw, title) {
       var qv = (v.value.qualityValue != null && v.value.qualityValue >= 0) ? v.value.qualityValue : null;
       var ip = v.value.slotData && v.value.slotData.iconPath;
       if (ip) {
-        icon = ip;
+        icon = fallbackIcon || ip;
         var gm0 = /(일반|고급|희귀|영웅|전설|유물|고대|에스더)/.exec(strip(l0));
         grade = gm0 ? gm0[1] : "";
         if (l0) subs.push(l0);
@@ -288,6 +291,7 @@ function buildTipHtml(raw, title) {
     }
   }
   var hd;
+  if (!icon && fallbackIcon) { icon = fallbackIcon; }
   if (icon) {
     var nc = /color\s*=\s*['"]?(#[0-9a-fA-F]{3,8})/i.exec(String(nameHtml));
     var isGem = /보석/.test(strip(nameHtml));
@@ -296,12 +300,12 @@ function buildTipHtml(raw, title) {
     var gbg = ancientIconBg(grade, grade ? gradeStyle(grade).bg : "");
     // 보석: 해당 스킬 아이콘을 크게, 보석 아이콘은 작은 배지로
     hd = skIcon ? tipItemHeaderHtml(nameHtml, skIcon, icon, subs, nc ? nc[1] : "", "")
-                : tipItemHeaderHtml(nameHtml, icon, "", subs, nc ? nc[1] : "", gbg);
+                : tipItemHeaderHtml(nameHtml, icon, "", subs, borderOverride || (nc ? nc[1] : ""), gbg);
   } else {
     hd = nameHtml ? `<div class="tip-hd">${nameHtml}</div>` : (title ? `<div class="tip-hd">${title}</div>` : "");
   }
   if (!main.length && !foot.length && !hd) return "";
-  return `${hd}<div class="tip-bd tip-grp">${main.length ? `<div class="tg tg-main">${main.join("")}</div>` : ""}${foot.length ? `<div class="tg tg-foot">${foot.join("")}</div>` : ""}</div>`;
+  return `${tipGradeMark(grade)}${hd}<div class="tip-bd tip-grp">${main.length ? `<div class="tg tg-main">${main.join("")}</div>` : ""}${foot.length ? `<div class="tg tg-foot">${foot.join("")}</div>` : ""}</div>`;
 }
 
 // ===== 팔찌 툴팁 (옵션 분리 · 상/중/하 배지 · 아이콘 · 구분선) =====
@@ -470,7 +474,7 @@ function buildBraceletTipHtml(tip, title) {
     '<div class="bt-ic-wrap"' + bc + ">" + (icon ? '<img class="bt-ic" src="' + icon + '" alt="">' : "") + "</div>" +
     '<div class="bt-hd-text"><div class="bt-name">' + name + "</div>" +
     subs.map(function(s) { return '<div class="bt-sub">' + s + "</div>"; }).join("") + "</div></div>";
-  return hd + '<div class="tip-bd bt-bd">' + rows.join("") + "</div>";
+  return tipGradeMark(gradeKey) + hd + '<div class="tip-bd bt-bd">' + rows.join("") + "</div>";
 }
 
 function buildArkPassiveTipHtml(effect, fallbackName) {
