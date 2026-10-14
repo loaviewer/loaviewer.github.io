@@ -260,6 +260,7 @@ function titleGradeClass(title) {
 
 function render(data) {
   window.__fullData = data;
+  try { window.goatcounter && window.goatcounter.count({ path: "/lookup", title: "캐릭터 조회", event: true }); } catch (e) {}
   window.__charClass = "";
   window.__mungaLv = 0; window.__eumLv = 0; window.__ipsikLv = 0; window.__manaLv = 0;
   window.__activeEvoNode = null;
