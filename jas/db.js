@@ -70,8 +70,8 @@ var SPECIAL_SKILL_ICONS = {
   "중력 가중 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/dt_skill/dt_skill_01_20.png",
   "심판자 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
   "신앙 스킬": {
-  "홀리나이트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
-  "발키리": "https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_24.png",
+    "홀리나이트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
+    "발키리": "https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_24.png",
   "음양 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/yy_skill/yy_skill_01_3.png"
   },
   "떠오르는 달": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_yy/ark_passive_yy_8.png",
@@ -873,7 +873,7 @@ const EVOLUTION_EFFECTS = [
   { name: "황후의 속삭임", aliases: ["황후의속삭임", "황후의 속삭임"], stat: "atkSpeed", maxLv: 3, values: [8.0, 8.0, 8.0], category: 2, condition: "4스택 루인 적중 6초", group: "깨달음" },
   { name: "폴스딜", aliases: ["폴스딜"], stat: "critDmg", maxLv: 3, values: [10.0, 20.0, 30.0], category: 3, condition: "더썬 한정", group: "도약" },
   { name: "악마의 눈속임", aliases: ["악마의눈속임", "악마의 눈속임"], stat: "critRate", maxLv: 3, values: [10.0, 20.0, 30.0], category: 3, condition: "더데빌 한정", group: "도약", skill: "더 데빌" },
-  { name: "고대의 힘", aliases: ["고대의힘", "고대의 힘"], stat: "critRate", maxLv: 3, values: [5.0, 10.0, 16.0], category: 3, condition: "일반/고대정령 한정", group: "깨달음" },
+  { name: "고대의 힘", aliases: ["고대의힘", "고대의 힘"], stat: "critRate", maxLv: 3, values: [5.0, 10.0, 16.0], category: 2, condition: "일반/고대정령 한정", group: "깨달음" },
   { name: "고대의 바람", aliases: ["고대의바람", "고대의 바람"], stat: "moveSpeed", maxLv: 5, values: [10.0, 10.0, 10.0, 10.0, 10.0], category: 1, condition: "고정", group: "깨달음" },
   { name: "교감강화", aliases: ["교감강화", "교감 강화"], stat: "critRate", maxLv: 5, values: [1.4, 2.8, 4.2, 5.6, 7.0], category: 2, condition: "소환스킬", group: "깨달음" },
   { name: "넘치는교감 공속", aliases: ["넘치는교감", "넘치는 교감"], stat: "atkSpeed", maxLv: 3, values: [3.0, 6.0, 10.0], category: 3, condition: "소환수 전용", group: "깨달음", dynamic: true, note: "캐릭터 본인이 아닌 소환수 대상 버프 - 별도 처리 필요" },
@@ -885,7 +885,7 @@ const EVOLUTION_EFFECTS = [
   { name: "증폭의 세레나데 공속", aliases: ["증폭의세레나데", "증폭의 세레나데"], stat: "atkSpeed", maxLv: 3, values: [1.5, 3.0, 4.5], category: 2, condition: "용맹 8초, 파티 포함", group: "깨달음" },
   { name: "점화의 불씨", aliases: ["점화의불씨", "점화의 불씨"], stat: "critRate", maxLv: 3, values: [10.0, 20.0, 30.0], category: 2, condition: "마력해방 中", group: "깨달음" },
   { name: "발화", aliases: ["발화"], stat: "critDmg", maxLv: 3, values: [18.0, 36.0, 55.0], category: 2, condition: "마력해방 中", group: "깨달음" },
-  { name: "마나 순환", aliases: ["마나순환", "마나 순환"], stat: "atkSpeed", maxLv: 3, values: [8.0, 8.0, 8.0], category: 2, condition: "마력방출 종료 시 최대 30초", group: "깨달음" },
+
   { name: "응집되는 마력", aliases: ["응집되는마력", "응집되는 마력"], stat: "atkSpeed", maxLv: 5, values: [3.0, 3.5, 4.0, 4.5, 5.0], category: 2, condition: "점멸 45초, 2중첩", group: "깨달음", dynamic: true, note: "2중첩까지 - 중첩 수 판정 필요" },
   { name: "공수래(기본)", aliases: ["공수래"], stat: "critRate", maxLv: 5, values: [0.8, 1.6, 2.4, 3.2, 4.0], category: 1, condition: "상시", group: "깨달음" },
   { name: "치명적인 체술", aliases: ["치명적인체술", "치명적인 체술"], stat: "critDmg", maxLv: 5, values: [3.0, 6.0, 9.0, 12.0, 15.0], category: 2, condition: "일반스킬 한정", group: "깨달음" },

@@ -40,9 +40,10 @@ window.brColorize = function (label, item) {
     if (sm && map.stat[sm[1]]) return esc(sm[1]) + ' <span style="color:' + map.stat[sm[1]] + ';font-weight:800">+' + esc(sm[2]) + '</span>';
     // DB 옵션(initial 문구)과 일치하면 정보 탭과 같은 등급색(상/중/하)으로 수치 색칠
     var base = String(label).replace(/\s*\(6중첩\)\s*$/, "").trim();
+    var baseAlt = base.replace(/(재사용\s*쿨\s*\+?[0-9.]+%)\s*증가/, "$1 감소");   // 쿨 증가 표기 보정 전 DB 문구와도 매칭
     var ig = item && item.Grade, gc = null;
     var scan = function (o) {
-      if (gc || !o || o.initial !== base) return;
+      if (gc || !o || (o.initial !== base && o.initial !== baseAlt)) return;
       var gr = o[ig] || o["고대"] || o["유물"] || "";
       if (gr) gc = getGradeColorClass(gr).color;
     };
@@ -50,16 +51,23 @@ window.brColorize = function (label, item) {
     if (d1) Object.keys(d1).forEach(function (c) { Object.keys(d1[c] || {}).forEach(function (k) { scan(d1[c][k]); }); });
     var d2 = window.BRACELET_OPTIONS_DB || (typeof BRACELET_OPTIONS_DB !== "undefined" ? BRACELET_OPTIONS_DB : null);
     if (d2) Object.keys(d2).forEach(function (k) { scan(d2[k]); });
-    if (gc) {
-      return String(label).split(/([+-]?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?!\d|\s*중첩))/).map(function (tok, i) {
-        return i % 2 === 0 ? esc(tok) : '<span style="color:' + gc + ';font-weight:800">' + esc(tok) + '</span>';
-      }).join("");
-    }
+    // 쿨타임 증가 패널티 수치는 붉은색
+    var RED = "#ff5a5a";
+    var cm = /(재사용\s*쿨\s*)(\+?[0-9.]+%)(?=\s*증가)/.exec(String(label));
+    var cdFrom = cm ? cm.index + cm[1].length : -1, cdTo = cm ? cdFrom + cm[2].length : -1;
+    var pos = 0;
     return String(label).split(/([+-]?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?!\d|\s*중첩))/).map(function (tok, i) {
+      var at = pos; pos += tok.length;
       if (i % 2 === 0) return esc(tok);
-      var raw = tok.replace(/^[+-]/, "");
-      var key = String(parseFloat(raw.replace(/,/g, ""))) + (/%$/.test(raw) ? "%" : "");
-      return map.num[key] ? '<span style="color:' + map.num[key] + ';font-weight:800">' + esc(tok) + '</span>' : esc(tok);
+      var col;
+      if (at >= cdFrom && at < cdTo) col = RED;
+      else if (gc) col = gc;
+      else {
+        var raw = tok.replace(/^[+-]/, "");
+        var key = String(parseFloat(raw.replace(/,/g, ""))) + (/%$/.test(raw) ? "%" : "");
+        col = map.num[key];
+      }
+      return col ? '<span style="color:' + col + ';font-weight:800">' + esc(tok) + '</span>' : esc(tok);
     }).join("");
   } catch (e) { return esc(label); }
 };
@@ -153,7 +161,17 @@ function formatBraceletOpts(body, itemGrade) {
     var badgeStyle = "display:inline-block;min-width:20px;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:800;text-align:center;background:" + g.color + "22;color:#fff;border:1px solid " + g.color + "66;";
     var badgeHtml = grade ? '<span style="' + badgeStyle + '">' + grade + '</span>' : '<span style="' + badgeStyle + '">-</span>';
     var displayName = opt.initial || "특수 옵션";
-    displayName = displayName.replace(/([+\-]?\d(?:[\d,]*\d)?(?:\.\d+)?%?)/g, '<b style="color:' + g.color + ';font-weight:800;">$1</b>');
+    displayName = displayName.replace(/(재사용\s*쿨\s*\+?[0-9.]+%)\s*감소/, "$1 증가");   // 쿨타임 증가 옵션 문구 보정
+    (function () {
+      var numRe = /([+\-]?\d(?:[\d,]*\d)?(?:\.\d+)?%?)/g;
+      var paint = function (t, c) { return t.replace(numRe, '<b style="color:' + c + ';font-weight:800;">$1</b>'); };
+      var cdm = /(재사용\s*쿨\s*)(\+?[0-9.]+%)(\s*증가)/.exec(displayName);
+      if (cdm) {
+        displayName = paint(displayName.slice(0, cdm.index), g.color) + cdm[1] +
+          '<b style="color:#ff5a5a;font-weight:800;">' + cdm[2] + '</b>' + cdm[3] +
+          paint(displayName.slice(cdm.index + cdm[0].length), g.color);
+      } else displayName = paint(displayName, g.color);
+    })();
     html += '<span class="line">' + badgeHtml + ' <span class="opt-name" style="color:#e7ecf6;">' + displayName + '</span></span>';
   }
   return html;

@@ -178,7 +178,14 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   if (!dash) return;
   window.__dolDaeRate = parseDolDaeRate(fullData?.ArmoryEngraving);
   window.__engData = fullData?.ArmoryEngraving;
+  // 점화 소서리스 + 해 코어 '불완전 연소': 아이덴티티를 100%까지 못 채워 마력 해방을 쓸 수 없으므로
+  // 깨달음 '점화의 불씨' / '발화' 효과는 적용하지 않음
+  const __badIgnite = (window.__charClass === "소서리스") &&
+    JSON.stringify((fullData && fullData.ArkGrid) || {}).indexOf("불완전 연소") >= 0;
+  window.__igniteBlocked = !!__badIgnite;
+  const __igniteRe = /점화의\s*불씨|발화/;
   window.__evoEffects = parseEvolutionEffects(fullData);
+  if (__badIgnite) window.__evoEffects = window.__evoEffects.filter(function (e) { return !__igniteRe.test(String(e.name || "")); });
   window.__evoSum = sumEvoEffects(window.__evoEffects, { includeCat2: true, includeCat3: false });
 
   const critStat = statMap?.["치명"] || 0;
@@ -190,6 +197,12 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   const agBag = sumArkGridEffects(fullData?.ArkGrid);
 
   const synergyBag = calcClassSynergy(fullData?.ArmorySkills || [], window.__charClass, fullData);
+  if (__badIgnite && synergyBag && Array.isArray(synergyBag.rows)) {
+    synergyBag.rows = synergyBag.rows.filter(function (r) {
+      if (__igniteRe.test(String(r.label || ""))) { synergyBag[r.stat] = (synergyBag[r.stat] || 0) - (r.value || 0); return false; }
+      return true;
+    });
+  }
   const hasMass = (fullData?.ArmoryEngraving?.ArkPassiveEffects || []).some(e => /질량\s*증가/.test(e.Name || ""));
   const massAsPenalty = hasMass ? -10 : 0;
 
@@ -904,8 +917,31 @@ function fillEffDash(stats, equipList, fullData, statMap) {
 // ===== 팔찌 공이속 옵션 효율 (스탯 보드 팔찌 카드 + 장비 툴팁 공용) =====
 // 팔찌의 "공격 및 이동 속도 +N%" 를 뺀 상태와 비교 → 음속돌파 / 돌격대장 / 공속·이속 실효율
 // 공속·이속은 기본 100% + 최대 40% (140%) 까지만 유효
+// 재사용 대기시간 증가 패널티 반영: "재사용 대기시간이 N% 증가하지만, 적에게 주는 피해가 M% 증가"
+// 쿨 +N% → 시전 빈도 1/(1+N%) 로 보고 해당 옵션 효율에서 나눠 줌 (CD_COEF: 쿨타임에 묶인 딜 비중, 1=전부)
+window.braceletApplyCdPenalty = function (bItem, bEff) {
+  try {
+    if (!bItem || !bEff || !bEff.rows) return bEff;
+    const CD_COEF = 0.66;
+    const t = String(bItem.Tooltip || "").replace(/\\r\\n|\\n|\\r/g, " ").replace(/\\"/g, '"').replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    const m = /재사용\s*대기\s*시간이\s*([0-9.]+)\s*%\s*증가하지만/.exec(t);
+    if (!m) return bEff;
+    const c = parseFloat(m[1]) * CD_COEF;
+    const rows = bEff.rows.map(r => Object.assign({}, r));
+    const row = rows.find(r => /재사용\s*쿨/.test(r.name || "") && r.pct > 0);
+    if (!row) return bEff;
+    const oldP = row.pct;
+    const newP = ((1 + oldP / 100) / (1 + c / 100) - 1) * 100;
+    row.pct = newP;
+    row.name = String(row.name).replace(/(재사용\s*쿨\s*\+?[0-9.]+%)\s*감소/, "$1 증가");
+    const total = ((1 + bEff.totalEff / 100) / (1 + oldP / 100) * (1 + newP / 100) - 1) * 100;
+    return { totalEff: total, rows: rows };
+  } catch (e) { return bEff; }
+};
+
 window.braceletApplySpeed = function (bItem, bEff) {
   try {
+    bEff = window.braceletApplyCdPenalty ? window.braceletApplyCdPenalty(bItem, bEff) : bEff;
     const as0 = window.__realAs, ms0 = window.__realMs;
     if (!bItem || as0 == null || ms0 == null) return bEff;
     const SPD = { asPerPct: 0.22, msPerPct: 0.11 };   // 공속 1%p당 효율 0.22% / 이속 1%p당 효율 0.11%
