@@ -191,6 +191,17 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   const critStat = statMap?.["치명"] || 0;
   const swiftStat = statMap?.["신속"] || 0;
   const specStat = statMap?.["특화"] || 0;
+  // 특화 툴팁의 '…피해량이 N% 증가' 줄 (회복량 등 제외) → 팔찌 특화 효율 계산에 사용
+  window.__specInfo = (function () {
+    const st = (stats || []).find(x => x.Type === "특화");
+    const lines = [];
+    ((st && Array.isArray(st.Tooltip)) ? st.Tooltip : []).forEach(t => {
+      const plain = String(t).replace(/<[^>]+>/g, "").trim();
+      const m = plain.match(/^(.*?)([0-9.]+)\s*%\s*(증가|증폭)/);
+      if (m && /피해/.test(m[1]) && !/회복/.test(m[1])) lines.push({ name: m[1].trim(), pct: parseFloat(m[2]) });
+    });
+    return { total: specStat, lines: lines };
+  })();
 
   const bag = sumGearStats(equipList || []);
   const engBag = sumEngraveEffects(fullData?.ArmoryEngraving);
@@ -246,6 +257,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   const swiftMsPct = extractStatTooltipPct("신속", /이동\s*속도가\s*([0-9.]+)\s*%\s*증가/);
 
   const __isSup = typeof checkIsSupportMode === "function" && checkIsSupportMode(fullData, window.__charClass); // 서폿은 축복의 여신에 갈망 포함
+  window.__isSupFlag = __isSup;
   let desireOn = !__isSup;
 
   function extractSpecAmpPct(keyword) {
@@ -342,8 +354,6 @@ function fillEffDash(stats, equipList, fullData, statMap) {
       const tip = parseTip(g.Tooltip);
       const blob = tip ? JSON.stringify(tip) : (g.Tooltip || "");
       if (!/겁화/.test(blob)) continue;
-      const dmgM = blob.match(/치명타\s*피해[^\d]{0,20}([0-9.]+)\s*%/);
-      const critDmgBonus = dmgM ? parseFloat(dmgM[1]) : 0;
       let skillName = "";
       let m = blob.match(/COLOR=['"]#FFD200['"]>([^<]+)<\/FONT>/);
       if (m) skillName = m[1].trim();
@@ -351,14 +361,13 @@ function fillEffDash(stats, equipList, fullData, statMap) {
         m = blob.match(/\[[^\]]+\]\s*(?:<[^>]+>)*\s*([^<>\s]+)\s*(?:<[^>]+>)*\s*피해/);
         if (m) skillName = m[1].trim();
       }
-      if (skillName && critDmgBonus > 0) {
-        result.push({ name: skillName, critDmgBonus });
-      }
+      if (skillName) result.push({ name: skillName, critDmgBonus: 0 });   // 겁화 보석은 스킬 피해만 → 치피 없음
     }
     return result;
   }
 
   const nightmareSkills = parseNightmareGemSkills(fullData?.ArmoryGem);
+  window.__nightmareSkills = nightmareSkills || [];
 
   const paint = () => {
     const idStats = idNow();
@@ -387,6 +396,8 @@ function fillEffDash(stats, equipList, fullData, statMap) {
     window.__realCritRate = critTotal;
     window.__realAs = as; window.__realMs = ms;
     window.__realCritDmg = critDmgTotal;
+    window.__bagExtraDmg = (bag && bag.extraDmg) || 39.5;
+    window.__critPerPt = (critStat > 0 && critFromStat > 0) ? critStat / critFromStat : 27.9;   // 치명 스탯 N포인트 = 치적 1%
 
     const activeEvo = window.__activeEvoNode;
     const mungaLv = (activeEvo === "munga") ? (window.__mungaLv | 0) : 0;
@@ -463,23 +474,22 @@ function fillEffDash(stats, equipList, fullData, statMap) {
     if (idCritDmg) cdmgHtml += `<div class="mc-sub-line"><span>아덴(${identity?.buff_name || ""})</span><b>+${round2(idCritDmg)}%</b></div>`;
     cdmgHtml += `<div class="mc-sub-line total"><span>합계</span><b>${truncate2(critDmgTotal)}%</b></div>`;
 
-    const nightmare = nightmareSkills || [];
-    if (nightmare.length) {
-      cdmgHtml += `<div class="mc-sub-line mc-expandable" style="margin-top:8px;"><span>겁화 보석 (주력기)</span><b></b></div>`;
-      cdmgHtml += `<div class="mc-mini">`;
-      for (const sk of nightmare) {
-        cdmgHtml += `<div class="el"><span>${sk.name}</span><span>${(critDmgTotal + sk.critDmgBonus).toFixed(2)}%</span></div>`;
-      }
-      cdmgHtml += `</div>`;
-    }
     const cond = (evoSum.conditional || []).filter(r => r.stat === "critDmg" && r.name !== "기민함_치피" && !(r.name === "일격_치피" && hasDirectionalEng));
     if (cond.length) {
-      cdmgHtml += `<div class="mc-sub-line mc-expandable"><span>조건부 (합산 제외)</span><b></b></div>`;
-      cdmgHtml += `<div class="mc-mini">`;
+      cdmgHtml += `<div class="mc-sub-line mc-expandable open"><span>조건부 (합산 제외)</span><b></b></div>`;
+      cdmgHtml += `<div class="mc-mini show">`;
       for (const r of cond) {
         cdmgHtml += `<div class="el"><span>${r.name} Lv.${r.level}</span><span>+${r.value.toFixed(1)}%</span></div>`;
       }
       cdmgHtml += `</div>`;
+    }
+    {
+      const tg = (window.critTargets ? window.critTargets() : []).filter(x => x.cd > 0);   // 치피가 붙은 스킬만
+      if (tg.length) {
+        cdmgHtml += `<div class="mc-sub-line mc-expandable open" style="margin-top:8px;"><span>스킬별 치피 (트라이포드·노드)</span><b></b></div><div class="mc-mini show">`;
+        tg.forEach(x => { cdmgHtml += `<div class="el"><span>${x.name}</span><span>${truncate2(critDmgTotal + x.cd)}%${x.cd ? ` <small style="opacity:.7">(+${round2(x.cd)})</small>` : ""}</span></div>`; });
+        cdmgHtml += `</div>`;
+      }
     }
     setDrawer(".mc.cdmg", cdmgHtml);
 
@@ -706,6 +716,15 @@ function fillEffDash(stats, equipList, fullData, statMap) {
                 const perPct = (critStat > 0 && critFromStat > 0) ? critStat / critFromStat : 27.9;
                 return `<div class="mc-sub-line need"><span>풀 효율까지 치명타 적중률 ${round2(needCrit)}% 부족</span><b>치명 약 +${Math.ceil(needCrit * perPct)}</b></div>`;
               })()}
+              ${(function () {
+                const tl = (window.critTargets ? window.critTargets() : []).filter(x => x.cr > 0);   // 치적이 붙은 스킬만
+                if (!tl.length || !window.calcBluntThorn) return "";
+                const lv0 = window.__mungaLv | 0;
+                const rows = tl.map(x => { const c = critTotal + x.cr; return { name: x.name, c: c, evo: window.calcBluntThorn(c, lv0).evoDmgAdd }; });
+                let h = `<div class="mc-sub-line mc-expandable open"><span>스킬별 상세 (트라이포드·노드 치적)</span><b></b></div><div class="mc-mini show">`;
+                rows.forEach(r => { h += `<div class="el"><span>${r.name}</span><span>치적 ${truncate2(r.c)}% · 진피 +${round2(r.evo)}%</span></div>`; });
+                return h + `</div>`;
+              })()}
             `);
           } else if (activeNode === "eum") {
             const sn = window.calcSonicBreakthrough ? window.calcSonicBreakthrough(as, ms, window.__eumLv | 0) : {evoDmg:0, maxLimit:0};
@@ -764,7 +783,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
             `;
             const mRows = (mn.rows || []).slice(0, 10);
             if (mRows.length) {
-              mHtml += `<div class="mc-sub-line mc-expandable"><span>스킬별 상세</span><b style="font-size:11px; color:#ffd200;">▼ 목록</b></div><div class="mc-mini">`;
+              mHtml += `<div class="mc-sub-line mc-expandable open"><span>스킬별 상세</span><b></b></div><div class="mc-mini show">`;
               for (var mi = 0; mi < mRows.length; mi++) {
                 mHtml += `<div class="el"><span>${mRows[mi].name}</span><span>${mRows[mi].evo.toFixed(2)}%</span></div>`;
               }
@@ -939,9 +958,195 @@ window.braceletApplyCdPenalty = function (bItem, bEff) {
   } catch (e) { return bEff; }
 };
 
+// 점화 소서리스 + 해 코어 '불완전 연소': 특화는 마력 해방(점화)을 쓸 수 없어 딜 증가가 아닌 아덴 안정용 → 포인트당 효율을 따로 책정
+window.braceletApplySpec = function (bItem, bEff) {
+  try {
+    if (!bEff || !bEff.rows) return bEff;
+    const SPEC_PT = 0.03;   // 특화 1포인트당 효율(%)
+    const fd = window.__fullData || {};
+    const cls = (fd.ArmoryProfile && fd.ArmoryProfile.CharacterClassName) || window.__charClass || "";
+    const rows = bEff.rows.map(r => Object.assign({}, r));
+    const row = rows.find(r => /^특화\s*\+\s*\d+/.test(String(r.name || "")));
+    if (!row) return bEff;
+    const v = parseInt(/\+\s*(\d+)/.exec(row.name)[1], 10) || 0;
+    if (cls !== "소서리스" || JSON.stringify(fd.ArkGrid || {}).indexOf("불완전 연소") < 0) {
+      // 일반: 특화 툴팁의 스킬 피해량(합연산)으로 산정. 가장 큰 피해량 줄 1개를 주력으로 100% 반영
+      // 효율 = ΔS / (100 + 추가피해 + 팔찌 뺀 S)  (S = 특화로 늘어난 스킬 피해량 %)
+      const si = window.__specInfo;
+      if (!si || !(si.total > 0) || !si.lines.length || !(v > 0)) return bEff;
+      const top = si.lines.slice().sort((a, b) => b.pct - a.pct)[0];
+      const T = si.total, Sw = top.pct, So = Sw * Math.max(0, T - v) / T;
+      const extra = window.__bagExtraDmg != null ? window.__bagExtraDmg : 39.5;
+      const newP0 = (Sw - So) / (100 + extra + So) * 100;
+      const oldP0 = row.pct;
+      row.pct = newP0;
+      const total0 = ((1 + bEff.totalEff / 100) / (1 + oldP0 / 100) * (1 + newP0 / 100) - 1) * 100;
+      return { totalEff: total0, rows: rows };
+    }
+    const oldP = row.pct, newP = v * SPEC_PT;
+    row.pct = newP;
+    const total = ((1 + bEff.totalEff / 100) / (1 + oldP / 100) * (1 + newP / 100) - 1) * 100;
+    return { totalEff: total, rows: rows };
+  } catch (e) { return bEff; }
+};
+
+
+// 트라이포드(선택+해금)로 변동되는 스킬별 치명타 적중률/피해 (skillData.js: TRIPOD_CRIT_BY_SKILL)
+window.skillTripodCrit = function () {
+  const out = [];
+  try {
+    if (typeof TRIPOD_CRIT_BY_SKILL === "undefined") return out;
+    const fd = window.__fullData || {};
+    const cls = (fd.ArmoryProfile && fd.ArmoryProfile.CharacterClassName) || window.__charClass || "";
+    const UNLOCK = [4, 7, 10];
+    const nz = (x) => String(x || "").replace(/\s+/g, "");
+    (fd.ArmorySkills || []).forEach(function (sk) {
+      const lv = sk.Level || 0, st = sk.SkillType || 0;
+      if (!(lv > 1 || st === 1 || st >= 100)) return;
+      const db = TRIPOD_CRIT_BY_SKILL[sk.Name + "@" + cls] || TRIPOD_CRIT_BY_SKILL[sk.Name];
+      if (!db) return;
+      let cr = 0, cd = 0;
+      (sk.Tripods || []).forEach(function (t) {
+        if (!t.IsSelected || lv < (UNLOCK[t.Tier] || 0)) return;
+        [["critRate", 0], ["critDmg", 1]].forEach(function (k) {
+          const tbl = db[k[0]]; if (!tbl) return;
+          for (const nm in tbl) if (nz(nm) === nz(t.Name)) { if (k[1] === 0) cr += tbl[nm]; else cd += tbl[nm]; }
+        });
+      });
+      if (cr || cd) out.push({ name: sk.Name, cr: cr, cd: cd });
+    });
+  } catch (e) {}
+  return out;
+};
+
+// 팔찌 치명 효율 계산 대상: 스킬 Lv10↑ 겁화 보석 장착 스킬 + 초각 스킬 1개 + 각성기 1개
+// 스킬별 치적/치피 = 전체 값 + 트라이포드 + 도약/깨달음 노드 (겁화 보석은 스킬 피해만 → 치피 없음)
+window.critTargets = function () {
+  const out = [];
+  try {
+    const fd = window.__fullData || {};
+    const skills = fd.ArmorySkills || [];
+    const tri = {};
+    (window.skillTripodCrit ? window.skillTripodCrit() : []).forEach(x => { tri[x.name] = { name: x.name, cr: x.cr, cd: x.cd }; });
+    // 깨달음/도약 노드(AWAKENING_NODE_BY_SKILL) 중 스킬명이 실제 스킬과 일치하는 것만 합산
+    try {
+      if (typeof AWAKENING_NODE_BY_SKILL !== "undefined") {
+        const nz = (x) => String(x || "").replace(/\s+/g, "");
+        const ap = fd.ArkPassive || fd.ArmoryArkPassive || {};
+        const texts = (ap.Effects || []).map(e => nz((e.Name || "") + " " + (e.Description || "") + " " + (typeof e.Tooltip === "string" ? e.Tooltip : JSON.stringify(e.Tooltip || e.ToolTip || ""))));
+        const byName = {}; skills.forEach(sk => { byName[nz(sk.Name)] = sk.Name; });
+        for (const node in AWAKENING_NODE_BY_SKILL) {
+          const def = AWAKENING_NODE_BY_SKILL[node], real = byName[nz(def.skill)];
+          if (!real) continue;
+          const key = nz(node);
+          const re = new RegExp(key + "[^0-9]{0,20}Lv\\.?(\\d+)", "i");
+          let lv = 0;
+          for (const t of texts) { const m = t.match(re); if (m) { lv = parseInt(m[1], 10) || 0; break; } }
+          const row = def.level && def.level[String(lv)];
+          if (!row) continue;
+          const t0 = tri[real] || (tri[real] = { name: real, cr: 0, cd: 0 });
+          t0.cr += row.critRate || 0; t0.cd += row.critDmg || 0;
+        }
+      }
+    } catch (e) {}
+    // 스킬 묶음에 걸리는 노드 (skillData.js에 없는 것): 블래스터 '포격 출력 강화' = 포격 스킬 치적 +40%
+    try {
+      const nz = (x) => String(x || "").replace(/\s+/g, "");
+      const cls0 = (fd.ArmoryProfile && fd.ArmoryProfile.CharacterClassName) || window.__charClass || "";
+      const ap = fd.ArkPassive || fd.ArmoryArkPassive || {};
+      const alltext = (ap.Effects || []).map(e => nz((e.Name || "") + " " + (e.Description || "") + " " + (typeof e.Tooltip === "string" ? e.Tooltip : JSON.stringify(e.Tooltip || e.ToolTip || "")))).join("|");
+      const GROUP_NODES = [
+        { node: "포격 출력 강화", cls: "블래스터", cr: 40, cd: 0,
+          skills: ["포격 : 스틸 레인", "강화탄", "산탄", "고압열탄", "네이팜탄", "화염방사기", "공중 폭격", "중력 폭발", "전방 포격", "미사일 폭격"] }
+      ];
+      GROUP_NODES.forEach(gn => {
+        if (gn.cls && gn.cls !== cls0) return;
+        if (alltext.indexOf(nz(gn.node)) < 0) return;
+        const names = {}; gn.skills.forEach(n => { names[nz(n)] = 1; });
+        skills.forEach(sk => {
+          if (!names[nz(sk.Name)]) return;
+          const t0 = tri[sk.Name] || (tri[sk.Name] = { name: sk.Name, cr: 0, cd: 0 });
+          t0.cr += gn.cr; t0.cd += gn.cd;
+        });
+      });
+    } catch (e) {}
+    // 겁화(피해) 보석 장착 스킬: 스킬 탭과 같은 buildSkillGemMap 기준
+    const gem = {};
+    try {
+      if (typeof buildSkillGemMap === "function") {
+        const gm = buildSkillGemMap(fd.ArmoryGem);
+        for (const n in gm) if (gm[n] && gm[n].dmg) gem[n] = 0;
+      }
+    } catch (e) {}
+    (window.__nightmareSkills || []).forEach(g => { if (gem[g.name] == null) gem[g.name] = 0; });
+    const add = (sk, gemCd) => {
+      const t = tri[sk.Name] || { cr: 0, cd: 0 };
+      out.push({ name: sk.Name, cr: t.cr || 0, cd: (t.cd || 0) + (gemCd || 0) });
+    };
+    const seen = {};
+    skills.forEach(sk => {
+      if ((sk.Level || 0) >= 10 && gem[sk.Name] != null && !seen[sk.Name]) { seen[sk.Name] = 1; add(sk, gem[sk.Name]); }
+    });
+    const best = (pred) => skills.filter(pred).sort((a, b) => (b.Level || 0) - (a.Level || 0))[0];
+    const hyper = best(sk => sk.SkillType === 1);
+    const awak  = best(sk => (sk.SkillType || 0) >= 100);
+    if (hyper && !seen[hyper.Name]) { seen[hyper.Name] = 1; add(hyper, 0); }
+    if (awak && !seen[awak.Name]) { seen[awak.Name] = 1; add(awak, 0); }
+  } catch (e) {}
+  return out;
+};
+
+// 팔찌 치명 효율 통합: 치명 스탯 → 치적(%)로 환산, 치적/치피 옵션과 함께 실제 치적·치피로 한 번에 계산
+// 팔찌를 뺀 상태(CR0, cd0)와 비교. 뭉툭한 가시 활성 시 치적 80% 상한 + 초과분→진피 전환까지 반영
+window.braceletApplyCrit = function (bItem, bEff) {
+  try {
+    if (!bEff || !bEff.rows || window.__isSupFlag) return bEff;
+    const CR = window.__realCritRate, CD = window.__realCritDmg;
+    if (CR == null || CD == null) return bEff;
+    const perPt = window.__critPerPt > 0 ? window.__critPerPt : 27.9;
+    const rows = bEff.rows.map(r => Object.assign({}, r));
+    const num = (r, re) => { const m = re.exec(String(r.name || "")); return m ? parseFloat(m[1]) : 0; };
+    const rStat = rows.find(r => /^치명(?!타)\s*\+?\s*\d/.test(String(r.name || "")));
+    const rCr = rows.find(r => r !== rStat && /(치명타\s*적중률|치적)/.test(String(r.name || "")) && !/공격\s*적중/.test(r.name));
+    const rCd = rows.find(r => r !== rStat && /(치명타\s*(피해|데미지)|치피)/.test(String(r.name || "")) && !/공격\s*적중/.test(r.name));
+    const S  = rStat ? num(rStat, /\+?\s*(\d[\d,]*)/) : 0;
+    const oC = rCr ? num(rCr, /([0-9.]+)\s*%/) : 0;
+    const oD = rCd ? num(rCd, /([0-9.]+)\s*%/) : 0;
+    if (!(S > 0) && !(oC > 0) && !(oD > 0)) return bEff;
+    const cS = S / perPt;
+    const lv = (window.__activeEvoNode === "munga") ? (window.__mungaLv | 0) : 0;
+    const EVO = 186.9;
+    const F = (cr, cd) => {
+      cr = Math.max(0, cr);
+      if (lv > 0 && typeof calcBluntThorn === "function") {
+        const mg = calcBluntThorn(cr, lv);
+        return (1 + Math.min(cr, 80) / 100 * (cd / 100 - 1)) * (EVO + (mg.evoDmgAdd || 0)) / EVO;
+      }
+      return 1 + Math.min(cr, 100) / 100 * (cd / 100 - 1);
+    };
+    // 대상 스킬별로 팔찌 유/무 효율을 구해 동일 비중 평균
+    const tg = (window.critTargets ? window.critTargets() : []);
+    const T = tg.length ? tg : [{ cr: 0, cd: 0 }];
+    const avg = (dc, dd) => T.reduce((a, t) => {
+      const c = CR + t.cr, d = CD + t.cd;
+      return a + (F(c, d) / F(c - dc, d - dd) - 1) * 100;
+    }, 0) / T.length;
+    let oldProd = 1;
+    [rStat, rCr, rCd].forEach(r => { if (r) oldProd *= (1 + r.pct / 100); });
+    if (rStat) rStat.pct = avg(cS, 0);
+    if (rCr)   rCr.pct   = avg(oC, 0);
+    if (rCd)   rCd.pct   = avg(0, oD);
+    const gAll = avg(cS + oC, oD);
+    const total = ((1 + bEff.totalEff / 100) / oldProd * (1 + gAll / 100) - 1) * 100;
+    return { totalEff: total, rows: rows };
+  } catch (e) { return bEff; }
+};
+
 window.braceletApplySpeed = function (bItem, bEff) {
   try {
     bEff = window.braceletApplyCdPenalty ? window.braceletApplyCdPenalty(bItem, bEff) : bEff;
+    bEff = window.braceletApplySpec ? window.braceletApplySpec(bItem, bEff) : bEff;
+    bEff = window.braceletApplyCrit ? window.braceletApplyCrit(bItem, bEff) : bEff;
     const as0 = window.__realAs, ms0 = window.__realMs;
     if (!bItem || as0 == null || ms0 == null) return bEff;
     const SPD = { asPerPct: 0.22, msPerPct: 0.11 };   // 공속 1%p당 효율 0.22% / 이속 1%p당 효율 0.11%

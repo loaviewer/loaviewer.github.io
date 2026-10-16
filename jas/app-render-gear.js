@@ -36,6 +36,11 @@ window.brColorize = function (label, item) {
   var esc = function (x) { return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
   try {
     var map = window.brColorMap(item && item.Tooltip);
+    var mm = /^(힘|민첩|지능)\s*\+?\s*([0-9,]+)\s*\((\d+)%\)$/.exec(String(label).trim());
+    if (mm) {   // 주스탯: 정보 탭과 같은 품질색
+      var mcol = getMainStatQualityColor(parseInt(mm[3], 10));
+      return esc(mm[1]) + ' <span style="color:' + mcol + ';font-weight:800">+' + esc(mm[2]) + '</span> <span style="color:#8d97ad">(' + esc(mm[3]) + '%)</span>';
+    }
     var sm = /^(치명|특화|신속|제압|인내|숙련|힘|민첩|지능)\s*\+?\s*([0-9,]+)$/.exec(String(label).trim());
     if (sm && map.stat[sm[1]]) return esc(sm[1]) + ' <span style="color:' + map.stat[sm[1]] + ';font-weight:800">+' + esc(sm[2]) + '</span>';
     // DB 옵션(initial 문구)과 일치하면 정보 탭과 같은 등급색(상/중/하)으로 수치 색칠

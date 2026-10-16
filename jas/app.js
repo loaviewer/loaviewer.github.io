@@ -155,8 +155,18 @@ let currentTab = "info";
 let dataLoaded = false;
 
 function applyTabView() {
-  mainEl.classList.toggle("show", dataLoaded && ["info","stat","skill","arkgrid","arkpassive","expedition"].includes(currentTab));
-  mainEl.classList.toggle("skill-mode", ["skill","arkgrid","arkpassive","expedition"].includes(currentTab));
+  const __cpm = currentTab === "cpm";
+  document.body.classList.toggle("cpm-mode", __cpm);
+  const __cp = window.$("cpmPanel");
+  if (__cp) {
+    // 조회 후: 다른 탭처럼 오른쪽 칼럼(왼쪽엔 프로필) / 조회 전: 검색창 아래 독립 표시
+    const __col = mainEl.querySelectorAll(".col")[1];
+    if (dataLoaded && __col && __cp.parentNode !== __col) __col.appendChild(__cp);
+    else if (!dataLoaded && __cp.parentNode !== mainEl.parentNode) mainEl.parentNode.insertBefore(__cp, mainEl);
+    __cp.style.display = __cpm ? "flex" : "none";
+  }
+  mainEl.classList.toggle("show", dataLoaded && ["info","stat","skill","arkgrid","arkpassive","expedition","cpm"].includes(currentTab));
+  mainEl.classList.toggle("skill-mode", ["skill","arkgrid","arkpassive","expedition","cpm"].includes(currentTab));
   if (skillPanelEl) skillPanelEl.style.display = (dataLoaded && currentTab === "skill") ? "flex" : "none";
   if (arkgridPanelEl) arkgridPanelEl.style.display = (dataLoaded && currentTab === "arkgrid") ? "flex" : "none";
   if (arkpassivePanelEl) arkpassivePanelEl.style.display = (dataLoaded && currentTab === "arkpassive") ? "flex" : "none";
@@ -260,7 +270,6 @@ function titleGradeClass(title) {
 
 function render(data) {
   window.__fullData = data;
-  try { window.goatcounter && window.goatcounter.count({ path: "/lookup", title: "캐릭터 조회", event: true }); } catch (e) {}
   window.__charClass = "";
   window.__mungaLv = 0; window.__eumLv = 0; window.__ipsikLv = 0; window.__manaLv = 0;
   window.__activeEvoNode = null;
