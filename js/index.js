@@ -19,17 +19,23 @@ let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}`
 
 
 
+// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
+// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
+// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
+
+
 
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-
+    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
+    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-          
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -37,7 +43,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-
+        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
         try { window.loaviewPushAdsense && window.loaviewPushAdsense(heroSlot); } catch (e) {}
     }
 
@@ -1730,7 +1736,7 @@ function getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood) {
 /* =============================================
    모르둠 EX 전용 구간별 딜지분 (1페이즈 / 2페이즈 발악쉴드 분리)
    - 1페이즈: 500줄 -> 0줄(변환) = 20분(1200초)
-   - 2페이즈: 발악쉴드(나메 73줄 / 하드·노말 36줄) = 2분(120초)
+   - 2페이즈: 발악쉴드(나메 45줄 / 하드·노말 36줄) = 2분(120초)
    - 발악쉴드 비율 = 발악쉴드 체력 / (총 체력 - 발악쉴드 체력)
      -> 나메 14.60%, 하드·노말 7.26% (MORDUM_BOSS_INFO에서 그대로 역산)
    - 딜러 실효딜량(100% 풀)을 1페이즈 : 2페이즈 = 1 : 발악쉴드비율 로 나눠서 배분
@@ -1746,22 +1752,23 @@ function getMordumPhaseSplit(diffKey) {
    모르둠 나메 EX 에스더 택틱 + 체력 하향 시간 보정
    - 구간별 유저 딜 = 구간 체력 - (그 구간에서 쓰는 에스더 딜량) - (서폿 딜)
    - 서폿 딜은 1페이즈 시간(초)에 비례해 골고루 배분 (서폿 총딜 / 1페이즈 초)
-   - 키 = 해당 에스더를 쓰는 구간의 '끝 줄'
-       500~425  바훈 3칸        / 390~325  바스 3칸 / 320~275  바스 3칸
-       159~100  바스 3칸+1칸    / 50~0     히든바훈 3칸
-       발악쉴드  바스 3칸 + 바스 1칸(쉴드 추뎀)
+   - 키 = 해당 에스더를 쓰는 구간의 '끝 줄' (10/19 극고점 바훈 택틱 기준)
+       500~425  바훈 3+1(무력추뎀) / 390~325  바스 3 / 250~200  바훈 3+1(무력추뎀)
+       159~100  바훈 3+1(무력추뎀) / 50~0     히든 바훈 3칸
+       발악쉴드  바스 3 + 바스 1(쉴드 추뎀)
+   - 에스더 총딜량/딜러 실효딜량(player)은 아래 syncMordumNmByTactic()이 택틱에서 자동 계산
    - 구간 시간(클각)은 기존 그대로 22분 기준 (MORDUM_TIME_SCALE.nightmare = 1, 500~425줄 3:00)
    ============================================= */
 const MORDUM_TIME_SCALE = { normal: 1, hard: 1, nightmare: 1 };
 const MORDUM_NM_TACTIC = {
     p1: {
-        425: ["바훈 3칸"],
-        325: ["바스티안 3칸"],
-        275: ["바스티안 3칸"],
-        100: ["바스티안 3칸", "바스티안 1칸"],
-        0:   ["히든바훈 3칸"]
+        425: ["바훈 3칸", "바훈 1칸 (무력 추뎀)"],   // 500 ~ 425줄  바훈 3+1(무력추뎀)
+        325: ["바스티안 3칸"],                       // 390 ~ 325줄  바스 3
+        200: ["바훈 3칸", "바훈 1칸 (무력 추뎀)"],   // 250 ~ 200줄  바훈 3+1(무력추뎀)
+        100: ["바훈 3칸", "바훈 1칸 (무력 추뎀)"],   // 159 ~ 100줄  바훈 3+1(무력추뎀)
+        0:   ["히든바훈 3칸"]                        // 50 ~ 0줄     히든 바훈 3칸
     },
-    shield: ["바스티안 3칸", "바스티안 1칸 (쉴드 추뎀)"]
+    shield: ["바스티안 3칸", "바스티안 1칸 (쉴드 추뎀)"]  // 발악 쉴드  바스 3+1(쉴드추뎀)
 };
 
 // 에스더 스킬 이름 -> 해당 난이도 딜량 (억)
@@ -1779,6 +1786,19 @@ function getMordumEstherEok(skillName, diffKey) {
     }
     return 0;
 }
+
+// 나메: 택틱에 쓰인 에스더 총딜량을 구해서 보스정보(estherTotal)와 딜러 실효 딜량(player)을 자동 갱신
+// player = 총 체력 - 에스더(택틱 기준) - 서폿  → 표(강투/1인분/잔혈컷)와 구간별 지분이 모두 이 값을 기준으로 계산됨
+(function syncMordumNmByTactic() {
+    const info = MORDUM_BOSS_INFO.nightmare;
+    const sumEok = (names) => names.reduce((a, name) => a + getMordumEstherEok(name, "nightmare"), 0);
+    const p1Esther = Object.values(MORDUM_NM_TACTIC.p1).reduce((a, names) => a + sumEok(names), 0);
+    const estherTotal = p1Esther + sumEok(MORDUM_NM_TACTIC.shield);
+
+    info.estherTotal = estherTotal;
+    info.player = info.totalHp - estherTotal - info.supportTotal;
+    MORDUM_EX_DATA.nightmare.effectiveDamage = info.player;
+})();
 
 // 나메: 각 줄 지점까지의 '누적 유저 딜 / 딜러 실효 딜량' 진행도 (에스더 택틱 + 서폿 균등 반영)
 function getMordumNmCumProgress(diffKey, config) {
@@ -1806,7 +1826,7 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
     const config = lineCutConfig.mordum.gate1;
     const split = getMordumPhaseSplit(diffKey);
 
-    // 난이도별 구간 시간 보정 (나메 x0.92)
+    // 난이도별 구간 시간 보정 (현재 MORDUM_TIME_SCALE은 전 난이도 1)
     const ts = MORDUM_TIME_SCALE[diffKey] || 1;
     const ptSec = (p) => getMordumPointSec(p, diffKey);
     const lastPtSec = ptSec(config.points[config.points.length - 1]);
@@ -1853,7 +1873,7 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
         progress: 1, elapsedSec: Math.max(totalSec, p1EndSec)
     });
 
-    // 누적 피해량 + 구간 피해량 + 구간 DPS (직전 줄 ~ 해당 줄)
+    // 누적 피해량 + 구간 피해량 + 누적 평균 DPS (조우 시작 ~ 해당 줄)
     const fulls = { tank: fullTank || 0, one: fullOne || 0, blood: fullBlood || 0 };
     let prev = null;
 
@@ -1883,9 +1903,9 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
         r.segSec = segSec;
 
         ["tank", "one", "blood"].forEach(k => {
-            const rawDiff = raw[k] - (prev ? prev.raw[k] : 0);
             r["seg" + k] = cum[k] - (prev ? prev.cum[k] : 0);
-            r["dps" + k] = segSec > 0 ? floorTo1(rawDiff / segSec) : 0;
+            // DPS = 조우 시작부터 해당 줄까지 이어지는 누적 평균 DPS (누적 피해량 ÷ 누적 시간)
+            r["dps" + k] = r.elapsedSec > 0 ? floorTo1(raw[k] / r.elapsedSec) : 0;
         });
 
         // 마지막 "클리어" 지점은 그 구간(2분)만의 DPS가 아니라,
@@ -4809,10 +4829,16 @@ function makeRaidMiniHero(menu, meta) {
 
 
 
-    // 모르둠 나메 전용: 입장레벨 오른쪽 '10/03 패치적용' 심볼 (별도 CSS 없이 인라인 스타일로 동작)
-    const patchBadgeHtml = (isMordum && meta.diffKey === "nightmare")
-        ? `<span class="p-mini-patch-badge" style="display:inline-flex;align-items:center;flex-shrink:0;white-space:nowrap;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.2px;color:#6ee7b7;background:rgba(16,185,129,.14);border:1px solid rgba(52,211,153,.45);">10/03 패치적용</span>`
-        : "";
+    // 모르둠 나메 전용: 입장레벨 오른쪽 '10/19 잔혈컷 변경 상세보기' 심볼 (마우스 올리면 에스더 택틱 툴팁 표시)
+    // 최초 노출 시점부터 5초 동안만 테두리 반짝임 + 살짝 작아졌다 커지는 효과 (재렌더링돼도 남은 시간만큼만 이어서 재생)
+    let patchBadgeHtml = "";
+    if (isMordum && meta.diffKey === "nightmare") {
+        ensureMordumPatchBadgeStyle();
+        if (window.__mordumPatchBadgeStart === undefined) window.__mordumPatchBadgeStart = Date.now();
+        const elapsedMs = Math.max(0, Date.now() - window.__mordumPatchBadgeStart);
+        const attnCls = elapsedMs < 5000 ? " mpt-attn" : "";
+        patchBadgeHtml = `<button type="button" class="p-mini-patch-badge mordum-patch-tip${attnCls}" aria-label="10/19 잔혈컷 변경 상세보기" style="--mpt-elapsed:${elapsedMs}ms;display:inline-flex;align-items:center;flex-shrink:0;white-space:nowrap;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.2px;font-family:inherit;cursor:pointer;color:#6ee7b7;background:rgba(16,185,129,.14);border:1px solid rgba(52,211,153,.45);">10/19 잔혈컷 변경 상세보기</button>`;
+    }
 
     const miniBattleIconsHtml = buildMiniBattleIconsHtml(menu, meta.diffKey, meta.gateKey, currentRoleMode);
     const miniLoadoutBlock = miniBattleIconsHtml ? `
@@ -5112,8 +5138,13 @@ function renderExtremeSection(totalSec) {
 
         tableRowsHtml = supportConv.rows.length
             ? supportConv.rows.map(r => {
+                // 강조컷/1인분/잔조컷 행 강조 (벨가르딘 등 다른 레이드와 동일한 row-30/33/40 클래스)
+                let cls = "";
+                if (r.label === "gangjo") cls = "row-30";
+                if (r.label === "ilinbun") cls = "row-33";
+                if (r.label === "janjo") cls = "row-40";
                 const dps = floorTo1(r.damage / totalSec).toFixed(1);
-                return `<tr>${renderSupportShareCell(r)}<td>${fmt(r.damage)}</td><td><span class="dps-pill">${dps}억</span></td></tr>`;
+                return `<tr class="${cls}">${renderSupportShareCell(r)}<td><span class="damage-wrap"><span class="damage-num">${fmt(r.damage)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${dps}억</span></td></tr>`;
             }).join("")
             : '<tr><td colspan="3">데이터 없음</td></tr>';
     } else {
@@ -5123,9 +5154,14 @@ function renderExtremeSection(totalSec) {
         effectiveGetDamage = (row) => row.damage;
 
         tableRowsHtml = rows.map(r => {
+            // 강투/1인분/잔혈 행 강조 (벨가르딘 등 다른 레이드와 동일한 row-30/33/40 클래스)
+            let cls = "";
+            if (r.share === shares.tank) cls = "row-30";
+            if (r.share === shares.one) cls = "row-33";
+            if (r.share === shares.blood) cls = "row-40";
             const dmg = Math.floor(r.damage);
             const dps = floorTo1(r.damage / totalSec).toFixed(1);
-            return `<tr>${renderShareCell(r.share, "mordum")}<td>${fmt(dmg)}</td><td><span class="dps-pill">${dps}억</span></td></tr>`;
+            return `<tr class="${cls}">${renderShareCell(r.share, "mordum")}<td><span class="damage-wrap"><span class="damage-num">${fmt(dmg)}</span><span class="damage-unit">억</span></span></td><td class="dps-cell"><span class="dps-pill">${dps}억</span></td></tr>`;
         }).join("");
     }
 
@@ -6248,6 +6284,204 @@ document.addEventListener("click", (e) => {
 
 window.addEventListener("scroll", hideSharedRoleTooltip, true);
 window.addEventListener("resize", hideSharedRoleTooltip);
+
+/* =============================================
+   모르둠 나메 EX 에스더 택틱 변경 툴팁 (미니히어로 '10/19 잔혈컷 변경 상세보기')
+   - body에 공유 툴팁 1개만 만들어서 위치 계산 (히어로 overflow에 잘리지 않게)
+   - 마우스: 올리면 표시 / 터치: 탭으로 열고 닫기 / 키보드: 포커스 시 표시
+   ============================================= */
+const MORDUM_NM_TACTIC_NOTICE = {
+    date: "10/19",
+    title: "잔혈컷 변경",
+    desc: "극고점 바훈 택틱으로 인한 잔혈컷이 변경되었습니다.",
+    rows: [
+        { range: "500 ~ 425줄",   skills: [{ name: "바훈 3+1",   sub: "(무력추뎀)", tone: "56,189,248" }] },
+        { range: "390 ~ 325줄",   skills: [{ name: "바스 3",                         tone: "251,146,60" }] },
+        { range: "250 ~ 200줄",   skills: [{ name: "바훈 3+1",   sub: "(무력추뎀)", tone: "56,189,248" }] },
+        { range: "159 ~ 100줄",   skills: [{ name: "바훈 3+1",   sub: "(무력추뎀)", tone: "56,189,248" }] },
+        { range: "50 ~ 0줄",      skills: [{ name: "히든 바훈 3칸",                  tone: "167,139,250" }] },
+        { range: "0줄 · 발악 쉴드", skills: [{ name: "바스 3+1", sub: "(쉴드추뎀)", tone: "250,204,21" }] }
+    ],
+    // 에스더 딜량 증가분 7,200.68억 (신 28,597.90억 - 구 21,397.22억) ÷ 22분(1320초) = 5.455063 DPS, 딜러 6인 기준 1인당 0.909177 DPS
+    // (표시할 때 소수점 3자리까지만 보여줌)
+    gainDps: 5.455063,
+    perPersonDps: 0.909177
+};
+
+function buildMordumPatchTooltipHtml() {
+    const n = MORDUM_NM_TACTIC_NOTICE;
+    const rowsHtml = n.rows.map(r => `
+        <div class="mpt-row">
+            <span class="mpt-range">${r.range}</span>
+            <span class="mpt-skills">${r.skills.map(s => `<span class="mpt-chip" style="--tone:${s.tone}">${s.name}${s.sub ? `<em>${s.sub}</em>` : ""}</span>`).join("")}</span>
+        </div>
+    `).join("");
+
+    return `
+        <div class="mpt-head">
+            <span class="mpt-date">${n.date}</span>
+            <span class="mpt-title">${n.title}</span>
+        </div>
+        <div class="mpt-desc">${n.desc}</div>
+
+        <div class="mpt-section">
+            <span class="mpt-section-name">모르둠 EX 에스더 택틱</span>
+            <span class="mpt-section-tag">나메 EX</span>
+        </div>
+        <div class="mpt-list">${rowsHtml}</div>
+
+        <div class="mpt-gain">
+            <div class="mpt-gain-title">DPS 환산 효과</div>
+            <div class="mpt-gain-sub">극고점 바훈 택틱 에스더 데미지 − 예전 에스더 데미지 값을 DPS로 환산</div>
+            <div class="mpt-gain-stats">
+                <div class="mpt-stat">
+                    <span class="mpt-stat-label">DPS 이득</span>
+                    <span class="mpt-stat-value">+${n.gainDps.toFixed(3)}<small>DPS</small></span>
+                </div>
+                <div class="mpt-stat">
+                    <span class="mpt-stat-label">1인당 요구치 감소</span>
+                    <span class="mpt-stat-value">−${n.perPersonDps.toFixed(3)}<small>DPS</small></span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// 미니히어로 '잔혈컷 변경 상세보기' 배지 주목 효과용 CSS (한 번만 주입). 5초 뒤 효과가 스스로 사라짐.
+function ensureMordumPatchBadgeStyle() {
+    if (document.getElementById("mordumPatchBadgeStyle")) return;
+    const style = document.createElement("style");
+    style.id = "mordumPatchBadgeStyle";
+    style.textContent = `
+        @keyframes mptSpin{to{transform:rotate(360deg)}}
+        @keyframes mptPulse{0%,100%{transform:scale(1)}25%{transform:scale(.96)}60%{transform:scale(1.09)}}
+        @keyframes mptRingLife{0%,97%{opacity:1}100%{opacity:0}}
+        .mordum-patch-tip{position:relative;isolation:isolate;overflow:hidden;}
+        .mordum-patch-tip.mpt-attn{animation:mptPulse 1s ease-in-out 5 both;animation-delay:calc(-1 * var(--mpt-elapsed,0ms));}
+        .mordum-patch-tip.mpt-attn::before{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:320px;height:320px;margin:-160px 0 0 -160px;background:conic-gradient(from 0deg,transparent 0 58%,#34d399 80%,#ffffff 92%,transparent 100%);animation:mptSpin 1s linear 5,mptRingLife 5s linear 1 forwards;animation-delay:calc(-1 * var(--mpt-elapsed,0ms));}
+        .mordum-patch-tip.mpt-attn::after{content:"";position:absolute;z-index:-1;inset:1.5px;border-radius:inherit;background:linear-gradient(rgba(16,185,129,.14),rgba(16,185,129,.14)),#0b1222;animation:mptRingLife 5s linear 1 forwards;animation-delay:calc(-1 * var(--mpt-elapsed,0ms));}
+        @media (prefers-reduced-motion:reduce){.mordum-patch-tip.mpt-attn,.mordum-patch-tip.mpt-attn::before,.mordum-patch-tip.mpt-attn::after{animation:none}}
+    `;
+    document.head.appendChild(style);
+}
+
+let mordumPatchTooltipEl = null;
+
+function ensureMordumPatchTooltip() {
+    if (mordumPatchTooltipEl) return mordumPatchTooltipEl;
+
+    if (!document.getElementById("mordumPatchTooltipStyle")) {
+        const style = document.createElement("style");
+        style.id = "mordumPatchTooltipStyle";
+        style.textContent = `
+            .mordum-patch-tooltip{position:fixed;left:0;top:0;z-index:10000;width:min(372px,calc(100vw - 20px));box-sizing:border-box;padding:16px 16px 14px;border-radius:16px;background:linear-gradient(180deg,rgba(23,31,52,.98),rgba(11,16,31,.98));border:1px solid rgba(52,211,153,.38);box-shadow:0 18px 48px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05);color:#dfe6fa;font-size:12.5px;line-height:1.55;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(4px);transition:opacity .15s ease,transform .15s ease,visibility .15s;}
+            .mordum-patch-tooltip.show{opacity:1;visibility:visible;transform:none;}
+            .mordum-patch-tooltip .mpt-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+            .mordum-patch-tooltip .mpt-date{padding:2px 9px;border-radius:999px;font-size:11px;font-weight:800;color:#6ee7b7;background:rgba(16,185,129,.16);border:1px solid rgba(52,211,153,.45);}
+            .mordum-patch-tooltip .mpt-title{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.2px;}
+            .mordum-patch-tooltip .mpt-desc{color:#b9c4e4;margin-bottom:14px;}
+            .mordum-patch-tooltip .mpt-section{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 2px 8px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08);}
+            .mordum-patch-tooltip .mpt-section-name{font-size:12px;font-weight:800;color:#eef2ff;}
+            .mordum-patch-tooltip .mpt-section-tag{padding:2px 9px;border-radius:999px;font-size:10.5px;font-weight:800;color:#c4b5fd;background:rgba(139,92,246,.18);border:1px solid rgba(167,139,250,.45);}
+            .mordum-patch-tooltip .mpt-list{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+            .mordum-patch-tooltip .mpt-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.05);}
+            .mordum-patch-tooltip .mpt-range{flex-shrink:0;font-size:12px;font-weight:700;color:#aab6d8;font-variant-numeric:tabular-nums;}
+            .mordum-patch-tooltip .mpt-skills{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px;}
+            .mordum-patch-tooltip .mpt-chip{display:inline-flex;align-items:baseline;gap:3px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap;color:rgb(var(--tone));background:rgba(var(--tone),.14);border:1px solid rgba(var(--tone),.42);}
+            .mordum-patch-tooltip .mpt-chip em{font-style:normal;font-size:10.5px;font-weight:700;opacity:.85;}
+            .mordum-patch-tooltip .mpt-gain{padding:12px;border-radius:12px;background:rgba(16,185,129,.08);border:1px solid rgba(52,211,153,.3);}
+            .mordum-patch-tooltip .mpt-gain-title{font-size:12px;font-weight:800;color:#d5f5e8;}
+            .mordum-patch-tooltip .mpt-gain-sub{margin:2px 0 10px;font-size:11px;line-height:1.45;color:#9db3ae;}
+            .mordum-patch-tooltip .mpt-gain-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+            .mordum-patch-tooltip .mpt-stat{display:flex;flex-direction:column;gap:3px;padding:8px 10px;border-radius:10px;background:rgba(16,185,129,.12);border:1px solid rgba(52,211,153,.28);}
+            .mordum-patch-tooltip .mpt-stat-label{font-size:10.5px;font-weight:700;color:#8fd9bd;}
+            .mordum-patch-tooltip .mpt-stat-value{font-size:18px;font-weight:800;color:#6ee7b7;font-variant-numeric:tabular-nums;letter-spacing:-.2px;}
+            .mordum-patch-tooltip .mpt-stat-value small{margin-left:3px;font-size:11px;font-weight:700;color:#8fd9bd;letter-spacing:0;}
+        `;
+        document.head.appendChild(style);
+    }
+
+    const el = document.createElement("div");
+    el.className = "mordum-patch-tooltip";
+    el.setAttribute("role", "tooltip");
+    el.innerHTML = buildMordumPatchTooltipHtml();
+    document.body.appendChild(el);
+    mordumPatchTooltipEl = el;
+    return el;
+}
+
+function showMordumPatchTooltip(anchorEl) {
+    const tip = ensureMordumPatchTooltip();
+    tip.classList.add("show");
+
+    const rect = anchorEl.getBoundingClientRect();
+    const tipRect = tip.getBoundingClientRect();
+    const margin = 10;
+
+    let left = rect.left + rect.width / 2 - tipRect.width / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - tipRect.width - margin));
+
+    let top = rect.top - tipRect.height - 12;
+    if (top < margin) {
+        top = rect.bottom + 12;
+        top = Math.min(top, Math.max(margin, window.innerHeight - tipRect.height - margin));
+    }
+
+    tip.style.left = `${left}px`;
+    tip.style.top = `${top}px`;
+}
+
+function hideMordumPatchTooltip() {
+    if (mordumPatchTooltipEl) mordumPatchTooltipEl.classList.remove("show");
+}
+
+let mordumPatchLastInput = "mouse";
+document.addEventListener("pointerdown", (e) => { mordumPatchLastInput = e.pointerType || "mouse"; }, true);
+document.addEventListener("keydown", () => { mordumPatchLastInput = "key"; }, true);
+
+// 마우스 호버
+document.addEventListener("pointerover", (e) => {
+    if (e.pointerType !== "mouse") return;
+    const trigger = e.target.closest && e.target.closest(".mordum-patch-tip");
+    if (trigger) showMordumPatchTooltip(trigger);
+});
+document.addEventListener("pointerout", (e) => {
+    if (e.pointerType !== "mouse") return;
+    const trigger = e.target.closest && e.target.closest(".mordum-patch-tip");
+    if (trigger && !trigger.contains(e.relatedTarget)) hideMordumPatchTooltip();
+});
+
+// 키보드 포커스 (터치 탭으로 생기는 포커스는 제외 → 탭 시 열렸다 바로 닫히는 문제 방지)
+document.addEventListener("focusin", (e) => {
+    const trigger = e.target.closest && e.target.closest(".mordum-patch-tip");
+    if (!trigger) return;
+    let visible = false;
+    try { visible = trigger.matches(":focus-visible"); } catch (err) {}
+    if (visible) showMordumPatchTooltip(trigger);
+});
+document.addEventListener("focusout", (e) => {
+    const trigger = e.target.closest && e.target.closest(".mordum-patch-tip");
+    if (trigger) hideMordumPatchTooltip();
+});
+
+// 클릭: 터치/키보드는 토글, 마우스는 열린 상태 유지 / 바깥 클릭은 닫기
+document.addEventListener("click", (e) => {
+    const trigger = e.target.closest && e.target.closest(".mordum-patch-tip");
+    if (trigger) {
+        e.preventDefault();
+        const isOpen = mordumPatchTooltipEl && mordumPatchTooltipEl.classList.contains("show");
+        if (mordumPatchLastInput === "mouse" || !isOpen) {
+            showMordumPatchTooltip(trigger);
+        } else {
+            hideMordumPatchTooltip();
+        }
+    } else {
+        hideMordumPatchTooltip();
+    }
+}, true);
+
+window.addEventListener("scroll", hideMordumPatchTooltip, true);
+window.addEventListener("resize", hideMordumPatchTooltip);
 
 /* =============================================
    우측 사이드바 제어 엔진
