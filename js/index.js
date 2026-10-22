@@ -13,9 +13,10 @@ let currentGuardianTier = "1770";
 let acMembers = 4;
 let currentSimpleRaid = "belgardin";
 let currentExtremeRaid = "mordum"; // "jongmak" | "mordum" | "abrel" | "egir"
-let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent" };
+let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "percent", jongmak: "percent" };
 let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
+
 
 
 
@@ -30,7 +31,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-         
+           
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -308,9 +309,29 @@ const raidMeta = {
                 ready: true
             }
         },
-        // 종막 EX: 2주 후 오픈 전까지는 버튼만 노출, 클릭하면 "준비중" 안내만 표시
+        // 종막 EX: 2-1 / 2-2 / 2-3 세 관문을 한 페이지에서 합산 (JONGMAK_EX_DATA 참고)
         jongmak: {
-            comingSoon: true
+            normal_gate1: {
+                diffKey: "normal", gateKey: "gate1",
+                title: "노말", gateName: "1관",
+                type: { text: "대악마", cls: "type-archdemon" },
+                attr: { text: "속성 없음", cls: "attr-none" },
+                ready: true
+            },
+            hard_gate1: {
+                diffKey: "hard", gateKey: "gate1",
+                title: "하드", gateName: "1관",
+                type: { text: "대악마", cls: "type-archdemon" },
+                attr: { text: "속성 없음", cls: "attr-none" },
+                ready: true
+            },
+            nightmare_gate1: {
+                diffKey: "nightmare", gateKey: "gate1",
+                title: "나메", gateName: "1관",
+                type: { text: "대악마", cls: "type-archdemon" },
+                attr: { text: "속성 없음", cls: "attr-none" },
+                ready: true
+            }
         }
     }
 };
@@ -347,6 +368,67 @@ const MORDUM_BOSS_INFO = {
     hard:      { totalHp: 64599.72898577,  shieldHp: 4362.84623604,  estherTotal: 7385.04,  supportTotal: 137.5, player: 57077.18898577 },
     nightmare: { totalHp: 171650.24891058, shieldHp: 14086.06053303, estherTotal: 21397.22, supportTotal: 220.0, player: 150033.02891058 }
 };
+
+/* =============================================
+   종막 EX (카제로스 레이드 종막 EX) 하드코딩 데이터 (구글시트 연동 없음)
+   - 구조: 2-1 / 2-2(본체+쉴드 합산) / 2-3 세 관문의 '딜러 지분체력'을 구역별로 계산해 합산
+   - 지분체력 = 보스 체력 - 에스더 총데미지 - 서폿 2명 총딜(초당 딜 x 구역 제한시간)
+   - 에스더 데미지 = (나메 기준 고정 비율) x 각 난이도 2-1 체력  (난이도마다 자기 2-1 체력을 곱함)
+   - 2-3 체력은 인게임에 표시되지 않아 '추정값' (나메: 클리어 시 21% 소모 기록으로 역산,
+     하드/노말: 나메의 (2-3 / 2-1) 체력 비율을 임시 적용)
+   - 단위: 계산은 원 단위, 외부로는 억(1e8)으로 변환해서 사용
+   ============================================= */
+const JONGMAK_EX_LEVELS = { normal: "1730", hard: "1770", nightmare: "1780" }; // 모르둠 EX와 동일
+const JONGMAK_EX_TOTAL_SEC = 2007; // 2-1 1000초 + 2-2 565초 + 2-3 442초
+
+const JONGMAK_EX_GATES = [
+    { key: "g1", name: "2-1", sec: 1000, estherPct: 8.881, estherDesc: "히든 카단 3칸 + 카단 3칸 + 카단 1칸", type: { text: "대악마", cls: "type-archdemon" } },
+    { key: "g2", name: "2-2", sec: 565,  estherPct: 3.011, estherDesc: "공아만 3칸 + 1칸",                    type: { text: "신", cls: "type-divine" } },
+    { key: "g3", name: "2-3", sec: 442,  estherPct: 7.703, estherDesc: "공아만 3칸 / 3+1칸 / 3+1칸",          type: { text: "신", cls: "type-divine" }, estimated: true }
+];
+
+// supportPerSec: 서폿 2명 합산 초당 딜(원) - 나메 500만 / 하드 400만 / 노말 300만 (1인 기준, 사용자 지정 가정)
+const JONGMAK_EX_BASE = {
+    nightmare: { hp1: 11124200336247, hp2: 5794751037908, shield2: 75331760729, supportPerSec: 10000000 },
+    hard:      { hp1: 3955211667283,  hp2: 2223536657594, shield2: 28985975488, supportPerSec: 8000000 },
+    normal:    { hp1: 1422084129012,  hp2: 874417129704,  shield2: 11367422269, supportPerSec: 6000000 }
+};
+
+// 나메 2-3 추정 근거: 클리어 시 4,182,178,322,107 딜러 피해량 = 전체 지분체력의 21%
+const JONGMAK_EX_NM_CLEAR_DAMAGE = 4182178322107;
+const JONGMAK_EX_NM_CLEAR_PCT = 0.21;
+
+const JONGMAK_EX_DATA = (() => {
+    const gateCalc = (base, g, hp) => {
+        const esther = base.hp1 * g.estherPct / 100;
+        const support = base.supportPerSec * g.sec;
+        return { key: g.key, name: g.name, sec: g.sec, hp, esther, support, share: hp - esther - support };
+    };
+
+    const nm = JONGMAK_EX_BASE.nightmare;
+    const nm1 = gateCalc(nm, JONGMAK_EX_GATES[0], nm.hp1);
+    const nm2 = gateCalc(nm, JONGMAK_EX_GATES[1], nm.hp2 + nm.shield2);
+    const nmTotalShare = JONGMAK_EX_NM_CLEAR_DAMAGE / JONGMAK_EX_NM_CLEAR_PCT;
+    const nm3Share = nmTotalShare - nm1.share - nm2.share;
+    const nm3Hp = nm3Share + nm.hp1 * JONGMAK_EX_GATES[2].estherPct / 100 + nm.supportPerSec * JONGMAK_EX_GATES[2].sec;
+    const hp3Ratio = nm3Hp / nm.hp1; // 하드/노말 임시 추정용 (2-3 체력 / 2-1 체력)
+
+    const out = {};
+    Object.keys(JONGMAK_EX_BASE).forEach(diff => {
+        const b = JONGMAK_EX_BASE[diff];
+        const hps = [b.hp1, b.hp2 + b.shield2, diff === "nightmare" ? nm3Hp : b.hp1 * hp3Ratio];
+        const gates = JONGMAK_EX_GATES.map((g, i) => gateCalc(b, g, hps[i]));
+        const totalShareWon = gates.reduce((a, g) => a + g.share, 0);
+        out[diff] = {
+            gates,
+            totalSec: JONGMAK_EX_TOTAL_SEC,
+            effectiveDamage: totalShareWon / 1e8, // 딜러 6인 실효 딜량 100% 풀 (억)
+            hp3Source: diff === "nightmare" ? "clear-record" : "nightmare-ratio",
+            shares: { tank: 15, one: 16.6, blood: 20 }
+        };
+    });
+    return out;
+})();
 
 function formatEokAbbrev(eok) {
     if (eok >= 10000) return (eok / 10000).toFixed(2) + "조";
@@ -612,6 +694,18 @@ const RAID_BATTLE_ITEMS = {
             support: {
                 fixed: ["정령의 회복약", "각성 물약", "암흑 수류탄"],
                 choiceGroups: [["코르부스 툴 라크의 그림자", "페투스 안 크라그마의 그림자"]]
+            }
+        }
+    },
+    jongmak: {
+        gate1: {
+            dealer: {
+                fixed: ["빛나는 정령의 회복약", "빛나는 암흑 수류탄", "빛나는 성스러운 폭탄", "시간 정지 물약"],
+                choiceGroups: []
+            },
+            support: {
+                fixed: ["빛나는 정령의 회복약", "빛나는 암흑 수류탄", "빛나는 성스러운 폭탄", "시간 정지 물약"],
+                choiceGroups: []
             }
         }
     },
@@ -1611,6 +1705,7 @@ const belgardinRewardData = {
    레이드별 구간별(줄 수) 딜컷 데이터
    ============================================= */
 const lineCutConfig = {
+    jongmak: { gate1: { total: 0, points: [] } }, // 종막 EX: 구간 = 관문(2-1/2-2/2-3), 전용 렌더러 사용
     serka: {
         gate1: {
             total: 300,
@@ -1991,6 +2086,11 @@ function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, ful
 }
 
 function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, diffKey) {
+    // 종막 EX는 2-1 / 2-2 / 2-3 관문 단위로 계산
+    if (menu === "jongmak") {
+        return makeJongmakLineCutTimelineHtml(diffKey, totalSec);
+    }
+
     // 모르둠 EX는 1페이즈(500줄)와 2페이즈(발악쉴드)를 나눠서 계산
     if (menu === "mordum") {
         return makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, fullBlood);
@@ -2361,7 +2461,8 @@ function percentNum(v) {
 const PRECISION_SHARE_BY_MENU = {
     default: { tank: 30, one: 33, blood: 40 },
     belgardin: { tank: 15, one: 16.6, blood: 20 },
-    mordum: { tank: 15, one: 16.6, blood: 20 }
+    mordum: { tank: 15, one: 16.6, blood: 20 },
+    jongmak: { tank: 15, one: 16.6, blood: 20 }
 };
 
 
@@ -2676,6 +2777,10 @@ function setBaseTimeByMenu(menu, gateKey) {
         minutes.value = 13;
         seconds.value = 0;
         label.textContent = "기본값: 13분(780초)";
+    } else if (menu === "extreme" && currentExtremeRaid === "jongmak") {
+        minutes.value = 33;
+        seconds.value = 27;
+        label.textContent = "기본값: 33분 27초(2007초)";
     } else if (menu === "extreme") {
         minutes.value = 22;
         seconds.value = 0;
@@ -2726,6 +2831,7 @@ function getRaidDisplayName(menu) {
     if (menu === "cathedral") return "지평의 성당";
     if (menu === "belgardin") return "벨가르딘";
     if (menu === "mordum") return "모르둠 EX";
+    if (menu === "jongmak") return "종막 EX";
     return "";
 }
 
@@ -2821,7 +2927,7 @@ function applyMenuFromQuery() {
 
     if (isStandaloneExtremePage) {
         currentMenu = "extreme";
-        currentExtremeRaid = "mordum";
+        currentExtremeRaid = "jongmak";
         currentCombo = "nightmare_gate1";
         document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
         document.querySelector('.menu-item[data-menu="extreme"]')?.classList.add("active");
@@ -4284,9 +4390,10 @@ function getCurrentRowsForPartyDps() {
     }
 
     if (currentMenu === "extreme") {
-        if (currentExtremeRaid !== "mordum") return [];
-        const meta = raidMeta.extreme.mordum[currentCombo];
-        const data = meta && MORDUM_EX_DATA[meta.diffKey];
+        const isJongmak = currentExtremeRaid === "jongmak";
+        if (currentExtremeRaid !== "mordum" && !isJongmak) return [];
+        const meta = raidMeta.extreme[currentExtremeRaid][currentCombo];
+        const data = meta && (isJongmak ? JONGMAK_EX_DATA : MORDUM_EX_DATA)[meta.diffKey];
         if (!data) return [];
         const shares = data.shares;
         const shareList = [10, 11, 12, 13, 14, 15, 16, shares.one, 17, 18, 19, 20, 21, 22, 23, 24, 25]
@@ -4810,10 +4917,7 @@ function makeRaidMiniHero(menu, meta) {
 
 
 
-    // 모르둠 나메 전용: 입장레벨 오른쪽 '초고점 바훈 택틱 (10/19)' 심볼 + 상세보기 툴팁
-    const patchBadgeHtml = (isMordum && meta.diffKey === "nightmare")
-        ? `<span class="p-mini-patch-badge" style="display:inline-flex;align-items:center;flex-shrink:0;white-space:nowrap;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.2px;color:#c4b5fd;background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.45);">⚡ 초고점 바훈 택틱 (10/19)</span><span class="mordum-tactic-tip" tabindex="0"><span class="mordum-tactic-icon">i</span></span>`
-        : "";
+    const patchBadgeHtml = "";
 
     const miniBattleIconsHtml = buildMiniBattleIconsHtml(menu, meta.diffKey, meta.gateKey, currentRoleMode);
     const miniLoadoutBlock = miniBattleIconsHtml ? `
@@ -4984,8 +5088,12 @@ function bindExtremeTabs() {
     document.querySelectorAll("[data-extreme-raid]").forEach(el => {
         el.addEventListener("click", () => {
             if (currentExtremeRaid === el.dataset.extremeRaid) return;
+            // 레이드를 바꿔도 지금 선택된 난이도(노말/하드/나메)를 그대로 유지
+            const prevMeta = (raidMeta.extreme[currentExtremeRaid] || {})[currentCombo];
+            const keepDiff = (prevMeta && prevMeta.diffKey) || "hard";
             currentExtremeRaid = el.dataset.extremeRaid;
-            currentCombo = "hard_gate1";
+            currentCombo = `${keepDiff}_gate1`;
+            setBaseTimeByMenu("extreme");
             renderTable();
         });
     });
@@ -5011,59 +5119,435 @@ function bindExtremeTabs() {
 }
 
 // 종막 EX 전용 플레이스홀더 히어로 (데이터 수집 전까지 사용)
-function makeJongmakPlaceholderHero() {
+
+
+
+/* =============================================
+   종막 EX UI 헬퍼
+   ============================================= */
+function getJongmakSupportShares(shares) {
+    const conv = (v) => Math.floor(v * 1.25 * 10) / 10; // 서폿 환산: 딜러 기준 x1.25 (벨가르딘/모르둠과 동일)
+    return { tank: conv(shares.tank), one: conv(shares.one), blood: conv(shares.blood) };
+}
+
+function formatJongmakSec(sec) {
+    const s = Math.round(sec);
+    return `${Math.floor(s / 60)}분 ${String(s % 60).padStart(2, "0")}초`;
+}
+
+function makeExtremeDiffGroupHtml(meta, levels) {
+    const diffGroups = [
+        { diffKey: "normal", label: "노말", cls: "pd-green" },
+        { diffKey: "hard", label: "하드", cls: "pd-gold" },
+        { diffKey: "nightmare", label: "나메", cls: "pd-purple" }
+    ];
+    const active = diffGroups.find(g => g.diffKey === meta.diffKey) || diffGroups[1];
     return `
-        <div class="p-hero" style="background:linear-gradient(160deg,#2a0f0f 0%,#140a0a 55%,#1a0a12 100%);border-color:rgba(248,113,113,.3);">
+        <div class="precision-inline-group">
+            <div class="precision-control-label">난이도 선택</div>
+            <div class="precision-diff-inline" id="precisionDiffInline">
+                <div class="precision-switch-thumb precision-diff-thumb ${active.cls}" id="precisionDiffThumb"></div>
+                ${diffGroups.map(g => `
+                    <div class="precision-diff-chip ${meta.diffKey === g.diffKey ? `${g.cls} active` : ""}" data-extreme-diff="${g.diffKey}">
+                        <span class="precision-diff-chip-main">${g.label}</span>
+                        <span class="precision-diff-chip-sub">${levels[g.diffKey] || "-"}</span>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+}
+
+// 보스 정보 패널: 관문별 체력 / 에스더 / 서폿 / 지분체력
+
+// 종막 상세보기 열림 상태 (난이도를 바꿔도 유지)
+let jongmakDetailOpen = false;
+
+function bindJongmakDetailToggle() {
+    const btn = document.getElementById("jongmakDetailBtn");
+    const content = document.getElementById("jongmakDetailContent");
+    if (!btn || !content) return;
+    btn.addEventListener("click", () => {
+        jongmakDetailOpen = content.classList.toggle("mbi-open");
+        btn.textContent = jongmakDetailOpen ? "종막 상세보기 ▲" : "종막 상세보기 ▼";
+    });
+}
+
+// 종막 에스더 스킬 (2-1 체력 대비 고정 비율, 난이도마다 자기 2-1 체력을 곱함)
+const JONGMAK_ESTHER_GROUPS = [
+    {
+        key: "kadan", name: "카단", symbol: "❖", tone: "248,113,113",
+        skills: [
+            { name: "히든 카단 3칸", cells: 3, pct: 5.627, tone: "239,68,68" },
+            { name: "카단 3칸", cells: 3, pct: 1.825, tone: "248,113,113" },
+            { name: "카단 1칸", cells: 1, pct: 1.429, tone: "252,165,165" }
+        ]
+    },
+    {
+        key: "aman", name: "아만", symbol: "◈", tone: "167,139,250",
+        skills: [
+            { name: "공아만 3칸", cells: 3, pct: 1.681, tone: "167,139,250" },
+            { name: "공아만 1칸", cells: 1, pct: 1.330, tone: "196,181,253" },
+            { name: "히든 아만 3칸", cells: 3, pct: 3.397, tone: "217,70,239", note: "2-3 전용 · 미반영" }
+        ]
+    },
+    {
+        key: "shandi", name: "샨디", symbol: "✦", tone: "251,113,133",
+        skills: [
+            { name: "샨디 3칸", cells: 3, pct: 1.501, tone: "251,113,133", note: "과거 백업 · 미반영" },
+            { name: "샨디 1칸", cells: 1, pct: 0.225, tone: "253,164,175", note: "과거 백업 · 미반영" }
+        ]
+    }
+];
+
+function makeJongmakEstherList(diffKey) {
+    const base = JONGMAK_EX_BASE[diffKey];
+    if (!base) return "";
+
+    const groupsHtml = JONGMAK_ESTHER_GROUPS.map(g => {
+        const tags = g.skills.map(sk => {
+            const eok = Math.round(base.hp1 * sk.pct / 100 / 1e8);
+            const pips = Array.from({ length: sk.cells }, () => "<i></i>").join("");
+            return `
+                <div class="mordum-esther-tag jm-esther-tag" style="--tone:${sk.tone}" title="2-1 체력의 ${sk.pct.toFixed(3)}%">
+                    <span class="me-pips">${pips}</span>
+                    <span class="me-namebox">
+                        <span class="me-name">${sk.name}</span>
+                        ${sk.note ? `<span class="me-note">${sk.note}</span>` : ""}
+                    </span>
+                    <span class="me-dmg">약 ${fmt(eok)}억</span>
+                    <span class="me-line">${sk.pct.toFixed(2)}%</span>
+                </div>
+            `;
+        }).join("");
+        return `
+            <div class="mordum-esther-group" style="--tone:${g.tone}">
+                <div class="mordum-esther-group-name"><span class="me-sym">${g.symbol}</span>${g.name}</div>
+                <div class="mordum-esther-tags">${tags}</div>
+            </div>
+        `;
+    }).join("");
+
+    return `
+        <div class="mordum-esther-list">
+            <div class="mordum-esther-title jm-title">${getMordumDiffLabel(diffKey)} 에스더 딜량</div>
+            <div class="mordum-esther-sub">에스더 스킬 1회당 딜량 / 2-1 체력 대비 비율</div>
+            ${groupsHtml}
+        </div>
+    `;
+}
+
+// 보스 정보 패널 (왼쪽 도넛: 2-1/2-2/2-3 체력 비중, 오른쪽 범례 / 상세보기: 체력 요약 + 에스더)
+function makeJongmakBossInfoPanel(diffKey) {
+    const data = JONGMAK_EX_DATA[diffKey];
+    if (!data) return "";
+    const approx = (won) => formatEokApprox(won / 1e8);
+    const sum = (key) => data.gates.reduce((a, g) => a + g[key], 0);
+    const totalHp = sum("hp");
+    const deduct = sum("esther") + sum("support");
+    const estBadge = '<span class="jm-est">추정</span>';
+
+    // ----- 도넛 그래프 (SVG) -----
+    const R = 42;
+    const C = 2 * Math.PI * R;
+    const GAP = 4;
+    let offset = 0;
+    const arcs = data.gates.map((g, i) => {
+        const ratio = g.hp / totalHp;
+        const len = Math.max(C * ratio - GAP, 0);
+        const arc = `<circle class="mbi-arc-g${i + 1}" cx="55" cy="55" r="${R}" fill="none" stroke="url(#jmGrad${i + 1})" stroke-width="12"
+            stroke-dasharray="${len.toFixed(2)} ${(C - len).toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}" transform="rotate(-90 55 55)"/>`;
+        offset += C * ratio;
+        return arc;
+    }).join("");
+
+    const donut = `
+        <svg class="mbi-donut" viewBox="0 0 110 110" role="img"
+             aria-label="${data.gates.map(g => `${g.name} ${(g.hp / totalHp * 100).toFixed(1)}%`).join(", ")}">
+            <defs>
+                <linearGradient id="jmGrad1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fca5a5"/><stop offset="1" stop-color="#dc2626"/></linearGradient>
+                <linearGradient id="jmGrad2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ddd6fe"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>
+                <linearGradient id="jmGrad3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bae6fd"/><stop offset="1" stop-color="#0284c7"/></linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="51" fill="none" stroke="rgba(148,163,184,.14)" stroke-width="1" stroke-dasharray="2 4"/>
+            <circle cx="55" cy="55" r="${R}" fill="none" stroke="#1b2033" stroke-width="12"/>
+            ${arcs}
+            <text class="mbi-donut-cap" x="55" y="50" text-anchor="middle">총 체력</text>
+            <text class="mbi-donut-val" x="55" y="67" text-anchor="middle">${formatEokAbbrev(totalHp / 1e8)}</text>
+        </svg>
+    `;
+
+    // 범례는 한 줄형(이름 ··· %)이라 3개여도 모르둠 보스정보 카드와 높이가 같음
+    const legend = data.gates.map((g, i) => {
+        const gm = JONGMAK_EX_GATES.find(x => x.key === g.key);
+        return `
+            <div class="mbi-legend-item g${i + 1}">
+                <span class="mbi-legend-name"><i class="mbi-dot g${i + 1}"></i>${g.name}${gm.estimated ? estBadge : ""}</span>
+                <b>${(g.hp / totalHp * 100).toFixed(1)}%</b>
+            </div>`;
+    }).join("");
+
+    const subRow = (cls, label, value) => `
+        <div class="mbi-row mbi-sub ${cls}">
+            <span class="mbi-label"><span class="mbi-branch">ㄴ</span>${label}</span>
+            <b>${value}</b>
+        </div>`;
+
+    const estNote = data.hp3Source === "clear-record"
+        ? "2-3 체력은 인게임에 표시되지 않아 클리어 기록(21% 소모)으로 역산한 추정값입니다. (오차 약 ±2~3%)"
+        : "2-3 체력은 확인 전이라 나메 추정 비율(2-3 ÷ 2-1)을 적용한 임시값입니다.";
+
+    const detailOpen = jongmakDetailOpen;
+
+    return `
+        <div class="side-card mordum-boss-info-card mbi-card jm-card">
+            <div class="side-label">종막 EX - ${getMordumDiffLabel(diffKey)} 보스정보</div>
+            <div class="mbi-body">
+                <div class="mbi-chart">${donut}</div>
+                <div class="mbi-legend jm-legend">${legend}</div>
+            </div>
+
+            <button class="mbi-more-btn" id="jongmakDetailBtn" type="button">${detailOpen ? "종막 상세보기 ▲" : "종막 상세보기 ▼"}</button>
+
+            <div class="mbi-more-content ${detailOpen ? "mbi-open" : ""}" id="jongmakDetailContent">
+                <div class="mbi-lines">
+                    <div class="mbi-row mbi-total">
+                        <span class="mbi-label">보스 총 체력 :</span>
+                        <b>${approx(totalHp)}</b>
+                    </div>
+                    ${subRow("g1", "2-1 체력 :", approx(data.gates[0].hp))}
+                    ${subRow("g2", "2-2 체력 (본체+쉴드) :", approx(data.gates[1].hp))}
+                    ${subRow("g3", `2-3 체력 ${estBadge} :`, approx(data.gates[2].hp))}
+                    ${subRow("mbi-deduct", "에스더 및 서폿 차감값 :", approx(deduct))}
+                    ${subRow("mbi-share", "딜러 지분체력 (합산) :", approx(sum("share")))}
+                </div>
+
+                ${makeJongmakEstherList(diffKey)}
+
+                <div class="jm-note-box">2-2는 본체와 쉴드 체력을 합산했어요. ${estNote}</div>
+            </div>
+        </div>
+    `;
+}
+
+// 구간별 딜지분 (2-1 / 2-2 / 2-3): 각 관문 종료 시점의 누적 딜량 + 해당 관문 구간 DPS
+function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
+    const data = JONGMAK_EX_DATA[diffKey];
+    if (!data) return '<div class="coming-soon"><h3>준비중</h3><p>구간 데이터가 없습니다.</p></div>';
+
+    const isSupport = currentRoleMode === "support";
+    const pct = isSupport ? getJongmakSupportShares(data.shares) : data.shares;
+    const tankLabel = isSupport ? "강조" : "강투";
+    const bloodLabel = isSupport ? "잔조" : "잔혈";
+    const f = totalSec > 0 ? totalSec / data.totalSec : 1;
+
+    const unit = '<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span>';
+    const dpsUnit = '<span class="lc-dps-unit">억</span>';
+    const mmss = (sec) => { const s = Math.round(sec); return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; };
+    const keys = ["tank", "one", "blood"];
+
+    const triHtml = (cls, label, value, dps) => `
+        <div class="lc-tri ${cls}">
+            <span class="lc-tri-label">${label}</span>
+            <span class="lc-tri-value">${fmt(Math.floor(value + 1e-9))}${unit}</span>
+            <span class="lc-tri-dps">DPS ${dps.toFixed(1)}${dpsUnit}</span>
+        </div>
+    `;
+
+    let cumShare = 0;
+    let cumSec = 0;
+    const gateRows = data.gates.map((g, i) => {
+        const gm = JONGMAK_EX_GATES.find(x => x.key === g.key);
+        const segSec = g.sec * f;
+        cumShare += g.share / 1e8;
+        cumSec += segSec;
+        const isClear = i === data.gates.length - 1;
+
+        const cum = {}, dps = {};
+        keys.forEach(k => {
+            cum[k] = cumShare * pct[k] / 100;
+            // 관문 구간 DPS = 해당 관문 목표 딜량 / 관문 시간 (마지막 클리어 지점은 전체 평균 DPS)
+            dps[k] = isClear
+                ? floorTo1(cum[k] / (totalSec > 0 ? totalSec : data.totalSec))
+                : floorTo1((g.share / 1e8) * pct[k] / 100 / segSec);
+        });
+
+        const label = isClear ? `${g.name} · 클리어` : `${g.name} 종료`;
+        const desc = isClear
+            ? `${gm.type.text} · 구간 ${formatJongmakSec(segSec)} · 구간 지분체력 ${formatEokAbbrev(g.share / 1e8)} (클리어 지점 DPS는 전체 평균)`
+            : `${gm.type.text} · 구간 ${formatJongmakSec(segSec)} · 구간 지분체력 ${formatEokAbbrev(g.share / 1e8)}`;
+
+        return `
+            <div class="line-cut-row ${isClear ? "line-cut-clear" : ""}">
+                <div class="line-cut-marker">
+                    <span class="line-cut-dot"></span>
+                    ${isClear ? "" : '<span class="line-cut-connector"></span>'}
+                </div>
+                <div class="line-cut-body">
+                    <div class="line-cut-label-row">
+                        <div class="line-cut-line-wrap">
+                            <span class="line-cut-line-num">${label}</span>
+                            ${gm.estimated ? '<span class="jm-est">추정</span>' : ""}
+                        </div>
+                        <span class="line-cut-time">누적 ${mmss(cumSec)}</span>
+                    </div>
+                    <div class="line-cut-desc">${desc}</div>
+                    <div class="line-cut-card">
+                        ${triHtml("tank", tankLabel, cum.tank, dps.tank)}
+                        ${triHtml("one", "1인분", cum.one, dps.one)}
+                        ${triHtml("blood", bloodLabel, cum.blood, dps.blood)}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    const startRow = `
+        <div class="line-cut-row line-cut-start">
+            <div class="line-cut-marker">
+                <span class="line-cut-dot start"></span>
+                <span class="line-cut-connector"></span>
+            </div>
+            <div class="line-cut-start-label">2-1 - 조우 시작</div>
+        </div>
+    `;
+
+    return `<div class="line-cut-timeline">${startRow}${gateRows}</div>`;
+}
+
+function makeJongmakHero(meta) {
+    const pills = [
+        { key: "normal", text: `노말 · ${JONGMAK_EX_LEVELS.normal}` },
+        { key: "hard", text: `하드 · ${JONGMAK_EX_LEVELS.hard}` },
+        { key: "nightmare", text: `나메 · ${JONGMAK_EX_LEVELS.nightmare}` }
+    ];
+    const heroBattleIconsHtml = buildHeroBattleIconsHtml("jongmak", meta.diffKey, "gate1", currentRoleMode, meta.gateName);
+    return `
+        <div class="p-hero hero-jongmak">
             <div class="p-hero-inner">
                 <div class="p-hero-left">
                     <div class="p-hero-copy">
-                        <div class="p-hero-kicker" style="color:#fca5a5;">PRECISION · JONGMAK EX</div>
-
+                        <div class="p-hero-kicker">PRECISION · JONGMAK EX</div>
                         <div class="p-hero-title-row">
-                            <div class="p-hero-icon" style="background:rgba(248,113,113,.18);border-color:rgba(248,113,113,.4);">👑</div>
+                            <div class="p-hero-icon">👑</div>
                             <div class="p-hero-title-wrap">
                                 <h2 class="p-hero-title">종막 EX<span class="p-hero-member-badge">8인</span></h2>
                                 <div class="p-hero-subtitle">대악마 카제로스</div>
                             </div>
                         </div>
-
                         <div class="p-hero-badges">
-                            <span class="badge type-archdemon">대악마</span>
-                            <span class="badge" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.45);color:#fb923c;">🚧 준비중</span>
+                            <span class="p-badge b-type">대악마</span>
+                            <span class="p-badge b-attr">신</span>
                         </div>
-
-                        <p class="p-hero-desc">2-1 · 2-2 · 2-3 관문으로 이어지는 종막 EX 레이드입니다. 데이터 수집 후 주말부터 작업이 진행될 예정입니다.</p>
+                        <p class="p-hero-desc"> 현재 🚧 작업중 입니다. 🚧 </p>
                     </div>
-
                     <div class="p-hero-pills">
-                        <span class="p-pill">노말 · -</span>
-                        <span class="p-pill">하드 · -</span>
-                        <span class="p-pill">나메 · -</span>
+                        ${pills.map(p => `<span class="p-pill diff-${p.key} ${meta.diffKey === p.key ? "active" : ""}">${p.text}</span>`).join("")}
                     </div>
                 </div>
-
                 <div class="p-hero-right bi-hero-items-wrap">
                     <div class="bi-hero-items-header" style="justify-content:flex-end;">
                         ${makeRoleToggleHtml("hero")}
                     </div>
+                    ${heroBattleIconsHtml ? `<div class="bi-hero-items-label">추천 배틀아이템</div>` : ""}
+                    ${heroBattleIconsHtml}
                 </div>
             </div>
         </div>
     `;
 }
 
-function makeJongmakPlaceholderMiniHero() {
+function makeJongmakMiniHero(meta) {
+    const diffLabel = getMordumDiffLabel(meta.diffKey);
+    const level = JONGMAK_EX_LEVELS[meta.diffKey] || "-";
+    const miniBattleIconsHtml = buildMiniBattleIconsHtml("jongmak", meta.diffKey, "gate1", currentRoleMode);
+    const miniLoadoutBlock = miniBattleIconsHtml ? `
+                <div class="bi-mini-loadout-inline">
+                    ${makeRoleBadgeHtml()}
+                    ${miniBattleIconsHtml}
+                </div>
+    ` : "";
     return `
-        <div class="p-hero p-mini-hero" style="background:linear-gradient(160deg,#2a0f0f 0%,#140a0a 55%,#1a0a12 100%);border-color:rgba(248,113,113,.3);">
+        <div class="p-hero p-mini-hero hero-jongmak">
             <div class="p-mini-hero-row">
                 <div class="p-mini-hero-left">
                     <div class="p-hero-icon p-hero-icon-sm">👑</div>
                     <span class="p-mini-hero-title">종막 EX</span>
-                    <span class="p-mini-gate-badge" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.45);color:#fb923c;">🚧 준비중</span>
+                    <span class="p-mini-diff-badge diff-${meta.diffKey}">${diffLabel}</span>
+                    <span class="p-mini-gate-badge">${meta.gateName}</span>
+                    <span class="p-mini-level-badge">${level}</span>
                 </div>
+                ${miniLoadoutBlock}
             </div>
         </div>
     `;
+}
+
+// 관문별 목표 딜량 / DPS 표 (CLEAR TIME 변경 시 각 관문 시간을 같은 비율로 늘리고 줄임)
+
+
+
+function renderJongmakExtreme(totalSec, raidGroupHtml) {
+    const meta = raidMeta.extreme.jongmak[currentCombo] || raidMeta.extreme.jongmak.hard_gate1;
+    const isSupport = currentRoleMode === "support";
+    const data = JONGMAK_EX_DATA[meta.diffKey];
+    const shares = data.shares;
+
+    const topRowBlock = `
+        <div class="mordum-top-row">
+            <div class="mordum-controls-col">
+                <div class="precision-control compact-precision-control mordum-ex-controls">
+                    ${raidGroupHtml}
+                    ${makeExtremeDiffGroupHtml(meta, JONGMAK_EX_LEVELS)}
+                </div>
+            </div>
+            ${makeJongmakBossInfoPanel(meta.diffKey)}
+        </div>
+    `;
+
+    const shareList = [10, 11, 12, 13, 14, 15, 16, shares.one, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+        .filter((v, i, arr) => arr.indexOf(v) === i)
+        .sort((a, b) => a - b);
+    const rows = shareList.map(s => ({ share: s, damage: data.effectiveDamage * s / 100 }));
+
+    let rowTank, rowOne, rowBlood, tableRowsHtml;
+    if (isSupport) {
+        const conv = computeSupportConversion(rows, shares, (row) => row.damage);
+        rowTank = conv.anchors.gangjo;
+        rowOne = conv.anchors.ilinbun;
+        rowBlood = conv.anchors.janjo;
+        tableRowsHtml = conv.rows.length
+            ? conv.rows.map(r => {
+                const dps = floorTo1(r.damage / totalSec).toFixed(1);
+                return `<tr>${renderSupportShareCell(r)}<td>${fmt(r.damage)}</td><td><span class="dps-pill">${dps}억</span></td></tr>`;
+            }).join("")
+            : '<tr><td colspan="3">데이터 없음</td></tr>';
+    } else {
+        rowTank = rows.find(r => Math.abs(r.share - shares.tank) < 0.0001);
+        rowOne = rows.find(r => Math.abs(r.share - shares.one) < 0.0001);
+        rowBlood = rows.find(r => Math.abs(r.share - shares.blood) < 0.0001);
+        tableRowsHtml = rows.map(r => {
+            const dmg = Math.floor(r.damage);
+            const dps = floorTo1(r.damage / totalSec).toFixed(1);
+            return `<tr>${renderShareCell(r.share, "jongmak")}<td>${fmt(dmg)}</td><td><span class="dps-pill">${dps}억</span></td></tr>`;
+        }).join("");
+    }
+
+    const summaryMeta = { title: `${getMordumDiffLabel(meta.diffKey)}`, gateName: meta.gateName, diffKey: meta.diffKey };
+
+    setMainContentWithAdPreservation(
+        makeJongmakHero(meta),
+        makeJongmakMiniHero(meta),
+        `
+        ${topRowBlock}
+        ${buildSummaryAndDetailHtml("jongmak", "gate1", "종막 EX", summaryMeta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, (row) => row.damage, isSupport)}
+        `
+    );
+
+    bindExtremeTabs();
+    bindJongmakDetailToggle();
+    bindRaidBattleItemIcons();
+    positionPrecisionSwitchThumbs();
 }
 
 function renderExtremeSection(totalSec) {
@@ -5102,7 +5586,8 @@ function renderExtremeSection(totalSec) {
                             <span class="precision-gate-chip-boss">EX</span>
                         </div>
                         <div class="precision-gate-chip-badges">
-                            <span class="badge" style="background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.45);color:#fb923c;">🚧 준비중</span>
+                            ${makeBadge("대악마", "type-archdemon")}
+                            ${makeBadge("신", "type-divine")}
                         </div>
                     </div>
                 </div>
@@ -5110,65 +5595,9 @@ function renderExtremeSection(totalSec) {
         </div>
     `;
 
-    // ===== 종막 EX: 아직 데이터가 없어 빈 페이지(준비중)로만 표시 =====
+    // ===== 종막 EX =====
     if (currentExtremeRaid === "jongmak") {
-        const jongmakDiffPlaceholder = `
-            <div class="precision-inline-group">
-                <div class="precision-control-label">난이도 선택</div>
-                <div class="precision-diff-inline">
-                    <div class="precision-diff-chip" style="opacity:.5;cursor:default;">
-                        <span class="precision-diff-chip-main">노말</span>
-                        <span class="precision-diff-chip-sub">-</span>
-                    </div>
-                    <div class="precision-diff-chip" style="opacity:.5;cursor:default;">
-                        <span class="precision-diff-chip-main">하드</span>
-                        <span class="precision-diff-chip-sub">-</span>
-                    </div>
-                    <div class="precision-diff-chip" style="opacity:.5;cursor:default;">
-                        <span class="precision-diff-chip-main">나메</span>
-                        <span class="precision-diff-chip-sub">-</span>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        const jongmakTopRow = `
-            <div class="mordum-top-row">
-                <div class="mordum-controls-col">
-                    <div class="precision-control compact-precision-control mordum-ex-controls">
-                        ${raidGroupHtml}
-                        ${jongmakDiffPlaceholder}
-                    </div>
-                </div>
-                <div class="side-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;min-height:150px;">
-                    <div style="font-size:26px;">🚧</div>
-                    <div style="font-size:13px;font-weight:900;color:#fca5a5;">보스정보 준비중</div>
-                    <div style="font-size:11px;color:#8a93a8;line-height:1.5;">2-1 · 2-2 · 2-3 관문<br>데이터 수집중입니다</div>
-                </div>
-            </div>
-        `;
-
-        const jongmakBody = `
-            <div class="precision-section-divider"><span>딜지분 상세보기</span></div>
-            <div class="precision-table-panel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;min-height:260px;padding:52px 20px;">
-                <div style="font-size:42px;">🚧</div>
-                <div style="font-size:16px;font-weight:900;color:#fff;">종막 EX 준비중입니다</div>
-                <div style="font-size:12.5px;color:#8a93a8;line-height:1.65;max-width:440px;">
-                    대악마 카제로스 (2-1 · 2-2 · 2-3) 체력 · 딜지분 데이터를 수집하고 있습니다.<br>
-                    <strong style="color:#fca5a5;">데이터 수집 후 주말부터 작업을 진행</strong>할 예정입니다.
-                </div>
-            </div>
-        `;
-
-        setMainContentWithAdPreservation(
-            makeJongmakPlaceholderHero(),
-            makeJongmakPlaceholderMiniHero(),
-            `${jongmakTopRow}${jongmakBody}`
-        );
-
-        bindExtremeTabs();
-        bindRaidBattleItemIcons();
-        positionPrecisionSwitchThumbs();
+        renderJongmakExtreme(totalSec, raidGroupHtml);
         return;
     }
 
