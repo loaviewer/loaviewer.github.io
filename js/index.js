@@ -18,10 +18,6 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
 
-
-
-
-
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
@@ -31,7 +27,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-           
+          
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -5188,14 +5184,14 @@ const JONGMAK_ESTHER_GROUPS = [
         skills: [
             { name: "공아만 3칸", cells: 3, pct: 1.681, tone: "167,139,250" },
             { name: "공아만 1칸", cells: 1, pct: 1.330, tone: "196,181,253" },
-            { name: "히든 아만 3칸", cells: 3, pct: 3.397, tone: "217,70,239", note: "2-3 전용 · 미반영" }
+            { name: "히든 아만 3칸", cells: 3, pct: 3.397, tone: "217,70,239" }
         ]
     },
     {
         key: "shandi", name: "샨디", symbol: "✦", tone: "251,113,133",
         skills: [
-            { name: "샨디 3칸", cells: 3, pct: 1.501, tone: "251,113,133", note: "과거 백업 · 미반영" },
-            { name: "샨디 1칸", cells: 1, pct: 0.225, tone: "253,164,175", note: "과거 백업 · 미반영" }
+            { name: "샨디 3칸", cells: 3, pct: 1.501, tone: "251,113,133" },
+            { name: "샨디 1칸", cells: 1, pct: 0.225, tone: "253,164,175" }
         ]
     }
 ];
