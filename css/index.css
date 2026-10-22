@@ -8083,3 +8083,155 @@ body.standalone-dps-page .app {
 .role-toggle-box.compact.hero-role {
     margin-top: 0;
 }
+/* =============================================
+   종막 EX (카제로스) 전용 스타일 - 모르둠 EX 테마 구조를 그대로 따르고 색만 붉은/보라 계열
+   ============================================= */
+.hero-jongmak {
+    background:
+        radial-gradient(circle at top left, rgba(248,113,113,.28), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(167,139,250,.17), transparent 32%),
+        linear-gradient(160deg, #1f0d14 0%, #120b14 55%, #0f0c1c 100%);
+    border-color: rgba(248,113,113,.30);
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.30),
+        0 0 0 1px rgba(167,139,250,.05) inset,
+        0 0 30px rgba(248,113,113,.10);
+}
+
+.hero-jongmak.p-mini-hero {
+    background:
+        radial-gradient(circle at top left, rgba(248,113,113,.26), transparent 38%),
+        radial-gradient(circle at bottom right, rgba(167,139,250,.15), transparent 36%),
+        linear-gradient(160deg, #1f0d14 0%, #120b14 55%, #0f0c1c 100%);
+}
+
+/* 위쪽 라인 */
+.hero-jongmak::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #ef4444 22%, #a78bfa 50%, #ef4444 78%, transparent 100%);
+    opacity: .8;
+    pointer-events: none;
+}
+
+.hero-jongmak .p-hero-kicker { color: #fca5a5; }
+
+.hero-jongmak .p-hero-icon {
+    background: linear-gradient(135deg, rgba(248,113,113,.32), rgba(167,139,250,.24));
+    border: 1px solid rgba(248,113,113,.42);
+    box-shadow: 0 8px 18px rgba(248,113,113,.14), 0 0 16px rgba(167,139,250,.28);
+}
+
+.hero-jongmak .p-hero-title { text-shadow: 0 0 18px rgba(248,113,113,.30); }
+.hero-jongmak .p-mini-hero-title { text-shadow: 0 0 12px rgba(248,113,113,.32); }
+.hero-jongmak .p-hero-subtitle { color: #fca5a5; }
+
+.hero-jongmak .p-badge.b-type {
+    background: rgba(248,113,113,.16);
+    border-color: rgba(248,113,113,.30);
+    color: #fca5a5;
+}
+
+.hero-jongmak .p-badge.b-attr {
+    background: rgba(167,139,250,.14);
+    border-color: rgba(167,139,250,.32);
+    color: #c4b5fd;
+}
+
+.hero-jongmak .p-hero-desc { color: #8b97ad; }
+
+.hero-jongmak .p-pill {
+    background: rgba(248,113,113,.07);
+    color: #fca5a5;
+    border-color: rgba(248,113,113,.18);
+}
+
+.hero-jongmak .p-pill.active {
+    background: rgba(167,139,250,.14);
+    color: #ede9fe;
+    border-color: rgba(167,139,250,.34);
+}
+
+.hero-jongmak .p-mini-gate-badge {
+    background: rgba(167,139,250,.14);
+    border-color: rgba(167,139,250,.34);
+    color: #c4b5fd;
+}
+
+.hero-jongmak .p-hero-member-badge {
+    background: rgba(167,139,250,.14) !important;
+    border: 1px solid rgba(167,139,250,.34) !important;
+    color: #c4b5fd !important;
+    box-shadow: 0 0 10px rgba(167,139,250,.10) !important;
+}
+
+/* ---------- 보스정보: 관문 3분할 그래프 ---------- */
+.mbi-arc-g1 { filter: drop-shadow(0 0 5px rgba(248,113,113,.45)); }
+.mbi-arc-g2 { filter: drop-shadow(0 0 5px rgba(167,139,250,.45)); }
+.mbi-arc-g3 { filter: drop-shadow(0 0 5px rgba(56,189,248,.45)); }
+
+/* 한 줄형 범례: [● 2-1 ··········· 49.3%] - 3개여도 모르둠 카드와 같은 높이 */
+.jm-card .mbi-body { gap: 10px; flex: 1 1 auto; }   /* 남는 높이를 본문이 채워서 상세보기 버튼이 아래에 붙음 */
+.jm-card .mbi-chart { width: 108px; height: 108px; }
+.mbi-legend.jm-legend { gap: 10px; flex: 1 1 auto; min-width: 0; max-width: 156px; }
+.jm-legend .mbi-legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 9px 10px;
+}
+.jm-legend .mbi-legend-item b { font-size: 17px; }
+.jm-legend .mbi-legend-name { font-size: 11px; gap: 0; white-space: nowrap; }
+.jm-legend .jm-est { margin-left: 4px; padding: 0 5px; font-size: 9px; }
+
+.mbi-legend-item.g1 { border-color: rgba(248,113,113,.28); background: rgba(248,113,113,.07); }
+.mbi-legend-item.g2 { border-color: rgba(167,139,250,.28); background: rgba(167,139,250,.07); }
+.mbi-legend-item.g3 { border-color: rgba(56,189,248,.28); background: rgba(56,189,248,.07); }
+.mbi-legend-item.g1 b { color: #fca5a5; }
+.mbi-legend-item.g2 b { color: #c4b5fd; }
+.mbi-legend-item.g3 b { color: #7dd3fc; }
+
+.mbi-dot.g1 { background: linear-gradient(135deg, #fca5a5, #dc2626); box-shadow: 0 0 6px rgba(248,113,113,.55); }
+.mbi-dot.g2 { background: linear-gradient(135deg, #ddd6fe, #7c3aed); box-shadow: 0 0 6px rgba(167,139,250,.55); }
+.mbi-dot.g3 { background: linear-gradient(135deg, #bae6fd, #0284c7); box-shadow: 0 0 6px rgba(56,189,248,.55); }
+
+.jm-est {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-size: 9.5px;
+    font-weight: 800;
+    line-height: 1.4;
+    vertical-align: middle;
+    color: #fbbf24;
+    background: rgba(251,191,36,.12);
+    border: 1px solid rgba(251,191,36,.4);
+}
+
+/* ---------- 종막 상세보기 (모르둠 상세보기와 같은 구성) ---------- */
+.mbi-row.g1 b { color: #fca5a5; }
+.mbi-row.g2 b { color: #c4b5fd; }
+.mbi-row.g3 b { color: #7dd3fc; }
+.mbi-row.mbi-share b { color: #fde047; }
+.mbi-row .mbi-label { min-width: 0; }
+
+.jm-esther-tag { grid-template-columns: auto minmax(0, 1fr) auto 50px; }
+.mordum-esther-title.jm-title { color: #fca5a5; }
+
+.jm-note-box {
+    margin-top: 14px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #b8a36a;
+    background: rgba(251,191,36,.06);
+    border: 1px solid rgba(251,191,36,.22);
+}
+
