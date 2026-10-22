@@ -17,17 +17,16 @@ let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "perce
 let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
-
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-
+ 
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-          
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -5314,7 +5313,7 @@ function makeJongmakBossInfoPanel(diffKey) {
                     ${subRow("g1", "2-1 체력 :", approx(data.gates[0].hp))}
                     ${subRow("g2", "2-2 체력 (본체+쉴드) :", approx(data.gates[1].hp))}
                     ${subRow("g3", `2-3 체력 ${estBadge} :`, approx(data.gates[2].hp))}
-                    ${subRow("mbi-deduct", "에스더 및 서폿 차감값 :", approx(deduct))}
+                    ${subRow("mbi-deduct", "에스더 및 변수 차감값 :", approx(deduct))}
                     ${subRow("mbi-share", "딜러 지분체력 (합산) :", approx(sum("share")))}
                 </div>
 
