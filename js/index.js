@@ -19,16 +19,23 @@ let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}`
 
 
 
+// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
+// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
+// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
+
+
+
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-
+    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
+    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-           
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -5641,7 +5648,7 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
                     <div class="jm-calc">
                         <div class="jm-calc-cell hp"><span>보스 체력</span><b>${won(g.hp)}</b>${g.key === "g2" ? "<i>본체+쉴드</i>" : (gm.estimated ? "<i>추정</i>" : "")}</div>
                         <div class="jm-calc-cell es"><span>− 에스더</span><b>${won(g.esther)}</b><i>${g.estherPct.toFixed(3)}%</i></div>
-                        <div class="jm-calc-cell sp"><span>− 서폿</span><b>${won(g.support)}</b><i>딜 가정</i></div>
+                        <div class="jm-calc-cell sp"><span>− 변수</span><b>${won(g.support)}</b><i>최소</i></div>
                         <div class="jm-calc-cell sh"><span>= 구간 지분체력</span><b>${won(g.share)}</b></div>
                     </div>
                     <div class="jm-tl-etags"><span class="jm-tl-etags-label">사용 에스더</span>${makeJongmakUsageTagsHtml(g.usage)}</div>
@@ -5663,8 +5670,7 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
         <div class="jm-tl">
             <div class="jm-tl-guide">
                 <div class="jm-tl-guide-text">
-                    <b>보는 법</b> 관문마다 <em>보스 체력 − 에스더 − 서폿 = 구간 지분체력</em>에 지분(%)을 곱해 목표를 계산해요.
-                    큰 숫자는 그 관문 <b>종료 시점까지 누적</b> 딜량, <b>이 구간</b>은 그 관문에서만 넣을 딜량, <b>구간 DPS</b>는 그 관문 시간 평균이에요.
+                    <b>2-1 , 2-2 , 2-3</b>  관문별 넣을 딜량, <b>구간 DPS</b> 는 그 관문 시간 평균
                 </div>
                 <div class="jm-tl-guide-actions">
                     ${custom ? '<span class="jm-tl-custom">에스더 사용값 수정됨</span>' : ""}
