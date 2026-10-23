@@ -8538,28 +8538,17 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
     border-left: 4px solid var(--gc);
     box-shadow: 0 10px 26px rgba(0,0,0,.22);
 }
-.jm-tl-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.jm-tl-head { display: flex; align-items: center; gap: 10px 14px; flex-wrap: wrap; }
 .jm-tl-headleft { display: flex; align-items: center; gap: 8px; }
 .jm-tl-gate { padding: 3px 11px; border-radius: 9px; font-size: 15px; font-weight: 900; color: #fff; background: rgba(var(--gc-rgb), .24); border: 1px solid rgba(var(--gc-rgb), .6); }
 .jm-tl-title { font-size: 17px; font-weight: 900; color: #fff; }
-.jm-tl-time { font-size: 12px; font-weight: 700; color: #8a93a8; }
+.jm-tl-time { margin-left: auto; font-size: 12px; font-weight: 700; color: #8a93a8; white-space: nowrap; }
 .jm-tl-time b { font-size: 15px; color: #e5e7eb; font-variant-numeric: tabular-nums; }
-.jm-tl-meta { margin: 7px 0 13px; font-size: 12px; color: #8a93a8; }
+.jm-tl-meta { margin: 7px 0 12px; font-size: 12px; color: #8a93a8; }
 
 /* 계산 과정: 보스 체력 - 에스더 - 서폿 = 구간 지분체력 */
-.jm-calc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.jm-calc-cell { display: grid; gap: 2px; align-content: start; padding: 9px 11px; border-radius: 11px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.08); min-width: 0; }
-.jm-calc-cell span { font-size: 10.5px; font-weight: 800; color: #8a93a8; white-space: nowrap; }
-.jm-calc-cell b { font-size: 16px; font-weight: 900; color: #e5e7eb; font-variant-numeric: tabular-nums; }
-.jm-calc-cell i { font-style: normal; font-size: 10.5px; font-weight: 700; color: #667085; }
-.jm-calc-cell.es { background: rgba(248,113,113,.08); border-color: rgba(248,113,113,.3); }
-.jm-calc-cell.es span, .jm-calc-cell.es b { color: #fca5a5; }
-.jm-calc-cell.sp b { color: #cbd5e1; }
-.jm-calc-cell.sh { background: linear-gradient(135deg, rgba(250,204,21,.16), rgba(250,204,21,.05)); border-color: rgba(250,204,21,.5); }
-.jm-calc-cell.sh span { color: #fde68a; }
-.jm-calc-cell.sh b { color: #fde047; font-size: 17px; }
 
-.jm-tl-etags { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+.jm-tl-etags { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 0; flex: 1 1 auto; min-width: 0; }
 .jm-tl-etags-label { font-size: 11px; font-weight: 800; color: #8a93a8; margin-right: 2px; }
 .jm-tl-etag { --tone: 248,113,113; padding: 3px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; color: #fff; background: rgba(var(--tone), .16); border: 1px solid rgba(var(--tone), .5); }
 .jm-tl-etag b { color: #fde68a; font-weight: 900; }
@@ -8568,38 +8557,21 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
 /* 결과 타일: 강투 / 1인분 / 잔혈 */
 .jm-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
 .jm-tile { padding: 11px 10px 11px; border-radius: 13px; text-align: center; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.09); border-top: 3px solid var(--tc, #64748b); min-width: 0; }
-.jm-tile.tank  { --tc: #facc15; background: linear-gradient(180deg, rgba(250,204,21,.09), rgba(250,204,21,.015)); }
-.jm-tile.one   { --tc: #60a5fa; background: linear-gradient(180deg, rgba(96,165,250,.10), rgba(96,165,250,.015)); }
-.jm-tile.blood { --tc: #a78bfa; background: linear-gradient(180deg, rgba(167,139,250,.11), rgba(167,139,250,.015)); }
+.jm-tile.tank  { --tc: #facc15; --tcr: 250,204,21; background: linear-gradient(180deg, rgba(250,204,21,.09), rgba(250,204,21,.015)); }
+.jm-tile.one   { --tc: #60a5fa; --tcr: 96,165,250; background: linear-gradient(180deg, rgba(96,165,250,.10), rgba(96,165,250,.015)); }
+.jm-tile.blood { --tc: #a78bfa; --tcr: 167,139,250; background: linear-gradient(180deg, rgba(167,139,250,.11), rgba(167,139,250,.015)); }
 .jm-tile-label { font-size: 12px; font-weight: 900; color: var(--tc); }
 .jm-tile-label em { font-style: normal; margin-left: 3px; color: #cbd5e1; font-weight: 800; }
 .jm-tile-main { margin-top: 4px; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: -.3px; font-variant-numeric: tabular-nums; line-height: 1.15; white-space: nowrap; }
 .jm-tile-main span { margin-left: 2px; font-size: 12px; font-weight: 700; color: #7c88a5; }
-.jm-tile-cap { margin-top: 1px; font-size: 10.5px; font-weight: 700; color: #667085; }
-.jm-tile-rows { margin-top: 9px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,.12); display: grid; gap: 4px; }
-.jm-tile-rows div { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11px; }
-.jm-tile-rows span { color: #8a93a8; font-weight: 700; white-space: nowrap; }
-.jm-tile-rows b { color: #e5e7eb; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.jm-tile-rows b.dps { color: var(--tc); }
-
-.jm-tl-avg { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin-top: 11px; padding: 9px 12px; border-radius: 11px; background: rgba(52,211,153,.07); border: 1px solid rgba(52,211,153,.28); font-size: 12px; color: #a7f3d0; }
-.jm-tl-avg-title { font-weight: 900; color: #6ee7b7; }
-.jm-tl-avg-title em { font-style: normal; font-weight: 700; color: #6b8f84; }
-.jm-tl-avg-item { font-weight: 700; color: #cbd5e1; }
-.jm-tl-avg-item b { margin-left: 3px; font-weight: 900; font-variant-numeric: tabular-nums; }
-.jm-tl-avg-item.tank b { color: #facc15; }
-.jm-tl-avg-item.one b { color: #60a5fa; }
-.jm-tl-avg-item.blood b { color: #c4b5fd; }
 
 @media (max-width: 640px) {
     .jm-tl-row { grid-template-columns: 22px minmax(0, 1fr); gap: 8px; }
     .jm-tl-card { padding: 12px 11px 13px; }
-    .jm-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .jm-tile { padding: 9px 6px; }
     .jm-tile-main { font-size: 17px; letter-spacing: -.5px; }
     .jm-tile-main span { font-size: 10px; margin-left: 1px; }
     .jm-tile-label { font-size: 11px; }
-    .jm-tile-rows div { flex-direction: column; align-items: center; gap: 0; }
 }
 
 
@@ -8614,3 +8586,44 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
 .jm-es-gate-use { padding: 2px 10px; border-radius: 999px; background: rgba(var(--tone), .10); border: 1px solid rgba(var(--tone), .32); color: #b9c3d4; }
 .jm-es-gate-use b { color: #fde68a; }
 .jm-es-gate .mordum-esther-tags { margin-top: 2px; }
+
+/* 구간별 딜지분 타일: 누적 딜량 + DPS만 */
+.jm-tile { padding: 12px 8px 13px; }
+.jm-tile-main { margin-top: 6px; }
+.jm-tile-dps {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--tc);
+    background: rgba(var(--tcr), .12);
+    border: 1px solid rgba(var(--tcr), .38);
+}
+.jm-tile-dps span { margin-left: 1px; font-size: 10.5px; font-weight: 700; opacity: .8; }
+
+@media (max-width: 640px) {
+    /* 좁은 화면: 1줄 = 2-1 종료 + 누적 시간 / 2줄 = 사용 에스더 */
+    .jm-tl-headleft { order: 1; }
+    .jm-tl-time { order: 2; }
+    .jm-tl-etags { order: 3; flex: 1 1 100%; }
+    .jm-tile-dps { font-size: 11px; padding: 2px 8px; }
+}
+
+@media (max-width: 640px) {
+    .jm-tile { padding: 9px 4px 10px; }
+    .jm-tile-label { font-size: 10.5px; white-space: nowrap; }
+    .jm-tile-label em { margin-left: 2px; }
+    .jm-tile-dps { margin-top: 8px; padding: 2px 7px; font-size: 10px; }
+    .jm-tile-dps span { font-size: 9.5px; }
+}
+
+/* 구간별 딜지분: 한글 단어 중간에서 줄바꿈되지 않도록 */
+.jm-tl, .jm-tl * { word-break: keep-all; overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+    .jm-tl-guide { padding: 10px 12px; gap: 8px; }
+    .jm-tl-guide-text { flex-basis: 100%; font-size: 11.5px; }
+}
