@@ -8235,3 +8235,382 @@ body.standalone-dps-page .app {
     border: 1px solid rgba(251,191,36,.22);
 }
 
+
+/* =============================================
+   종막 EX - 에스더 사용 입력 팝업 / 구간별 딜지분 / 상세보기 개편
+   ============================================= */
+
+/* ---------- 미니 히어로 / 구간별 안내의 "에스더 사용 입력하기" 버튼 ---------- */
+.jm-es-open-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 900;
+    white-space: nowrap;
+    color: #fde68a;
+    background: linear-gradient(135deg, rgba(251,191,36,.18), rgba(248,113,113,.16));
+    border: 1px solid rgba(251,191,36,.48);
+    cursor: pointer;
+    transition: filter .15s, transform .15s;
+}
+.jm-es-open-btn:hover { filter: brightness(1.18); transform: translateY(-1px); }
+.jm-es-open-btn.mini { padding: 4px 11px; font-size: 11.5px; }
+.jm-es-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #34d399; box-shadow: 0 0 8px #34d399;
+}
+
+/* ---------- 팝업 (뒤 화면과 동시에 조작 가능한 떠있는 창, x로만 닫힘) ---------- */
+.jm-ep {
+    --dt: 167,139,250;                  /* 난이도 포인트 색 (기본 = 나메 보라) */
+    position: fixed;
+    top: 84px;
+    right: 24px;
+    width: 664px;
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    z-index: 9500;
+    color: #e5e7eb;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at top left, rgba(var(--dt), .17), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(var(--dt), .08), transparent 42%),
+        linear-gradient(160deg, #181b2d 0%, #10121e 100%);
+    border: 1px solid rgba(var(--dt), .42);
+    box-shadow: 0 26px 64px rgba(0,0,0,.6), 0 0 0 1px rgba(var(--dt), .08) inset, 0 0 40px rgba(var(--dt), .15);
+    overflow: hidden;
+}
+.jm-ep.jm-ep-nightmare { --dt: 167,139,250; }   /* 나메: 보라 */
+.jm-ep.jm-ep-hard      { --dt: 251,191,36; }    /* 하드: 금색/노랑 */
+.jm-ep.jm-ep-normal    { --dt: 52,211,153; }    /* 노말: 초록 */
+
+.jm-ep-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    cursor: grab;
+    user-select: none;
+    background: linear-gradient(90deg, rgba(var(--dt), .24), rgba(var(--dt), .05));
+    border-bottom: 1px solid rgba(var(--dt), .22);
+}
+.jm-ep-head:active { cursor: grabbing; }
+.jm-ep-title { flex: 1; display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 900; color: #fff; }
+.jm-ep-title-ico { color: rgb(var(--dt)); }
+.jm-ep-diff { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 900; color: rgb(var(--dt)); background: rgba(var(--dt), .16); border: 1px solid rgba(var(--dt), .5); }
+.jm-ep-reset {
+    padding: 5px 11px; border-radius: 8px; font-family: inherit; font-size: 11px; font-weight: 800;
+    color: #cbd5e1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); cursor: pointer;
+}
+.jm-ep-reset:disabled { opacity: .38; cursor: default; }
+.jm-ep-reset:not(:disabled):hover { background: rgba(255,255,255,.12); }
+.jm-ep-close {
+    width: 32px; height: 32px; border-radius: 10px; font-size: 22px; line-height: 1; font-family: inherit;
+    color: #fff; background: rgba(248,113,113,.22); border: 1px solid rgba(248,113,113,.5); cursor: pointer;
+}
+.jm-ep-close:hover { background: rgba(248,113,113,.45); }
+.jm-ep-tip { margin-top: 8px; padding: 7px 14px; font-size: 11px; line-height: 1.55; color: #9ca3af; border-bottom: 1px dashed rgba(255,255,255,.09); }
+.jm-ep-tip b { color: #e5e7eb; font-weight: 800; }
+
+.jm-ep-body {
+    display: grid;
+    grid-template-columns: 318px 2px minmax(0, 1fr);
+    column-gap: 12px;
+    row-gap: 10px;
+    align-items: stretch;
+    padding: 12px 14px;
+    min-height: 0;
+    overflow-y: auto;
+}
+.jm-ep-gate { grid-column: 1; grid-row: var(--r); }
+.jm-ep-pal  { grid-column: 3; grid-row: var(--r); display: flex; flex-direction: column; min-width: 0; }
+.jm-ep-divider { grid-column: 2; grid-row: 1 / span 3; border-radius: 2px; background: linear-gradient(180deg, transparent, rgba(255,255,255,.28), transparent); }
+.jm-ep-toprow { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 2px 8px; font-size: 12.5px; color: #fff; }
+.jm-ep-toprow b { font-weight: 900; letter-spacing: .3px; }
+.jm-ep-pal-body { margin: auto 0; }   /* 각 줄(관문 칸)의 세로 가운데에 맞춤 */
+
+/* 맨 위 난이도 버튼 */
+.jm-ep-diffbar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 10px 14px 2px; }
+.jm-ep-dbtn {
+    --c: 167,139,250;
+    padding: 8px 0;
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    color: rgba(var(--c), .9);
+    background: rgba(var(--c), .07);
+    border: 1px solid rgba(var(--c), .26);
+    transition: background .15s, box-shadow .15s, color .15s;
+}
+.jm-ep-dbtn.normal { --c: 52,211,153; }
+.jm-ep-dbtn.hard { --c: 251,191,36; }
+.jm-ep-dbtn.nightmare { --c: 167,139,250; }
+.jm-ep-dbtn:hover { background: rgba(var(--c), .15); }
+.jm-ep-dbtn.active { color: #fff; background: linear-gradient(135deg, rgba(var(--c), .42), rgba(var(--c), .16)); border-color: rgba(var(--c), .85); box-shadow: 0 0 16px rgba(var(--c), .28); }
+.jm-ep-dbtn:focus-visible { outline: 2px solid rgb(var(--c)); outline-offset: 2px; }
+
+/* 드래그 안내 (살짝 움직이는 화살표) */
+.jm-ep-hint { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 700; color: #9ca3af; }
+.jm-ep-hint em { font-style: normal; color: #667085; font-weight: 600; }
+.jm-ep-hint-arrow { display: inline-block; font-size: 10px; color: rgb(var(--dt)); animation: jmEpNudge 1.9s ease-in-out infinite; }
+@keyframes jmEpNudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-4px); } }
+@keyframes jmEpNudgeUp { 0%, 100% { transform: rotate(90deg) translateX(0); } 50% { transform: rotate(90deg) translateX(-4px); } }
+@media (prefers-reduced-motion: reduce) { .jm-ep-hint-arrow { animation: none; } }
+
+/* 왼쪽: 관문별 사용 칸 - 처음부터 같은 크기로 자리를 잡고, 칩이 늘어나도 상자가 커지지 않음 */
+.jm-ep-gate { border-radius: 14px; padding: 9px 10px 10px; background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.09); transition: border-color .15s, background .15s, box-shadow .15s; }
+.jm-ep-gate.g1 { border-color: rgba(248,113,113,.28); }
+.jm-ep-gate.g2 { border-color: rgba(167,139,250,.28); }
+.jm-ep-gate.g3 { border-color: rgba(56,189,248,.28); }
+.jm-ep-gate-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.jm-ep-gate-name { display: inline-flex; align-items: center; font-size: 12.5px; font-weight: 900; color: #fff; }
+.jm-ep-sum { font-size: 11px; font-weight: 800; color: #fbbf24; white-space: nowrap; }
+.jm-ep-zone {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, 134px);
+    justify-content: center;
+    align-content: start;
+    gap: 11px 10px;
+    height: 124px;                 /* 3줄 x 2열 = 6자리 고정. 넘치면 칸 안에서만 스크롤 */
+    padding: 9px 4px 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.22) transparent;
+}
+.jm-ep-slot {
+    box-sizing: border-box;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,.14);
+    background: rgba(255,255,255,.015);
+    display: flex; align-items: center; justify-content: center;
+}
+.jm-ep-slot::before { content: "+"; font-size: 14px; font-weight: 700; color: rgba(255,255,255,.16); }
+
+/* 드래그 중: 놓을 수 있는 칸 강조 */
+.jm-ep-gate.is-target { border-style: dashed; border-color: rgba(251,191,36,.7); background: rgba(251,191,36,.05); }
+.jm-ep-gate.is-over { border-color: #fbbf24; background: rgba(251,191,36,.14); box-shadow: 0 0 0 2px rgba(251,191,36,.25), 0 0 22px rgba(251,191,36,.25); }
+.jm-ep-gate.is-target .jm-ep-slot { border-color: rgba(251,191,36,.4); }
+body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-select: none !important; }
+
+/* 오른쪽: 에스더 목록 (같은 크기 칩을 2열로 정돈) */
+.jm-ep-pal-head { font-size: 12px; font-weight: 900; color: #fff; text-align: center; margin-bottom: 6px; }
+.jm-ep-pal.g1 .jm-ep-pal-head { color: #fca5a5; }
+.jm-ep-pal.g2 .jm-ep-pal-head { color: #c4b5fd; }
+.jm-ep-pal.g3 .jm-ep-pal-head { color: #7dd3fc; }
+.jm-ep-pal-list { display: grid; grid-template-columns: repeat(2, 134px); justify-content: center; gap: 8px; }
+
+/* 칩(에스더 심볼): 목록 / 사용 칸 / 드래그 중 모두 같은 크기 */
+.jm-ep-chip {
+    --tone: 248,113,113;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 134px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 800;
+    text-align: left;
+    color: #fff;
+    white-space: nowrap;
+    background: linear-gradient(135deg, rgba(var(--tone), .24), rgba(var(--tone), .06));
+    border: 1px solid rgba(var(--tone), .55);
+}
+.jm-ep-chip .me-pips { flex: 0 0 21px; min-width: 21px; }
+.jm-ep-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.jm-ep-grip {
+    flex: 0 0 8px; width: 8px; height: 15px; opacity: .55;
+    background: radial-gradient(circle, #fff 1.1px, transparent 1.7px) 0 0 / 4px 5px;
+}
+.jm-ep-chip.pal { cursor: grab; touch-action: none; user-select: none; transition: transform .12s, box-shadow .12s, background .12s; }
+.jm-ep-chip.pal:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(var(--tone), .28); background: linear-gradient(135deg, rgba(var(--tone), .34), rgba(var(--tone), .1)); }
+.jm-ep-chip.pal:hover .jm-ep-grip { opacity: .95; }
+.jm-ep-chip.pal:focus-visible { outline: 2px solid #fbbf24; outline-offset: 2px; }
+.jm-ep-chip.placed { cursor: default; padding-left: 10px; }
+.jm-ep-x {
+    position: absolute;
+    top: -8px;
+    right: -6px;
+    width: 19px;
+    height: 19px;
+    padding: 0;
+    border-radius: 50%;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    background: #dc2626;
+    border: 1px solid rgba(255,255,255,.5);
+    box-shadow: 0 2px 6px rgba(0,0,0,.45);
+    cursor: pointer;
+}
+.jm-ep-x:hover { background: #ef4444; transform: scale(1.12); }
+.jm-ep-ghost {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(1.06);
+    opacity: .94;
+    box-shadow: 0 14px 30px rgba(0,0,0,.55), 0 0 18px rgba(var(--tone), .45);
+}
+
+.jm-ep-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 9px 14px; font-size: 11.5px; color: #9ca3af; border-top: 1px solid rgba(var(--dt), .2); background: rgba(0,0,0,.2); }
+.jm-ep-foot b { color: #fbbf24; }
+.jm-ep-state { font-weight: 700; color: #8a93a8; }
+.jm-ep-state.custom { color: #34d399; font-weight: 900; }
+
+@media (max-width: 768px) {
+    .jm-ep { top: auto; right: 8px; left: 8px; bottom: 8px; width: auto; max-height: 78vh; }
+    .jm-ep-head { cursor: default; }
+    .jm-ep-body { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+    .jm-ep-gate, .jm-ep-pal { grid-column: 1; grid-row: auto; }
+    .jm-ep-divider { display: none; }
+    .jm-ep-pal { margin-bottom: 6px; }
+    .jm-ep-pal-body { margin: 0; }
+    .jm-ep-toprow { justify-content: flex-start; margin-bottom: 8px; }
+    .jm-ep-hint-arrow { transform: rotate(90deg); animation-name: jmEpNudgeUp; }
+}
+
+/* 상세보기 에스더 제목: 난이도 색을 살짝 */
+.mordum-esther-title.jm-title.nightmare { color: #c4b5fd; }
+.mordum-esther-title.jm-title.hard { color: #fcd34d; }
+.mordum-esther-title.jm-title.normal { color: #6ee7b7; }
+
+/* ---------- 상세보기: 관문별 에스더 그룹 ---------- */
+.jm-es-gate { margin-top: 12px; padding: 9px 10px 11px; border-radius: 14px; background: rgba(255,255,255,.022); border: 1px solid rgba(255,255,255,.08); }
+.jm-es-gate.g1 { border-color: rgba(248,113,113,.30); background: linear-gradient(180deg, rgba(248,113,113,.07), rgba(248,113,113,.01)); }
+.jm-es-gate.g2 { border-color: rgba(167,139,250,.30); background: linear-gradient(180deg, rgba(167,139,250,.07), rgba(167,139,250,.01)); }
+.jm-es-gate.g3 { border-color: rgba(56,189,248,.30);  background: linear-gradient(180deg, rgba(56,189,248,.07),  rgba(56,189,248,.01)); }
+.jm-es-gate-head { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-bottom: 9px; }
+.jm-es-gate-title { display: flex; align-items: center; gap: 0; min-width: 0; flex-wrap: wrap; row-gap: 2px; }
+.jm-es-gate-title b { font-size: 14px; font-weight: 900; color: #fff; margin-right: 7px; }
+.jm-es-gate-title span { font-size: 10.5px; font-weight: 700; color: #8a93a8; }
+.jm-es-gate-use { font-size: 10.5px; font-weight: 700; color: #8a93a8; white-space: nowrap; }
+.jm-es-gate-use b { color: #fbbf24; font-weight: 900; }
+.jm-es-gate .mordum-esther-tags { margin-top: 0; }
+.jm-esther-tag.is-used { box-shadow: 0 0 0 1px rgba(var(--tone), .35), 0 4px 14px rgba(var(--tone), .12); }
+
+/* ---------- 구간별 딜지분 (가시성 개선) ---------- */
+.jm-tl { display: grid; gap: 0; }
+.jm-tl-guide {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 14px; padding: 11px 14px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(251,191,36,.07), rgba(167,139,250,.07));
+    border: 1px solid rgba(251,191,36,.22);
+}
+.jm-tl-guide-text { flex: 1 1 320px; font-size: 12px; line-height: 1.65; color: #a8b0c2; }
+.jm-tl-guide-text b { color: #fde68a; font-weight: 800; }
+.jm-tl-guide-text em { font-style: normal; color: #fff; font-weight: 800; }
+.jm-tl-guide-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.jm-tl-custom { padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #34d399; background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.4); }
+
+.jm-tl-row { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; }
+.jm-tl-marker { position: relative; display: flex; flex-direction: column; align-items: center; padding-top: 18px; }
+.jm-tl-dot { width: 16px; height: 16px; border-radius: 50%; flex: 0 0 16px; background: var(--gc, #94a3b8); box-shadow: 0 0 0 4px rgba(255,255,255,.04), 0 0 14px var(--gc, transparent); }
+.jm-tl-dot.start { background: #64748b; box-shadow: 0 0 0 4px rgba(255,255,255,.04); }
+.jm-tl-line { flex: 1 1 auto; width: 2px; margin-top: 4px; background: linear-gradient(180deg, var(--gc, #475569), rgba(71,85,105,.25)); border-radius: 2px; }
+.jm-tl-row.g1 { --gc: #f87171; --gc-rgb: 248,113,113; }
+.jm-tl-row.g2 { --gc: #a78bfa; --gc-rgb: 167,139,250; }
+.jm-tl-row.g3 { --gc: #38bdf8; --gc-rgb: 56,189,248; }
+.jm-tl-row.start .jm-tl-marker { padding-top: 6px; }
+.jm-tl-start { padding: 6px 0 14px; font-size: 13px; font-weight: 800; color: #8a93a8; }
+
+.jm-tl-card {
+    margin-bottom: 14px; padding: 15px 16px 16px; border-radius: 16px;
+    background: linear-gradient(180deg, rgba(var(--gc-rgb), .07), rgba(16,19,31,.9) 38%);
+    border: 1px solid rgba(var(--gc-rgb), .32);
+    border-left: 4px solid var(--gc);
+    box-shadow: 0 10px 26px rgba(0,0,0,.22);
+}
+.jm-tl-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.jm-tl-headleft { display: flex; align-items: center; gap: 8px; }
+.jm-tl-gate { padding: 3px 11px; border-radius: 9px; font-size: 15px; font-weight: 900; color: #fff; background: rgba(var(--gc-rgb), .24); border: 1px solid rgba(var(--gc-rgb), .6); }
+.jm-tl-title { font-size: 17px; font-weight: 900; color: #fff; }
+.jm-tl-time { font-size: 12px; font-weight: 700; color: #8a93a8; }
+.jm-tl-time b { font-size: 15px; color: #e5e7eb; font-variant-numeric: tabular-nums; }
+.jm-tl-meta { margin: 7px 0 13px; font-size: 12px; color: #8a93a8; }
+
+/* 계산 과정: 보스 체력 - 에스더 - 서폿 = 구간 지분체력 */
+.jm-calc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.jm-calc-cell { display: grid; gap: 2px; align-content: start; padding: 9px 11px; border-radius: 11px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.08); min-width: 0; }
+.jm-calc-cell span { font-size: 10.5px; font-weight: 800; color: #8a93a8; white-space: nowrap; }
+.jm-calc-cell b { font-size: 16px; font-weight: 900; color: #e5e7eb; font-variant-numeric: tabular-nums; }
+.jm-calc-cell i { font-style: normal; font-size: 10.5px; font-weight: 700; color: #667085; }
+.jm-calc-cell.es { background: rgba(248,113,113,.08); border-color: rgba(248,113,113,.3); }
+.jm-calc-cell.es span, .jm-calc-cell.es b { color: #fca5a5; }
+.jm-calc-cell.sp b { color: #cbd5e1; }
+.jm-calc-cell.sh { background: linear-gradient(135deg, rgba(250,204,21,.16), rgba(250,204,21,.05)); border-color: rgba(250,204,21,.5); }
+.jm-calc-cell.sh span { color: #fde68a; }
+.jm-calc-cell.sh b { color: #fde047; font-size: 17px; }
+
+.jm-tl-etags { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+.jm-tl-etags-label { font-size: 11px; font-weight: 800; color: #8a93a8; margin-right: 2px; }
+.jm-tl-etag { --tone: 248,113,113; padding: 3px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; color: #fff; background: rgba(var(--tone), .16); border: 1px solid rgba(var(--tone), .5); }
+.jm-tl-etag b { color: #fde68a; font-weight: 900; }
+.jm-tl-etag.none { color: #667085; background: transparent; border-style: dashed; border-color: rgba(255,255,255,.15); }
+
+/* 결과 타일: 강투 / 1인분 / 잔혈 */
+.jm-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.jm-tile { padding: 11px 10px 11px; border-radius: 13px; text-align: center; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.09); border-top: 3px solid var(--tc, #64748b); min-width: 0; }
+.jm-tile.tank  { --tc: #facc15; background: linear-gradient(180deg, rgba(250,204,21,.09), rgba(250,204,21,.015)); }
+.jm-tile.one   { --tc: #60a5fa; background: linear-gradient(180deg, rgba(96,165,250,.10), rgba(96,165,250,.015)); }
+.jm-tile.blood { --tc: #a78bfa; background: linear-gradient(180deg, rgba(167,139,250,.11), rgba(167,139,250,.015)); }
+.jm-tile-label { font-size: 12px; font-weight: 900; color: var(--tc); }
+.jm-tile-label em { font-style: normal; margin-left: 3px; color: #cbd5e1; font-weight: 800; }
+.jm-tile-main { margin-top: 4px; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: -.3px; font-variant-numeric: tabular-nums; line-height: 1.15; white-space: nowrap; }
+.jm-tile-main span { margin-left: 2px; font-size: 12px; font-weight: 700; color: #7c88a5; }
+.jm-tile-cap { margin-top: 1px; font-size: 10.5px; font-weight: 700; color: #667085; }
+.jm-tile-rows { margin-top: 9px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,.12); display: grid; gap: 4px; }
+.jm-tile-rows div { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11px; }
+.jm-tile-rows span { color: #8a93a8; font-weight: 700; white-space: nowrap; }
+.jm-tile-rows b { color: #e5e7eb; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.jm-tile-rows b.dps { color: var(--tc); }
+
+.jm-tl-avg { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin-top: 11px; padding: 9px 12px; border-radius: 11px; background: rgba(52,211,153,.07); border: 1px solid rgba(52,211,153,.28); font-size: 12px; color: #a7f3d0; }
+.jm-tl-avg-title { font-weight: 900; color: #6ee7b7; }
+.jm-tl-avg-title em { font-style: normal; font-weight: 700; color: #6b8f84; }
+.jm-tl-avg-item { font-weight: 700; color: #cbd5e1; }
+.jm-tl-avg-item b { margin-left: 3px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.jm-tl-avg-item.tank b { color: #facc15; }
+.jm-tl-avg-item.one b { color: #60a5fa; }
+.jm-tl-avg-item.blood b { color: #c4b5fd; }
+
+@media (max-width: 640px) {
+    .jm-tl-row { grid-template-columns: 22px minmax(0, 1fr); gap: 8px; }
+    .jm-tl-card { padding: 12px 11px 13px; }
+    .jm-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .jm-tile { padding: 9px 6px; }
+    .jm-tile-main { font-size: 17px; letter-spacing: -.5px; }
+    .jm-tile-main span { font-size: 10px; margin-left: 1px; }
+    .jm-tile-label { font-size: 11px; }
+    .jm-tile-rows div { flex-direction: column; align-items: center; gap: 0; }
+}
+
+
+/* ---------- 상세보기 에스더: 관문별 색 분위기 (모르둠 에스더 목록 느낌) ---------- */
+.jm-es-gate { --tone: 248,113,113; box-shadow: inset 0 1px 0 rgba(var(--tone), .22), 0 10px 24px rgba(0,0,0,.18); }
+.jm-es-gate.g1 { --tone: 248,113,113; }
+.jm-es-gate.g2 { --tone: 167,139,250; }
+.jm-es-gate.g3 { --tone: 56,189,248; }
+.jm-es-gate-head { padding-bottom: 8px; border-bottom: 1px dashed rgba(var(--tone), .22); }
+.jm-es-sym { margin-right: 6px; font-size: 14px; color: rgb(var(--tone)); text-shadow: 0 0 10px rgba(var(--tone), .65); }
+.jm-es-gate-title b { color: rgb(var(--tone)); font-size: 15px; }
+.jm-es-gate-use { padding: 2px 10px; border-radius: 999px; background: rgba(var(--tone), .10); border: 1px solid rgba(var(--tone), .32); color: #b9c3d4; }
+.jm-es-gate-use b { color: #fde68a; }
+.jm-es-gate .mordum-esther-tags { margin-top: 2px; }
