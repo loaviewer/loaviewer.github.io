@@ -17,25 +17,16 @@ let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "perce
 let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
-
-
-// [개선판] 광고 iframe을 절대 이동/제거하지 않는 방식.
-// mainContent 안에 "히어로 자리 / 광고 자리(고정) / 본문 자리" 뼈대를 최초 1회만 만들고,
-// 이후 재렌더링(버튼 클릭 등)에서는 히어로와 본문만 갈아끼우고 광고 자리는 절대 건드리지 않음.
-
-
-
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
-    // 최초 1회만: 히어로 슬롯 내부를 [큰히어로 자리] - [광고 자리(고정)] - [미니히어로 자리]로 나눠서 뼈대를 만듭니다.
-    // 이후 재렌더링(난이도/관문 클릭 등)에서는 큰히어로/미니히어로 내용만 갈아끼우고 광고 노드는 절대 건드리지 않습니다.
+ 
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
+          
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -43,7 +34,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
+       
         try { window.loaviewPushAdsense && window.loaviewPushAdsense(heroSlot); } catch (e) {}
     }
 
@@ -5576,8 +5567,9 @@ if (!jongmakEsEventsBound && typeof document !== "undefined") {
 }
 
 // 구간별 딜지분 (2-1 / 2-2 / 2-3)
-// 관문마다 [보스 체력 - 에스더 - 서폿 = 구간 지분체력] 계산 과정을 보여주고,
-// 그 지분체력에 기준 지분(%)을 곱해 누적 딜량 / 이 구간 딜량 / 구간 DPS를 보여줌
+// 관문 종료 시점마다 [사용 에스더] + 강투/1인분/잔혈의 누적 딜량과 누적 DPS(= 누적 딜량 / 시작부터의 누적 시간)만 간단히 표시
+// 마지막 2-3 클리어 지점의 DPS는 자동으로 전체 클리어 평균 DPS와 같아짐
+// (에스더 차감값은 사용자가 입력한 에스더 사용 기준으로 이미 반영되어 있음)
 function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
     const data = getJongmakLive(diffKey);
     if (!data) return '<div class="coming-soon"><h3>준비중</h3><p>구간 데이터가 없습니다.</p></div>';
@@ -5589,9 +5581,7 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
         : { tank: "강투", one: "1인분", blood: "잔혈" };
     const keys = ["tank", "one", "blood"];
     const f = totalSec > 0 ? totalSec / data.totalSec : 1;
-    const effTotalSec = totalSec > 0 ? totalSec : data.totalSec;
     const fmtPct = (v) => Number.isInteger(v) ? String(v) : v.toFixed(1);
-    const won = (w) => formatEokAbbrev(w / 1e8);
     const mmss = (sec) => { const s = Math.round(sec); return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; };
     const custom = isJongmakEstherCustom();
 
@@ -5610,26 +5600,15 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
         const lines = JONGMAK_GATE_LINES[g.key];
 
         const tiles = keys.map(k => {
-            const cum = cumShare * pct[k] / 100;
-            const seg = segShare * pct[k] / 100;
-            const segDps = floorTo1(seg / segSec);
+            const cum = cumShare * pct[k] / 100;           // 이 관문 종료 시점까지 누적 딜량
+            const cumDps = floorTo1(cum / cumSec);         // 시작부터 이 관문 종료까지 누적 딜량 / 누적 시간
             return `
                 <div class="jm-tile ${k}">
                     <div class="jm-tile-label">${labels[k]} <em>${fmtPct(pct[k])}%</em></div>
                     <div class="jm-tile-main">${fmt(Math.floor(cum + 1e-9))}<span>억</span></div>
-                    <div class="jm-tile-cap">누적 딜량</div>
-                    <div class="jm-tile-rows">
-                        <div><span>이 구간</span><b>${i === 0 ? "" : "+"}${fmt(Math.floor(seg + 1e-9))}억</b></div>
-                        <div><span>구간 DPS</span><b class="dps">${segDps.toFixed(1)}억</b></div>
-                    </div>
+                    <div class="jm-tile-dps">DPS ${cumDps.toFixed(1)}<span>억</span></div>
                 </div>`;
         }).join("");
-
-        const avgRow = isClear ? `
-            <div class="jm-tl-avg">
-                <span class="jm-tl-avg-title">클리어 평균 DPS <em>(${formatJongmakSec(effTotalSec)} 기준)</em></span>
-                ${keys.map(k => `<span class="jm-tl-avg-item ${k}">${labels[k]} <b>${floorTo1(cumShare * pct[k] / 100 / effTotalSec).toFixed(1)}억</b></span>`).join("")}
-            </div>` : "";
 
         return `
             <div class="jm-tl-row ${cls}">
@@ -5641,20 +5620,11 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
                             <span class="jm-tl-title">${isClear ? "클리어" : "종료"}</span>
                             ${gm.estimated ? '<span class="jm-est">추정</span>' : ""}
                         </div>
+                        <div class="jm-tl-etags"><span class="jm-tl-etags-label">사용 에스더</span>${makeJongmakUsageTagsHtml(g.usage)}</div>
                         <span class="jm-tl-time">누적 <b>${mmss(cumSec)}</b></span>
                     </div>
                     <div class="jm-tl-meta">${gm.type.text} · 구간 ${formatJongmakSec(segSec)}${lines ? ` · 체력 ${lines}줄` : ""}</div>
-
-                    <div class="jm-calc">
-                        <div class="jm-calc-cell hp"><span>보스 체력</span><b>${won(g.hp)}</b>${g.key === "g2" ? "<i>본체+쉴드</i>" : (gm.estimated ? "<i>추정</i>" : "")}</div>
-                        <div class="jm-calc-cell es"><span>− 에스더</span><b>${won(g.esther)}</b><i>${g.estherPct.toFixed(3)}%</i></div>
-                        <div class="jm-calc-cell sp"><span>− 변수</span><b>${won(g.support)}</b><i>최소</i></div>
-                        <div class="jm-calc-cell sh"><span>= 구간 지분체력</span><b>${won(g.share)}</b></div>
-                    </div>
-                    <div class="jm-tl-etags"><span class="jm-tl-etags-label">사용 에스더</span>${makeJongmakUsageTagsHtml(g.usage)}</div>
-
                     <div class="jm-tiles">${tiles}</div>
-                    ${avgRow}
                 </div>
             </div>
         `;
@@ -5669,9 +5639,7 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
     return `
         <div class="jm-tl">
             <div class="jm-tl-guide">
-                <div class="jm-tl-guide-text">
-                    <b>2-1 , 2-2 , 2-3</b>  관문별 넣을 딜량, <b>구간 DPS</b> 는 그 관문 시간 평균
-                </div>
+                <div class="jm-tl-guide-text"><b>2-1 , 2-2 , 2-3</b> 관문 종료까지 <b>누적 딜량</b>, <b>누적 DPS</b> 는 시작부터 그 관문까지 평균</div>
                 <div class="jm-tl-guide-actions">
                     ${custom ? '<span class="jm-tl-custom">에스더 사용값 수정됨</span>' : ""}
                     <button type="button" class="jm-es-open-btn mini" data-jm-open-es>✦ 에스더 사용 입력</button>
