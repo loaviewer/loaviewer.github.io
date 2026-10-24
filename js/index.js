@@ -17,6 +17,8 @@ let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "perce
 let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
+
+
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
@@ -26,7 +28,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-          
+           
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -5327,6 +5329,7 @@ function syncJongmakEsPopup() {
     if (!el) return;
     el.style.display = visible ? "" : "none";
     if (visible) renderJongmakEsPopup();
+    setJongmakEsScrollLock(visible && window.innerWidth <= 768);
 }
 
 // 팝업을 화면 정중앙에 배치 (모바일은 하단 시트라 CSS 위치 사용)
@@ -5342,6 +5345,34 @@ function centerJongmakEsPopup() {
     el.style.bottom = "auto";
     el.style.left = Math.max(8, Math.round((window.innerWidth - r.width) / 2)) + "px";
     el.style.top = Math.max(8, Math.round((window.innerHeight - r.height) / 2)) + "px";
+}
+
+// 모바일에서 팝업이 열려 있는지 (본문 스크롤 고정 판단용)
+function isJongmakEsMobileOpen() {
+    const el = document.getElementById("jmEsPopup");
+    return !!el && el.style.display !== "none" && jongmakEsOpen && window.innerWidth <= 768;
+}
+
+// 모바일에서 팝업이 열려 있는 동안 뒤의 본문을 고정 (팝업 안에서 스크롤해도 본문이 같이 움직이지 않음)
+//  - body를 position: fixed로 고정하고 현재 스크롤 위치를 저장했다가, 닫으면 원래 위치로 복원
+//  - 팝업 목록 자체의 스크롤은 CSS(overscroll-behavior: contain)로 끝에서 본문으로 넘어가지 않게 처리
+let jongmakEsScrollLock = null;
+function setJongmakEsScrollLock(on) {
+    const body = document.body;
+    if (on && !jongmakEsScrollLock) {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        jongmakEsScrollLock = { y, style: body.getAttribute("style") };
+        body.style.position = "fixed";
+        body.style.top = `-${y}px`;
+        body.style.left = "0";
+        body.style.right = "0";
+        body.style.width = "100%";
+    } else if (!on && jongmakEsScrollLock) {
+        const { y, style } = jongmakEsScrollLock;
+        jongmakEsScrollLock = null;
+        if (style === null) body.removeAttribute("style"); else body.setAttribute("style", style);
+        window.scrollTo(0, y);
+    }
 }
 
 function jongmakEsChanged() {
@@ -5557,6 +5588,7 @@ function startJongmakEsPopupMove(e, el) {
 // "에스더 사용 입력하기" 버튼(미니 히어로 / 구간별 안내) - 화면이 다시 그려져도 동작하도록 문서 단위로 한 번만 등록
 if (!jongmakEsEventsBound && typeof document !== "undefined") {
     jongmakEsEventsBound = true;
+    window.addEventListener("resize", () => setJongmakEsScrollLock(isJongmakEsMobileOpen()));
     document.addEventListener("click", (e) => {
         if (!e.target.closest("[data-jm-open-es]")) return;
         const wasOpen = jongmakEsOpen;
@@ -5639,10 +5671,10 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
     return `
         <div class="jm-tl">
             <div class="jm-tl-guide">
-                <div class="jm-tl-guide-text"><b>2-1 , 2-2 , 2-3</b> 관문 종료까지 <b>누적 딜량</b>, <b>누적 DPS</b> 는 시작부터 그 관문까지 평균</div>
+                <div class="jm-tl-guide-text"><b>2-1, 2-2, 2-3</b> 관문 종료까지 <b>누적 딜량</b>, <b>누적 DPS</b>는 시작부터 그 관문까지 평균</div>
                 <div class="jm-tl-guide-actions">
                     ${custom ? '<span class="jm-tl-custom">에스더 사용값 수정됨</span>' : ""}
-                    <button type="button" class="jm-es-open-btn mini" data-jm-open-es>✦ 에스더 사용 입력</button>
+                    <button type="button" class="jm-es-open-btn mini" data-jm-open-es>✦ <span class="jm-es-full">에스더 사용 입력</span><span class="jm-es-short">에스더</span></button>
                 </div>
             </div>
             ${startRow}
@@ -5671,7 +5703,7 @@ function makeJongmakMiniHero(meta) {
                     <span class="p-mini-diff-badge diff-${meta.diffKey}">${diffLabel}</span>
                     <span class="p-mini-gate-badge">${meta.gateName}</span>
                     <span class="p-mini-level-badge">${level}</span>
-                    <button type="button" class="jm-es-open-btn" data-jm-open-es>✦ 에스더 사용 입력하기${custom ? '<i class="jm-es-dot" title="사용자 입력 적용 중"></i>' : ""}</button>
+                    <button type="button" class="jm-es-open-btn" data-jm-open-es>✦ <span class="jm-es-full">에스더 사용 입력하기</span><span class="jm-es-short">에스더</span>${custom ? '<i class="jm-es-dot" title="사용자 입력 적용 중"></i>' : ""}</button>
                 </div>
                 ${miniLoadoutBlock}
             </div>
@@ -6050,7 +6082,7 @@ function renderExtremeSection(totalSec) {
 function renderTable() {
     // 종막 에스더 입력 팝업은 종막 화면에서만 보이도록 (다른 화면으로 가면 숨김, 돌아오면 다시 표시)
     const _jmEs = document.getElementById("jmEsPopup");
-    if (_jmEs && !(currentMenu === "extreme" && currentExtremeRaid === "jongmak")) _jmEs.style.display = "none";
+    if (_jmEs && !(currentMenu === "extreme" && currentExtremeRaid === "jongmak")) { _jmEs.style.display = "none"; setJongmakEsScrollLock(false); }
     updateTimeDisplay();
     const totalSec = getTotalSeconds();
 
