@@ -8433,13 +8433,15 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
 }
 .jm-ep-chip .me-pips { flex: 0 0 21px; min-width: 21px; }
 .jm-ep-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.jm-ep-grip {
-    flex: 0 0 8px; width: 8px; height: 15px; opacity: .55;
-    background: radial-gradient(circle, #fff 1.1px, transparent 1.7px) 0 0 / 4px 5px;
+/* 드래그 손잡이: 점은 작지만 터치 영역은 넓게. 손잡이에서만 드래그(touch-action: none), 칩 본체는 세로 스크롤 가능 */
+.jm-ep-grip { position: relative; flex: 0 0 18px; width: 18px; height: 28px; margin: 0 -3px 0 -6px; touch-action: none; cursor: grab; }
+.jm-ep-grip::before {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 15px; transform: translate(-50%, -50%);
+    opacity: .55; background: radial-gradient(circle, #fff 1.1px, transparent 1.7px) 0 0 / 4px 5px;
 }
-.jm-ep-chip.pal { cursor: grab; touch-action: none; user-select: none; transition: transform .12s, box-shadow .12s, background .12s; }
+.jm-ep-chip.pal { cursor: grab; touch-action: pan-y; user-select: none; transition: transform .12s, box-shadow .12s, background .12s; }
 .jm-ep-chip.pal:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(var(--tone), .28); background: linear-gradient(135deg, rgba(var(--tone), .34), rgba(var(--tone), .1)); }
-.jm-ep-chip.pal:hover .jm-ep-grip { opacity: .95; }
+.jm-ep-chip.pal:hover .jm-ep-grip::before { opacity: .95; }
 .jm-ep-chip.pal:focus-visible { outline: 2px solid #fbbf24; outline-offset: 2px; }
 .jm-ep-chip.placed { cursor: default; padding-left: 10px; }
 .jm-ep-x {
@@ -8627,3 +8629,17 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
     .jm-tl-guide { padding: 10px 12px; gap: 8px; }
     .jm-tl-guide-text { flex-basis: 100%; font-size: 11.5px; }
 }
+
+
+/* 에스더 버튼 라벨: PC = 전체 문구 / 모바일 = "에스더" */
+.jm-es-short { display: none; }
+@media (max-width: 768px) {
+    .jm-es-full { display: none; }
+    .jm-es-short { display: inline; }
+    .jm-es-open-btn { padding: 4px 11px; }
+    /* 팝업 스크롤이 본문으로 넘어가지 않도록 */
+    .jm-ep, .jm-ep-body { overscroll-behavior: contain; }
+    .jm-ep-body { -webkit-overflow-scrolling: touch; }
+    .hero-jongmak .p-mini-hero-left { flex-wrap: wrap; row-gap: 6px; }
+}
+.jm-ep-body { overscroll-behavior: contain; }
