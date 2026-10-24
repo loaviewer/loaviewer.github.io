@@ -18,17 +18,16 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
 
-
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
     let bodySlot = document.getElementById("precisionBodySlot");
 
- 
+
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-           
+         
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -36,7 +35,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-       
+
         try { window.loaviewPushAdsense && window.loaviewPushAdsense(heroSlot); } catch (e) {}
     }
 
@@ -461,7 +460,27 @@ const JONGMAK_GATE_LINES = { g1: 999, g2: 777, g3: null };
 function cloneJongmakEsDefault() {
     return { g1: JONGMAK_ESTHER_DEFAULT_USE.g1.slice(), g2: JONGMAK_ESTHER_DEFAULT_USE.g2.slice(), g3: JONGMAK_ESTHER_DEFAULT_USE.g3.slice() };
 }
-let jongmakEstherUse = cloneJongmakEsDefault();
+const JONGMAK_ES_STORE_KEY = "loaview.jongmak.esther.v1";
+function loadJongmakEsUse() {
+    try {
+        const raw = window.localStorage.getItem(JONGMAK_ES_STORE_KEY);
+        if (!raw) return null;
+        const o = JSON.parse(raw);
+        const out = {};
+        for (const gk of ["g1", "g2", "g3"]) {
+            const arr = Array.isArray(o && o[gk]) ? o[gk] : [];
+            out[gk] = arr.filter(id => JONGMAK_ESTHER_GATE_LIST[gk].includes(id)).slice(0, JONGMAK_ESTHER_MAX_PER_GATE);
+        }
+        return out;
+    } catch (e) { return null; }
+}
+function saveJongmakEsUse() {
+    try {
+        if (isJongmakEstherCustom()) window.localStorage.setItem(JONGMAK_ES_STORE_KEY, JSON.stringify(jongmakEstherUse));
+        else window.localStorage.removeItem(JONGMAK_ES_STORE_KEY);   // 기본 구성이면 저장값 삭제
+    } catch (e) { /* 저장소를 못 쓰는 환경이면 무시 (이번 접속에서만 유지) */ }
+}
+let jongmakEstherUse = loadJongmakEsUse() || cloneJongmakEsDefault();
 
 function isJongmakEstherCustom() {
     const norm = (o) => ["g1", "g2", "g3"].map(k => (o[k] || []).slice().sort().join(",")).join("|");
@@ -2072,11 +2091,12 @@ function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, ful
     const minSec = (sec) => `${Math.floor(sec / 60)}분 ${String(sec % 60).padStart(2, "0")}초`;
 
     const dpsUnit = '<span class="lc-dps-unit">억</span>';
+    // DPS를 크게, 피해량은 아래 알약으로
     const triHtml = (cls, label, value, dps) => `
         <div class="lc-tri ${cls}">
             <span class="lc-tri-label">${label}</span>
-            <span class="lc-tri-value">${fmt(value)}${unit}</span>
-            <span class="lc-tri-dps">DPS ${dps.toFixed(1)}${dpsUnit}</span>
+            <span class="lc-tri-value is-dps"><span class="lc-tri-cap">DPS</span>${dps.toFixed(1)}${dpsUnit}</span>
+            <span class="lc-tri-dps">피해<span class="sm-hide">량</span> ${fmt(value)}억</span>
         </div>
     `;
 
@@ -2170,6 +2190,15 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
     const tankLabel = isSupport ? "강조" : "강투";
     const bloodLabel = isSupport ? "잔조" : "잔혈";
 
+    // DPS = 피해량 / 전분시간 (요약 카드와 같은 식). 구간 시간을 줄 수 비율로 근사하므로 모든 줄에서 같은 값이 나옴
+    const dpsOf = (full) => totalSec > 0 ? floorTo1(Math.floor(full || 0) / totalSec) : 0;
+    const triG = (cls, label, dmg, full) => `
+                        <div class="lc-tri ${cls}">
+                            <span class="lc-tri-label">${label}</span>
+                            <span class="lc-tri-value is-dps"><span class="lc-tri-cap">DPS</span>${dpsOf(full).toFixed(1)}<span class="lc-dps-unit">억</span></span>
+                            <span class="lc-tri-dps">피해<span class="sm-hide">량</span> ${fmt(dmg)}억</span>
+                        </div>`;
+
     const items = rows.map((r, idx) => {
         const isStart = r.progress === 0;
         const isLast = idx === rows.length - 1;
@@ -2202,25 +2231,16 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
                     ${r.desc ? `<div class="line-cut-desc">${r.desc}</div>` : ""}
                    
                     <div class="line-cut-card">
-                        <div class="lc-tri tank">
-                            <span class="lc-tri-label">${tankLabel}</span>
-                            <span class="lc-tri-value">${fmt(r.tank)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-                        </div>
-                        <div class="lc-tri one">
-                            <span class="lc-tri-label">1인분</span>
-                            <span class="lc-tri-value">${fmt(r.one)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-                        </div>
-                        <div class="lc-tri blood">
-                            <span class="lc-tri-label">${bloodLabel}</span>
-                            <span class="lc-tri-value">${fmt(r.blood)}<span class="damage-unit" style="font-size: 11px; font-weight: 700; color: #7c88a5; margin-left: 2px;">억</span></span>
-                        </div>
+                        ${triG("tank", tankLabel, r.tank, fullTank)}
+                        ${triG("one", "1인분", r.one, fullOne)}
+                        ${triG("blood", bloodLabel, r.blood, fullBlood)}
                     </div>
                 </div>
             </div>
         `;
     }).join("");
 
-    return `<div class="line-cut-timeline">${items}</div>`;
+    return `<div class="line-cut-timeline lc-colored">${items}</div>`;
 }
 
 
@@ -2229,6 +2249,8 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
 
 function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage, isSupport) {
     const timeBadge = `전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초`;
+    // 종막 EX: 2-3 체력이 추정값이라 합계 숫자에도 추정이 섞여 있음을 표시
+    const estBadgeHtml = menu === "jongmak" ? `<div class="precision-table-badge jm-est-badge" title="2-3 체력은 인게임에 표시되지 않아 클리어 기록으로 역산한 추정값입니다">2-3 추정 포함</div>` : "";
     const titleText = `${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName}`;
     const sectionDivider = `<div class="precision-section-divider"><span>딜지분 상세보기</span></div>`;
 
@@ -2257,7 +2279,7 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
             <div class="precision-table-panel">
                 <div class="precision-table-head">
                     <div class="precision-table-title">${titleText} 상세 딜지분</div>
-                    <div class="precision-table-badge" id="precisionTimeBadge">${timeBadge}</div>
+                    <div class="precision-badges">${estBadgeHtml}<div class="precision-table-badge" id="precisionTimeBadge">${timeBadge}</div></div>
                 </div>
                 ${percentTableHtml}
             </div>
@@ -2289,7 +2311,7 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
             <div class="precision-table-panel">
                 <div class="line-cut-section-head">
                     <div class="line-cut-section-title">${titleText} 구간별 딜지분</div>
-                    <div class="precision-table-badge" id="precisionTimeBadgeLines">${timeBadge}</div>
+                    <div class="precision-badges">${estBadgeHtml}<div class="precision-table-badge" id="precisionTimeBadgeLines">${timeBadge}</div></div>
                 </div>
                 ${lineTimelineHtml}
             </div>
@@ -2304,7 +2326,7 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
         <div class="precision-table-panel">
             <div class="precision-table-head">
                 <div class="precision-table-title">${titleText} 상세 딜지분</div>
-                <div class="precision-table-badge" id="precisionTimeBadgePercent">${timeBadge}</div>
+                <div class="precision-badges">${estBadgeHtml}<div class="precision-table-badge" id="precisionTimeBadgePercent">${timeBadge}</div></div>
             </div>
             ${percentTableHtml}
         </div>
@@ -5120,17 +5142,26 @@ function makePrecisionSummary(rowTank, rowOne, rowBlood, getDmgFn, totalSec, men
         const dmg = row ? Math.floor(getDmgFn(row)) : 0;
         const dps = row ? floorTo1(dmg / totalSec).toFixed(1) : "-";
         const shareVal = (isSupport && row && row.share !== undefined) ? row.share : defaultShare;
+        // 서폿 모드: 카드 우측 위에 초록 + 표시
+        const supportMark = isSupport
+            ? `<span class="precision-summary-support" title="서폿 기준" aria-label="서폿 기준">✚</span>`
+            : "";
+        // 사람들이 먼저 보는 건 DPS이므로 DPS를 크게, 피해량은 아래 알약으로 (라벨과 지분은 한 줄)
         return `
             <div class="precision-summary-card ${cardCls}">
-                <div class="precision-summary-label ${labelCls}">${labels[key]}</div>
-                <div class="precision-summary-share">딜지분 ${fmtShare(shareVal)}%</div>
-                <div class="precision-summary-dmg">${fmt(dmg)}<span class="precision-summary-unit"> 억</span></div>
-                <div class="precision-summary-dps ${dpsCls}">${dpsLabel} ${dps}억</div>
+                ${supportMark}
+                <div class="precision-summary-head">
+                    <span class="precision-summary-label ${labelCls}">${labels[key]}</span>
+                    <span class="precision-summary-share">${fmtShare(shareVal)}%</span>
+                </div>
+                <div class="precision-summary-dps-line">
+                    <span class="precision-summary-dpscap ${labelCls}">${dpsLabel}</span>
+                    <span class="precision-summary-dps-main">${dps}</span><span class="precision-summary-unit">억</span>
+                </div>
+                <div class="precision-summary-dmg-pill ${dpsCls}">피해량 ${fmt(dmg)}억</div>
             </div>
         `;
     };
-
-
 
     return `
         <div class="precision-summary-cards">
@@ -5376,7 +5407,17 @@ function setJongmakEsScrollLock(on) {
 }
 
 function jongmakEsChanged() {
+    saveJongmakEsUse();
     renderTable();   // 본문 + 팝업(sync) 한 번에 갱신
+}
+
+// 에스더 1회가 깎는 딜량(억) - 현재 난이도 기준. 추가/삭제 때 알려주는 토스트에 사용 (터치 기기는 툴팁이 없음)
+let jongmakEsToast = null;
+function jongmakEsSkillEok(skillId) {
+    const meta = raidMeta.extreme.jongmak[currentCombo] || raidMeta.extreme.jongmak.hard_gate1;
+    const base = JONGMAK_EX_BASE[meta.diffKey];
+    const sk = JONGMAK_ESTHER_SKILLS[skillId];
+    return base && sk ? Math.round(base.hp1 * sk.pct / 100 / 1e8) : 0;
 }
 
 function jongmakEsAdd(gate, skillId) {
@@ -5385,6 +5426,7 @@ function jongmakEsAdd(gate, skillId) {
     if (!JONGMAK_ESTHER_GATE_LIST[gate].includes(skillId)) return;
     if (list.length >= JONGMAK_ESTHER_MAX_PER_GATE) return;
     list.push(skillId);
+    jongmakEsToast = `+ ${JONGMAK_ESTHER_SKILLS[skillId].name} · 약 ${fmt(jongmakEsSkillEok(skillId))}억 차감`;
     jongmakEsChanged();
 }
 
@@ -5446,10 +5488,12 @@ function renderJongmakEsPopup() {
 
     const totalEsther = live.gates.reduce((a, g) => a + g.esther, 0);
     const custom = isJongmakEstherCustom();
+    const hasAnyUse = gateKeys.some(gk => (jongmakEstherUse[gk] || []).length > 0);
 
     el.innerHTML = `
         <div class="jm-ep-head">
             <div class="jm-ep-title"><span class="jm-ep-title-ico">✦</span>에스더 사용 입력</div>
+            <button type="button" class="jm-ep-clear" ${hasAnyUse ? "" : "disabled"}>비우기</button>
             <button type="button" class="jm-ep-reset" ${custom ? "" : "disabled"}>기본값</button>
             <button type="button" class="jm-ep-close" aria-label="닫기">×</button>
         </div>
@@ -5464,6 +5508,16 @@ function renderJongmakEsPopup() {
             <span class="jm-ep-state ${custom ? "custom" : ""}">${custom ? "사용자 입력 적용 중" : "기본 구성 (2-1 8.881% · 2-2 3.011% · 2-3 7.703%)"}</span>
         </div>
     `;
+
+    if (jongmakEsToast) {
+        const t = document.createElement("div");
+        t.className = "jm-ep-toast";
+        t.setAttribute("role", "status");
+        t.textContent = jongmakEsToast;
+        el.appendChild(t);
+        jongmakEsToast = null;
+        setTimeout(() => t.remove(), 1900);
+    }
 }
 
 function bindJongmakEsEvents(el) {
@@ -5483,12 +5537,22 @@ function bindJongmakEsEvents(el) {
         const x = e.target.closest(".jm-ep-x");
         if (x) {
             const list = jongmakEstherUse[x.dataset.gate];
-            if (list) list.splice(Number(x.dataset.idx), 1);
+            if (list) {
+                const removed = list.splice(Number(x.dataset.idx), 1)[0];
+                if (removed) jongmakEsToast = `− ${JONGMAK_ESTHER_SKILLS[removed].name} 삭제 · 약 ${fmt(jongmakEsSkillEok(removed))}억 되돌림`;
+            }
+            jongmakEsChanged();
+            return;
+        }
+        if (e.target.closest(".jm-ep-clear")) {
+            jongmakEstherUse = { g1: [], g2: [], g3: [] };
+            jongmakEsToast = "에스더를 모두 비웠어요";
             jongmakEsChanged();
             return;
         }
         if (e.target.closest(".jm-ep-reset")) {
             jongmakEstherUse = cloneJongmakEsDefault();
+            jongmakEsToast = "기본 구성으로 되돌렸어요";
             jongmakEsChanged();
         }
     });
@@ -5637,8 +5701,9 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
             return `
                 <div class="jm-tile ${k}">
                     <div class="jm-tile-label">${labels[k]} <em>${fmtPct(pct[k])}%</em></div>
-                    <div class="jm-tile-main">${fmt(Math.floor(cum + 1e-9))}<span>억</span></div>
-                    <div class="jm-tile-dps">DPS ${cumDps.toFixed(1)}<span>억</span></div>
+                    <div class="jm-tile-cap">DPS</div>
+                    <div class="jm-tile-main">${cumDps.toFixed(1)}<span>억</span></div>
+                    <div class="jm-tile-dps">피해<span class="sm-hide">량</span> ${fmt(Math.floor(cum + 1e-9))}억</div>
                 </div>`;
         }).join("");
 
@@ -5655,7 +5720,7 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
                         <div class="jm-tl-etags"><span class="jm-tl-etags-label">사용 에스더</span>${makeJongmakUsageTagsHtml(g.usage)}</div>
                         <span class="jm-tl-time">누적 <b>${mmss(cumSec)}</b></span>
                     </div>
-                    <div class="jm-tl-meta">${gm.type.text} · 구간 ${formatJongmakSec(segSec)}${lines ? ` · 체력 ${lines}줄` : ""}</div>
+                    <div class="jm-tl-meta">${gm.type.text} · 관문 시간 ${formatJongmakSec(segSec)}${lines ? ` · 체력 ${lines}줄` : ""}</div>
                     <div class="jm-tiles">${tiles}</div>
                 </div>
             </div>
