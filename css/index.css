@@ -8643,3 +8643,159 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
     .hero-jongmak .p-mini-hero-left { flex-wrap: wrap; row-gap: 6px; }
 }
 .jm-ep-body { overscroll-behavior: contain; }
+
+/* =============================================
+   DPS 우선 표시 (요약 카드 / 구간별 타일) + 서폿 표시 + 에스더 팝업 보강
+   ============================================= */
+
+/* ---------- 요약 카드: DPS 크게, 피해량은 아래 알약 ---------- */
+.precision-summary-dpscap {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+.precision-summary-dps-main {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+.precision-summary-dps-main .precision-summary-unit { font-size: 15px; font-weight: 800; }
+.precision-summary-dmg-pill {
+    display: inline-flex;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    margin-top: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* 서폿 모드: 카드 우측 위 초록 + 표시 */
+.precision-summary-support {
+    position: absolute;
+    top: 11px;
+    right: 11px;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+    color: #34d399;
+    background: rgba(52,211,153,.12);
+    border: 1px solid rgba(52,211,153,.42);
+    box-shadow: 0 0 10px rgba(52,211,153,.18);
+}
+
+/* ---------- 서폿 잔조컷 버튼의 십자(✚)는 항상 초록 ---------- */
+.role-toggle-btn.role-support .role-icon { color: #34d399; }
+.role-toggle-btn.role-support:not(.active) .role-icon { opacity: .85; }
+
+/* ---------- 모르둠 구간별 타일: DPS 크게 / 피해량 알약 ---------- */
+.lc-tri-value.is-dps { font-size: 20px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.lc-tri-value .lc-tri-cap { display: block; margin-bottom: 3px; font-size: 9px; font-weight: 800; letter-spacing: .6px; color: #8a93a8; }
+.lc-tri-value.is-dps .lc-dps-unit { margin-left: 1px; font-size: 11px; font-weight: 800; color: #7c88a5; }
+@media (max-width: 768px) {
+    .lc-tri-value.is-dps { font-size: 17px; }
+}
+
+/* ---------- 종막 구간별 타일: DPS 크게 / 피해량 알약 ---------- */
+.jm-tile-cap { margin-top: 5px; font-size: 10px; font-weight: 800; letter-spacing: .8px; color: var(--tc); opacity: .9; }
+.jm-tile-main { margin-top: 0; font-size: 30px; }
+.jm-tile-main span { font-size: 13px; }
+.jm-tile-dps { font-size: 11.5px; }
+@media (max-width: 640px) {
+    .jm-tile-main { font-size: 23px; }
+    .jm-tile-main span { font-size: 11px; }
+    .jm-tile-dps { font-size: 9.5px; padding: 2px 6px; }
+}
+
+/* ---------- 전분시간 옆 "2-3 추정 포함" 배지 ---------- */
+.precision-badges { display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex-wrap: wrap; }
+.precision-table-badge.jm-est-badge {
+    color: #fbbf24;
+    background: rgba(251,191,36,.10);
+    border-color: rgba(251,191,36,.38);
+}
+
+/* ---------- 에스더 팝업: 비우기 버튼 / 토스트 ---------- */
+.jm-ep-clear {
+    padding: 5px 11px; border-radius: 8px; font-family: inherit; font-size: 11px; font-weight: 800;
+    color: #fca5a5; background: rgba(248,113,113,.08); border: 1px solid rgba(248,113,113,.3); cursor: pointer;
+}
+.jm-ep-clear:disabled { opacity: .38; cursor: default; }
+.jm-ep-clear:not(:disabled):hover { background: rgba(248,113,113,.2); }
+.jm-ep-toast {
+    position: absolute;
+    left: 50%;
+    bottom: 54px;
+    transform: translateX(-50%);
+    max-width: calc(100% - 28px);
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+    background: rgba(var(--dt), .30);
+    border: 1px solid rgba(var(--dt), .7);
+    box-shadow: 0 8px 22px rgba(0,0,0,.45), 0 0 16px rgba(var(--dt), .3);
+    backdrop-filter: blur(6px);
+    pointer-events: none;
+    animation: jmEpToast 1.9s ease both;
+}
+@keyframes jmEpToast {
+    0%   { opacity: 0; transform: translate(-50%, 8px); }
+    12%  { opacity: 1; transform: translate(-50%, 0); }
+    78%  { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -4px); }
+}
+@media (max-width: 768px) { .jm-ep-toast { bottom: 74px; } }
+
+/* ---------- 상세보기 에스더 줄: 이름과 딜량이 붙어 보이지 않게 ---------- */
+.jm-esther-tag { grid-template-columns: auto minmax(0, 1fr) auto 44px; gap: 8px; padding: 7px 9px; }
+.jm-esther-tag .me-name { white-space: nowrap; }
+.jm-es-gate { padding-left: 8px; padding-right: 8px; }
+
+/* 좁은 화면: 알약 안 "피해량" -> "피해"로 줄여서 타일 폭 안에 들어오게 */
+.jm-tile-dps, .lc-tri-dps { max-width: 100%; box-sizing: border-box; white-space: nowrap; }
+@media (max-width: 768px) {
+    .sm-hide { display: none; }
+}
+@media (max-width: 640px) {
+    .jm-tile-dps { font-size: 9px; padding: 2px 5px; letter-spacing: -.2px; }
+}
+
+
+/* =============================================
+   요약 카드 간소화: "강투컷 15%" 한 줄 + "DPS 5.4억" 한 줄 + 피해량 알약 (세로 길이 단축)
+   ============================================= */
+.precision-summary-card { padding: 14px 16px 15px; }
+.precision-summary-head { display: flex; align-items: baseline; justify-content: center; gap: 7px; margin-bottom: 7px; }
+.precision-summary-head .precision-summary-label { margin: 0; font-size: 13px; letter-spacing: .3px; }
+.precision-summary-head .precision-summary-share { margin: 0; font-size: 13px; font-weight: 800; }
+.precision-summary-dps-line { display: flex; align-items: baseline; justify-content: center; gap: 6px; line-height: 1; }
+.precision-summary-dpscap { margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .5px; }
+.precision-summary-dps-line .precision-summary-dps-main { font-size: 36px; line-height: 1; }
+.precision-summary-dps-line .precision-summary-unit { font-size: 15px; font-weight: 800; color: #667085; }
+.precision-summary-dmg-pill { margin-top: 10px; padding: 4px 12px; font-size: 12.5px; }
+.precision-summary-support { top: 9px; right: 9px; }
+
+/* =============================================
+   일반 구간별 딜지분(벨가르딘 / 세르카 / 성당 등): 강투(금) / 1인분(파랑) / 잔혈(보라) 색상
+   ============================================= */
+.lc-colored .lc-tri { border-radius: 12px; border-top-width: 3px; padding: 9px 10px 9px; }
+.lc-colored .lc-tri.tank  { --tc: #facc15; --tcr: 250,204,21;  background: linear-gradient(180deg, rgba(250,204,21,.10),  rgba(250,204,21,.02));  border-color: rgba(250,204,21,.28);  border-top-color: #facc15; }
+.lc-colored .lc-tri.one   { --tc: #60a5fa; --tcr: 96,165,250;  background: linear-gradient(180deg, rgba(96,165,250,.11),  rgba(96,165,250,.02));  border-color: rgba(96,165,250,.28);  border-top-color: #60a5fa; }
+.lc-colored .lc-tri.blood { --tc: #a78bfa; --tcr: 167,139,250; background: linear-gradient(180deg, rgba(167,139,250,.12), rgba(167,139,250,.02)); border-color: rgba(167,139,250,.28); border-top-color: #a78bfa; }
+.lc-colored .lc-tri .lc-tri-label { color: var(--tc); font-size: 11px; font-weight: 900; }
+.lc-colored .lc-tri .lc-tri-cap { color: var(--tc); opacity: .9; }
+.lc-colored .lc-tri.tank .lc-tri-dps,
+.lc-colored .lc-tri.one .lc-tri-dps,
+.lc-colored .lc-tri.blood .lc-tri-dps { color: var(--tc); background: rgba(var(--tcr), .12); border: 1px solid rgba(var(--tcr), .35); }
