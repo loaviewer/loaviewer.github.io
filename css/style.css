@@ -112,7 +112,27 @@ img{display:block;max-width:100%;}
 }
 @keyframes tgThunder{from{background-position:0 0}to{background-position:-220% 0}}
 @keyframes tgFlicker{0%,88%,92%,100%{filter:drop-shadow(0 0 5px rgba(90,170,255,.7))}90%{filter:drop-shadow(0 0 10px rgba(255,230,80,1)) brightness(1.4)}}
-@media (prefers-reduced-motion:reduce){.tg-thunder{animation:none;}}
+/* 파멸의 군주: 붉은 화염 */
+.tg-doom{
+  background:linear-gradient(100deg,#b3111c 0%,#f03030 20%,#ff6a2a 38%,#ffd69a 50%,#ff6a2a 62%,#f03030 80%,#b3111c 100%);
+  background-size:240% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 0 5px rgba(255,40,30,.75));
+  animation:tgDoom 3s linear infinite, tgEmber 2.2s ease-in-out infinite;
+}
+@keyframes tgDoom{from{background-position:0 0}to{background-position:-240% 0}}
+@keyframes tgEmber{0%,100%{filter:drop-shadow(0 0 4px rgba(255,40,30,.65))}50%{filter:drop-shadow(0 0 11px rgba(255,110,40,.95)) brightness(1.18)}}
+/* 심연의 끝을 마주한 자: 적·황·청 고귀한 그라데이션 + 빛 흐름 */
+.tg-abyss{
+  background:linear-gradient(100deg,#ff3b55 0%,#ffd45a 14%,#fff4c2 22%,#4fb0ff 38%,#8d6bff 50%,#ff3b55 64%,#ffd45a 78%,#fff4c2 86%,#4fb0ff 100%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 0 6px rgba(255,210,90,.6));
+  animation:tgAbyss 7s linear infinite, tgAbyssGlow 4.5s ease-in-out infinite;
+}
+@keyframes tgAbyss{from{background-position:0 0}to{background-position:-300% 0}}
+@keyframes tgAbyssGlow{0%,100%{filter:drop-shadow(0 0 5px rgba(255,210,90,.55))}33%{filter:drop-shadow(0 0 9px rgba(79,176,255,.8)) brightness(1.1)}66%{filter:drop-shadow(0 0 9px rgba(255,70,90,.75)) brightness(1.1)}}
+@media (prefers-reduced-motion:reduce){.tg-thunder,.tg-doom,.tg-abyss{animation:none;}}
 /* 카드 이미지로 옮긴 항목은 본문에서 숨김 (JS 참조 유지를 위해 DOM은 남김) */
 .profile-body > .profile-name,.profile-body > .profile-class,.profile-body > .profile-row,.profile-body > div:has(.profile-power){display:none;}
 .profile-body{padding-top:12px;}
@@ -1783,20 +1803,6 @@ img{display:block;max-width:100%;}
 /* [ENG-TIP 끝] */
 
 /* ================= [BOX-DECO 시작] 정보 탭 박스 질감 (카본 결 + 윗선 하이라이트 + 사선 해치) ================= */
-#main .box:not(.profile):not(.eff-dash):not(:has(#gemList)):not(:has(#cardList)){
-  background-color:#0b0e16;
-  background-image:
-    radial-gradient(130% 70px at 0% 0%,rgba(155,126,240,.10),transparent 70%),
-    linear-gradient(135deg,rgba(255,255,255,.022) 25%,transparent 25%),
-    linear-gradient(225deg,rgba(255,255,255,.022) 25%,transparent 25%),
-    linear-gradient(315deg,rgba(0,0,0,.22) 25%,transparent 25%),
-    linear-gradient(45deg,rgba(0,0,0,.22) 25%,transparent 25%),
-    linear-gradient(180deg,rgba(18,22,34,.97),rgba(10,13,21,.99));
-  background-size:100% 100%,6px 6px,6px 6px,6px 6px,6px 6px,100% 100%;
-  background-position:0 0,-3px 0,-3px 0,0 0,0 0,0 0;
-  border:1px solid rgba(255,255,255,.085);
-  box-shadow:0 4px 20px rgba(0,0,0,.28),0 1px 0 rgba(255,255,255,.07) inset,0 0 0 1px rgba(0,0,0,.35) inset;
-}
 /* 박스 제목 앞 작은 포인트 막대 */
 #main .box:not(.profile):not(:has(#gemList)):not(:has(#cardList)) > .box-hd .box-title,
 #main .box:not(.profile):not(:has(#gemList)):not(:has(#cardList)) > .box-title{position:relative;padding-left:9px;}
@@ -2291,3 +2297,38 @@ body.cpm-mode #status.show:not(:empty){margin-bottom:12px;}
   .cpm-slab{padding:26px 18px 32px;min-height:0;} .cpm-title{font-size:22px;} .cpm-result-val{font-size:56px;} .cpm-slot input{font-size:26px;}
 }
 /* [CPM 끝] */
+
+/* ================= [CARBON 시작] 타일: 장비 바깥 박스 / 각인 / 아크 그리드 / 아크 패시브 만 미세 격자 ================= */
+#main .box.eqacc,
+#main .box:has(#engList),
+#main .box:has(#arkgCore),
+#main .box:has(#apGrid){
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px) 0 0/22px 22px,
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px) 0 0/22px 22px,
+    radial-gradient(120% 90% at 0% 0%,rgba(130,150,255,.08),transparent 55%),
+    linear-gradient(180deg,#171b27,#0f121b);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 4px 18px rgba(0,0,0,.3);
+}
+/* [CARBON 끝] */
+
+/* [APT-OFF 시작] 아크패시브 탭: 안 찍은 노드(비활성) + 열 배치 */
+.apt-nodes.grid{display:grid;justify-items:center;align-items:center;gap:10px 6px;height:auto;min-height:106px;}
+.apt-node.off .apt-orb{border-color:rgba(255,255,255,.14);box-shadow:none;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.07),rgba(20,22,32,.95) 70%);}
+.apt-node.off .apt-orb img{filter:grayscale(1) brightness(.62);}
+.apt-node.off .apt-lv{color:#6b7388;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);}
+.apt-node.off .apt-nm{color:#6b7388;font-weight:700;}
+.apt-node.off:hover .apt-orb img{filter:grayscale(.4) brightness(.85);}
+.apt-row.allOff{opacity:.9;}
+.apt-tier-lim{display:block;font-size:10px;font-weight:800;color:var(--muted);text-align:center;margin-top:2px;}
+#loa-tip .clreffvalue{color:#f0c14b;font-weight:800;}
+/* [APT-OFF 끝] */
+
+/* [TITLE-ICON] 칭호 앞 아이콘: flex 가운데 정렬(자동). 글자 효과는 안쪽 span에만 걸림 */
+.art-v.has-t-ico{display:flex;align-items:center;gap:5px;overflow:visible;}
+.art-v .t-txt{min-width:0;white-space:nowrap;line-height:1.2;text-shadow:none;}
+.profile-art img.t-ico{position:relative;top:2px;transform:none;display:block;flex:none;width:24px;height:24px;max-width:none;object-fit:contain;margin:-4px 0;-webkit-mask-image:none;mask-image:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6));}
+/* 아이콘 이미지마다 여백이 달라 개별 보정 (기본 2px) */
+.profile-art img.t-ico[src*="abyss-end"]{top:3px;}
+.profile-art img.t-ico[src*="worldtree"]{top:-1px;}
