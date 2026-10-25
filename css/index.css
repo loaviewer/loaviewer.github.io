@@ -8823,3 +8823,14 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
     .lc-colored .lc-tri-value .lc-tri-cap { font-size: 8.5px; }
     .lc-colored .lc-tri-value.is-dps .lc-dps-unit { font-size: 10px; }
 }
+
+
+/* 종막 구간별 타일: "DPS 15.1억" 한 줄 (DPS 글자는 숫자 바로 왼쪽) - 일반/모르둠 구간별과 같은 구성 */
+.jm-tile-main { display: flex; align-items: baseline; justify-content: center; gap: 5px; white-space: nowrap; margin-top: 2px; }
+.jm-tile-main .jm-tile-cap { margin: 0; font-size: 10px; font-weight: 800; letter-spacing: .4px; color: var(--tc); opacity: .9; }
+.jm-tile-main .jm-tile-unit { margin-left: 0; font-size: 13px; font-weight: 700; color: #7c88a5; }
+@media (max-width: 640px) {
+    .jm-tile-main { gap: 3px; }
+    .jm-tile-main .jm-tile-cap { font-size: 8.5px; letter-spacing: .2px; }
+    .jm-tile-main .jm-tile-unit { font-size: 10.5px; }
+}
