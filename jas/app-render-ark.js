@@ -507,6 +507,51 @@ function renderAP(ap) {
   }
 }
 
+// ===== 아크패시브 DB 연동 (arkPassiveData.js: evolutionData / jobSpecificData) =====
+function aptIconUrl(iconName) {
+  if (!iconName) return "";
+  const png = x => (x.endsWith(".png") ? x : x + ".png");
+  if (/^https?:\/\//.test(iconName)) return png(iconName);
+  if (iconName.startsWith("../")) return "https://cdn-lostark.game.onstove.com/efui_iconatlas/" + png(iconName.replace("../", ""));
+  const folder = iconName.replace(/_\d+$/, "");
+  return `https://cdn-lostark.game.onstove.com/efui_iconatlas/${folder}/${png(iconName)}`;
+}
+function aptDbTree(catKey, className) {
+  try {
+    if (catKey === "진화") return typeof evolutionData !== "undefined" ? evolutionData : null;
+    if (typeof jobSpecificData === "undefined") return null;
+    const job = jobSpecificData[className];
+    if (!job) return null;
+    return catKey === "깨달음" ? job.awakening : job.leap;
+  } catch (e) { return null; }
+}
+
+const APT_VAL_COLOR = { "진화": "#f0c14b", "깨달음": "#6cbcff", "도약": "#44d39a" };
+function aptColorizeDesc(html, color) {
+  let h = String(html || "").replace(/<span class=\\?"clreffvalue\\?">/g, `<span style="color:${color};font-weight:800">`);
+  // 태그 밖에 남은 숫자% 도 같은 색으로
+  return h.split(/(<[^>]+>)/).map(seg => seg.startsWith("<") ? seg : seg.replace(/([+\-]?\d+(?:\.\d+)?%)/g, `<span style="color:${color};font-weight:800">$1</span>`)).join("");
+}
+function aptOffTipHtml(dn, name, max, icon, catKey) {
+  const color = APT_VAL_COLOR[catKey] || "#f0c14b";
+  const d0 = (dn.desc && dn.desc[0]) || "";
+  const iconHtml = icon
+    ? `<div class="apt-tip-icon"><img class="apt-tip-ic" src="${icon}" alt="" style="filter:grayscale(1) brightness(.7)"></div>`
+    : `<div class="apt-tip-icon empty"></div>`;
+  return `
+    <div class="tip-hd apt-tip-title">${name}</div>
+    <div class="tip-bd apt-tip-body">
+      <div class="apt-tip-top">
+        ${iconHtml}
+        <div class="apt-tip-meta">
+          <div class="apt-tip-row"><span class="apt-tip-cat">${catKey}</span><span class="apt-tip-learned" style="color:#8b93a7">미습득</span></div>
+          <div class="apt-tip-level">Lv.0/${max}${dn.point ? " · " + dn.point + "P" : ""}</div>
+        </div>
+      </div>
+      ${d0 ? `<div class="apt-tip-desc">${aptColorizeDesc(d0, color)}</div>` : ""}
+    </div>`;
+}
+
 let __aptCat = "진화";
 function renderArkPassiveTab(ap, fullData) {
   calcArkCdPct(ap);
@@ -582,25 +627,71 @@ function renderArkPassiveTab(ap, fullData) {
     (tiers[tier] = tiers[tier] || []).push({ e, name, lv, max });
   }
 
+  // ---- 직업 DB(arkPassiveData.js)가 있으면 안 찍은 노드까지 전부 표시 ----
+  const nz = x => String(x || "").replace(/\s+/g, "");
+  const dbTree = aptDbTree(c.key, (fullData && fullData.ArmoryProfile && fullData.ArmoryProfile.CharacterClassName) || "");
+  const tierNums = [];
+  const rowsByTier = {};
+  if (dbTree && dbTree.tierList && dbTree.tierList.length) {
+    for (const tr of dbTree.tierList) {
+      const list = [...(tr.passiveList || [])].sort((x, y) => (x.node_row || 0) - (y.node_row || 0) || (x.node_column || 0) - (y.node_column || 0));
+      const picked = tiers[tr.tier] || [];
+      const used = new Set();
+      const arr = [];
+      for (const dn of list) {
+        const hit = picked.find(p => !used.has(p) && nz(p.name) === nz(dn.name));
+        if (hit) { used.add(hit); hit.max = dn.max_level || hit.max; arr.push({ on: true, hit, name: dn.name, max: hit.max, dn }); }
+        else arr.push({ on: false, name: dn.name, max: dn.max_level || 0, dn });
+      }
+      // DB에서 못 찾은 찍은 노드는 뒤에 그대로 보존
+      for (const p of picked) if (!used.has(p)) arr.push({ on: true, hit: p, name: p.name, max: p.max, dn: null });
+      tierNums.push(tr.tier);
+      rowsByTier[tr.tier] = arr;
+    }
+  } else {
+    for (const t of [1, 2, 3, 4, 5]) {
+      tierNums.push(t);
+      rowsByTier[t] = (tiers[t] || []).map(p => ({ on: true, hit: p, name: p.name, max: p.max, dn: null }));
+    }
+  }
+
+  // 노드 열 위치(node_column)대로 배치 (본 사이트와 동일한 칸 배치)
+  let gridCols = 0;
+  if (dbTree && dbTree.tierList) {
+    for (const tr of dbTree.tierList) for (const dn of (tr.passiveList || [])) gridCols = Math.max(gridCols, dn.node_column || 0);
+    gridCols = Math.min(Math.max(gridCols, 6), 8); // 진화·도약(6칸)과 같은 간격 유지
+  }
+
   const col = document.createElement("section");
   col.className = "apt-col " + c.cls;
   const tree = document.createElement("div");
   tree.className = "apt-tree";
 
-  for (const t of [1, 2, 3, 4, 5]) {
+  for (const t of tierNums) {
+    const items = rowsByTier[t] || [];
+    const anyOn = items.some(x => x.on);
     const row = document.createElement("div");
-    row.className = "apt-row" + ((tiers[t] && tiers[t].length) ? "" : " empty");
+    row.className = "apt-row" + (items.length ? (anyOn ? "" : " allOff") : " empty");
     row.innerHTML = `<div class="apt-tier-badge"><span class="apt-tier-num">${t}</span></div><div class="apt-nodes"></div>`;
     const nodesEl = row.querySelector(".apt-nodes");
-    for (const n of (tiers[t] || [])) {
+    if (gridCols > 0) {
+      nodesEl.classList.add("grid");
+      nodesEl.style.gridTemplateColumns = `repeat(${gridCols}, minmax(0, 1fr))`;
+    }
+    for (const n of items) {
       const node = document.createElement("div");
-      node.className = "apt-node on";
-      const lvText = n.max ? `Lv. ${n.lv}/${n.max}` : `Lv. ${n.lv}`;
+      node.className = "apt-node " + (n.on ? "on" : "off");
+      if (gridCols > 0 && n.dn && n.dn.node_column) node.style.gridColumn = String(n.dn.node_column);
+      const lv = n.on ? n.hit.lv : 0;
+      const lvText = n.max ? `Lv. ${lv}/${n.max}` : `Lv. ${lv}`;
+      const icon = n.on ? (n.hit.e.Icon || (n.dn ? aptIconUrl(n.dn.icon) : "")) : (n.dn ? aptIconUrl(n.dn.icon) : "");
       node.innerHTML = `
-        <div class="apt-orb">${n.e.Icon ? `<img src="${n.e.Icon}" alt="" loading="lazy">` : ""}</div>
+        <div class="apt-orb">${icon ? `<img src="${icon}" alt="" loading="lazy">` : ""}</div>
         <div class="apt-lv">${lvText}</div>
         <div class="apt-nm">${n.name}</div>`;
-      const tipHtml = buildArkPassiveTipHtml(n.e, n.name);
+      let tipHtml = "";
+      if (n.on) tipHtml = buildArkPassiveTipHtml(n.hit.e, n.name);
+      else if (n.dn) tipHtml = aptOffTipHtml(n.dn, n.name, n.max, icon, c.key);
       if (tipHtml) bindTip(node, tipHtml);
       nodesEl.appendChild(node);
     }

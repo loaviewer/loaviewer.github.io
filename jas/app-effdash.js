@@ -194,13 +194,17 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   // 특화 툴팁의 '…피해량이 N% 증가' 줄 (회복량 등 제외) → 팔찌 특화 효율 계산에 사용
   window.__specInfo = (function () {
     const st = (stats || []).find(x => x.Type === "특화");
-    const lines = [];
+    const lines = [], critLines = [];
     ((st && Array.isArray(st.Tooltip)) ? st.Tooltip : []).forEach(t => {
       const plain = String(t).replace(/<[^>]+>/g, "").trim();
       const m = plain.match(/^(.*?)([0-9.]+)\s*%\s*(증가|증폭)/);
-      if (m && /피해/.test(m[1]) && !/회복/.test(m[1])) lines.push({ name: m[1].trim(), pct: parseFloat(m[2]) });
+      if (!m || /회복/.test(m[1]) || !/피해/.test(m[1])) return;
+      if (/치명타\s*피해/.test(m[1])) critLines.push({ name: m[1].trim(), pct: parseFloat(m[2]) });   // 치피 증가는 합연산 피해에서 제외
+      else lines.push({ name: m[1].trim(), pct: parseFloat(m[2]) });
     });
-    return { total: specStat, lines: lines };
+    // 데빌헌터: 핸드건 스킬 치명타 피해량 (핸드건 스탠스만 사용 → 항시 반영)
+    const hand = (window.__charClass === "데빌헌터") ? critLines.find(x => /핸드건/.test(x.name)) : null;
+    return { total: specStat, lines: lines, critLines: critLines, handCD: hand ? hand.pct : 0 };
   })();
 
   const bag = sumGearStats(equipList || []);
@@ -390,7 +394,8 @@ function fillEffDash(stats, equipList, fullData, statMap) {
     const ilgyeokDmgDef = (window.__evoSum?.conditional || []).find(r => r.name === "일격_치피");
     const ilgyeokDmgBonus = (hasDirectionalEng && ilgyeokDmgDef) ? ilgyeokDmgDef.value : 0;
 
-    const critDmgTotal = 200 + critDmgBonus + giminhamDmgBonus + ilgyeokDmgBonus + (synergyBag.critDmg || 0);
+    const specHandCD = (window.__specInfo && window.__specInfo.handCD) || 0;   // 데빌헌터 핸드건 특화 치피
+    const critDmgTotal = 200 + critDmgBonus + giminhamDmgBonus + ilgyeokDmgBonus + (synergyBag.critDmg || 0) + specHandCD;
     const critTotal = critTotalBase + (window.__backAtk10Checked ? 10 : 0) + giminhamCritBonus;
     
     window.__realCritRate = critTotal;
@@ -471,6 +476,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
     }
     if (giminhamDmgBonus) cdmgHtml += `<div class="mc-sub-line"><span>[${giminhamDmgDef.group || "깨달음"}] 기민함(공속 연동) Lv.${giminhamDmgDef.level}</span><b>+${round2(giminhamDmgBonus)}%</b></div>`;
     if (ilgyeokDmgBonus) cdmgHtml += `<div class="mc-sub-line"><span>[${ilgyeokDmgDef.group || "진화"}] 일격 Lv.${ilgyeokDmgDef.level} (${hasGiseupEng ? "기습의 대가" : "결투의 대가"})</span><b>+${round2(ilgyeokDmgBonus)}%</b></div>`;
+    if (specHandCD) cdmgHtml += `<div class="mc-sub-line"><span>특화 (핸드건 스킬)</span><b>+${round2(specHandCD)}%</b></div>`;
     if (idCritDmg) cdmgHtml += `<div class="mc-sub-line"><span>아덴(${identity?.buff_name || ""})</span><b>+${round2(idCritDmg)}%</b></div>`;
     cdmgHtml += `<div class="mc-sub-line total"><span>합계</span><b>${truncate2(critDmgTotal)}%</b></div>`;
 
@@ -973,6 +979,7 @@ window.braceletApplySpec = function (bItem, bEff) {
       // 일반: 특화 툴팁의 스킬 피해량(합연산)으로 산정. 가장 큰 피해량 줄 1개를 주력으로 100% 반영
       // 효율 = ΔS / (100 + 추가피해 + 팔찌 뺀 S)  (S = 특화로 늘어난 스킬 피해량 %)
       const si = window.__specInfo;
+      if (si && si.handCD > 0) return bEff;   // 치피로 환산하는 직업은 braceletApplyCrit 에서 처리
       if (!si || !(si.total > 0) || !si.lines.length || !(v > 0)) return bEff;
       const top = si.lines.slice().sort((a, b) => b.pct - a.pct)[0];
       const T = si.total, Sw = top.pct, So = Sw * Math.max(0, T - v) / T;
@@ -1112,7 +1119,12 @@ window.braceletApplyCrit = function (bItem, bEff) {
     const S  = rStat ? num(rStat, /\+?\s*(\d[\d,]*)/) : 0;
     const oC = rCr ? num(rCr, /([0-9.]+)\s*%/) : 0;
     const oD = rCd ? num(rCd, /([0-9.]+)\s*%/) : 0;
-    if (!(S > 0) && !(oC > 0) && !(oD > 0)) return bEff;
+    // 핸드건 특화 치피: 팔찌 특화 +N 만큼의 치피 증가분을 같은 방식으로 계산
+    const si = window.__specInfo || {};
+    const rSpec = (si.handCD > 0 && si.total > 0) ? rows.find(r => /^특화\s*\+?\s*\d/.test(String(r.name || ""))) : null;
+    const vSpec = rSpec ? num(rSpec, /\+?\s*(\d[\d,]*)/) : 0;
+    const dSpec = vSpec > 0 ? si.handCD * Math.min(vSpec, si.total) / si.total : 0;
+    if (!(S > 0) && !(oC > 0) && !(oD > 0) && !(dSpec > 0)) return bEff;
     const cS = S / perPt;
     const lv = (window.__activeEvoNode === "munga") ? (window.__mungaLv | 0) : 0;
     const EVO = 186.9;
@@ -1132,11 +1144,12 @@ window.braceletApplyCrit = function (bItem, bEff) {
       return a + (F(c, d) / F(c - dc, d - dd) - 1) * 100;
     }, 0) / T.length;
     let oldProd = 1;
-    [rStat, rCr, rCd].forEach(r => { if (r) oldProd *= (1 + r.pct / 100); });
+    [rStat, rCr, rCd, dSpec > 0 ? rSpec : null].forEach(r => { if (r) oldProd *= (1 + r.pct / 100); });
     if (rStat) rStat.pct = avg(cS, 0);
     if (rCr)   rCr.pct   = avg(oC, 0);
     if (rCd)   rCd.pct   = avg(0, oD);
-    const gAll = avg(cS + oC, oD);
+    if (dSpec > 0) rSpec.pct = avg(0, dSpec);
+    const gAll = avg(cS + oC, oD + dSpec);
     const total = ((1 + bEff.totalEff / 100) / oldProd * (1 + gAll / 100) - 1) * 100;
     return { totalEff: total, rows: rows };
   } catch (e) { return bEff; }

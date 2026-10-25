@@ -85,31 +85,88 @@
     } catch (e) {}
   };
 
-  // 최근 검색 드롭다운 목록 갱신: 캐시에 실제로 있는 이름만, 최근 조회 순
-  window.__refreshSavedNames = function () {
-    const ul = document.getElementById("recentList");
+  // ===== 즐겨찾기 / 최근 검색 =====
+  const FAV_KEY = "loaview-fav", HID_KEY = "loaview-recent-hidden";
+  const readList = (k) => { try { const v = JSON.parse(localStorage.getItem(k)); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
+  const writeList = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  let rcTab = "recent", cachedNames = new Set();
+
+  const origTouch = window.__touchRecent;
+  window.__touchRecent = function (name) {   // 다시 조회하면 숨김 해제
+    origTouch(name);
+    writeList(HID_KEY, readList(HID_KEY).filter(x => x !== name));
+  };
+
+  function renderRecent() {
+    const ul = document.getElementById("rcItems");
     if (!ul) return;
+    const favs = readList(FAV_KEY), hidden = new Set(readList(HID_KEY));
+    document.querySelectorAll("#recentList .rc-tab").forEach(b => b.classList.toggle("active", b.dataset.t === rcTab));
+    let names;
+    if (rcTab === "fav") names = favs.slice();
+    else {
+      const rec = readRecent().map(x => x.n).filter(n => cachedNames.has(n));
+      cachedNames.forEach(n => { if (!rec.includes(n)) rec.push(n); });   // 기록 없는 기존 캐시도 포함
+      const vis = rec.filter(n => !hidden.has(n)).slice(0, RECENT_MAX);
+      names = vis.filter(n => favs.includes(n)).concat(vis.filter(n => !favs.includes(n)));   // 즐겨찾기 우선
+    }
+    ul.textContent = "";
+    if (!names.length) {
+      const li = document.createElement("li");
+      li.className = "empty"; li.textContent = rcTab === "fav" ? "즐겨찾기한 캐릭터가 없어요" : "최근 검색 기록이 없어요";
+      ul.appendChild(li); return;
+    }
+    names.forEach(n => {
+      const on = favs.includes(n);
+      const li = document.createElement("li");
+      li.dataset.name = n; li.setAttribute("role", "option");
+      const st = document.createElement("button");
+      st.type = "button"; st.className = "rc-star" + (on ? " on" : ""); st.textContent = on ? "★" : "☆";
+      st.title = on ? "즐겨찾기 해제" : "즐겨찾기 추가"; st.dataset.act = "star";
+      const nm = document.createElement("span"); nm.className = "rc-nm"; nm.textContent = n;
+      const x = document.createElement("button");
+      x.type = "button"; x.className = "rc-x"; x.textContent = "✕"; x.title = "삭제"; x.dataset.act = "del";
+      li.append(st, nm, x);
+      ul.appendChild(li);
+    });
+  }
+
+  // 캐시에 실제로 있는 이름 + 즐겨찾기 상태로 목록 갱신
+  window.__refreshSavedNames = function () {
+    if (!document.getElementById("rcItems")) return;
     cacheKeys().then(keys => {
       const cached = new Set();
       keys.forEach(k => {
         const m = String(k).match(/\/character\/([^/]+)\/all$/);
         if (m) cached.add(decodeURIComponent(m[1]));
       });
-      const names = readRecent().map(x => x.n).filter(n => cached.has(n));
-      cached.forEach(n => { if (!names.includes(n)) names.push(n); }); // 기록 없는 기존 캐시도 포함
-      ul.textContent = "";
-      if (!names.length) {
-        const li = document.createElement("li");
-        li.className = "empty"; li.textContent = "최근 검색 기록이 없어요";
-        ul.appendChild(li); return;
-      }
-      names.slice(0, RECENT_MAX).forEach(n => {
-        const li = document.createElement("li");
-        li.textContent = n; li.dataset.name = n; li.setAttribute("role", "option");
-        ul.appendChild(li);
-      });
+      cachedNames = cached;
+      renderRecent();
     });
   };
+
+  // 별/삭제/탭/전체삭제 (이름 클릭은 기존 핸들러가 조회 처리)
+  const pop = document.getElementById("recentList");
+  if (pop) pop.addEventListener("click", e => {
+    const t = e.target.closest(".rc-tab, #rcClear, [data-act]");
+    if (!t) return;
+    e.stopImmediatePropagation();
+    if (t.classList.contains("rc-tab")) { rcTab = t.dataset.t; renderRecent(); return; }
+    if (t.id === "rcClear") {
+      if (!confirm(rcTab === "fav" ? "즐겨찾기를 모두 삭제할까요?" : "최근 검색을 모두 삭제할까요?\n(즐겨찾기는 유지됩니다)")) return;
+      if (rcTab === "fav") writeList(FAV_KEY, []);
+      else writeList(HID_KEY, Array.from(new Set(readList(HID_KEY).concat(Array.from(cachedNames), readRecent().map(x => x.n)))));
+      renderRecent(); return;
+    }
+    const li = t.closest("li[data-name]"); if (!li) return;
+    const n = li.dataset.name, favs = readList(FAV_KEY);
+    if (t.dataset.act === "star") writeList(FAV_KEY, favs.includes(n) ? favs.filter(x => x !== n) : [n].concat(favs));
+    else if (t.dataset.act === "del") {
+      if (rcTab === "fav") writeList(FAV_KEY, favs.filter(x => x !== n));
+      else writeList(HID_KEY, Array.from(new Set(readList(HID_KEY).concat(n))));
+    }
+    renderRecent();
+  });
   window.__refreshSavedNames();
 })();
 
@@ -241,7 +298,7 @@ const TITLE_GRADE = (() => {
     "광기군단장 슬레이어","마수군단장 슬레이어","몽환군단장 슬레이어","악마 사냥꾼","욕망군단장 슬레이어",
     "광풍의 눈","대지를 분쇄하는","돌로리스","번뇌의 창","분노의 포식자","빛의 날개","찬란하게 빛나는",
     "천둥을 내리꽂는","크로체","푸른 갈기","혹한의 군주","홍염의 군주",
-    "S1 낙원의 선봉대","S1 낙원의 정복자","S1 낙원의 주인",
+    "세계수의 축복 받은 자","S1 낙원의 선봉대","S1 낙원의 정복자","S1 낙원의 주인",
     "S2 낙원의 선봉대","S2 낙원의 정복자","S2 낙원의 주인",
     "S3 낙원의 선봉대","S3 낙원의 정복자","S3 낙원의 주인",
     "21년 최고의 금손","22년 최고의 금손","23년 최고의 금손","24년 최고의 금손","25년 최고의 금손","삼라만상",
@@ -250,13 +307,30 @@ const TITLE_GRADE = (() => {
   add("tg-relic", [
     "죽음을 부르는 자","카멘 The 1st","카멘 The 2nd","카멘 The 3rd","카멘 The TOP10",
     "광풍의 슬레이어","날개를 꺾은 자","뇌룡을 정복한 자","벨가누스 슬레이어","아카테스 슬레이어",
-    "엘버하스틱 슬레이어","이그렉시온 슬레이어","몽환의 지배자"
+    "엘버하스틱 슬레이어","이그렉시온 슬레이어","몽환의 지배자",
+    "에스더의 결속자","에스더의 후계자"
   ]);
   add("tg-ancient", ["카제로스 The 1st","카제로스 The 2nd","카제로스 The 3rd","카제로스 The TOP10"]);
-  add("tg-esther", ["에스더의 결속자","에스더의 후계자"]);
   add("tg-thunder", ["뇌전의 군주"]);   // 전설 목록과 겹치므로 마지막에 덮어씀
+  add("tg-doom", ["파멸의 군주"]);
+  add("tg-abyss", ["심연의 끝을 마주한 자"]);
   return m;
 })();
+// ===== 칭호 앞 아이콘 (img/title/*.webp) =====
+const TITLE_ICON_DIR = "img/title/";
+const TITLE_ICON = {
+  "광기의 그림자":"madness-shadow","뇌전의 군주":"thunder-lord","마수의 포효":"beast-roar",
+  "몽환의 지배자":"dream-ruler","삼라만상":"all-things","심연의 군주":"abyss-lord",
+  "심연의 끝을 마주한 자":"abyss-end","에스더의 결속자":"esther-bound","에스더의 후계자":"esther-heir",
+  "이클립스":"eclipse","죽음을 부르는 자":"death-caller","쾌락의 탐닉자":"pleasure-seeker",
+  "혹한의 군주":"frost-lord","홍염의 군주":"blaze-lord",
+  "세계수의 축복 받은 자":"worldtree-blessed"
+};
+function titleIconUrl(title) {
+  const key = String(title || "").replace(/\s+/g, " ").trim();
+  const f = TITLE_ICON[key];
+  return f ? TITLE_ICON_DIR + f + ".webp" : "";
+}
 // 전투력 구간 → 배경 등급 (2800 미만은 효과 없음)
 function powerTier(v) {
   const t = [[9800,"esther"],[8800,"ancient"],[7800,"relic"],[6800,"legend"],[5800,"epic"],[4800,"rare"],[3800,"uncommon"],[2800,"copper"]];
@@ -313,7 +387,7 @@ function render(data) {
   info.appendChild(el("div", "art-class", `Lv. ${p.CharacterLevel ?? "-"} ${p.CharacterClassName || ""}${apTitle ? " #" + apTitle : ""}`));
   info.appendChild(el("div", "art-name", p.CharacterName || "-"));
   const nums = el("div", "art-nums");
-  const r1 = el("div", "art-num art-ilvl"); r1.appendChild(el("i", "", "💠")); r1.appendChild(el("b", "", p.ItemAvgLevel || "-"));
+  const r1 = el("div", "art-num art-ilvl"); r1.appendChild(el("i", "", "💠​")); r1.appendChild(el("b", "", p.ItemAvgLevel || "-"));
   const r2 = el("div", "art-num art-cp"); r2.appendChild(el("i", "", "⚔️")); r2.appendChild(el("b", "", p.CombatPower || "-"));
   nums.appendChild(r1); nums.appendChild(r2);
   info.appendChild(nums);
@@ -351,6 +425,28 @@ function render(data) {
   addRow("서버", p.ServerName || "-", "", p.ServerName ? "#e8b84b" : "");
   addRow("원정대", p.ExpeditionLevel != null ? "Lv." + p.ExpeditionLevel : "-", "", p.ExpeditionLevel != null ? "#7fd1ff" : "");
   addRow("칭호", p.Title || "-", p.Title ? titleGradeClass(p.Title) : "");
+  { // 해당 칭호 아이콘이 있으면 글자 앞에 표시 (효과 클래스는 글자 span에만 적용 → 세로 정렬 일정)
+    const tu = titleIconUrl(p.Title);
+    if (tu) {
+      const tv = rows.lastElementChild && rows.lastElementChild.querySelector(".art-v");
+      if (tv) {
+        const tgCls = [...tv.classList].filter(c2 => /^tg-/.test(c2));
+        tgCls.forEach(c2 => tv.classList.remove(c2));
+        const txt = document.createElement("span");
+        txt.className = "t-txt";
+        const inner = document.createElement("span");
+        inner.className = tgCls.join(" ");
+        inner.textContent = p.Title;
+        txt.appendChild(inner);
+        tv.textContent = "";
+        const im = document.createElement("img");
+        im.className = "t-ico"; im.src = tu; im.alt = ""; im.loading = "lazy";
+        im.onerror = () => im.remove();
+        tv.classList.add("has-t-ico");
+        tv.append(im, txt);
+      }
+    }
+  }
   addRow("길드", p.GuildName || "-", p.GuildName ? "art-guild" : "");
   addRow("영지", p.TownName ? `Lv.${p.TownLevel ?? "-"} ${p.TownName}` : "-", "", p.TownName ? "#c8a2ff" : "");
   { // 명예: 프로필에 명예 관련 값이 있을 때만 표시
