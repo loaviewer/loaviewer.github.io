@@ -17,8 +17,6 @@ let detailTabState = { serka: "percent", cathedral: "percent", belgardin: "perce
 let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
-
-
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
@@ -28,7 +26,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
+        
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -36,7 +34,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
+   
         try { window.loaviewPushAdsense && window.loaviewPushAdsense(heroSlot); } catch (e) {}
     }
 
@@ -2080,7 +2078,7 @@ function getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood) {
     return { rows, split, shieldLines };
 }
 
-function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, fullBlood) {
+function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, fullBlood, lineShares) {
     const { rows } = getMordumLineCutRows(diffKey, totalSec, fullTank, fullOne, fullBlood);
 
     const isSupport = currentRoleMode === "support";
@@ -2093,9 +2091,10 @@ function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, ful
 
     const dpsUnit = '<span class="lc-dps-unit">억</span>';
     // DPS를 크게, 피해량은 아래 알약으로
+    const fmtShareM = (v) => Number.isInteger(v) ? String(v) : Number(v).toFixed(1);
     const triHtml = (cls, label, value, dps) => `
         <div class="lc-tri ${cls}">
-            <span class="lc-tri-label">${label}</span>
+            <span class="lc-tri-label">${label}${lineShares && lineShares[cls] != null ? ` <em>${fmtShareM(lineShares[cls])}%</em>` : ""}</span>
             <span class="lc-tri-value is-dps"><span class="lc-tri-cap">DPS</span>${dps.toFixed(1)}${dpsUnit}</span>
             <span class="lc-tri-dps">피해<span class="sm-hide">량</span> ${fmt(value)}억</span>
         </div>
@@ -2165,7 +2164,7 @@ function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, ful
         `;
     }).join("");
 
-    return `<div class="line-cut-timeline">${items}</div>`;
+    return `<div class="line-cut-timeline lc-colored">${items}</div>`;
 }
 
 function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, diffKey, lineShares) {
@@ -2176,7 +2175,7 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
 
     // 모르둠 EX는 1페이즈(500줄)와 2페이즈(발악쉴드)를 나눠서 계산
     if (menu === "mordum") {
-        return makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, fullBlood);
+        return makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, fullBlood, lineShares);
     }
 
     const rows = getLineCutRows(menu, gateKey, totalSec, fullTank, fullOne, fullBlood);
@@ -2990,7 +2989,7 @@ function applyMenuFromQuery() {
 
     if (isStandaloneSerkaPage) {
         currentMenu = "serka";
-        currentCombo = "hard_gate1";
+        currentCombo = "nightmare_gate1";
         document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
         document.querySelector('.menu-item[data-menu="serka"]')?.classList.add("active");
         setBaseTimeByMenu(currentMenu);
@@ -2999,7 +2998,7 @@ function applyMenuFromQuery() {
 
     if (isStandaloneCathedralPage) {
         currentMenu = "cathedral";
-        currentCombo = "hard_gate1";
+        currentCombo = "nightmare_gate1";
         document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
         document.querySelector('.menu-item[data-menu="cathedral"]')?.classList.add("active");
         setBaseTimeByMenu(currentMenu);
@@ -3008,7 +3007,7 @@ function applyMenuFromQuery() {
 
     if (isStandaloneBelgardinPage) {
         currentMenu = "belgardin";
-        currentCombo = "hard_gate1";
+        currentCombo = "nightmare_gate1";
         document.querySelectorAll(".menu-item").forEach(btn => btn.classList.remove("active"));
         document.querySelector('.menu-item[data-menu="belgardin"]')?.classList.add("active");
         setBaseTimeByMenu(currentMenu);
@@ -3061,11 +3060,11 @@ if (isStandaloneGuardianPage) {
         }
     
 if (currentMenu === "serka") {
-    currentCombo = "hard_gate1";
+    currentCombo = "nightmare_gate1";
 } else if (currentMenu === "cathedral") {
-    currentCombo = "hard_gate1";
+    currentCombo = "nightmare_gate1";
 } else if (currentMenu === "belgardin") {
-    currentCombo = "hard_gate1";
+    currentCombo = "nightmare_gate1";
 } else if (currentMenu === "guardian") {
     currentGuardianTier = "1770";
     currentGatoBoss = "루멘칼리고";
@@ -5707,8 +5706,7 @@ function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
             return `
                 <div class="jm-tile ${k}">
                     <div class="jm-tile-label">${labels[k]} <em>${fmtPct(pct[k])}%</em></div>
-                    <div class="jm-tile-cap">DPS</div>
-                    <div class="jm-tile-main">${cumDps.toFixed(1)}<span>억</span></div>
+                    <div class="jm-tile-main"><span class="jm-tile-cap">DPS</span>${cumDps.toFixed(1)}<span class="jm-tile-unit">억</span></div>
                     <div class="jm-tile-dps">피해<span class="sm-hide">량</span> ${fmt(Math.floor(cum + 1e-9))}억</div>
                 </div>`;
         }).join("");
@@ -6887,15 +6885,15 @@ document.querySelectorAll(".menu-item").forEach(btn => {
         }
         else if (menu === "serka") {
             currentMenu = "serka";
-            currentCombo = "hard_gate1";
+            currentCombo = "nightmare_gate1";
         }
         else if (menu === "cathedral") {
             currentMenu = "cathedral";
-            currentCombo = "hard_gate1";
+            currentCombo = "nightmare_gate1";
         }
         else if (menu === "belgardin") {
             currentMenu = "belgardin";
-            currentCombo = "hard_gate1";
+            currentCombo = "nightmare_gate1";
         }
         else if (menu === "guardian") {
             currentMenu = "guardian";
