@@ -8776,15 +8776,15 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
 /* =============================================
    요약 카드 간소화: "강투컷 15%" 한 줄 + "DPS 5.4억" 한 줄 + 피해량 알약 (세로 길이 단축)
    ============================================= */
-.precision-summary-card { padding: 14px 16px 15px; }
-.precision-summary-head { display: flex; align-items: baseline; justify-content: center; gap: 7px; margin-bottom: 7px; }
+.precision-summary-card { padding: 20px 16px 20px; }
+.precision-summary-head { display: flex; align-items: baseline; justify-content: center; gap: 7px; margin-bottom: 11px; }
 .precision-summary-head .precision-summary-label { margin: 0; font-size: 13px; letter-spacing: .3px; }
 .precision-summary-head .precision-summary-share { margin: 0; font-size: 13px; font-weight: 800; }
 .precision-summary-dps-line { display: flex; align-items: baseline; justify-content: center; gap: 6px; line-height: 1; }
 .precision-summary-dpscap { margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .5px; }
 .precision-summary-dps-line .precision-summary-dps-main { font-size: 36px; line-height: 1; }
 .precision-summary-dps-line .precision-summary-unit { font-size: 15px; font-weight: 800; color: #667085; }
-.precision-summary-dmg-pill { margin-top: 10px; padding: 4px 12px; font-size: 12.5px; }
+.precision-summary-dmg-pill { margin-top: 14px; padding: 4px 12px; font-size: 12.5px; }
 .precision-summary-support { top: 9px; right: 9px; }
 
 /* =============================================
@@ -8799,3 +8799,27 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
 .lc-colored .lc-tri.tank .lc-tri-dps,
 .lc-colored .lc-tri.one .lc-tri-dps,
 .lc-colored .lc-tri.blood .lc-tri-dps { color: var(--tc); background: rgba(var(--tcr), .12); border: 1px solid rgba(var(--tcr), .35); }
+
+
+/* =============================================
+   일반 구간별 딜지분(벨가르딘 / 세르카 / 성당 등): 요약 카드와 같은 구성
+   "강투 30%" 한 줄 / "DPS 3.6억" 한 줄 / 피해량 알약
+   ============================================= */
+.lc-colored .lc-tri { padding: 12px 8px 12px; }
+.lc-colored .lc-tri .lc-tri-label { font-size: 12px; margin-bottom: 8px; white-space: nowrap; }
+.lc-colored .lc-tri .lc-tri-label em { font-style: normal; margin-left: 4px; font-weight: 800; }
+.lc-colored .lc-tri.tank  .lc-tri-label em { color: #e8d27a; }
+.lc-colored .lc-tri.one   .lc-tri-label em { color: #93c5fd; }
+.lc-colored .lc-tri.blood .lc-tri-label em { color: #c4b5fd; }
+.lc-colored .lc-tri-value.is-dps { display: flex; align-items: baseline; justify-content: center; gap: 4px; font-size: 26px; line-height: 1; }
+.lc-colored .lc-tri-value .lc-tri-cap { display: inline; margin: 0; font-size: 10px; letter-spacing: .4px; }
+.lc-colored .lc-tri-value.is-dps .lc-dps-unit { margin-left: 0; font-size: 12px; }
+.lc-colored .lc-tri-dps { margin-top: 10px; }
+@media (max-width: 768px) {
+    .lc-colored .lc-tri { padding: 10px 4px 10px; }
+    .lc-colored .lc-tri .lc-tri-label { font-size: 10.5px; margin-bottom: 7px; }
+    .lc-colored .lc-tri .lc-tri-label em { margin-left: 2px; }
+    .lc-colored .lc-tri-value.is-dps { font-size: 20px; gap: 3px; }
+    .lc-colored .lc-tri-value .lc-tri-cap { font-size: 8.5px; }
+    .lc-colored .lc-tri-value.is-dps .lc-dps-unit { font-size: 10px; }
+}
