@@ -18,6 +18,7 @@ let currentRoleMode = "dealer"; // "dealer" | "support"
 let battleItemChoiceState = {}; // key: `${menu}_${gateKey}_${role}_${groupIdx}` → 선택된 옵션 인덱스
 
 
+
 function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     const mainContent = document.getElementById("mainContent");
     const heroSlot = document.getElementById("precisionHeroSlot"); // 이제 content-grid 바깥(HTML에 이미 존재)
@@ -27,7 +28,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
     if (heroSlot && !document.getElementById("precisionBigHeroSlot")) {
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
-         
+            <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
             <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
@@ -35,7 +36,7 @@ function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtml) {
             <div id="precisionMiniHeroSlot"></div>
         `;
 
-
+        // innerHTML로 넣은 광고 슬롯은 script가 실행되지 않으므로 여기서 직접 display/refresh (간편보기와 동일 로직)
         try { window.loaviewPushAdsense && window.loaviewPushAdsense(heroSlot); } catch (e) {}
     }
 
@@ -2167,7 +2168,7 @@ function makeMordumLineCutTimelineHtml(diffKey, totalSec, fullTank, fullOne, ful
     return `<div class="line-cut-timeline">${items}</div>`;
 }
 
-function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, diffKey) {
+function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, diffKey, lineShares) {
     // 종막 EX는 2-1 / 2-2 / 2-3 관문 단위로 계산
     if (menu === "jongmak") {
         return makeJongmakLineCutTimelineHtml(diffKey, totalSec);
@@ -2192,9 +2193,10 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
 
     // DPS = 피해량 / 전분시간 (요약 카드와 같은 식). 구간 시간을 줄 수 비율로 근사하므로 모든 줄에서 같은 값이 나옴
     const dpsOf = (full) => totalSec > 0 ? floorTo1(Math.floor(full || 0) / totalSec) : 0;
+    const fmtShareG = (v) => Number.isInteger(v) ? String(v) : Number(v).toFixed(1);
     const triG = (cls, label, dmg, full) => `
                         <div class="lc-tri ${cls}">
-                            <span class="lc-tri-label">${label}</span>
+                            <span class="lc-tri-label">${label}${lineShares && lineShares[cls] != null ? ` <em>${fmtShareG(lineShares[cls])}%</em>` : ""}</span>
                             <span class="lc-tri-value is-dps"><span class="lc-tri-cap">DPS</span>${dpsOf(full).toFixed(1)}<span class="lc-dps-unit">억</span></span>
                             <span class="lc-tri-dps">피해<span class="sm-hide">량</span> ${fmt(dmg)}억</span>
                         </div>`;
@@ -2302,7 +2304,11 @@ function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml,
         const fullTank = rowTank ? getDamage(rowTank) : 0;
         const fullOne = rowOne ? getDamage(rowOne) : 0;
         const fullBlood = rowBlood ? getDamage(rowBlood) : 0;
-        const lineTimelineHtml = makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, meta && meta.diffKey);
+        // 요약 카드와 같은 지분(%) (서폿 모드는 환산된 지분)
+        const baseShares = getPrecisionShares(menu);
+        const shareOf = (row, def) => (isSupport && row && row.share !== undefined) ? row.share : def;
+        const lineShares = { tank: shareOf(rowTank, baseShares.tank), one: shareOf(rowOne, baseShares.one), blood: shareOf(rowBlood, baseShares.blood) };
+        const lineTimelineHtml = makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, fullBlood, meta && meta.diffKey, lineShares);
 
         return `
             ${sectionDivider}
