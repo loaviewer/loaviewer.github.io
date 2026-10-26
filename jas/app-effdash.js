@@ -169,6 +169,14 @@ function buildCritDrawerHtml(ctx) {
   if (idCrit) html += `<div class="mc-sub-line"><span>아덴(${identity?.buff_name || ""})</span><b>+${round2(idCrit)}%</b></div>`;
   if (backAtk10) html += `<div class="mc-sub-line"><span>백어택</span><b>+10%</b></div>`;
   html += `<div class="mc-sub-line total"><span>합계</span><b>${truncate2(critTotal)}%</b></div>`;
+  {   // 스킬별 치적 (트라이포드·노드로 치적이 붙은 스킬만)
+    const tg = (window.critTargets ? window.critTargets(true) : []).filter(x => x.cr > 0);   // 치적이 실제로 변하는 스킬만
+    if (tg.length) {
+      html += `<div class="mc-sub-line mc-expandable open" style="margin-top:8px;"><span>스킬별 치적 (트라이포드·노드)</span><b></b></div><div class="mc-mini show">`;
+      tg.forEach(x => { html += `<div class="el"><span>${x.name}</span><span>${truncate2(critTotal + x.cr)}%${x.cr ? ` <small style="opacity:.7">(+${round2(x.cr)})</small>` : ""}</span></div>`; });
+      html += `</div>`;
+    }
+  }
   return html;
 }
 
@@ -490,7 +498,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
       cdmgHtml += `</div>`;
     }
     {
-      const tg = (window.critTargets ? window.critTargets() : []).filter(x => x.cd > 0);   // 치피가 붙은 스킬만
+      const tg = (window.critTargets ? window.critTargets(true) : []).filter(x => x.cd > 0);   // 치피가 실제로 변하는 스킬만 (보석 유무 무관, Lv10↑·초각·각성기·아이덴티티 포함)
       if (tg.length) {
         cdmgHtml += `<div class="mc-sub-line mc-expandable open" style="margin-top:8px;"><span>스킬별 치피 (트라이포드·노드)</span><b></b></div><div class="mc-mini show">`;
         tg.forEach(x => { cdmgHtml += `<div class="el"><span>${x.name}</span><span>${truncate2(critDmgTotal + x.cd)}%${x.cd ? ` <small style="opacity:.7">(+${round2(x.cd)})</small>` : ""}</span></div>`; });
@@ -723,7 +731,7 @@ function fillEffDash(stats, equipList, fullData, statMap) {
                 return `<div class="mc-sub-line need"><span>풀 효율까지 치명타 적중률 ${round2(needCrit)}% 부족</span><b>치명 약 +${Math.ceil(needCrit * perPct)}</b></div>`;
               })()}
               ${(function () {
-                const tl = (window.critTargets ? window.critTargets() : []).filter(x => x.cr > 0);   // 치적이 붙은 스킬만
+                const tl = (window.critTargets ? window.critTargets(true) : []).filter(x => x.cr > 0);   // 치적이 실제로 변하는 스킬만
                 if (!tl.length || !window.calcBluntThorn) return "";
                 const lv0 = window.__mungaLv | 0;
                 const rows = tl.map(x => { const c = critTotal + x.cr; return { name: x.name, c: c, evo: window.calcBluntThorn(c, lv0).evoDmgAdd }; });
@@ -1028,7 +1036,7 @@ window.skillTripodCrit = function () {
 
 // 팔찌 치명 효율 계산 대상: 스킬 Lv10↑ 겁화 보석 장착 스킬 + 초각 스킬 1개 + 각성기 1개
 // 스킬별 치적/치피 = 전체 값 + 트라이포드 + 도약/깨달음 노드 (겁화 보석은 스킬 피해만 → 치피 없음)
-window.critTargets = function () {
+window.critTargets = function (showAll) {
   const out = [];
   try {
     const fd = window.__fullData || {};
@@ -1099,6 +1107,24 @@ window.critTargets = function () {
     const awak  = best(sk => (sk.SkillType || 0) >= 100);
     if (hyper && !seen[hyper.Name]) { seen[hyper.Name] = 1; add(hyper, 0); }
     if (awak && !seen[awak.Name]) { seen[awak.Name] = 1; add(awak, 0); }
+    if (showAll) {
+      // 표시용: 보석 유무와 상관없이 Lv10↑ 스킬 전부 + 초각/각성기 전부 + 스킬창에 없는 아이덴티티(보석 장착) 스킬
+      skills.forEach(sk => {
+        if (seen[sk.Name]) return;
+        if ((sk.Level || 0) >= 10 || (sk.SkillType || 0) >= 1) { seen[sk.Name] = 1; add(sk, 0); }
+      });
+      try {
+        if (typeof buildSkillGemMap === "function") {
+          const nzz = (x) => String(x || "").replace(/\s+/g, "");
+          const have = {}; skills.forEach(sk => { have[nzz(sk.Name)] = 1; });
+          const gm2 = buildSkillGemMap(fd.ArmoryGem);
+          for (const n in gm2) {
+            if (!n || have[nzz(n)] || seen[n]) continue;
+            seen[n] = 1; add({ Name: n }, 0);
+          }
+        }
+      } catch (e2) {}
+    }
   } catch (e) {}
   return out;
 };
