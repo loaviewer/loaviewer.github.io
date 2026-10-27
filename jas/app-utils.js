@@ -142,7 +142,11 @@ function makeIconWithQuality(iconUrl, qv, gradeBg, gradeBorder, withBorder, bord
     var bar = document.createElement("div");
     bar.className = "q-bar " + (qBarClass(qv) || "mid");
     // 🎯 품질바 너비도 아이콘 크기에 맞춤
-    bar.style.width = borderImage ? "100%" : iconSize;
+    // 장비(withBorder)는 파란 테두리가 아이콘 밖으로 나가므로 품질바도 테두리 폭에 맞춤
+    var barW = iconSize;
+    if (borderImage) barW = "100%";
+    else if (withBorder) barW = (parseFloat(iconSize) + 2 * Math.round(parseFloat(iconSize) * EQ_BORDER_OUT_RATIO * 10) / 10) + "px";
+    bar.style.width = barW;
     bar.style.boxSizing = "border-box";
     var fill = document.createElement("div");
     fill.className = "q-fill";
@@ -207,7 +211,17 @@ function skillIconByName(name) {
   var eff = fd.ArmoryGem && fd.ArmoryGem.Effects;
   var arr = Array.isArray(eff) ? eff : ((eff && eff.Skills) || []);
   hit = arr.find(function(x) { return x && String(x.Name || "").replace(/\s+/g, "") === k; });
-  return (hit && hit.Icon) || "";
+  if (hit && hit.Icon) return hit.Icon;
+  // 'OO 계열' 이름 → 기본 스킬 'OO' 로 찾기 (스킬 목록 → 보석 효과 목록 순)
+  var base = k.replace(/계열$/, "");
+  if (base && base !== k) {
+    hit = (fd.ArmorySkills || []).find(function(x) { return String(x.Name || "").replace(/\s+/g, "") === base; })
+       || (fd.ArmorySkills || []).find(function(x) { var n = String(x.Name || "").replace(/\s+/g, ""); return n && n.indexOf(base) === 0; });
+    if (hit && hit.Icon) return hit.Icon;
+    hit = arr.find(function(x) { var n = x && String(x.Name || "").replace(/\s+/g, ""); return n && (n === base || n.indexOf(base) === 0); });
+    if (hit && hit.Icon) return hit.Icon;
+  }
+  return "";
 }
 
 // 아이콘이 있는 툴팁 헤더 (스킬 툴팁과 같은 모양: 아이콘 + 이름 + 보조 줄)
@@ -220,6 +234,19 @@ function tipItemHeaderHtml(nameHtml, icon, badgeIcon, subs, borderColor, iconBg)
     (badgeIcon ? '<i style="background-image:url(\'' + badgeIcon + '\')"></i>' : "") + "</span>";
   return '<div class="tip-hd tip-hd-item">' + ic + '<div class="tip-hd-text"><div class="tip-hd-name">' + nameHtml + "</div>" +
     subs.map(function(s) { return '<div class="tip-hd-sub">' + s + "</div>"; }).join("") + "</div></div>";
+}
+
+// ===== 스킬 룬 툴팁: 수치(%) / '따옴표 키워드' / 상태이상 색상 =====
+var RUNE_KW_CLASS = { "중독": "poison", "출혈": "bleed", "화상": "burn", "감전": "shock", "동결": "ice", "빙결": "ice", "둔화": "ice", "공포": "dark", "침묵": "dark" };
+function runeColorizeHtml(html) {
+  return String(html || "").split(/(<[^>]*>)/).map(function (seg) {
+    if (!seg || seg.charAt(0) === "<") return seg;
+    seg = seg.replace(/(\'|‘|’|&#39;|&apos;)([^'‘’<>&]{1,14}?)(\'|‘|’|&#39;|&apos;)/g, function (m, a, w, b) {
+      return a + '<span class="rune-kw ' + (RUNE_KW_CLASS[w.trim()] || "") + '">' + w + '</span>' + b;
+    });
+    seg = seg.replace(/(\d+(?:\.\d+)?\s?%)/g, '<span class="rune-pct">$1</span>');
+    return seg;
+  }).join("");
 }
 
 function buildTipHtml(raw, title, fallbackIcon, borderOverride) {
@@ -304,6 +331,7 @@ function buildTipHtml(raw, title, fallbackIcon, borderOverride) {
   } else {
     hd = nameHtml ? `<div class="tip-hd">${nameHtml}</div>` : (title ? `<div class="tip-hd">${title}</div>` : "");
   }
+  if (/스킬\s*룬\s*효과/.test(String(raw))) main = main.map(runeColorizeHtml);
   if (!main.length && !foot.length && !hd) return "";
   return `${tipGradeMark(grade)}${hd}<div class="tip-bd tip-grp">${main.length ? `<div class="tg tg-main">${main.join("")}</div>` : ""}${foot.length ? `<div class="tg tg-foot">${foot.join("")}</div>` : ""}</div>`;
 }
@@ -642,8 +670,26 @@ function buildSkillGemMap(gemData) {
       map[sk].dmgIcon = g.Icon; 
       map[sk].dmgGrade = g.Grade; 
       map[sk].dmgTip = g.Tooltip; 
-      map[sk].dmgName = g.Name; 
+      map[sk].dmgName = g.Name;
     }
+  }
+  // '블레이즈 스윕 계열' 같은 계열 보석 → 기본 스킬과 변신 스킬 둘 다 장착된 것으로 펼침 (계열 이름 항목은 제거)
+  if (typeof GEM_SKILL_FAMILIES !== "undefined") {
+    var nzk = function (x) { return String(x || "").replace(/\s+/g, ""); };
+    Object.keys(map).forEach(function (key) {
+      var label = Object.keys(GEM_SKILL_FAMILIES).find(function (l) {
+        return nzk(l) === nzk(key) || GEM_SKILL_FAMILIES[l].some(function (m) { return nzk(m) === nzk(key); });
+      });
+      if (!label) return;
+      var src = map[key];
+      if (nzk(label) === nzk(key)) delete map[key];
+      GEM_SKILL_FAMILIES[label].forEach(function (mem) {
+        if (mem === key) return;
+        var t = map[mem] || (map[mem] = {});
+        if (src.dmg && !t.dmg) { t.dmg = src.dmg; t.dmgIcon = src.dmgIcon; t.dmgGrade = src.dmgGrade; t.dmgTip = src.dmgTip; t.dmgName = src.dmgName; t.famDmg = true; }
+        if (src.cool && !t.cool) { t.cool = src.cool; t.coolIcon = src.coolIcon; t.coolGrade = src.coolGrade; t.coolPct = src.coolPct; t.coolTip = src.coolTip; t.coolName = src.coolName; t.famCool = true; }
+      });
+    });
   }
   return map;
 }

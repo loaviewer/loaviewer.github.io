@@ -1,12 +1,5 @@
 // ===== 장비 · 악세 · 아바타 · 보석 · 카드 · 각인 · 원정대 (app-render-gear.js) =====
 
-function getBraceletOpt(normKey) {
-  var db = window.BRACELET_EFFECTS || (typeof BRACELET_EFFECTS !== "undefined" ? BRACELET_EFFECTS : null);
-  if (db) { for (var cat of Object.keys(db)) { if (db[cat][normKey]) return db[cat][normKey]; } }
-  if (window.BRACELET_OPTIONS_DB && window.BRACELET_OPTIONS_DB[normKey]) return window.BRACELET_OPTIONS_DB[normKey];
-  return null;
-}
-
 function getGradeColorClass(grade) {
   if (grade === "상") return { cls: "sang", color: "#FE9600" };
   if (grade === "중") return { cls: "jung", color: "#A235FF" };
@@ -722,7 +715,7 @@ function renderGems(gemData, skills) {
         if (ic) return ic;
       }
     }
-    return GEM_SKILL_ICON_FALLBACK_N[n] || "";
+    return GEM_SKILL_ICON_FALLBACK_N[n] || skillIconByName(name) || "";   // 스킬창에 없는 스킬(아이덴티티)은 보석 효과 목록의 아이콘 사용
   }
   var dmg = [], cool = [];
   for (var j = 0; j < gems.length; j++) {

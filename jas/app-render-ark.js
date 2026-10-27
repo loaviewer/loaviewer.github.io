@@ -177,17 +177,6 @@ function buildCoreTipHtml(slot) {
     </div>`;
 }
 
-function agCoreIcon(slotKey) {
-  const T = {
-    해: { c1: "#ffd66b", c2: "#e07a00", glyph: `<circle cx="14" cy="14" r="6" fill="#fff"/><g stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="14" y1="2" x2="14" y2="6"/><line x1="14" y1="22" x2="14" y2="26"/><line x1="2" y1="14" x2="6" y2="14"/><line x1="22" y1="14" x2="26" y2="14"/><line x1="5" y1="5" x2="8" y2="8"/><line x1="20" y1="20" x2="23" y2="23"/><line x1="23" y1="5" x2="20" y2="8"/><line x1="8" y1="20" x2="5" y2="23"/></g>` },
-    달: { c1: "#b98cff", c2: "#4a3aff", glyph: `<path d="M18 6a9 9 0 1 0 4 16 7 7 0 0 1-4-16Z" fill="#fff"/>` },
-    별: { c1: "#ff9ad6", c2: "#ff3d7f", glyph: `<path d="M14 3l3.09 6.86L24 11l-5 5.14L20.18 24 14 20.27 7.82 24 9 16.14 4 11l6.91-1.14L14 3Z" fill="#fff"/>` },
-  };
-  const t = T[slotKey] || T["해"];
-  const gid = "agGrad_" + slotKey + "_" + Math.random().toString(36).slice(2, 7);
-  return `<svg class="ag-core-icon" width="26" height="26" viewBox="0 0 28 28"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${t.c1}"/><stop offset="1" stop-color="${t.c2}"/></linearGradient></defs><rect width="28" height="28" rx="8" fill="url(#${gid})"/>${t.glyph}</svg>`;
-}
-
 const AG_GRADE_FILL = { "고대": "#cfad7e", "유물": "#ff7a3d", "전설": "#ffb24d", "영웅": "#b97dff" };
 const AG_GRADE_BG = { "고대": "#8a7754", "유물": "#a34a26", "전설": "#a06d1f", "영웅": "#6a4590" };
 

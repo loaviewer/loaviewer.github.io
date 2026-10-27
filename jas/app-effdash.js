@@ -272,26 +272,6 @@ function fillEffDash(stats, equipList, fullData, statMap) {
   window.__isSupFlag = __isSup;
   let desireOn = !__isSup;
 
-  function extractSpecAmpPct(keyword) {
-    const s = (stats || []).find(x => x.Type === "특화");
-    if (!s || !Array.isArray(s.Tooltip)) return null;
-    for (const line of s.Tooltip) {
-      const clean = String(line).replace(/<[^>]+>/g, "");
-      if (clean.includes(keyword)) {
-        const m = clean.match(/([0-9.]+)\s*%/);
-        if (m) return parseFloat(m[1]);
-      }
-    }
-    return null;
-  }
-
-
-
-
-
-
-
-
   // 🎯 아덴 특화 증폭 정밀 계산 함수
   const idNow = () => {
     if (!(identity && identityOn)) return {};
@@ -1040,7 +1020,7 @@ window.critTargets = function (showAll) {
   const out = [];
   try {
     const fd = window.__fullData || {};
-    const skills = fd.ArmorySkills || [];
+    const skills = (fd.ArmorySkills || []).filter(sk => !(window.gkIsHiddenSkill && window.gkIsHiddenSkill(sk.Name)));   // 드레드 로어: 변신 스킬 제외
     const tri = {};
     (window.skillTripodCrit ? window.skillTripodCrit() : []).forEach(x => { tri[x.name] = { name: x.name, cr: x.cr, cd: x.cd }; });
     // 깨달음/도약 노드(AWAKENING_NODE_BY_SKILL) 중 스킬명이 실제 스킬과 일치하는 것만 합산
@@ -1090,7 +1070,7 @@ window.critTargets = function (showAll) {
     try {
       if (typeof buildSkillGemMap === "function") {
         const gm = buildSkillGemMap(fd.ArmoryGem);
-        for (const n in gm) if (gm[n] && gm[n].dmg) gem[n] = 0;
+        for (const n in gm) if (gm[n] && gm[n].dmg && !(window.gkIsHiddenSkill && window.gkIsHiddenSkill(n))) gem[n] = 0;
       }
     } catch (e) {}
     (window.__nightmareSkills || []).forEach(g => { if (gem[g.name] == null) gem[g.name] = 0; });
@@ -1120,6 +1100,7 @@ window.critTargets = function (showAll) {
           const gm2 = buildSkillGemMap(fd.ArmoryGem);
           for (const n in gm2) {
             if (!n || have[nzz(n)] || seen[n]) continue;
+            if (window.gkIsHiddenSkill && window.gkIsHiddenSkill(n)) continue;
             seen[n] = 1; add({ Name: n }, 0);
           }
         }

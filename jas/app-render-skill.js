@@ -34,16 +34,6 @@ function parseCdSeconds(text) {
   return sec;
 }
 
-function formatCdBaseLabel(sec) {
-  if (sec >= 60 && sec % 60 === 0) return (sec / 60) + "분";
-  if (sec >= 60) {
-    var m = Math.floor(sec / 60);
-    var r = Math.round((sec - m * 60) * 100) / 100;
-    return r ? `${m}분 ${r}초` : `${m}분`;
-  }
-  return sec + "초";
-}
-
 // ===== 재감 적용 토글 (상단 태그 클릭으로 적용/비적용) =====
 function cdOpt() { return window.__cdOpt = window.__cdOpt || { swift: true, gem: true, evo: true, mana: true }; }
 function cdParams(s) {
@@ -172,8 +162,8 @@ function groupTripods(tripods) {
   return [0, 1, 2].map(tier => {
     var options = byTier[tier].slice().sort((a, b) => (a.Slot || 0) - (b.Slot || 0));
     if (!options.length) return null;
-    var selected = options.find(o => o.IsSelected) || options[0];
-    return { tier, options, selected };
+    var picked = options.find(o => o.IsSelected);
+    return { tier, options, selected: picked || options[0], none: !picked };   // none: 해당 단계 트라이포드 미선택
   }).filter(Boolean);
 }
 
@@ -569,13 +559,77 @@ function gemSkillIcon(gemData, name, skillsData) {
   var effs = gemData && gemData.Effects;
   var arr = Array.isArray(effs) ? effs : ((effs && effs.Skills) || []);
   var e = arr.find(x => x && x.Name === name);
-  return (e && e.Icon) || "";
+  return (e && e.Icon) || (typeof skillIconByName === "function" ? skillIconByName(name) : "")   // 공백 차이 / 'OO 계열' 이름도 찾기
+    || (typeof SPECIAL_SKILL_ICONS !== "undefined" && SPECIAL_SKILL_ICONS[name]) || "";            // 인페르노 버스트 등 고정 아이콘
 }
+// ===== 가디언 나이트: 기본 스킬 ↔ 변신(화신) 스킬 =====
+var GK_PAIRS = [
+  ["리벤지 블로우", "리벤지 스피어"], ["스피닝 플레임", "아바돈 플레임"], ["윙 스팅어", "윙 래시"],
+  ["블레이즈 스윕", "블레이즈 플래시"], ["렌딩 피니셔", "익스플로전 피니셔"]
+];
+function gkNorm(x) { return String(x || "").replace(/\s+/g, ""); }
+// 드레드 로어 직각이면 변신을 하지 않으므로 변신 스킬 이름 집합을 돌려줌 (그 외엔 null → 전부 표시)
+function gkHiddenNames() {
+  var ap = window.__fullData && window.__fullData.ArkPassive;
+  var txt = ((ap && ap.Effects) || []).map(function (e) { return gkNorm(strip((e.Name || "") + " " + (e.Description || ""))); }).join("|");
+  if (txt.indexOf("드레드로어") < 0) return null;
+  var set = {};
+  GK_PAIRS.forEach(function (p) { set[gkNorm(p[1])] = 1; });
+  return set;
+}
+window.gkIsHiddenSkill = function (name) { var h = gkHiddenNames(); return !!(h && h[gkNorm(name)]); };
+// 변신 스킬을 기본 스킬 바로 아래로 옮김 (기본 스킬이 목록에 있을 때만)
+function gkArrange(list) {
+  var byN = {}, subs = new Set(), subOf = {};
+  list.forEach(function (s) { byN[gkNorm(s.Name)] = s; });
+  GK_PAIRS.forEach(function (p) {
+    var b = byN[gkNorm(p[0])], t = byN[gkNorm(p[1])];
+    if (b && t && b !== t) { subOf[gkNorm(p[0])] = t; subs.add(t); }
+  });
+  var out = [];
+  list.forEach(function (s) {
+    if (subs.has(s)) return;
+    out.push(s);
+    var t = subOf[gkNorm(s.Name)];
+    if (t) out.push(t);
+  });
+  return { list: out, subs: subs };
+}
+// 인벤 기준 아이덴티티 스킬 정보 (스킬창에 없어 API로 못 가져오는 값)
+var IDENTITY_SKILL_INFO = {
+  "인페르노 버스트": { grade: "일반", tag: "화신 스킬", cd: "1분 30초", lv: 1, groggy: "상", armor: "피격이상 면역" }
+};
+function identityTipHtml(s) {
+  var norm = gkNorm(s.Name), info = null;
+  for (var k in IDENTITY_SKILL_INFO) if (gkNorm(k) === norm) info = IDENTITY_SKILL_INFO[k];
+  info = info || {};
+  var icon = s.Icon ? `<img class="tip-skill-icon" src="${s.Icon}" alt="">` : "";
+  var lines = [];
+  if (info.groggy) lines.push(`무력화 : ${info.groggy}`);
+  if (info.armor) lines.push(`슈퍼아머 : ${info.armor}`);
+  var infoHtml = lines.length ? `<div class="tip-info"><div class="tip-info-line">${lines.map(l => `<FONT COLOR='#EEA839'>${l}</FONT>`).join("<br>")}</div></div>` : "";
+  var desc = skillDescOf(s.Name);
+  return `
+    <div class="tip-hd tip-hd-skill">
+      ${icon}
+      <div class="tip-hd-text"><div class="tip-hd-name">${s.Name}${info.tag ? ` <span class="tip-tag">[${info.tag}]</span>` : ""}</div>
+      <div class="tip-muted">${info.grade || "아이덴티티 스킬"}</div></div>
+    </div>
+    <div class="tip-bd" style="padding-bottom:6px;">
+      ${info.cd ? `<div class="tip-line">재사용 대기시간 ${info.cd}</div>` : ""}
+      ${info.lv ? `<div class="tip-line muted">스킬 레벨 ${info.lv}</div>` : ""}
+    </div>
+    ${desc ? `<div class="tip-bd" style="padding-top:8px;padding-bottom:6px;font-size:11px;line-height:1.5;color:#c7cee0;">${desc}</div>` : ""}
+    ${infoHtml}`;
+}
+
 function renderSkills(skillsData, gemData) {
   var listEl = $("skillList"), sumEl = $("skillSummary");
   if (!listEl) return;
 
   var gemMap = buildSkillGemMap(gemData);
+  var gkHide = gkHiddenNames();
+  if (gkHide) skillsData = (skillsData || []).filter(function (s) { return !gkHide[gkNorm(s.Name)]; });
   // 초각성(SkillType 1)과 각성기(아크패시브 파생, SkillType 100 이상)는 레벨 1이어도 하단 별도 구역에 표시
   var isSpecialSkill = s => s.SkillType === 1 || (s.SkillType || 0) >= 100
     || ((s.SkillType || 0) >= 2 && (s.Level || 0) <= 1);
@@ -594,9 +648,16 @@ function renderSkills(skillsData, gemData) {
   var allSkillNames = new Set((skillsData || []).map(x => x.Name));
   var normK = x => String(x || "").replace(/\s+/g, "");
   var arkNameSet = new Set(arkSkillNodes().map(n => normK(n.name)));   // 아크패시브 스킬 카드에 보석을 합쳐 보여줄 스킬
-  var identitySkills = Object.keys(gemMap).filter(n => n && !allSkillNames.has(n) && !arkNameSet.has(normK(n)))
+  var identitySkills = Object.keys(gemMap).filter(n => n && !allSkillNames.has(n) && !arkNameSet.has(normK(n)) && !(gkHide && gkHide[gkNorm(n)]))
     .map(n => ({ Name: n, Icon: gemSkillIcon(gemData, n, skillsData), Level: null, Tripods: [], _identity: true }));
-  var skills = normalSkills.concat(lv1GemSkills, identitySkills);
+  var gk = gkArrange(normalSkills.concat(lv1GemSkills));
+  var skills = gk.list.concat(identitySkills);
+  var linkTop = new Set();   // 계열 보석이 기본·변신 스킬 둘 다에 걸린 경우 → 연결 표시
+  gk.list.forEach(function (s, i) {
+    if (!gk.subs.has(s)) return;
+    var g = gemMap[s.Name] || {};
+    if ((g.famDmg || g.famCool) && i > 0) linkTop.add(gk.list[i - 1]);
+  });
 
   if (sumEl) {
     var cnt = 0, gro = 0, brk = 0, stiff = 0, hitImm = 0, statusImm = 0;
@@ -643,7 +704,7 @@ function renderSkills(skillsData, gemData) {
     }
     sumEl.innerHTML = ringBox +
       `<div class="sum-bar sum-2row">` +
-      (row1 ? `<div class="sum-r1">${row1}</div>` : "") +
+      (row1 ? `<div class="sum-r1"><span class="sum-sp">기본 효과</span>${row1}</div>` : "") +
       `<div class="sum-r2"><span class="sum-sp">재감 효과</span>${tags}</div></div>` +
       `<div class="sum-code-box">${codeBtn}</div>`;
     sumEl.onclick = async e => {
@@ -680,9 +741,15 @@ function renderSkills(skillsData, gemData) {
     var tpCells = s._identity ? '<div class="tp"></div><div class="tp"></div><div class="tp"></div>' : [0, 1, 2].map(i => {
       var g = tiers[i];
       if (!g) return `<div class="tp empty"><div class="tp-icon"></div><span class="tp-name">미습득</span></div>`;
+      var locked = (s.Level || 0) < TP_UNLOCK_LV[g.tier];   // 스킬 레벨 부족 → 비활성
+      if (g.none) {   // 스킬만 올리고 이 단계 트라이포드를 안 찍음
+        return `<div class="tp none${locked ? " locked" : ""}" data-si="${si}" data-tier="${g.tier}">
+          <div class="tp-icon"><span class="tp-num tier${g.tier}">${g.tier + 1}</span></div>
+          <div class="tp-name">${locked ? "미해금" : "트포 미선택"}</div>
+        </div>`;
+      }
       var opIcon = g.selected.Icon ? `<img src="${g.selected.Icon}" alt="" loading="lazy">` : "";
 
-      var locked = (s.Level || 0) < TP_UNLOCK_LV[g.tier];   // 스킬 레벨 부족 → 비활성
       return `<div class="tp${locked ? " locked" : ""}" data-si="${si}" data-tier="${g.tier}">
         <div class="tp-icon">${opIcon}<span class="tp-num tier${g.tier}">${g.selected.Slot || (g.tier + 1)}</span></div>
         <div class="tp-name">${g.selected.Name || ""}</div>
@@ -694,8 +761,10 @@ function renderSkills(skillsData, gemData) {
       ? `<div class="rune-wrap"><div class="rune-cell" data-si="${si}" style="background:${runeStyle(s.Rune.Grade).bg};border-color:${runeStyle(s.Rune.Grade).c}"><img src="${s.Rune.Icon || ""}" alt="" loading="lazy"></div><div class="rune-name" style="color:${runeStyle(s.Rune.Grade).c}">${s.Rune.Name || ""}</div></div>`
       : `<div class="rune-wrap"><div class="rune-cell empty">-</div></div>`;
 
+    var isSub = gk.subs.has(s), hasLink = linkTop.has(s);
     return `
-    <div class="row">
+    <div class="row${isSub ? " sub" : ""}${hasLink ? " lnk-top" : ""}${isSub && (gm.famDmg || gm.famCool) ? " lnk-bot" : ""}">
+      ${isSub ? '<span class="sub-mark" aria-hidden="true">ㄴ</span>' : ""}
       <div class="sk-main" data-si="${si}">
         <div class="sk-icon">${s.Icon ? `<img src="${s.Icon}" alt="" loading="lazy">` : ""}</div>
         <div class="sk-name-wrap">
@@ -739,9 +808,7 @@ function renderSkills(skillsData, gemData) {
   listEl.querySelectorAll(".sk-main").forEach(el => {
     var s = skills[+el.dataset.si];
     if (!s) return;
-    bindTip(el, s._identity
-      ? `<div class="tip-hd">${s.Name}</div><div class="tip-bd" style="color:#9aa6c4;font-size:11px;">아이덴티티 스킬 · 스킬창에 없는 스킬</div>${skillDescOf(s.Name) ? `<div class="tip-bd" style="padding-top:6px;font-size:11px;line-height:1.5;color:#c7cee0;">${skillDescOf(s.Name)}</div>` : ""}`
-      : buildSkillTipHtml(s));
+    bindTip(el, s._identity ? identityTipHtml(s) : buildSkillTipHtml(s));
   });
 
   listEl.querySelectorAll(".gems .gem[data-gt]").forEach(el => {
