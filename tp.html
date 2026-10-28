@@ -911,12 +911,12 @@ a{text-decoration:none;color:inherit;}
   .post-hero-divider{display:none;}
 }
 
-.top-ad-wrap{margin:22px auto 0;}
+.lv-top-slot{margin:22px auto 0;}
 @media(min-width:1025px){
-  .top-ad-wrap{width:970px;height:250px;overflow:hidden;} /* PC 고정: 광고 로드 여부와 무관하게 항상 970x250, 절대 크기 변화 없음 */
+  .lv-top-slot{width:970px;height:250px;overflow:hidden;} /* PC 고정: 광고 로드 여부와 무관하게 항상 970x250, 절대 크기 변화 없음 */
 }
 @media(max-width:1024px){
-  .top-ad-wrap{margin:60px auto 0;} /* 모바일 전용: 위쪽 버튼과의 오클릭 방지 여백 */
+  .lv-top-slot{margin:60px auto 0;} /* 모바일 전용: 위쪽 버튼과의 오클릭 방지 여백 */
 }
 
 /* 1180 width safety: 모험섬/카드 넘침 방지 */
@@ -941,7 +941,7 @@ a{text-decoration:none;color:inherit;}
 .lv-search input::placeholder{color:#7c88a5}
 .lv-kbd{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;background:#1b2030;color:#aab3cb}
 .lv-search button{padding:8px 16px;border:0;border-radius:9px;background:linear-gradient(180deg,#8b6df0,#6f52d6);color:#fff;font:800 12px inherit;font-family:inherit;cursor:pointer}
-.top-ad-wrap{height:120px!important;margin:18px auto 0!important}
+.lv-top-slot{height:120px!important;margin:18px auto 0!important}
 
 .lv-g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch}
 .lv-col{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -1020,9 +1020,11 @@ body.lv-scrolled .gnb{background:linear-gradient(180deg,var(--bg,#05060c) 72%,rg
 }
 @media (max-width:760px){.lv-banner{height:250px}}
 
+/* 광고가 안 나오거나 광고 차단기가 광고 요소를 숨겨도, 이 자리는 항상 유지됨 (클래스명에 ad 단어를 쓰지 않음) */
+.lv-top-slot{box-sizing:border-box}
 /* 메인 상단 광고: 가로형(728x90 계열)만 받도록 자리 확보. 고정 높이로 자르지 않음(광고 잘림 방지) */
-.top-ad-wrap{width:100%!important;max-width:728px!important;height:auto!important;min-height:90px!important;overflow:visible!important;margin:26px auto 0!important}
-.top-ad-wrap .loaview-center-ad{width:100%}
+.lv-top-slot{width:100%!important;max-width:728px!important;height:auto!important;min-height:90px!important;overflow:visible!important;margin:26px auto 0!important}
+.lv-top-slot .loaview-center-ad{width:100%}
 
 /* ===== 첫 로딩 덜컹거림 방지 ===== */
 html{scrollbar-gutter:stable}                 /* 스크롤바가 나중에 생겨 가로로 밀리는 현상 방지 */
@@ -1138,7 +1140,7 @@ html{scrollbar-gutter:stable}                 /* 스크롤바가 나중에 생�
 
 
 <!-- 대형 수평 광고판 (메인) - AdSense, 새로고침 없음 -->
-<div class="top-ad-wrap" style="width:100%;max-width:728px;margin-left:auto;margin-right:auto;display:flex;justify-content:center;align-items:center;min-height:90px;">
+<div class="lv-top-slot" style="width:100%;max-width:728px;margin-left:auto;margin-right:auto;display:flex;justify-content:center;align-items:center;min-height:90px;">
   <div class="loaview-center-ad"><ins class="adsbygoogle" style="display:block;width:100%;" data-ad-client="ca-pub-6403244403995841" data-ad-slot="3822424969" data-ad-format="horizontal" data-full-width-responsive="true"></ins></div>
 </div>
 <script>
@@ -1146,7 +1148,7 @@ html{scrollbar-gutter:stable}                 /* 스크롤바가 나중에 생�
   // DOMContentLoaded 이후(= common.js 로드 완료 후)에 폭이 잡힌 걸 확인하고 딱 1번만 요청
   (function () {
     function go() {
-      var wrap = document.querySelector(".top-ad-wrap");
+      var wrap = document.querySelector(".lv-top-slot");
       if (window.loaviewPushAdsense) window.loaviewPushAdsense(wrap);
     }
     if (document.readyState === "loading") {
