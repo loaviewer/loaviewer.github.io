@@ -1024,6 +1024,13 @@ body.lv-scrolled .gnb{background:linear-gradient(180deg,var(--bg,#05060c) 72%,rg
 .top-ad-wrap{width:100%!important;max-width:728px!important;height:auto!important;min-height:90px!important;overflow:visible!important;margin:26px auto 0!important}
 .top-ad-wrap .loaview-center-ad{width:100%}
 
+/* ===== 첫 로딩 덜컹거림 방지 ===== */
+html{scrollbar-gutter:stable}                 /* 스크롤바가 나중에 생겨 가로로 밀리는 현상 방지 */
+#common-shell{height:64px;min-height:64px}   /* 헤더는 fixed라 자리만 고정 확보 (JS로 높이 바꾸지 않음) */
+.lv-tag{height:28px;line-height:28px;margin-bottom:14px;white-space:nowrap}  /* 폰트가 늦게 바뀌어도 높이 고정 */
+.lv-search{height:52px;min-height:52px}
+.lv-hero-in{min-height:94px}
+
 /* ===== 2차 수정: 빈공간 제거 / 일정 축소 / 카드 정리 ===== */
 .home-main-area{min-height:0!important;padding-top:24px!important}
 .lv-col{gap:0}
@@ -2940,23 +2947,6 @@ window.addEventListener('resize', () => {
   var c=0,iv=setInterval(function(){sweep();if(++c>30)clearInterval(iv);},500);
 })();
 </script>
-<script>
-(function(){
-  var sh=document.getElementById('common-shell');
-  if(!sh)return;
-  function sync(){
-    var g=sh.querySelector('.gnb');
-    if(g)sh.style.minHeight=g.offsetHeight+'px';
-  }
-  new MutationObserver(function(){
-    sync();
-    var g=sh.querySelector('.gnb');
-    if(g&&window.ResizeObserver&&!g._ro){g._ro=new ResizeObserver(sync);g._ro.observe(g);}
-  }).observe(sh,{childList:true,subtree:true});
-  window.addEventListener('resize',sync);
-  window.addEventListener('load',sync);
-  sync();
-})();
-</script>
+
 </body>
 </html>
