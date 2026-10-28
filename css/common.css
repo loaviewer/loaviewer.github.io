@@ -775,12 +775,15 @@ body.standalone-arc-grid-page .common-divider-top {
 .simple-top-ad-wrap,
 .ad-slot-responsive {
     display: block;
+    max-width: 728px;
+    margin-left: auto;
+    margin-right: auto;
     min-height: 100px;
 }
 @media (min-width: 1024px) {
     .simple-top-ad-wrap,
     .ad-slot-responsive {
-        min-height: 250px;
+        min-height: 90px; /* PC 가로배너 728x90 기준 */
     }
 }
 
@@ -916,7 +919,7 @@ body.standalone-rank-page .app {
 #tourney-ad-wrapper,
 .tourney-top-ad-wrap {
   width: 100%;
-  max-width: 100%;
+  max-width: 728px;
   margin: 14px auto;
   overflow: hidden;
   box-sizing: border-box;
@@ -928,25 +931,25 @@ body.standalone-rank-page .app {
 #tourney-ad-wrapper .ad-slot-responsive,
 .tourney-top-ad-wrap .ad-slot-responsive {
   width: 100%;
-  max-width: 970px;
+  max-width: 728px;
   min-height: 100px;
   display: block !important;
 }
 @media (min-width: 1024px) {
   #tourney-ad-wrapper,
   .tourney-top-ad-wrap {
-    min-height: 250px;
+    min-height: 90px;
   }
   #tourney-ad-wrapper .ad-slot-responsive,
   .tourney-top-ad-wrap .ad-slot-responsive {
-    min-height: 250px;
+    min-height: 90px;
   }
 }
 
 
 /* =============================================
    중앙 가로배너 (AdSense, 새로고침 없음)
-   - PC: 기존 970x250 자리를 그대로 확보(레이아웃 점프 방지), 모바일은 100px
+   - PC: 728x90 자리 확보(레이아웃 점프 방지), 모바일은 100px
    - 실제 광고 크기는 구글이 자리 폭에 맞춰 선택
    ============================================= */
 .loaview-center-ad {
@@ -954,17 +957,17 @@ body.standalone-rank-page .app {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 970px;
+    max-width: 728px;
     margin: 0 auto;
     min-height: 100px;
-    overflow: hidden;
+    overflow: visible;
 }
 .loaview-center-ad ins.adsbygoogle {
     flex: 1 1 auto;
     width: 100%;
 }
 @media (min-width: 1024px) {
-    .loaview-center-ad { min-height: 250px; }
+    .loaview-center-ad { min-height: 90px; }
 }
 
 /* =============================================
@@ -975,21 +978,22 @@ body.standalone-rank-page .app {
     left: 0;
     right: 0;
     bottom: 0; /* 창 가장자리에 붙임 (Ad Manager 스티키 가이드: 가장자리에서 떠 있으면 안 됨) */
-    margin: 0;
-    width: 100%;           /* 화면 가로 전체를 쓰는 띠 */
+    margin: 0 auto;
+    width: max-content;
     max-width: 100%;
-    box-sizing: border-box;
     z-index: 300; /* 본문 요소(토글 60·보상더보기 200 등)보다 위, 상단 메뉴(500)·모달(1000+)보다 아래 */
     display: none;
-    padding: 6px 0;        /* 광고 위아래 여유 */
+    padding: 6px;
     line-height: 0;
-    background: #0a0c16;
-    border-top: 1px solid rgba(255, 255, 255, 0.14); /* 본문과 구분하는 선 */
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
+    background: rgba(10, 12, 22, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.35);
 }
 .loaview-sticky-ad.is-on { display: block; }
 .loaview-sticky-ad.is-empty { visibility: hidden; } /* 광고 로드 전/빈 응답일 땐 안 보이게 */
-.loaview-sticky-ad-slot { min-width: 728px; min-height: 90px; width: max-content; max-width: 100%; margin: 0 auto; }
+.loaview-sticky-ad-slot { min-width: 728px; min-height: 90px; }
 /* 스티키가 본문/푸터를 가리지 않도록 페이지 맨 아래 여백 */
 body.has-sticky-ad { padding-bottom: 120px; }
 @media (max-width: 759px) {
@@ -1030,7 +1034,3 @@ body.has-sticky-ad { padding-bottom: 120px; }
         margin-bottom: 14px !important;
     }
 }
-
-/* 하단 스티키 띠가 떠 있을 때 좌우 사이드 광고를 띠 위쪽 공간의 가운데로 올려 겹침 방지 (띠 높이 ≈ 104px) */
-.anchor-side-rail { transition: opacity 0.18s ease, top 0.2s ease; }
-body.has-sticky-ad .anchor-side-rail { top: calc(50% - 52px); }
