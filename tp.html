@@ -1022,6 +1022,10 @@ body.lv-scrolled .gnb{background:linear-gradient(180deg,var(--bg,#05060c) 72%,rg
 
 /* 광고가 안 나오거나 광고 차단기가 광고 요소를 숨겨도, 이 자리는 항상 유지됨 (클래스명에 ad 단어를 쓰지 않음) */
 .lv-top-slot{box-sizing:border-box}
+.lv-top-slot{transition:min-height .3s ease,margin .3s ease}
+.lv-top-slot.is-empty{min-height:0!important;height:0!important;margin-top:14px!important;overflow:hidden!important}
+.lv-banner{transition:height .3s ease}
+body.lv-ad-empty .lv-banner{height:236px}
 /* 메인 상단 광고: 가로형(728x90 계열)만 받도록 자리 확보. 고정 높이로 자르지 않음(광고 잘림 방지) */
 .lv-top-slot{width:100%!important;max-width:728px!important;height:auto!important;min-height:90px!important;overflow:visible!important;margin:26px auto 0!important}
 .lv-top-slot .loaview-center-ad{width:100%}
@@ -1150,6 +1154,31 @@ html{scrollbar-gutter:stable}                 /* 스크롤바가 나중에 생�
     function go() {
       var wrap = document.querySelector(".lv-top-slot");
       if (window.loaviewPushAdsense) window.loaviewPushAdsense(wrap);
+      watchTopSlot(wrap);
+    }
+    /* 광고가 비어서(unfilled) 내려오거나 차단되면 빈 구멍이 남지 않도록 자리를 부드럽게 줄이고 배경 높이도 맞춤 */
+    function watchTopSlot(wrap) {
+      if (!wrap) return;
+      var ins = wrap.querySelector("ins.adsbygoogle");
+      if (!ins) return;
+      var done = false;
+      function setEmpty(on) {
+        wrap.classList.toggle("is-empty", on);
+        document.body.classList.toggle("lv-ad-empty", on);
+      }
+      function check() {
+        var st = ins.getAttribute("data-ad-status");
+        if (st === "filled") { done = true; setEmpty(false); }
+        else if (st === "unfilled") { done = true; setEmpty(true); }
+      }
+      new MutationObserver(check).observe(ins, { attributes: true, attributeFilter: ["data-ad-status"] });
+      check();
+      /* 6초가 지나도 응답이 없으면(차단 등) 비어 있는 것으로 처리 */
+      setTimeout(function () {
+        if (done) return;
+        var st = ins.getAttribute("data-ad-status");
+        if (st !== "filled") setEmpty(true);
+      }, 6000);
     }
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", function () { setTimeout(go, 0); });
