@@ -723,11 +723,7 @@ function parseEvolutionEffects(fullData) {
     for (var a = 0; a < aliases.length; a++) {
       var alNorm = aliases[a].replace(/\s+/g, "");
       if (learned[alNorm] != null) { nodeLv = learned[alNorm]; break; }
-     
-if (learned[alNorm] != null) { 
-  nodeLv = learned[alNorm]; 
-  break; 
-}
+
 
 
     }

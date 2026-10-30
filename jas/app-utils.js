@@ -505,7 +505,7 @@ function buildBraceletTipHtml(tip, title) {
   return tipGradeMark(gradeKey) + hd + '<div class="tip-bd bt-bd">' + rows.join("") + "</div>";
 }
 
-function buildArkPassiveTipHtml(effect, fallbackName) {
+function buildArkPassiveTipHtml(effect, fallbackName, dbDescHtml) {
   var tip = parseTip(effect?.ToolTip || effect?.Tooltip);
   var name = fallbackName || "";
   var catHtml = "", levelHtml = "", icon = effect?.Icon || "", bodyHtml = "";
@@ -525,6 +525,7 @@ function buildArkPassiveTipHtml(effect, fallbackName) {
     }
   }
   if (!name) name = strip(effect?.Description) || "아크 패시브";
+  if (!bodyHtml && dbDescHtml) bodyHtml = dbDescHtml;   // API 툴팁에 설명이 없으면 직업 DB의 노드 설명 사용
   if (!bodyHtml && effect?.Description) bodyHtml = strip(effect.Description);
   var iconHtml = icon
     ? `<div class="apt-tip-icon"><img class="apt-tip-ic" src="${icon}" alt=""></div>`

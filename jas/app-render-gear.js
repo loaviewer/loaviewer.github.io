@@ -594,6 +594,111 @@ function renderGear(list, avatarList) {
   }
 }
 
+// ===== 악세사리(목걸이·귀걸이·반지) 연마 효과 효율 =====
+// 팔찌 효율(calcBraceletEfficiency)과 같은 방식: 옵션 하나하나가 피해를 몇 % 올리는지 계산해 곱한다.
+//  · 추가 피해: 기존 추가 피해 합과의 상대 합연산 / 적에게 주는 피해: 그대로 / 치적·치피: 현재 치명 스탯 기준
+//  · 무기 공격력(정수·%): √ 공식 / 공격력(정수·%): 기준 연마 효과 화면에 맞춘 보정
+//  · 서폿: 아군 공격력 강화(=아공강)·아군 피해량 강화(=아피강)는 팔찌와 같은 서폿 모델, 낙인력은 계산식이 없어 제외
+function accCharStats() {
+  var fd = window.__fullData || {};
+  var bag = sumGearStats(fd.ArmoryEquipment || []);
+  var engBag = sumEngraveEffects(fd.ArmoryEngraving);
+  return {
+    critRate: window.__realCritRate || 75,
+    critDmg: window.__realCritDmg || (200 + (bag.critDmg || 0) + (engBag.critDmg || 0)),
+    weaponAtk: bag.weaponAtk || 265000,
+    mainStat: bag.mainStat || 500000,
+    extraDmg: bag.extraDmg || 39.5
+  };
+}
+
+function calcAccessoryEfficiency(eq, cs) {
+  if (!eq || !/목걸이|귀걸이|반지/.test(eq.Type || "")) return null;
+  var tip = parseTip(eq.Tooltip);
+  if (!tip) return null;
+  var polish = tipParts(tip).find(function (p) { return /연마|추가 효과/.test(p.title); });
+  if (!polish || !polish.body) return null;
+  cs = cs || accCharStats();
+  var isSup = typeof checkIsSupportMode === "function" ? checkIsSupportMode(window.__fullData, window.__charClass || "") : false;
+  var critRate = Math.min(cs.critRate || 75, 100) / 100, critDmg = (cs.critDmg || 200) / 100;
+  var W = (cs.weaponAtk && cs.weaponAtk > 50000) ? cs.weaponAtk : 265000;
+  var S = (cs.mainStat && cs.mainStat > 10000) ? cs.mainStat : 500000;
+  var baseED = cs.extraDmg || 39.5;
+  var hasSup = typeof calcSupBraceletEff === "function" && typeof SUP_BR !== "undefined";
+  var rows = [], prod = 1, supA = 0, supLn = 0, supBr = 0;
+  // 서폿: 공증 = 순수 공격력 × 22% × (1 + 공증 합) → 무기 공격력이 오르면 순수 공격력(√)이 올라 공증이 비례 증가,
+  //       낙인 = 10% × (1 + 낙인력 합) 은 100% 유지로 계산. (공격력 %/정수는 공증에 안 들어가므로 제외)
+  var sctx = (isSup && typeof window.__supCtx === "function") ? window.__supCtx() : null;
+  var sAsum = sctx ? sctx.aSum : 80, sBsum = sctx ? sctx.bSum : null, sBB = sctx ? sctx.baseBrand : 10;
+  function brandF(b) { return 1 + sBB * (1 + b / 100) / 100; }
+
+  polish.body.split(/<br\s*\/?>/i).forEach(function (raw) {
+    var clean = String(raw || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    var m = clean.match(/^(.+?)\s*\+\s*([0-9.,]+)\s*(%?)/);
+    if (!m) return;
+    var name = m[1].trim(), v = parseFloat(m[2].replace(/,/g, "")), isPct = m[3] === "%";
+    if (!(v > 0)) return;
+    var label = name + " +" + m[2] + (isPct ? "%" : ""), pct = null;
+
+    if (isSup) {
+      if (/아군.*공격력/.test(name) && hasSup) { supA += v; pct = calcSupBraceletEff(v, 0, 0, 0); }
+      else if (/아군.*피해량/.test(name) && hasSup) { supLn += SUP_BR.K_DMG * v; pct = calcSupBraceletEff(0, SUP_BR.K_DMG * v, 0, 0); }
+      else if (/낙인력/.test(name)) {
+        supBr += v;
+        pct = sBsum == null ? null : (brandF(sBsum) / brandF(Math.max(sBsum - v, 0)) - 1) * 100;
+      }
+      else if (/무기\s*공격력/.test(name) && hasSup) {
+        var rW = isPct ? Math.sqrt(1 + v / 100 / 1.065) - 1 : Math.sqrt((W + v) / W) - 1;   // 순수 공격력 증가율
+        var eqA = rW * (100 + sAsum);                                                       // 공증 합으로 환산
+        supA += eqA; pct = calcSupBraceletEff(eqA, 0, 0, 0);
+      }
+      else return;
+    } else if (/추가\s*피해/.test(name)) pct = ((100 + baseED + v) / (100 + baseED) - 1) * 100;
+    else if (/적에게\s*주는\s*피해/.test(name)) pct = v;
+    else if (/무기\s*공격력/.test(name)) pct = isPct ? (Math.sqrt(1 + v / 100 / 1.065) - 1) * 100 : (Math.sqrt((W + v) / W) - 1) * 100;   // 무기 공격력 +3% → 1.40%
+    else if (/^공격력$/.test(name)) pct = isPct ? v / 1.107 : v / 200000 * 100;   // 기준 연마 효과 화면: 공격력 +1.55% → 1.40%, +80 → 0.04%
+    else if (/치명타\s*적중/.test(name)) {
+      var crNew = Math.min(critRate + v / 100, 1);
+      pct = ((1 + crNew * (critDmg - 1)) / (1 + critRate * (critDmg - 1)) - 1) * 100;
+    } else if (/치명타\s*피해/.test(name)) {
+      var cd1 = critDmg + v / 100;
+      pct = ((1 + critRate * (cd1 - 1)) / (1 + critRate * (critDmg - 1)) - 1) * 100;
+    } else return;
+
+    if (pct != null && pct > 0 && !isSup) prod *= 1 + pct / 100;
+    rows.push({ name: label, pct: pct });
+  });
+  if (!rows.length) return null;
+  var supEff = (isSup && hasSup && (supA || supLn)) ? calcSupBraceletEff(supA, supLn, 0, 0) : 0;
+  var brMul = (isSup && supBr && sBsum != null) ? brandF(sBsum) / brandF(Math.max(sBsum - supBr, 0)) : 1;
+  return { totalEff: ((1 + supEff / 100) * brMul * prod - 1) * 100, rows: rows, isSupport: isSup, supA: supA, supLn: supLn, supBr: supBr };
+}
+
+function attachAccEffBadge(iconWrap, eff, eq) {
+  if (!eff || !(eff.totalEff > 0)) return;
+  var v = eff.totalEff, col = "#ffffff", glow = "rgba(255,255,255,0.08)";
+  if (v >= 5) { col = "#FFD200"; glow = "rgba(255,210,0,0.25)"; }
+  else if (v >= 4) { col = "#A235FF"; glow = "rgba(162,53,255,0.25)"; }
+  else if (v >= 3) { col = "#00B5FF"; glow = "rgba(0,181,255,0.25)"; }
+  else if (v >= 2) { col = "#8DF901"; glow = "rgba(141,249,1,0.25)"; }
+  iconWrap.style.display = "flex";
+  iconWrap.style.flexDirection = "column";
+  iconWrap.style.alignItems = "center";
+  iconWrap.style.overflow = "visible";
+  iconWrap.style.width = "auto";
+  var b = document.createElement("div");
+  b.className = "bracelet-eff-badge";
+  b.style.cssText = "display:inline-block;width:fit-content;margin:6px auto 0 auto;padding:3px 8px;background:" + glow + ";color:#ffffff;font-size:12px;font-weight:800;text-align:center;border-radius:4px;line-height:1.3;box-shadow:0 1px 4px rgba(0,0,0,.4);border:1px solid " + col + "80;cursor:help;letter-spacing:-0.2px;white-space:nowrap;";
+  b.textContent = v.toFixed(2) + "%";
+  var html = '<div class="tip-hd beff-hd"><span class="beff-t">' + (eq.Type || "악세사리") + ' 옵션별 효율</span><span class="beff-sum" style="color:' + col + '">합계 ' + v.toFixed(2) + '%</span></div><div class="tip-bd beff-bd">';
+  eff.rows.forEach(function (r) {
+    html += '<div class="beff-row"><span class="beff-n">' + r.name + '</span><b class="beff-v">' + (r.pct == null ? "계산 불가" : "+" + r.pct.toFixed(2) + "%") + '</b></div>';
+  });
+  html += '</div>';
+  bindTip(b, html);
+  iconWrap.appendChild(b);
+}
+
 function renderAvatars(list) {
   var el = $("avList"); if (!el) return;
   el.innerHTML = "";

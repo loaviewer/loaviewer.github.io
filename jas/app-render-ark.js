@@ -191,6 +191,69 @@ function agGemGradient(grade) {
 const AG_DPS_STAT_COLOR = { "보스 피해": "#c58bff", "추가 피해": "#6fb3ff", "공격력": "#9be36a" };
 const AG_SUPPORT_VALID = ["낙인력", "아군 공격 강화", "아군 피해 강화"];
 
+// ===== 아크그리드 젬 효율 (딜러) =====
+// 젬 효율 = 옵션 효율 × 포인트 효율
+//  · 옵션: 보스 피해 / 추가 피해 / 공격력 의 '젬 옵션 레벨 합' → 레벨당 실효율(%) 로 환산 후 곱연산
+//  · 포인트: 코어 포인트 17P 를 기준(0%) 으로 17P 를 넘긴 만큼의 코어 배율을 6개 코어 전부 곱함 (17P 미만은 0)
+const AG_GEM_PER_LV = { "보스 피해": 0.08325, "추가 피해": 0.0608, "공격력": 0.035 };   // 레벨당 실효율 %
+// 서포터: 레벨당 실효율 % (시뮬레이션 실측: 낙인력 Lv83=1.2 / 아군 피해 강화 Lv57=0.54 / 아군 공격 강화 Lv83=2.34)
+const AG_GEM_PER_LV_SUP = { "낙인력": 0.01446, "아군 피해 강화": 0.00947, "아군 공격 강화": 0.02819 };
+// 서포터 코어 포인트 효율: 코어 하나당 배율 (17P 기준, 6개 코어가 거의 같은 비중 · 실측 18P 0.2% / 19P 0.39% / 20P 0.57% (6코어 합))
+const AG_SUP_CORE_PT = { 18: 1.000333, 19: 1.000649, 20: 1.000948 };
+const AG_EFF_COLOR = { "보스 피해": "#ff6b6b", "추가 피해": "#ffd24d", "공격력": "#4dd6e0", "낙인력": "#ff7ac6", "아군 공격 강화": "#4dd6e0", "아군 피해 강화": "#b79bff" };   // 젬 칩 색(딜러 보라·파랑·초록 / 서포터 주황)과 겹치지 않게
+const AG_EFF_NAMES = { dps: ["보스 피해", "추가 피해", "공격력"], sup: ["낙인력", "아군 공격 강화", "아군 피해 강화"] };
+// 코어 포인트 17 / 18 / 19 / 20P 의 배율. o해달·o별 = 질서, c강 = 혼돈 상급(현란한 공격·불타는 일격·공격), c약 = 혼돈 하급
+const AG_CORE_PT = {
+  "고대": { "o해달": [1.085, 1.0867, 1.0883, 1.09], "o별": [1.055, 1.0567, 1.0583, 1.06], "c강": [1.035, 1.0367, 1.0383, 1.04], "c약": [1.025, 1.0267, 1.0283, 1.03] },
+  "유물": { "o해달": [1.075, 1.0767, 1.0783, 1.08], "o별": [1.045, 1.0467, 1.0483, 1.05], "c강": [1.025, 1.0267, 1.0283, 1.03], "c약": [1.015, 1.0167, 1.0183, 1.02] },
+};
+function agCoreTableKey(name) {
+  const p = parseArkCoreName(name || "");
+  if (p.isOrder) return p.slot === "별" ? "o별" : (p.slot ? "o해달" : null);
+  if (!p.isChaos) return null;
+  const s = p.short || "";
+  if (p.slot === "해") return /현란/.test(s) ? "c강" : /안정적|재빠른/.test(s) ? "c약" : null;
+  if (p.slot === "달") return /불타는/.test(s) ? "c강" : /흡수|부수/.test(s) ? "c약" : null;
+  if (p.slot === "별") return /^공격$/.test(s) ? "c강" : null;
+  return null;
+}
+function agPointEff(slots, isSupport) {
+  let prod = 1;
+  if (isSupport) {
+    for (const s of (slots || [])) {
+      const pt = s.Point | 0;
+      if (pt > 17) prod *= AG_SUP_CORE_PT[Math.min(pt, 20)];
+    }
+    return (prod - 1) * 100;
+  }
+  for (const s of (slots || [])) {
+    const g = AG_CORE_PT[s.Grade || ""];
+    const k = agCoreTableKey(s.Name);
+    const pt = s.Point | 0;
+    if (!g || !k || !g[k] || pt <= 17) continue;
+    const arr = g[k];
+    prod *= arr[Math.min(pt, 20) - 17] / arr[0];
+  }
+  return (prod - 1) * 100;
+}
+function agGemEff(ag, isSupport) {
+  const opts = {};
+  let prod = 1;
+  const perTbl = isSupport ? AG_GEM_PER_LV_SUP : AG_GEM_PER_LV;
+  for (const e of (ag.Effects || [])) {
+    const name = String(e.Name || "").trim();
+    const per = perTbl[name];
+    if (per == null || e.Level == null) continue;
+    const real = per * e.Level;
+    opts[name] = { lv: e.Level, real: real };
+    prod *= 1 + real / 100;
+  }
+  const opt = (prod - 1) * 100;
+  const pt = agPointEff(ag.Slots, isSupport);
+  const total = ((1 + opt / 100) * (1 + pt / 100) - 1) * 100;
+  return { opts: opts, opt: opt, pt: pt, total: total };
+}
+
 function renderArkGridGemChip(gem, isSupport) {
   const info = agParseTooltip(gem.Tooltip);
   const titleText = strip(info.title);
@@ -326,7 +389,8 @@ function renderArkGrid(ag) {
   }
   const cls = (window.__charClass || "");
   const SUPPORT = ["바드", "홀리나이트", "도화가", "기상술사"];
-  const isSupport = SUPPORT.some(s => cls.includes(s));
+  // 발키리(홀리나이트 계열)는 직각(해방자 등)으로 서폿/딜러 판별
+  const isSupport = SUPPORT.some(s => cls.includes(s)) || (cls.includes("발키리") && (typeof checkIsSupportMode === "function" ? checkIsSupportMode(window.__fullData, cls) : true));
   const effectRows = [];
   for (const e of (ag.Effects || [])) {
     const tip = strip(e.Tooltip || "");
@@ -385,7 +449,8 @@ function renderArkGridTab(ag, fullData) {
 
   const cls = window.__charClass || p.CharacterClassName || "";
   const SUPPORT = ["바드", "홀리나이트", "도화가", "기상술사"];
-  const isSupport = SUPPORT.some(s => cls.includes(s));
+  // 발키리(홀리나이트 계열)는 직각(해방자 등)으로 서폿/딜러 판별
+  const isSupport = SUPPORT.some(s => cls.includes(s)) || (cls.includes("발키리") && (typeof checkIsSupportMode === "function" ? checkIsSupportMode(window.__fullData, cls) : true));
   const onEffects = [];
   for (const e of (ag.Effects || [])) {
     const name = e.Name || "-";
@@ -402,6 +467,9 @@ function renderArkGridTab(ag, fullData) {
     const pctM = tip.match(/([+＋]?[0-9.]+%)/);
     onEffects.push({ name, level: e.Level, pct: pctM ? pctM[1] : "" });
   }
+  const gemEff = agGemEff(ag, isSupport);
+  const effNames = isSupport ? AG_EFF_NAMES.sup : AG_EFF_NAMES.dps;
+  const f2 = v => (Math.round(v * 100) / 100).toFixed(2);
 
   summaryEl.innerHTML = `
     <div class="ag-hero">
@@ -416,7 +484,23 @@ function renderArkGridTab(ag, fullData) {
     </div>
   `;
 
-  if (badgesEl) {
+  // 젬 효율 요약 (코어/젬 아래 영역): 젬 효율 = 옵션 효율 × 포인트 효율 (딜러·서포터 공통)
+  if (gemEff && badgesEl) {
+    // 옵션 한 칸: 이름 + Lv / 실효율 (옵션 색으로 통일)
+    const optCell = (nm) => {
+      const o = gemEff.opts[nm];
+      return `<div class="ag-eff-o" style="--c:${AG_EFF_COLOR[nm]}"><span class="n">${nm} <i>Lv${o ? o.lv : 0}</i></span><b>${o ? f2(o.real) : "0.00"}%</b></div>`;
+    };
+    badgesEl.innerHTML = `
+      <div class="ag-eff">
+        <div class="ag-eff-blk tot"><span class="k">젬 효율</span><b>${f2(gemEff.total)}%</b><small>옵션 × 포인트</small></div>
+        <span class="ag-eff-op">=</span>
+        <div class="ag-eff-blk opt"><span class="k">옵션 효율</span><b>${f2(gemEff.opt)}%</b>
+          <div class="ag-eff-opts">${effNames.map(optCell).join("")}</div></div>
+        <span class="ag-eff-op">×</span>
+        <div class="ag-eff-blk"><span class="k">포인트 효율</span><b>${f2(gemEff.pt)}%</b><small>코어 17P 넘는 만큼</small></div>
+      </div>`;
+  } else if (badgesEl) {
     badgesEl.innerHTML = onEffects.map(e => `<div class="ag-badge"><span class="l">${e.name}${e.level != null ? ` <b>Lv${e.level}</b>` : ""}</span><span class="v">${e.pct}</span></div>`).join("");
   }
 
@@ -679,7 +763,10 @@ function renderArkPassiveTab(ap, fullData) {
         <div class="apt-lv">${lvText}</div>
         <div class="apt-nm">${n.name}</div>`;
       let tipHtml = "";
-      if (n.on) tipHtml = buildArkPassiveTipHtml(n.hit.e, n.name);
+      if (n.on) {
+        const dd = n.dn && n.dn.desc ? (n.dn.desc[Math.max(lv - 1, 0)] || n.dn.desc[0] || "") : "";
+        tipHtml = buildArkPassiveTipHtml(n.hit.e, n.name, dd ? aptColorizeDesc(dd, APT_VAL_COLOR[c.key] || "#f0c14b") : "");
+      }
       else if (n.dn) tipHtml = aptOffTipHtml(n.dn, n.name, n.max, icon, c.key);
       if (tipHtml) bindTip(node, tipHtml);
       nodesEl.appendChild(node);

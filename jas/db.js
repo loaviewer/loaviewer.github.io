@@ -62,41 +62,6 @@ const ENGRAVE_ICONS = {
 
 
 
-// 아덴/특수 스킬 아이콘 (ArmorySkills에 안 잡히는 스킬용 - 클래스별 정체성/특수 스킬)
-var SPECIAL_SKILL_ICONS = {
-  "블러디 러쉬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/bk_skill/bk_skill_01_11.png",
-  "다크 러쉬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_243.png",
-  "전장의 창": "https://cdn-lostark.game.onstove.com/efui_iconatlas/gl_skill/gl_skill_01_42.png",
-  "중력 가중 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/dt_skill/dt_skill_01_20.png",
-  "심판자 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
-  "신앙 스킬": {
-    "홀리나이트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
-    "발키리": "https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_24.png",
-  "음양 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/yy_skill/yy_skill_01_3.png"
-  },
-  "떠오르는 달": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_yy/ark_passive_yy_8.png",
-  "블러드러스트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/bk_skill/bk_skill_01_11.png",
-  "종언의 빛": "https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_24.png",
-  "권왕십이식": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_ifm/ark_passive_ifm_2.png",
-  "포격 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/bs_skill/bs_skill_01_8.png",
-  "실버호크 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/he_skill/he_skill_01_21.png",
-  "EX - 제로 포인트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_sc/ark_passive_sc_5.png",
-  "로즈 블로섬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/dh_skill/dh_skill_01_61.png",
-  "고대의 정령 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/dh_skill/dh_skill_01_61.png",
-  "황제": "https://cdn-lostark.game.onstove.com/efui_iconatlas/dh_skill/dh_skill_01_61.png",
-  "블레이드 버스트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/bl_skill/bl_skill_01_21.png",
-  "블러드 제노사이드": "https://cdn-lostark.game.onstove.com/efui_iconatlas/dm_skill/dm_skill_01_36.png",
-  "수라결 기본 공격": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ifm_skill/ifm_skill_01_27.png",
-  "인페르노 버스트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ddk_skill/ddk_skill_01_25.png",
-  "음양 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/yy_skill/yy_skill_01_3.png",
-  "여우비 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/wa_skill/wa_skill_01_22.png",
-  "둔갑 금술 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_dr/ark_passive_dr_2.png",
-  "세레나데 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_5.png",
-  "시간선 스킬": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_di/ark_passive_di_6.png",
-  "간섭": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_di/ark_passive_di_7.png"
-};
-
-
 
 
 
@@ -939,7 +904,6 @@ const EVOLUTION_EFFECTS = [
   { name: "오버히트", aliases: ["오버히트"], stat: "critDmg", maxLv: 5, values: [0.0, 3.0, 6.0, 9.0, 12.0], category: 1, condition: "포화공격 루트", group: "깨달음" },
   { name: "신속 포격", aliases: ["신속포격", "신속 포격"], stat: "critDmg", maxLv: 5, values: [4.0, 8.0, 12.0, 16.0, 20.0], category: 3, condition: "포격스킬 한정", group: "깨달음" },
   { name: "포격 출력 강화", aliases: ["포격출력강화", "포격 출력 강화"], stat: "critRate", maxLv: 3, values: [20.0, 30.0, 40.0], category: 3, condition: "포격스킬 한정", group: "깨달음" },
-  { name: "아르데타인의 기술", aliases: ["아르데타인의기술", "아르데타인의 기술"], stat: "moveSpeed", maxLv: 3, values: [10.0, 10.0, 10.0], category: 2, condition: "드론 부착 中", group: "깨달음" },
   { name: "전술 재장전 공속", aliases: ["전술재장전", "전술 재장전"], stat: "atkSpeed", maxLv: 5, values: [1.0, 1.0, 1.0, 1.0, 1.0], category: 2, condition: "최대 8중첩(Max 8%)", group: "깨달음", dynamic: true, maxStack: 8, note: "중첩당 1.0%, 최대 8중첩" },
   { name: "전술 재장전 이속", aliases: ["전술재장전", "전술 재장전"], stat: "moveSpeed", maxLv: 5, values: [1.0, 1.0, 1.0, 1.0, 1.0], category: 2, condition: "최대 8중첩(Max 8%)", group: "깨달음", dynamic: true, maxStack: 8, note: "중첩당 1.0%, 최대 8중첩" },
   { name: "코어 인챈트", aliases: ["코어인챈트", "코어 인챈트"], stat: "critRate", maxLv: 3, values: [3.0, 6.0, 9.0], category: 1, condition: "아르데타인 루트", group: "깨달음" },
@@ -1056,7 +1020,7 @@ const IDENTITY_BUFFS = {
     "강화 무기": { buff_name:"스탠스 치적(상시)", type:"permanent", stats:{ crit_rate:22.0 } }
   },
   "스카우터": {
-    "진화의 유산": { buff_name:"하이퍼 씽크", type:"toggle", stats:{ attack_speed:15.0, move_speed:15.0 } }
+    "진화의 유산": { buff_name:"하이퍼 씽크", type:"toggle", stats:{ attack_speed:15.0, move_speed:30.0 } }
   }
 };
 

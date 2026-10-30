@@ -212,18 +212,9 @@ let currentTab = "info";
 let dataLoaded = false;
 
 function applyTabView() {
-  const __cpm = currentTab === "cpm";
-  document.body.classList.toggle("cpm-mode", __cpm);
-  const __cp = window.$("cpmPanel");
-  if (__cp) {
-    // 조회 후: 다른 탭처럼 오른쪽 칼럼(왼쪽엔 프로필) / 조회 전: 검색창 아래 독립 표시
-    const __col = mainEl.querySelectorAll(".col")[1];
-    if (dataLoaded && __col && __cp.parentNode !== __col) __col.appendChild(__cp);
-    else if (!dataLoaded && __cp.parentNode !== mainEl.parentNode) mainEl.parentNode.insertBefore(__cp, mainEl);
-    __cp.style.display = __cpm ? "flex" : "none";
-  }
-  mainEl.classList.toggle("show", dataLoaded && ["info","stat","skill","arkgrid","arkpassive","expedition","cpm"].includes(currentTab));
-  mainEl.classList.toggle("skill-mode", ["skill","arkgrid","arkpassive","expedition","cpm"].includes(currentTab));
+  mainEl.classList.toggle("show", dataLoaded && ["info","stat","skill","arkgrid","arkpassive","expedition"].includes(currentTab));
+  mainEl.classList.toggle("skill-mode", ["skill","arkgrid","arkpassive","expedition"].includes(currentTab));
+  mainEl.classList.toggle("tab-skill", dataLoaded && currentTab === "skill");   // 스킬 탭: 스킬 포인트 바 상단 고정
   if (skillPanelEl) skillPanelEl.style.display = (dataLoaded && currentTab === "skill") ? "flex" : "none";
   if (arkgridPanelEl) arkgridPanelEl.style.display = (dataLoaded && currentTab === "arkgrid") ? "flex" : "none";
   if (arkpassivePanelEl) arkpassivePanelEl.style.display = (dataLoaded && currentTab === "arkpassive") ? "flex" : "none";
@@ -342,6 +333,103 @@ function titleGradeClass(title) {
   return TITLE_GRADE.get(key) || "tg-default";
 }
 
+// ===== 직각 티어 박스 (인식 티어 / 경기 승률): 직각 토너먼트 OP 1:1 승률 기준, 최근 30일 =====
+const TOURN = {
+  URL: "https://khszfukekudyripouifm.supabase.co",
+  KEY: "sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb",
+  DAYS: 30,
+  SUPPORT: ["절실한 구원", "만개", "축복의 오라", "해방자"],            // OP 티어에서 제외 → 표시 '-'
+  SHORT: {   // 토너먼트 직각 이름 → 줄임말 (AP_SHORT 의 값과 같아서 이 값끼리 비교)
+    "고독한 기사":"고기","전투 태세":"전태","광기":"광기","광전사의 비기":"비기","분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
+    "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자","초심":"초심","오의 강화":"오의","충격 단련":"충단","체술":"체술",
+    "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제","오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
+    "전술 탄환":"전탄","핸드 거너":"핸건","화력 강화":"화강","포격 강화":"포강","죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
+    "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시","상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
+    "진실된 용맹":"진용","절실한 구원":"절구","점화":"점화","환류":"환류","버스트":"버스트","잔재된 기운":"잔재","멈출 수 없는 충동":"충동",
+    "완벽한 억제":"억제","달의 소리":"달소","갈증":"갈증","만월의 집행자":"만월","만개":"만개","그믐의 경계":"그믐","회귀":"회귀","이슬비":"이슬비",
+    "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화":"업화","드레드 로어":"드드","시간 관리자":"시간","공간 검사":"공간"
+  }
+};
+const TIER_COLORS = ["", "#ffd24a", "#ff9f43", "#c79cff", "#4da3ff", "#3cc78c", "#9aa3b5"];
+// 직각 토너먼트 티어표와 같은 규칙: 승률 순 → 1티어 6개 / 2티어 9개 / 3티어 12개 / 6티어 맨 아래 10개 / 나머지 반반(4·5티어)
+function tournCalcTiers(entries) {
+  const sorted = [...entries].sort((a, b) => b.winRate - a.winRate || b.total - a.total);
+  const total = sorted.length;
+  const tier6 = total > 10 ? sorted.slice(total - 10) : [];
+  const rest = total > 10 ? sorted.slice(0, total - 10) : sorted;
+  const rem = rest.slice(27), half = Math.ceil(rem.length / 2);
+  const tiers = [rest.slice(0, 6), rest.slice(6, 15), rest.slice(15, 27), rem.slice(0, half), rem.slice(half), tier6];
+  const out = {};
+  tiers.forEach((t, i) => t.forEach(e => { out[e.short] = Object.assign({}, e, { tier: i + 1, rank: sorted.indexOf(e) + 1, of: total }); }));
+  return out;
+}
+let __tournP = null;
+function loadTournTiers() {
+  if (__tournP) return __tournP;
+  __tournP = (async () => {
+    try {
+      const ck = sessionStorage.getItem("loaview-tourn");
+      if (ck) { const o = JSON.parse(ck); if (Date.now() - o.t < 30 * 60 * 1000) return o.map; }
+    } catch (e) {}
+    const res = await fetch(TOURN.URL + "/rest/v1/rpc/get_tier_data", {
+      method: "POST",
+      headers: { "apikey": TOURN.KEY, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_type: "op", p_days: TOURN.DAYS })
+    });
+    if (!res.ok) throw new Error("tier " + res.status);
+    const rows = await res.json();
+    const entries = rows.filter(r => !TOURN.SUPPORT.includes(r.engraving_name)).map(r => ({
+      name: r.engraving_name, short: TOURN.SHORT[r.engraving_name] || r.engraving_name,
+      winRate: Number(r.win_rate), total: Number(r.total_matches), win: Number(r.win_count), lose: Number(r.lose_count)
+    }));
+    const map = tournCalcTiers(entries);
+    try { sessionStorage.setItem("loaview-tourn", JSON.stringify({ t: Date.now(), map })); } catch (e) {}
+    return map;
+  })().catch(e => { __tournP = null; throw e; });
+  return __tournP;
+}
+// 박스 값 변경: setTierBox(3, 52.3, "툴팁 HTML") / 값 없으면 setTierBox(null, null)
+window.setTierBox = function (tier, pct, tipHtml) {
+  const r = window.$("tierRank"), p = window.$("tierPct"), box = window.$("tierBox");
+  if (r) {
+    r.dataset.rank = tier || "";
+    r.innerHTML = tier ? tier + "<small>티어</small>" : "-";
+    r.style.color = tier ? TIER_COLORS[tier] : "#6b7690";
+  }
+  if (p) {
+    p.textContent = pct == null ? "-" : pct.toFixed(1) + "%";
+    p.style.color = pct == null ? "#6b7690" : pct >= 52 ? "#3cc78c" : pct >= 48 ? "#cfd8ee" : "#ff8a8a";
+  }
+  if (box) {
+    box.dataset.tip = tipHtml || "";
+    if (!box.__tipBound) {   // 툴팁은 한 번만 연결하고 내용은 dataset.tip 에서 읽음
+      box.__tipBound = true;
+      box.addEventListener("mouseenter", e => { if (box.dataset.tip) showTip(e, box.dataset.tip); });
+      box.addEventListener("mouseleave", hideTip);
+    }
+  }
+};
+async function updateTierBox(data) {
+  window.setTierBox(null, null);
+  const cls = (data.ArmoryProfile && data.ArmoryProfile.CharacterClassName) || "";
+  const raw = String((data.ArkPassive && data.ArkPassive.Title) || "").trim();
+  if (!raw) return;
+  const short = (window.__apShort || {})[raw] || raw;
+  const rev = Object.keys(TOURN.SHORT).find(k => TOURN.SHORT[k] === short);
+  if (rev && TOURN.SUPPORT.includes(rev)) return;   // 서포터: '-'
+  // 불러오는 동안 두 칸에 회전 로딩 표시 (끝나면 값 또는 '-'로 교체)
+  ["tierRank", "tierPct"].forEach(id => { const el = window.$(id); if (el) { el.textContent = ""; el.style.color = ""; el.innerHTML = '<span class="tier-spin" aria-label="불러오는 중"></span>'; } });
+  const clearSpin = () => { if (window.__fullData === data) ["tierRank", "tierPct"].forEach(id => { const el = window.$(id); if (el && el.querySelector(".tier-spin")) { el.textContent = "-"; el.style.color = "#6b7690"; } }); };
+  try {
+    const map = await loadTournTiers();
+    if (window.__fullData !== data) return;          // 그 사이 다른 캐릭터를 조회한 경우
+    const e = map[short];
+    if (!e) { clearSpin(); return; }
+    window.setTierBox(e.tier, e.winRate,
+      `<div class="tip-hd">${cls} ${raw}</div><div class="tip-bd" style="font-size:11px;line-height:1.6;">OP 직각 ${e.of}개 중 <b>${e.rank}위</b> · ${e.tier}티어<br>최근 ${TOURN.DAYS}일 1:1 승률 ${e.winRate.toFixed(1)}%<br>${e.total}전 ${e.win}승 ${e.lose}패</div>`);
+  } catch (err) { clearSpin(); /* 실패하면 '-' */ }
+}
+
 function render(data) {
   window.__fullData = data;
   window.__charClass = "";
@@ -368,10 +456,10 @@ function render(data) {
     "고독한 기사":"고기","전투 태세":"전태","광기":"광기","광전사의 비기":"비기",
     "분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
     "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자",
-    "초심":"초심","오의 강화":"오의","충격 단련":"충단","체술":"체술",
+    "초심":"초심","오의 강화":"오의","충격 단련":"충단","극의: 체술":"체술",
     "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제",
     "오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
-    "전술 탄환":"전탄","핸드 거너":"핸건","화력 강화":"화강","포격 강화":"포강",
+    "전술 탄환":"전탄","핸드거너":"핸건","화력 강화":"화강","포격 강화":"포강",
     "죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
     "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시",
     "상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
@@ -379,9 +467,10 @@ function render(data) {
     "버스트":"버스트","잔재된 기운":"잔재","멈출 수 없는 충동":"충동",
     "완벽한 억제":"억제","달의 소리":"달소","갈증":"갈증",
     "만월의 집행자":"만월","만개":"만개","그믐의 경계":"그믐","회귀":"회귀","이슬비":"이슬비",
-    "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화":"업화","드레드 로어":"드드",
+    "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화의 계승자":"업화","드레드 로어":"드드",
     "시간 관리자":"시간","공간 검사":"공간"
   };
+  window.__apShort = AP_SHORT;
   const apRaw = data.ArkPassive?.Title;
   const apTitle = apRaw ? (AP_SHORT[String(apRaw).trim()] || apRaw) : apRaw;
   info.appendChild(el("div", "art-class", `Lv. ${p.CharacterLevel ?? "-"} ${p.CharacterClassName || ""}${apTitle ? " #" + apTitle : ""}`));
@@ -455,15 +544,15 @@ function render(data) {
       const hc = hv >= 1000 ? "#F9AE00" : hv >= 500 ? "#CE43FC" : hv >= 300 ? "#00B0FA" : hv >= 100 ? "#8DF901" : "#aeb6c6";
       addRow("명예", String(p[hk]), "", hc); }
   }
-  { // 우측 상단: 최근 갱신 (이 사이트가 데이터를 불러온 시각 기준, 서버 장애 시 저장본 시각)
+  addRow("토너", "미랭크", "art-chip", "#8b95a8");   // 나중에 다른 시스템 줄을 이 아래에 추가
+  { // 우측 상단: 경과 시간만 간단히 (저장본 여부는 상단 안내 문구로 표시됨)
     const hit = window.__cacheHit && /\/all$/.test(window.__cacheHit.url);
     const at = hit ? window.__cacheHit.t : Date.now();
     const u = el("div", "art-upd");
-    u.style.cssText = "position:absolute;top:12px;right:12px;z-index:3;font-size:11px;font-weight:700;color:#cfd8ee;background:rgba(8,12,24,.62);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:3px 9px;backdrop-filter:blur(4px)";
+    u.style.cssText = "position:absolute;top:12px;right:12px;z-index:3;white-space:nowrap;font-size:11px;font-weight:700;color:" + (hit ? "#ffb070" : "#cfd8ee") + ";background:rgba(8,12,24,.62);border:1px solid " + (hit ? "rgba(255,150,70,.5)" : "rgba(255,255,255,.14)") + ";border-radius:999px;padding:3px 9px;backdrop-filter:blur(4px)";
     const paint = () => {
       const m = Math.floor((Date.now() - at) / 60000);
-      const txt = m < 1 ? "최근" : m < 60 ? m + "분전" : Math.floor(m / 60) + "시간전";
-      u.innerHTML = '<span style="color:#8d9bb8;font-weight:600">갱신</span> ' + txt + (hit ? " (저장본)" : "");
+      u.textContent = m < 1 ? "방금" : m < 60 ? m + "분전" : Math.floor(m / 60) + "시간전";
     };
     paint();
     art.appendChild(u);
@@ -500,6 +589,7 @@ function render(data) {
   window.__gemMap = buildSkillGemMap(data.ArmoryGem);
   renderSkills(data.ArmorySkills || [], data.ArmoryGem);
   setEffPanelOpen(false);
+  updateTierBox(data);
 }
 
 // 카드 클릭 서랍 토글 이벤트

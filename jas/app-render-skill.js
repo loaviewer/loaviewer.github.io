@@ -597,14 +597,56 @@ function gkArrange(list) {
 }
 // 인벤 기준 아이덴티티 스킬 정보 (스킬창에 없어 API로 못 가져오는 값)
 var IDENTITY_SKILL_INFO = {
-  "인페르노 버스트": { grade: "일반", tag: "화신 스킬", cd: "1분 30초", lv: 1, groggy: "상", armor: "피격이상 면역" }
+  "인페르노 버스트": { grade: "일반", tag: "화신 스킬", cd: "1분 30초", lv: 1, groggy: "상", armor: "피격이상 면역" },
+  "소닉 임팩트": { grade: "일반", tag: "제로 싱크 스킬", cd: "18초", lv: 1, mana: "제로 싱크 배터리 500 소모", part: "2", groggy: "상" },
+  "퀀텀 어셈블리 빔": { grade: "일반", tag: "제로 싱크 스킬", cd: "45초", lv: 1, mana: "제로 싱크 배터리 500 소모", part: "1", groggy: "상", armor: "피격이상 면역" },
+  "EX - 제로 포인트": { grade: "지점", tag: "제로 싱크 스킬", cd: "30초", lv: 1, mana: "제로 싱크 배터리 500 소모", groggy: "중상" },
+  "크림슨 브레이커": { grade: "일반", tag: "하이퍼 싱크 스킬", cd: "20초", lv: 1, groggy: "중상" },
+  "엑셀리온 빔": { grade: "일반", tag: "하이퍼 싱크 스킬", cd: "16초", lv: 1, groggy: "중" },
+  "레이저 블레이드": { grade: "일반", tag: "하이퍼 싱크 스킬", cd: "10초", lv: 1, part: "1", groggy: "중" },
+  "버스트 블로우": { grade: "일반", tag: "하이퍼 싱크 스킬", cd: "10초", lv: 1, part: "1", groggy: "중" }
 };
+// 아이덴티티 줄: 기본 재사용시간에 신속 / 보석 / 진화 재감을 적용 (일반 스킬 줄과 같은 규칙)
+function identityInfoOf(name) {
+  var n = gkNorm(name), r = gkDreadSkillOf(name);
+  if (r) return r;
+  for (var k in IDENTITY_SKILL_INFO) if (gkNorm(k) === n) return IDENTITY_SKILL_INFO[k];
+  return null;
+}
+function identityEffCd(name) {
+  var info = identityInfoOf(name);
+  var base = info ? (info.cdSec || parseCdSeconds(info.cd)) : 0;
+  if (!base) return null;
+  var cp = cdParams({ Name: name });
+  var eff = base * (1 - cp.swift / 100) * (1 - cp.gem / 100) * cp.all;
+  return { base: base, eff: eff, changed: Math.abs(eff - base) > 0.005 };
+}
+function identityCdBadge(s) {
+  var c = identityEffCd(s.Name);
+  return c ? `<div class="sk-cd">${c.eff.toFixed(2)}초</div>` : "";
+}
+function identityCdLine(s, text) {
+  var c = identityEffCd(s.Name);
+  if (!c || !c.changed) return `<div class="tip-line">재사용 대기시간 ${text}</div>`;
+  var rest = /\/.+$/.exec(text);   // "1초 / 충전 시간 1분" 처럼 뒤에 붙은 설명은 유지
+  return `<div class="tip-line">재사용 대기시간 <s class="tip-cd-old">${c.base}초</s> <span class="tip-cd-new">${c.eff.toFixed(2)}초</span>${rest ? " " + rest[0] : ""}</div>`;
+}
+// 아이덴티티 줄의 속성 칩 (인벤 기준 고정 정보: 헤드 어택 / 무력화 / 슈퍼아머)
+function identityChipsHtml(s) {
+  var dk = gkDreadSkillOf(s.Name), info = null, n = gkNorm(s.Name);
+  for (var k in IDENTITY_SKILL_INFO) if (gkNorm(k) === n) info = IDENTITY_SKILL_INFO[k];
+  var src = dk || info;
+  return src ? attrChipsHtml({ attack: src.attack, part: src.part ? "Lv." + src.part : "", groggy: src.groggy, armor: src.armor }) : "";
+}
 function identityTipHtml(s) {
+  var dk = gkDreadSkillOf(s.Name);
+  if (dk) return gkSkillTipHtml(dk, s.Icon, s);
   var norm = gkNorm(s.Name), info = null;
   for (var k in IDENTITY_SKILL_INFO) if (gkNorm(k) === norm) info = IDENTITY_SKILL_INFO[k];
   info = info || {};
   var icon = s.Icon ? `<img class="tip-skill-icon" src="${s.Icon}" alt="">` : "";
   var lines = [];
+  if (info.part) lines.push(`부위 파괴 : 레벨 ${info.part}`);
   if (info.groggy) lines.push(`무력화 : ${info.groggy}`);
   if (info.armor) lines.push(`슈퍼아머 : ${info.armor}`);
   var infoHtml = lines.length ? `<div class="tip-info"><div class="tip-info-line">${lines.map(l => `<FONT COLOR='#EEA839'>${l}</FONT>`).join("<br>")}</div></div>` : "";
@@ -616,11 +658,42 @@ function identityTipHtml(s) {
       <div class="tip-muted">${info.grade || "아이덴티티 스킬"}</div></div>
     </div>
     <div class="tip-bd" style="padding-bottom:6px;">
-      ${info.cd ? `<div class="tip-line">재사용 대기시간 ${info.cd}</div>` : ""}
+      ${info.cd ? identityCdLine(s, info.cd) : ""}
       ${info.lv ? `<div class="tip-line muted">스킬 레벨 ${info.lv}</div>` : ""}
     </div>
+    ${info.mana ? `<div class="tip-bd" style="padding-top:2px;padding-bottom:2px;font-size:11px;color:#c7cee0;">${info.mana}</div>` : ""}
     ${desc ? `<div class="tip-bd" style="padding-top:8px;padding-bottom:6px;font-size:11px;line-height:1.5;color:#c7cee0;">${desc}</div>` : ""}
     ${infoHtml}`;
+}
+
+// 드레드 로어로 얻는 아이덴티티 스킬 (인벤 기준 고정 정보). icon: 스킬 아이콘 주소를 직접 넣고 싶으면 "https://..." 입력 (없으면 보석/스킬 목록에서 자동 탐색)
+var GK_DREAD_SKILLS = [
+  { name: "가디언 피어", grade: "일반", tag: "일반 스킬", cd: "1초", cdSec: 1, mana: "엠버레스 오브 게이지 5000 소모", lv: 1, attack: "헤드 어택", armor: "피격이상 면역", icon: "" },
+  { name: "가디언 스케일", grade: "일반", tag: "일반 스킬", cd: "1초 / 충전 시간 1분", cdSec: 1, mana: "", lv: 1, attack: "", armor: "", icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/ddk_skill/ddk_skill_01_27.png" }
+];
+
+function gkDreadSkillOf(name) {
+  var n = gkNorm(name);
+  return GK_DREAD_SKILLS.find(function (k) { return gkNorm(k.name) === n; }) || null;
+}
+function gkSkillTipHtml(k, iconSrc, sk) {
+  var ic = iconSrc || k.icon || "";
+  var lines = [];
+  if (k.attack) lines.push("공격 타입 : " + k.attack);
+  if (k.armor) lines.push("슈퍼아머 : " + k.armor);
+  var desc = skillDescOf(k.name);
+  return `<div class="tip-hd tip-hd-skill">
+      ${ic ? `<img class="tip-skill-icon" src="${ic}" alt="">` : ""}
+      <div class="tip-hd-text"><div class="tip-hd-name">${k.name}${k.tag ? ` <span class="tip-tag">[${k.tag}]</span>` : ""}</div>
+      <div class="tip-muted">${k.grade}</div></div>
+    </div>
+    <div class="tip-bd" style="padding-bottom:6px;">
+      ${identityCdLine(sk || { Name: k.name }, k.cd)}
+      <div class="tip-line muted">스킬 레벨 ${k.lv}</div>
+    </div>
+    ${k.mana ? `<div class="tip-bd" style="padding-top:2px;padding-bottom:2px;font-size:11px;color:#c7cee0;">${k.mana}</div>` : ""}
+    ${desc ? `<div class="tip-bd" style="padding-top:6px;padding-bottom:6px;font-size:11px;line-height:1.5;color:#c7cee0;">${desc}</div>` : ""}
+    ${lines.length ? `<div class="tip-info"><div class="tip-info-line">${lines.map(l => `<FONT COLOR='#EEA839'>${l}</FONT>`).join("<br>")}</div></div>` : ""}`;
 }
 
 function renderSkills(skillsData, gemData) {
@@ -650,6 +723,17 @@ function renderSkills(skillsData, gemData) {
   var arkNameSet = new Set(arkSkillNodes().map(n => normK(n.name)));   // 아크패시브 스킬 카드에 보석을 합쳐 보여줄 스킬
   var identitySkills = Object.keys(gemMap).filter(n => n && !allSkillNames.has(n) && !arkNameSet.has(normK(n)) && !(gkHide && gkHide[gkNorm(n)]))
     .map(n => ({ Name: n, Icon: gemSkillIcon(gemData, n, skillsData), Level: null, Tripods: [], _identity: true }));
+  if (gkHide) {   // 드레드 로어: 가디언 피어 → 가디언 스케일 순서로 항상 표시 (보석이 있으면 함께)
+    var dN = GK_DREAD_SKILLS.map(function (k) { return gkNorm(k.name); });
+    var at = identitySkills.findIndex(function (x) { return gkNorm(x.Name) === dN[0]; });
+    var others = identitySkills.filter(function (x) { return dN.indexOf(gkNorm(x.Name)) < 0; });
+    var dRows = GK_DREAD_SKILLS.filter(function (k) { return !allSkillNames.has(k.name); }).map(function (k) {
+      return identitySkills.find(function (x) { return gkNorm(x.Name) === gkNorm(k.name); })
+        || { Name: k.name, Icon: k.icon || gemSkillIcon(gemData, k.name, skillsData), Level: null, Tripods: [], _identity: true };
+    });
+    var cut = at < 0 ? 0 : Math.min(at, others.length);
+    identitySkills = others.slice(0, cut).concat(dRows, others.slice(cut));
+  }
   var gk = gkArrange(normalSkills.concat(lv1GemSkills));
   var skills = gk.list.concat(identitySkills);
   var linkTop = new Set();   // 계열 보석이 기본·변신 스킬 둘 다에 걸린 경우 → 연결 표시
@@ -675,7 +759,7 @@ function renderSkills(skillsData, gemData) {
     var ark = window.__arkCdPct || { mana: 0, all: 1 };
     var arkAllPct = (1 - ark.all) * 100;
     var hasGemCool = false;
-    for (var s of normalSkills) {
+    for (var s of skills) {   // 레벨 1 · 아이덴티티 줄에 장착된 재감 보석도 포함
       if ((gemMap[s.Name] || {}).coolPct) { hasGemCool = true; break; }
     }
     var o = cdOpt();
@@ -771,8 +855,8 @@ function renderSkills(skillsData, gemData) {
           <div class="sk-lv">${s._identity ? "아이덴티티" : (s.Level ?? "-") + "레벨"}</div>
           <div class="sk-name">${s.Name || "-"}</div>
         </div>
-        ${s._identity ? "" : effCdBadge(s)}
-        ${s._identity ? "" : attrChipsHtml(skillAttrs(s))}
+        ${s._identity ? identityCdBadge(s) : effCdBadge(s)}
+        ${s._identity ? identityChipsHtml(s) : attrChipsHtml(skillAttrs(s))}
       </div>
       <div class="tripods">${tpCells}</div>
       <div class="gems">
@@ -808,7 +892,7 @@ function renderSkills(skillsData, gemData) {
   listEl.querySelectorAll(".sk-main").forEach(el => {
     var s = skills[+el.dataset.si];
     if (!s) return;
-    bindTip(el, s._identity ? identityTipHtml(s) : buildSkillTipHtml(s));
+    bindTip(el, (s._identity || ((s.Level || 0) <= 1 && identityInfoOf(s.Name))) ? identityTipHtml(s) : buildSkillTipHtml(s));   // 레벨 1 스킬은 API 툴팁이 빈약해 인벤 기준 정보 사용
   });
 
   listEl.querySelectorAll(".gems .gem[data-gt]").forEach(el => {

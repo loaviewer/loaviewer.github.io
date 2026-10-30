@@ -107,6 +107,16 @@
     return R;
   }
 
+  // 악세사리 효율(app-render-gear.js)에서 쓰는 서폿 현재값: 공증 합(%) / 낙인력 합(%)
+  window.__supCtx = function () {
+    var R = collect(window.__fullData || {}), A = R.atk, B = R.brand;
+    return {
+      aSum: A.acc + A.bracelet + A.passive + A.core + A.gem + A.grid,
+      bSum: B.acc + B.bracelet + B.passive + B.core + B.grid + B.karma + B.evo,
+      baseBrand: BASE_BRAND
+    };
+  };
+
   var SKILLS = {
     "도화가": ["묵법 : 해그리기", "묵법 : 해우물"],
     "홀리나이트": ["신의 분노", "천상의 축복"],
@@ -177,6 +187,8 @@
     var dol = document.getElementById("effDolCard");
     if (as) eg.insertBefore(as, dol || null);
     if (ms) eg.insertBefore(ms, dol || null);
+    var anchor = document.getElementById("activeNodeCard");
+    ["gemEffCard", "accEffCard"].forEach(function (id) { var c = document.querySelector("#supGrid #" + id); if (c) eg.insertBefore(c, anchor || null); });
     if (br) eg.appendChild(br);
   }
   function renderSupport(fd) {
@@ -350,7 +362,7 @@
     // 공속 / 이속 / 보호막 / 팔찌 순서로 아래에 배치
     var as = document.querySelector("#effGrid .mc.as"), ms = document.querySelector("#effGrid .mc.ms"), br = document.getElementById("braceletEffCard");
     var shc = document.getElementById("supShieldCard");
-    [as, ms, shc, br].forEach(function (n) { if (n) host.appendChild(n); });
+    [as, ms, shc, document.getElementById("gemEffCard"), document.getElementById("accEffCard"), br].forEach(function (n) { if (n) host.appendChild(n); });
 
     if (window.console && console.table) console.table({ 공증합: r2(aSum), 낙인력합: r2(bSum), 기본공격력: baseAtk, 공증증가량: fmt(inc) });
   }

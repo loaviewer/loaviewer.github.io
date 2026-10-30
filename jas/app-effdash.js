@@ -180,6 +180,35 @@ function buildCritDrawerHtml(ctx) {
   return html;
 }
 
+// ===== 스카우터 직각 판별 ('진화의 유산' / '아르데타인의 기술') =====
+// 아크패시브 효과 텍스트에서 레벨이 1 이상인 쪽을 직각으로 본다. (없으면 Title 로 판별, 그래도 없으면 "")
+function scouterCoreOf(fullData) {
+  const ap = (fullData && (fullData.ArkPassive || fullData.ArmoryArkPassive)) || {};
+  const plain = s => String(s || "").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, "");
+  const txt = (ap.Effects || []).map(e => plain(e.Name) + plain(e.Description)).join("|");
+  const KEYS = ["진화의유산", "아르데타인의기술"];
+  for (const k of KEYS) {
+    const m = txt.match(new RegExp(k + "[^0-9|]{0,6}Lv\\.?(\\d+)"));
+    if (m && parseInt(m[1], 10) > 0) return k === "진화의유산" ? "진화의 유산" : "아르데타인의 기술";
+  }
+  const title = plain(ap.Title);
+  if (title.indexOf("진화의유산") >= 0) return "진화의 유산";
+  if (title.indexOf("아르데타인의기술") >= 0) return "아르데타인의 기술";
+  return "";
+}
+// 아덴(변신 공이속) 판별 보정: 직각이 아닌 쪽 키가 느슨한 문자열 매칭으로 걸리지 않게 한다
+function fixScouterIdentity(identity, fullData) {
+  if (window.__charClass !== "스카우터") return identity;
+  const core = scouterCoreOf(fullData);
+  if (!core) return identity;
+  const tbl = window.IDENTITY_BUFFS || (typeof IDENTITY_BUFFS !== "undefined" ? IDENTITY_BUFFS : {});
+  const ck = Object.keys(tbl).find(k => k.indexOf("스카우터") >= 0);
+  const entry = ck && tbl[ck] && tbl[ck][core];
+  if (entry) return Object.assign({ key: core }, entry);          // 직각에 해당하는 아덴만 적용
+  if (identity && (identity.key === "진화의 유산" || identity.key === "아르데타인의 기술") && identity.key !== core) return null;
+  return identity;
+}
+
 // ===== 실시간 계산 엔진 연동 함수 (fillEffDash) =====
 function fillEffDash(stats, equipList, fullData, statMap) {
   const dash = $("effDash");
@@ -211,7 +240,11 @@ function fillEffDash(stats, equipList, fullData, statMap) {
       else lines.push({ name: m[1].trim(), pct: parseFloat(m[2]) });
     });
     // 데빌헌터: 핸드건 스킬 치명타 피해량 (핸드건 스탠스만 사용 → 항시 반영)
-    const hand = (window.__charClass === "데빌헌터") ? critLines.find(x => /핸드건/.test(x.name)) : null;
+    // 특화 치피는 직각이 '핸드 거너'일 때만 적용 ('전술 탄환' 직각이면 제외; 아크패시브 정보가 아예 없으면 기존처럼 적용)
+    const apEffs = (fullData && fullData.ArkPassive && fullData.ArkPassive.Effects) || [];
+    const apTxt = apEffs.map(e => String((e.Name || "") + (e.Description || "")).replace(/<[^>]+>/g, "").replace(/\s+/g, "")).join("|");
+    const isHandGunner = !apEffs.length || apTxt.indexOf("핸드거너") >= 0;
+    const hand = (window.__charClass === "데빌헌터" && isHandGunner) ? critLines.find(x => /핸드건/.test(x.name)) : null;
     return { total: specStat, lines: lines, critLines: critLines, handCD: hand ? hand.pct : 0 };
   })();
 
@@ -226,10 +259,24 @@ function fillEffDash(stats, equipList, fullData, statMap) {
       return true;
     });
   }
+  // 스카우터 '기동 타격' 트라이포드 '날렵함' → 공이속 +19.2% 상시 (직각이 '아르데타인의 기술'일 때만)
+  if (window.__charClass === "스카우터" && synergyBag && Array.isArray(synergyBag.rows)) {
+    synergyBag.rows = synergyBag.rows.filter(function (r) {
+      if ((r.stat === "atkSpeed" || r.stat === "moveSpeed") && /기동\s*타격/.test(String(r.label || ""))) { synergyBag[r.stat] = (synergyBag[r.stat] || 0) - (r.value || 0); return false; }
+      return true;
+    });
+    if (scouterCoreOf(fullData) === "아르데타인의 기술" && typeof isTripodSelected === "function" &&
+        isTripodSelected(fullData?.ArmorySkills || [], "기동 타격", "날렵함")) {
+      synergyBag.atkSpeed = (synergyBag.atkSpeed || 0) + 19.2;
+      synergyBag.rows.push({ stat: "atkSpeed", value: 19.2, label: "기동 타격 (날렵함)" });
+      synergyBag.moveSpeed = (synergyBag.moveSpeed || 0) + 19.2;
+      synergyBag.rows.push({ stat: "moveSpeed", value: 19.2, label: "기동 타격 (날렵함)" });
+    }
+  }
   const hasMass = (fullData?.ArmoryEngraving?.ArkPassiveEffects || []).some(e => /질량\s*증가/.test(e.Name || ""));
   const massAsPenalty = hasMass ? -10 : 0;
 
-  const identity = detectIdentityBuff(window.__charClass, fullData);
+  const identity = fixScouterIdentity(detectIdentityBuff(window.__charClass, fullData), fullData);
   window.__identityBuff = identity;
   let identityOn = identity ? true : false;
 
@@ -854,6 +901,75 @@ function fillEffDash(stats, equipList, fullData, statMap) {
         }
       } else {
         bCard.style.display = "none";
+      }
+    }
+
+    // 🎯 젬 효율 카드 (아크그리드 젬 옵션 효율 × 코어 포인트 효율)
+    const gCard = $("gemEffCard"), gVal = $("gemEffValue");
+    if (gCard) {
+      const ag = fullData && fullData.ArkGrid;
+      if (ag && typeof agGemEff === "function") {
+        const ge = agGemEff(ag, !!__isSup);
+        gCard.style.display = "block";
+        if (gVal) gVal.textContent = ge.total.toFixed(2) + "%";
+        const names = __isSup ? AG_EFF_NAMES.sup : AG_EFF_NAMES.dps;
+        let gHtml = `<div style="padding-bottom:10px; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); font-size:16px; font-weight:800;">
+                       <span style="color:#ffd200;">젬 효율 :</span> <span style="color:#8df901;">+${ge.total.toFixed(2)}%</span>
+                     </div>`;
+        gHtml += `<div class="mc-sub-line"><span>옵션 효율</span><b>+${ge.opt.toFixed(2)}%</b></div>`;
+        names.forEach(function (nm) {
+          const o = ge.opts[nm];
+          gHtml += `<div class="mc-sub-line"><span style="color:${AG_EFF_COLOR[nm]}">└ ${nm} Lv${o ? o.lv : 0}</span><b>+${o ? o.real.toFixed(2) : "0.00"}%</b></div>`;
+        });
+        gHtml += `<div class="mc-sub-line"><span>포인트 효율 (코어 17P 초과)</span><b>+${ge.pt.toFixed(2)}%</b></div>`;
+        setDrawer("#gemEffCard", gHtml);
+      } else {
+        gCard.style.display = "none";
+      }
+    }
+
+    // 🎯 악세사리 효율 카드 (목걸이·귀걸이·반지 연마 효과)
+    const aCard = $("accEffCard"), aVal = $("accEffValue");
+    if (aCard) {
+      const accList = ((fullData && fullData.ArmoryEquipment) || []).filter(function (e) { return /목걸이|귀걸이|반지/.test(e.Type || ""); });
+      const accStats = { critRate: critTotal, critDmg: critDmgTotal, weaponAtk: bag.weaponAtk || 265000, mainStat: bag.mainStat || 500000, extraDmg: bag.extraDmg || 39.5 };
+      const effs = [];
+      accList.forEach(function (eq) {
+        let r = null;
+        try { r = calcAccessoryEfficiency(eq, accStats); } catch (e) { r = null; }
+        if (r) effs.push({ eq: eq, r: r });
+      });
+      if (effs.length) {
+        aCard.style.display = "block";
+        let total;
+        if (__isSup && typeof calcSupBraceletEff === "function") {
+          // 서폿: 팔찌와 같은 서폿 모델로 모든 악세의 아공강·아피강을 한 번에 계산
+          let sA = 0, sL = 0, sB = 0;
+          effs.forEach(function (x) { sA += x.r.supA || 0; sL += x.r.supLn || 0; sB += x.r.supBr || 0; });
+          total = calcSupBraceletEff(sA, sL, 0, 0);
+          // 낙인력: 기본 10% × (1 + 낙인력 합) 을 100% 유지로 곱함 (악세사리 낙인력을 뺀 상태와 비교)
+          if (sB > 0 && typeof window.__supCtx === "function") {
+            const cx = window.__supCtx(), bf = function (b) { return 1 + cx.baseBrand * (1 + b / 100) / 100; };
+            total = ((1 + total / 100) * (bf(cx.bSum) / bf(Math.max(cx.bSum - sB, 0))) - 1) * 100;
+          }
+        } else {
+          let prod = 1;
+          effs.forEach(function (x) { prod *= 1 + x.r.totalEff / 100; });
+          total = (prod - 1) * 100;
+        }
+        if (aVal) aVal.textContent = total.toFixed(2) + "%";
+        let aHtml = `<div style="padding-bottom:10px; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); font-size:16px; font-weight:800;">
+                       <span style="color:#ffd200;">악세사리 효율 :</span> <span style="color:#8df901;">+${total.toFixed(2)}%</span>
+                     </div>`;
+        effs.forEach(function (x) {
+          aHtml += `<div class="mc-sub-line" style="margin-top:6px;"><span>${x.eq.Type}${x.eq.Name ? " · " + String(x.eq.Name).replace(/<[^>]+>/g, "") : ""}</span><b>+${x.r.totalEff.toFixed(2)}%</b></div>`;
+          x.r.rows.forEach(function (row) {
+            aHtml += `<div class="mc-sub-line"><span style="opacity:.8">└ ${row.name}</span><b>${row.pct == null ? "계산 불가" : "+" + row.pct.toFixed(2) + "%"}</b></div>`;
+          });
+        });
+        setDrawer("#accEffCard", aHtml);
+      } else {
+        aCard.style.display = "none";
       }
     }
   };
