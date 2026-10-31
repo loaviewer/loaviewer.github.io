@@ -1,1 +1,638 @@
-const _0x3a81d4=_0xa66d;(function(_0x24fe34,_0x16b485){const _0x34044e=_0xa66d,_0x4450ce=_0x24fe34();while(!![]){try{const _0x45c5f5=parseInt(_0x34044e(0x113))/0x1+parseInt(_0x34044e(0x1a2))/0x2*(parseInt(_0x34044e(0x20b))/0x3)+-parseInt(_0x34044e(0x268))/0x4*(parseInt(_0x34044e(0x132))/0x5)+parseInt(_0x34044e(0x199))/0x6*(parseInt(_0x34044e(0x216))/0x7)+-parseInt(_0x34044e(0x1ca))/0x8+parseInt(_0x34044e(0x250))/0x9+parseInt(_0x34044e(0x232))/0xa*(-parseInt(_0x34044e(0x122))/0xb);if(_0x45c5f5===_0x16b485)break;else _0x4450ce['push'](_0x4450ce['shift']());}catch(_0x5d481c){_0x4450ce['push'](_0x4450ce['shift']());}}}(_0x4487,0x80fd6),(function(){const _0x2f4e2d=_0xa66d,_0x397343=_0x2f4e2d(0x2a6),_0x2156e6=_0x2f4e2d(0x2a0),_0x419587=0x1f40;let _0x29f6eb=null;function _0x4514b5(){if(!_0x29f6eb)_0x29f6eb=new Promise((_0x212816,_0x54baeb)=>{const _0x5205a6=_0xa66d;if(!window['indexedDB'])return _0x54baeb(new Error(_0x5205a6(0xf7)));const _0x59f66f=indexedDB[_0x5205a6(0x15b)](_0x397343,0x1);_0x59f66f[_0x5205a6(0x298)]=()=>_0x59f66f[_0x5205a6(0x284)][_0x5205a6(0x136)](_0x2156e6),_0x59f66f['onsuccess']=()=>_0x212816(_0x59f66f[_0x5205a6(0x284)]),_0x59f66f[_0x5205a6(0x112)]=()=>_0x54baeb(_0x59f66f[_0x5205a6(0x1f5)]);});return _0x29f6eb;}function _0x47bd27(_0x7c3832,_0x2ab73b){const _0x59d8a6=_0x2f4e2d;return _0x4514b5()[_0x59d8a6(0x123)](_0x4298f3=>new Promise((_0x401efc,_0x242ed0)=>{const _0x567321=_0x59d8a6,_0x275812=_0x4298f3[_0x567321(0x231)](_0x2156e6,_0x7c3832),_0x5f2c79=_0x2ab73b(_0x275812[_0x567321(0x228)](_0x2156e6));_0x275812[_0x567321(0x165)]=()=>_0x401efc(_0x5f2c79[_0x567321(0x284)]),_0x275812['onerror']=()=>_0x242ed0(_0x275812[_0x567321(0x1f5)]);}));}const _0x2343b1=_0x1e84b3=>_0x47bd27(_0x2f4e2d(0x264),_0x182980=>_0x182980[_0x2f4e2d(0x286)](_0x1e84b3))['catch'](()=>null),_0x25f122=(_0x4dceaf,_0x4f8e1f)=>_0x47bd27(_0x2f4e2d(0x1c0),_0x5adf80=>_0x5adf80['put'](_0x4f8e1f,_0x4dceaf))[_0x2f4e2d(0x1c6)](()=>{}),_0x5efa3b=()=>_0x47bd27('readonly',_0x1616bf=>_0x1616bf[_0x2f4e2d(0x1e9)]())[_0x2f4e2d(0x1c6)](()=>[]);function _0x3a8a87(_0x3d5ca6,_0xa6060d){const _0x4fd298=_0x2f4e2d;try{const _0x4ad8d7=JSON[_0x4fd298(0x255)](_0xa6060d);if(!_0x4ad8d7)return![];if(/\/all$/[_0x4fd298(0x240)](_0x3d5ca6))return!!_0x4ad8d7[_0x4fd298(0x260)];if(/\/siblings$/[_0x4fd298(0x240)](_0x3d5ca6))return Array[_0x4fd298(0x11b)](_0x4ad8d7[_0x4fd298(0x1d3)])&&_0x4ad8d7[_0x4fd298(0x1d3)][_0x4fd298(0x21a)]>0x0;return!![];}catch(_0x1dfea5){return![];}}window['__cacheHit']=null;const _0x19f492=window[_0x2f4e2d(0x1ba)][_0x2f4e2d(0x1c4)](window);window['fetch']=async function(_0x543430,_0xb596ae){const _0x436c1d=_0x2f4e2d,_0xfe99f9=typeof _0x543430===_0x436c1d(0x1e1)?_0x543430:_0x543430&&_0x543430[_0x436c1d(0x134)]||'',_0x20ef70=String(_0xb596ae&&_0xb596ae[_0x436c1d(0x253)]||_0x543430&&_0x543430[_0x436c1d(0x253)]||'GET')[_0x436c1d(0x262)]();if(_0x20ef70!=='GET'||!window[_0x436c1d(0x19e)]||!_0xfe99f9['startsWith'](window[_0x436c1d(0x19e)]))return _0x19f492(_0x543430,_0xb596ae);const _0x514091=await _0x2343b1(_0xfe99f9);let _0x461c90=null,_0x5b53fe=null;try{let _0x21ef23=_0xb596ae,_0x3e381a=null;if(_0x514091){const _0x4872af=new AbortController();_0x3e381a=setTimeout(()=>_0x4872af[_0x436c1d(0x10c)](),_0x419587),_0x21ef23=Object['assign']({},_0xb596ae,{'signal':_0x4872af[_0x436c1d(0x190)]});}try{_0x461c90=await _0x19f492(_0x543430,_0x21ef23);}finally{clearTimeout(_0x3e381a);}}catch(_0x3726fa){_0x5b53fe=_0x3726fa;}if(_0x461c90&&_0x461c90['ok']){const _0x300302=await _0x461c90[_0x436c1d(0x213)]()[_0x436c1d(0x143)]();if(_0x3a8a87(_0xfe99f9,_0x300302))return _0x25f122(_0xfe99f9,{'t':Date[_0x436c1d(0x26b)](),'body':_0x300302})[_0x436c1d(0x123)](()=>window[_0x436c1d(0x178)]&&window['__refreshSavedNames']()),_0x461c90;}if(_0x514091)return window['__cacheHit']={'url':_0xfe99f9,'t':_0x514091['t']},new Response(_0x514091[_0x436c1d(0x171)],{'status':0xc8,'headers':{'Content-Type':_0x436c1d(0x292)}});if(_0x461c90)return _0x461c90;throw _0x5b53fe||new TypeError(_0x436c1d(0x1e8));};const _0x42f9bc={'워로드':'warlord','버서커':'berserker','디스트로이어':_0x2f4e2d(0x2aa),'홀리나이트':_0x2f4e2d(0x12d),'슬레이어':'berserker_female','발키리':_0x2f4e2d(0x164),'배틀마스터':_0x2f4e2d(0x248),'인파이터':_0x2f4e2d(0x29f),'기공사':'force_master','창술사':'lance_master','스트라이커':'battle_master_male','브레이커':'infighter_male','데빌헌터':_0x2f4e2d(0x159),'블래스터':_0x2f4e2d(0x295),'호크아이':_0x2f4e2d(0x230),'스카우터':_0x2f4e2d(0x208),'건슬링어':_0x2f4e2d(0x282),'바드':'bard','서머너':_0x2f4e2d(0x146),'아르카나':_0x2f4e2d(0x119),'소서리스':'elemental_master','블레이드':_0x2f4e2d(0x239),'데모닉':_0x2f4e2d(0x254),'리퍼':_0x2f4e2d(0x296),'소울이터':_0x2f4e2d(0x27f),'도화가':_0x2f4e2d(0x1bc),'기상술사':_0x2f4e2d(0x1d0),'환수사':_0x2f4e2d(0x29b),'가디언나이트':'dragon_knight','차원술사':'dimension_master'};window[_0x2f4e2d(0x145)]=function(_0x32fe03){const _0x4a1fe2=_0x2f4e2d,_0x40b7b1=_0x42f9bc[String(_0x32fe03||'')[_0x4a1fe2(0x20a)](/\s+/g,'')];return _0x40b7b1?_0x4a1fe2(0x293)+_0x40b7b1+'.png':'';};const _0x509709=_0x2f4e2d(0x1b5),_0x583123=()=>{const _0x16231d=_0x2f4e2d;try{return JSON[_0x16231d(0x255)](localStorage[_0x16231d(0x172)](_0x509709))||{};}catch(_0x525fd9){return{};}};window[_0x2f4e2d(0x252)]=function(_0x441cb9,_0x2bcb1c){const _0x531cfd=_0x2f4e2d;if(!_0x441cb9||!_0x2bcb1c)return;try{const _0x53c1a8=_0x583123();if(_0x53c1a8[_0x441cb9]===_0x2bcb1c)return;_0x53c1a8[_0x441cb9]=_0x2bcb1c,localStorage[_0x531cfd(0x1c3)](_0x509709,JSON[_0x531cfd(0x23f)](_0x53c1a8));}catch(_0x2032a6){}};const _0x4c0193='loaview-recent',_0x4984c6=0x14,_0x14323e=()=>{const _0x5a0622=_0x2f4e2d;try{return JSON[_0x5a0622(0x255)](localStorage[_0x5a0622(0x172)](_0x4c0193))||[];}catch(_0x162307){return[];}};window[_0x2f4e2d(0x11e)]=function(_0xa61f16){const _0x46448a=_0x2f4e2d;try{const _0x3e4eeb=_0x14323e()['filter'](_0x19e5d2=>_0x19e5d2['n']!==_0xa61f16);_0x3e4eeb['unshift']({'n':_0xa61f16,'t':Date[_0x46448a(0x26b)]()}),localStorage[_0x46448a(0x1c3)](_0x4c0193,JSON[_0x46448a(0x23f)](_0x3e4eeb[_0x46448a(0x18b)](0x0,_0x4984c6)));}catch(_0x1c330e){}};const _0x2d3894='loaview-fav',_0x3356a2=_0x2f4e2d(0x29d),_0x33773c=_0x2cb664=>{const _0x46f1b2=_0x2f4e2d;try{const _0x584d8f=JSON[_0x46f1b2(0x255)](localStorage[_0x46f1b2(0x172)](_0x2cb664));return Array[_0x46f1b2(0x11b)](_0x584d8f)?_0x584d8f:[];}catch(_0x5c5ac0){return[];}},_0xfd0c66=(_0x47ad45,_0x510afe)=>{const _0x436dbd=_0x2f4e2d;try{localStorage['setItem'](_0x47ad45,JSON[_0x436dbd(0x23f)](_0x510afe));}catch(_0x38a03f){}};let _0x1e03ff=_0x2f4e2d(0x18a),_0x110452=new Set();const _0x2cd097=window[_0x2f4e2d(0x11e)];window[_0x2f4e2d(0x11e)]=function(_0x165d12){const _0x5c1f69=_0x2f4e2d;_0x2cd097(_0x165d12),_0xfd0c66(_0x3356a2,_0x33773c(_0x3356a2)[_0x5c1f69(0x184)](_0x59cebc=>_0x59cebc!==_0x165d12));};function _0x4167c0(){const _0x1a9b34=_0x2f4e2d,_0x287bf1=document[_0x1a9b34(0x22a)](_0x1a9b34(0x217));if(!_0x287bf1)return;const _0x4435d0=_0x33773c(_0x2d3894),_0x2776cc=new Set(_0x33773c(_0x3356a2));document[_0x1a9b34(0x166)](_0x1a9b34(0x21c))[_0x1a9b34(0x111)](_0xb673ef=>_0xb673ef[_0x1a9b34(0x261)][_0x1a9b34(0x291)]('active',_0xb673ef[_0x1a9b34(0x153)]['t']===_0x1e03ff));let _0x5e60e0;if(_0x1e03ff===_0x1a9b34(0x24e))_0x5e60e0=_0x4435d0[_0x1a9b34(0x18b)]();else{const _0x238624=_0x14323e()['map'](_0x39a63c=>_0x39a63c['n'])[_0x1a9b34(0x184)](_0x1edf1d=>_0x110452[_0x1a9b34(0x135)](_0x1edf1d));_0x110452[_0x1a9b34(0x111)](_0x40919e=>{const _0x364ad5=_0x1a9b34;if(!_0x238624[_0x364ad5(0x29c)](_0x40919e))_0x238624[_0x364ad5(0x115)](_0x40919e);});const _0x48cf0c=_0x238624[_0x1a9b34(0x184)](_0x456f5f=>!_0x2776cc['has'](_0x456f5f))[_0x1a9b34(0x18b)](0x0,_0x4984c6);_0x5e60e0=_0x48cf0c[_0x1a9b34(0x184)](_0x2dc27=>_0x4435d0[_0x1a9b34(0x29c)](_0x2dc27))[_0x1a9b34(0x167)](_0x48cf0c['filter'](_0x48b484=>!_0x4435d0[_0x1a9b34(0x29c)](_0x48b484)));}_0x287bf1['textContent']='';if(!_0x5e60e0[_0x1a9b34(0x21a)]){const _0x3b6dcd=document[_0x1a9b34(0x18c)]('li');_0x3b6dcd[_0x1a9b34(0x155)]=_0x1a9b34(0x1a6),_0x3b6dcd[_0x1a9b34(0x1db)]=_0x1e03ff===_0x1a9b34(0x24e)?_0x1a9b34(0x1ab):_0x1a9b34(0x101),_0x287bf1[_0x1a9b34(0x1fb)](_0x3b6dcd);return;}_0x5e60e0[_0x1a9b34(0x111)](_0x1b0160=>{const _0x3ef013=_0x1a9b34,_0x3f961f=_0x4435d0['includes'](_0x1b0160),_0x4835ae=document[_0x3ef013(0x18c)]('li');_0x4835ae['dataset'][_0x3ef013(0x15d)]=_0x1b0160,_0x4835ae[_0x3ef013(0x236)](_0x3ef013(0x15a),_0x3ef013(0x238));const _0x4e048b=document[_0x3ef013(0x18c)]('button');_0x4e048b[_0x3ef013(0x20f)]=_0x3ef013(0x26a),_0x4e048b[_0x3ef013(0x155)]=_0x3ef013(0x28a)+(_0x3f961f?'\x20on':''),_0x4e048b[_0x3ef013(0x1db)]=_0x3f961f?'★':'☆',_0x4e048b[_0x3ef013(0x110)]=_0x3f961f?_0x3ef013(0x1e2):'즐겨찾기\x20추가',_0x4e048b[_0x3ef013(0x153)][_0x3ef013(0x214)]=_0x3ef013(0x1dc);const _0x48fe7a=document['createElement'](_0x3ef013(0x265));_0x48fe7a[_0x3ef013(0x155)]=_0x3ef013(0x17c),_0x48fe7a[_0x3ef013(0x1db)]=_0x1b0160;const _0xf4257b=document['createElement'](_0x3ef013(0x26a));_0xf4257b[_0x3ef013(0x20f)]=_0x3ef013(0x26a),_0xf4257b[_0x3ef013(0x155)]=_0x3ef013(0x1eb),_0xf4257b[_0x3ef013(0x1db)]='✕',_0xf4257b[_0x3ef013(0x110)]='삭제',_0xf4257b['dataset'][_0x3ef013(0x214)]=_0x3ef013(0x21f);const _0xabfad3=window[_0x3ef013(0x145)](_0x583123()[_0x1b0160]);if(_0xabfad3){const _0x420254=document[_0x3ef013(0x18c)]('i');_0x420254[_0x3ef013(0x155)]='cls-emb\x20sm',_0x420254['style'][_0x3ef013(0x19b)]=_0x3ef013(0x174)+_0xabfad3+'\x22)',_0x4835ae[_0x3ef013(0x1a5)](_0x4e048b,_0x420254,_0x48fe7a,_0xf4257b);}else _0x4835ae['append'](_0x4e048b,_0x48fe7a,_0xf4257b);_0x287bf1[_0x3ef013(0x1fb)](_0x4835ae);});}window['__refreshSavedNames']=function(){const _0x2547e3=_0x2f4e2d;if(!document[_0x2547e3(0x22a)]('rcItems'))return;_0x5efa3b()[_0x2547e3(0x123)](_0x20c81e=>{const _0x31e8af=_0x2547e3,_0x13283f=new Set();_0x20c81e[_0x31e8af(0x111)](_0x47a8ea=>{const _0x34c02c=_0x31e8af,_0x293cc8=String(_0x47a8ea)['match'](/\/character\/([^/]+)\/all$/);if(_0x293cc8)_0x13283f[_0x34c02c(0x259)](decodeURIComponent(_0x293cc8[0x1]));}),_0x110452=_0x13283f,_0x4167c0();});};const _0x5326af=document[_0x2f4e2d(0x22a)](_0x2f4e2d(0x197));if(_0x5326af)_0x5326af[_0x2f4e2d(0x179)](_0x2f4e2d(0x106),_0x446fbe=>{const _0x5de270=_0x2f4e2d,_0x455a54=_0x446fbe[_0x5de270(0x275)][_0x5de270(0x257)](_0x5de270(0x1d2));if(!_0x455a54)return;_0x446fbe[_0x5de270(0x1ea)]();if(_0x455a54[_0x5de270(0x261)]['contains'](_0x5de270(0x15c))){_0x1e03ff=_0x455a54[_0x5de270(0x153)]['t'],_0x4167c0();return;}if(_0x455a54['id']===_0x5de270(0x27d)){if(!confirm(_0x1e03ff===_0x5de270(0x24e)?_0x5de270(0x15f):'최근\x20검색을\x20모두\x20삭제할까요?\x0a(즐겨찾기는\x20유지됩니다)'))return;if(_0x1e03ff===_0x5de270(0x24e))_0xfd0c66(_0x2d3894,[]);else _0xfd0c66(_0x3356a2,Array[_0x5de270(0x1b7)](new Set(_0x33773c(_0x3356a2)['concat'](Array[_0x5de270(0x1b7)](_0x110452),_0x14323e()[_0x5de270(0x181)](_0x9949b8=>_0x9949b8['n'])))));_0x4167c0();return;}const _0x2d16ff=_0x455a54[_0x5de270(0x257)]('li[data-name]');if(!_0x2d16ff)return;const _0x2cc244=_0x2d16ff['dataset'][_0x5de270(0x15d)],_0x1e4c20=_0x33773c(_0x2d3894);if(_0x455a54[_0x5de270(0x153)]['act']==='star')_0xfd0c66(_0x2d3894,_0x1e4c20[_0x5de270(0x29c)](_0x2cc244)?_0x1e4c20[_0x5de270(0x184)](_0x1aa83c=>_0x1aa83c!==_0x2cc244):[_0x2cc244][_0x5de270(0x167)](_0x1e4c20));else{if(_0x455a54[_0x5de270(0x153)][_0x5de270(0x214)]===_0x5de270(0x21f)){if(_0x1e03ff===_0x5de270(0x24e))_0xfd0c66(_0x2d3894,_0x1e4c20[_0x5de270(0x184)](_0x736b43=>_0x736b43!==_0x2cc244));else _0xfd0c66(_0x3356a2,Array[_0x5de270(0x1b7)](new Set(_0x33773c(_0x3356a2)[_0x5de270(0x167)](_0x2cc244))));}}_0x4167c0();});window[_0x2f4e2d(0x178)]();}()),document['querySelectorAll'](_0x3a81d4(0x203))[_0x3a81d4(0x111)](_0x5bed78=>{const _0x9db7aa=_0x3a81d4;_0x5bed78['addEventListener'](_0x9db7aa(0x106),()=>{const _0x1874f9=_0x9db7aa;document[_0x1874f9(0x166)](_0x1874f9(0x203))[_0x1874f9(0x111)](_0x44047d=>_0x44047d[_0x1874f9(0x261)][_0x1874f9(0x13a)](_0x1874f9(0x27c))),document[_0x1874f9(0x166)](_0x1874f9(0x10a))[_0x1874f9(0x111)](_0x34f254=>_0x34f254[_0x1874f9(0x261)][_0x1874f9(0x13a)](_0x1874f9(0x27c))),_0x5bed78[_0x1874f9(0x261)][_0x1874f9(0x259)](_0x1874f9(0x27c)),window['$'](_0x5bed78[_0x1874f9(0x153)][_0x1874f9(0x116)]==='av'?_0x1874f9(0x278):_0x1874f9(0x1d6))[_0x1874f9(0x261)]['add']('active');});}));const q=window['$']('q'),btn=window['$']('btn'),statusEl=window['$'](_0x3a81d4(0x10e)),mainEl=window['$'](_0x3a81d4(0x2ad)),skillPanelEl=window['$'](_0x3a81d4(0x11f)),arkgridPanelEl=window['$'](_0x3a81d4(0x242)),arkpassivePanelEl=window['$'](_0x3a81d4(0x28c)),expeditionPanelEl=window['$'](_0x3a81d4(0x168)),recentBtn=window['$'](_0x3a81d4(0x141)),recentList=window['$']('recentList');function setRecent(_0x2341dc){const _0x39d1e0=_0x3a81d4;recentList[_0x39d1e0(0x220)]=!_0x2341dc,recentBtn['classList']['toggle']('open',_0x2341dc),recentBtn[_0x39d1e0(0x236)](_0x39d1e0(0x2a8),String(_0x2341dc));if(_0x2341dc)window[_0x39d1e0(0x178)]();}recentBtn[_0x3a81d4(0x179)]('click',_0x502318=>{const _0x4b7650=_0x3a81d4;_0x502318[_0x4b7650(0x1c2)](),setRecent(recentList['hidden']);}),recentList[_0x3a81d4(0x179)](_0x3a81d4(0x106),_0x1a0a4f=>{const _0x13333e=_0x3a81d4,_0x2b2328=_0x1a0a4f[_0x13333e(0x275)]['closest'](_0x13333e(0x147));if(!_0x2b2328)return;setRecent(![]),q[_0x13333e(0xf9)]=_0x2b2328[_0x13333e(0x153)][_0x13333e(0x15d)],go(q[_0x13333e(0xf9)]);}),document[_0x3a81d4(0x179)](_0x3a81d4(0x106),_0x4136c9=>{const _0x51e4ae=_0x3a81d4;if(!_0x4136c9[_0x51e4ae(0x275)][_0x51e4ae(0x257)]('#recent'))setRecent(![]);}),document['addEventListener'](_0x3a81d4(0x1b6),_0x433162=>{const _0x119eeb=_0x3a81d4;if(_0x433162[_0x119eeb(0x1ce)]==='Escape')setRecent(![]);});if(skillPanelEl)mainEl[_0x3a81d4(0x166)](_0x3a81d4(0x16e))[0x1][_0x3a81d4(0x1fb)](skillPanelEl);if(arkgridPanelEl)mainEl[_0x3a81d4(0x166)]('.col')[0x1]['appendChild'](arkgridPanelEl);if(arkpassivePanelEl)mainEl['querySelectorAll']('.col')[0x1]['appendChild'](arkpassivePanelEl);if(expeditionPanelEl)mainEl[_0x3a81d4(0x166)](_0x3a81d4(0x16e))[0x1][_0x3a81d4(0x1fb)](expeditionPanelEl);let currentTab=_0x3a81d4(0x1d8),dataLoaded=![];function applyTabView(){const _0x3bbf39=_0x3a81d4;mainEl[_0x3bbf39(0x261)]['toggle'](_0x3bbf39(0x118),dataLoaded&&[_0x3bbf39(0x1d8),_0x3bbf39(0x193),_0x3bbf39(0x269),_0x3bbf39(0x19a),_0x3bbf39(0x16a),_0x3bbf39(0x1bf)][_0x3bbf39(0x29c)](currentTab)),mainEl['classList']['toggle']('skill-mode',[_0x3bbf39(0x269),_0x3bbf39(0x19a),_0x3bbf39(0x16a),_0x3bbf39(0x1bf)][_0x3bbf39(0x29c)](currentTab)),mainEl[_0x3bbf39(0x261)]['toggle'](_0x3bbf39(0x185),dataLoaded&&currentTab===_0x3bbf39(0x269));if(skillPanelEl)skillPanelEl[_0x3bbf39(0xfd)][_0x3bbf39(0x2a5)]=dataLoaded&&currentTab===_0x3bbf39(0x269)?'flex':_0x3bbf39(0x2a9);if(arkgridPanelEl)arkgridPanelEl['style'][_0x3bbf39(0x2a5)]=dataLoaded&&currentTab===_0x3bbf39(0x19a)?_0x3bbf39(0x215):_0x3bbf39(0x2a9);if(arkpassivePanelEl)arkpassivePanelEl[_0x3bbf39(0xfd)][_0x3bbf39(0x2a5)]=dataLoaded&&currentTab===_0x3bbf39(0x16a)?_0x3bbf39(0x215):_0x3bbf39(0x2a9);if(expeditionPanelEl)expeditionPanelEl['style'][_0x3bbf39(0x2a5)]=dataLoaded&&currentTab===_0x3bbf39(0x1bf)?_0x3bbf39(0x215):_0x3bbf39(0x2a9);}document[_0x3a81d4(0x166)]('.char-tab')[_0x3a81d4(0x111)](_0x532d43=>{const _0x17cf68=_0x3a81d4;_0x532d43[_0x17cf68(0x179)](_0x17cf68(0x106),()=>{const _0x1f1f71=_0x17cf68;document[_0x1f1f71(0x166)](_0x1f1f71(0x28f))[_0x1f1f71(0x111)](_0x214215=>_0x214215[_0x1f1f71(0x261)]['remove']('active')),_0x532d43['classList'][_0x1f1f71(0x259)]('active'),currentTab=_0x532d43[_0x1f1f71(0x153)][_0x1f1f71(0x116)];if(currentTab===_0x1f1f71(0x1d8))setEffPanelOpen(![]);else{if(currentTab==='stat')setEffPanelOpen(!![]);}applyTabView();if(currentTab===_0x1f1f71(0x1bf))loadExpedition();});}),btn[_0x3a81d4(0x179)](_0x3a81d4(0x106),()=>go(q['value']['trim']())),q[_0x3a81d4(0x179)]('keydown',_0x26a643=>{const _0x327ca6=_0x3a81d4;if(_0x26a643['key']===_0x327ca6(0x244))go(q[_0x327ca6(0xf9)][_0x327ca6(0x2ac)]());});let __reqSeq=0x0;async function go(_0x4f8ca0){const _0x30a6a0=_0x3a81d4;if(!_0x4f8ca0)return;const _0x19d02b=++__reqSeq;btn[_0x30a6a0(0x1ac)]=!![],statusEl[_0x30a6a0(0x155)]=_0x30a6a0(0x22c),statusEl[_0x30a6a0(0x22b)]=_0x30a6a0(0x104),statusEl[_0x30a6a0(0xfd)]['padding']='',window[_0x30a6a0(0x283)]=null,mainEl[_0x30a6a0(0x261)]['remove'](_0x30a6a0(0x118));try{const _0x485f1b=await fetch(window[_0x30a6a0(0x19e)]+_0x30a6a0(0x22f)+encodeURIComponent(_0x4f8ca0)+_0x30a6a0(0x14e));if(!_0x485f1b['ok'])throw new Error(_0x485f1b[_0x30a6a0(0x10e)]===0x194?'캐릭터를\x20찾을\x20수\x20없습니다':_0x30a6a0(0x273)+_0x485f1b[_0x30a6a0(0x10e)]+')');const _0x5c83c6=await _0x485f1b[_0x30a6a0(0xf6)]();if(!_0x5c83c6?.[_0x30a6a0(0x260)])throw new Error(_0x30a6a0(0x2a1));if(_0x19d02b!==__reqSeq)return;render(_0x5c83c6),window[_0x30a6a0(0x252)](_0x4f8ca0,_0x5c83c6['ArmoryProfile']['CharacterClassName']),window[_0x30a6a0(0x11e)](_0x4f8ca0),window[_0x30a6a0(0x178)]();if(window[_0x30a6a0(0x283)]&&/\/all$/['test'](window[_0x30a6a0(0x283)][_0x30a6a0(0x134)])){const _0x17a69a=new Date(window[_0x30a6a0(0x283)]['t'])['toLocaleString'](_0x30a6a0(0x243),{'hour12':![]});statusEl[_0x30a6a0(0x155)]='status\x20show',statusEl[_0x30a6a0(0xfd)][_0x30a6a0(0x20e)]=_0x30a6a0(0x130),statusEl[_0x30a6a0(0x1db)]=_0x30a6a0(0x133)+_0x17a69a+')';}else statusEl[_0x30a6a0(0x155)]='status';dataLoaded=!![],currentTab=_0x30a6a0(0x1d8),document[_0x30a6a0(0x166)](_0x30a6a0(0x28f))[_0x30a6a0(0x111)](_0x448ac5=>_0x448ac5[_0x30a6a0(0x261)][_0x30a6a0(0x291)](_0x30a6a0(0x27c),_0x448ac5[_0x30a6a0(0x153)][_0x30a6a0(0x116)]===_0x30a6a0(0x1d8))),applyTabView(),history[_0x30a6a0(0x25d)](null,'','?name='+encodeURIComponent(_0x4f8ca0));}catch(_0x51d0d6){if(_0x19d02b!==__reqSeq)return;dataLoaded=![],applyTabView(),statusEl['className']='status\x20show\x20err',statusEl[_0x30a6a0(0x1db)]=_0x51d0d6[_0x30a6a0(0x14a)]||_0x30a6a0(0x23c);}finally{if(_0x19d02b===__reqSeq)btn[_0x30a6a0(0x1ac)]=![];}}const TITLE_GRADE=((()=>{const _0x5c9f8d=_0x3a81d4,_0x570b23=new Map(),_0x23a33f=(_0x75dbca,_0x8b22ba)=>_0x8b22ba[_0x5c9f8d(0x111)](_0x2cb4c8=>_0x570b23[_0x5c9f8d(0x157)](_0x2cb4c8[_0x5c9f8d(0x1ec)]()['replace'](/\s+/g,'\x20')['trim'](),_0x75dbca));return _0x23a33f(_0x5c9f8d(0x26f),['심연의\x20군주',_0x5c9f8d(0x1c8),'광기의\x20그림자',_0x5c9f8d(0x289),_0x5c9f8d(0x139),_0x5c9f8d(0x271),'마수군단장\x20슬레이어','몽환군단장\x20슬레이어','악마\x20사냥꾼','욕망군단장\x20슬레이어',_0x5c9f8d(0x27a),_0x5c9f8d(0x177),_0x5c9f8d(0x19d),_0x5c9f8d(0xf5),_0x5c9f8d(0x21e),_0x5c9f8d(0x183),_0x5c9f8d(0x1bb),_0x5c9f8d(0x140),'크로체',_0x5c9f8d(0x23b),_0x5c9f8d(0x1b0),'홍염의\x20군주',_0x5c9f8d(0x279),_0x5c9f8d(0x1c5),_0x5c9f8d(0x12e),_0x5c9f8d(0x277),_0x5c9f8d(0x182),_0x5c9f8d(0x154),_0x5c9f8d(0x218),_0x5c9f8d(0x1b2),_0x5c9f8d(0x247),'S3\x20낙원의\x20주인','21년\x20최고의\x20금손',_0x5c9f8d(0x18e),_0x5c9f8d(0xfa),_0x5c9f8d(0x18f),_0x5c9f8d(0x1a4),_0x5c9f8d(0x233),'기분\x20좋은\x20향기',_0x5c9f8d(0x209),_0x5c9f8d(0x11d),'생활의\x20달인',_0x5c9f8d(0x294),_0x5c9f8d(0x251),'아크라시아의\x20순례자',_0x5c9f8d(0x12c)]),_0x23a33f('tg-relic',[_0x5c9f8d(0x1f6),'카멘\x20The\x201st',_0x5c9f8d(0x24a),_0x5c9f8d(0x10f),_0x5c9f8d(0x1e3),_0x5c9f8d(0x156),'날개를\x20꺾은\x20자',_0x5c9f8d(0x26e),_0x5c9f8d(0x1fa),_0x5c9f8d(0xfe),_0x5c9f8d(0x2a3),_0x5c9f8d(0x2a7),_0x5c9f8d(0x2a2),_0x5c9f8d(0x19f),'에스더의\x20후계자']),_0x23a33f('tg-ancient',['카제로스\x20The\x201st',_0x5c9f8d(0x1e0),_0x5c9f8d(0x1d9),_0x5c9f8d(0x202)]),_0x23a33f(_0x5c9f8d(0x256),[_0x5c9f8d(0x127)]),_0x23a33f(_0x5c9f8d(0x1a0),[_0x5c9f8d(0x24c)]),_0x23a33f(_0x5c9f8d(0x267),[_0x5c9f8d(0x1f1)]),_0x570b23;})()),TITLE_ICON_DIR=_0x3a81d4(0x13b),TITLE_ICON={'광기의\x20그림자':_0x3a81d4(0x11c),'뇌전의\x20군주':_0x3a81d4(0x26d),'마수의\x20포효':_0x3a81d4(0x137),'몽환의\x20지배자':_0x3a81d4(0x223),'삼라만상':_0x3a81d4(0x206),'심연의\x20군주':'abyss-lord','심연의\x20끝을\x20마주한\x20자':_0x3a81d4(0x192),'에스더의\x20결속자':_0x3a81d4(0x138),'에스더의\x20후계자':'esther-heir','이클립스':_0x3a81d4(0x1ad),'죽음을\x20부르는\x20자':_0x3a81d4(0x281),'쾌락의\x20탐닉자':_0x3a81d4(0x1d7),'혹한의\x20군주':_0x3a81d4(0x219),'홍염의\x20군주':'blaze-lord','세계수의\x20축복\x20받은\x20자':'worldtree-blessed'};function titleIconUrl(_0x49e8f4){const _0x5ad69b=_0x3a81d4,_0xdff80f=String(_0x49e8f4||'')['replace'](/\s+/g,'\x20')[_0x5ad69b(0x2ac)](),_0x4d1c9b=TITLE_ICON[_0xdff80f];return _0x4d1c9b?TITLE_ICON_DIR+_0x4d1c9b+_0x5ad69b(0x105):'';}function powerTier(_0x107760){const _0x5d9fd3=_0x3a81d4,_0xd9806b=[[0x2648,_0x5d9fd3(0x114)],[0x2260,_0x5d9fd3(0x1bd)],[0x1e78,_0x5d9fd3(0x23a)],[0x1a90,_0x5d9fd3(0x200)],[0x16a8,_0x5d9fd3(0x102)],[0x12c0,'rare'],[0xed8,_0x5d9fd3(0x207)],[0xaf0,_0x5d9fd3(0x186)]];for(const [_0x339797,_0x4b5347]of _0xd9806b)if(_0x107760>=_0x339797)return _0x4b5347;return'';}function titleGradeClass(_0x195172){const _0x3e813b=_0x3a81d4,_0x20aa21=String(_0x195172||'')[_0x3e813b(0x1ec)]()[_0x3e813b(0x20a)](/\s+/g,'\x20')[_0x3e813b(0x2ac)]();return TITLE_GRADE[_0x3e813b(0x286)](_0x20aa21)||_0x3e813b(0x189);}const TOURN={'URL':_0x3a81d4(0x229),'KEY':_0x3a81d4(0x297),'DAYS':0x1e,'SUPPORT':[_0x3a81d4(0x117),'만개',_0x3a81d4(0x29e),_0x3a81d4(0x14c)],'SHORT':{'고독한\x20기사':'고기','전투\x20태세':'전태','광기':'광기','광전사의\x20비기':'비기','분노의\x20망치':'분망','중력\x20수련':'중수','심판자':_0x3a81d4(0x288),'축복의\x20오라':'축오','처단자':_0x3a81d4(0x1f9),'포식자':_0x3a81d4(0x28d),'빛의\x20기사':_0x3a81d4(0x125),'해방자':_0x3a81d4(0x14c),'초심':'초심','오의\x20강화':'오의','충격\x20단련':'충단','체술':'체술','무상신공':'무상','역천지체':'역천','절정':'절정','절제':'절제','오의난무':'난무','일격필살':'일격','권왕파천무':'권왕','수라의\x20길':'수라','전술\x20탄환':'전탄','핸드\x20거너':'핸건','화력\x20강화':'화강','포격\x20강화':'포강','죽음의\x20습격':'죽습','두\x20번째\x20동료':'두동','진화의\x20유산':'유산','아르데타인의\x20기술':'기술','피스메이커':'피메','사냥의\x20시간':'사시','상급\x20소환사':'상소','넘치는\x20교감':'교감','황제의\x20칙령':'황제','황후의\x20은총':'황후','진실된\x20용맹':'진용','절실한\x20구원':'절구','점화':'점화','환류':'환류','버스트':_0x3a81d4(0x225),'잔재된\x20기운':'잔재','멈출\x20수\x20없는\x20충동':'충동','완벽한\x20억제':'억제','달의\x20소리':'달소','갈증':'갈증','만월의\x20집행자':'만월','만개':'만개','그믐의\x20경계':'그믐','회귀':'회귀','이슬비':_0x3a81d4(0x1cd),'질풍노도':'질풍','환수\x20각성':'환각','야성':'야성','업화':'업화','드레드\x20로어':'드드','시간\x20관리자':'시간','공간\x20검사':'공간'}},TIER_COLORS=['','#ffd24a',_0x3a81d4(0x201),_0x3a81d4(0x1c9),_0x3a81d4(0x2a4),_0x3a81d4(0x25e),_0x3a81d4(0x1ae)];function _0xa66d(_0x1333da,_0x32dd49){_0x1333da=_0x1333da-0xf4;const _0x448796=_0x4487();let _0xa66d23=_0x448796[_0x1333da];return _0xa66d23;}function tournCalcTiers(_0x50b697){const _0x3fda32=_0x3a81d4,_0x3224f3=[..._0x50b697][_0x3fda32(0x14d)]((_0x1359f7,_0x10ee30)=>_0x10ee30[_0x3fda32(0x1a7)]-_0x1359f7[_0x3fda32(0x1a7)]||_0x10ee30[_0x3fda32(0x234)]-_0x1359f7[_0x3fda32(0x234)]),_0x1a9a05=_0x3224f3['length'],_0x5ef222=_0x1a9a05>0xa?_0x3224f3[_0x3fda32(0x18b)](_0x1a9a05-0xa):[],_0xc2b58b=_0x1a9a05>0xa?_0x3224f3['slice'](0x0,_0x1a9a05-0xa):_0x3224f3,_0x2373f2=_0xc2b58b['slice'](0x1b),_0x26a40d=Math[_0x3fda32(0x11a)](_0x2373f2['length']/0x2),_0x3ddd8c=[_0xc2b58b[_0x3fda32(0x18b)](0x0,0x6),_0xc2b58b[_0x3fda32(0x18b)](0x6,0xf),_0xc2b58b['slice'](0xf,0x1b),_0x2373f2[_0x3fda32(0x18b)](0x0,_0x26a40d),_0x2373f2[_0x3fda32(0x18b)](_0x26a40d),_0x5ef222],_0x20b97a={};return _0x3ddd8c[_0x3fda32(0x111)]((_0x5cc9f6,_0x543cc2)=>_0x5cc9f6[_0x3fda32(0x111)](_0x10b744=>{const _0x1cd90c=_0x3fda32;_0x20b97a[_0x10b744[_0x1cd90c(0x1fe)]]=Object[_0x1cd90c(0x18d)]({},_0x10b744,{'tier':_0x543cc2+0x1,'rank':_0x3224f3[_0x1cd90c(0x163)](_0x10b744)+0x1,'of':_0x1a9a05});})),_0x20b97a;}let __tournP=null;function loadTournTiers(){if(__tournP)return __tournP;return __tournP=(async()=>{const _0x1ffdd5=_0xa66d;try{const _0x5b63ea=sessionStorage[_0x1ffdd5(0x172)](_0x1ffdd5(0x175));if(_0x5b63ea){const _0x568d61=JSON['parse'](_0x5b63ea);if(Date[_0x1ffdd5(0x26b)]()-_0x568d61['t']<0x1e*0x3c*0x3e8)return _0x568d61[_0x1ffdd5(0x181)];}}catch(_0x453b38){}const _0x1806c5=await fetch(TOURN[_0x1ffdd5(0x1b1)]+'/rest/v1/rpc/get_tier_data',{'method':_0x1ffdd5(0x258),'headers':{'apikey':TOURN[_0x1ffdd5(0x142)],'Content-Type':_0x1ffdd5(0x292)},'body':JSON[_0x1ffdd5(0x23f)]({'p_type':'op','p_days':TOURN['DAYS']})});if(!_0x1806c5['ok'])throw new Error(_0x1ffdd5(0x13e)+_0x1806c5[_0x1ffdd5(0x10e)]);const _0x412009=await _0x1806c5['json'](),_0x38b827=_0x412009[_0x1ffdd5(0x184)](_0x43c285=>!TOURN['SUPPORT'][_0x1ffdd5(0x29c)](_0x43c285['engraving_name']))[_0x1ffdd5(0x181)](_0x2f7f68=>({'name':_0x2f7f68['engraving_name'],'short':TOURN[_0x1ffdd5(0x28e)][_0x2f7f68[_0x1ffdd5(0x263)]]||_0x2f7f68['engraving_name'],'winRate':Number(_0x2f7f68[_0x1ffdd5(0x1a1)]),'total':Number(_0x2f7f68[_0x1ffdd5(0x124)]),'win':Number(_0x2f7f68[_0x1ffdd5(0x28b)]),'lose':Number(_0x2f7f68['lose_count'])})),_0x477c54=tournCalcTiers(_0x38b827);try{sessionStorage[_0x1ffdd5(0x1c3)](_0x1ffdd5(0x175),JSON[_0x1ffdd5(0x23f)]({'t':Date[_0x1ffdd5(0x26b)](),'map':_0x477c54}));}catch(_0x2db6f1){}return _0x477c54;})()['catch'](_0x1fa332=>{__tournP=null;throw _0x1fa332;}),__tournP;}window[_0x3a81d4(0x120)]=function(_0x230397,_0x85a76e,_0x3c7d7f){const _0x1a3425=_0x3a81d4,_0x741238=window['$'](_0x1a3425(0x1dd)),_0x2f3763=window['$'](_0x1a3425(0x13c)),_0xae1e26=window['$'](_0x1a3425(0x221));_0x741238&&(_0x741238[_0x1a3425(0x153)][_0x1a3425(0x24f)]=_0x230397||'',_0x741238['innerHTML']=_0x230397?_0x230397+'<small>티어</small>':'-',_0x741238[_0x1a3425(0xfd)][_0x1a3425(0x1f3)]=_0x230397?TIER_COLORS[_0x230397]:_0x1a3425(0x2ab)),_0x2f3763&&(_0x2f3763[_0x1a3425(0x1db)]=_0x85a76e==null?'-':_0x85a76e[_0x1a3425(0x287)](0x1)+'%',_0x2f3763['style']['color']=_0x85a76e==null?_0x1a3425(0x2ab):_0x85a76e>=0x34?'#3cc78c':_0x85a76e>=0x30?_0x1a3425(0xfc):_0x1a3425(0x109)),_0xae1e26&&(_0xae1e26[_0x1a3425(0x153)]['tip']=_0x3c7d7f||'',!_0xae1e26[_0x1a3425(0x21d)]&&(_0xae1e26[_0x1a3425(0x21d)]=!![],_0xae1e26[_0x1a3425(0x179)](_0x1a3425(0x25c),_0x16145c=>{const _0x301078=_0x1a3425;if(_0xae1e26[_0x301078(0x153)][_0x301078(0x12f)])showTip(_0x16145c,_0xae1e26[_0x301078(0x153)][_0x301078(0x12f)]);}),_0xae1e26['addEventListener'](_0x1a3425(0x187),hideTip)));};async function updateTierBox(_0x3efe41){const _0x80c34f=_0x3a81d4;window[_0x80c34f(0x120)](null,null);const _0x33e538=_0x3efe41[_0x80c34f(0x260)]&&_0x3efe41[_0x80c34f(0x260)][_0x80c34f(0x270)]||'',_0x4e17c7=String(_0x3efe41['ArkPassive']&&_0x3efe41['ArkPassive']['Title']||'')['trim']();if(!_0x4e17c7)return;const _0x3ed291=(window[_0x80c34f(0x17e)]||{})[_0x4e17c7]||_0x4e17c7,_0x36bdf2=Object['keys'](TOURN[_0x80c34f(0x28e)])[_0x80c34f(0x25a)](_0x48ca4c=>TOURN[_0x80c34f(0x28e)][_0x48ca4c]===_0x3ed291);if(_0x36bdf2&&TOURN[_0x80c34f(0x20d)][_0x80c34f(0x29c)](_0x36bdf2))return;['tierRank',_0x80c34f(0x13c)][_0x80c34f(0x111)](_0x1e951c=>{const _0x2267d0=_0x80c34f,_0x43ee9e=window['$'](_0x1e951c);_0x43ee9e&&(_0x43ee9e[_0x2267d0(0x1db)]='',_0x43ee9e['style'][_0x2267d0(0x1f3)]='',_0x43ee9e[_0x2267d0(0x22b)]=_0x2267d0(0x180));});const _0x4611c6=()=>{const _0x3d9dee=_0x80c34f;if(window[_0x3d9dee(0x290)]===_0x3efe41)[_0x3d9dee(0x1dd),_0x3d9dee(0x13c)][_0x3d9dee(0x111)](_0x51b2d4=>{const _0x26396a=_0x3d9dee,_0x2385f3=window['$'](_0x51b2d4);_0x2385f3&&_0x2385f3[_0x26396a(0x16d)](_0x26396a(0x150))&&(_0x2385f3[_0x26396a(0x1db)]='-',_0x2385f3[_0x26396a(0xfd)][_0x26396a(0x1f3)]=_0x26396a(0x2ab));});};try{const _0x11ebca=await loadTournTiers();if(window[_0x80c34f(0x290)]!==_0x3efe41)return;const _0x4a6396=_0x11ebca[_0x3ed291];if(!_0x4a6396){_0x4611c6();return;}window[_0x80c34f(0x120)](_0x4a6396[_0x80c34f(0x1ee)],_0x4a6396[_0x80c34f(0x1a7)],_0x80c34f(0x1d4)+_0x33e538+'\x20'+_0x4e17c7+_0x80c34f(0x160)+_0x4a6396['of']+_0x80c34f(0x126)+_0x4a6396[_0x80c34f(0x24f)]+_0x80c34f(0x176)+_0x4a6396[_0x80c34f(0x1ee)]+_0x80c34f(0x196)+TOURN['DAYS']+'일\x201:1\x20승률\x20'+_0x4a6396['winRate'][_0x80c34f(0x287)](0x1)+_0x80c34f(0x1b3)+_0x4a6396[_0x80c34f(0x234)]+'전\x20'+_0x4a6396[_0x80c34f(0x162)]+'승\x20'+_0x4a6396[_0x80c34f(0x204)]+'패</div>');}catch(_0x3b4ad5){_0x4611c6();}}function render(_0x3aedee){const _0x38ced2=_0x3a81d4;window[_0x38ced2(0x290)]=_0x3aedee,window['__charClass']='',window[_0x38ced2(0x22d)]=0x0,window[_0x38ced2(0x205)]=0x0,window[_0x38ced2(0x20c)]=0x0,window[_0x38ced2(0x14b)]=0x0,window[_0x38ced2(0x1be)]=null,window['__backAtk10Checked']=![],window[_0x38ced2(0x249)]=![],window[_0x38ced2(0x17d)]=![],window['__identityBuff']=null,window[_0x38ced2(0x241)]=null,window['__engData']=null,window['__evoEffects']=null,window['__evoSum']=null,window[_0x38ced2(0x23d)]=[],window[_0x38ced2(0x17b)]='';const _0x151c41=_0x3aedee['ArmoryProfile'],_0x5edb52=window['$'](_0x38ced2(0x299));_0x5edb52[_0x38ced2(0x22b)]='';if(_0x151c41[_0x38ced2(0x149)]){const _0x42e8ce=document[_0x38ced2(0x18c)]('img');_0x42e8ce[_0x38ced2(0x276)]=_0x151c41[_0x38ced2(0x149)],_0x42e8ce[_0x38ced2(0x1aa)]=_0x151c41['CharacterName']||'',_0x42e8ce['loading']=_0x38ced2(0x13f),_0x5edb52[_0x38ced2(0x1fb)](_0x42e8ce);}const _0xc53832=parseFloat(String(_0x151c41[_0x38ced2(0x100)]||'0')[_0x38ced2(0x20a)](/,/g,''))||0x0,_0x4297c1=powerTier(_0xc53832);_0x5edb52[_0x38ced2(0x155)]=_0x38ced2(0x128);const _0x45eb72=_0x5edb52[_0x38ced2(0x257)](_0x38ced2(0x29a));if(_0x45eb72)_0x45eb72['className']=_0x38ced2(0x1ef)+(_0x4297c1?_0x38ced2(0x14f)+_0x4297c1:'');const _0x59b4e5=(_0x23860d,_0x262066,_0xfe97ce)=>{const _0x5575c9=_0x38ced2,_0x3dca19=document[_0x5575c9(0x18c)](_0x23860d);if(_0x262066)_0x3dca19[_0x5575c9(0x155)]=_0x262066;if(_0xfe97ce!=null)_0x3dca19[_0x5575c9(0x1db)]=_0xfe97ce;return _0x3dca19;},_0x7bd35f=_0x59b4e5('div',_0x38ced2(0x245)),_0x4efddb={'고독한\x20기사':'고기','전투\x20태세':'전태','광기':'광기','광전사의\x20비기':'비기','분노의\x20망치':'분망','중력\x20수련':'중수','심판자':_0x38ced2(0x288),'축복의\x20오라':'축오','처단자':'처단자','포식자':_0x38ced2(0x28d),'빛의\x20기사':'빛의\x20기사','해방자':_0x38ced2(0x14c),'초심':'초심','오의\x20강화':'오의','충격\x20단련':'충단','극의:\x20체술':'체술','무상신공':'무상','역천지체':'역천','절정':'절정','절제':'절제','오의난무':'난무','일격필살':'일격','권왕파천무':'권왕','수라의\x20길':'수라','전술\x20탄환':'전탄','핸드거너':'핸건','화력\x20강화':'화강','포격\x20강화':'포강','죽음의\x20습격':'죽습','두\x20번째\x20동료':'두동','진화의\x20유산':'유산','아르데타인의\x20기술':'기술','피스메이커':'피메','사냥의\x20시간':'사시','상급\x20소환사':'상소','넘치는\x20교감':'교감','황제의\x20칙령':'황제','황후의\x20은총':'황후','진실된\x20용맹':'진용','절실한\x20구원':'절구','점화':'점화','환류':'환류','버스트':'버스트','잔재된\x20기운':'잔재','멈출\x20수\x20없는\x20충동':'충동','완벽한\x20억제':'억제','달의\x20소리':'달소','갈증':'갈증','만월의\x20집행자':'만월','만개':'만개','그믐의\x20경계':'그믐','회귀':'회귀','이슬비':_0x38ced2(0x1cd),'질풍노도':'질풍','환수\x20각성':'환각','야성':'야성','업화의\x20계승자':'업화','드레드\x20로어':'드드','시간\x20관리자':'시간','공간\x20검사':'공간'};window[_0x38ced2(0x17e)]=_0x4efddb;const _0xa59a78=_0x3aedee[_0x38ced2(0x108)]?.[_0x38ced2(0x274)],_0x5818bb=_0xa59a78?_0x4efddb[String(_0xa59a78)[_0x38ced2(0x2ac)]()]||_0xa59a78:_0xa59a78;_0x7bd35f['appendChild'](_0x59b4e5(_0x38ced2(0x1e6),_0x38ced2(0x227),_0x38ced2(0x1fc)+(_0x151c41[_0x38ced2(0x16b)]??'-')+'\x20'+(_0x151c41['CharacterClassName']||'')+(_0x5818bb?'\x20#'+_0x5818bb:'')));const _0x587b91=_0x59b4e5(_0x38ced2(0x1e6),_0x38ced2(0x103),_0x151c41[_0x38ced2(0x1a3)]||'-');{const _0x15f405=window['__classEmblemUrl']&&window['__classEmblemUrl'](_0x151c41[_0x38ced2(0x270)]);if(_0x15f405){const _0x2cd03f=document[_0x38ced2(0x18c)]('i');_0x2cd03f['className']=_0x38ced2(0x22e),_0x2cd03f[_0x38ced2(0xfd)]['backgroundImage']=_0x38ced2(0x174)+_0x15f405+'\x22)',_0x2cd03f[_0x38ced2(0x110)]=_0x151c41['CharacterClassName']||'',_0x587b91['insertBefore'](_0x2cd03f,_0x587b91[_0x38ced2(0x1b4)]);}}_0x7bd35f[_0x38ced2(0x1fb)](_0x587b91);const _0xee2864=_0x59b4e5(_0x38ced2(0x1e6),_0x38ced2(0x12a)),_0x17d5af=_0x59b4e5(_0x38ced2(0x1e6),_0x38ced2(0x148));_0x17d5af[_0x38ced2(0x1fb)](_0x59b4e5('i','',_0x38ced2(0x285))),_0x17d5af[_0x38ced2(0x1fb)](_0x59b4e5('b','',_0x151c41[_0x38ced2(0x151)]||'-'));const _0x1437b2=_0x59b4e5('div',_0x38ced2(0x1c1));_0x1437b2[_0x38ced2(0x1fb)](_0x59b4e5('i','','⚔️')),_0x1437b2[_0x38ced2(0x1fb)](_0x59b4e5('b','',_0x151c41[_0x38ced2(0x100)]||'-')),_0xee2864[_0x38ced2(0x1fb)](_0x17d5af),_0xee2864[_0x38ced2(0x1fb)](_0x1437b2),_0x7bd35f['appendChild'](_0xee2864),_0x5edb52[_0x38ced2(0x1fb)](_0x7bd35f);{window['__embWrap']=null;const _0x54cf4c=_0x151c41[_0x38ced2(0x1cc)]||{},_0x262dc3=[],_0x175434=_0x2ce9b9=>{const _0x100e7d=_0x38ced2,_0x48cbaf=typeof _0x2ce9b9==='string'?_0x2ce9b9:_0x2ce9b9&&(_0x2ce9b9[_0x100e7d(0x1a9)]||_0x2ce9b9[_0x100e7d(0x107)]||_0x2ce9b9[_0x100e7d(0x246)]);if(_0x48cbaf&&/^https?:/[_0x100e7d(0x240)](_0x48cbaf))_0x262dc3['push'](_0x48cbaf);};(Array[_0x38ced2(0x11b)](_0x54cf4c[_0x38ced2(0x1d1)])?_0x54cf4c['Emblems']:[])[_0x38ced2(0x111)](_0x175434);if(_0x262dc3[_0x38ced2(0x21a)]){const _0xc936dc=_0x59b4e5(_0x38ced2(0x1e6),_0x38ced2(0x194));_0xc936dc[_0x38ced2(0xfd)][_0x38ced2(0x1b8)]=_0x38ced2(0x131),_0x262dc3[_0x38ced2(0x111)]((_0x458481,_0x481c5d)=>{const _0x23dfef=_0x38ced2,_0x146c86=document['createElement'](_0x23dfef(0x222));_0x146c86[_0x23dfef(0x276)]=_0x458481,_0x146c86[_0x23dfef(0x1aa)]='',_0x146c86['loading']=_0x23dfef(0x13f),_0x146c86[_0x23dfef(0xfd)]['cssText']=_0x23dfef(0x272),_0x146c86[_0x23dfef(0x112)]=()=>_0x146c86[_0x23dfef(0x13a)](),_0xc936dc['appendChild'](_0x146c86);}),_0x7bd35f['appendChild'](_0xc936dc);}}const _0x21c8cc=_0x59b4e5(_0x38ced2(0x1e6),'art-rows'),_0x1945ad=(_0x2d2638,_0x281090,_0x3eb84b,_0x4e6979)=>{const _0x223d18=_0x38ced2,_0x2b3298=_0x59b4e5(_0x223d18(0x1e6),_0x223d18(0x16f));_0x2b3298['appendChild'](_0x59b4e5('span',_0x223d18(0x1cf),_0x2d2638));const _0x3d964a=_0x59b4e5(_0x223d18(0x265),_0x223d18(0x27e)+(_0x3eb84b?'\x20'+_0x3eb84b:''),_0x281090);_0x4e6979&&(_0x3d964a[_0x223d18(0xfd)][_0x223d18(0x1f3)]=_0x4e6979,_0x3d964a[_0x223d18(0xfd)][_0x223d18(0x10d)]=_0x223d18(0x191)),_0x2b3298[_0x223d18(0x1fb)](_0x3d964a),_0x21c8cc[_0x223d18(0x1fb)](_0x2b3298);};_0x1945ad('서버',_0x151c41[_0x38ced2(0x144)]||'-','',_0x151c41[_0x38ced2(0x144)]?_0x38ced2(0x26c):''),_0x1945ad(_0x38ced2(0x173),_0x151c41[_0x38ced2(0x1de)]!=null?_0x38ced2(0x266)+_0x151c41['ExpeditionLevel']:'-','',_0x151c41[_0x38ced2(0x1de)]!=null?'#7fd1ff':''),_0x1945ad('칭호',_0x151c41[_0x38ced2(0x274)]||'-',_0x151c41[_0x38ced2(0x274)]?titleGradeClass(_0x151c41['Title']):'');{const _0x145cd2=titleIconUrl(_0x151c41[_0x38ced2(0x274)]);if(_0x145cd2){const _0xbf40d9=_0x21c8cc[_0x38ced2(0x15e)]&&_0x21c8cc[_0x38ced2(0x15e)]['querySelector'](_0x38ced2(0x23e));if(_0xbf40d9){const _0x34d6ce=[..._0xbf40d9[_0x38ced2(0x261)]]['filter'](_0x3d25b2=>/^tg-/[_0x38ced2(0x240)](_0x3d25b2));_0x34d6ce[_0x38ced2(0x111)](_0x1f490b=>_0xbf40d9[_0x38ced2(0x261)][_0x38ced2(0x13a)](_0x1f490b));const _0x4a7383=document['createElement'](_0x38ced2(0x265));_0x4a7383['className']=_0x38ced2(0x1c7);const _0xa2d853=document[_0x38ced2(0x18c)](_0x38ced2(0x265));_0xa2d853[_0x38ced2(0x155)]=_0x34d6ce['join']('\x20'),_0xa2d853['textContent']=_0x151c41['Title'],_0x4a7383[_0x38ced2(0x1fb)](_0xa2d853),_0xbf40d9['textContent']='';const _0xe3c1c0=document[_0x38ced2(0x18c)](_0x38ced2(0x222));_0xe3c1c0[_0x38ced2(0x155)]=_0x38ced2(0x1ff),_0xe3c1c0['src']=_0x145cd2,_0xe3c1c0[_0x38ced2(0x1aa)]='',_0xe3c1c0['loading']='lazy',_0xe3c1c0[_0x38ced2(0x112)]=()=>_0xe3c1c0[_0x38ced2(0x13a)](),_0xbf40d9[_0x38ced2(0x261)][_0x38ced2(0x259)](_0x38ced2(0xf8)),_0xbf40d9[_0x38ced2(0x1a5)](_0xe3c1c0,_0x4a7383);}}}_0x1945ad('길드',_0x151c41[_0x38ced2(0x1ed)]||'-',_0x151c41[_0x38ced2(0x1ed)]?_0x38ced2(0x12b):''),_0x1945ad('영지',_0x151c41[_0x38ced2(0x1fd)]?_0x38ced2(0x266)+(_0x151c41[_0x38ced2(0x1da)]??'-')+'\x20'+_0x151c41['TownName']:'-','',_0x151c41[_0x38ced2(0x1fd)]?_0x38ced2(0x1b9):'');{const _0x36cbf8=Object[_0x38ced2(0x280)](_0x151c41)[_0x38ced2(0x25a)](_0x2c038a=>/honor|명예/i[_0x38ced2(0x240)](_0x2c038a));if(_0x36cbf8&&_0x151c41[_0x36cbf8]!=null&&_0x151c41[_0x36cbf8]!==''){const _0xb6df2f=parseInt(String(_0x151c41[_0x36cbf8])[_0x38ced2(0x20a)](/[^0-9]/g,''),0xa)||0x0,_0x3177a4=_0xb6df2f>=0x3e8?_0x38ced2(0x226):_0xb6df2f>=0x1f4?'#CE43FC':_0xb6df2f>=0x12c?_0x38ced2(0x161):_0xb6df2f>=0x64?_0x38ced2(0x1f4):_0x38ced2(0x224);_0x1945ad('명예',String(_0x151c41[_0x36cbf8]),'',_0x3177a4);}}_0x1945ad('토너',_0x38ced2(0x19c),_0x38ced2(0x17a),_0x38ced2(0x235));{const _0x175de6=window[_0x38ced2(0x283)]&&/\/all$/[_0x38ced2(0x240)](window[_0x38ced2(0x283)][_0x38ced2(0x134)]),_0x44f252=_0x175de6?window[_0x38ced2(0x283)]['t']:Date['now'](),_0x1cd311=_0x59b4e5(_0x38ced2(0x1e6),'art-upd');_0x1cd311['style'][_0x38ced2(0x1b8)]=_0x38ced2(0x10b)+(_0x175de6?_0x38ced2(0x237):_0x38ced2(0xfc))+_0x38ced2(0x21b)+(_0x175de6?'rgba(255,150,70,.5)':_0x38ced2(0x129))+_0x38ced2(0x1e5);const _0x275f3d=()=>{const _0x5701a5=_0x38ced2,_0x1b19bd=Math['floor']((Date[_0x5701a5(0x26b)]()-_0x44f252)/0xea60);_0x1cd311['textContent']=_0x1b19bd<0x1?'방금':_0x1b19bd<0x3c?_0x1b19bd+'분전':Math[_0x5701a5(0xff)](_0x1b19bd/0x3c)+_0x5701a5(0x1af);};_0x275f3d(),_0x5edb52[_0x38ced2(0x1fb)](_0x1cd311),clearInterval(window['__updTimer']),window[_0x38ced2(0x152)]=setInterval(()=>{const _0x49f2b8=_0x38ced2;if(!_0x1cd311[_0x49f2b8(0x198)])return clearInterval(window[_0x49f2b8(0x152)]);_0x275f3d();},0x4e20);}_0x5edb52[_0x38ced2(0x1fb)](_0x21c8cc),window['$'](_0x38ced2(0x13d))[_0x38ced2(0x1db)]=_0x151c41[_0x38ced2(0x1a3)]||'-',window['$'](_0x38ced2(0x25f))[_0x38ced2(0x1db)]=[_0x151c41[_0x38ced2(0x270)],_0x3aedee[_0x38ced2(0x108)]?.[_0x38ced2(0x274)]]['filter'](Boolean)[_0x38ced2(0x195)](_0x38ced2(0x1d5))||'-',window[_0x38ced2(0x1df)]=_0x151c41[_0x38ced2(0x270)]||'',window['$'](_0x38ced2(0x188))[_0x38ced2(0x1db)]=_0x151c41[_0x38ced2(0x144)]||'-',window['$'](_0x38ced2(0x210))['textContent']=_0x151c41[_0x38ced2(0x1ed)]||'-',window['$']('pLevel')[_0x38ced2(0x1db)]=_0x151c41[_0x38ced2(0x16b)]??'-',window['$'](_0x38ced2(0x1cb))['textContent']=_0x151c41[_0x38ced2(0x1de)]??'-',window['$'](_0x38ced2(0x17f))[_0x38ced2(0x1db)]=_0x151c41['ItemAvgLevel']||'-';const _0x4d9c77=window['$']('pTitle');_0x4d9c77[_0x38ced2(0x1db)]=_0x151c41[_0x38ced2(0x274)]||'-',_0x151c41[_0x38ced2(0x274)]?(_0x4d9c77[_0x38ced2(0xfd)][_0x38ced2(0x1f3)]='#CFAD7E',_0x4d9c77[_0x38ced2(0xfd)][_0x38ced2(0x10d)]=_0x38ced2(0x191)):_0x4d9c77[_0x38ced2(0xfd)][_0x38ced2(0x1f3)]='',window['$'](_0x38ced2(0x121))[_0x38ced2(0x1db)]=_0x151c41[_0x38ced2(0x100)]||'-',renderStats(_0x151c41['Stats']||[],_0x3aedee[_0x38ced2(0xf4)]||[],_0x3aedee),renderEng(_0x3aedee[_0x38ced2(0x24b)]),renderArkGrid(_0x3aedee[_0x38ced2(0x27b)]),renderArkGridTab(_0x3aedee[_0x38ced2(0x27b)],_0x3aedee),renderArkPassiveTab(_0x3aedee[_0x38ced2(0x108)],_0x3aedee),renderGear(_0x3aedee['ArmoryEquipment']||[],_0x3aedee['ArmoryAvatars']||[]),renderAvatars(_0x3aedee[_0x38ced2(0xfb)]||[]),renderGems(_0x3aedee[_0x38ced2(0x169)],_0x3aedee[_0x38ced2(0x1f7)]),renderCards(_0x3aedee[_0x38ced2(0x1e7)]),renderAP(_0x3aedee[_0x38ced2(0x108)]),window[_0x38ced2(0x24d)]={'used':_0x151c41[_0x38ced2(0x158)],'total':_0x151c41[_0x38ced2(0x1f8)]},window[_0x38ced2(0x170)]=getSwiftCdPct(_0x151c41[_0x38ced2(0x16c)]||[]),window[_0x38ced2(0x211)]=buildSkillGemMap(_0x3aedee[_0x38ced2(0x169)]),renderSkills(_0x3aedee[_0x38ced2(0x1f7)]||[],_0x3aedee[_0x38ced2(0x169)]),setEffPanelOpen(![]),updateTierBox(_0x3aedee);}function _0x4487(){const _0xfca052=['즐겨찾기\x20해제','카멘\x20The\x20TOP10','.mc',';border-radius:999px;padding:3px\x209px;backdrop-filter:blur(4px)','div','ArmoryCard','network\x20error','getAllKeys','stopImmediatePropagation','rc-x','toLowerCase','GuildName','tier','box\x20profile','contains','심연의\x20끝을\x20마주한\x20자','label','color','#8DF901','error','죽음을\x20부르는\x20자','ArmorySkills','TotalSkillPoint','처단자','벨가누스\x20슬레이어','appendChild','Lv.\x20','TownName','short','t-ico','legend','#ff9f43','카제로스\x20The\x20TOP10','.eq-tab','lose','__eumLv','all-things','uncommon','scouter','모코코\x20사냥꾼','replace','315213RPUNif','__ipsikLv','SUPPORT','padding','type','pGuild','__gemMap','.mc.open','clone','act','flex','28DKUPEH','rcItems','S2\x20낙원의\x20주인','frost-lord','length',';background:rgba(8,12,24,.62);border:1px\x20solid\x20','#recentList\x20.rc-tab','__tipBound','분노의\x20포식자','del','hidden','tierBox','img','dream-ruler','#aeb6c6','버스트','#F9AE00','art-class','objectStore','https://khszfukekudyripouifm.supabase.co','getElementById','innerHTML','status\x20show','__mungaLv','cls-emb','/character/','hawk_eye','transaction','170yNPnoP','삼라만상','total','#8b95a8','setAttribute','#ffb070','option','blade','relic','푸른\x20갈기','조회\x20실패','__skillsData','.art-v','stringify','test','__dolDaeRate','arkgridPanel','ko-KR','Enter','art-info','Url','S3\x20낙원의\x20정복자','battle_master','__janbulChecked','카멘\x20The\x202nd','ArmoryEngraving','파멸의\x20군주','__skillPts','fav','rank','2140848HiKAjG','일등\x20항해사','__setClass','method','demonic','parse','tg-thunder','closest','POST','add','find','search','mouseenter','replaceState','#3cc78c','pClass','ArmoryProfile','classList','toUpperCase','engraving_name','readonly','span','Lv.','tg-abyss','2188fSivsF','skill','button','now','#e8b84b','thunder-lord','뇌룡을\x20정복한\x20자','tg-legend','CharacterClassName','광기군단장\x20슬레이어','position:static\x20!important;transform:none\x20!important;top:auto\x20!important;left:auto\x20!important;height:34px\x20!important;width:auto\x20!important;max-width:52px\x20!important;object-fit:contain\x20!important;-webkit-mask-image:none\x20!important;mask-image:none\x20!important;opacity:1\x20!important;filter:drop-shadow(0\x202px\x204px\x20rgba(0,0,0,.7))','조회\x20실패\x20(','Title','target','src','S1\x20낙원의\x20주인','panelAv','세계수의\x20축복\x20받은\x20자','광풍의\x20눈','ArkGrid','active','rcClear','art-v','soul_eater','keys','death-caller','devil_hunter_female','__cacheHit','result','💠​','get','toFixed','심판자','마수의\x20포효','rc-star','win_count','arkpassivePanel','포식자','SHORT','.char-tab','__fullData','toggle','application/json','https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/emblem_','서풍의\x20지휘자','blaster','reaper','sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb','onupgradeneeded','art','.profile','alchemist','includes','loaview-recent-hidden','축복의\x20오라','infighter','res','캐릭터\x20데이터가\x20비어\x20있습니다','몽환의\x20지배자','엘버하스틱\x20슬레이어','#4da3ff','display','loaview-cache','이그렉시온\x20슬레이어','aria-expanded','none','destroyer','#6b7690','trim','main','ArmoryEquipment','번뇌의\x20창','json','IndexedDB\x20미지원','has-t-ico','value','23년\x20최고의\x20금손','ArmoryAvatars','#cfd8ee','style','아카테스\x20슬레이어','floor','CombatPower','최근\x20검색\x20기록이\x20없어요','epic','art-name','<span\x20class=\x22spin\x22></span>조회\x20중...','.webp','click','Image','ArkPassive','#ff8a8a','.eq-tab-panel','position:absolute;top:12px;right:12px;z-index:3;white-space:nowrap;font-size:11px;font-weight:700;color:','abort','fontWeight','status','카멘\x20The\x203rd','title','forEach','onerror','494936yqbFIt','esther','push','tab','절실한\x20구원','show','arcana','ceil','isArray','madness-shadow','미술품\x20애호가','__touchRecent','skillPanel','setTierBox','pPower','193952hTcwPr','then','total_matches','빛의\x20기사','개\x20중\x20<b>','뇌전의\x20군주','profile-art','rgba(255,255,255,.14)','art-nums','art-guild','영혼의\x20공명','holyknight','S1\x20낙원의\x20정복자','tip','10px\x2016px','display:flex;gap:8px;align-items:center;justify-content:flex-start;margin-top:10px','2865EtotjJ','⚠\x20서버에\x20연결할\x20수\x20없어\x20저장된\x20데이터를\x20표시\x20중입니다\x20(저장\x20시각:\x20','url','has','createObjectStore','beast-roar','esther-bound','쾌락의\x20탐닉자','remove','img/title/','tierPct','pName','tier\x20','lazy','천둥을\x20내리꽂는','recentBtn','KEY','text','ServerName','__classEmblemUrl','summoner','li[data-name]','art-num\x20art-ilvl','CharacterImage','message','__manaLv','해방자','sort','/all','\x20pw-','.tier-spin','ItemAvgLevel','__updTimer','dataset','S2\x20낙원의\x20정복자','className','광풍의\x20슬레이어','set','UsingSkillPoint','devil_hunter','role','open','rc-tab','name','lastElementChild','즐겨찾기를\x20모두\x20삭제할까요?','</div><div\x20class=\x22tip-bd\x22\x20style=\x22font-size:11px;line-height:1.6;\x22>OP\x20직각\x20','#00B0FA','win','indexOf','valkyrie','oncomplete','querySelectorAll','concat','expeditionPanel','ArmoryGem','arkpassive','CharacterLevel','Stats','querySelector','.col','art-row','__swiftCdPct','body','getItem','원정대','url(\x22','loaview-tourn','위</b>\x20·\x20','대지를\x20분쇄하는','__refreshSavedNames','addEventListener','art-chip','__expeditionLoadedFor','rc-nm','__effOpen','__apShort','pItem','<span\x20class=\x22tier-spin\x22\x20aria-label=\x22불러오는\x20중\x22></span>','map','S2\x20낙원의\x20선봉대','빛의\x20날개','filter','tab-skill','copper','mouseleave','pServer','tg-default','recent','slice','createElement','assign','22년\x20최고의\x20금손','24년\x20최고의\x20금손','signal','800','abyss-end','stat','art-emblems','join','티어<br>최근\x20','recentList','isConnected','324306tzUrqY','arkgrid','backgroundImage','미랭크','돌로리스','PROXY','에스더의\x20결속자','tg-doom','win_rate','12kkpYfP','CharacterName','25년\x20최고의\x20금손','append','empty','winRate','preventDefault','Icon','alt','즐겨찾기한\x20캐릭터가\x20없어요','disabled','eclipse','#9aa3b5','시간전','혹한의\x20군주','URL','S3\x20낙원의\x20선봉대','%<br>','firstChild','loaview-class','keydown','from','cssText','#c8a2ff','fetch','찬란하게\x20빛나는','yinyangshi','ancient','__activeEvoNode','expedition','readwrite','art-num\x20art-cp','stopPropagation','setItem','bind','S1\x20낙원의\x20선봉대','catch','t-txt','이클립스','#c79cff','3503368ghgoii','pExp','Decorations','이슬비','key','art-k','weather_artist','Emblems','.rc-tab,\x20#rcClear,\x20[data-act]','Siblings','<div\x20class=\x22tip-hd\x22>','\x20·\x20','panelEq','pleasure-seeker','info','카제로스\x20The\x203rd','TownLevel','textContent','star','tierRank','ExpeditionLevel','__charClass','카제로스\x20The\x202nd','string'];_0x4487=function(){return _0xfca052;};return _0x4487();}document['addEventListener'](_0x3a81d4(0x106),_0x4e849a=>{const _0x5f0943=_0x3a81d4,_0x3db613=_0x4e849a[_0x5f0943(0x275)][_0x5f0943(0x257)](_0x5f0943(0x1e4));if(_0x3db613){if(_0x4e849a['target']['closest'](_0x5f0943(0x1f2))||_0x4e849a[_0x5f0943(0x275)][_0x5f0943(0x257)]('input'))return;_0x4e849a[_0x5f0943(0x1a8)]();const _0x4e0945=_0x3db613[_0x5f0943(0x261)][_0x5f0943(0x1f0)](_0x5f0943(0x15b));document[_0x5f0943(0x166)](_0x5f0943(0x212))['forEach'](_0x17487e=>_0x17487e[_0x5f0943(0x261)]['remove'](_0x5f0943(0x15b)));if(!_0x4e0945)_0x3db613[_0x5f0943(0x261)][_0x5f0943(0x259)](_0x5f0943(0x15b));return;}document[_0x5f0943(0x166)](_0x5f0943(0x212))[_0x5f0943(0x111)](_0x57727c=>_0x57727c[_0x5f0943(0x261)]['remove'](_0x5f0943(0x15b)));});const params=new URLSearchParams(location[_0x3a81d4(0x25b)]),init=params[_0x3a81d4(0x286)](_0x3a81d4(0x15d))||q['value'][_0x3a81d4(0x2ac)]();init&&(q[_0x3a81d4(0xf9)]=init,go(init));
+// ===== 메인 진입점 및 탭 컨트롤러 (app.js) =====
+
+// ===== 점검/장애 대비 캐시 =====
+// PROXY로 나가는 GET 응답(/all, /siblings)을 IndexedDB에 저장해 두고,
+// 서버가 실패하거나 응답이 비정상이면 저장본으로 대신 응답한다. (평소엔 항상 라이브 우선)
+(function () {
+  const DB_NAME = "loaview-cache", STORE = "res", TIMEOUT_MS = 8000;
+  let dbp = null;
+
+  function openDB() {
+    if (!dbp) dbp = new Promise((resolve, reject) => {
+      if (!window.indexedDB) return reject(new Error("IndexedDB 미지원"));
+      const req = indexedDB.open(DB_NAME, 1);
+      req.onupgradeneeded = () => req.result.createObjectStore(STORE);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+    return dbp;
+  }
+  function idb(mode, fn) {
+    return openDB().then(db => new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, mode);
+      const r = fn(tx.objectStore(STORE));
+      tx.oncomplete = () => resolve(r.result);
+      tx.onerror = () => reject(tx.error);
+    }));
+  }
+  const cacheGet = key => idb("readonly", s => s.get(key)).catch(() => null);
+  const cachePut = (key, val) => idb("readwrite", s => s.put(val, key)).catch(() => {});
+  const cacheKeys = () => idb("readonly", s => s.getAllKeys()).catch(() => []);
+
+  // 점검 중 빈 응답이 정상 저장본을 덮어쓰지 않도록 내용 검증
+  function isGood(url, text) {
+    try {
+      const d = JSON.parse(text);
+      if (!d) return false;
+      if (/\/all$/.test(url)) return !!d.ArmoryProfile;
+      if (/\/siblings$/.test(url)) return Array.isArray(d.Siblings) && d.Siblings.length > 0;
+      return true;
+    } catch (e) { return false; }
+  }
+
+  window.__cacheHit = null;
+  const origFetch = window.fetch.bind(window);
+  window.fetch = async function (input, init) {
+    const url = typeof input === "string" ? input : ((input && input.url) || "");
+    const method = String((init && init.method) || (input && input.method) || "GET").toUpperCase();
+    if (method !== "GET" || !window.PROXY || !url.startsWith(window.PROXY)) return origFetch(input, init);
+
+    const cached = await cacheGet(url);
+    let res = null, lastErr = null;
+    try {
+      let opts = init, timer = null;
+      if (cached) {   // 저장본이 있을 때만 타임아웃 (점검 중 응답이 안 오는 경우 대비)
+        const ctrl = new AbortController();
+        timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+        opts = Object.assign({}, init, { signal: ctrl.signal });
+      }
+      try { res = await origFetch(input, opts); } finally { clearTimeout(timer); }
+    } catch (e) { lastErr = e; }
+
+    if (res && res.ok) {
+      const text = await res.clone().text();
+      if (isGood(url, text)) {
+        cachePut(url, { t: Date.now(), body: text }).then(() => window.__refreshSavedNames && window.__refreshSavedNames());
+        return res;
+      }
+    }
+    if (cached) {
+      window.__cacheHit = { url, t: cached.t };
+      return new Response(cached.body, { status: 200, headers: { "Content-Type": "application/json" } });
+    }
+    if (res) return res;
+    throw lastErr || new TypeError("network error");
+  };
+
+  // 직업 마크 (로아 홈페이지 엠블럼): 직업 이름 → 이미지 주소
+  const CLS_EMB = {
+      "워로드":"warlord","버서커":"berserker","디스트로이어":"destroyer","홀리나이트":"holyknight","슬레이어":"berserker_female","발키리":"valkyrie",
+      "배틀마스터":"battle_master","인파이터":"infighter","기공사":"force_master","창술사":"lance_master","스트라이커":"battle_master_male","브레이커":"infighter_male",
+      "데빌헌터":"devil_hunter","블래스터":"blaster","호크아이":"hawk_eye","스카우터":"scouter","건슬링어":"devil_hunter_female",
+      "바드":"bard","서머너":"summoner","아르카나":"arcana","소서리스":"elemental_master","블레이드":"blade","데모닉":"demonic","리퍼":"reaper","소울이터":"soul_eater",
+      "도화가":"yinyangshi","기상술사":"weather_artist","환수사":"alchemist","가디언나이트":"dragon_knight","차원술사":"dimension_master"
+    };
+  window.__classEmblemUrl = function (cls) {
+    const f = CLS_EMB[String(cls || "").replace(/\s+/g, "")];
+    return f ? "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/emblem_" + f + ".png" : "";
+  };
+  // 캐릭터 이름 → 직업 (최근 검색 / 즐겨찾기 목록에서 마크를 보여주기 위해 조회할 때마다 저장)
+  const CLS_KEY = "loaview-class";
+  const readCls = () => { try { return JSON.parse(localStorage.getItem(CLS_KEY)) || {}; } catch (e) { return {}; } };
+  window.__setClass = function (name, cls) {
+    if (!name || !cls) return;
+    try { const m = readCls(); if (m[name] === cls) return; m[name] = cls; localStorage.setItem(CLS_KEY, JSON.stringify(m)); } catch (e) {}
+  };
+
+  // 최근 조회 순서 (캐시 본문을 읽지 않도록 이름/시각만 따로 저장)
+  const RECENT_KEY = "loaview-recent", RECENT_MAX = 20;
+  const readRecent = () => { try { return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; } catch (e) { return []; } };
+  window.__touchRecent = function (name) {
+    try {
+      const l = readRecent().filter(x => x.n !== name);
+      l.unshift({ n: name, t: Date.now() });
+      localStorage.setItem(RECENT_KEY, JSON.stringify(l.slice(0, RECENT_MAX)));
+    } catch (e) {}
+  };
+
+  // ===== 즐겨찾기 / 최근 검색 =====
+  const FAV_KEY = "loaview-fav", HID_KEY = "loaview-recent-hidden";
+  const readList = (k) => { try { const v = JSON.parse(localStorage.getItem(k)); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
+  const writeList = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  let rcTab = "recent", cachedNames = new Set();
+
+  const origTouch = window.__touchRecent;
+  window.__touchRecent = function (name) {   // 다시 조회하면 숨김 해제
+    origTouch(name);
+    writeList(HID_KEY, readList(HID_KEY).filter(x => x !== name));
+  };
+
+  function renderRecent() {
+    const ul = document.getElementById("rcItems");
+    if (!ul) return;
+    const favs = readList(FAV_KEY), hidden = new Set(readList(HID_KEY));
+    document.querySelectorAll("#recentList .rc-tab").forEach(b => b.classList.toggle("active", b.dataset.t === rcTab));
+    let names;
+    if (rcTab === "fav") names = favs.slice();
+    else {
+      const rec = readRecent().map(x => x.n).filter(n => cachedNames.has(n));
+      cachedNames.forEach(n => { if (!rec.includes(n)) rec.push(n); });   // 기록 없는 기존 캐시도 포함
+      const vis = rec.filter(n => !hidden.has(n)).slice(0, RECENT_MAX);
+      names = vis.filter(n => favs.includes(n)).concat(vis.filter(n => !favs.includes(n)));   // 즐겨찾기 우선
+    }
+    ul.textContent = "";
+    if (!names.length) {
+      const li = document.createElement("li");
+      li.className = "empty"; li.textContent = rcTab === "fav" ? "즐겨찾기한 캐릭터가 없어요" : "최근 검색 기록이 없어요";
+      ul.appendChild(li); return;
+    }
+    names.forEach(n => {
+      const on = favs.includes(n);
+      const li = document.createElement("li");
+      li.dataset.name = n; li.setAttribute("role", "option");
+      const st = document.createElement("button");
+      st.type = "button"; st.className = "rc-star" + (on ? " on" : ""); st.textContent = on ? "★" : "☆";
+      st.title = on ? "즐겨찾기 해제" : "즐겨찾기 추가"; st.dataset.act = "star";
+      const nm = document.createElement("span"); nm.className = "rc-nm"; nm.textContent = n;
+      const x = document.createElement("button");
+      x.type = "button"; x.className = "rc-x"; x.textContent = "✕"; x.title = "삭제"; x.dataset.act = "del";
+      const cu = window.__classEmblemUrl(readCls()[n]);
+      if (cu) { const em = document.createElement("i"); em.className = "cls-emb sm"; em.style.backgroundImage = `url("${cu}")`; li.append(st, em, nm, x); }
+      else li.append(st, nm, x);
+      ul.appendChild(li);
+    });
+  }
+
+  // 캐시에 실제로 있는 이름 + 즐겨찾기 상태로 목록 갱신
+  window.__refreshSavedNames = function () {
+    if (!document.getElementById("rcItems")) return;
+    cacheKeys().then(keys => {
+      const cached = new Set();
+      keys.forEach(k => {
+        const m = String(k).match(/\/character\/([^/]+)\/all$/);
+        if (m) cached.add(decodeURIComponent(m[1]));
+      });
+      cachedNames = cached;
+      renderRecent();
+    });
+  };
+
+  // 별/삭제/탭/전체삭제 (이름 클릭은 기존 핸들러가 조회 처리)
+  const pop = document.getElementById("recentList");
+  if (pop) pop.addEventListener("click", e => {
+    const t = e.target.closest(".rc-tab, #rcClear, [data-act]");
+    if (!t) return;
+    e.stopImmediatePropagation();
+    if (t.classList.contains("rc-tab")) { rcTab = t.dataset.t; renderRecent(); return; }
+    if (t.id === "rcClear") {
+      if (!confirm(rcTab === "fav" ? "즐겨찾기를 모두 삭제할까요?" : "최근 검색을 모두 삭제할까요?\n(즐겨찾기는 유지됩니다)")) return;
+      if (rcTab === "fav") writeList(FAV_KEY, []);
+      else writeList(HID_KEY, Array.from(new Set(readList(HID_KEY).concat(Array.from(cachedNames), readRecent().map(x => x.n)))));
+      renderRecent(); return;
+    }
+    const li = t.closest("li[data-name]"); if (!li) return;
+    const n = li.dataset.name, favs = readList(FAV_KEY);
+    if (t.dataset.act === "star") writeList(FAV_KEY, favs.includes(n) ? favs.filter(x => x !== n) : [n].concat(favs));
+    else if (t.dataset.act === "del") {
+      if (rcTab === "fav") writeList(FAV_KEY, favs.filter(x => x !== n));
+      else writeList(HID_KEY, Array.from(new Set(readList(HID_KEY).concat(n))));
+    }
+    renderRecent();
+  });
+  window.__refreshSavedNames();
+})();
+
+
+document.querySelectorAll(".eq-tab").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".eq-tab").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".eq-tab-panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    window.$((btn.dataset.tab === "av") ? "panelAv" : "panelEq").classList.add("active");
+  });
+});
+
+const q = window.$("q"), btn = window.$("btn"), statusEl = window.$("status"), mainEl = window.$("main");
+const skillPanelEl = window.$("skillPanel"), arkgridPanelEl = window.$("arkgridPanel");
+const arkpassivePanelEl = window.$("arkpassivePanel"), expeditionPanelEl = window.$("expeditionPanel");
+
+// ===== 최근 검색 드롭다운 =====
+const recentBtn = window.$("recentBtn"), recentList = window.$("recentList");
+function setRecent(open) {
+  recentList.hidden = !open;
+  recentBtn.classList.toggle("open", open);
+  recentBtn.setAttribute("aria-expanded", String(open));
+  if (open) window.__refreshSavedNames();
+}
+recentBtn.addEventListener("click", e => { e.stopPropagation(); setRecent(recentList.hidden); });
+recentList.addEventListener("click", e => {
+  const li = e.target.closest("li[data-name]");
+  if (!li) return;
+  setRecent(false);
+  q.value = li.dataset.name;
+  go(q.value);
+});
+document.addEventListener("click", e => { if (!e.target.closest("#recent")) setRecent(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") setRecent(false); });
+
+if (skillPanelEl) mainEl.querySelectorAll(".col")[1].appendChild(skillPanelEl);
+if (arkgridPanelEl) mainEl.querySelectorAll(".col")[1].appendChild(arkgridPanelEl);
+if (arkpassivePanelEl) mainEl.querySelectorAll(".col")[1].appendChild(arkpassivePanelEl);
+if (expeditionPanelEl) mainEl.querySelectorAll(".col")[1].appendChild(expeditionPanelEl);
+
+let currentTab = "info";
+let dataLoaded = false;
+
+function applyTabView() {
+  mainEl.classList.toggle("show", dataLoaded && ["info","stat","skill","arkgrid","arkpassive","expedition"].includes(currentTab));
+  mainEl.classList.toggle("skill-mode", ["skill","arkgrid","arkpassive","expedition"].includes(currentTab));
+  mainEl.classList.toggle("tab-skill", dataLoaded && currentTab === "skill");   // 스킬 탭: 스킬 포인트 바 상단 고정
+  if (skillPanelEl) skillPanelEl.style.display = (dataLoaded && currentTab === "skill") ? "flex" : "none";
+  if (arkgridPanelEl) arkgridPanelEl.style.display = (dataLoaded && currentTab === "arkgrid") ? "flex" : "none";
+  if (arkpassivePanelEl) arkpassivePanelEl.style.display = (dataLoaded && currentTab === "arkpassive") ? "flex" : "none";
+  if (expeditionPanelEl) expeditionPanelEl.style.display = (dataLoaded && currentTab === "expedition") ? "flex" : "none";
+}
+
+document.querySelectorAll(".char-tab").forEach(btn2 => {
+  btn2.addEventListener("click", () => {
+    document.querySelectorAll(".char-tab").forEach(b => b.classList.remove("active"));
+    btn2.classList.add("active");
+    currentTab = btn2.dataset.tab;
+    if (currentTab === "info") setEffPanelOpen(false);
+    else if (currentTab === "stat") setEffPanelOpen(true);
+    applyTabView();
+    if (currentTab === "expedition") loadExpedition();
+  });
+});
+
+btn.addEventListener("click", () => go(q.value.trim()));
+q.addEventListener("keydown", e => { if (e.key === "Enter") go(q.value.trim()); });
+
+let __reqSeq = 0;
+
+async function go(name) {
+  if (!name) return;
+  const mySeq = ++__reqSeq;
+  btn.disabled = true;
+  statusEl.className = "status show";
+  statusEl.innerHTML = `<span class="spin"></span>조회 중...`;
+  statusEl.style.padding = "";
+  window.__cacheHit = null;
+  mainEl.classList.remove("show");
+  try {
+    const res = await fetch(`${window.PROXY}/character/${encodeURIComponent(name)}/all`);
+    if (!res.ok) throw new Error(res.status === 404 ? "캐릭터를 찾을 수 없습니다" : `조회 실패 (${res.status})`);
+    const data = await res.json();
+    if (!data?.ArmoryProfile) throw new Error("캐릭터 데이터가 비어 있습니다");
+    if (mySeq !== __reqSeq) return;
+    render(data);
+    window.__setClass(name, data.ArmoryProfile.CharacterClassName);
+    window.__touchRecent(name);
+    window.__refreshSavedNames();
+    if (window.__cacheHit && /\/all$/.test(window.__cacheHit.url)) {
+      const when = new Date(window.__cacheHit.t).toLocaleString("ko-KR", { hour12: false });
+      statusEl.className = "status show";
+      statusEl.style.padding = "10px 16px";
+      statusEl.textContent = `⚠ 서버에 연결할 수 없어 저장된 데이터를 표시 중입니다 (저장 시각: ${when})`;
+    } else {
+      statusEl.className = "status";
+    }
+    dataLoaded = true;
+    currentTab = "info";
+    document.querySelectorAll(".char-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === "info"));
+    applyTabView();
+    history.replaceState(null, "", `?name=${encodeURIComponent(name)}`);
+  } catch (err) {
+    if (mySeq !== __reqSeq) return;
+    dataLoaded = false;   // 실패 시 이전 캐릭터 데이터가 탭 전환으로 다시 노출되지 않도록
+    applyTabView();
+    statusEl.className = "status show err";
+    statusEl.textContent = err.message || "조회 실패";
+  } finally {
+    if (mySeq === __reqSeq) btn.disabled = false;
+  }
+}
+
+// ===== 칭호 → 등급 클래스 (API는 칭호 등급을 주지 않아 이름으로 매핑) =====
+const TITLE_GRADE = (() => {
+  const m = new Map();
+  const add = (cls, arr) => arr.forEach(t => m.set(t.toLowerCase().replace(/\s+/g, " ").trim(), cls));
+  add("tg-legend", [
+    "심연의 군주","이클립스","광기의 그림자","마수의 포효","쾌락의 탐닉자",
+    "광기군단장 슬레이어","마수군단장 슬레이어","몽환군단장 슬레이어","악마 사냥꾼","욕망군단장 슬레이어",
+    "광풍의 눈","대지를 분쇄하는","돌로리스","번뇌의 창","분노의 포식자","빛의 날개","찬란하게 빛나는",
+    "천둥을 내리꽂는","크로체","푸른 갈기","혹한의 군주","홍염의 군주",
+    "세계수의 축복 받은 자","S1 낙원의 선봉대","S1 낙원의 정복자","S1 낙원의 주인",
+    "S2 낙원의 선봉대","S2 낙원의 정복자","S2 낙원의 주인",
+    "S3 낙원의 선봉대","S3 낙원의 정복자","S3 낙원의 주인",
+    "21년 최고의 금손","22년 최고의 금손","23년 최고의 금손","24년 최고의 금손","25년 최고의 금손","삼라만상",
+    "기분 좋은 향기","모코코 사냥꾼","미술품 애호가","생활의 달인","서풍의 지휘자","일등 항해사","아크라시아의 순례자","영혼의 공명"
+  ]);
+  add("tg-relic", [
+    "죽음을 부르는 자","카멘 The 1st","카멘 The 2nd","카멘 The 3rd","카멘 The TOP10",
+    "광풍의 슬레이어","날개를 꺾은 자","뇌룡을 정복한 자","벨가누스 슬레이어","아카테스 슬레이어",
+    "엘버하스틱 슬레이어","이그렉시온 슬레이어","몽환의 지배자",
+    "에스더의 결속자","에스더의 후계자"
+  ]);
+  add("tg-ancient", ["카제로스 The 1st","카제로스 The 2nd","카제로스 The 3rd","카제로스 The TOP10"]);
+  add("tg-thunder", ["뇌전의 군주"]);   // 전설 목록과 겹치므로 마지막에 덮어씀
+  add("tg-doom", ["파멸의 군주"]);
+  add("tg-abyss", ["심연의 끝을 마주한 자"]);
+  return m;
+})();
+// ===== 칭호 앞 아이콘 (img/title/*.webp) =====
+const TITLE_ICON_DIR = "img/title/";
+const TITLE_ICON = {
+  "광기의 그림자":"madness-shadow","뇌전의 군주":"thunder-lord","마수의 포효":"beast-roar",
+  "몽환의 지배자":"dream-ruler","삼라만상":"all-things","심연의 군주":"abyss-lord",
+  "심연의 끝을 마주한 자":"abyss-end","에스더의 결속자":"esther-bound","에스더의 후계자":"esther-heir",
+  "이클립스":"eclipse","죽음을 부르는 자":"death-caller","쾌락의 탐닉자":"pleasure-seeker",
+  "혹한의 군주":"frost-lord","홍염의 군주":"blaze-lord",
+  "세계수의 축복 받은 자":"worldtree-blessed"
+};
+function titleIconUrl(title) {
+  const key = String(title || "").replace(/\s+/g, " ").trim();
+  const f = TITLE_ICON[key];
+  return f ? TITLE_ICON_DIR + f + ".webp" : "";
+}
+// 전투력 구간 → 배경 등급 (2800 미만은 효과 없음)
+function powerTier(v) {
+  const t = [[9800,"esther"],[8800,"ancient"],[7800,"relic"],[6800,"legend"],[5800,"epic"],[4800,"rare"],[3800,"uncommon"],[2800,"copper"]];
+  for (const [min, name] of t) if (v >= min) return name;
+  return "";
+}
+function titleGradeClass(title) {
+  const key = String(title || "").toLowerCase().replace(/\s+/g, " ").trim();
+  return TITLE_GRADE.get(key) || "tg-default";
+}
+
+// ===== 직각 티어 박스 (인식 티어 / 경기 승률): 직각 토너먼트 OP 1:1 승률 기준, 최근 30일 =====
+const TOURN = {
+  URL: "https://khszfukekudyripouifm.supabase.co",
+  KEY: "sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb",
+  DAYS: 30,
+  SUPPORT: ["절실한 구원", "만개", "축복의 오라", "해방자"],            // OP 티어에서 제외 → 표시 '-'
+  SHORT: {   // 토너먼트 직각 이름 → 줄임말 (AP_SHORT 의 값과 같아서 이 값끼리 비교)
+    "고독한 기사":"고기","전투 태세":"전태","광기":"광기","광전사의 비기":"비기","분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
+    "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자","초심":"초심","오의 강화":"오의","충격 단련":"충단","체술":"체술",
+    "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제","오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
+    "전술 탄환":"전탄","핸드 거너":"핸건","화력 강화":"화강","포격 강화":"포강","죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
+    "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시","상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
+    "진실된 용맹":"진용","절실한 구원":"절구","점화":"점화","환류":"환류","버스트":"버스트","잔재된 기운":"잔재","멈출 수 없는 충동":"충동",
+    "완벽한 억제":"억제","달의 소리":"달소","갈증":"갈증","만월의 집행자":"만월","만개":"만개","그믐의 경계":"그믐","회귀":"회귀","이슬비":"이슬비",
+    "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화":"업화","드레드 로어":"드드","시간 관리자":"시간","공간 검사":"공간"
+  }
+};
+const TIER_COLORS = ["", "#ffd24a", "#ff9f43", "#c79cff", "#4da3ff", "#3cc78c", "#9aa3b5"];
+// 직각 토너먼트 티어표와 같은 규칙: 승률 순 → 1티어 6개 / 2티어 9개 / 3티어 12개 / 6티어 맨 아래 10개 / 나머지 반반(4·5티어)
+function tournCalcTiers(entries) {
+  const sorted = [...entries].sort((a, b) => b.winRate - a.winRate || b.total - a.total);
+  const total = sorted.length;
+  const tier6 = total > 10 ? sorted.slice(total - 10) : [];
+  const rest = total > 10 ? sorted.slice(0, total - 10) : sorted;
+  const rem = rest.slice(27), half = Math.ceil(rem.length / 2);
+  const tiers = [rest.slice(0, 6), rest.slice(6, 15), rest.slice(15, 27), rem.slice(0, half), rem.slice(half), tier6];
+  const out = {};
+  tiers.forEach((t, i) => t.forEach(e => { out[e.short] = Object.assign({}, e, { tier: i + 1, rank: sorted.indexOf(e) + 1, of: total }); }));
+  return out;
+}
+let __tournP = null;
+function loadTournTiers() {
+  if (__tournP) return __tournP;
+  __tournP = (async () => {
+    try {
+      const ck = sessionStorage.getItem("loaview-tourn");
+      if (ck) { const o = JSON.parse(ck); if (Date.now() - o.t < 30 * 60 * 1000) return o.map; }
+    } catch (e) {}
+    const res = await fetch(TOURN.URL + "/rest/v1/rpc/get_tier_data", {
+      method: "POST",
+      headers: { "apikey": TOURN.KEY, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_type: "op", p_days: TOURN.DAYS })
+    });
+    if (!res.ok) throw new Error("tier " + res.status);
+    const rows = await res.json();
+    const entries = rows.filter(r => !TOURN.SUPPORT.includes(r.engraving_name)).map(r => ({
+      name: r.engraving_name, short: TOURN.SHORT[r.engraving_name] || r.engraving_name,
+      winRate: Number(r.win_rate), total: Number(r.total_matches), win: Number(r.win_count), lose: Number(r.lose_count)
+    }));
+    const map = tournCalcTiers(entries);
+    try { sessionStorage.setItem("loaview-tourn", JSON.stringify({ t: Date.now(), map })); } catch (e) {}
+    return map;
+  })().catch(e => { __tournP = null; throw e; });
+  return __tournP;
+}
+// 박스 값 변경: setTierBox(3, 52.3, "툴팁 HTML") / 값 없으면 setTierBox(null, null)
+window.setTierBox = function (tier, pct, tipHtml) {
+  const r = window.$("tierRank"), p = window.$("tierPct"), box = window.$("tierBox");
+  if (r) {
+    r.dataset.rank = tier || "";
+    r.innerHTML = tier ? tier + "<small>티어</small>" : "-";
+    r.style.color = tier ? TIER_COLORS[tier] : "#6b7690";
+  }
+  if (p) {
+    p.textContent = pct == null ? "-" : pct.toFixed(1) + "%";
+    p.style.color = pct == null ? "#6b7690" : pct >= 52 ? "#3cc78c" : pct >= 48 ? "#cfd8ee" : "#ff8a8a";
+  }
+  if (box) {
+    box.dataset.tip = tipHtml || "";
+    if (!box.__tipBound) {   // 툴팁은 한 번만 연결하고 내용은 dataset.tip 에서 읽음
+      box.__tipBound = true;
+      box.addEventListener("mouseenter", e => { if (box.dataset.tip) showTip(e, box.dataset.tip); });
+      box.addEventListener("mouseleave", hideTip);
+    }
+  }
+};
+async function updateTierBox(data) {
+  window.setTierBox(null, null);
+  const cls = (data.ArmoryProfile && data.ArmoryProfile.CharacterClassName) || "";
+  const raw = String((data.ArkPassive && data.ArkPassive.Title) || "").trim();
+  if (!raw) return;
+  const short = (window.__apShort || {})[raw] || raw;
+  const rev = Object.keys(TOURN.SHORT).find(k => TOURN.SHORT[k] === short);
+  if (rev && TOURN.SUPPORT.includes(rev)) return;   // 서포터: '-'
+  // 불러오는 동안 두 칸에 회전 로딩 표시 (끝나면 값 또는 '-'로 교체)
+  ["tierRank", "tierPct"].forEach(id => { const el = window.$(id); if (el) { el.textContent = ""; el.style.color = ""; el.innerHTML = '<span class="tier-spin" aria-label="불러오는 중"></span>'; } });
+  const clearSpin = () => { if (window.__fullData === data) ["tierRank", "tierPct"].forEach(id => { const el = window.$(id); if (el && el.querySelector(".tier-spin")) { el.textContent = "-"; el.style.color = "#6b7690"; } }); };
+  try {
+    const map = await loadTournTiers();
+    if (window.__fullData !== data) return;          // 그 사이 다른 캐릭터를 조회한 경우
+    const e = map[short];
+    if (!e) { clearSpin(); return; }
+    window.setTierBox(e.tier, e.winRate,
+      `<div class="tip-hd">${cls} ${raw}</div><div class="tip-bd" style="font-size:11px;line-height:1.6;">OP 직각 ${e.of}개 중 <b>${e.rank}위</b> · ${e.tier}티어<br>최근 ${TOURN.DAYS}일 1:1 승률 ${e.winRate.toFixed(1)}%<br>${e.total}전 ${e.win}승 ${e.lose}패</div>`);
+  } catch (err) { clearSpin(); /* 실패하면 '-' */ }
+}
+
+function render(data) {
+  window.__fullData = data;
+  window.__charClass = "";
+  window.__mungaLv = 0; window.__eumLv = 0; window.__ipsikLv = 0; window.__manaLv = 0;
+  window.__activeEvoNode = null;
+  window.__backAtk10Checked = false; window.__janbulChecked = false;
+  window.__effOpen = false; window.__identityBuff = null; window.__dolDaeRate = null;
+  window.__engData = null; window.__evoEffects = null; window.__evoSum = null;
+  window.__skillsData = []; window.__expeditionLoadedFor = "";
+
+  const p = data.ArmoryProfile;
+  const art = window.$("art"); art.innerHTML = "";
+  if (p.CharacterImage) { const i = document.createElement("img"); i.src = p.CharacterImage; i.alt = p.CharacterName || ""; i.loading = "lazy"; art.appendChild(i); }
+  // 전투력 구간별 배경 효과
+  const cpNum = parseFloat(String(p.CombatPower || "0").replace(/,/g, "")) || 0;
+  const tier = powerTier(cpNum);
+  art.className = "profile-art";
+  const card = art.closest(".profile");
+  if (card) card.className = "box profile" + (tier ? " pw-" + tier : "");   // 카드 테두리/빛에 등급색 적용
+
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const info = el("div", "art-info");
+  const AP_SHORT = {
+    "고독한 기사":"고기","전투 태세":"전태","광기":"광기","광전사의 비기":"비기",
+    "분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
+    "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자",
+    "초심":"초심","오의 강화":"오의","충격 단련":"충단","극의: 체술":"체술",
+    "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제",
+    "오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
+    "전술 탄환":"전탄","핸드거너":"핸건","화력 강화":"화강","포격 강화":"포강",
+    "죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
+    "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시",
+    "상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
+    "진실된 용맹":"진용","절실한 구원":"절구","점화":"점화","환류":"환류",
+    "버스트":"버스트","잔재된 기운":"잔재","멈출 수 없는 충동":"충동",
+    "완벽한 억제":"억제","달의 소리":"달소","갈증":"갈증",
+    "만월의 집행자":"만월","만개":"만개","그믐의 경계":"그믐","회귀":"회귀","이슬비":"이슬비",
+    "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화의 계승자":"업화","드레드 로어":"드드",
+    "시간 관리자":"시간","공간 검사":"공간"
+  };
+  window.__apShort = AP_SHORT;
+  const apRaw = data.ArkPassive?.Title;
+  const apTitle = apRaw ? (AP_SHORT[String(apRaw).trim()] || apRaw) : apRaw;
+  info.appendChild(el("div", "art-class", `Lv. ${p.CharacterLevel ?? "-"} ${p.CharacterClassName || ""}${apTitle ? " #" + apTitle : ""}`));
+  const nmEl = el("div", "art-name", p.CharacterName || "-");
+  { const eu = window.__classEmblemUrl && window.__classEmblemUrl(p.CharacterClassName);
+    if (eu) { const em = document.createElement("i"); em.className = "cls-emb"; em.style.backgroundImage = `url("${eu}")`; em.title = p.CharacterClassName || ""; nmEl.insertBefore(em, nmEl.firstChild); } }
+  info.appendChild(nmEl);
+  const nums = el("div", "art-nums");
+  const r1 = el("div", "art-num art-ilvl"); r1.appendChild(el("i", "", "💠​")); r1.appendChild(el("b", "", p.ItemAvgLevel || "-"));
+  const r2 = el("div", "art-num art-cp"); r2.appendChild(el("i", "", "⚔️")); r2.appendChild(el("b", "", p.CombatPower || "-"));
+  nums.appendChild(r1); nums.appendChild(r2);
+  info.appendChild(nums);
+  art.appendChild(info);
+  { // 엠블럼 / 심볼: 캐릭터 이미지 좌하단에 작게 표시
+    window.__embWrap = null;
+    const dec = p.Decorations || {};
+    const urls = [];
+    const pushU = (x) => { const u = typeof x === "string" ? x : (x && (x.Icon || x.Image || x.Url)); if (u && /^https?:/.test(u)) urls.push(u); };
+    (Array.isArray(dec.Emblems) ? dec.Emblems : []).forEach(pushU);   // 엠블럼 전부 표시 (심볼 제외)
+    if (urls.length) {
+      const wrap = el("div", "art-emblems");
+      wrap.style.cssText = "display:flex;gap:8px;align-items:center;justify-content:flex-start;margin-top:10px";
+      urls.forEach((u, idx) => {
+        const im = document.createElement("img");
+        im.src = u; im.alt = ""; im.loading = "lazy";
+        im.style.cssText = "position:static !important;transform:none !important;top:auto !important;left:auto !important;height:34px !important;width:auto !important;max-width:52px !important;object-fit:contain !important;-webkit-mask-image:none !important;mask-image:none !important;opacity:1 !important;filter:drop-shadow(0 2px 4px rgba(0,0,0,.7))";
+        im.onerror = () => im.remove();
+        wrap.appendChild(im);
+      });
+      info.appendChild(wrap);
+    }
+  }
+
+
+  const rows = el("div", "art-rows");
+  const addRow = (label, value, cls, color) => {
+    const r = el("div", "art-row");
+    r.appendChild(el("span", "art-k", label));
+    const v = el("span", "art-v" + (cls ? " " + cls : ""), value);
+    if (color) { v.style.color = color; v.style.fontWeight = "800"; }
+    r.appendChild(v);
+    rows.appendChild(r);
+  };
+  addRow("서버", p.ServerName || "-", "", p.ServerName ? "#e8b84b" : "");
+  addRow("원정대", p.ExpeditionLevel != null ? "Lv." + p.ExpeditionLevel : "-", "", p.ExpeditionLevel != null ? "#7fd1ff" : "");
+  addRow("칭호", p.Title || "-", p.Title ? titleGradeClass(p.Title) : "");
+  { // 해당 칭호 아이콘이 있으면 글자 앞에 표시 (효과 클래스는 글자 span에만 적용 → 세로 정렬 일정)
+    const tu = titleIconUrl(p.Title);
+    if (tu) {
+      const tv = rows.lastElementChild && rows.lastElementChild.querySelector(".art-v");
+      if (tv) {
+        const tgCls = [...tv.classList].filter(c2 => /^tg-/.test(c2));
+        tgCls.forEach(c2 => tv.classList.remove(c2));
+        const txt = document.createElement("span");
+        txt.className = "t-txt";
+        const inner = document.createElement("span");
+        inner.className = tgCls.join(" ");
+        inner.textContent = p.Title;
+        txt.appendChild(inner);
+        tv.textContent = "";
+        const im = document.createElement("img");
+        im.className = "t-ico"; im.src = tu; im.alt = ""; im.loading = "lazy";
+        im.onerror = () => im.remove();
+        tv.classList.add("has-t-ico");
+        tv.append(im, txt);
+      }
+    }
+  }
+  addRow("길드", p.GuildName || "-", p.GuildName ? "art-guild" : "");
+  addRow("영지", p.TownName ? `Lv.${p.TownLevel ?? "-"} ${p.TownName}` : "-", "", p.TownName ? "#c8a2ff" : "");
+  { // 명예: 프로필에 명예 관련 값이 있을 때만 표시
+    const hk = Object.keys(p).find(k => /honor|명예/i.test(k));
+    if (hk && p[hk] != null && p[hk] !== "") { const hv = parseInt(String(p[hk]).replace(/[^0-9]/g, ""), 10) || 0;
+      const hc = hv >= 1000 ? "#F9AE00" : hv >= 500 ? "#CE43FC" : hv >= 300 ? "#00B0FA" : hv >= 100 ? "#8DF901" : "#aeb6c6";
+      addRow("명예", String(p[hk]), "", hc); }
+  }
+  addRow("토너", "미랭크", "art-chip", "#8b95a8");   // 나중에 다른 시스템 줄을 이 아래에 추가
+  { // 우측 상단: 경과 시간만 간단히 (저장본 여부는 상단 안내 문구로 표시됨)
+    const hit = window.__cacheHit && /\/all$/.test(window.__cacheHit.url);
+    const at = hit ? window.__cacheHit.t : Date.now();
+    const u = el("div", "art-upd");
+    u.style.cssText = "position:absolute;top:12px;right:12px;z-index:3;white-space:nowrap;font-size:11px;font-weight:700;color:" + (hit ? "#ffb070" : "#cfd8ee") + ";background:rgba(8,12,24,.62);border:1px solid " + (hit ? "rgba(255,150,70,.5)" : "rgba(255,255,255,.14)") + ";border-radius:999px;padding:3px 9px;backdrop-filter:blur(4px)";
+    const paint = () => {
+      const m = Math.floor((Date.now() - at) / 60000);
+      u.textContent = m < 1 ? "방금" : m < 60 ? m + "분전" : Math.floor(m / 60) + "시간전";
+    };
+    paint();
+    art.appendChild(u);
+    clearInterval(window.__updTimer);
+    window.__updTimer = setInterval(() => { if (!u.isConnected) return clearInterval(window.__updTimer); paint(); }, 20000);
+  }
+  art.appendChild(rows);
+  window.$("pName").textContent = p.CharacterName || "-";
+  window.$("pClass").textContent = [p.CharacterClassName, data.ArkPassive?.Title].filter(Boolean).join(" · ") || "-";
+  window.__charClass = p.CharacterClassName || "";
+  window.$("pServer").textContent = p.ServerName || "-";
+  window.$("pGuild").textContent = p.GuildName || "-";
+  window.$("pLevel").textContent = p.CharacterLevel ?? "-";
+  window.$("pExp").textContent = p.ExpeditionLevel ?? "-";
+  window.$("pItem").textContent = p.ItemAvgLevel || "-";
+  const titleEl = window.$("pTitle");
+  titleEl.textContent = p.Title || "-";
+  if (p.Title) { titleEl.style.color = "#CFAD7E"; titleEl.style.fontWeight = "800"; } else { titleEl.style.color = ""; }
+  window.$("pPower").textContent = p.CombatPower || "-";
+
+  renderStats(p.Stats || [], data.ArmoryEquipment || [], data);
+  renderEng(data.ArmoryEngraving);
+  renderArkGrid(data.ArkGrid);
+  renderArkGridTab(data.ArkGrid, data);
+  renderArkPassiveTab(data.ArkPassive, data);
+  renderGear(data.ArmoryEquipment || [], data.ArmoryAvatars || []);
+  renderAvatars(data.ArmoryAvatars || []);
+  renderGems(data.ArmoryGem, data.ArmorySkills);
+  renderCards(data.ArmoryCard);
+  renderAP(data.ArkPassive);
+
+  window.__skillPts = { used: p.UsingSkillPoint, total: p.TotalSkillPoint };
+  window.__swiftCdPct = getSwiftCdPct(p.Stats || []);
+  window.__gemMap = buildSkillGemMap(data.ArmoryGem);
+  renderSkills(data.ArmorySkills || [], data.ArmoryGem);
+  setEffPanelOpen(false);
+  updateTierBox(data);
+}
+
+// 카드 클릭 서랍 토글 이벤트
+document.addEventListener("click", (ev) => {
+  const card = ev.target.closest(".mc");
+  if (card) {
+    if (ev.target.closest("label") || ev.target.closest("input")) return;
+    ev.preventDefault();
+    const wasOpen = card.classList.contains("open");
+    document.querySelectorAll(".mc.open").forEach(c => c.classList.remove("open"));
+    if (!wasOpen) card.classList.add("open");
+    return;
+  }
+  document.querySelectorAll(".mc.open").forEach(c => c.classList.remove("open"));
+});
+
+// 시작 시 URL 검색 파라미터가 있으면 즉시 검색 실행
+const params = new URLSearchParams(location.search);
+const init = params.get("name") || q.value.trim();
+if (init) { q.value = init; go(init); }
