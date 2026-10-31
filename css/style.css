@@ -2170,3 +2170,36 @@ img{display:block;max-width:100%;}
 .ag-eff-blk{box-shadow:inset 0 2px 6px rgba(0,0,0,.55);}
 .ag-type-btn{transition:all .15s;}
 .ag-type-btn.active{box-shadow:0 0 16px rgba(155,126,240,.25);}
+
+/* [AG-TABS] 질서 코어(붉은색) / 혼돈 코어(파란색) 버튼을 아래 상자에 붙은 폴더 탭 모양으로 */
+.ag-type-toggle{gap:6px;margin-bottom:-15px;position:relative;z-index:3;align-items:flex-end;}
+.ag-type-btn{flex:1;padding:12px 0 11px;border-radius:12px 12px 0 0;border:1px solid transparent;border-bottom:0;transition:background .15s,color .15s,border-color .15s;}
+.ag-type-btn[data-type="order"]{--tc:255,107,107;}
+.ag-type-btn[data-type="chaos"]{--tc:111,179,255;}
+.ag-type-btn{color:rgba(var(--tc),.55);background:linear-gradient(180deg,rgba(var(--tc),.07),rgba(0,0,0,.35));border-color:rgba(var(--tc),.18);}
+.ag-type-btn:hover{color:rgba(var(--tc),.9);background:linear-gradient(180deg,rgba(var(--tc),.14),rgba(0,0,0,.3));}
+.ag-type-btn.active{
+  color:#fff;padding-bottom:13px;margin-bottom:0;
+  border-color:rgba(var(--tc),.6);
+  text-shadow:0 0 10px rgba(var(--tc),.7);
+  box-shadow:0 -4px 16px rgba(var(--tc),.22);
+}
+.ag-type-btn[data-type="order"].active{background:linear-gradient(180deg,#4a1820,#1d0e13);}
+.ag-type-btn[data-type="chaos"].active{background:linear-gradient(180deg,#15306a,#0b1430);}
+#agCores{margin-top:0;}
+#agCores.ag-theme-order{border-color:rgba(255,107,107,.6);border-top-left-radius:0;}
+#agCores.ag-theme-chaos{border-color:rgba(111,179,255,.6);border-top-right-radius:0;}
+
+/* [AG-TABS] 질서(붉은) / 혼돈(푸른) 탭 버튼: 아래 상자와 붙은 폴더 탭 모양 */
+.ag-type-toggle{gap:4px;margin-bottom:-14px;position:relative;z-index:3;}
+.ag-type-btn{border-radius:12px 12px 0 0;padding:12px 0 11px;border-width:1px 1px 0 1px;border-style:solid;transition:color .15s,background .15s,border-color .15s;}
+.ag-type-btn[data-type="order"]{color:#c58a86;border-color:rgba(255,110,100,.22);background:linear-gradient(180deg,rgba(120,30,40,.35),rgba(40,12,18,.55));}
+.ag-type-btn[data-type="chaos"]{color:#869ec9;border-color:rgba(110,150,255,.24);background:linear-gradient(180deg,rgba(30,60,140,.38),rgba(12,20,48,.55));}
+.ag-type-btn[data-type="order"]:hover{color:#ffc6c0;background:linear-gradient(180deg,rgba(150,40,50,.45),rgba(52,14,22,.6));}
+.ag-type-btn[data-type="chaos"]:hover{color:#c4d6ff;background:linear-gradient(180deg,rgba(40,80,180,.45),rgba(14,26,62,.6));}
+.ag-type-btn[data-type="order"].active{color:#ffe1dc;border-color:rgba(255,110,100,.5);background:linear-gradient(180deg,#3a1219,#1a0d12);box-shadow:0 -4px 16px rgba(255,80,80,.18);transform:translateY(1px);}
+.ag-type-btn[data-type="chaos"].active{color:#e0ebff;border-color:rgba(110,150,255,.55);background:linear-gradient(180deg,#14306b,#0a1024);box-shadow:0 -4px 16px rgba(80,140,255,.2);transform:translateY(1px);}
+#agCores.ag-theme-order{border-color:rgba(255,110,100,.5);}
+#agCores.ag-theme-chaos{border-color:rgba(110,150,255,.55);}
+.arkgrid-panel:has(.ag-type-btn[data-type="order"].active) #agCores{border-top-left-radius:0;}
+.arkgrid-panel:has(.ag-type-btn[data-type="chaos"].active) #agCores{border-top-right-radius:0;}
