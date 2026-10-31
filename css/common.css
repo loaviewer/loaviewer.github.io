@@ -1034,3 +1034,201 @@ body.has-sticky-ad { padding-bottom: 120px; }
         margin-bottom: 14px !important;
     }
 }
+
+/* =====================================================================
+   공통 상단(검색창/광고 자리/미니 히어로) 레이아웃 — 첫 화면부터 적용
+   (예전에는 common.js가 실행된 뒤에 같은 CSS를 넣어서, 옛 레이아웃이 잠깐 보였다가 바뀌었음)
+   이 블록은 common.js 안의 LV_SUBHERO_CSS 와 같은 내용이며, 아래 --lvs-css 표시가 있으면 JS는 다시 넣지 않음
+   ===================================================================== */
+:root { --lvs-css: 1; }
+
+        .lv-banner{position:absolute;top:0;left:0;right:0;height:300px;z-index:-1;overflow:hidden;pointer-events:none;background:#07080f}
+        .lv-banner-layer{position:absolute;inset:0;background-size:cover;background-position:center 40%;background-repeat:no-repeat;opacity:0;transition:opacity 1.2s ease}
+        .lv-banner-layer.on{opacity:1}
+        .lv-banner::after{content:"";position:absolute;inset:0;background:
+          linear-gradient(180deg,rgba(5,6,12,.55) 0,rgba(5,6,12,0) 30%),
+          linear-gradient(180deg,rgba(5,6,12,0) 45%,var(--lvs-fade,var(--bg,#05060c)) 100%)}
+        @media (min-width:1501px){
+          .lv-banner-layer{left:50%;right:auto;width:1500px;transform:translateX(-50%);
+            -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);
+            mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
+        }
+        .lvs-hero{max-width:640px;margin:34px auto 26px;padding:0 16px;box-sizing:border-box;min-height:94px}
+        .lvs-tag{display:flex;align-items:center;justify-content:center;gap:12px;height:28px;line-height:28px;margin-bottom:14px;white-space:nowrap;
+          font:19px 'Do Hyeon','Malgun Gothic',sans-serif;color:#e8b84b;text-shadow:0 2px 10px rgba(0,0,0,.75)}
+        .lvs-tag::before,.lvs-tag::after{content:"";width:36px;height:1px;background:linear-gradient(90deg,transparent,#e8b84b)}
+        .lvs-tag::after{transform:scaleX(-1)}
+        .lvs-search{display:flex;align-items:center;gap:10px;height:52px;padding:0 10px 0 16px;border-radius:14px;box-sizing:border-box;
+          background:rgba(13,16,25,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14)}
+        .lvs-search:focus-within{border-color:#9b7ef0}
+        .lvs-search input{flex:1;min-width:0;background:none;border:0;outline:0;color:#eef1f8;font:inherit;font-size:14px}
+        .lvs-search input::placeholder{color:#7c88a5}
+        .lvs-kbd{font-size:10px;font-weight:800;color:#8b95b3;background:rgba(255,255,255,.06);border-radius:6px;padding:4px 7px}
+        .lvs-search button{padding:8px 16px;border:0;border-radius:9px;background:linear-gradient(180deg,#8b6df0,#6f52d6);color:#fff;font:800 12px inherit;font-family:inherit;cursor:pointer}
+        @media (max-width:760px){.lv-banner{height:270px}.lvs-kbd{display:none}}
+
+        /* 간편/정밀보기 바깥의 큰 상자(.app 테두리·그림자·배경, .main 배경) 제거 → 메인처럼 배경 위에 바로 카드가 놓이게 */
+        body.standalone-dps-page .app{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+        body.standalone-dps-page .workspace{background:transparent!important}
+        body.standalone-dps-page .main{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+        /* 상자 안쪽 좌우 여백(20px)도 없애 본문 폭을 메인(헤더 폭)과 똑같이 */
+        @media (min-width:769px){body.standalone-dps-page .main{padding-left:0!important;padding-right:0!important}}
+
+        /* 난이도/관문 선택 칸: 처음 그려질 때는 폭 66.6%(옛 배치)였다가 데이터가 오면 100%로 바뀌며 쏠렸다 돌아오던 현상 → 처음부터 100% */
+        body.standalone-dps-page .precision-diff-inline,
+        body.standalone-dps-page .precision-gate-inline{width:100%!important;box-sizing:border-box}
+
+              /* ===== 토너먼트 계열 페이지(rank-sub-page / tournament-start-page): 큰 히어로 숨김 → 미니 히어로(.lvm)로 대체 ===== */
+        body.rank-sub-page .main > section[class$="-hero"],
+        body.tournament-start-page .main > section[class$="-hero"]{
+          position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;
+          overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
+        body.rank-sub-page .main > [class$="-divider"],
+        body.tournament-start-page .main > [class$="-divider"]{display:none!important}
+
+        .lvm{position:relative;padding:20px 26px;border-radius:20px;box-sizing:border-box;
+          background:linear-gradient(135deg,rgba(139,109,240,.12),rgba(15,18,27,.92) 55%);
+          border:1px solid rgba(255,255,255,.08);
+          box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 16px 40px rgba(0,0,0,.32)}
+        .lvm::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0;
+          background:linear-gradient(180deg,#a78bfa,#38bdf8);box-shadow:0 0 14px rgba(139,109,240,.55);pointer-events:none}
+        .lvm::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+          background:radial-gradient(520px 150px at 0% 0%,rgba(139,109,240,.16),transparent 65%),
+                     radial-gradient(420px 140px at 100% 100%,rgba(56,189,248,.08),transparent 70%)}
+        .lvm > *{position:relative;z-index:1}
+        .lvm-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+        .lvm-left{display:flex;align-items:center;gap:14px;min-width:0}
+        .lvm-kicker{flex:0 0 auto;padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:800;color:#c4b5fd;
+          background:rgba(139,109,240,.14);border:1px solid rgba(167,139,250,.3)}
+        .lvm-div{flex:0 0 auto;width:1px;height:20px;background:rgba(255,255,255,.15)}
+        .lvm-icon{flex:0 0 auto;width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;
+          background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);
+          box-shadow:0 6px 18px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12)}
+        .lvm-title{font-size:26px;font-weight:900;letter-spacing:-.4px;color:#fff;line-height:1.2;text-shadow:0 2px 14px rgba(139,109,240,.35);min-width:0}
+        .lvm-stats{display:flex;gap:8px;flex:0 0 auto}
+        .lvm-stat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:96px;padding:7px 16px;border-radius:11px;
+          background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+        .lvm-stat-l{font-size:10px;font-weight:800;letter-spacing:.6px;color:#93c5fd;line-height:1.1;text-transform:uppercase}
+        .lvm-stat-v{font-size:15px;font-weight:900;color:#fff;line-height:1.15;white-space:nowrap}
+        .lvm-intro{display:flex;align-items:flex-start;gap:8px;margin-top:14px;padding-top:13px;border-top:1px dashed rgba(255,255,255,.1);
+          font-size:13px;line-height:1.65;color:#aab4c8;font-weight:500}
+        .lvm-intro::before{content:"✦";flex:0 0 auto;margin-top:2px;font-size:10px;color:#a78bfa}
+        .lvm-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+        .lvm-chip{padding:5px 11px;border-radius:999px;font-size:11.5px;font-weight:700;color:#b9c3d4;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+        @media (max-width:760px){
+          .lvm{padding:16px 18px}
+          .lvm-title{font-size:21px}.lvm-icon{width:42px;height:42px;font-size:20px}
+          .lvm-stats,.lvm-kicker,.lvm-div{display:none}
+        }
+
+  /* 큰 히어로는 화면에서만 숨김(제목/설명은 검색엔진·스크린리더용으로 유지) → 검색창 → 광고 → 미니 히어로 순서 */
+        body.standalone-dps-page .simple-hero,
+        body.standalone-dps-page .p-hero:not(.p-mini-hero){
+          position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;
+          overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;box-shadow:none!important}
+
+        /* 캐릭터 페이지: 검색창 + 최근 검색 한 줄 */
+        .lvs-hero.lvs-hero-char{max-width:880px}
+        .lvs-search-row{display:flex;gap:12px;align-items:stretch}
+        .lvs-search-row .lvs-search{flex:1 1 0;min-width:0}
+        .lvs-search-row #recent{flex:0 0 220px;position:relative;margin:0}
+        .lvs-search-row .recent-btn{width:100%;height:52px;border-radius:14px;box-sizing:border-box;
+          background:rgba(13,16,25,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14)}
+        .lvs-search-row #recent{z-index:2500}
+        .lvs-search-row .recent-list{z-index:30}
+        body > .page > .search-row{display:none!important}
+        @media (max-width:760px){.lvs-search-row{flex-direction:column}.lvs-search-row #recent{flex-basis:auto}}
+
+        /* 검색창 아래 광고 자리 (박스 밖, 메인과 동일). 광고 유무와 상관없이 크기 고정 */
+        .lvs-adslot{width:100%;max-width:728px;height:90px;min-height:90px;margin:26px auto 48px;margin-top:26px!important;box-sizing:border-box;
+          display:flex;justify-content:center;align-items:center}
+        .lvs-adslot > *{width:100%;margin:0!important;min-height:0!important}
+        /* 광고 자리 안쪽 어떤 구조(#tourney-ad-wrapper / .simple-top-ad-wrap / .ad-slot-responsive)가 들어오든 내용이 위아래 가운데에 오도록 통일 */
+        .lvs-adslot #tourney-ad-wrapper,
+        .lvs-adslot .simple-top-ad-wrap,
+        .lvs-adslot .ad-slot-responsive{display:flex!important;align-items:center;justify-content:center;height:100%!important;min-height:0!important;margin:0!important}
+        /* 페이지 CSS(arc-grid.css 의 body.standalone-arc-grid-page #tourney-ad-wrapper{margin-bottom:48px!important} 등)가
+           광고 상자에 여백을 더해 가운데 정렬이 위로 밀리던 문제 → 슬롯 안에서는 항상 여백 0 (선택자 우선순위를 더 높임) */
+        body.standalone-dps-page .lvs-adslot #tourney-ad-wrapper,
+        body.standalone-dps-page .lvs-adslot .simple-top-ad-wrap,
+        body.standalone-dps-page .lvs-adslot .ad-slot-responsive,
+        body.standalone-dps-page .lvs-adslot .loaview-center-ad{margin:0!important}
+        .lvs-adslot .ad-slot-responsive > *,
+        .lvs-adslot .loaview-center-ad{max-height:100%}
+        @media (max-width:760px){.lvs-adslot{height:100px;min-height:100px;margin-bottom:28px}}
+        /* 메인의 "광고 → 구분선 → 본문" 흐름과 동일하게 */
+        body.standalone-dps-page .lvs-adslot + .app{margin-top:0!important}
+
+        /* ===== 미니 히어로 디자인 ===== */
+        body.standalone-dps-page .p-mini-hero{position:relative;padding:20px 26px!important;border-radius:20px!important;
+          box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 16px 40px rgba(0,0,0,.32)!important}
+        /* 왼쪽 포인트 바 + 은은한 빛 */
+        body.standalone-dps-page .p-mini-hero::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0;
+          background:linear-gradient(180deg,#a78bfa,#38bdf8);box-shadow:0 0 14px rgba(139,109,240,.55);pointer-events:none}
+        body.standalone-dps-page .p-mini-hero::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+          background:radial-gradient(520px 150px at 0% 0%,rgba(139,109,240,.16),transparent 65%),
+                     radial-gradient(420px 140px at 100% 100%,rgba(56,189,248,.08),transparent 70%)}
+        body.standalone-dps-page .p-mini-hero > *{position:relative;z-index:1}
+        /* 제목/아이콘 */
+        body.standalone-dps-page .p-mini-hero .p-mini-hero-title{font-size:26px!important;letter-spacing:-.4px;
+          text-shadow:0 2px 14px rgba(139,109,240,.35)}
+        body.standalone-dps-page .p-mini-hero .p-hero-icon-sm{width:50px!important;height:50px!important;border-radius:14px!important;
+          box-shadow:0 6px 18px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12)}
+        body.standalone-dps-page .p-mini-hero .p-hero-kicker{display:inline-block;padding:3px 9px;border-radius:999px;
+          background:rgba(139,109,240,.14);border:1px solid rgba(167,139,250,.3);color:#c4b5fd!important;letter-spacing:1.4px}
+        /* 정밀계산 페이지의 빈 히어로 자리(#precisionHeroSlot)가 flex 간격(20px)을 만들어 간편보기와 간격이 달라지던 문제 */
+        /* (#precisionHeroSlot 안에는 큰 히어로 자리 #precisionBigHeroSlot 과 미니 히어로 자리 #precisionMiniHeroSlot 이 같이 있음)
+           → 미니 히어로는 그대로 두고, 큰 히어로 자리만 화면 흐름에서 뺌 (margin-bottom:18px 이 간격 차이의 원인) */
+        body.standalone-dps-page #precisionBigHeroSlot{position:absolute!important;width:1px!important;height:1px!important;
+          margin:0!important;padding:0!important;overflow:hidden!important;clip:rect(0,0,0,0)!important}
+        body.standalone-dps-page .main{padding-top:20px!important}
+        /* 한글 라벨(레벨별 보기 / 레이드별 보기) */
+        body.standalone-dps-page .p-mini-hero .p-hero-kicker{text-transform:none!important;font-size:12.5px!important;
+          letter-spacing:.2px!important;font-weight:800!important;padding:4px 12px!important}
+
+        /* ===== 가디언 토벌 미니 히어로: 다른 정밀계산 페이지와 같은 결 + 주황 테마 ===== */
+        /* 영문 라벨 제거 (다른 레이드처럼 아이콘 + 이름으로 시작) */
+        body.standalone-dps-page .hero-guardian.p-mini-hero .p-hero-kicker,
+        body.standalone-dps-page .hero-guardian .p-mini-hero .p-hero-kicker,
+        body.standalone-dps-page .hero-guardian .p-mini-hero-left .p-hero-kicker{display:none!important}
+        /* 포인트 바/빛을 보라 → 주황 */
+        body.standalone-dps-page .hero-guardian.p-mini-hero::before,
+        body.standalone-dps-page .hero-guardian .p-mini-hero::before{background:linear-gradient(180deg,#fdba74,#f59e0b)!important;box-shadow:0 0 14px rgba(251,146,60,.55)!important}
+        body.standalone-dps-page .hero-guardian.p-mini-hero::after,
+        body.standalone-dps-page .hero-guardian .p-mini-hero::after{
+          background:radial-gradient(520px 150px at 0% 0%,rgba(251,146,60,.16),transparent 65%),
+                     radial-gradient(420px 140px at 100% 100%,rgba(245,158,11,.08),transparent 70%)!important}
+        body.standalone-dps-page .hero-guardian .lvs-intro::before,
+        body.standalone-dps-page .hero-guardian.p-mini-hero .lvs-intro::before{color:#fdba74}
+        /* 오른쪽 입장 레벨 / 보스명 → 간편보기 같은 작은 알약 카드 */
+        body.standalone-dps-page .hero-guardian .p-mini-hero-stats{gap:8px!important;align-items:stretch}
+        body.standalone-dps-page .hero-guardian .p-mini-hero-stats > *{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+          padding:7px 16px!important;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(251,146,60,.18);min-width:84px}
+        body.standalone-dps-page .hero-guardian .p-mini-hero-stats > * > :first-child{font-size:10px!important;font-weight:800;letter-spacing:.4px;color:#fdba74!important;line-height:1.1}
+        body.standalone-dps-page .hero-guardian .p-mini-hero-stats > * > :last-child{font-size:16px!important;font-weight:900;color:#fff;line-height:1.15;display:flex;align-items:center;gap:6px}
+        body.standalone-dps-page .hero-guardian .p-mini-hero-stats img{width:20px;height:20px}
+
+        /* 아이콘 왼쪽 세로 구분선(|): 간편보기·가디언에는 이미 있고, 나머지 정밀계산 페이지에도 똑같이 넣음 */
+        body.standalone-dps-page .p-mini-hero .p-mini-hero-left:not(:has(.p-mini-hero-divider))::before{
+          content:"";flex:0 0 auto;width:1px;height:20px;background:rgba(255,255,255,.15)}
+        body.standalone-dps-page .p-mini-hero .p-mini-hero-divider{height:20px!important}
+
+        /* 한 줄 소개 */
+        .lvs-intro{display:flex;align-items:flex-start;gap:8px;margin-top:14px;padding-top:13px;border-top:1px dashed rgba(255,255,255,.1);
+          font-size:13px;line-height:1.65;color:#aab4c8;font-weight:500}
+        .lvs-intro::before{content:"✦";flex:0 0 auto;margin-top:2px;font-size:10px;color:#a78bfa}
+        @media (max-width:760px){
+          body.standalone-dps-page .p-mini-hero{padding:16px 18px!important}
+          body.standalone-dps-page .p-mini-hero .p-mini-hero-title{font-size:21px!important}
+          body.standalone-dps-page .p-mini-hero .p-hero-icon-sm{width:42px!important;height:42px!important}
+        }
+      
+/* 헤더 고정/우선순위 (간편·정밀·토너먼트·아크 페이지) */
+body.standalone-dps-page > #common-shell:not(:empty) { display: contents; }
+body.standalone-dps-page .gnb { z-index: 3000 !important; }
+
+/* JS가 검색창+광고 자리를 만들기 전에 그 높이만큼 미리 비워둠 → 내용이 아래로 밀리며 튀는 현상 방지 (JS 실행 후 lvs-ready 로 해제) */
+body.standalone-dps-page:not(.lvs-ready):not([data-no-subhero]) #common-shell { margin-bottom: 292px; }
+@media (max-width: 760px) {
+  body.standalone-dps-page:not(.lvs-ready):not([data-no-subhero]) #common-shell { margin-bottom: 282px; }
+}
