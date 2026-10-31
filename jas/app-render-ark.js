@@ -1,1 +1,781 @@
-const _0x549637=_0xc057;(function(_0x5d89eb,_0x3e9d8d){const _0x19a0d1=_0xc057,_0x5d25a9=_0x5d89eb();while(!![]){try{const _0x1e4094=parseInt(_0x19a0d1(0x2d7))/0x1+-parseInt(_0x19a0d1(0x243))/0x2*(parseInt(_0x19a0d1(0x218))/0x3)+parseInt(_0x19a0d1(0x226))/0x4*(parseInt(_0x19a0d1(0x2d1))/0x5)+-parseInt(_0x19a0d1(0x26a))/0x6*(-parseInt(_0x19a0d1(0x1ed))/0x7)+parseInt(_0x19a0d1(0x1fe))/0x8*(parseInt(_0x19a0d1(0x280))/0x9)+-parseInt(_0x19a0d1(0x2bd))/0xa+-parseInt(_0x19a0d1(0x220))/0xb*(parseInt(_0x19a0d1(0x238))/0xc);if(_0x1e4094===_0x3e9d8d)break;else _0x5d25a9['push'](_0x5d25a9['shift']());}catch(_0x2aca58){_0x5d25a9['push'](_0x5d25a9['shift']());}}}(_0x5c5f,0xefa9f));let __agType=_0x549637(0x27d);const ARK_CD_MANA_TABLE={'끝없는\x20마나':[0x7,0xe],'무한한\x20마력':[0x7,0xe]},ARK_CD_ALL_TABLE={'최적화\x20훈련':[0x4,0x8],'타이밍\x20지배':[0x5,0xa],'선각자':[0x5]};function calcArkCdPct(_0x2c1095){const _0x44db7d=_0x549637,_0x1778ac={'mana':0x0,'all':0x1},_0x2f8fa1=_0x2c1095&&_0x2c1095[_0x44db7d(0x1e1)]||[];for(const _0x5f04d5 of _0x2f8fa1){if(_0x5f04d5['Name']!=='진화')continue;const _0x185321=strip(_0x5f04d5['Description']||'')[_0x44db7d(0x1e8)](/&nbsp;/g,'\x20'),_0x280b1=_0x185321[_0x44db7d(0x1f9)](/Lv\.?\s*(\d+)/),_0x87ef58=_0x280b1?parseInt(_0x280b1[0x1],0xa):0x1;for(const _0x4a2a51 of Object[_0x44db7d(0x1fa)](ARK_CD_MANA_TABLE)){if(_0x185321[_0x44db7d(0x23b)](_0x4a2a51)===-0x1)continue;const _0x547bcf=ARK_CD_MANA_TABLE[_0x4a2a51];_0x1778ac[_0x44db7d(0x207)]+=_0x547bcf[Math[_0x44db7d(0x2c9)](_0x87ef58,_0x547bcf[_0x44db7d(0x1e4)])-0x1]||0x0;}for(const _0x559edb of Object[_0x44db7d(0x1fa)](ARK_CD_ALL_TABLE)){if(_0x185321[_0x44db7d(0x23b)](_0x559edb)===-0x1)continue;const _0x1008f9=ARK_CD_ALL_TABLE[_0x559edb],_0x3cbe1d=_0x1008f9[Math['min'](_0x87ef58,_0x1008f9[_0x44db7d(0x1e4)])-0x1]||0x0;_0x1778ac[_0x44db7d(0x2a0)]*=0x1-_0x3cbe1d/0x64;}}return window['__arkCdPct']=_0x1778ac,_0x1778ac;}function agGradeClass(_0x32c915){const _0x2ad671=_0x549637;if(_0x32c915==='고대')return _0x2ad671(0x269);if(_0x32c915==='유물')return _0x2ad671(0x291);if(_0x32c915==='전설')return _0x2ad671(0x265);if(_0x32c915==='영웅')return _0x2ad671(0x268);return'';}function agParseTooltip(_0x21cbe1){const _0x2bec72=_0x549637,_0x4d9630=parseTip(_0x21cbe1),_0x311615={'title':'','gradeText':'','tradeBan':'','breakBan':'','parts':[]};if(!_0x4d9630)return _0x311615;for(const _0x38cdeb of Object[_0x2bec72(0x1fa)](_0x4d9630)){const _0x37c909=_0x4d9630[_0x38cdeb];if(!_0x37c909||!_0x37c909[_0x2bec72(0x22c)])continue;if(_0x37c909[_0x2bec72(0x22c)]===_0x2bec72(0x2e5))_0x311615[_0x2bec72(0x1e7)]=_0x37c909['value']||'';else{if(_0x37c909[_0x2bec72(0x22c)]===_0x2bec72(0x24a)&&_0x37c909['value'])_0x311615[_0x2bec72(0x20a)]=_0x37c909[_0x2bec72(0x295)]['leftStr0']||'';else{if(_0x37c909[_0x2bec72(0x22c)]===_0x2bec72(0x304)&&_0x37c909[_0x2bec72(0x295)]&&/거래\s*불가/[_0x2bec72(0x305)](strip(_0x37c909['value'])))_0x311615[_0x2bec72(0x2c3)]='거래\x20불가';else{if(_0x37c909['type']===_0x2bec72(0x2b3)&&_0x37c909[_0x2bec72(0x295)]&&/분해\s*불가/[_0x2bec72(0x305)](strip(_0x37c909['value'])))_0x311615[_0x2bec72(0x27a)]=_0x2bec72(0x2d3);}}}}return _0x311615[_0x2bec72(0x201)]=tipParts(_0x4d9630),_0x311615;}function agParseStatLines(_0x315706){const _0x5aa54c=_0x549637,_0x2f3119=strip(_0x315706),_0x555fa8=[],_0x47d36e=/\[([^\]]+)\]\s*Lv\.?\s*(\d+)[^%[]*?([+\-]?\d+(?:\.\d+)?%)/g;let _0xaf8732;while(_0xaf8732=_0x47d36e['exec'](_0x2f3119))_0x555fa8[_0x5aa54c(0x214)]({'name':_0xaf8732[0x1],'lv':_0xaf8732[0x2],'pct':_0xaf8732[0x3]});return _0x555fa8;}const AG_STAT_ABBR={'보스\x20피해':'보피','추가\x20피해':'추피','공격력':'공격','낙인력':'낙인','아군\x20공격\x20강화':'아공','아군\x20피해\x20강화':'아피'};function agAbbr(_0x2d39eb){return AG_STAT_ABBR[_0x2d39eb]||_0x2d39eb;}function agCoreOptionRows(_0x542a29){const _0x1e44e7=_0x549637;if(!_0x542a29)return[];return String(_0x542a29)[_0x1e44e7(0x2ca)](/<br\s*\/?>/i)[_0x1e44e7(0x2f6)](_0x560ba9=>_0x560ba9[_0x1e44e7(0x2e4)]())[_0x1e44e7(0x2f3)](Boolean);}function agStripP(_0x36a444){const _0x4c8833=_0x549637;return String(_0x36a444||'')[_0x4c8833(0x1e8)](/^<P[^>]*>/i,'')[_0x4c8833(0x1e8)](/<\/P>\s*$/i,'');}function agCondRows(_0x3a4e6e){const _0x2a7880=_0x549637;if(!_0x3a4e6e)return[];return String(_0x3a4e6e)[_0x2a7880(0x2ca)](/<br\s*\/?>/i)[_0x2a7880(0x2f6)](_0x50ee09=>_0x50ee09[_0x2a7880(0x1e8)](/<img[^>]*>/gi,'')[_0x2a7880(0x2e4)]())[_0x2a7880(0x2f3)](Boolean);}function agOptionActive(_0x574029,_0x29d607){const _0x3a1ff9=_0x549637,_0xe3ec8e=strip(_0x574029)[_0x3a1ff9(0x1f9)](/^\[(\d+)P\]/);if(!_0xe3ec8e)return!![];return Number(_0xe3ec8e[0x1])<=(_0x29d607||0x0);}function buildCoreTipHtml(_0x345080){const _0x474eee=_0x549637;if(!_0x345080)return'';const _0x3a8271=agParseTooltip(_0x345080['Tooltip']),_0x2d2339=parseTip(_0x345080['Tooltip']);let _0x5dbaf5=agStripP(_0x3a8271[_0x474eee(0x1e7)])||_0x345080[_0x474eee(0x212)]||'-';_0x345080[_0x474eee(0x2a5)]!=null&&(_0x5dbaf5+=_0x474eee(0x249)+_0x345080[_0x474eee(0x2a5)]+_0x474eee(0x24c));const _0xe3ca47=gradeStyle(_0x345080[_0x474eee(0x224)]||''),_0x1cd6ba=_0xe3ca47['c']||_0x474eee(0x203),_0x49e703=[];if(_0x2d2339)for(const _0x19eebd of Object[_0x474eee(0x1fa)](_0x2d2339)[_0x474eee(0x2bc)]()){const _0x1ced15=_0x2d2339[_0x19eebd];if(!_0x1ced15?.[_0x474eee(0x22c)])continue;if(_0x1ced15[_0x474eee(0x22c)]===_0x474eee(0x2b3)&&_0x1ced15[_0x474eee(0x295)]){const _0x2395fa=strip(_0x1ced15[_0x474eee(0x295)]);if(!_0x2395fa)continue;if(/거래\s*불가|분해\s*불가|판매\s*불가/[_0x474eee(0x305)](_0x2395fa)&&_0x2395fa[_0x474eee(0x1e4)]<0x28)continue;if(/획득|레이드|카제로스|에픽|하르키|일리아칸|상아탑|클라우|쿠르잔|가디언|어비스|더\s*존재/['test'](_0x2395fa))continue;_0x49e703[_0x474eee(0x214)](_0x1ced15['value']);}}let _0x11388f='';for(const _0x3d16f4 of _0x3a8271['parts']||[]){const _0x3d0ef9=/발동\s*조건/[_0x474eee(0x305)](_0x3d16f4[_0x474eee(0x1e7)]||'');let _0x1d066b=_0x3d16f4[_0x474eee(0x2ee)]||'';if(/코어\s*옵션/[_0x474eee(0x305)](_0x3d16f4[_0x474eee(0x1e7)])&&!_0x3d0ef9){const _0x387f06=agCoreOptionRows(_0x1d066b),_0x170bb5=[];for(const _0x3d2816 of _0x387f06){if(agOptionActive(_0x3d2816,_0x345080[_0x474eee(0x2a5)]))_0x170bb5[_0x474eee(0x214)](_0x474eee(0x21b)+_0x3d2816+_0x474eee(0x2b8));else{const _0x5ba085=_0x3d2816[_0x474eee(0x1e8)](/color\s*=\s*['"]?[^'"\s>]+['"]?/gi,'');_0x170bb5[_0x474eee(0x214)](_0x474eee(0x2e3)+_0x5ba085+_0x474eee(0x2b8));}}_0x1d066b=_0x170bb5[_0x474eee(0x25c)]('');}_0x11388f+=_0x474eee(0x2a2)+(_0x3d0ef9?_0x474eee(0x2ff):'')+'\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22core-tip-sec-t\x22>'+(_0x3d16f4[_0x474eee(0x1e7)]||'')+'</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22core-tip-sec-b\x22>'+_0x1d066b+_0x474eee(0x1ef);}const _0x5a9c90=_0x345080[_0x474eee(0x259)]?'<div\x20class=\x22apt-tip-icon\x20core-tip-icon\x22\x20style=\x22background:'+(_0xe3ca47['bg']||'rgba(255,255,255,.06)')+_0x474eee(0x2a3)+_0x1cd6ba+_0x474eee(0x228)+_0x345080[_0x474eee(0x259)]+_0x474eee(0x22f):'';return _0x474eee(0x2e1)+_0x1cd6ba+'\x22>'+_0x5dbaf5+_0x474eee(0x29a)+_0x5a9c90+_0x474eee(0x210)+(_0x3a8271[_0x474eee(0x20a)]||'')+_0x474eee(0x1ea)+(_0x3a8271['tradeBan']?'<div\x20class=\x22core-tip-ban-text\x22>'+_0x3a8271['tradeBan']+_0x474eee(0x2b8):'')+_0x474eee(0x26c)+_0x49e703[_0x474eee(0x2f6)](_0xf23ab7=>'<div\x20class=\x22core-tip-line\x22>'+_0xf23ab7+'</div>')[_0x474eee(0x25c)]('')+_0x474eee(0x225)+_0x11388f+_0x474eee(0x225)+(_0x3a8271['breakBan']?_0x474eee(0x1e9)+_0x3a8271[_0x474eee(0x27a)]+_0x474eee(0x2b8):'')+_0x474eee(0x2de);}const AG_GRADE_FILL={'고대':'#cfad7e','유물':'#ff7a3d','전설':_0x549637(0x28c),'영웅':_0x549637(0x200)},AG_GRADE_BG={'고대':_0x549637(0x234),'유물':_0x549637(0x2b4),'전설':_0x549637(0x2d9),'영웅':_0x549637(0x1e0)};function agGradeGradient(_0x3721a4){const _0x1a4e8f=_0x549637;return _0x1a4e8f(0x24d)+_0x3721a4+'\x200%,\x20'+_0x3721a4+_0x1a4e8f(0x27e);}function agGemGradient(_0x19d792){const _0x55dfbb=_0x549637,_0x3838d0=AG_GRADE_BG[_0x19d792]||_0x55dfbb(0x2b9);return _0x55dfbb(0x24d)+_0x3838d0+'\x200%,\x20#241d28\x2090%)';}const AG_DPS_STAT_COLOR={'보스\x20피해':_0x549637(0x1ee),'추가\x20피해':_0x549637(0x2d6),'공격력':_0x549637(0x245)},AG_SUPPORT_VALID=[_0x549637(0x229),_0x549637(0x211),_0x549637(0x26b)],AG_GEM_PER_LV={'보스\x20피해':0.08325,'추가\x20피해':0.0608,'공격력':0.035},AG_GEM_PER_LV_SUP={'낙인력':0.01446,'아군\x20피해\x20강화':0.00947,'아군\x20공격\x20강화':0.02819},AG_SUP_CORE_PT={0x12:1.000333,0x13:1.000649,0x14:1.000948},AG_EFF_COLOR={'보스\x20피해':'#ff6b6b','추가\x20피해':_0x549637(0x20c),'공격력':_0x549637(0x279),'낙인력':_0x549637(0x2be),'아군\x20공격\x20강화':'#4dd6e0','아군\x20피해\x20강화':_0x549637(0x2ba)},AG_EFF_NAMES={'dps':[_0x549637(0x2db),'추가\x20피해',_0x549637(0x1f0)],'sup':[_0x549637(0x229),_0x549637(0x211),_0x549637(0x26b)]},AG_CORE_PT={'고대':{'o해달':[1.085,1.0867,1.0883,1.09],'o별':[1.055,1.0567,1.0583,1.06],'c강':[1.035,1.0367,1.0383,1.04],'c약':[1.025,1.0267,1.0283,1.03]},'유물':{'o해달':[1.075,1.0767,1.0783,1.08],'o별':[1.045,1.0467,1.0483,1.05],'c강':[1.025,1.0267,1.0283,1.03],'c약':[1.015,1.0167,1.0183,1.02]}};function agCoreTableKey(_0x3c46d7){const _0x1227b9=_0x549637,_0x335b45=parseArkCoreName(_0x3c46d7||'');if(_0x335b45['isOrder'])return _0x335b45[_0x1227b9(0x288)]==='별'?'o별':_0x335b45[_0x1227b9(0x288)]?_0x1227b9(0x247):null;if(!_0x335b45['isChaos'])return null;const _0x55a053=_0x335b45[_0x1227b9(0x209)]||'';if(_0x335b45[_0x1227b9(0x288)]==='해')return/현란/['test'](_0x55a053)?'c강':/안정적|재빠른/['test'](_0x55a053)?'c약':null;if(_0x335b45[_0x1227b9(0x288)]==='달')return/불타는/['test'](_0x55a053)?'c강':/흡수|부수/[_0x1227b9(0x305)](_0x55a053)?'c약':null;if(_0x335b45[_0x1227b9(0x288)]==='별')return/^공격$/[_0x1227b9(0x305)](_0x55a053)?'c강':null;return null;}function _0xc057(_0x6aa487,_0x594675){_0x6aa487=_0x6aa487-0x1de;const _0x5c5f5c=_0x5c5f();let _0xc057e0=_0x5c5f5c[_0x6aa487];return _0xc057e0;}function agPointEff(_0x586673,_0x1de5cf){const _0x490445=_0x549637;let _0x1deff8=0x1;if(_0x1de5cf){for(const _0x330e75 of _0x586673||[]){const _0x51fa13=_0x330e75[_0x490445(0x2a5)]|0x0;if(_0x51fa13>0x11)_0x1deff8*=AG_SUP_CORE_PT[Math['min'](_0x51fa13,0x14)];}return(_0x1deff8-0x1)*0x64;}for(const _0x55445a of _0x586673||[]){const _0x193e3e=AG_CORE_PT[_0x55445a[_0x490445(0x224)]||''],_0x1e0dbf=agCoreTableKey(_0x55445a[_0x490445(0x212)]),_0x476b07=_0x55445a[_0x490445(0x2a5)]|0x0;if(!_0x193e3e||!_0x1e0dbf||!_0x193e3e[_0x1e0dbf]||_0x476b07<=0x11)continue;const _0x184e3e=_0x193e3e[_0x1e0dbf];_0x1deff8*=_0x184e3e[Math['min'](_0x476b07,0x14)-0x11]/_0x184e3e[0x0];}return(_0x1deff8-0x1)*0x64;}function agGemEff(_0x4877dd,_0x38604e){const _0x38ebbb=_0x549637,_0x4b448a={};let _0x1fa765=0x1;const _0x7257b=_0x38604e?AG_GEM_PER_LV_SUP:AG_GEM_PER_LV;for(const _0x41903a of _0x4877dd['Effects']||[]){const _0x35e0f4=String(_0x41903a[_0x38ebbb(0x212)]||'')['trim'](),_0x464c62=_0x7257b[_0x35e0f4];if(_0x464c62==null||_0x41903a[_0x38ebbb(0x2bf)]==null)continue;const _0x3b8d29=_0x464c62*_0x41903a['Level'];_0x4b448a[_0x35e0f4]={'lv':_0x41903a['Level'],'real':_0x3b8d29},_0x1fa765*=0x1+_0x3b8d29/0x64;}const _0x4b5b38=(_0x1fa765-0x1)*0x64,_0x1098fd=agPointEff(_0x4877dd['Slots'],_0x38604e),_0x406af9=((0x1+_0x4b5b38/0x64)*(0x1+_0x1098fd/0x64)-0x1)*0x64;return{'opts':_0x4b448a,'opt':_0x4b5b38,'pt':_0x1098fd,'total':_0x406af9};}function _0x5c5f(){const _0x4dfa8c=['match','keys','__bound','leap','function','3696656VfSTDu','Slots','#b97dff','parts','\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-core-title\x22>','#cfd7e8','\x20off','\x22\x20data-cat=\x22','</div>\x0a\x20\x20\x20\x20<div\x20class=\x22ag-core-tag\x20muted\x22>','mana','%</b></div>','short','gradeText','click','#ffd24d','\x20g-epic','</span>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22apt-tab-pt\x22>','span','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-tip-meta\x20core-tip-meta\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22core-tip-grade\x22>','아군\x20공격\x20강화','Name','forEach','push','</div>\x0a\x20\x20\x20\x20<div\x20class=\x22ag-core-cond\x22>','Value','홀리나이트','17268GHcMOE','max','<div\x20class=\x22apt-tier-badge\x22><span\x20class=\x22apt-tier-num\x22>','<div>','</span><span\x20class=\x22apt-tip-learned\x22\x20style=\x22color:#8b93a7\x22>미습득</span></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-tip-level\x22>Lv.0/','https://cdn-lostark.game.onstove.com/efui_iconatlas/','textContent','querySelectorAll','22ZHuQmC','aptGrid',';font-weight:800\x22>$1</span>','node_column','Grade','\x0a\x20\x20\x20\x20\x20\x20','5534220DvfeDA','Tooltip','55\x22><img\x20class=\x22apt-tip-ic\x22\x20src=\x22','낙인력','</small></div>','find','type','</span>\x20<b','innerHTML','\x22\x20alt=\x22\x22></div>','<div\x20class=\x22apt-tip-desc\x22>','gridTemplateColumns','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20','Description','#8a7754','__fullData','agSummary','apt-row','13447056cSPqqJ','</span>','ag-theme-','indexOf','pct','</span>\x0a\x20\x20\x20\x20</button>','ArmoryProfile','includes','pClass','name','ag-theme-order','26ZeJcPF','className','#9be36a','appendChild','o해달','agBadges','\x20<span\x20style=\x22color:#ffd200;\x22>(','ItemTitle','icon','P)</span>','radial-gradient(circle\x20at\x2032%\x2028%,\x20','eff-on','<h4>','\x22\x20alt=\x22\x22\x20style=\x22filter:grayscale(1)\x20brightness(.7)\x22></div>','level','#ffb84d','</i></span><b>','evo','__charClass','\x20<i>Lv','</span><b>','isChaos','Icon','</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-points\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','eff-off','join','opt','\x0a\x20\x20\x20\x20','some','append','66;\x22>\x0a\x20\x20\x20\x20\x20\x20','정보\x20없음','</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-points\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-pt\x20order\x22><span\x20class=\x22k\x22>질서</span><b>','발키리','g-legend','has','apt-col\x20','g-epic','g-ancient','19434RDHnPH','아군\x20피해\x20강화','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20','__draw','node_row','<div>발동\x20조건\x20없음</div>','#3a3f4d',';box-shadow:0\x200\x200\x201px\x20','\x0a\x20\x20\x20\x20<div\x20class=\x22ag-core-hd\x22>\x0a\x20\x20\x20\x20\x20\x20','ag-gem-section','apt-tabs','tier','\x20empty','border','tierList','#4dd6e0','breakBan','#6cbcff','Gems','order','\x2035%,\x20#241722\x20100%)','ag-core-card','36QrWUCa','</div></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ag-eff-op\x22>×</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-eff-blk\x22><span\x20class=\x22k\x22>포인트\x20효율</span><b>','hit','row\x20','</strong></span>','</div>\x0a\x20\x20','\x22\x20alt=\x22\x22\x20loading=\x22lazy\x22>','</div>\x0a\x20\x20\x20\x20<div\x20class=\x22ag-core-tag\x20warn\x22>','slot','%</b>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-eff-opts\x22>','point','.apt-tab','#ffb24d','../','passiveList','\x0a\x20\x20\x20\x20<div\x20class=\x22ag-gem-icon\x22\x20style=\x22background:','background','g-relic','apGridDash','<img\x20src=\x22','.ag-type-btn','value','\x20g-relic','</b></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-pt\x20chaos\x22><span\x20class=\x22k\x22>혼돈</span><b>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-lv\x22>','core','</div>\x0a\x20\x20\x20\x20<div\x20class=\x22tip-bd\x20apt-tip-body\x20core-tip-body\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-tip-top\x20core-tip-hd\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','add','</span><span\x20class=\x22v\x22>','\x20style=\x22color:','cat','src','all','%</b><small>옵션\x20×\x20포인트</small></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ag-eff-op\x22>=</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-eff-blk\x20opt\x22><span\x20class=\x22k\x22>옵션\x20효율</span><b>','<div\x20class=\x22core-tip-sec',';border-color:','cls','Point','loading','undefined','#f0c14b','깨달음','max_level','\x0a\x20\x20\x20\x20<div\x20class=\x22tip-hd\x20apt-tip-title\x22>','\x22>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22apt-tab-dot\x22></span>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22apt-tab-label\x22>','CharacterClassName','\x22\x20alt=\x22\x22></span></span>','<div\x20class=\x22ag-core-ribbon\x20','apt-shell','\x22><span\x20class=\x22k\x22>','img','SingleTextBox','#a34a26','</div><div\x20class=\x22tip-bd\x22>','desc','<span\x20class=\x22ag-core-icon-frame\x22><span\x20class=\x22ag-core-icon-bg\x22\x20style=\x22background:','</div>','#4a4a55','#b79bff','remove','sort','16990120zCfaYW','#ff7ac6','Level','toFixed','Lv.','<div\x20style=\x22color:var(--muted);font-size:12px\x22>정보\x20없음</div>','tradeBan','grid','%</b><small>코어\x2017P\x20넘는\x20만큼</small></div>\x0a\x20\x20\x20\x20\x20\x20</div>','aptHero','Title','#44d39a','min','split','\x20포인트','div','</b><small>','dataset','\x0a\x20\x20\x20\x20<div\x20class=\x22ag-hero\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-eyebrow\x22>ARK\x20GRID</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-class\x22>','addEventListener','5cRzPbB','\x20·\x20','분해불가','arkgCore','<span><span','#6fb3ff','1437657IvzkRG','alt','#a06d1f','off','보스\x20피해','arkg-item','0.00','\x0a\x20\x20\x20\x20</div>','\x20<span\x20class=\x22lv\x22>','\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20<div\x20class=\x22ag-gem-type\x22\x20style=\x22color:','\x0a\x20\x20\x20\x20<div\x20class=\x22tip-hd\x20core-tip-title\x22\x20style=\x22color:','<span\x20style=\x22color:','<div\x20style=\x22color:#666666;\x22>','trim','NameTagBox','active','sup','borderRadius','\x0a\x20\x20\x20\x20<div\x20class=\x22ag-hero\x20apt-hero\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-left\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-eyebrow\x22>ARK\x20PASSIVE</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-hero-class\x22>','style','>Lv','chaos',',\x20minmax(0,\x201fr))','body','round','awakening','</b></div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20','기상술사','filter','apGrid','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-nm\x22>','map','.png','<div\x20class=\x22apt-tip-icon\x20empty\x22></div>','IsActive','agCores','\x20<span\x20class=\x22ag-core-point-inline\x22>(','\x20g-ancient','ap-item','dps','\x20core-tip-cond','createElement','<button\x20type=\x22button\x22\x20class=\x22apt-tab\x20','\x20<b>Lv','</div>\x0a\x20\x20\x20\x20<div\x20class=\x22ag-gem-stats\x22>','MultiTextBox','test','ag-theme-chaos','\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-eff\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ag-eff-blk\x20tot\x22><span\x20class=\x22k\x22>젬\x20효율</span><b>','#6a4590','Effects','</div>\x0a\x20\x20\x20\x20<div\x20class=\x22tip-bd\x20apt-tip-body\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-tip-top\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','.apt-nodes','length','</b></span>','<div\x20class=\x22ag-empty\x22>장착된\x20코어가\x20없습니다</div>','title','replace','<div\x20class=\x22core-tip-break\x22>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','<div\x20class=\x22ag-core-opt-row','ap-col','707kmZbLk','#c58bff','</div>\x0a\x20\x20\x20\x20</div>','공격력','<div\x20class=\x22ag-hero-pt\x20','\x20active','isOrder','total','</div>\x0a\x20\x20\x20\x20<div\x20class=\x22ag-core-opts\x22>','key','classList','real'];_0x5c5f=function(){return _0x4dfa8c;};return _0x5c5f();}function renderArkGridGemChip(_0x5ed705,_0xfacbee){const _0x51d86d=_0x549637,_0x17464e=agParseTooltip(_0x5ed705[_0x51d86d(0x227)]),_0x55f632=strip(_0x17464e[_0x51d86d(0x1e7)]),_0x52a280=(_0x55f632[_0x51d86d(0x2ca)](':')[0x1]||_0x55f632||'')[_0x51d86d(0x2e4)](),_0x50c2ef=agGradeClass(_0x5ed705[_0x51d86d(0x224)]||'');let _0x2003e0='';for(const _0x5749a4 of _0x17464e[_0x51d86d(0x201)]){if(/젬\s*효과/[_0x51d86d(0x305)](_0x5749a4[_0x51d86d(0x1e7)]))_0x2003e0=_0x5749a4[_0x51d86d(0x2ee)];}const _0xbf44a4=agParseStatLines(_0x2003e0),_0x254bbd=_0xbf44a4[_0x51d86d(0x2f6)](_0x2c023f=>{const _0x47e3a7=_0x51d86d,_0x4bd015=_0xfacbee?AG_SUPPORT_VALID[_0x47e3a7(0x23f)](_0x2c023f[_0x47e3a7(0x241)])?_0x47e3a7(0x252):null:AG_DPS_STAT_COLOR[_0x2c023f[_0x47e3a7(0x241)]]||null,_0x184726=_0x4bd015?_0x47e3a7(0x29d)+_0x4bd015+'\x22':'';return _0x47e3a7(0x2d5)+_0x184726+'>'+agAbbr(_0x2c023f['name'])+_0x47e3a7(0x22d)+_0x184726+_0x47e3a7(0x2eb)+_0x2c023f['lv']+_0x47e3a7(0x1e5);})['join'](''),_0x5a214d=AG_GRADE_FILL[_0x5ed705[_0x51d86d(0x224)]]||'#3a3f4d',_0x9b0585=document[_0x51d86d(0x300)]('div');_0x9b0585[_0x51d86d(0x244)]='ag-gem-chip'+(_0x50c2ef?'\x20'+_0x50c2ef:'')+(_0x5ed705[_0x51d86d(0x2f9)]===![]?_0x51d86d(0x204):''),_0x9b0585[_0x51d86d(0x22e)]=_0x51d86d(0x28f)+agGemGradient(_0x5ed705[_0x51d86d(0x224)])+_0x51d86d(0x271)+_0x5a214d+_0x51d86d(0x261)+(_0x5ed705[_0x51d86d(0x259)]?_0x51d86d(0x293)+_0x5ed705[_0x51d86d(0x259)]+_0x51d86d(0x286):'')+_0x51d86d(0x2e0)+_0x5a214d+'\x22>'+(_0x52a280||'-')+_0x51d86d(0x303)+_0x254bbd+_0x51d86d(0x285);const _0xfe7641=buildTipHtml(_0x5ed705[_0x51d86d(0x227)],_0x17464e[_0x51d86d(0x1e7)]);if(_0xfe7641)bindTip(_0x9b0585,_0xfe7641);return _0x9b0585;}function renderArkGridCoreCard(_0x5c2eaf){const _0x1de54f=_0x549637,_0xb7a332=agParseTooltip(_0x5c2eaf[_0x1de54f(0x227)]),_0x5646d7=parseArkCoreName(_0x5c2eaf[_0x1de54f(0x212)]||''),_0x50b5ce=_0x5646d7[_0x1de54f(0x1f3)]?orderCoreNum(_0x5646d7[_0x1de54f(0x209)],_0x5646d7[_0x1de54f(0x288)]):_0x5646d7[_0x1de54f(0x258)]?chaosCoreNum(_0x5646d7[_0x1de54f(0x209)]):null,_0x3441b3=agGradeClass(_0x5c2eaf[_0x1de54f(0x224)]||'');let _0x32ba5c='',_0x2b9ef1='';for(const _0x501175 of _0xb7a332[_0x1de54f(0x201)]){if(/코어\s*옵션\s*발동\s*조건/[_0x1de54f(0x305)](_0x501175[_0x1de54f(0x1e7)]))_0x2b9ef1=_0x501175[_0x1de54f(0x2ee)];else{if(/코어\s*옵션/[_0x1de54f(0x305)](_0x501175['title']))_0x32ba5c=_0x501175['body'];}}const _0x36b205=agCoreOptionRows(_0x32ba5c),_0x40dc92=agCondRows(_0x2b9ef1),_0xec1590=document[_0x1de54f(0x300)]('div');_0xec1590[_0x1de54f(0x244)]=_0x1de54f(0x27f)+(_0x3441b3?'\x20'+_0x3441b3:'');{const _0x14b5db=(agStripP(_0xb7a332['title'])||_0x5c2eaf[_0x1de54f(0x212)]||'')['match'](/의\s*(해|달|별)/);if(_0x14b5db)_0xec1590[_0x1de54f(0x2ce)][_0x1de54f(0x299)]=_0x14b5db[0x1];}const _0x3f5cc2=_0x50b5ce!=null?_0x1de54f(0x2af)+(_0x5646d7[_0x1de54f(0x258)]?_0x1de54f(0x2ec):'order')+'\x22>'+_0x50b5ce+'</div>':'',_0x4830df=agStripP(_0xb7a332['title'])||_0x5c2eaf[_0x1de54f(0x212)]||'-',_0x37646e=_0x5c2eaf[_0x1de54f(0x2a5)]!=null?_0x4830df+_0x1de54f(0x2fb)+_0x5c2eaf[_0x1de54f(0x2a5)]+'p)</span>':_0x4830df,_0x3f588e=AG_GRADE_FILL[_0x5c2eaf['Grade']]||_0x1de54f(0x270),_0x2d7cc5=_0x5c2eaf[_0x1de54f(0x259)]?_0x1de54f(0x2b7)+agGradeGradient(_0x3f588e)+'\x22><img\x20class=\x22ag-core-icon\x22\x20src=\x22'+_0x5c2eaf[_0x1de54f(0x259)]+_0x1de54f(0x2ae):'';_0xec1590['innerHTML']=_0x1de54f(0x25e)+_0x3f5cc2+_0x1de54f(0x272)+_0x2d7cc5+_0x1de54f(0x202)+_0x37646e+'</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20<div\x20class=\x22ag-core-meta\x22>'+(_0xb7a332['gradeText']||'')+_0x1de54f(0x287)+(_0xb7a332['tradeBan']||'')+_0x1de54f(0x1f5)+_0x36b205[_0x1de54f(0x2f6)](_0x26e7d0=>_0x1de54f(0x1eb)+(agOptionActive(_0x26e7d0,_0x5c2eaf[_0x1de54f(0x2a5)])?'':'\x20inactive')+'\x22>'+_0x26e7d0+_0x1de54f(0x2b8))[_0x1de54f(0x25c)]('')+_0x1de54f(0x215)+(_0x40dc92[_0x1de54f(0x1e4)]?_0x40dc92[_0x1de54f(0x2f6)](_0x5bfa86=>_0x1de54f(0x21b)+_0x5bfa86+_0x1de54f(0x2b8))[_0x1de54f(0x25c)](''):_0x1de54f(0x26f))+_0x1de54f(0x206)+(_0xb7a332[_0x1de54f(0x27a)]||'')+_0x1de54f(0x285);const _0x204d34=buildCoreTipHtml(_0x5c2eaf);if(_0x204d34)bindTip(_0xec1590,_0x204d34);return _0xec1590;}function renderArkGrid(_0x3a01da){const _0xe5c04d=_0x549637,_0x66df0b=$(_0xe5c04d(0x2d4)),_0x2c9181=$('arkgSlots'),_0x5f4e10=$('arkgStats');if(!_0x66df0b||!_0x2c9181||!_0x5f4e10)return;_0x2c9181['innerHTML']='',_0x5f4e10['innerHTML']='';if(!_0x3a01da){_0x66df0b[_0xe5c04d(0x21e)]=_0xe5c04d(0x262);return;}const _0x395dbe=_0x3a01da[_0xe5c04d(0x1ff)]||[],_0x3429cc={'해':null,'달':null,'별':null},_0x580e65={'해':null,'달':null,'별':null};for(const _0x3a8813 of _0x395dbe){const _0x5065dc=parseArkCoreName(_0x3a8813[_0xe5c04d(0x212)]||'');if(_0x5065dc[_0xe5c04d(0x1f3)]&&_0x5065dc[_0xe5c04d(0x288)])_0x3429cc[_0x5065dc[_0xe5c04d(0x288)]]=orderCoreNum(_0x5065dc[_0xe5c04d(0x209)],_0x5065dc[_0xe5c04d(0x288)]);if(_0x5065dc[_0xe5c04d(0x258)]&&_0x5065dc['slot'])_0x580e65[_0x5065dc['slot']]=chaosCoreNum(_0x5065dc[_0xe5c04d(0x209)]);}const _0x1ba25b=['해','달','별'][_0xe5c04d(0x2f6)](_0xf8116c=>_0x3429cc[_0xf8116c]!=null?_0x3429cc[_0xf8116c]:'-')[_0xe5c04d(0x25c)]('\x20'),_0x2608bc=['해','달','별'][_0xe5c04d(0x2f6)](_0x587bdf=>_0x580e65[_0x587bdf]!=null?_0x580e65[_0x587bdf]:'-')[_0xe5c04d(0x25c)]('\x20');_0x66df0b[_0xe5c04d(0x22e)]='<span\x20class=\x22arkg-core-l\x22>코어</span><span\x20class=\x22arkg-core-r\x22>질서\x20<strong>'+_0x1ba25b+'</strong>\x20·\x20혼돈\x20<strong>'+_0x2608bc+_0xe5c04d(0x284);const _0x51de8c=[..._0x395dbe]['sort']((_0x40d0be,_0x4b988a)=>{const _0x160664=_0xe5c04d,_0x18be57=parseArkCoreName(_0x40d0be['Name']||''),_0x49ae5b=parseArkCoreName(_0x4b988a[_0x160664(0x212)]||''),_0x20b8ce=_0x18be57[_0x160664(0x1f3)]?0x0:_0x18be57[_0x160664(0x258)]?0x1:0x2,_0x4c3522=_0x49ae5b['isOrder']?0x0:_0x49ae5b[_0x160664(0x258)]?0x1:0x2;if(_0x20b8ce!==_0x4c3522)return _0x20b8ce-_0x4c3522;const _0x33cdfa={'해':0x0,'달':0x1,'별':0x2};return(_0x33cdfa[_0x18be57['slot']]??0x9)-(_0x33cdfa[_0x49ae5b[_0x160664(0x288)]]??0x9);});for(const _0x568a1f of _0x51de8c){const _0x47ac3f=document[_0xe5c04d(0x300)]('div'),_0x30f91f=_0x568a1f[_0xe5c04d(0x224)]||'';let _0x495999='';if(_0x30f91f==='고대')_0x495999=_0xe5c04d(0x2fc);else{if(_0x30f91f==='유물')_0x495999=_0xe5c04d(0x296);else{if(_0x30f91f==='전설')_0x495999='\x20g-legend';else{if(_0x30f91f==='영웅')_0x495999=_0xe5c04d(0x20d);}}}_0x47ac3f[_0xe5c04d(0x244)]=_0xe5c04d(0x2dc)+_0x495999;if(_0x568a1f[_0xe5c04d(0x259)]){const _0x4daba9=document[_0xe5c04d(0x300)]('img');_0x4daba9[_0xe5c04d(0x29f)]=_0x568a1f[_0xe5c04d(0x259)],_0x4daba9[_0xe5c04d(0x2d8)]='',_0x4daba9['loading']='lazy';const _0x39e977=gradeStyle(_0x30f91f);_0x4daba9[_0xe5c04d(0x2ea)][_0xe5c04d(0x290)]=_0x39e977['bg'],_0x4daba9[_0xe5c04d(0x2ea)][_0xe5c04d(0x2e8)]='5px',_0x4daba9[_0xe5c04d(0x2ea)][_0xe5c04d(0x277)]='1px\x20solid\x20'+_0x39e977['c']+'44',_0x47ac3f['appendChild'](_0x4daba9);}const _0x44f0fa=parseArkCoreName(_0x568a1f['Name']||''),_0x259cf4=_0x44f0fa['isOrder']?'질서':_0x44f0fa[_0xe5c04d(0x258)]?'혼돈':'',_0x4eb08b=_0x259cf4?_0x259cf4+':\x20'+_0x44f0fa[_0xe5c04d(0x209)]:_0x568a1f['Name']||'-',_0x2e55ed=document[_0xe5c04d(0x300)]('span');_0x2e55ed[_0xe5c04d(0x244)]='nm',_0x2e55ed[_0xe5c04d(0x21e)]=_0x4eb08b;const _0x30d808=document[_0xe5c04d(0x300)](_0xe5c04d(0x20f));_0x30d808['className']='pt',_0x30d808[_0xe5c04d(0x21e)]=_0x568a1f[_0xe5c04d(0x2a5)]!=null?'('+_0x568a1f[_0xe5c04d(0x2a5)]+'P)':'',_0x47ac3f[_0xe5c04d(0x260)](_0x2e55ed,_0x30d808);const _0x348d8d=buildCoreTipHtml(_0x568a1f);if(_0x348d8d)bindTip(_0x47ac3f,_0x348d8d);_0x2c9181[_0xe5c04d(0x246)](_0x47ac3f);}const _0x3f7f54=window[_0xe5c04d(0x255)]||'',_0x238296=['바드',_0xe5c04d(0x217),'도화가',_0xe5c04d(0x2f2)],_0x5897fd=_0x238296[_0xe5c04d(0x25f)](_0xcd6e72=>_0x3f7f54['includes'](_0xcd6e72))||_0x3f7f54[_0xe5c04d(0x23f)]('발키리')&&(typeof checkIsSupportMode===_0xe5c04d(0x1fd)?checkIsSupportMode(window['__fullData'],_0x3f7f54):!![]),_0x6c7ee4=[];for(const _0x3b597a of _0x3a01da[_0xe5c04d(0x1e1)]||[]){const _0x3cd96b=strip(_0x3b597a['Tooltip']||''),_0x5f054c=_0x3cd96b[_0xe5c04d(0x1f9)](/([+＋]?[0-9.]+%)/),_0xfd5cf3=_0x5f054c?_0x5f054c[0x1]:'',_0x5b5004=_0x3b597a['Level']!=null?_0xe5c04d(0x2c1)+_0x3b597a['Level']:'',_0x212eb3=_0x3b597a['Name']||'-';let _0x1a08e4=![];if(_0x5897fd){if(/아군.*피해/[_0xe5c04d(0x305)](_0x212eb3))_0x1a08e4=!![];if(/아군.*공격/[_0xe5c04d(0x305)](_0x212eb3))_0x1a08e4=!![];if(/낙인/['test'](_0x212eb3))_0x1a08e4=!![];}else _0x1a08e4=/보스/[_0xe5c04d(0x305)](_0x212eb3)||/추가 피해/[_0xe5c04d(0x305)](_0x212eb3)||_0x212eb3===_0xe5c04d(0x1f0);_0x6c7ee4[_0xe5c04d(0x214)]({'on':_0x1a08e4,'name':_0x212eb3,'lv':_0x5b5004,'pct':_0xfd5cf3,'tip':_0x3cd96b});}_0x6c7ee4[_0xe5c04d(0x2bc)]((_0x532ab9,_0x74fccb)=>(_0x74fccb['on']?0x1:0x0)-(_0x532ab9['on']?0x1:0x0));for(const _0x52fe65 of _0x6c7ee4){const _0x1c7daf=document[_0xe5c04d(0x300)](_0xe5c04d(0x2cc));_0x1c7daf[_0xe5c04d(0x244)]=_0xe5c04d(0x283)+(_0x52fe65['on']?_0xe5c04d(0x24e):_0xe5c04d(0x25b)),_0x1c7daf[_0xe5c04d(0x22e)]='<span\x20class=\x22l\x22>'+_0x52fe65[_0xe5c04d(0x241)]+(_0x52fe65['lv']?_0xe5c04d(0x2df)+_0x52fe65['lv']+_0xe5c04d(0x239):'')+_0xe5c04d(0x29c)+(_0x52fe65[_0xe5c04d(0x23c)]||'-')+_0xe5c04d(0x239);if(_0x52fe65['tip'])bindTip(_0x1c7daf,'<div\x20class=\x22tip-hd\x22>'+_0x52fe65[_0xe5c04d(0x241)]+_0xe5c04d(0x2b5)+_0x52fe65['tip']+_0xe5c04d(0x2b8));_0x5f4e10['appendChild'](_0x1c7daf);}}function renderArkGridTab(_0x2cc7cd,_0x56a416){const _0x379ea9=_0x549637,_0x23497d=$(_0x379ea9(0x236)),_0x381f8c=$(_0x379ea9(0x2fa)),_0x49b632=$('agTypeToggle'),_0x7da11e=$(_0x379ea9(0x248));if(!_0x23497d||!_0x381f8c)return;_0x23497d[_0x379ea9(0x22e)]='',_0x381f8c['innerHTML']='';if(_0x7da11e)_0x7da11e[_0x379ea9(0x22e)]='';if(!_0x2cc7cd){_0x381f8c[_0x379ea9(0x21e)]=_0x379ea9(0x262);return;}const _0x198868=_0x56a416?.[_0x379ea9(0x23e)]||{},_0x402354=[_0x198868['CharacterClassName'],_0x56a416?.['ArkPassive']?.[_0x379ea9(0x2c7)]][_0x379ea9(0x2f3)](Boolean)[_0x379ea9(0x25c)](_0x379ea9(0x2d2)),_0x12d485=_0x2cc7cd['Slots']||[],_0x5073cb=[],_0x18e48f=[],_0x4599e3={'해':null,'달':null,'별':null},_0x16f197={'해':null,'달':null,'별':null};for(const _0x45321b of _0x12d485){const _0x2def29=parseArkCoreName(_0x45321b[_0x379ea9(0x212)]||'');if(_0x2def29[_0x379ea9(0x1f3)]){_0x5073cb['push'](_0x45321b);if(_0x2def29[_0x379ea9(0x288)])_0x4599e3[_0x2def29[_0x379ea9(0x288)]]=orderCoreNum(_0x2def29[_0x379ea9(0x209)],_0x2def29[_0x379ea9(0x288)]);}else{if(_0x2def29[_0x379ea9(0x258)]){_0x18e48f[_0x379ea9(0x214)](_0x45321b);if(_0x2def29[_0x379ea9(0x288)])_0x16f197[_0x2def29[_0x379ea9(0x288)]]=chaosCoreNum(_0x2def29[_0x379ea9(0x209)]);}}}const _0x4a76dd={'해':0x0,'달':0x1,'별':0x2},_0x1e3ca4=_0x7e3449=>[..._0x7e3449][_0x379ea9(0x2bc)]((_0x48a29a,_0x12f2dc)=>{const _0x395d29=_0x379ea9,_0x17dbc5=parseArkCoreName(_0x48a29a[_0x395d29(0x212)]||''),_0x624048=parseArkCoreName(_0x12f2dc[_0x395d29(0x212)]||'');return(_0x4a76dd[_0x17dbc5[_0x395d29(0x288)]]??0x9)-(_0x4a76dd[_0x624048[_0x395d29(0x288)]]??0x9);}),_0x26e358=_0x1e3ca4(_0x5073cb),_0x53585f=_0x1e3ca4(_0x18e48f),_0x4bf319=['해','달','별'][_0x379ea9(0x2f6)](_0x1f62c2=>_0x4599e3[_0x1f62c2]!=null?_0x4599e3[_0x1f62c2]:'-')[_0x379ea9(0x25c)]('\x20'),_0x498514=['해','달','별'][_0x379ea9(0x2f6)](_0x4b886b=>_0x16f197[_0x4b886b]!=null?_0x16f197[_0x4b886b]:'-')['join']('\x20'),_0x349e31=window[_0x379ea9(0x255)]||_0x198868[_0x379ea9(0x2ad)]||'',_0x10aa13=['바드',_0x379ea9(0x217),'도화가','기상술사'],_0x3e3ae5=_0x10aa13['some'](_0x5ab2b1=>_0x349e31['includes'](_0x5ab2b1))||_0x349e31[_0x379ea9(0x23f)](_0x379ea9(0x264))&&(typeof checkIsSupportMode===_0x379ea9(0x1fd)?checkIsSupportMode(window[_0x379ea9(0x235)],_0x349e31):!![]),_0x5a65ce=[];for(const _0x5dd052 of _0x2cc7cd[_0x379ea9(0x1e1)]||[]){const _0x312963=_0x5dd052[_0x379ea9(0x212)]||'-';let _0x4bc6c8=![];if(_0x3e3ae5){if(/아군.*피해/[_0x379ea9(0x305)](_0x312963))_0x4bc6c8=!![];if(/아군.*공격/[_0x379ea9(0x305)](_0x312963))_0x4bc6c8=!![];if(/낙인/[_0x379ea9(0x305)](_0x312963))_0x4bc6c8=!![];}else _0x4bc6c8=/보스/[_0x379ea9(0x305)](_0x312963)||/추가 피해/[_0x379ea9(0x305)](_0x312963)||_0x312963===_0x379ea9(0x1f0);if(!_0x4bc6c8)continue;const _0x2443ea=strip(_0x5dd052[_0x379ea9(0x227)]||''),_0x44fe1e=_0x2443ea['match'](/([+＋]?[0-9.]+%)/);_0x5a65ce[_0x379ea9(0x214)]({'name':_0x312963,'level':_0x5dd052[_0x379ea9(0x2bf)],'pct':_0x44fe1e?_0x44fe1e[0x1]:''});}const _0xd22b64=agGemEff(_0x2cc7cd,_0x3e3ae5),_0xb7832e=_0x3e3ae5?AG_EFF_NAMES[_0x379ea9(0x2e7)]:AG_EFF_NAMES[_0x379ea9(0x2fe)],_0xa4742e=_0x214540=>(Math[_0x379ea9(0x2ef)](_0x214540*0x64)/0x64)[_0x379ea9(0x2c0)](0x2);_0x23497d[_0x379ea9(0x22e)]=_0x379ea9(0x2cf)+(_0x402354||'-')+_0x379ea9(0x263)+_0x4bf319+_0x379ea9(0x297)+_0x498514+_0x379ea9(0x2f1);if(_0xd22b64&&_0x7da11e){const _0x40fae4=_0x309c83=>{const _0xffdeee=_0x379ea9,_0x5849f8=_0xd22b64['opts'][_0x309c83];return'<div\x20class=\x22ag-eff-o\x22\x20style=\x22--c:'+AG_EFF_COLOR[_0x309c83]+'\x22><span\x20class=\x22n\x22>'+_0x309c83+_0xffdeee(0x256)+(_0x5849f8?_0x5849f8['lv']:0x0)+_0xffdeee(0x253)+(_0x5849f8?_0xa4742e(_0x5849f8[_0xffdeee(0x1f8)]):_0xffdeee(0x2dd))+_0xffdeee(0x208);};_0x7da11e[_0x379ea9(0x22e)]=_0x379ea9(0x1df)+_0xa4742e(_0xd22b64[_0x379ea9(0x1f4)])+_0x379ea9(0x2a1)+_0xa4742e(_0xd22b64[_0x379ea9(0x25d)])+_0x379ea9(0x289)+_0xb7832e[_0x379ea9(0x2f6)](_0x40fae4)[_0x379ea9(0x25c)]('')+_0x379ea9(0x281)+_0xa4742e(_0xd22b64['pt'])+_0x379ea9(0x2c5);}else _0x7da11e&&(_0x7da11e[_0x379ea9(0x22e)]=_0x5a65ce[_0x379ea9(0x2f6)](_0x453bc2=>'<div\x20class=\x22ag-badge\x22><span\x20class=\x22l\x22>'+_0x453bc2['name']+(_0x453bc2[_0x379ea9(0x251)]!=null?_0x379ea9(0x302)+_0x453bc2[_0x379ea9(0x251)]+'</b>':'')+_0x379ea9(0x29c)+_0x453bc2['pct']+'</span></div>')['join'](''));function _0x1052eb(){const _0x2ecde3=_0x379ea9;_0x381f8c[_0x2ecde3(0x22e)]='',_0x381f8c[_0x2ecde3(0x1f7)][_0x2ecde3(0x2bb)](_0x2ecde3(0x242),_0x2ecde3(0x1de)),_0x381f8c[_0x2ecde3(0x1f7)]['add'](_0x2ecde3(0x23a)+__agType);const _0x2da60b=__agType==='order'?_0x26e358:_0x53585f;if(!_0x2da60b[_0x2ecde3(0x1e4)]){_0x381f8c[_0x2ecde3(0x22e)]=_0x2ecde3(0x1e6);return;}const _0x213958=document['createElement']('div');_0x213958['className']='ag-core-row';const _0x14cb4a=document[_0x2ecde3(0x300)](_0x2ecde3(0x2cc));_0x14cb4a[_0x2ecde3(0x244)]=_0x2ecde3(0x273);for(const _0x29db25 of _0x2da60b){_0x213958[_0x2ecde3(0x246)](renderArkGridCoreCard(_0x29db25));const _0x272c2a=document[_0x2ecde3(0x300)]('div');_0x272c2a['className']='ag-gem-row';for(const _0x3d06bd of _0x29db25[_0x2ecde3(0x27c)]||[])_0x272c2a[_0x2ecde3(0x246)](renderArkGridGemChip(_0x3d06bd,_0x3e3ae5));_0x14cb4a[_0x2ecde3(0x246)](_0x272c2a);}_0x381f8c[_0x2ecde3(0x246)](_0x213958),_0x381f8c['appendChild'](_0x14cb4a);}if(_0x49b632)_0x49b632[_0x379ea9(0x26d)]=_0x1052eb;_0x49b632&&!_0x49b632[_0x379ea9(0x1fb)]&&(_0x49b632[_0x379ea9(0x1fb)]=!![],_0x49b632['querySelectorAll'](_0x379ea9(0x294))['forEach'](_0x51833f=>{const _0x3b8c8d=_0x379ea9;_0x51833f[_0x3b8c8d(0x2d0)]('click',()=>{const _0x282cfc=_0x3b8c8d;_0x49b632[_0x282cfc(0x21f)](_0x282cfc(0x294))[_0x282cfc(0x213)](_0x5afd36=>_0x5afd36['classList'][_0x282cfc(0x2bb)](_0x282cfc(0x2e6))),_0x51833f[_0x282cfc(0x1f7)][_0x282cfc(0x29b)](_0x282cfc(0x2e6)),__agType=_0x51833f[_0x282cfc(0x2ce)]['type'],_0x49b632[_0x282cfc(0x26d)]();});})),_0x1052eb();}function renderAP(_0x3fff98){const _0x1614d5=_0x549637;calcArkCdPct(_0x3fff98);const _0x17c5d6=[_0x1614d5(0x2f4),_0x1614d5(0x292)]['map'](_0x5e4be4=>$(_0x5e4be4))[_0x1614d5(0x2f3)](Boolean);for(const _0xd9059f of _0x17c5d6){_0xd9059f[_0x1614d5(0x22e)]='';if(!_0x3fff98){_0xd9059f['innerHTML']=_0x1614d5(0x2c2);continue;}const _0x693a2e=_0x3fff98['Points']||[],_0x1481ef=_0x3fff98[_0x1614d5(0x1e1)]||[],_0x5b04aa={'진화':[],'깨달음':[],'도약':[]};for(const _0xa88e10 of _0x1481ef){if(_0x5b04aa[_0xa88e10[_0x1614d5(0x212)]])_0x5b04aa[_0xa88e10['Name']][_0x1614d5(0x214)](_0xa88e10);}for(const _0x5cc24f of['진화',_0x1614d5(0x2a9),'도약']){const _0x419cf8=document[_0x1614d5(0x300)](_0x1614d5(0x2cc));_0x419cf8['className']=_0x1614d5(0x1ec);const _0x52384a=_0x693a2e[_0x1614d5(0x22b)](_0x259c62=>_0x259c62[_0x1614d5(0x212)]===_0x5cc24f);_0x419cf8[_0x1614d5(0x22e)]=_0x1614d5(0x24f)+_0x5cc24f+(_0x52384a?.[_0x1614d5(0x233)]?'\x20·\x20'+_0x52384a[_0x1614d5(0x233)]:'')+'</h4><div\x20class=\x22pts\x22>'+(_0x52384a?_0x52384a[_0x1614d5(0x216)]+_0x1614d5(0x2cb):'')+_0x1614d5(0x2b8);for(const _0x3f1827 of _0x5b04aa[_0x5cc24f]){const _0x5dffdc=document[_0x1614d5(0x300)](_0x1614d5(0x2cc));_0x5dffdc[_0x1614d5(0x244)]=_0x1614d5(0x2fd);if(_0x3f1827[_0x1614d5(0x259)]){const _0x3f783e=document[_0x1614d5(0x300)](_0x1614d5(0x2b2));_0x3f783e['src']=_0x3f1827[_0x1614d5(0x259)],_0x3f783e[_0x1614d5(0x2d8)]='',_0x3f783e[_0x1614d5(0x2a6)]='lazy',_0x5dffdc[_0x1614d5(0x246)](_0x3f783e);}const _0x4dfc1f=document[_0x1614d5(0x300)]('span');_0x4dfc1f[_0x1614d5(0x22e)]=_0x3f1827[_0x1614d5(0x233)]||'',_0x5dffdc[_0x1614d5(0x246)](_0x4dfc1f);const _0x93046a=buildArkPassiveTipHtml(_0x3f1827,strip(_0x3f1827[_0x1614d5(0x233)])||_0x3f1827[_0x1614d5(0x212)]);if(_0x93046a)bindTip(_0x5dffdc,_0x93046a);_0x419cf8[_0x1614d5(0x246)](_0x5dffdc);}_0xd9059f[_0x1614d5(0x246)](_0x419cf8);}}}function aptIconUrl(_0x5c037a){const _0x3d87b3=_0x549637;if(!_0x5c037a)return'';const _0x55a343=_0x1df346=>_0x1df346['endsWith']('.png')?_0x1df346:_0x1df346+_0x3d87b3(0x2f7);if(/^https?:\/\//['test'](_0x5c037a))return _0x55a343(_0x5c037a);if(_0x5c037a['startsWith'](_0x3d87b3(0x28d)))return _0x3d87b3(0x21d)+_0x55a343(_0x5c037a[_0x3d87b3(0x1e8)](_0x3d87b3(0x28d),''));const _0x1f9f89=_0x5c037a[_0x3d87b3(0x1e8)](/_\d+$/,'');return _0x3d87b3(0x21d)+_0x1f9f89+'/'+_0x55a343(_0x5c037a);}function aptDbTree(_0x3863bd,_0x28520a){const _0x531c33=_0x549637;try{if(_0x3863bd==='진화')return typeof evolutionData!==_0x531c33(0x2a7)?evolutionData:null;if(typeof jobSpecificData===_0x531c33(0x2a7))return null;const _0x2efa67=jobSpecificData[_0x28520a];if(!_0x2efa67)return null;return _0x3863bd===_0x531c33(0x2a9)?_0x2efa67[_0x531c33(0x2f0)]:_0x2efa67[_0x531c33(0x1fc)];}catch(_0x373ca0){return null;}}const APT_VAL_COLOR={'진화':_0x549637(0x2a8),'깨달음':_0x549637(0x27b),'도약':_0x549637(0x2c8)};function aptColorizeDesc(_0x160ba8,_0x257dfa){const _0x406753=_0x549637;let _0x20a91d=String(_0x160ba8||'')['replace'](/<span class=\\?"clreffvalue\\?">/g,_0x406753(0x2e2)+_0x257dfa+';font-weight:800\x22>');return _0x20a91d['split'](/(<[^>]+>)/)[_0x406753(0x2f6)](_0x4895a2=>_0x4895a2['startsWith']('<')?_0x4895a2:_0x4895a2['replace'](/([+\-]?\d+(?:\.\d+)?%)/g,_0x406753(0x2e2)+_0x257dfa+_0x406753(0x222)))[_0x406753(0x25c)]('');}function aptOffTipHtml(_0x35d115,_0x41f4dc,_0x4beec4,_0x59376b,_0xec05e2){const _0x33725c=_0x549637,_0xddfb3e=APT_VAL_COLOR[_0xec05e2]||'#f0c14b',_0xf0551c=_0x35d115[_0x33725c(0x2b6)]&&_0x35d115[_0x33725c(0x2b6)][0x0]||'',_0x2d6fa9=_0x59376b?'<div\x20class=\x22apt-tip-icon\x22><img\x20class=\x22apt-tip-ic\x22\x20src=\x22'+_0x59376b+_0x33725c(0x250):_0x33725c(0x2f8);return _0x33725c(0x2ab)+_0x41f4dc+_0x33725c(0x1e2)+_0x2d6fa9+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-tip-meta\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-tip-row\x22><span\x20class=\x22apt-tip-cat\x22>'+_0xec05e2+_0x33725c(0x21c)+_0x4beec4+(_0x35d115[_0x33725c(0x28a)]?_0x33725c(0x2d2)+_0x35d115['point']+'P':'')+_0x33725c(0x232)+(_0xf0551c?_0x33725c(0x230)+aptColorizeDesc(_0xf0551c,_0xddfb3e)+'</div>':'')+_0x33725c(0x2de);}let __aptCat='진화';function renderArkPassiveTab(_0x46abf1,_0x4100bc){const _0x1ef004=_0x549637;calcArkCdPct(_0x46abf1);const _0x1b228b=$(_0x1ef004(0x2c6)),_0x4985f8=$(_0x1ef004(0x221));if(!_0x1b228b||!_0x4985f8)return;_0x1b228b[_0x1ef004(0x22e)]='',_0x4985f8[_0x1ef004(0x22e)]='';if(!_0x46abf1){_0x4985f8[_0x1ef004(0x22e)]='<div\x20class=\x22apt-empty\x22>아크패시브\x20정보가\x20없어요</div>';return;}const _0x82ba24=_0x46abf1['Points']||[],_0x50293e=_0x46abf1[_0x1ef004(0x1e1)]||[],_0x2e5edd=[{'key':'진화','cls':_0x1ef004(0x254)},{'key':_0x1ef004(0x2a9),'cls':'enl'},{'key':'도약','cls':'leap'}],_0x48f6a2={};for(const _0x30f158 of typeof EVOLUTION_EFFECTS!=='undefined'?EVOLUTION_EFFECTS:[]){for(const _0x16cfe5 of _0x30f158['aliases']||[_0x30f158[_0x1ef004(0x241)]]){_0x48f6a2[String(_0x16cfe5)[_0x1ef004(0x1e8)](/\s+/g,'')]=Math['max'](_0x48f6a2[String(_0x16cfe5)[_0x1ef004(0x1e8)](/\s+/g,'')]||0x0,_0x30f158['maxLv']||0x0);}}const _0x381eb5={'치명':0x1e,'특화':0x1e,'제압':0x1e,'신속':0x1e,'인내':0x1e,'숙련':0x1e},_0x52ad91=$(_0x1ef004(0x240))?$(_0x1ef004(0x240))[_0x1ef004(0x21e)]:'-';_0x1b228b['innerHTML']=_0x1ef004(0x2e9)+_0x52ad91+_0x1ef004(0x25a)+_0x2e5edd['map'](_0x4efab2=>{const _0x58ebc8=_0x1ef004,_0xe49f35=_0x82ba24['find'](_0x2f163f=>_0x2f163f[_0x58ebc8(0x212)]===_0x4efab2[_0x58ebc8(0x1f6)]);return _0x58ebc8(0x1f1)+_0x4efab2[_0x58ebc8(0x2a4)]+_0x58ebc8(0x2b1)+_0x4efab2[_0x58ebc8(0x1f6)]+_0x58ebc8(0x257)+(_0xe49f35?_0xe49f35['Value']:'-')+_0x58ebc8(0x2cd)+strip(_0xe49f35?_0xe49f35[_0x58ebc8(0x233)]:'')+_0x58ebc8(0x22a);})[_0x1ef004(0x25c)]('')+'\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>';const _0x54ea49=document[_0x1ef004(0x300)]('div');_0x54ea49[_0x1ef004(0x244)]=_0x1ef004(0x2b0);const _0x3447b4=document[_0x1ef004(0x300)](_0x1ef004(0x2cc));_0x3447b4[_0x1ef004(0x244)]=_0x1ef004(0x274),_0x3447b4[_0x1ef004(0x22e)]=_0x2e5edd[_0x1ef004(0x2f6)](_0x2bf7f5=>{const _0xeb8959=_0x1ef004,_0xe90640=_0x82ba24['find'](_0x2de2c4=>_0x2de2c4['Name']===_0x2bf7f5[_0xeb8959(0x1f6)]);return _0xeb8959(0x301)+_0x2bf7f5['cls']+(_0x2bf7f5[_0xeb8959(0x1f6)]===__aptCat?_0xeb8959(0x1f2):'')+_0xeb8959(0x205)+_0x2bf7f5[_0xeb8959(0x1f6)]+_0xeb8959(0x2ac)+_0x2bf7f5['key']+_0xeb8959(0x20e)+(_0xe90640?_0xe90640['Value']:'-')+_0xeb8959(0x23d);})[_0x1ef004(0x25c)](''),_0x54ea49['appendChild'](_0x3447b4);const _0x3d3b56=document[_0x1ef004(0x300)](_0x1ef004(0x2cc));_0x3d3b56['className']='apt-body',_0x54ea49['appendChild'](_0x3d3b56),_0x4985f8[_0x1ef004(0x246)](_0x54ea49),_0x3447b4[_0x1ef004(0x21f)](_0x1ef004(0x28b))[_0x1ef004(0x213)](_0x2c2859=>{const _0x10b34c=_0x1ef004;_0x2c2859[_0x10b34c(0x2d0)](_0x10b34c(0x20b),()=>{const _0x20869a=_0x10b34c;__aptCat=_0x2c2859[_0x20869a(0x2ce)][_0x20869a(0x29e)],renderArkPassiveTab(_0x46abf1,_0x4100bc);});});const _0x5be8bf=_0x2e5edd['find'](_0xc38958=>_0xc38958['key']===__aptCat)||_0x2e5edd[0x0];_0x3d3b56[_0x1ef004(0x1f7)][_0x1ef004(0x29b)]('bg-'+_0x5be8bf[_0x1ef004(0x2a4)]);const _0x3752c8={};for(const _0x41bf93 of _0x50293e){if(_0x41bf93[_0x1ef004(0x212)]!==_0x5be8bf['key'])continue;const _0x33c6f4=strip(_0x41bf93[_0x1ef004(0x233)])[_0x1ef004(0x1e8)](/&nbsp;/g,'\x20'),_0x387f30=_0x33c6f4['match'](/(\d+)\s*티어\s*(.+?)\s*Lv\.?\s*(\d+)/i);if(!_0x387f30)continue;const _0x11a56e=parseInt(_0x387f30[0x1],0xa),_0x1f47ec=_0x387f30[0x2]['trim'](),_0x5b9075=parseInt(_0x387f30[0x3],0xa)||0x0,_0x43e568=_0x48f6a2[_0x1f47ec[_0x1ef004(0x1e8)](/\s+/g,'')]||_0x381eb5[_0x1f47ec]||0x0;(_0x3752c8[_0x11a56e]=_0x3752c8[_0x11a56e]||[])[_0x1ef004(0x214)]({'e':_0x41bf93,'name':_0x1f47ec,'lv':_0x5b9075,'max':_0x43e568});}const _0x2e8874=_0x4d47ec=>String(_0x4d47ec||'')['replace'](/\s+/g,''),_0x14fc9a=aptDbTree(_0x5be8bf[_0x1ef004(0x1f6)],_0x4100bc&&_0x4100bc[_0x1ef004(0x23e)]&&_0x4100bc[_0x1ef004(0x23e)][_0x1ef004(0x2ad)]||''),_0x5f109d=[],_0xe63ef6={};if(_0x14fc9a&&_0x14fc9a[_0x1ef004(0x278)]&&_0x14fc9a[_0x1ef004(0x278)][_0x1ef004(0x1e4)])for(const _0x4f28c6 of _0x14fc9a['tierList']){const _0xaa5265=[..._0x4f28c6['passiveList']||[]][_0x1ef004(0x2bc)]((_0x1189c8,_0x1b66c9)=>(_0x1189c8[_0x1ef004(0x26e)]||0x0)-(_0x1b66c9[_0x1ef004(0x26e)]||0x0)||(_0x1189c8[_0x1ef004(0x223)]||0x0)-(_0x1b66c9[_0x1ef004(0x223)]||0x0)),_0x352977=_0x3752c8[_0x4f28c6[_0x1ef004(0x275)]]||[],_0x364036=new Set(),_0x5ed00f=[];for(const _0x507cb5 of _0xaa5265){const _0xaa70a3=_0x352977[_0x1ef004(0x22b)](_0x16b48a=>!_0x364036['has'](_0x16b48a)&&_0x2e8874(_0x16b48a[_0x1ef004(0x241)])===_0x2e8874(_0x507cb5[_0x1ef004(0x241)]));if(_0xaa70a3)_0x364036['add'](_0xaa70a3),_0xaa70a3[_0x1ef004(0x219)]=_0x507cb5['max_level']||_0xaa70a3[_0x1ef004(0x219)],_0x5ed00f[_0x1ef004(0x214)]({'on':!![],'hit':_0xaa70a3,'name':_0x507cb5['name'],'max':_0xaa70a3[_0x1ef004(0x219)],'dn':_0x507cb5});else _0x5ed00f[_0x1ef004(0x214)]({'on':![],'name':_0x507cb5[_0x1ef004(0x241)],'max':_0x507cb5[_0x1ef004(0x2aa)]||0x0,'dn':_0x507cb5});}for(const _0x7763cb of _0x352977)if(!_0x364036[_0x1ef004(0x266)](_0x7763cb))_0x5ed00f[_0x1ef004(0x214)]({'on':!![],'hit':_0x7763cb,'name':_0x7763cb[_0x1ef004(0x241)],'max':_0x7763cb[_0x1ef004(0x219)],'dn':null});_0x5f109d['push'](_0x4f28c6[_0x1ef004(0x275)]),_0xe63ef6[_0x4f28c6[_0x1ef004(0x275)]]=_0x5ed00f;}else for(const _0x24ab3a of[0x1,0x2,0x3,0x4,0x5]){_0x5f109d[_0x1ef004(0x214)](_0x24ab3a),_0xe63ef6[_0x24ab3a]=(_0x3752c8[_0x24ab3a]||[])[_0x1ef004(0x2f6)](_0x39bce8=>({'on':!![],'hit':_0x39bce8,'name':_0x39bce8[_0x1ef004(0x241)],'max':_0x39bce8[_0x1ef004(0x219)],'dn':null}));}let _0x4c58f8=0x0;if(_0x14fc9a&&_0x14fc9a[_0x1ef004(0x278)]){for(const _0x42fbd9 of _0x14fc9a['tierList'])for(const _0x57499e of _0x42fbd9[_0x1ef004(0x28e)]||[])_0x4c58f8=Math['max'](_0x4c58f8,_0x57499e[_0x1ef004(0x223)]||0x0);_0x4c58f8=Math['min'](Math[_0x1ef004(0x219)](_0x4c58f8,0x6),0x8);}const _0x4676c4=document[_0x1ef004(0x300)]('section');_0x4676c4[_0x1ef004(0x244)]=_0x1ef004(0x267)+_0x5be8bf[_0x1ef004(0x2a4)];const _0xd1ee98=document[_0x1ef004(0x300)]('div');_0xd1ee98[_0x1ef004(0x244)]='apt-tree';for(const _0x2502d5 of _0x5f109d){const _0x1d62df=_0xe63ef6[_0x2502d5]||[],_0x383e16=_0x1d62df[_0x1ef004(0x25f)](_0xc29a6e=>_0xc29a6e['on']),_0x1c04db=document[_0x1ef004(0x300)](_0x1ef004(0x2cc));_0x1c04db[_0x1ef004(0x244)]=_0x1ef004(0x237)+(_0x1d62df[_0x1ef004(0x1e4)]?_0x383e16?'':'\x20allOff':_0x1ef004(0x276)),_0x1c04db[_0x1ef004(0x22e)]=_0x1ef004(0x21a)+_0x2502d5+'</span></div><div\x20class=\x22apt-nodes\x22></div>';const _0x319685=_0x1c04db['querySelector'](_0x1ef004(0x1e3));_0x4c58f8>0x0&&(_0x319685['classList']['add'](_0x1ef004(0x2c4)),_0x319685[_0x1ef004(0x2ea)][_0x1ef004(0x231)]='repeat('+_0x4c58f8+_0x1ef004(0x2ed));for(const _0x5921d0 of _0x1d62df){const _0xa0f51d=document[_0x1ef004(0x300)]('div');_0xa0f51d[_0x1ef004(0x244)]='apt-node\x20'+(_0x5921d0['on']?'on':_0x1ef004(0x2da));if(_0x4c58f8>0x0&&_0x5921d0['dn']&&_0x5921d0['dn'][_0x1ef004(0x223)])_0xa0f51d['style']['gridColumn']=String(_0x5921d0['dn']['node_column']);const _0x5519c1=_0x5921d0['on']?_0x5921d0[_0x1ef004(0x282)]['lv']:0x0,_0x4e28c0=_0x5921d0[_0x1ef004(0x219)]?'Lv.\x20'+_0x5519c1+'/'+_0x5921d0[_0x1ef004(0x219)]:'Lv.\x20'+_0x5519c1,_0x84b524=_0x5921d0['on']?_0x5921d0[_0x1ef004(0x282)]['e'][_0x1ef004(0x259)]||(_0x5921d0['dn']?aptIconUrl(_0x5921d0['dn'][_0x1ef004(0x24b)]):''):_0x5921d0['dn']?aptIconUrl(_0x5921d0['dn'][_0x1ef004(0x24b)]):'';_0xa0f51d[_0x1ef004(0x22e)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22apt-orb\x22>'+(_0x84b524?_0x1ef004(0x293)+_0x84b524+'\x22\x20alt=\x22\x22\x20loading=\x22lazy\x22>':'')+_0x1ef004(0x298)+_0x4e28c0+_0x1ef004(0x2f5)+_0x5921d0[_0x1ef004(0x241)]+_0x1ef004(0x2b8);let _0x59dfc8='';if(_0x5921d0['on']){const _0x2776dc=_0x5921d0['dn']&&_0x5921d0['dn'][_0x1ef004(0x2b6)]?_0x5921d0['dn'][_0x1ef004(0x2b6)][Math[_0x1ef004(0x219)](_0x5519c1-0x1,0x0)]||_0x5921d0['dn'][_0x1ef004(0x2b6)][0x0]||'':'';_0x59dfc8=buildArkPassiveTipHtml(_0x5921d0[_0x1ef004(0x282)]['e'],_0x5921d0['name'],_0x2776dc?aptColorizeDesc(_0x2776dc,APT_VAL_COLOR[_0x5be8bf['key']]||_0x1ef004(0x2a8)):'');}else{if(_0x5921d0['dn'])_0x59dfc8=aptOffTipHtml(_0x5921d0['dn'],_0x5921d0[_0x1ef004(0x241)],_0x5921d0[_0x1ef004(0x219)],_0x84b524,_0x5be8bf[_0x1ef004(0x1f6)]);}if(_0x59dfc8)bindTip(_0xa0f51d,_0x59dfc8);_0x319685[_0x1ef004(0x246)](_0xa0f51d);}_0xd1ee98[_0x1ef004(0x246)](_0x1c04db);}_0x4676c4[_0x1ef004(0x246)](_0xd1ee98),_0x3d3b56[_0x1ef004(0x246)](_0x4676c4);}
+// ===== 아크그리드 · 아크패시브 탭 렌더링 (app-render-ark.js) =====
+
+let __agType = "order"; // "order" | "chaos"
+
+// ===== 아크패시브 진화 - 재사용 대기시간 감소 노드 =====
+// 끝없는 마나 / 무한한 마력 : 마나 사용 스킬 전용, 서로 합연산
+// 최적화 훈련 / 타이밍 지배 / 선각자 : 전체 스킬(각성기·이동기·기상기 제외) 대상, 서로 곱연산
+// * 선각자는 1레벨뿐이며 '통찰' 최대 중첩 시 값(조건부)이라 항상 적용된 것으로 가정
+const ARK_CD_MANA_TABLE = {
+  "끝없는 마나": [7.0, 14.0],
+  "무한한 마력": [7.0, 14.0],
+};
+const ARK_CD_ALL_TABLE = {
+  "최적화 훈련": [4.0, 8.0],
+  "타이밍 지배": [5.0, 10.0],
+  "선각자": [5.0],
+};
+
+function calcArkCdPct(ap) {
+  const out = { mana: 0, all: 1 };
+  const effects = (ap && ap.Effects) || [];
+  for (const e of effects) {
+    if (e.Name !== "진화") continue;
+    const text = strip(e.Description || "").replace(/&nbsp;/g, " ");
+    const lvM = text.match(/Lv\.?\s*(\d+)/);
+    const lv = lvM ? parseInt(lvM[1], 10) : 1;
+
+    for (const nm of Object.keys(ARK_CD_MANA_TABLE)) {
+      if (text.indexOf(nm) === -1) continue;
+      const arr = ARK_CD_MANA_TABLE[nm];
+      out.mana += arr[Math.min(lv, arr.length) - 1] || 0;
+    }
+    for (const nm of Object.keys(ARK_CD_ALL_TABLE)) {
+      if (text.indexOf(nm) === -1) continue;
+      const arr = ARK_CD_ALL_TABLE[nm];
+      const pct = arr[Math.min(lv, arr.length) - 1] || 0;
+      out.all *= (1 - pct / 100);
+    }
+  }
+  window.__arkCdPct = out;
+  return out;
+}
+
+function agGradeClass(gr) {
+  if (gr === "고대") return "g-ancient";
+  if (gr === "유물") return "g-relic";
+  if (gr === "전설") return "g-legend";
+  if (gr === "영웅") return "g-epic";
+  return "";
+}
+
+function agParseTooltip(raw) {
+  const tip = parseTip(raw);
+  const result = { title: "", gradeText: "", tradeBan: "", breakBan: "", parts: [] };
+  if (!tip) return result;
+  for (const k of Object.keys(tip)) {
+    const v = tip[k];
+    if (!v || !v.type) continue;
+    if (v.type === "NameTagBox") result.title = v.value || "";
+    else if (v.type === "ItemTitle" && v.value) result.gradeText = v.value.leftStr0 || "";
+    else if (v.type === "MultiTextBox" && v.value && /거래\s*불가/.test(strip(v.value))) result.tradeBan = "거래 불가";
+    else if (v.type === "SingleTextBox" && v.value && /분해\s*불가/.test(strip(v.value))) result.breakBan = "분해불가";
+  }
+  result.parts = tipParts(tip);
+  return result;
+}
+
+function agParseStatLines(bodyHtml) {
+  const t = strip(bodyHtml);
+  const out = [];
+  const re = /\[([^\]]+)\]\s*Lv\.?\s*(\d+)[^%[]*?([+\-]?\d+(?:\.\d+)?%)/g;
+  let m;
+  while ((m = re.exec(t))) out.push({ name: m[1], lv: m[2], pct: m[3] });
+  return out;
+}
+
+const AG_STAT_ABBR = {
+  "보스 피해": "보피", "추가 피해": "추피", "공격력": "공격",
+  "낙인력": "낙인", "아군 공격 강화": "아공", "아군 피해 강화": "아피",
+};
+function agAbbr(name) { return AG_STAT_ABBR[name] || name; }
+
+function agCoreOptionRows(bodyHtml) {
+  if (!bodyHtml) return [];
+  return String(bodyHtml).split(/<br\s*\/?>/i).map(s => s.trim()).filter(Boolean);
+}
+
+function agStripP(html) {
+  return String(html || "").replace(/^<P[^>]*>/i, "").replace(/<\/P>\s*$/i, "");
+}
+
+function agCondRows(html) {
+  if (!html) return [];
+  return String(html).split(/<br\s*\/?>/i).map(s => s.replace(/<img[^>]*>/gi, "").trim()).filter(Boolean);
+}
+
+function agOptionActive(rowHtml, point) {
+  const m = strip(rowHtml).match(/^\[(\d+)P\]/);
+  if (!m) return true;
+  return Number(m[1]) <= (point || 0);
+}
+
+// 🎯 [핵심 수정] 툴팁 생성 함수: 제목에 (XXP) 추가 & 비활성 옵션 회색 처리
+function buildCoreTipHtml(slot) {
+  if (!slot) return "";
+  const info = agParseTooltip(slot.Tooltip);
+  const tip = parseTip(slot.Tooltip);
+  
+  // 1. 제목 옆에 현재 포인트(P) 붙여주기
+  let titleText = agStripP(info.title) || slot.Name || "-";
+  if (slot.Point != null) {
+    titleText += ` <span style="color:#ffd200;">(${slot.Point}P)</span>`;
+  }
+
+  const g = gradeStyle(slot.Grade || "");
+  const gradeC = g.c || "#cfd7e8";
+
+  const extraLines = [];
+  if (tip) {
+    for (const k of Object.keys(tip).sort()) {
+      const v = tip[k];
+      if (!v?.type) continue;
+      if (v.type === "SingleTextBox" && v.value) {
+        const s = strip(v.value);
+        if (!s) continue;
+        if (/거래\s*불가|분해\s*불가|판매\s*불가/.test(s) && s.length < 40) continue;
+        if (/획득|레이드|카제로스|에픽|하르키|일리아칸|상아탑|클라우|쿠르잔|가디언|어비스|더\s*존재/.test(s)) continue;
+        extraLines.push(v.value);
+      }
+    }
+  }
+
+  let partsHtml = "";
+  for (const part of (info.parts || [])) {
+    const isCond = /발동\s*조건/.test(part.title || "");
+    let bodyHtml = part.body || "";
+
+    // 2. 코어 옵션에서 내 포인트보다 높은 옵션은 회색(비활성화) 처리
+    if (/코어\s*옵션/.test(part.title) && !isCond) {
+      const optRows = agCoreOptionRows(bodyHtml);
+      const formattedRows = [];
+      for (const rowStr of optRows) {
+        if (agOptionActive(rowStr, slot.Point)) {
+          formattedRows.push(`<div>${rowStr}</div>`); // 활성 옵션은 그대로
+        } else {
+          // 비활성 옵션은 FONT 태그의 색상(color=...)을 강제로 지우고 어두운 회색 적용
+          const dimmedStr = rowStr.replace(/color\s*=\s*['"]?[^'"\s>]+['"]?/gi, "");
+          formattedRows.push(`<div style="color:#666666;">${dimmedStr}</div>`);
+        }
+      }
+      bodyHtml = formattedRows.join(""); // 깔끔하게 줄바꿈
+    }
+
+    partsHtml += `<div class="core-tip-sec${isCond ? " core-tip-cond" : ""}">
+      <div class="core-tip-sec-t">${part.title || ""}</div>
+      <div class="core-tip-sec-b">${bodyHtml}</div>
+    </div>`;
+  }
+
+  const icon = slot.Icon
+    ? `<div class="apt-tip-icon core-tip-icon" style="background:${g.bg || "rgba(255,255,255,.06)"};border-color:${gradeC}55"><img class="apt-tip-ic" src="${slot.Icon}" alt=""></div>`
+    : "";
+
+  return `
+    <div class="tip-hd core-tip-title" style="color:${gradeC}">${titleText}</div>
+    <div class="tip-bd apt-tip-body core-tip-body">
+      <div class="apt-tip-top core-tip-hd">
+        ${icon}
+        <div class="apt-tip-meta core-tip-meta">
+          <div class="core-tip-grade">${info.gradeText || ""}</div>
+          ${info.tradeBan ? `<div class="core-tip-ban-text">${info.tradeBan}</div>` : ""}
+        </div>
+      </div>
+      ${extraLines.map(l => `<div class="core-tip-line">${l}</div>`).join("")}
+      ${partsHtml}
+      ${info.breakBan ? `<div class="core-tip-break">${info.breakBan}</div>` : ""}
+    </div>`;
+}
+
+const AG_GRADE_FILL = { "고대": "#cfad7e", "유물": "#ff7a3d", "전설": "#ffb24d", "영웅": "#b97dff" };
+const AG_GRADE_BG = { "고대": "#8a7754", "유물": "#a34a26", "전설": "#a06d1f", "영웅": "#6a4590" };
+
+function agGradeGradient(hex) {
+  return `radial-gradient(circle at 32% 28%, ${hex} 0%, ${hex} 35%, #241722 100%)`;
+}
+function agGemGradient(grade) {
+  const bg = AG_GRADE_BG[grade] || "#4a4a55";
+  return `radial-gradient(circle at 32% 28%, ${bg} 0%, #241d28 90%)`;
+}
+
+const AG_DPS_STAT_COLOR = { "보스 피해": "#c58bff", "추가 피해": "#6fb3ff", "공격력": "#9be36a" };
+const AG_SUPPORT_VALID = ["낙인력", "아군 공격 강화", "아군 피해 강화"];
+
+// ===== 아크그리드 젬 효율 (딜러) =====
+// 젬 효율 = 옵션 효율 × 포인트 효율
+//  · 옵션: 보스 피해 / 추가 피해 / 공격력 의 '젬 옵션 레벨 합' → 레벨당 실효율(%) 로 환산 후 곱연산
+//  · 포인트: 코어 포인트 17P 를 기준(0%) 으로 17P 를 넘긴 만큼의 코어 배율을 6개 코어 전부 곱함 (17P 미만은 0)
+const AG_GEM_PER_LV = { "보스 피해": 0.08325, "추가 피해": 0.0608, "공격력": 0.035 };   // 레벨당 실효율 %
+// 서포터: 레벨당 실효율 % (시뮬레이션 실측: 낙인력 Lv83=1.2 / 아군 피해 강화 Lv57=0.54 / 아군 공격 강화 Lv83=2.34)
+const AG_GEM_PER_LV_SUP = { "낙인력": 0.01446, "아군 피해 강화": 0.00947, "아군 공격 강화": 0.02819 };
+// 서포터 코어 포인트 효율: 코어 하나당 배율 (17P 기준, 6개 코어가 거의 같은 비중 · 실측 18P 0.2% / 19P 0.39% / 20P 0.57% (6코어 합))
+const AG_SUP_CORE_PT = { 18: 1.000333, 19: 1.000649, 20: 1.000948 };
+const AG_EFF_COLOR = { "보스 피해": "#ff6b6b", "추가 피해": "#ffd24d", "공격력": "#4dd6e0", "낙인력": "#ff7ac6", "아군 공격 강화": "#4dd6e0", "아군 피해 강화": "#b79bff" };   // 젬 칩 색(딜러 보라·파랑·초록 / 서포터 주황)과 겹치지 않게
+const AG_EFF_NAMES = { dps: ["보스 피해", "추가 피해", "공격력"], sup: ["낙인력", "아군 공격 강화", "아군 피해 강화"] };
+// 코어 포인트 17 / 18 / 19 / 20P 의 배율. o해달·o별 = 질서, c강 = 혼돈 상급(현란한 공격·불타는 일격·공격), c약 = 혼돈 하급
+const AG_CORE_PT = {
+  "고대": { "o해달": [1.085, 1.0867, 1.0883, 1.09], "o별": [1.055, 1.0567, 1.0583, 1.06], "c강": [1.035, 1.0367, 1.0383, 1.04], "c약": [1.025, 1.0267, 1.0283, 1.03] },
+  "유물": { "o해달": [1.075, 1.0767, 1.0783, 1.08], "o별": [1.045, 1.0467, 1.0483, 1.05], "c강": [1.025, 1.0267, 1.0283, 1.03], "c약": [1.015, 1.0167, 1.0183, 1.02] },
+};
+function agCoreTableKey(name) {
+  const p = parseArkCoreName(name || "");
+  if (p.isOrder) return p.slot === "별" ? "o별" : (p.slot ? "o해달" : null);
+  if (!p.isChaos) return null;
+  const s = p.short || "";
+  if (p.slot === "해") return /현란/.test(s) ? "c강" : /안정적|재빠른/.test(s) ? "c약" : null;
+  if (p.slot === "달") return /불타는/.test(s) ? "c강" : /흡수|부수/.test(s) ? "c약" : null;
+  if (p.slot === "별") return /^공격$/.test(s) ? "c강" : null;
+  return null;
+}
+function agPointEff(slots, isSupport) {
+  let prod = 1;
+  if (isSupport) {
+    for (const s of (slots || [])) {
+      const pt = s.Point | 0;
+      if (pt > 17) prod *= AG_SUP_CORE_PT[Math.min(pt, 20)];
+    }
+    return (prod - 1) * 100;
+  }
+  for (const s of (slots || [])) {
+    const g = AG_CORE_PT[s.Grade || ""];
+    const k = agCoreTableKey(s.Name);
+    const pt = s.Point | 0;
+    if (!g || !k || !g[k] || pt <= 17) continue;
+    const arr = g[k];
+    prod *= arr[Math.min(pt, 20) - 17] / arr[0];
+  }
+  return (prod - 1) * 100;
+}
+function agGemEff(ag, isSupport) {
+  const opts = {};
+  let prod = 1;
+  const perTbl = isSupport ? AG_GEM_PER_LV_SUP : AG_GEM_PER_LV;
+  for (const e of (ag.Effects || [])) {
+    const name = String(e.Name || "").trim();
+    const per = perTbl[name];
+    if (per == null || e.Level == null) continue;
+    const real = per * e.Level;
+    opts[name] = { lv: e.Level, real: real };
+    prod *= 1 + real / 100;
+  }
+  const opt = (prod - 1) * 100;
+  const pt = agPointEff(ag.Slots, isSupport);
+  const total = ((1 + opt / 100) * (1 + pt / 100) - 1) * 100;
+  return { opts: opts, opt: opt, pt: pt, total: total };
+}
+
+function renderArkGridGemChip(gem, isSupport) {
+  const info = agParseTooltip(gem.Tooltip);
+  const titleText = strip(info.title);
+  const typeLabel = (titleText.split(":")[1] || titleText || "").trim();
+  const gc = agGradeClass(gem.Grade || "");
+
+  let effectBody = "";
+  for (const part of info.parts) {
+    if (/젬\s*효과/.test(part.title)) effectBody = part.body;
+  }
+  const stats = agParseStatLines(effectBody);
+  const statHtml = stats.map(s => {
+    const color = isSupport
+      ? (AG_SUPPORT_VALID.includes(s.name) ? "#ffb84d" : null)
+      : (AG_DPS_STAT_COLOR[s.name] || null);
+    const style = color ? ` style="color:${color}"` : "";
+    return `<span><span${style}>${agAbbr(s.name)}</span> <b${style}>Lv${s.lv}</b></span>`;
+  }).join("");
+
+  const gemFill = AG_GRADE_FILL[gem.Grade] || "#3a3f4d";
+  const chip = document.createElement("div");
+  chip.className = "ag-gem-chip" + (gc ? " " + gc : "") + (gem.IsActive === false ? " off" : "");
+  chip.innerHTML = `
+    <div class="ag-gem-icon" style="background:${agGemGradient(gem.Grade)};box-shadow:0 0 0 1px ${gemFill}66;">
+      ${gem.Icon ? `<img src="${gem.Icon}" alt="" loading="lazy">` : ""}
+    </div>
+    <div class="ag-gem-type" style="color:${gemFill}">${typeLabel || "-"}</div>
+    <div class="ag-gem-stats">${statHtml}</div>
+  `;
+
+  const tipHtml = buildTipHtml(gem.Tooltip, info.title);
+  if (tipHtml) bindTip(chip, tipHtml);
+  return chip;
+}
+
+function renderArkGridCoreCard(slot) {
+  const info = agParseTooltip(slot.Tooltip);
+  const p = parseArkCoreName(slot.Name || "");
+  const num = p.isOrder ? orderCoreNum(p.short, p.slot) : p.isChaos ? chaosCoreNum(p.short) : null;
+  const gc = agGradeClass(slot.Grade || "");
+
+  let optionBody = "", conditionBody = "";
+  for (const part of info.parts) {
+    if (/코어\s*옵션\s*발동\s*조건/.test(part.title)) conditionBody = part.body;
+    else if (/코어\s*옵션/.test(part.title)) optionBody = part.body;
+  }
+  const optionRows = agCoreOptionRows(optionBody);
+  const condRows = agCondRows(conditionBody);
+
+  const card = document.createElement("div");
+  card.className = "ag-core-card" + (gc ? " " + gc : "");
+  { const cm = (agStripP(info.title) || slot.Name || "").match(/의\s*(해|달|별)/); if (cm) card.dataset.core = cm[1]; }   // 해/달/별 코어별 포인트 색
+
+  const ribbon = num != null ? `<div class="ag-core-ribbon ${p.isChaos ? "chaos" : "order"}">${num}</div>` : "";
+  const titleText = agStripP(info.title) || slot.Name || "-";
+  const titleWithPoint = slot.Point != null ? `${titleText} <span class="ag-core-point-inline">(${slot.Point}p)</span>` : titleText;
+
+  const coreFill = AG_GRADE_FILL[slot.Grade] || "#3a3f4d";
+  const icon = slot.Icon
+    ? `<span class="ag-core-icon-frame"><span class="ag-core-icon-bg" style="background:${agGradeGradient(coreFill)}"><img class="ag-core-icon" src="${slot.Icon}" alt=""></span></span>`
+    : "";
+
+  card.innerHTML = `
+    ${ribbon}
+    <div class="ag-core-hd">
+      ${icon}
+      <div class="ag-core-title">${titleWithPoint}</div>
+    </div>
+    <div class="ag-core-meta">${info.gradeText || ""}</div>
+    <div class="ag-core-tag warn">${info.tradeBan || ""}</div>
+    <div class="ag-core-opts">${optionRows.map(r => `<div class="ag-core-opt-row${agOptionActive(r, slot.Point) ? "" : " inactive"}">${r}</div>`).join("")}</div>
+    <div class="ag-core-cond">${condRows.length ? condRows.map(r => `<div>${r}</div>`).join("") : `<div>발동 조건 없음</div>`}</div>
+    <div class="ag-core-tag muted">${info.breakBan || ""}</div>
+  `;
+
+  const tipHtml = buildCoreTipHtml(slot);
+  if (tipHtml) bindTip(card, tipHtml);
+  return card;
+}
+
+function renderArkGrid(ag) {
+  const core = $("arkgCore"), slotsEl = $("arkgSlots"), statsEl = $("arkgStats");
+  if (!core || !slotsEl || !statsEl) return;
+  slotsEl.innerHTML = ""; statsEl.innerHTML = "";
+  if (!ag) { core.textContent = "정보 없음"; return; }
+  const slots = ag.Slots || [];
+  const orderNums = { 해: null, 달: null, 별: null };
+  const chaosNums = { 해: null, 달: null, 별: null };
+  for (const s of slots) {
+    const p = parseArkCoreName(s.Name || "");
+    if (p.isOrder && p.slot) orderNums[p.slot] = orderCoreNum(p.short, p.slot);
+    if (p.isChaos && p.slot) chaosNums[p.slot] = chaosCoreNum(p.short);
+  }
+  const oStr = ["해", "달", "별"].map(k => orderNums[k] != null ? orderNums[k] : "-").join(" ");
+  const cStr = ["해", "달", "별"].map(k => chaosNums[k] != null ? chaosNums[k] : "-").join(" ");
+  core.innerHTML = `<span class="arkg-core-l">코어</span><span class="arkg-core-r">질서 <strong>${oStr}</strong> · 혼돈 <strong>${cStr}</strong></span>`;
+  const sorted = [...slots].sort((a, b) => {
+    const pa = parseArkCoreName(a.Name || ""), pb = parseArkCoreName(b.Name || "");
+    const ta = pa.isOrder ? 0 : pa.isChaos ? 1 : 2;
+    const tb = pb.isOrder ? 0 : pb.isChaos ? 1 : 2;
+    if (ta !== tb) return ta - tb;
+    const ord = { 해: 0, 달: 1, 별: 2 };
+    return (ord[pa.slot] ?? 9) - (ord[pb.slot] ?? 9);
+  });
+  for (const s of sorted) {
+    const row = document.createElement("div");
+    const gr = s.Grade || "";
+    let gc = "";
+    if (gr === "고대") gc = " g-ancient";
+    else if (gr === "유물") gc = " g-relic";
+    else if (gr === "전설") gc = " g-legend";
+    else if (gr === "영웅") gc = " g-epic";
+    row.className = "arkg-item" + gc;
+    if (s.Icon) {
+      const img = document.createElement("img");
+      img.src = s.Icon; img.alt = ""; img.loading = "lazy";
+      const gs = gradeStyle(gr);
+      img.style.background = gs.bg;
+      img.style.borderRadius = "5px";
+      img.style.border = "1px solid " + gs.c + "44";
+      row.appendChild(img);
+    }
+    const p = parseArkCoreName(s.Name || "");
+    const kind = p.isOrder ? "질서" : p.isChaos ? "혼돈" : "";
+    const label = kind ? `${kind}: ${p.short}` : (s.Name || "-");
+    const nm = document.createElement("span"); nm.className = "nm"; nm.textContent = label;
+    const pt = document.createElement("span"); pt.className = "pt"; pt.textContent = s.Point != null ? "(" + s.Point + "P)" : "";
+    row.append(nm, pt);
+    
+    // 🎯 미니 툴팁 바인딩
+    const tipHtml = buildCoreTipHtml(s);
+    if (tipHtml) bindTip(row, tipHtml);
+    slotsEl.appendChild(row);
+  }
+  const cls = (window.__charClass || "");
+  const SUPPORT = ["바드", "홀리나이트", "도화가", "기상술사"];
+  // 발키리(홀리나이트 계열)는 직각(해방자 등)으로 서폿/딜러 판별
+  const isSupport = SUPPORT.some(s => cls.includes(s)) || (cls.includes("발키리") && (typeof checkIsSupportMode === "function" ? checkIsSupportMode(window.__fullData, cls) : true));
+  const effectRows = [];
+  for (const e of (ag.Effects || [])) {
+    const tip = strip(e.Tooltip || "");
+    const pctM = tip.match(/([+＋]?[0-9.]+%)/);
+    const pct = pctM ? pctM[1] : "";
+    const lv = e.Level != null ? "Lv." + e.Level : "";
+    const name = e.Name || "-";
+    let on = false;
+    if (isSupport) {
+      if (/아군.*피해/.test(name)) on = true;
+      if (/아군.*공격/.test(name)) on = true;
+      if (/낙인/.test(name)) on = true;
+    } else {
+      on = /보스/.test(name) || /추가 피해/.test(name) || name === "공격력";
+    }
+    effectRows.push({ on, name, lv, pct, tip });
+  }
+  effectRows.sort((a, b) => (b.on ? 1 : 0) - (a.on ? 1 : 0));
+  for (const er of effectRows) {
+    const row = document.createElement("div");
+    row.className = "row " + (er.on ? "eff-on" : "eff-off");
+    row.innerHTML = `<span class="l">${er.name}${er.lv ? ` <span class="lv">${er.lv}</span>` : ""}</span><span class="v">${er.pct || "-"}</span>`;
+    if (er.tip) bindTip(row, `<div class="tip-hd">${er.name}</div><div class="tip-bd">${er.tip}</div>`);
+    statsEl.appendChild(row);
+  }
+}
+
+function renderArkGridTab(ag, fullData) {
+  const summaryEl = $("agSummary"), coresEl = $("agCores"), toggleEl = $("agTypeToggle"), badgesEl = $("agBadges");
+  if (!summaryEl || !coresEl) return;
+  summaryEl.innerHTML = ""; coresEl.innerHTML = ""; if (badgesEl) badgesEl.innerHTML = "";
+  if (!ag) { coresEl.textContent = "정보 없음"; return; }
+
+  const p = fullData?.ArmoryProfile || {};
+  const classLine = [p.CharacterClassName, fullData?.ArkPassive?.Title].filter(Boolean).join(" · ");
+
+  const slots = ag.Slots || [];
+  const orderSlots = [], chaosSlots = [];
+  const orderNums = { 해: null, 달: null, 별: null };
+  const chaosNums = { 해: null, 달: null, 별: null };
+  for (const s of slots) {
+    const p2 = parseArkCoreName(s.Name || "");
+    if (p2.isOrder) { orderSlots.push(s); if (p2.slot) orderNums[p2.slot] = orderCoreNum(p2.short, p2.slot); }
+    else if (p2.isChaos) { chaosSlots.push(s); if (p2.slot) chaosNums[p2.slot] = chaosCoreNum(p2.short); }
+  }
+  const slotOrder = { 해: 0, 달: 1, 별: 2 };
+  const sortBySlot = arr => [...arr].sort((a, b) => {
+    const pa = parseArkCoreName(a.Name || ""), pb = parseArkCoreName(b.Name || "");
+    return (slotOrder[pa.slot] ?? 9) - (slotOrder[pb.slot] ?? 9);
+  });
+  const orderSorted = sortBySlot(orderSlots);
+  const chaosSorted = sortBySlot(chaosSlots);
+
+  const oStr = ["해", "달", "별"].map(k => orderNums[k] != null ? orderNums[k] : "-").join(" ");
+  const cStr = ["해", "달", "별"].map(k => chaosNums[k] != null ? chaosNums[k] : "-").join(" ");
+
+  const cls = window.__charClass || p.CharacterClassName || "";
+  const SUPPORT = ["바드", "홀리나이트", "도화가", "기상술사"];
+  // 발키리(홀리나이트 계열)는 직각(해방자 등)으로 서폿/딜러 판별
+  const isSupport = SUPPORT.some(s => cls.includes(s)) || (cls.includes("발키리") && (typeof checkIsSupportMode === "function" ? checkIsSupportMode(window.__fullData, cls) : true));
+  const onEffects = [];
+  for (const e of (ag.Effects || [])) {
+    const name = e.Name || "-";
+    let on = false;
+    if (isSupport) {
+      if (/아군.*피해/.test(name)) on = true;
+      if (/아군.*공격/.test(name)) on = true;
+      if (/낙인/.test(name)) on = true;
+    } else {
+      on = /보스/.test(name) || /추가 피해/.test(name) || name === "공격력";
+    }
+    if (!on) continue;
+    const tip = strip(e.Tooltip || "");
+    const pctM = tip.match(/([+＋]?[0-9.]+%)/);
+    onEffects.push({ name, level: e.Level, pct: pctM ? pctM[1] : "" });
+  }
+  const gemEff = agGemEff(ag, isSupport);
+  const effNames = isSupport ? AG_EFF_NAMES.sup : AG_EFF_NAMES.dps;
+  const f2 = v => (Math.round(v * 100) / 100).toFixed(2);
+
+  summaryEl.innerHTML = `
+    <div class="ag-hero">
+      <div class="ag-hero-left">
+        <div class="ag-hero-eyebrow">ARK GRID</div>
+        <div class="ag-hero-class">${classLine || "-"}</div>
+      </div>
+      <div class="ag-hero-points">
+        <div class="ag-hero-pt order"><span class="k">질서</span><b>${oStr}</b></div>
+        <div class="ag-hero-pt chaos"><span class="k">혼돈</span><b>${cStr}</b></div>
+      </div>
+    </div>
+  `;
+
+  // 젬 효율 요약 (코어/젬 아래 영역): 젬 효율 = 옵션 효율 × 포인트 효율 (딜러·서포터 공통)
+  if (gemEff && badgesEl) {
+    // 옵션 한 칸: 이름 + Lv / 실효율 (옵션 색으로 통일)
+    const optCell = (nm) => {
+      const o = gemEff.opts[nm];
+      return `<div class="ag-eff-o" style="--c:${AG_EFF_COLOR[nm]}"><span class="n">${nm} <i>Lv${o ? o.lv : 0}</i></span><b>${o ? f2(o.real) : "0.00"}%</b></div>`;
+    };
+    badgesEl.innerHTML = `
+      <div class="ag-eff">
+        <div class="ag-eff-blk tot"><span class="k">젬 효율</span><b>${f2(gemEff.total)}%</b><small>옵션 × 포인트</small></div>
+        <span class="ag-eff-op">=</span>
+        <div class="ag-eff-blk opt"><span class="k">옵션 효율</span><b>${f2(gemEff.opt)}%</b>
+          <div class="ag-eff-opts">${effNames.map(optCell).join("")}</div></div>
+        <span class="ag-eff-op">×</span>
+        <div class="ag-eff-blk"><span class="k">포인트 효율</span><b>${f2(gemEff.pt)}%</b><small>코어 17P 넘는 만큼</small></div>
+      </div>`;
+  } else if (badgesEl) {
+    badgesEl.innerHTML = onEffects.map(e => `<div class="ag-badge"><span class="l">${e.name}${e.level != null ? ` <b>Lv${e.level}</b>` : ""}</span><span class="v">${e.pct}</span></div>`).join("");
+  }
+
+  function draw() {
+    coresEl.innerHTML = "";
+    coresEl.classList.remove("ag-theme-order", "ag-theme-chaos"); coresEl.classList.add("ag-theme-" + __agType);   // 탭별 배경 테마
+    const list = __agType === "order" ? orderSorted : chaosSorted;
+    if (!list.length) { coresEl.innerHTML = `<div class="ag-empty">장착된 코어가 없습니다</div>`; return; }
+
+    const coreRow = document.createElement("div");
+    coreRow.className = "ag-core-row";
+    const gemSection = document.createElement("div");
+    gemSection.className = "ag-gem-section";
+
+    for (const slot of list) {
+      coreRow.appendChild(renderArkGridCoreCard(slot));
+      const gemsWrap = document.createElement("div");
+      gemsWrap.className = "ag-gem-row";
+      for (const gem of (slot.Gems || [])) gemsWrap.appendChild(renderArkGridGemChip(gem, isSupport));
+      gemSection.appendChild(gemsWrap);
+    }
+    coresEl.appendChild(coreRow);
+    coresEl.appendChild(gemSection);
+  }
+
+  if (toggleEl) toggleEl.__draw = draw;
+  if (toggleEl && !toggleEl.__bound) {
+    toggleEl.__bound = true;
+    toggleEl.querySelectorAll(".ag-type-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        toggleEl.querySelectorAll(".ag-type-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        __agType = btn.dataset.type;
+        toggleEl.__draw();
+      });
+    });
+  }
+  draw();
+}
+
+function renderAP(ap) {
+  calcArkCdPct(ap);
+  const targets = ["apGrid", "apGridDash"].map(id => $(id)).filter(Boolean);
+  for (const grid of targets) {
+    grid.innerHTML = "";
+    if (!ap) {
+      grid.innerHTML = `<div style="color:var(--muted);font-size:12px">정보 없음</div>`;
+      continue;
+    }
+    const points = ap.Points || [];
+    const effects = ap.Effects || [];
+    const groups = { "진화": [], "깨달음": [], "도약": [] };
+    for (const e of effects) {
+      if (groups[e.Name]) groups[e.Name].push(e);
+    }
+    for (const key of ["진화", "깨달음", "도약"]) {
+      const col = document.createElement("div");
+      col.className = "ap-col";
+      const pt = points.find(p => p.Name === key);
+      col.innerHTML = `<h4>${key}${pt?.Description ? " · " + pt.Description : ""}</h4><div class="pts">${pt ? pt.Value + " 포인트" : ""}</div>`;
+      for (const e of groups[key]) {
+        const item = document.createElement("div");
+        item.className = "ap-item";
+        if (e.Icon) {
+          const img = document.createElement("img");
+          img.src = e.Icon; img.alt = ""; img.loading = "lazy";
+          item.appendChild(img);
+        }
+        const span = document.createElement("span");
+        span.innerHTML = e.Description || "";
+        item.appendChild(span);
+        const tipHtml = buildArkPassiveTipHtml(e, strip(e.Description) || e.Name);
+        if (tipHtml) bindTip(item, tipHtml);
+        col.appendChild(item);
+      }
+      grid.appendChild(col);
+    }
+  }
+}
+
+// ===== 아크패시브 DB 연동 (arkPassiveData.js: evolutionData / jobSpecificData) =====
+function aptIconUrl(iconName) {
+  if (!iconName) return "";
+  const png = x => (x.endsWith(".png") ? x : x + ".png");
+  if (/^https?:\/\//.test(iconName)) return png(iconName);
+  if (iconName.startsWith("../")) return "https://cdn-lostark.game.onstove.com/efui_iconatlas/" + png(iconName.replace("../", ""));
+  const folder = iconName.replace(/_\d+$/, "");
+  return `https://cdn-lostark.game.onstove.com/efui_iconatlas/${folder}/${png(iconName)}`;
+}
+function aptDbTree(catKey, className) {
+  try {
+    if (catKey === "진화") return typeof evolutionData !== "undefined" ? evolutionData : null;
+    if (typeof jobSpecificData === "undefined") return null;
+    const job = jobSpecificData[className];
+    if (!job) return null;
+    return catKey === "깨달음" ? job.awakening : job.leap;
+  } catch (e) { return null; }
+}
+
+const APT_VAL_COLOR = { "진화": "#f0c14b", "깨달음": "#6cbcff", "도약": "#44d39a" };
+function aptColorizeDesc(html, color) {
+  let h = String(html || "").replace(/<span class=\\?"clreffvalue\\?">/g, `<span style="color:${color};font-weight:800">`);
+  // 태그 밖에 남은 숫자% 도 같은 색으로
+  return h.split(/(<[^>]+>)/).map(seg => seg.startsWith("<") ? seg : seg.replace(/([+\-]?\d+(?:\.\d+)?%)/g, `<span style="color:${color};font-weight:800">$1</span>`)).join("");
+}
+function aptOffTipHtml(dn, name, max, icon, catKey) {
+  const color = APT_VAL_COLOR[catKey] || "#f0c14b";
+  const d0 = (dn.desc && dn.desc[0]) || "";
+  const iconHtml = icon
+    ? `<div class="apt-tip-icon"><img class="apt-tip-ic" src="${icon}" alt="" style="filter:grayscale(1) brightness(.7)"></div>`
+    : `<div class="apt-tip-icon empty"></div>`;
+  return `
+    <div class="tip-hd apt-tip-title">${name}</div>
+    <div class="tip-bd apt-tip-body">
+      <div class="apt-tip-top">
+        ${iconHtml}
+        <div class="apt-tip-meta">
+          <div class="apt-tip-row"><span class="apt-tip-cat">${catKey}</span><span class="apt-tip-learned" style="color:#8b93a7">미습득</span></div>
+          <div class="apt-tip-level">Lv.0/${max}${dn.point ? " · " + dn.point + "P" : ""}</div>
+        </div>
+      </div>
+      ${d0 ? `<div class="apt-tip-desc">${aptColorizeDesc(d0, color)}</div>` : ""}
+    </div>`;
+}
+
+let __aptCat = "진화";
+function renderArkPassiveTab(ap, fullData) {
+  calcArkCdPct(ap);
+  const heroEl = $("aptHero"), gridEl = $("aptGrid");
+  if (!heroEl || !gridEl) return;
+  heroEl.innerHTML = ""; gridEl.innerHTML = "";
+  if (!ap) { gridEl.innerHTML = `<div class="apt-empty">아크패시브 정보가 없어요</div>`; return; }
+
+  const points = ap.Points || [];
+  const effects = ap.Effects || [];
+  const CATS = [{ key: "진화", cls: "evo" }, { key: "깨달음", cls: "enl" }, { key: "도약", cls: "leap" }];
+
+  const maxLvMap = {};
+  for (const d of (typeof EVOLUTION_EFFECTS !== "undefined" ? EVOLUTION_EFFECTS : [])) {
+    for (const a of (d.aliases || [d.name])) {
+      maxLvMap[String(a).replace(/\s+/g, "")] = Math.max(maxLvMap[String(a).replace(/\s+/g, "")] || 0, d.maxLv || 0);
+    }
+  }
+  const EVO_STAT_MAX = { "치명": 30, "특화": 30, "제압": 30, "신속": 30, "인내": 30, "숙련": 30 };
+  const cls = $("pClass") ? $("pClass").textContent : "-";
+
+  heroEl.innerHTML = `
+    <div class="ag-hero apt-hero">
+      <div class="ag-hero-left">
+        <div class="ag-hero-eyebrow">ARK PASSIVE</div>
+        <div class="ag-hero-class">${cls}</div>
+      </div>
+      <div class="ag-hero-points">
+        ${CATS.map(c => {
+          const pt = points.find(p => p.Name === c.key);
+          return `<div class="ag-hero-pt ${c.cls}"><span class="k">${c.key}</span><b>${pt ? pt.Value : "-"}</b><small>${strip(pt ? pt.Description : "")}</small></div>`;
+        }).join("")}
+      </div>
+    </div>`;
+
+  const shell = document.createElement("div");
+  shell.className = "apt-shell";
+  const tabBar = document.createElement("div");
+  tabBar.className = "apt-tabs";
+  tabBar.innerHTML = CATS.map(c => {
+    const pt = points.find(p => p.Name === c.key);
+    return `<button type="button" class="apt-tab ${c.cls}${c.key === __aptCat ? " active" : ""}" data-cat="${c.key}">
+      <span class="apt-tab-dot"></span>
+      <span class="apt-tab-label">${c.key}</span>
+      <span class="apt-tab-pt">${pt ? pt.Value : "-"}</span>
+    </button>`;
+  }).join("");
+  shell.appendChild(tabBar);
+
+  const body = document.createElement("div");
+  body.className = "apt-body";
+  shell.appendChild(body);
+  gridEl.appendChild(shell);
+
+  tabBar.querySelectorAll(".apt-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      __aptCat = btn.dataset.cat;
+      renderArkPassiveTab(ap, fullData);
+    });
+  });
+
+  const c = CATS.find(x => x.key === __aptCat) || CATS[0];
+  body.classList.add("bg-" + c.cls);   // 탭별 배경 (진화 / 깨달음 / 도약)
+  const tiers = {};
+  for (const e of effects) {
+    if (e.Name !== c.key) continue;
+    const text = strip(e.Description).replace(/&nbsp;/g, " ");
+    const m = text.match(/(\d+)\s*티어\s*(.+?)\s*Lv\.?\s*(\d+)/i);
+    if (!m) continue;
+    const tier = parseInt(m[1], 10);
+    const name = m[2].trim();
+    const lv = parseInt(m[3], 10) || 0;
+    const max = maxLvMap[name.replace(/\s+/g, "")] || EVO_STAT_MAX[name] || 0;
+    (tiers[tier] = tiers[tier] || []).push({ e, name, lv, max });
+  }
+
+  // ---- 직업 DB(arkPassiveData.js)가 있으면 안 찍은 노드까지 전부 표시 ----
+  const nz = x => String(x || "").replace(/\s+/g, "");
+  const dbTree = aptDbTree(c.key, (fullData && fullData.ArmoryProfile && fullData.ArmoryProfile.CharacterClassName) || "");
+  const tierNums = [];
+  const rowsByTier = {};
+  if (dbTree && dbTree.tierList && dbTree.tierList.length) {
+    for (const tr of dbTree.tierList) {
+      const list = [...(tr.passiveList || [])].sort((x, y) => (x.node_row || 0) - (y.node_row || 0) || (x.node_column || 0) - (y.node_column || 0));
+      const picked = tiers[tr.tier] || [];
+      const used = new Set();
+      const arr = [];
+      for (const dn of list) {
+        const hit = picked.find(p => !used.has(p) && nz(p.name) === nz(dn.name));
+        if (hit) { used.add(hit); hit.max = dn.max_level || hit.max; arr.push({ on: true, hit, name: dn.name, max: hit.max, dn }); }
+        else arr.push({ on: false, name: dn.name, max: dn.max_level || 0, dn });
+      }
+      // DB에서 못 찾은 찍은 노드는 뒤에 그대로 보존
+      for (const p of picked) if (!used.has(p)) arr.push({ on: true, hit: p, name: p.name, max: p.max, dn: null });
+      tierNums.push(tr.tier);
+      rowsByTier[tr.tier] = arr;
+    }
+  } else {
+    for (const t of [1, 2, 3, 4, 5]) {
+      tierNums.push(t);
+      rowsByTier[t] = (tiers[t] || []).map(p => ({ on: true, hit: p, name: p.name, max: p.max, dn: null }));
+    }
+  }
+
+  // 노드 열 위치(node_column)대로 배치 (본 사이트와 동일한 칸 배치)
+  let gridCols = 0;
+  if (dbTree && dbTree.tierList) {
+    for (const tr of dbTree.tierList) for (const dn of (tr.passiveList || [])) gridCols = Math.max(gridCols, dn.node_column || 0);
+    gridCols = Math.min(Math.max(gridCols, 6), 8); // 진화·도약(6칸)과 같은 간격 유지
+  }
+
+  const col = document.createElement("section");
+  col.className = "apt-col " + c.cls;
+  const tree = document.createElement("div");
+  tree.className = "apt-tree";
+
+  for (const t of tierNums) {
+    const items = rowsByTier[t] || [];
+    const anyOn = items.some(x => x.on);
+    const row = document.createElement("div");
+    row.className = "apt-row" + (items.length ? (anyOn ? "" : " allOff") : " empty");
+    row.innerHTML = `<div class="apt-tier-badge"><span class="apt-tier-num">${t}</span></div><div class="apt-nodes"></div>`;
+    const nodesEl = row.querySelector(".apt-nodes");
+    if (gridCols > 0) {
+      nodesEl.classList.add("grid");
+      nodesEl.style.gridTemplateColumns = `repeat(${gridCols}, minmax(0, 1fr))`;
+    }
+    for (const n of items) {
+      const node = document.createElement("div");
+      node.className = "apt-node " + (n.on ? "on" : "off");
+      if (gridCols > 0 && n.dn && n.dn.node_column) node.style.gridColumn = String(n.dn.node_column);
+      const lv = n.on ? n.hit.lv : 0;
+      const lvText = n.max ? `Lv. ${lv}/${n.max}` : `Lv. ${lv}`;
+      const icon = n.on ? (n.hit.e.Icon || (n.dn ? aptIconUrl(n.dn.icon) : "")) : (n.dn ? aptIconUrl(n.dn.icon) : "");
+      node.innerHTML = `
+        <div class="apt-orb">${icon ? `<img src="${icon}" alt="" loading="lazy">` : ""}</div>
+        <div class="apt-lv">${lvText}</div>
+        <div class="apt-nm">${n.name}</div>`;
+      let tipHtml = "";
+      if (n.on) {
+        const dd = n.dn && n.dn.desc ? (n.dn.desc[Math.max(lv - 1, 0)] || n.dn.desc[0] || "") : "";
+        tipHtml = buildArkPassiveTipHtml(n.hit.e, n.name, dd ? aptColorizeDesc(dd, APT_VAL_COLOR[c.key] || "#f0c14b") : "");
+      }
+      else if (n.dn) tipHtml = aptOffTipHtml(n.dn, n.name, n.max, icon, c.key);
+      if (tipHtml) bindTip(node, tipHtml);
+      nodesEl.appendChild(node);
+    }
+    tree.appendChild(row);
+  }
+  col.appendChild(tree);
+  body.appendChild(col);
+}

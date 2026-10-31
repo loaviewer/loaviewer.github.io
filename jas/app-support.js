@@ -1,1 +1,383 @@
-function _0x1fed(_0x37d464,_0xaff5c0){_0x37d464=_0x37d464-0xc1;var _0xf8fb1e=_0xf8fb();var _0x1fed30=_0xf8fb1e[_0x37d464];return _0x1fed30;}(function(_0x488723,_0x28dff7){var _0x4e7fdd=_0x1fed,_0x3dd6bd=_0x488723();while(!![]){try{var _0x397dd2=parseInt(_0x4e7fdd(0x14a))/0x1*(-parseInt(_0x4e7fdd(0x13f))/0x2)+-parseInt(_0x4e7fdd(0x112))/0x3+parseInt(_0x4e7fdd(0x11e))/0x4*(parseInt(_0x4e7fdd(0xce))/0x5)+-parseInt(_0x4e7fdd(0xdf))/0x6*(parseInt(_0x4e7fdd(0x18c))/0x7)+parseInt(_0x4e7fdd(0x107))/0x8+parseInt(_0x4e7fdd(0x111))/0x9*(parseInt(_0x4e7fdd(0xd8))/0xa)+-parseInt(_0x4e7fdd(0xd5))/0xb*(-parseInt(_0x4e7fdd(0xc2))/0xc);if(_0x397dd2===_0x28dff7)break;else _0x3dd6bd['push'](_0x3dd6bd['shift']());}catch(_0x36b3a1){_0x3dd6bd['push'](_0x3dd6bd['shift']());}}}(_0xf8fb,0x640a4),(function(){var _0x1795c5=_0x1fed,_0x517e12=0x16,_0x26db93=0xa;function _0x107627(_0x1c9a74){var _0x393047=_0x1fed,_0x39b9fc=typeof _0x1c9a74===_0x393047(0x128)?_0x1c9a74:JSON[_0x393047(0x13b)](_0x1c9a74||'');return _0x39b9fc[_0x393047(0x164)](/\\r\\n|\\n|\\r/g,'\x0a')[_0x393047(0x164)](/\\"/g,'\x22')[_0x393047(0x164)](/<[^>]+>/g,'\x20')[_0x393047(0x164)](/\s+/g,'\x20');}function _0x3b44cb(_0x5afb72,_0x4a5747){var _0x31b380=_0x1fed,_0x56d150=[],_0x3933bc;_0x4a5747[_0x31b380(0x170)]=0x0;while(_0x3933bc=_0x4a5747['exec'](_0x5afb72))_0x56d150[_0x31b380(0x184)](_0x3933bc);return _0x56d150;}function _0x4a3867(_0x50a9a9,_0x3fc55d){var _0x466c12=_0x1fed;return _0x3b44cb(_0x50a9a9,_0x3fc55d)[_0x466c12(0x12e)](function(_0x4c5534,_0x400820){return _0x4c5534+parseFloat(_0x400820[0x1]);},0x0);}function _0x2be330(_0x2cdd60,_0x417c41){var _0x5f13c1=_0x1fed;return _0x3b44cb(_0x2cdd60,_0x417c41)[_0x5f13c1(0x12e)](function(_0x5ce4b0,_0x49c0fa){return _0x5ce4b0+parseFloat(_0x49c0fa[0x1])*parseInt(_0x49c0fa[0x2],0xa);},0x0);}function _0x151339(_0x1d8848){return Math['round'](_0x1d8848*0x64)/0x64;}function _0x13ab03(_0xcfeb65){var _0x4cae76=_0x1fed;return Math['round'](_0xcfeb65)[_0x4cae76(0xf9)]();}function _0x321db0(_0x355ccd,_0x2e3838){var _0x1a15d1=_0x1fed,_0x52db77=_0x107627(_0x355ccd)[_0x1a15d1(0x148)](/\[(\d+)P\]/),_0x46bb16=[];for(var _0xbd13f=0x1;_0xbd13f<_0x52db77[_0x1a15d1(0x105)];_0xbd13f+=0x2)if(+_0x52db77[_0xbd13f]<=_0x2e3838)_0x46bb16['push'](_0x52db77[_0xbd13f+0x1]);return _0x46bb16[_0x1a15d1(0x17d)]('\x20');}var _0x1b58aa={1.5:1.0075,1.8:1.007,2.1:1.0106,2.5:1.0126},_0x4cdf16={1.5:1.010875,1.8:1.01305,2.1:1.015225,2.5:1.0176},_0x1b49a6={0x3:1.010875,3.6:1.01305,4.2:1.015225,4.8:1.0174},_0x193e99={0.7:1.007,0.9:1.009,1.1:1.011,1.3:1.013};function _0x391b50(_0x1b1c95,_0x2b1a61){var _0x143fc7=_0x1fed,_0x338ccd=Object[_0x143fc7(0x103)](_0x1b1c95)[_0x143fc7(0xff)](parseFloat),_0x21aa41=_0x338ccd[0x0];return _0x338ccd[_0x143fc7(0xda)](function(_0xe0ed13){var _0x501826=_0x143fc7;if(Math[_0x501826(0x160)](_0xe0ed13-_0x2b1a61)<Math['abs'](_0x21aa41-_0x2b1a61))_0x21aa41=_0xe0ed13;}),_0x1b1c95[_0x21aa41];}function _0x316cd5(_0x458f82){var _0x36f1c3=_0x1fed,_0x160b89=[],_0x318ddf=0x1;return[[/방어력을([\d.]+)%감소/g,_0x1b58aa,_0x36f1c3(0x174)],[/치명타저항을([\d.]+)%감소/g,_0x4cdf16,_0x36f1c3(0xea)],[/치명타피해저항을([\d.]+)%감소/g,_0x1b49a6,_0x36f1c3(0x16d)],[/적에게주는피해가([\d.]+)%증가/g,_0x193e99,_0x36f1c3(0xde)]][_0x36f1c3(0xda)](function(_0x239c68){var _0x52e5e4=_0x36f1c3;_0x3b44cb(_0x458f82,_0x239c68[0x0])[_0x52e5e4(0xda)](function(_0x5df881){var _0x4090e9=parseFloat(_0x5df881[0x1]),_0x1c0c5c=_0x391b50(_0x239c68[0x1],_0x4090e9);_0x318ddf*=_0x1c0c5c,_0x160b89['push']({'k':_0x239c68[0x2]+'\x20'+_0x4090e9+'%','v':(_0x1c0c5c-0x1)*0x64});});}),{'mul':_0x318ddf,'rows':_0x160b89};}function _0x2732c6(_0x5eb517){var _0x233f36=_0x1fed,_0x3538b5={'atk':{'acc':0x0,'bracelet':0x0,'passive':0x0,'core':0x0,'gem':0x0,'grid':0x0,'jewel':0x0},'dmg':{'acc':0x0,'bracelet':0x0,'passive':0x0,'core':0x0,'grid':0x0,'identity':[]},'brand':{'br':{'mul':0x1,'rows':[]},'karma':0x0,'evo':0x0,'acc':0x0,'bracelet':0x0,'passive':0x0,'core':0x0,'grid':0x0,'coreDmg':0x0}};(_0x5eb517[_0x233f36(0x16f)]||[])['forEach'](function(_0x37fdb3){var _0x4b9366=_0x233f36,_0x348c19=_0x107627(_0x37fdb3['Tooltip']);if(/목걸이|귀걸이|반지/[_0x4b9366(0x122)](_0x37fdb3[_0x4b9366(0x141)]))_0x3538b5[_0x4b9366(0xc9)][_0x4b9366(0x17b)]+=_0x4a3867(_0x348c19,/아군 공격력 강화 효과 \+([\d.]+)%/g),_0x3538b5[_0x4b9366(0xf4)][_0x4b9366(0x17b)]+=_0x4a3867(_0x348c19,/아군 피해량 강화 효과 \+([\d.]+)%/g),_0x3538b5[_0x4b9366(0x16b)][_0x4b9366(0x17b)]+=_0x4a3867(_0x348c19,/낙인력 \+([\d.]+)%/g);else/팔찌/[_0x4b9366(0x122)](_0x37fdb3[_0x4b9366(0x141)])&&(_0x3538b5[_0x4b9366(0xc9)][_0x4b9366(0x11a)]+=_0x4a3867(_0x348c19,/아군 공격력 강화 효과가 ([\d.]+)% 증가/g),_0x3538b5['atk']['bracelet']+=_0x4a3867(_0x348c19,/아군 공격력 강화 효과 \+([\d.]+)%/g),_0x3538b5[_0x4b9366(0xf4)]['bracelet']+=_0x4a3867(_0x348c19,/아군 피해량 강화 효과 \+([\d.]+)%/g),_0x3538b5[_0x4b9366(0x16b)][_0x4b9366(0x11a)]+=_0x4a3867(_0x348c19,/낙인력 \+([\d.]+)%/g),_0x3538b5[_0x4b9366(0x16b)]['br']=_0x316cd5(_0x348c19['replace'](/\s+/g,'')));});var _0x2d6242=_0x5eb517[_0x233f36(0x11d)]||{};(_0x2d6242['Effects']||[])[_0x233f36(0xda)](function(_0x3d0b65){var _0x4ba097=_0x233f36,_0x516424=_0x107627(_0x3d0b65['Tooltip']),_0x523e28=_0x4a3867(_0x516424,/\+([\d.]+)%/g);if(/^아군 공격/[_0x4ba097(0x122)](_0x3d0b65[_0x4ba097(0x173)]))_0x3538b5[_0x4ba097(0xc9)][_0x4ba097(0x171)]+=_0x523e28;else{if(/^아군 피해/[_0x4ba097(0x122)](_0x3d0b65[_0x4ba097(0x173)]))_0x3538b5[_0x4ba097(0xf4)]['grid']+=_0x523e28;else{if(/^낙인력/[_0x4ba097(0x122)](_0x3d0b65['Name']))_0x3538b5[_0x4ba097(0x16b)][_0x4ba097(0x171)]+=_0x523e28;}}}),(_0x2d6242[_0x233f36(0x158)]||[])[_0x233f36(0xda)](function(_0x38d244){var _0x716c71=_0x233f36,_0xe2c349=_0x321db0(_0x38d244[_0x716c71(0xfa)],_0x38d244[_0x716c71(0xca)]||0x0);_0x3538b5['atk'][_0x716c71(0x114)]+=_0x4a3867(_0xe2c349,/아군 공격력 강화 효과가 ([\d.]+)%/g),_0x3b44cb(_0xe2c349,/(\S*의\s)?아군 피해량 강화 효과가 ([\d.]+)%/g)['forEach'](function(_0x3132a4){var _0x3e2d62=_0x716c71;if(_0x3132a4[0x1])_0x3538b5[_0x3e2d62(0xf4)][_0x3e2d62(0xfc)][_0x3e2d62(0x184)]({'name':_0x3132a4[0x1][_0x3e2d62(0x164)](/의\s*$/,''),'v':parseFloat(_0x3132a4[0x2])});else _0x3538b5['dmg']['core']+=parseFloat(_0x3132a4[0x2]);}),_0x3538b5['brand']['core']+=_0x4a3867(_0xe2c349,/낙인력이 ([\d.]+)%/g),_0x3538b5[_0x716c71(0x16b)][_0x716c71(0xc1)]+=_0x4a3867(_0xe2c349,/받는 피해가 ([\d.]+)%/g);}),((_0x5eb517['ArkPassive']||{})[_0x233f36(0xf5)]||[])['forEach'](function(_0x5ba66c){var _0x440bfc=_0x233f36,_0x4537b8=_0x107627(_0x5ba66c);_0x3538b5[_0x440bfc(0xc9)][_0x440bfc(0x120)]+=_0x4a3867(_0x4537b8,/아군 공격력 강화 효과가 ([\d.]+)% 증가/g)+_0x4a3867(_0x4537b8,/아군 공격력 강화 효과가 추가로 ([\d.]+)% 증가/g)+_0x2be330(_0x4537b8,/아군 공격력 강화 효과 \+([\d.]+)%\s*,\s*최대\s*(\d+)중첩/g),_0x3538b5['dmg']['passive']+=_0x4a3867(_0x4537b8,/아군 피해량 강화 효과가 ([\d.]+)% 증가/g);var _0x4e01f6=_0x2be330(_0x4537b8,/낙인력 \+([\d.]+)%\s*,\s*최대\s*(\d+)중첩/g),_0x1aff44=_0x4a3867(_0x4537b8,/낙인력이 ([\d.]+)% 증가/g);if(_0x4e01f6)_0x3538b5[_0x440bfc(0x16b)][_0x440bfc(0x153)]+=_0x1aff44+_0x4e01f6;else _0x3538b5[_0x440bfc(0x16b)][_0x440bfc(0x120)]+=_0x1aff44;});var _0x5f30ed=((_0x5eb517[_0x233f36(0x142)]||{})['Points']||[])[_0x233f36(0xcd)](function(_0x10f855){var _0x9d9182=_0x233f36;return _0x10f855[_0x9d9182(0x173)]==='진화';})[0x0],_0x3c3f6e=_0x5f30ed?String(_0x5f30ed[_0x233f36(0x106)]||'')[_0x233f36(0xd6)](/(\d+)\s*랭크/):null;if(_0x3c3f6e)_0x3538b5['brand'][_0x233f36(0xe6)]=Math[_0x233f36(0xc3)](parseInt(_0x3c3f6e[0x1],0xa),0x6);var _0x27f0b9=(_0x5eb517[_0x233f36(0x14f)]||{})[_0x233f36(0x15e)]||[];_0x27f0b9[_0x233f36(0xda)](function(_0x59e71c){var _0x212624=_0x233f36;_0x3538b5[_0x212624(0xc9)]['gem']+=_0x4a3867(_0x107627(_0x59e71c['Tooltip']),/아군 공격력 강화 효과[^%]{0,12}?([\d.]+)% 증가/g);});if(!_0x3538b5[_0x233f36(0xc9)][_0x233f36(0x108)]){var _0x38322f=(_0x5eb517['ArmoryGem']||{})[_0x233f36(0xf5)],_0x5b8d93=Array[_0x233f36(0x12c)](_0x38322f)?_0x38322f:_0x38322f&&_0x38322f[_0x233f36(0x165)]||[];_0x5b8d93[_0x233f36(0xda)](function(_0x9cd233){var _0x59fc8c=_0x233f36,_0x36727d=_0x107627(_0x9cd233[_0x59fc8c(0x106)]||_0x9cd233[_0x59fc8c(0xfa)]||'')[_0x59fc8c(0xd6)](/지원 효과\s*\+?\s*([\d.]+)\s*%/);if(_0x36727d)_0x3538b5[_0x59fc8c(0xc9)][_0x59fc8c(0x108)]=Math[_0x59fc8c(0x13a)](_0x3538b5[_0x59fc8c(0xc9)][_0x59fc8c(0x108)],parseFloat(_0x36727d[0x1]));});}return _0x3538b5;}window['__supCtx']=function(){var _0x5e07bc=_0x1fed,_0x415392=_0x2732c6(window[_0x5e07bc(0x123)]||{}),_0x21c3b6=_0x415392[_0x5e07bc(0xc9)],_0x3a07b5=_0x415392['brand'];return{'aSum':_0x21c3b6[_0x5e07bc(0x17b)]+_0x21c3b6['bracelet']+_0x21c3b6['passive']+_0x21c3b6[_0x5e07bc(0x114)]+_0x21c3b6[_0x5e07bc(0x108)]+_0x21c3b6[_0x5e07bc(0x171)],'bSum':_0x3a07b5[_0x5e07bc(0x17b)]+_0x3a07b5[_0x5e07bc(0x11a)]+_0x3a07b5[_0x5e07bc(0x120)]+_0x3a07b5[_0x5e07bc(0x114)]+_0x3a07b5['grid']+_0x3a07b5[_0x5e07bc(0xe6)]+_0x3a07b5[_0x5e07bc(0x153)],'baseBrand':_0x26db93};};var _0x1e5024={'도화가':[_0x1795c5(0xf3),_0x1795c5(0x150)],'홀리나이트':[_0x1795c5(0x14d),_0x1795c5(0xc4)],'바드':[_0x1795c5(0x144),_0x1795c5(0x15a)],'발키리':[_0x1795c5(0xf0),_0x1795c5(0x162)]},_0x19f8c9={0x1:0x4,0x2:0x7,0x3:0xa};function _0x2e9ead(_0x1ec536){var _0x3b814c=_0x1795c5,_0x20c6bf=/최대\s*생명력(?:의)?\s*([\d.]+)\s*%[^.]{0,25}?보호막/g,_0x4b0994=[];return(_0x1ec536[_0x3b814c(0xcf)]||[])[_0x3b814c(0xda)](function(_0x173f8c){var _0x42b8dd=_0x3b814c,_0x47ffdf=_0x173f8c[_0x42b8dd(0x127)]||0x0,_0x15a5c5=_0x173f8c['SkillType']||0x0;if(!(_0x47ffdf>0x1||_0x15a5c5===0x1||_0x15a5c5>=0x64))return;var _0x143139=(_0x173f8c['Tripods']||[])[_0x42b8dd(0xcd)](function(_0x1f2e21){var _0x7b8d86=_0x42b8dd;return _0x1f2e21['IsSelected']&&_0x47ffdf>=(_0x19f8c9[_0x1f2e21[_0x7b8d86(0xd4)]]||0x0);}),_0x4640b2=0x1;_0x143139[_0x42b8dd(0xda)](function(_0x3f0ced){var _0x5ab058=_0x42b8dd,_0x5f1294=_0x107627(_0x3f0ced[_0x5ab058(0xfa)])[_0x5ab058(0xd6)](/보호막(?:의)?\s*효과가\s*([\d.]+)\s*배/);if(_0x5f1294)_0x4640b2*=parseFloat(_0x5f1294[0x1]);});var _0xb1731a=[];_0x3b44cb(_0x107627(_0x173f8c['Tooltip']),_0x20c6bf)['forEach'](function(_0x212cb3){var _0x47094c=_0x42b8dd;_0xb1731a[_0x47094c(0x184)]({'src':'','v':parseFloat(_0x212cb3[0x1])});}),_0x143139[_0x42b8dd(0xda)](function(_0x39105d){var _0x19b2ab=_0x42b8dd;_0x3b44cb(_0x107627(_0x39105d[_0x19b2ab(0xfa)]),_0x20c6bf)['forEach'](function(_0x3e4c4d){var _0x22bea9=_0x19b2ab;_0xb1731a[_0x22bea9(0x184)]({'src':_0x39105d[_0x22bea9(0x173)]||'','v':parseFloat(_0x3e4c4d[0x1])});});});var _0x347ec3={};_0xb1731a[_0x42b8dd(0xda)](function(_0x2008b2){var _0x581ccb=_0x42b8dd,_0x248511=String(_0x2008b2['v']*_0x4640b2);if(_0x347ec3[_0x248511])return;_0x347ec3[_0x248511]=0x1,_0x4b0994[_0x581ccb(0x184)]({'name':_0x173f8c[_0x581ccb(0x173)],'icon':_0x173f8c[_0x581ccb(0x186)],'lv':_0x47ffdf,'src':_0x2008b2[_0x581ccb(0x168)],'v':_0x2008b2['v']*_0x4640b2,'mult':_0x4640b2});});}),_0x4b0994;}function _0x3aa1bf(_0x3ce6df,_0x4c7944,_0x11054b){var _0x4e1170=_0x1795c5,_0x39050d=((_0x3ce6df[_0x4e1170(0x142)]||{})['Effects']||[])[_0x4e1170(0xcd)](function(_0x3e55fb){var _0x220f7f=_0x4e1170;return _0x4c7944['test'](String(_0x3e55fb[_0x220f7f(0x106)]||''))&&(!_0x11054b||_0x11054b[_0x220f7f(0x122)](String(_0x3e55fb[_0x220f7f(0x173)]||'')));})[0x0];return _0x39050d&&_0x39050d[_0x4e1170(0x186)]||'';}function _0x3f670f(_0x22b75e){var _0x3d16b4=_0x1795c5;return _0x22b75e>=0x2710?(Math[_0x3d16b4(0x125)](_0x22b75e/0x3e8)/0xa)[_0x3d16b4(0xf9)]()+'만':_0x13ab03(_0x22b75e);}function _0x696ca6(_0x46feac,_0x279fbf,_0x1f2190){var _0xd59add=_0x1795c5;return'<div\x20class=\x22mc-sub-line\x22><span\x20style=\x22color:'+_0x1f2190+'\x22>'+_0x46feac+_0xd59add(0xdb)+_0x279fbf+_0xd59add(0x147);}function _0x4cd059(_0x35759b){var _0x3f054b=_0x1795c5;return _0x35759b[_0x3f054b(0x164)](/^파티원에게 적용되는\s*/,'')[_0x3f054b(0x164)](/\s*스킬의\s*(적에게 주는 피해\s*)?버프 효율/,_0x3f054b(0x116));}function _0x40d0ec(_0x3d3420,_0x6ced2c){var _0x4a2805=_0x1795c5,_0x881afd=0x0;return((_0x3d3420['ArkPassive']||{})[_0x4a2805(0xf5)]||[])[_0x4a2805(0xda)](function(_0x127b45){var _0x162cdf=_0x4a2805,_0x11169b=_0x107627(_0x127b45)[_0x162cdf(0xd6)](/기본 효과의\s*([\d.]+)\s*%\s*에\s*해당/);if(_0x11169b&&!_0x881afd)_0x881afd=parseFloat(_0x11169b[0x1]);}),_0x881afd?0x1+(_0x881afd+(_0x6ced2c===1.23?0x3:0x0))/0x64:_0x6ced2c||1.2;}function _0x47162d(_0x5b4dbf,_0x298764,_0x111932){var _0x4ae219=_0x1795c5;if(/^[+-]?0(\.0+)?%$/[_0x4ae219(0x122)](String(_0x298764)[_0x4ae219(0x159)]()))return'';return'<div\x20class=\x22mc-sub-line'+(_0x111932?'\x20'+_0x111932:'')+_0x4ae219(0x126)+_0x5b4dbf+_0x4ae219(0xdb)+_0x298764+'</b></div>';}function _0x401558(_0x4b16a0,_0x1119f5,_0x304ad1,_0x1dd1c1,_0x348d25,_0x2f99e7){var _0x165e5f=_0x1795c5;return _0x165e5f(0x15c)+_0x4b16a0+_0x165e5f(0x10f)+_0x165e5f(0x151)+_0x304ad1+_0x165e5f(0x11f)+'<span\x20class=\x22mc-label\x22\x20style=\x22color:'+_0x2f99e7+'\x22>'+_0x1119f5+_0x165e5f(0xd9)+'<div\x20class=\x22mc-top-r\x22><span\x20class=\x22mc-badge\x20on\x22\x20style=\x22border-color:'+_0x2f99e7+_0x165e5f(0x175)+_0x2f99e7+_0x165e5f(0x131)+_0x165e5f(0x11c)+_0x1dd1c1+_0x165e5f(0x154)+_0x165e5f(0x157)+_0x165e5f(0x13c)+_0x348d25+_0x165e5f(0x18a);}function _0xcbf4d1(_0x398563){var _0x56a92c=_0x1795c5;if(!_0x398563)return;var _0x57b87e=document[_0x56a92c(0x182)](_0x56a92c(0x10e)),_0x1616e9=document['querySelector']('#supGrid\x20.mc.ms'),_0x540fa6=document[_0x56a92c(0x182)](_0x56a92c(0x14c)),_0x174606=document[_0x56a92c(0xeb)](_0x56a92c(0xf7));if(_0x57b87e)_0x398563[_0x56a92c(0x176)](_0x57b87e,_0x174606||null);if(_0x1616e9)_0x398563[_0x56a92c(0x176)](_0x1616e9,_0x174606||null);var _0x2f56ea=document[_0x56a92c(0xeb)](_0x56a92c(0x134));[_0x56a92c(0x140),_0x56a92c(0x156)][_0x56a92c(0xda)](function(_0x50ee0f){var _0x44b505=_0x56a92c,_0x121507=document[_0x44b505(0x182)]('#supGrid\x20#'+_0x50ee0f);if(_0x121507)_0x398563[_0x44b505(0x176)](_0x121507,_0x2f56ea||null);});if(_0x540fa6)_0x398563[_0x56a92c(0xd0)](_0x540fa6);}function _0x1ae3a1(_0x477159){var _0x7a5cd6=_0x1795c5,_0x12e99d=document[_0x7a5cd6(0xeb)](_0x7a5cd6(0xe5));if(!_0x12e99d)return;var _0x3c58de=window[_0x7a5cd6(0x12a)]||'',_0x1135e4=typeof checkIsSupportMode===_0x7a5cd6(0xdc)&&checkIsSupportMode(_0x477159,_0x3c58de),_0x368ec5=document[_0x7a5cd6(0xeb)]('effGrid');_0xcbf4d1(_0x368ec5);if(_0x368ec5)_0x368ec5[_0x7a5cd6(0x13d)][_0x7a5cd6(0x15d)]('sup-mode',!!_0x1135e4);if(!_0x1135e4){_0x12e99d[_0x7a5cd6(0x129)][_0x7a5cd6(0x180)]=_0x7a5cd6(0x178),_0x12e99d[_0x7a5cd6(0x16e)]='';return;}var _0x5435b8=_0x2732c6(_0x477159),_0x5eb642=_0x5435b8[_0x7a5cd6(0xc9)],_0x241e1e=_0x5435b8['dmg'],_0x2e3b37=_0x5435b8[_0x7a5cd6(0x16b)],_0x5946e7=((_0x477159[_0x7a5cd6(0x12b)]||{})[_0x7a5cd6(0x102)]||[])[_0x7a5cd6(0x14e)](function(_0x5befdd){var _0xff5397=_0x7a5cd6;return _0x5befdd[_0xff5397(0x141)]===_0xff5397(0xec);}),_0x412e3a=_0x5946e7?parseInt(String(_0x5946e7[_0x7a5cd6(0x146)])[_0x7a5cd6(0x164)](/,/g,''),0xa)||0x0:0x0,_0x2766cb=_0x5eb642['acc']+_0x5eb642['bracelet']+_0x5eb642[_0x7a5cd6(0x120)]+_0x5eb642['core']+_0x5eb642[_0x7a5cd6(0x108)]+_0x5eb642[_0x7a5cd6(0x171)],_0xba614d=_0x412e3a*_0x517e12/0x64*(0x1+_0x2766cb/0x64),_0x289044=Object['keys'](_0x1e5024)[_0x7a5cd6(0xcd)](function(_0x47e8b4){return _0x3c58de['indexOf'](_0x47e8b4)>=0x0;})[0x0]||'',_0x276dcf=(_0x1e5024[_0x289044]||[])['filter'](function(_0x241d35){var _0x3ca5f2=_0x7a5cd6;return(_0x477159[_0x3ca5f2(0xcf)]||[])['some'](function(_0x356fb2){var _0xb10d6=_0x3ca5f2;return String(_0x356fb2[_0xb10d6(0x173)])['replace'](/\s+/g,'')===_0x241d35[_0xb10d6(0x164)](/\s+/g,'');});}),_0x1a93c7=_0x696ca6('기본\x20공격력',_0x13ab03(_0x412e3a),'#7fd1ff')+_0x47162d(_0x7a5cd6(0xdd),_0x517e12+_0x7a5cd6(0x161))+_0x47162d(_0x7a5cd6(0x189),'+'+_0x151339(_0x5eb642['acc'])+'%')+_0x47162d('팔찌','+'+_0x151339(_0x5eb642[_0x7a5cd6(0x11a)])+'%')+_0x47162d('아크패시브','+'+_0x151339(_0x5eb642[_0x7a5cd6(0x120)])+'%')+_0x47162d('아크그리드\x20코어','+'+_0x151339(_0x5eb642[_0x7a5cd6(0x114)])+'%')+_0x47162d(_0x7a5cd6(0xd3),'+'+_0x151339(_0x5eb642[_0x7a5cd6(0x171)])+'%')+(_0x5eb642[_0x7a5cd6(0x108)]?_0x47162d('보석','+'+_0x151339(_0x5eb642[_0x7a5cd6(0x108)])+'%'):'')+_0x696ca6(_0x7a5cd6(0xc7),'×'+_0x151339(0x1+_0x2766cb/0x64),_0x7a5cd6(0xcc));_0x276dcf[_0x7a5cd6(0xda)](function(_0x4e767c){var _0x19c612=_0x7a5cd6;_0x1a93c7+=_0x696ca6(_0x4e767c,'+'+_0x13ab03(_0xba614d),_0x19c612(0x15b));});var _0xb2799a=_0x241e1e[_0x7a5cd6(0x17b)]+_0x241e1e[_0x7a5cd6(0x11a)]+_0x241e1e['passive']+_0x241e1e['core']+_0x241e1e[_0x7a5cd6(0x171)],_0x2e0ebb=((_0x477159[_0x7a5cd6(0x12b)]||{})[_0x7a5cd6(0x102)]||[])[_0x7a5cd6(0x14e)](function(_0x498626){var _0x5e8da0=_0x7a5cd6;return _0x498626[_0x5e8da0(0x141)]==='특화';}),_0x91d783=[];(_0x2e0ebb&&Array[_0x7a5cd6(0x12c)](_0x2e0ebb[_0x7a5cd6(0xfa)])?_0x2e0ebb[_0x7a5cd6(0xfa)]:[])[_0x7a5cd6(0xda)](function(_0x20e2bf){var _0x2e5495=_0x7a5cd6;_0x20e2bf=String(_0x20e2bf)['replace'](/<[^>]+>/g,'')[_0x2e5495(0x159)]();var _0x5e9c03=_0x20e2bf[_0x2e5495(0xd6)](/^(.*?)\s*([0-9.]+)\s*%\s*(증가|증폭|감소)/);if(!/%/['test'](_0x20e2bf)||/물약|원정대|카드\s*도감/[_0x2e5495(0x122)](_0x20e2bf)||!_0x5e9c03)return;_0x91d783[_0x2e5495(0x184)]({'k':_0x4cd059(_0x5e9c03[0x1][_0x2e5495(0x159)]()[_0x2e5495(0x164)](/[이가을를]\s*$/,'')[_0x2e5495(0x159)]()),'v':parseFloat(_0x5e9c03[0x2]),'neg':_0x5e9c03[0x3]==='감소'});});var _0x19c5b1=_0x91d783[_0x7a5cd6(0xcd)](function(_0x4a5b0f){var _0x5acb4d=_0x7a5cd6;return/버프 효율/[_0x5acb4d(0x122)](_0x4a5b0f['k']);})[0x0],_0x5805e9=_0x241e1e[_0x7a5cd6(0xfc)][_0x7a5cd6(0x12e)](function(_0xc70461,_0x78b7ab){return _0xc70461+_0x78b7ab['v'];},0x0),_0x41c863=_0x241e1e['identity'][_0x7a5cd6(0xcd)](function(_0x58d2d0){var _0xcdb225=_0x7a5cd6;return/아리아/[_0xcdb225(0x122)](_0x58d2d0[_0xcdb225(0x132)]);})[_0x7a5cd6(0x12e)](function(_0x19d52a,_0x2187c0){return _0x19d52a+_0x2187c0['v'];},0x0),_0x5a2a93=_0x47162d(_0x7a5cd6(0x10a),'10%')+_0x47162d(_0x7a5cd6(0x189),'+'+_0x151339(_0x241e1e['acc'])+'%')+_0x47162d('팔찌','+'+_0x151339(_0x241e1e['bracelet'])+'%')+_0x47162d(_0x7a5cd6(0x17e),'+'+_0x151339(_0x241e1e[_0x7a5cd6(0x120)])+'%')+_0x47162d('아크그리드\x20코어','+'+_0x151339(_0x241e1e[_0x7a5cd6(0x114)])+'%')+_0x47162d(_0x7a5cd6(0xd3),'+'+_0x151339(_0x241e1e['grid'])+'%'),_0x4feb4d;if(/도화가/[_0x7a5cd6(0x122)](_0x3c58de)){var _0x140d61=_0x40d0ec(_0x477159,![]),_0x275368=0xa*_0x140d61*(0x1+_0xb2799a/0x64)*(0x1+(_0x19c5b1?_0x19c5b1['v']:0x0)/0x64),_0x4c6f06=0xa*(0x1+(_0xb2799a+_0x5805e9)/0x64);_0x5a2a93=_0x7a5cd6(0x163)+_0x151339(_0x275368)+'%</b></div>'+_0x47162d(_0x7a5cd6(0xe2),_0x151339(0xa*_0x140d61)+'%')+_0x47162d(_0x7a5cd6(0x143),'+'+_0x151339(_0xb2799a)+'%')+_0x47162d('└\x20특화\x20버프\x20효율','+'+_0x151339(_0x19c5b1?_0x19c5b1['v']:0x0)+'%')+_0x7a5cd6(0x110)+_0x151339(_0x4c6f06)+'%</b></div>'+_0x47162d('└\x20기본\x20효과',_0x7a5cd6(0x12d))+_0x47162d('└\x20상시\x20합계','+'+_0x151339(_0xb2799a)+'%')+_0x47162d(_0x7a5cd6(0x100),'+'+_0x151339(_0x5805e9)+'%')+_0x47162d(_0x7a5cd6(0xe8),'+'+_0x151339(_0x241e1e['acc'])+_0x7a5cd6(0xe9)+_0x151339(_0x241e1e['bracelet'])+_0x7a5cd6(0xe9)+_0x151339(_0x241e1e[_0x7a5cd6(0x171)])+'\x20/\x20'+_0x151339(_0x241e1e[_0x7a5cd6(0x114)])+'%'),_0x4feb4d='+'+_0x151339((_0x275368+_0x4c6f06)/0x2)+_0x7a5cd6(0xcb);}else{if(/홀리나이트/[_0x7a5cd6(0x122)](_0x3c58de)){var _0x27d317=_0x91d783['filter'](function(_0x36664e){var _0x299c7c=_0x7a5cd6;return/적용 효율|버프 효율/[_0x299c7c(0x122)](_0x36664e['k']);})[0x0],_0x4ec6d4=(function(){var _0x4a2e8c=_0x7a5cd6,_0x5dc9af=(_0x477159[_0x4a2e8c(0x14f)]||{})[_0x4a2e8c(0xf5)],_0x50383b=Array[_0x4a2e8c(0x12c)](_0x5dc9af)?_0x5dc9af:_0x5dc9af&&_0x5dc9af['Skills']||[],_0x3dbe8b=_0x50383b[_0x4a2e8c(0xcd)](function(_0x52539a){var _0x58d3b1=_0x4a2e8c;return/신앙|신의|축복|오라/[_0x58d3b1(0x122)](_0x52539a['Name']||'')&&/지원 효과\s*([\d.]+)\s*%/[_0x58d3b1(0x122)](_0x107627(_0x52539a[_0x58d3b1(0x106)]||_0x52539a[_0x58d3b1(0xfa)]||''));})[0x0];if(!_0x3dbe8b)return 0x0;return parseFloat(_0x107627(_0x3dbe8b['Description']||_0x3dbe8b[_0x4a2e8c(0xfa)])['match'](/지원 효과\s*([\d.]+)\s*%/)[0x1]);}()),_0x3209d7=0xa*(0x1+(_0xb2799a+_0x5805e9)/0x64),_0x56c04e=_0x40d0ec(_0x477159,![]),_0x28720b=0xa*_0x56c04e*(0x1+_0xb2799a/0x64)*(0x1+(_0x27d317?_0x27d317['v']:0x0)/0x64)*(0x1+_0x4ec6d4/0x64);_0x5a2a93=_0x7a5cd6(0x188)+_0x151339(_0x28720b)+_0x7a5cd6(0xe4)+_0x47162d(_0x7a5cd6(0xe2),_0x151339(0xa*_0x56c04e)+'%')+_0x47162d(_0x7a5cd6(0x143),'+'+_0x151339(_0xb2799a)+'%')+_0x47162d(_0x7a5cd6(0xee),'+'+_0x151339(_0x27d317?_0x27d317['v']:0x0)+'%')+_0x47162d(_0x7a5cd6(0xc5),'+'+_0x151339(_0x4ec6d4)+'%')+_0x7a5cd6(0x15f)+_0x151339(_0x3209d7)+_0x7a5cd6(0xe4)+_0x47162d(_0x7a5cd6(0xe2),_0x7a5cd6(0x12d))+_0x47162d(_0x7a5cd6(0x143),'+'+_0x151339(_0xb2799a)+'%')+_0x47162d(_0x7a5cd6(0xfb),'+'+_0x151339(_0x5805e9)+'%'),_0x4feb4d='+'+_0x151339((_0x28720b+_0x3209d7)/0x2)+_0x7a5cd6(0xcb);}else{var _0x2b04cc=/바드/[_0x7a5cd6(0x122)](_0x3c58de),_0x47c853=/발키리/[_0x7a5cd6(0x122)](_0x3c58de),_0x118722=_0x2b04cc?_0x7a5cd6(0xfd):_0x47c853?_0x7a5cd6(0x119):'상시\x20버프',_0x462b79=_0xb2799a+(_0x2b04cc?_0x41c863:0x0),_0x121980=0xa*(0x1+_0x462b79/0x64);if(_0x2b04cc||_0x47c853){var _0x4b11d8=_0x91d783[_0x7a5cd6(0xcd)](function(_0x1e56a1){var _0xb0716=_0x7a5cd6;return/버프 효율/[_0xb0716(0x122)](_0x1e56a1['k']);})[0x0],_0x13fc09=(function(){var _0x4aa7a8=_0x7a5cd6,_0x1eaa5a=(_0x477159['ArmoryGem']||{})['Effects'],_0x4d6e70=Array[_0x4aa7a8(0x12c)](_0x1eaa5a)?_0x1eaa5a:_0x1eaa5a&&_0x1eaa5a[_0x4aa7a8(0x165)]||[],_0x57120d=_0x4d6e70[_0x4aa7a8(0xcd)](function(_0x478775){var _0x575e1d=_0x4aa7a8;return/신앙|세레나데/[_0x575e1d(0x122)](_0x478775['Name']||'')&&/지원 효과\s*([\d.]+)\s*%/['test'](_0x107627(_0x478775['Description']||_0x478775[_0x575e1d(0xfa)]||''));})[0x0];return _0x57120d?parseFloat(_0x107627(_0x57120d[_0x4aa7a8(0x106)]||_0x57120d[_0x4aa7a8(0xfa)])['match'](/지원 효과\s*([\d.]+)\s*%/)[0x1]):0x0;}()),_0x33a989=_0x2b04cc?_0x7a5cd6(0xe3):'빛의\x20해방',_0x398990=_0x2b04cc?0xf:0xa,_0x10d8d4=_0x2b04cc?_0xb2799a+(_0x5805e9-_0x41c863):_0xb2799a,_0x446a77=_0x398990*_0x40d0ec(_0x477159,_0x2b04cc?1.23:1.22)*(0x1+_0x10d8d4/0x64)*(0x1+(_0x4b11d8?_0x4b11d8['v']:0x0)/0x64)*(0x1+_0x13fc09/0x64);_0x5a2a93=_0x7a5cd6(0xc8)+_0x33a989+'</span><b>+'+_0x151339(_0x446a77)+'%</b></div>'+_0x47162d(_0x7a5cd6(0xe2),_0x398990+'%'+(_0x2b04cc?'\x20(3버블)':''))+_0x47162d(_0x7a5cd6(0x143)+(_0x2b04cc?_0x7a5cd6(0xef):''),'+'+_0x151339(_0x10d8d4)+'%')+_0x47162d(_0x7a5cd6(0x11b),'+'+_0x151339(_0x4b11d8?_0x4b11d8['v']:0x0)+'%')+_0x47162d('└\x20보석\x20지원\x20효과','+'+_0x151339(_0x13fc09)+'%')+'<div\x20class=\x22mc-sub-line\x22><span\x20style=\x22color:#3cc78c\x22>'+_0x118722+_0x7a5cd6(0x179)+_0x151339(_0x121980)+_0x7a5cd6(0xe4)+_0x47162d(_0x7a5cd6(0xe2),_0x7a5cd6(0x12d))+_0x47162d('└\x20상시\x20합계'+(_0x2b04cc?_0x7a5cd6(0xef):''),'+'+_0x151339(_0x462b79)+'%')+'',_0x4feb4d='+'+_0x151339((_0x446a77+_0x121980)/0x2)+_0x7a5cd6(0xcb);}else _0x5a2a93+=_0x47162d(_0x118722,'+'+_0x151339(_0x121980)+'%','ok'),_0x4feb4d='+'+_0x151339(_0x121980)+'%\x20<small\x20style=\x22font-size:13px;color:#9aa8c7\x22>'+_0x118722+_0x7a5cd6(0xe0);}}var _0x3ff08c=_0x2e3b37['acc']+_0x2e3b37[_0x7a5cd6(0x11a)]+_0x2e3b37[_0x7a5cd6(0x120)]+_0x2e3b37[_0x7a5cd6(0x114)]+_0x2e3b37[_0x7a5cd6(0x171)]+_0x2e3b37[_0x7a5cd6(0xe6)]+_0x2e3b37['evo'],_0x2bab92=_0x26db93*(0x1+_0x3ff08c/0x64),_0x355660=0x1+_0x2e3b37[_0x7a5cd6(0xc1)]/0x64,_0x4c215d=0x0;((_0x477159['ArkPassive']||{})[_0x7a5cd6(0xf5)]||[])['forEach'](function(_0x42e740){var _0x42a67e=_0x7a5cd6,_0x281ad4=_0x107627(_0x42e740)[_0x42a67e(0xd6)](/정열의 춤\s*[IVX]*\s*:\s*진화형 피해\s*([\d.]+)\s*%/);if(_0x281ad4)_0x4c215d=Math[_0x42a67e(0x13a)](_0x4c215d,parseFloat(_0x281ad4[0x1])/1.869);}),_0x4c215d=_0x151339(_0x4c215d);var _0x5ca035=(0x1+_0x2bab92/0x64)*(0x1+_0x4c215d/0x64)*_0x355660*_0x2e3b37['br'][_0x7a5cd6(0x149)],_0xd19204=_0x696ca6('상시\x20적용\x20딜증\x20(아래\x204개를\x20곱한\x20값)','+'+_0x151339((_0x5ca035-0x1)*0x64)+'%','#fff')+_0x696ca6('①\x20낙인\x20딜증\x20=\x20기본\x2010%\x20×\x20(1\x20+\x20낙인력\x20합계)','+'+_0x151339(_0x2bab92)+'%','#ffb84d')+_0x696ca6(_0x7a5cd6(0x118),'+'+_0x151339(_0x3ff08c)+'%','#d9a8ff')+_0x47162d(_0x7a5cd6(0xc6),'+'+_0x151339(_0x2e3b37[_0x7a5cd6(0x17b)])+'%')+_0x47162d(_0x7a5cd6(0x12f),'+'+_0x151339(_0x2e3b37[_0x7a5cd6(0x11a)])+'%')+_0x47162d(_0x7a5cd6(0x130),'+'+_0x151339(_0x2e3b37[_0x7a5cd6(0x120)])+'%')+_0x47162d(_0x7a5cd6(0x121),'+'+_0x151339(_0x2e3b37[_0x7a5cd6(0xe6)])+'%')+_0x47162d('\u3000└\x20진화\x20노드','+'+_0x151339(_0x2e3b37[_0x7a5cd6(0x153)])+'%')+_0x47162d(_0x7a5cd6(0xf1),'+'+_0x151339(_0x2e3b37[_0x7a5cd6(0x114)])+'%')+_0x47162d(_0x7a5cd6(0x109),'+'+_0x151339(_0x2e3b37[_0x7a5cd6(0x171)])+'%')+_0x696ca6('②\x20정열의\x20춤사위\x20딜증','+'+_0x4c215d+'%','#ffb84d')+_0x696ca6('③\x20아크그리드\x20코어\x20(낙인\x20피해)','+'+_0x151339(_0x2e3b37['coreDmg'])+'%',_0x7a5cd6(0xcc))+_0x696ca6('④\x20팔찌\x20효과\x20(상시\x20디버프\x20환산)','+'+_0x151339((_0x2e3b37['br'][_0x7a5cd6(0x149)]-0x1)*0x64)+'%',_0x7a5cd6(0xcc))+_0x2e3b37['br'][_0x7a5cd6(0xd7)][_0x7a5cd6(0xff)](function(_0x1d1d0f){var _0x288856=_0x7a5cd6;return _0x47162d(_0x288856(0x104)+_0x1d1d0f['k'],'+'+_0x151339(_0x1d1d0f['v'])+'%');})[_0x7a5cd6(0x17d)](''),_0xcbae41=_0x477159[_0x7a5cd6(0xcf)]||[],_0x5acb4c=_0xcbae41[_0x7a5cd6(0xcd)](function(_0x1df761){var _0x3476a3=_0x7a5cd6;return _0x1df761[_0x3476a3(0x186)]&&(_0x1df761['SkillType']||0x0)>=0x64;})[0x0]||_0xcbae41[_0x7a5cd6(0xcd)](function(_0x3bca9b){var _0x5e1c75=_0x7a5cd6;return _0x3bca9b[_0x5e1c75(0x186)]&&(_0x3bca9b[_0x5e1c75(0x127)]||0x0)>0x1;})[0x0]||_0xcbae41[_0x7a5cd6(0xcd)](function(_0x4e72e9){var _0x2d983c=_0x7a5cd6;return _0x4e72e9[_0x2d983c(0x186)];})[0x0],_0xc9b3c2=_0x5acb4c&&_0x5acb4c[_0x7a5cd6(0x186)]||'',_0x5c08d2=(_0x477159[_0x7a5cd6(0x11d)]||{})[_0x7a5cd6(0x158)]||[],_0x3e1c28=typeof skillIconByName===_0x7a5cd6(0xdc)&&_0x276dcf[0x0]&&skillIconByName(_0x276dcf[0x0])||_0xc9b3c2,_0x29dd00={'도화가':_0x7a5cd6(0x181),'바드':_0x7a5cd6(0x172),'홀리나이트':_0x7a5cd6(0xd1),'발키리':_0x7a5cd6(0xfe)},_0x50cae=_0x29dd00[_0x289044]||_0xc9b3c2,_0x26b07c=((_0x477159[_0x7a5cd6(0x11d)]||{})[_0x7a5cd6(0x158)]||[])[_0x7a5cd6(0xcd)](function(_0x50114b){var _0x1f79fc=_0x7a5cd6;return/낙인/['test'](_0x50114b['Name']||'')&&_0x50114b[_0x1f79fc(0x186)];})[0x0],_0x588104=_0xcbae41[_0x7a5cd6(0xcd)](function(_0x2a8760){var _0x216041=_0x7a5cd6;return _0x2a8760[_0x216041(0x186)]&&(_0x2a8760[_0x216041(0x124)]||[])['some'](function(_0x69bbe8){var _0x5ddc98=_0x216041;return _0x69bbe8[_0x5ddc98(0xf8)]&&/빛의 흔적|낙인/[_0x5ddc98(0x122)](_0x107627(_0x69bbe8[_0x5ddc98(0xfa)]));});})[0x0],_0x52549e=_0x3aa1bf(_0x477159,/낙인/,/깨달음/)||_0x3aa1bf(_0x477159,/낙인/)||_0x588104&&_0x588104[_0x7a5cd6(0x186)]||_0x26b07c&&_0x26b07c[_0x7a5cd6(0x186)]||_0x3aa1bf(_0x477159,/./,/깨달음/)||_0xc9b3c2,_0x193734=_0x2e9ead(_0x477159),_0x89af2a=((_0x477159[_0x7a5cd6(0x12b)]||{})[_0x7a5cd6(0x102)]||[])['filter'](function(_0x4c3fe3){var _0x58f4c3=_0x7a5cd6;return _0x4c3fe3['Type']===_0x58f4c3(0x187);})[0x0],_0x2058fa=_0x89af2a?parseInt(String(_0x89af2a[_0x7a5cd6(0x146)])['replace'](/,/g,''),0xa)||0x0:0x0,_0x360779=_0x696ca6(_0x7a5cd6(0x187),_0x13ab03(_0x2058fa),_0x7a5cd6(0x155))+(_0x193734[_0x7a5cd6(0x105)]?_0x193734[_0x7a5cd6(0xff)](function(_0x24d3b5){var _0x3098c4=_0x7a5cd6;return _0x47162d(_0x24d3b5[_0x3098c4(0x132)]+(_0x24d3b5[_0x3098c4(0x168)]?_0x3098c4(0x177)+_0x24d3b5[_0x3098c4(0x168)]:'')+(_0x24d3b5[_0x3098c4(0x117)]!==0x1?'\x20×'+_0x24d3b5[_0x3098c4(0x117)]:'')+_0x3098c4(0x138)+_0x151339(_0x24d3b5['v'])+'%)</span>',_0x3f670f(_0x2058fa*_0x24d3b5['v']/0x64));})[_0x7a5cd6(0x17d)](''):_0x47162d(_0x7a5cd6(0x10b),'')),_0x41c8b2=_0x193734[_0x7a5cd6(0x16c)]()[_0x7a5cd6(0xe1)](function(_0x427deb,_0x1fdb80){return _0x1fdb80['v']-_0x427deb['v'];})[0x0],_0x41b30f=_0x41c8b2&&_0x41c8b2[_0x7a5cd6(0x115)]||_0x7a5cd6(0x139),_0x14ac5a=_0x41c8b2?_0x3f670f(_0x2058fa*_0x41c8b2['v']/0x64)+'\x20<small\x20style=\x22font-size:12px;color:#9aa8c7\x22>'+_0x193734[_0x7a5cd6(0x105)]+_0x7a5cd6(0x16a)+_0x41c8b2['name']+_0x7a5cd6(0xe0):'-',_0x322833=_0x91d783[_0x7a5cd6(0xcd)](function(_0x23aa46){var _0x2ef41d=_0x7a5cd6;return/버프 효율/[_0x2ef41d(0x122)](_0x23aa46['k']);})[0x0]||_0x91d783[_0x7a5cd6(0xcd)](function(_0x2e6639){var _0x1f9646=_0x7a5cd6;return/적용 효율/[_0x1f9646(0x122)](_0x2e6639['k']);})[0x0]||_0x91d783[0x0],_0x5e13c8=_0x322833?'+'+_0x151339(_0x322833['v'])+'%':'-',_0x2bfa4f=_0x91d783[_0x7a5cd6(0xff)](function(_0x212a2c){return _0x47162d(_0x212a2c['k'],(_0x212a2c['neg']?'-':'+')+_0x151339(_0x212a2c['v'])+'%');})[_0x7a5cd6(0x17d)]('')||_0x47162d('특화\x20툴팁\x20없음',''),_0x1b5ba6=_0x2e0ebb?parseInt(String(_0x2e0ebb['Value'])[_0x7a5cd6(0x164)](/,/g,''),0xa)||0x0:0x0;_0x12e99d[_0x7a5cd6(0x129)]['display']='',_0x12e99d[_0x7a5cd6(0x16e)]=_0x7a5cd6(0x166)+_0x401558(_0x7a5cd6(0x167),'공증\x20효과',_0x3e1c28,'+'+_0x13ab03(_0xba614d)+_0x7a5cd6(0x169)+_0x151339(_0x2766cb)+_0x7a5cd6(0x101),_0x1a93c7,'#7fd1ff')+_0x401558(_0x7a5cd6(0xd2),_0x7a5cd6(0x137),_0x50cae,_0x4feb4d,_0x5a2a93,_0x7a5cd6(0x10c))+_0x401558(_0x7a5cd6(0x183),_0x7a5cd6(0xed),_0x52549e,'+'+_0x151339((_0x5ca035-0x1)*0x64)+'%',_0xd19204,_0x7a5cd6(0xe7))+_0x401558(_0x7a5cd6(0x152),_0x7a5cd6(0x185),_0x7a5cd6(0x113),_0x5e13c8+'\x20<small\x20style=\x22font-size:12px;color:#9aa8c7\x22>'+(_0x322833?_0x322833['k']:'')+_0x7a5cd6(0xe0),_0x47162d('특화',_0x13ab03(_0x1b5ba6))+_0x2bfa4f,_0x7a5cd6(0x13e))+_0x401558(_0x7a5cd6(0x17a),_0x7a5cd6(0x14b),_0x41b30f,_0x14ac5a,_0x360779,_0x7a5cd6(0x155));var _0x493fad=document[_0x7a5cd6(0x182)](_0x7a5cd6(0xf2)),_0x3077d0=document['querySelector'](_0x7a5cd6(0x136)),_0x1dfc5c=document[_0x7a5cd6(0xeb)]('braceletEffCard'),_0x43833b=document['getElementById'](_0x7a5cd6(0x17a));[_0x493fad,_0x3077d0,_0x43833b,document[_0x7a5cd6(0xeb)](_0x7a5cd6(0x140)),document[_0x7a5cd6(0xeb)](_0x7a5cd6(0x156)),_0x1dfc5c]['forEach'](function(_0x1bd9fe){var _0x57cee2=_0x7a5cd6;if(_0x1bd9fe)_0x12e99d[_0x57cee2(0xd0)](_0x1bd9fe);});if(window['console']&&console[_0x7a5cd6(0xf6)])console[_0x7a5cd6(0xf6)]({'공증합':_0x151339(_0x2766cb),'낙인력합':_0x151339(_0x3ff08c),'기본공격력':_0x412e3a,'공증증가량':_0x13ab03(_0xba614d)});}var _0x1262be=document[_0x1795c5(0x18b)](_0x1795c5(0x129));_0x1262be[_0x1795c5(0x145)]=_0x1795c5(0x133);if(document[_0x1795c5(0x17c)])document[_0x1795c5(0x17c)][_0x1795c5(0xd0)](_0x1262be);window[_0x1795c5(0x10d)]=_0x1ae3a1,window['__supCollect']=_0x2732c6;var _0x40e630=window[_0x1795c5(0x17f)];typeof _0x40e630==='function'&&(window[_0x1795c5(0x17f)]=function(_0x5e89b5,_0x4535ec,_0x2ea0cc,_0x40bf0b){var _0x4e2f3d=_0x1795c5,_0x2a0038=_0x40e630['apply'](this,arguments);try{_0x1ae3a1(_0x2ea0cc||window[_0x4e2f3d(0x123)]||{});}catch(_0x3287bf){console['warn'](_0x4e2f3d(0x135),_0x3287bf);}return _0x2a0038;});}()));function _0xf8fb(){var _0x394fb1=['gem','\u3000└\x20아크그리드\x20젬','기본\x20효과','채용\x20중인\x20보호막\x20스킬\x20없음','#ff9d6e','renderSupportCards','#supGrid\x20.mc.as','\x22><div\x20class=\x22mc-top\x22>','<div\x20class=\x22mc-sub-line\x22><span\x20style=\x22color:#3cc78c\x22>미르새김</span><b>+','1035OmikNj','1213884FYZswX','https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_01/ark_passive_01_18.png','core','icon','\x20버프\x20효율','mult','└\x20낙인력\x20합계','신의\x20증명','bracelet','└\x20특화\x20버프\x20효율','<div\x20class=\x22mc-value\x22\x20style=\x22font-size:26px;font-weight:900;color:#fff\x22>','ArkGrid','528812JjamJx','\x22\x20alt=\x22\x22\x20style=\x22width:44px;height:44px;\x22>','passive','\u3000└\x20진화\x20카르마','test','__fullData','Tripods','round','\x22><span>','Level','string','style','__charClass','ArmoryProfile','isArray','10%','reduce','\u3000└\x20팔찌','\u3000└\x20아크패시브','\x22>실효</span></div></div>','name','#effGrid.sup-mode\x20.mc.crit,#effGrid.sup-mode\x20.mc.cdmg,#effGrid.sup-mode\x20#effDolCard,#effGrid.sup-mode\x20#effEngCard,#effGrid.sup-mode\x20#activeNodeCard{display:none\x20!important}.recent{position:relative;z-index:2000\x20!important}.recent-list{z-index:2001\x20!important}','activeNodeCard','[support]','#effGrid\x20.mc.ms','피증\x20효과','\x20<span\x20style=\x22color:#6f7d9c\x22>(','https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_01/ark_passive_01_10.png','max','stringify','<div\x20class=\x22mc-drawer\x22><div\x20class=\x22mc-drawer-inner\x22>','classList','#c4b5fd','746epDcCB','gemEffCard','Type','ArkPassive','└\x20상시\x20합계','천상의\x20연주','textContent','Value','</b></div>','split','mul','1117fGvAlo','보호막\x20효율','#supGrid\x20#braceletEffCard','신의\x20분노','find','ArmoryGem','묵법\x20:\x20해우물','<img\x20class=\x22mc-icon\x22\x20src=\x22','supSpecCard','evo','</div>','#7fe3b0','accEffCard','<div\x20class=\x22mc-toggle-bar\x22><span\x20class=\x22mc-toggle-label\x20mc-toggle-closed\x22>▼\x20열기</span><span\x20class=\x22mc-toggle-label\x20mc-toggle-open\x22>▲\x20닫기</span></div>','Slots','trim','음파\x20진동','#3cc78c','<div\x20class=\x22mc\x22\x20id=\x22','toggle','Gems','<div\x20class=\x22mc-sub-line\x22><span\x20style=\x22color:#3cc78c\x22>신성한\x20정의</span><b>+','abs','%\x20(스킬\x2012\x20+\x20발산\x2010)','숭고한\x20도약','<div\x20class=\x22mc-sub-line\x22><span\x20style=\x22color:#ffb84d\x22>저무는\x20달</span><b>+','replace','Skills','<div\x20style=\x22grid-column:1/-1;font-weight:800;color:#e8b84b;font-size:13px;line-height:16px;margin:-6px\x202px\x20-6px\x22>서폿\x20버프\x20효과</div>','supAtkCard','src','\x20<small\x20style=\x22font-size:13px;color:#9aa8c7\x22>(+','개\x20·\x20','brand','slice','치명타\x20피해\x20저항\x20감소','innerHTML','ArmoryEquipment','lastIndex','grid','https://cdn-lostark.game.onstove.com/efui_iconatlas/bd_skill/bd_skill_01_19.png','Name','방어력\x20감소',';color:','insertBefore','\x20·\x20','none','</span><b>+','supShieldCard','acc','head','join','아크패시브','fillEffDash','display','https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_yy/ark_passive_yy_7.png','querySelector','supBrandCard','push','특화\x20효율','Icon','최대\x20생명력','<div\x20class=\x22mc-sub-line\x22><span\x20style=\x22color:#ffb84d\x22>축복의\x20오라</span><b>+','액세서리','</div></div></div>','createElement','63ACFZPi','coreDmg','1260612hwJtRJ','min','천상의\x20축복','└\x20보석\x20지원\x20효과','\u3000└\x20액세서리','합계\x20증폭','<div\x20class=\x22mc-sub-line\x22><span\x20style=\x22color:#ffb84d\x22>','atk','Point','%\x20<small\x20style=\x22font-size:13px;color:#9aa8c7\x22>평균</small>','#ffb84d','filter','30QqFhce','ArmorySkills','appendChild','https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_2.png','supDmgCard','아크그리드\x20젬','Tier','11JEdwLL','match','rows','56890dgmcsc','</span>','forEach','</span><b>','function','기본\x20계수','보호\x20대상\x20피해','397938AJSiJB','</small>','sort','└\x20기본\x20효과','용맹의\x20세레나데','%</b></div>','supGrid','karma','#d9a8ff','└\x20액세서리\x20/\x20팔찌\x20/\x20젬\x20/\x20코어','\x20/\x20','치명타\x20저항\x20감소','getElementById','공격력','낙인\x20및\x20상시\x20버프','└\x20특화\x20적용\x20효율','\x20(코어\x20포함)','숭고한\x20맹세','\u3000└\x20아크그리드\x20코어','#effGrid\x20.mc.as','묵법\x20:\x20해그리기','dmg','Effects','table','effDolCard','IsSelected','toLocaleString','Tooltip','└\x20신성한\x20정의\x20(코어)','identity','아리아','https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_21.png','map','└\x20미르\x20새김\x20(코어)','%)</small>','Stats','keys','\u3000└\x20','length','Description','2203488TyjEKw'];_0xf8fb=function(){return _0x394fb1;};return _0xf8fb();}
+/* 서폿 전용 카드 (공증 / 피증 / 낙인) — 스텟 탭, 딜러 카드는 그대로 */
+(function () {
+  var BASE_BUFF = 22;      // 공증 기본: 스킬 12% + 발산 트라이포드 10%
+  var BASE_BRAND = 10;     // 낙인 기본 받는 피해 증가 (추정)
+
+  function flat(src) {
+    var s = typeof src === "string" ? src : JSON.stringify(src || "");
+    return s.replace(/\\r\\n|\\n|\\r/g, "\n").replace(/\\"/g, '"')
+      .replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+  }
+  function all(s, re) { var a = [], m; re.lastIndex = 0; while ((m = re.exec(s))) a.push(m); return a; }
+  function sumN(s, re) { return all(s, re).reduce(function (t, m) { return t + parseFloat(m[1]); }, 0); }
+  function sumStack(s, re) { return all(s, re).reduce(function (t, m) { return t + parseFloat(m[1]) * parseInt(m[2], 10); }, 0); }
+  function r2(n) { return Math.round(n * 100) / 100; }
+  function fmt(n) { return Math.round(n).toLocaleString(); }
+
+  // 코어: [nP] 구간 중 현재 포인트 이하만
+  function coreText(tip, point) {
+    var parts = flat(tip).split(/\[(\d+)P\]/), out = [];
+    for (var i = 1; i < parts.length; i += 2) if (+parts[i] <= point) out.push(parts[i + 1]);
+    return out.join(" ");
+  }
+
+  // 팔찌 상시 디버프/보호 효과 → 딜러가 받는 피해 증가 환산표
+  var BR_DEF = { 1.5: 1.0075, 1.8: 1.007, 2.1: 1.0106, 2.5: 1.0126 };               // 방어력 감소 %
+  var BR_CRR = { 1.5: 1.010875, 1.8: 1.01305, 2.1: 1.015225, 2.5: 1.0176 };         // 치명타 저항 감소 %
+  var BR_CRD = { 3: 1.010875, 3.6: 1.01305, 4.2: 1.015225, 4.8: 1.0174 };           // 치명타 피해 저항 감소 %
+  var BR_SHD = { 0.7: 1.007, 0.9: 1.009, 1.1: 1.011, 1.3: 1.013 };                  // 보호 대상 피해 증가 %
+  function brLook(tb, x) {
+    var ks = Object.keys(tb).map(parseFloat), best = ks[0];
+    ks.forEach(function (k) { if (Math.abs(k - x) < Math.abs(best - x)) best = k; });
+    return tb[best];
+  }
+  function bracelet(t) {   // t: 공백 제거한 툴팁
+    var rows = [], mul = 1;
+    [[/방어력을([\d.]+)%감소/g, BR_DEF, "방어력 감소"], [/치명타저항을([\d.]+)%감소/g, BR_CRR, "치명타 저항 감소"],
+     [/치명타피해저항을([\d.]+)%감소/g, BR_CRD, "치명타 피해 저항 감소"], [/적에게주는피해가([\d.]+)%증가/g, BR_SHD, "보호 대상 피해"]]
+      .forEach(function (d) {
+        all(t, d[0]).forEach(function (m) {
+          var v = parseFloat(m[1]), f = brLook(d[1], v);
+          mul *= f; rows.push({ k: d[2] + " " + v + "%", v: (f - 1) * 100 });
+        });
+      });
+    return { mul: mul, rows: rows };
+  }
+
+  function collect(fd) {
+    var R = {
+      atk: { acc: 0, bracelet: 0, passive: 0, core: 0, gem: 0, grid: 0, jewel: 0 },
+      dmg: { acc: 0, bracelet: 0, passive: 0, core: 0, grid: 0, identity: [] },
+      brand: { br: { mul: 1, rows: [] }, karma: 0, evo: 0, acc: 0, bracelet: 0, passive: 0, core: 0, grid: 0, coreDmg: 0 }
+    };
+    (fd.ArmoryEquipment || []).forEach(function (e) {
+      var t = flat(e.Tooltip);
+      if (/목걸이|귀걸이|반지/.test(e.Type)) {
+        R.atk.acc += sumN(t, /아군 공격력 강화 효과 \+([\d.]+)%/g);
+        R.dmg.acc += sumN(t, /아군 피해량 강화 효과 \+([\d.]+)%/g);
+        R.brand.acc += sumN(t, /낙인력 \+([\d.]+)%/g);
+      } else if (/팔찌/.test(e.Type)) {
+        R.atk.bracelet += sumN(t, /아군 공격력 강화 효과가 ([\d.]+)% 증가/g);
+        R.atk.bracelet += sumN(t, /아군 공격력 강화 효과 \+([\d.]+)%/g);
+        R.dmg.bracelet += sumN(t, /아군 피해량 강화 효과 \+([\d.]+)%/g);
+        R.brand.bracelet += sumN(t, /낙인력 \+([\d.]+)%/g);
+        R.brand.br = bracelet(t.replace(/\s+/g, ""));
+      }
+    });
+    var ag = fd.ArkGrid || {};
+    (ag.Effects || []).forEach(function (e) {
+      var t = flat(e.Tooltip), v = sumN(t, /\+([\d.]+)%/g);
+      if (/^아군 공격/.test(e.Name)) R.atk.grid += v;
+      else if (/^아군 피해/.test(e.Name)) R.dmg.grid += v;
+      else if (/^낙인력/.test(e.Name)) R.brand.grid += v;
+    });
+    (ag.Slots || []).forEach(function (s) {
+      var t = coreText(s.Tooltip, s.Point || 0);
+      R.atk.core += sumN(t, /아군 공격력 강화 효과가 ([\d.]+)%/g);
+      all(t, /(\S*의\s)?아군 피해량 강화 효과가 ([\d.]+)%/g).forEach(function (m) {
+        if (m[1]) R.dmg.identity.push({ name: m[1].replace(/의\s*$/, ""), v: parseFloat(m[2]) });
+        else R.dmg.core += parseFloat(m[2]);
+      });
+      R.brand.core += sumN(t, /낙인력이 ([\d.]+)%/g);
+      R.brand.coreDmg += sumN(t, /받는 피해가 ([\d.]+)%/g);
+    });
+    ((fd.ArkPassive || {}).Effects || []).forEach(function (e) {
+      var t = flat(e);
+      R.atk.passive += sumN(t, /아군 공격력 강화 효과가 ([\d.]+)% 증가/g)
+        + sumN(t, /아군 공격력 강화 효과가 추가로 ([\d.]+)% 증가/g)
+        + sumStack(t, /아군 공격력 강화 효과 \+([\d.]+)%\s*,\s*최대\s*(\d+)중첩/g);
+      R.dmg.passive += sumN(t, /아군 피해량 강화 효과가 ([\d.]+)% 증가/g);
+      var bs = sumStack(t, /낙인력 \+([\d.]+)%\s*,\s*최대\s*(\d+)중첩/g), bn = sumN(t, /낙인력이 ([\d.]+)% 증가/g);
+      if (bs) R.brand.evo += bn + bs; else R.brand.passive += bn;
+    });
+    // 진화 카르마 랭크: 랭크당 낙인력 +1% (최대 6%)
+    var evoPt = ((fd.ArkPassive || {}).Points || []).filter(function (x) { return x.Name === "진화"; })[0];
+    var rk = evoPt ? String(evoPt.Description || "").match(/(\d+)\s*랭크/) : null;
+    if (rk) R.brand.karma = Math.min(parseInt(rk[1], 10), 6);
+    var gems = (fd.ArmoryGem || {}).Gems || [];
+    gems.forEach(function (g) { R.atk.gem += sumN(flat(g.Tooltip), /아군 공격력 강화 효과[^%]{0,12}?([\d.]+)% 증가/g); });
+    // 보석 지원 효과 (서폿 보석): 공증에도 그대로 합산
+    if (!R.atk.gem) {
+      var ge = (fd.ArmoryGem || {}).Effects, ga = Array.isArray(ge) ? ge : ((ge && ge.Skills) || []);
+      ga.forEach(function (x) {
+        var m = flat(x.Description || x.Tooltip || "").match(/지원 효과\s*\+?\s*([\d.]+)\s*%/);
+        if (m) R.atk.gem = Math.max(R.atk.gem, parseFloat(m[1]));
+      });
+    }
+    return R;
+  }
+
+  // 악세사리 효율(app-render-gear.js)에서 쓰는 서폿 현재값: 공증 합(%) / 낙인력 합(%)
+  window.__supCtx = function () {
+    var R = collect(window.__fullData || {}), A = R.atk, B = R.brand;
+    return {
+      aSum: A.acc + A.bracelet + A.passive + A.core + A.gem + A.grid,
+      bSum: B.acc + B.bracelet + B.passive + B.core + B.grid + B.karma + B.evo,
+      baseBrand: BASE_BRAND
+    };
+  };
+
+  var SKILLS = {
+    "도화가": ["묵법 : 해그리기", "묵법 : 해우물"],
+    "홀리나이트": ["신의 분노", "천상의 축복"],
+    "바드": ["천상의 연주", "음파 진동"],
+    "발키리": ["숭고한 맹세", "숭고한 도약"]
+  };
+
+  var TP_UNLOCK = { 1: 4, 2: 7, 3: 10 };
+  function shieldRows(fd) {
+    var RE = /최대\s*생명력(?:의)?\s*([\d.]+)\s*%[^.]{0,25}?보호막/g, rows = [];
+    (fd.ArmorySkills || []).forEach(function (sk) {
+      var lv = sk.Level || 0, st = sk.SkillType || 0;
+      // 스킬 탭과 같은 기준: 일반은 Lv2↑, 초각성/각성기만 Lv1 허용
+      if (!(lv > 1 || st === 1 || st >= 100)) return;
+      var tps = (sk.Tripods || []).filter(function (t) { return t.IsSelected && lv >= (TP_UNLOCK[t.Tier] || 0); });
+      var mult = 1;
+      tps.forEach(function (t) {
+        var m = flat(t.Tooltip).match(/보호막(?:의)?\s*효과가\s*([\d.]+)\s*배/);
+        if (m) mult *= parseFloat(m[1]);
+      });
+      var found = [];
+      all(flat(sk.Tooltip), RE).forEach(function (m) { found.push({ src: "", v: parseFloat(m[1]) }); });
+      tps.forEach(function (t) {
+        all(flat(t.Tooltip), RE).forEach(function (m) { found.push({ src: t.Name || "", v: parseFloat(m[1]) }); });
+      });
+      var seen = {};
+      found.forEach(function (f) {
+        var k = String(f.v * mult); if (seen[k]) return; seen[k] = 1;
+        rows.push({ name: sk.Name, icon: sk.Icon, lv: lv, src: f.src, v: f.v * mult, mult: mult });
+      });
+    });
+    return rows;
+  }
+  function effIcon(fd, re, nameRe) {
+    var e = ((fd.ArkPassive || {}).Effects || []).filter(function (x) {
+      return re.test(String(x.Description || "")) && (!nameRe || nameRe.test(String(x.Name || "")));
+    })[0];
+    return (e && e.Icon) || "";
+  }
+  function man(n) { return n >= 10000 ? (Math.round(n / 1000) / 10).toLocaleString() + "만" : fmt(n); }
+  function subc(l, v, color) { return '<div class="mc-sub-line"><span style="color:' + color + '">' + l + "</span><b>" + v + "</b></div>"; }
+  function shortSpec(k) {   // "파티원에게 적용되는 ○○ 스킬의 (적에게 주는 피해) 버프 효율" → "○○ 버프 효율"
+    return k.replace(/^파티원에게 적용되는\s*/, "").replace(/\s*스킬의\s*(적에게 주는 피해\s*)?버프 효율/, " 버프 효율");
+  }
+  // 아크패시브 코드 노드: "○○ 기본 효과의 N%에 해당하는 …" → 기본 효과 배율 (1 + N%)
+  function codeMul(fd, fb) {
+    var hit = 0;
+    ((fd.ArkPassive || {}).Effects || []).forEach(function (e) {
+      var m = flat(e).match(/기본 효과의\s*([\d.]+)\s*%\s*에\s*해당/);
+      if (m && !hit) hit = parseFloat(m[1]);
+    });
+    return hit ? 1 + (hit + (fb === 1.23 ? 3 : 0)) / 100 : (fb || 1.2);
+  }
+  function sub(l, v, cls) { if (/^[+-]?0(\.0+)?%$/.test(String(v).trim())) return ""; return '<div class="mc-sub-line' + (cls ? " " + cls : "") + '"><span>' + l + "</span><b>" + v + "</b></div>"; }
+  function card(id, label, icon, valueHtml, drawer, color) {
+    return '<div class="mc" id="' + id + '"><div class="mc-top">' +
+      '<img class="mc-icon" src="' + icon + '" alt="" style="width:44px;height:44px;">' +
+      '<span class="mc-label" style="color:' + color + '">' + label + '</span>' +
+      '<div class="mc-top-r"><span class="mc-badge on" style="border-color:' + color + ';color:' + color + '">실효</span></div></div>' +
+      '<div class="mc-value" style="font-size:26px;font-weight:900;color:#fff">' + valueHtml + "</div>" +
+      '<div class="mc-toggle-bar"><span class="mc-toggle-label mc-toggle-closed">▼ 열기</span><span class="mc-toggle-label mc-toggle-open">▲ 닫기</span></div>' +
+      '<div class="mc-drawer"><div class="mc-drawer-inner">' + drawer + "</div></div></div>";
+  }
+
+  function restoreMoved(eg) {
+    if (!eg) return;
+    var as = document.querySelector("#supGrid .mc.as"), ms = document.querySelector("#supGrid .mc.ms"), br = document.querySelector("#supGrid #braceletEffCard");
+    var dol = document.getElementById("effDolCard");
+    if (as) eg.insertBefore(as, dol || null);
+    if (ms) eg.insertBefore(ms, dol || null);
+    var anchor = document.getElementById("activeNodeCard");
+    ["gemEffCard", "accEffCard"].forEach(function (id) { var c = document.querySelector("#supGrid #" + id); if (c) eg.insertBefore(c, anchor || null); });
+    if (br) eg.appendChild(br);
+  }
+  function renderSupport(fd) {
+    var host = document.getElementById("supGrid");
+    if (!host) return;
+    var cls = window.__charClass || "";
+    var isSup = typeof checkIsSupportMode === "function" && checkIsSupportMode(fd, cls);
+    var eg = document.getElementById("effGrid");
+    restoreMoved(eg);
+    if (eg) eg.classList.toggle("sup-mode", !!isSup);
+    if (!isSup) { host.style.display = "none"; host.innerHTML = ""; return; }
+
+    var R = collect(fd), A = R.atk, D = R.dmg, B = R.brand;
+    var stat = ((fd.ArmoryProfile || {}).Stats || []).find(function (s) { return s.Type === "공격력"; });
+    var baseAtk = stat ? parseInt(String(stat.Value).replace(/,/g, ""), 10) || 0 : 0;
+
+    // 공증
+    var aSum = A.acc + A.bracelet + A.passive + A.core + A.gem + A.grid;
+    var inc = baseAtk * BASE_BUFF / 100 * (1 + aSum / 100);
+    var key = (Object.keys(SKILLS).filter(function (k) { return cls.indexOf(k) >= 0; })[0]) || "";
+    var skills = (SKILLS[key] || []).filter(function (n) {
+      return (fd.ArmorySkills || []).some(function (s) { return String(s.Name).replace(/\s+/g, "") === n.replace(/\s+/g, ""); });
+    });
+    var aDraw = subc("기본 공격력", fmt(baseAtk), "#7fd1ff") + sub("기본 계수", BASE_BUFF + "% (스킬 12 + 발산 10)") +
+      sub("액세서리", "+" + r2(A.acc) + "%") + sub("팔찌", "+" + r2(A.bracelet) + "%") +
+      sub("아크패시브", "+" + r2(A.passive) + "%") + sub("아크그리드 코어", "+" + r2(A.core) + "%") +
+      sub("아크그리드 젬", "+" + r2(A.grid) + "%") + (A.gem ? sub("보석", "+" + r2(A.gem) + "%") : "") +
+      subc("합계 증폭", "×" + r2(1 + aSum / 100), "#ffb84d");
+    skills.forEach(function (n) { aDraw += subc(n, "+" + fmt(inc), "#3cc78c"); });
+
+    // 피증: 버프 = 기본 × (1 + 상시 합 [+ 새김]) [× (1 + 특화 버프효율)]
+    var dSum = D.acc + D.bracelet + D.passive + D.core + D.grid;
+    var spec = ((fd.ArmoryProfile || {}).Stats || []).find(function (x) { return x.Type === "특화"; });
+    var specRows = [];
+    (spec && Array.isArray(spec.Tooltip) ? spec.Tooltip : []).forEach(function (t) {
+      t = String(t).replace(/<[^>]+>/g, "").trim();
+      var m = t.match(/^(.*?)\s*([0-9.]+)\s*%\s*(증가|증폭|감소)/);
+      if (!/%/.test(t) || /물약|원정대|카드\s*도감/.test(t) || !m) return;
+      specRows.push({ k: shortSpec(m[1].trim().replace(/[이가을를]\s*$/, "").trim()), v: parseFloat(m[2]), neg: m[3] === "감소" });
+    });
+    var specBuff = specRows.filter(function (r) { return /버프 효율/.test(r.k); })[0];
+    var idSum = D.identity.reduce(function (t, x) { return t + x.v; }, 0);
+    var idAria = D.identity.filter(function (x) { return /아리아/.test(x.name); }).reduce(function (t, x) { return t + x.v; }, 0);
+    var dDraw = sub("기본 효과", "10%") + sub("액세서리", "+" + r2(D.acc) + "%") + sub("팔찌", "+" + r2(D.bracelet) + "%") +
+      sub("아크패시브", "+" + r2(D.passive) + "%") + sub("아크그리드 코어", "+" + r2(D.core) + "%") +
+      sub("아크그리드 젬", "+" + r2(D.grid) + "%");
+    var dMain;
+    if (/도화가/.test(cls)) {
+      var cm = codeMul(fd, false), moon = 10 * cm * (1 + dSum / 100) * (1 + (specBuff ? specBuff.v : 0) / 100);
+      var mir = 10 * (1 + (dSum + idSum) / 100);
+      dDraw = '<div class="mc-sub-line"><span style="color:#ffb84d">저무는 달</span><b>+' + r2(moon) + "%</b></div>" +
+        sub("└ 기본 효과", r2(10 * cm) + "%") + sub("└ 상시 합계", "+" + r2(dSum) + "%") +
+        sub("└ 특화 버프 효율", "+" + r2(specBuff ? specBuff.v : 0) + "%") +
+        '<div class="mc-sub-line"><span style="color:#3cc78c">미르새김</span><b>+' + r2(mir) + "%</b></div>" +
+        sub("└ 기본 효과", "10%") + sub("└ 상시 합계", "+" + r2(dSum) + "%") + sub("└ 미르 새김 (코어)", "+" + r2(idSum) + "%") +
+        sub("└ 액세서리 / 팔찌 / 젬 / 코어", "+" + r2(D.acc) + " / " + r2(D.bracelet) + " / " + r2(D.grid) + " / " + r2(D.core) + "%");
+      dMain = "+" + r2((moon + mir) / 2) + '% <small style="font-size:13px;color:#9aa8c7">평균</small>';
+    } else if (/홀리나이트/.test(cls)) {
+      // 신성한 정의 = 10% × (1 + 상시 + 코어 증가분),  축복의 오라 = 12% × (1 + 상시) × (1 + 특화 적용효율) × (1 + 보석 지원효과)
+      var spec2 = specRows.filter(function (r) { return /적용 효율|버프 효율/.test(r.k); })[0];
+      var gemSup = (function () {
+        var e = (fd.ArmoryGem || {}).Effects, a2 = Array.isArray(e) ? e : ((e && e.Skills) || []);
+        var hit = a2.filter(function (x) { return /신앙|신의|축복|오라/.test(x.Name || "") && /지원 효과\s*([\d.]+)\s*%/.test(flat(x.Description || x.Tooltip || "")); })[0];
+        if (!hit) return 0;
+        return parseFloat(flat(hit.Description || hit.Tooltip).match(/지원 효과\s*([\d.]+)\s*%/)[1]);
+      })();
+      var just = 10 * (1 + (dSum + idSum) / 100);
+      var cm2 = codeMul(fd, false), aura = 10 * cm2 * (1 + dSum / 100) * (1 + (spec2 ? spec2.v : 0) / 100) * (1 + gemSup / 100);
+      dDraw = '<div class="mc-sub-line"><span style="color:#ffb84d">축복의 오라</span><b>+' + r2(aura) + "%</b></div>" +
+        sub("└ 기본 효과", r2(10 * cm2) + "%") + sub("└ 상시 합계", "+" + r2(dSum) + "%") +
+        sub("└ 특화 적용 효율", "+" + r2(spec2 ? spec2.v : 0) + "%") + sub("└ 보석 지원 효과", "+" + r2(gemSup) + "%") +
+        '<div class="mc-sub-line"><span style="color:#3cc78c">신성한 정의</span><b>+' + r2(just) + "%</b></div>" +
+        sub("└ 기본 효과", "10%") + sub("└ 상시 합계", "+" + r2(dSum) + "%") + sub("└ 신성한 정의 (코어)", "+" + r2(idSum) + "%");
+      dMain = "+" + r2((aura + just) / 2) + '% <small style="font-size:13px;color:#9aa8c7">평균</small>';
+    } else {
+      // 바드 아리아 / 발키리 신의 증명 = 10% × (1 + 상시)
+      // 초각성 버프(용맹의 세레나데 / 빛의 해방) = 기본 × 1.2 × (1 + 상시[+코어]) × (1 + 특화 버프효율) × (1 + 보석 지원효과)  (근사식, 코드 노드 문구 미검출 시 경험값 1.22~1.23)
+      var isBard = /바드/.test(cls), isVal = /발키리/.test(cls);
+      var pn = isBard ? "아리아" : isVal ? "신의 증명" : "상시 버프";
+      var pvSum = dSum + (isBard ? idAria : 0);
+      var pv = 10 * (1 + pvSum / 100);
+      if (isBard || isVal) {
+        var sp3 = specRows.filter(function (r) { return /버프 효율/.test(r.k); })[0];
+        var gs = (function () {
+          var e = (fd.ArmoryGem || {}).Effects, a3 = Array.isArray(e) ? e : ((e && e.Skills) || []);
+          var hit = a3.filter(function (x) { return /신앙|세레나데/.test(x.Name || "") && /지원 효과\s*([\d.]+)\s*%/.test(flat(x.Description || x.Tooltip || "")); })[0];
+          return hit ? parseFloat(flat(hit.Description || hit.Tooltip).match(/지원 효과\s*([\d.]+)\s*%/)[1]) : 0;
+        })();
+        var an = isBard ? "용맹의 세레나데" : "빛의 해방";
+        var abase = isBard ? 15 : 10;              // 세레나데: 3버블 기준 15%
+        var aSumX = isBard ? dSum + (idSum - idAria) : dSum;  // 바드: 세레나데 전용 코어만 포함 (아리아 전용 코어 제외)
+        var av = abase * codeMul(fd, isBard ? 1.23 : 1.22) * (1 + aSumX / 100) * (1 + (sp3 ? sp3.v : 0) / 100) * (1 + gs / 100);
+        dDraw = '<div class="mc-sub-line"><span style="color:#ffb84d">' + an + '</span><b>+' + r2(av) + "%</b></div>" +
+          sub("└ 기본 효과", abase + "%" + (isBard ? " (3버블)" : "")) + sub("└ 상시 합계" + (isBard ? " (코어 포함)" : ""), "+" + r2(aSumX) + "%") +
+          sub("└ 특화 버프 효율", "+" + r2(sp3 ? sp3.v : 0) + "%") + sub("└ 보석 지원 효과", "+" + r2(gs) + "%") +
+          '<div class="mc-sub-line"><span style="color:#3cc78c">' + pn + '</span><b>+' + r2(pv) + "%</b></div>" +
+          sub("└ 기본 효과", "10%") + sub("└ 상시 합계" + (isBard ? " (코어 포함)" : ""), "+" + r2(pvSum) + "%") +
+          "";
+        dMain = "+" + r2((av + pv) / 2) + '% <small style="font-size:13px;color:#9aa8c7">평균</small>';
+      } else {
+        dDraw += sub(pn, "+" + r2(pv) + "%", "ok");
+        dMain = "+" + r2(pv) + '% <small style="font-size:13px;color:#9aa8c7">' + pn + "</small>";
+      }
+    }
+
+    // 낙인
+    var bSum = B.acc + B.bracelet + B.passive + B.core + B.grid + B.karma + B.evo; // 진화 노드 낙인력도 합산
+    var brandDmg = BASE_BRAND * (1 + bSum / 100);
+    var coreMul = 1 + B.coreDmg / 100;
+    // 정열의 춤사위(진화 노드): "정열의 춤 N : 진화형 피해 X% 증가" → 기준 딜러 진화형 피해(약 86.9%) 위에서 총 피해 증가율로 환산
+    var passion = 0;
+    ((fd.ArkPassive || {}).Effects || []).forEach(function (e) {
+      var m = flat(e).match(/정열의 춤\s*[IVX]*\s*:\s*진화형 피해\s*([\d.]+)\s*%/);
+      if (m) passion = Math.max(passion, parseFloat(m[1]) / 1.869);
+    });
+    passion = r2(passion);
+    var total = (1 + brandDmg / 100) * (1 + passion / 100) * coreMul * B.br.mul;
+    var bDraw = subc("상시 적용 딜증 (아래 4개를 곱한 값)", "+" + r2((total - 1) * 100) + "%", "#fff") +
+      subc("① 낙인 딜증 = 기본 10% × (1 + 낙인력 합계)", "+" + r2(brandDmg) + "%", "#ffb84d") +
+      subc("└ 낙인력 합계", "+" + r2(bSum) + "%", "#d9a8ff") +
+      sub("　└ 액세서리", "+" + r2(B.acc) + "%") + sub("　└ 팔찌", "+" + r2(B.bracelet) + "%") +
+      sub("　└ 아크패시브", "+" + r2(B.passive) + "%") + sub("　└ 진화 카르마", "+" + r2(B.karma) + "%") +
+      sub("　└ 진화 노드", "+" + r2(B.evo) + "%") +
+      sub("　└ 아크그리드 코어", "+" + r2(B.core) + "%") + sub("　└ 아크그리드 젬", "+" + r2(B.grid) + "%") +
+      subc("② 정열의 춤사위 딜증", "+" + passion + "%", "#ffb84d") +
+      subc("③ 아크그리드 코어 (낙인 피해)", "+" + r2(B.coreDmg) + "%", "#ffb84d") +
+      subc("④ 팔찌 효과 (상시 디버프 환산)", "+" + r2((B.br.mul - 1) * 100) + "%", "#ffb84d") +
+      B.br.rows.map(function (r) { return sub("　└ " + r.k, "+" + r2(r.v) + "%"); }).join("");
+
+    var skAll = fd.ArmorySkills || [];
+    var awake = skAll.filter(function (x) { return x.Icon && ((x.SkillType || 0) >= 100); })[0] || skAll.filter(function (x) { return x.Icon && (x.Level || 0) > 1; })[0] || skAll.filter(function (x) { return x.Icon; })[0];
+    var def = (awake && awake.Icon) || "";   // 팔찌 이미지 대신 직업 스킬 이미지로 대체
+    var slots = (fd.ArkGrid || {}).Slots || [];
+    var ic1 = (typeof skillIconByName === "function" && skills[0] && skillIconByName(skills[0])) || def;
+    var DMG_ICON = {
+      "도화가": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_yy/ark_passive_yy_7.png",
+      "바드": "https://cdn-lostark.game.onstove.com/efui_iconatlas/bd_skill/bd_skill_01_19.png",
+      "홀리나이트": "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_hk/ark_passive_hk_2.png",
+      "발키리": "https://cdn-lostark.game.onstove.com/efui_iconatlas/hkf_skill/hkf_skill_01_21.png"
+    };
+    var ic2 = DMG_ICON[key] || def;
+    var brandSlot = ((fd.ArkGrid || {}).Slots || []).filter(function (x) { return /낙인/.test(x.Name || "") && x.Icon; })[0];
+    var brandSk = skAll.filter(function (x) {
+      return x.Icon && (x.Tripods || []).some(function (t) { return t.IsSelected && /빛의 흔적|낙인/.test(flat(t.Tooltip)); });
+    })[0];
+    var ic3 = effIcon(fd, /낙인/, /깨달음/) || effIcon(fd, /낙인/) || (brandSk && brandSk.Icon) || (brandSlot && brandSlot.Icon) || effIcon(fd, /./, /깨달음/) || def;
+    var sh = shieldRows(fd);
+    var hpStat = ((fd.ArmoryProfile || {}).Stats || []).filter(function (x) { return x.Type === "최대 생명력"; })[0];
+    var hp = hpStat ? parseInt(String(hpStat.Value).replace(/,/g, ""), 10) || 0 : 0;
+    var shDraw = subc("최대 생명력", fmt(hp), "#7fe3b0") + (sh.length ? sh.map(function (r) {
+      return sub(r.name + (r.src ? " · " + r.src : "") + (r.mult !== 1 ? " ×" + r.mult : "") + ' <span style="color:#6f7d9c">(' + r2(r.v) + "%)</span>", man(hp * r.v / 100));
+    }).join("") : sub("채용 중인 보호막 스킬 없음", ""));
+    var shTop = sh.slice().sort(function (x, y) { return y.v - x.v; })[0];
+    var shIcon = (shTop && shTop.icon) || "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_01/ark_passive_01_10.png";
+    var shMain = shTop ? man(hp * shTop.v / 100) + ' <small style="font-size:12px;color:#9aa8c7">' + sh.length + "개 · " + shTop.name + "</small>" : "-";
+    var specPick = specRows.filter(function (r) { return /버프 효율/.test(r.k); })[0] || specRows.filter(function (r) { return /적용 효율/.test(r.k); })[0] || specRows[0];
+    var specMain = specPick ? "+" + r2(specPick.v) + "%" : "-";
+    var specDraw = specRows.map(function (r) { return sub(r.k, (r.neg ? "-" : "+") + r2(r.v) + "%"); }).join("") || sub("특화 툴팁 없음", "");
+    var specVal = spec ? parseInt(String(spec.Value).replace(/,/g, ""), 10) || 0 : 0;
+    host.style.display = "";
+    host.innerHTML =
+      '<div style="grid-column:1/-1;font-weight:800;color:#e8b84b;font-size:13px;line-height:16px;margin:-6px 2px -6px">서폿 버프 효과</div>' +
+      card("supAtkCard", "공증 효과", ic1, "+" + fmt(inc) + ' <small style="font-size:13px;color:#9aa8c7">(+' + r2(aSum) + "%)</small>", aDraw, "#7fd1ff") +
+      card("supDmgCard", "피증 효과", ic2, dMain, dDraw, "#ff9d6e") +
+      card("supBrandCard", "낙인 및 상시 버프", ic3, "+" + r2((total - 1) * 100) + "%", bDraw, "#d9a8ff") +
+      card("supSpecCard", "특화 효율", "https://cdn-lostark.game.onstove.com/efui_iconatlas/ark_passive_01/ark_passive_01_18.png",
+        specMain + ' <small style="font-size:12px;color:#9aa8c7">' + (specPick ? specPick.k : "") + "</small>",
+        sub("특화", fmt(specVal)) + specDraw, "#c4b5fd") +
+      card("supShieldCard", "보호막 효율", shIcon, shMain, shDraw, "#7fe3b0");
+
+    // 공속 / 이속 / 보호막 / 팔찌 순서로 아래에 배치
+    var as = document.querySelector("#effGrid .mc.as"), ms = document.querySelector("#effGrid .mc.ms"), br = document.getElementById("braceletEffCard");
+    var shc = document.getElementById("supShieldCard");
+    [as, ms, shc, document.getElementById("gemEffCard"), document.getElementById("accEffCard"), br].forEach(function (n) { if (n) host.appendChild(n); });
+
+    if (window.console && console.table) console.table({ 공증합: r2(aSum), 낙인력합: r2(bSum), 기본공격력: baseAtk, 공증증가량: fmt(inc) });
+  }
+  var st = document.createElement("style");
+  st.textContent = "#effGrid.sup-mode .mc.crit,#effGrid.sup-mode .mc.cdmg,#effGrid.sup-mode #effDolCard,#effGrid.sup-mode #effEngCard,#effGrid.sup-mode #activeNodeCard{display:none !important}.recent{position:relative;z-index:2000 !important}.recent-list{z-index:2001 !important}";
+  if (document.head) document.head.appendChild(st);
+  window.renderSupportCards = renderSupport;
+  window.__supCollect = collect;
+
+  var orig = window.fillEffDash;
+  if (typeof orig === "function") {
+    window.fillEffDash = function (stats, equipList, fullData, statMap) {
+      var r = orig.apply(this, arguments);
+      try { renderSupport(fullData || window.__fullData || {}); } catch (e) { console.warn("[support]", e); }
+      return r;
+    };
+  }
+})();
