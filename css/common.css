@@ -1121,6 +1121,10 @@ body.has-sticky-ad { padding-bottom: 120px; }
           .lvm-stats,.lvm-kicker,.lvm-div{display:none}
         }
 
+        /* 헤더(sticky)가 "헤더 + 검색창 + 광고 자리" 묶음(.lvs-top) 안에서만 따라오다가, 이 묶음이 끝나면 같이 올라가 사라짐 */
+        .lvs-top{display:flow-root}
+        .lvs-top + .app{margin-top:0!important}
+
   /* 큰 히어로는 화면에서만 숨김(제목/설명은 검색엔진·스크린리더용으로 유지) → 검색창 → 광고 → 미니 히어로 순서 */
         body.standalone-dps-page .simple-hero,
         body.standalone-dps-page .p-hero:not(.p-mini-hero){
@@ -1224,7 +1228,7 @@ body.has-sticky-ad { padding-bottom: 120px; }
         }
       
 /* 헤더 고정/우선순위 (간편·정밀·토너먼트·아크 페이지) */
-body.standalone-dps-page > #common-shell:not(:empty) { display: contents; }
+body.standalone-dps-page #common-shell:not(:empty) { display: contents; }
 body.standalone-dps-page .gnb { z-index: 3000 !important; }
 
 /* JS가 검색창+광고 자리를 만들기 전에 그 높이만큼 미리 비워둠 → 내용이 아래로 밀리며 튀는 현상 방지 (JS 실행 후 lvs-ready 로 해제) */
