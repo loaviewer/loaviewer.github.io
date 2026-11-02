@@ -1,8 +1,4 @@
-/* =============================================
-   extreme.js — 익스트림 레이드(모르둠 EX / 종막 EX) 전용 로직
-   라인컷·타임라인, 에스더 입력 팝업, 종막/모르둠 UI 헬퍼, 모르둠 택틱 툴팁
-   index.js 에서 분리됨. (index.js 와 상호 import 하지만 함수 호출 시점에만 서로 참조하므로 안전)
-   ============================================= */
+
 import {
     raidMeta,
     MORDUM_EX_DATA,
@@ -1394,7 +1390,7 @@ function makeJongmakHero(meta) {
                             <span class="p-badge b-type">대악마</span>
                             <span class="p-badge b-attr">신</span>
                         </div>
-                        <p class="p-hero-desc">클리어 시간을 입력하면 강투·1인분·잔혈 컷 딜지분과 DPS를 실시간으로 확인할 수 있습니다.</p>
+                        <p class="p-hero-desc">✔️ 11/02 22:40: 퍼클 계산 기준 -> 최근 실측 계산 기준으로 데이터가 변경되었습니다.</p>
                     </div>
                     <div class="p-hero-pills">
                         ${pills.map(p => `<span class="p-pill diff-${p.key} ${meta.diffKey === p.key ? "active" : ""}">${p.text}</span>`).join("")}
