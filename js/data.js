@@ -210,96 +210,116 @@ export const MORDUM_BOSS_INFO = {
 
 /* =============================================
    종막 EX (카제로스 레이드 종막 EX) 하드코딩 데이터 (구글시트 연동 없음)
-   - 구조: 2-1 / 2-2(본체+쉴드 합산) / 2-3 세 관문의 '딜러 지분체력'을 구역별로 계산해 합산
-   - 지분체력 = 보스 체력 - 에스더 총데미지 - 서폿 2명 총딜(초당 딜 x 구역 제한시간)
-   - 에스더 데미지 = (나메 기준 고정 비율) x 각 난이도 2-1 체력  (난이도마다 자기 2-1 체력을 곱함)
-   - 2-3 체력은 인게임에 표시되지 않아 '추정값' (나메: 클리어 시 21% 소모 기록으로 역산,
-     하드/노말: 나메의 (2-3 / 2-1) 체력 비율을 임시 적용)
+   - 구조: 2-1 / 2-2 / 2-3 / 2-3 발악 네 구간의 '딜러 지분체력'을 구간별로 계산해 합산
+   - 지분체력(요구 딜러 피해량) = 구간 체력 - 에스더 총데미지 - 서폿 딜(현재 0: 택틱 정리 자료 기준과 동일하게 차감하지 않음)
+   - 에스더 데미지 = (나메 실측 기준 고정 비율) x 각 난이도 2-1 체력  (난이도마다 자기 2-1 체력을 곱함)
+   - 체력 기준 (나메 실측, 택틱 정리 자료):
+       2-1 = 11조 1240억 / 2-2 = 5조 7948억(본체, 쉴드 제외)
+       2-3 = 전체 막대 5조 2205억 중 실제로 깎는 70%(3조 6544억) / 발악 = 전체 막대의 10%(5,221억)
+   - 하드/노말은 실측이 없어 나메의 (2-3 전체 막대 / 2-1 체력) 비율을 임시 적용 (추정값)
+   - 발악에서 히든 아만을 쓰면 발악 소요 시간이 50초 -> 25초로 줄어 기본 클리어 타임이 33:27 -> 33:02 가 됨
    - 단위: 계산은 원 단위, 외부로는 억(1e8)으로 변환해서 사용
    ============================================= */
 export const JONGMAK_EX_LEVELS = { normal: "1730", hard: "1770", nightmare: "1780" }; // 모르둠 EX와 동일
-const JONGMAK_EX_TOTAL_SEC = 2007; // 2-1 1000초 + 2-2 565초 + 2-3 442초
 
+// 발악 소요 시간(초): 히든 에스더 미사용 / 사용
+export const JONGMAK_BOSS_SEC = { noHidden: 50, hidden: 25 };
+
+// sec: 기본 관문 시간(초). 2-3 발악은 히든 미사용 기준(50초)이며 실제 값은 에스더 사용에 따라 getJongmakLive 에서 결정
+// 합계 = 1000 + 565 + 392 + 50 = 2007초(33분 27초)
 export const JONGMAK_EX_GATES = [
-    { key: "g1", name: "2-1", sec: 1000, estherPct: 8.881, estherDesc: "히든 카단 3칸 + 카단 3칸 + 카단 1칸", type: { text: "대악마", cls: "type-archdemon" } },
-    { key: "g2", name: "2-2", sec: 565,  estherPct: 3.011, estherDesc: "공아만 3칸 + 1칸",                    type: { text: "신", cls: "type-divine" } },
-    { key: "g3", name: "2-3", sec: 442,  estherPct: 7.703, estherDesc: "공아만 3칸 / 3+1칸 / 3+1칸",          type: { text: "신", cls: "type-divine" }, estimated: true }
+    { key: "g1", name: "2-1",     sec: 1000, type: { text: "대악마", cls: "type-archdemon" } },
+    { key: "g2", name: "2-2",     sec: 565,  type: { text: "신", cls: "type-divine" } },
+    { key: "g3", name: "2-3",     sec: 392,  type: { text: "신", cls: "type-divine" }, estimated: true },
+    { key: "g4", name: "2-3 발악", sec: 50,   type: { text: "신", cls: "type-divine" }, estimated: true }
 ];
 
-// supportPerSec: 서폿 2명 합산 초당 딜(원) - 나메 500만 / 하드 400만 / 노말 300만 (1인 기준, 사용자 지정 가정)
+// 2-3 전체 막대 중 실제로 깎는 비율 (2-3 = 70%, 발악 = 10%, 나머지 20%는 요구 딜에 포함하지 않음)
+export const JONGMAK_BAR3_RATIO = { g3: 0.7, g4: 0.1 };
+
+const JONGMAK_EX_NM_HP1 = 11124200336247;
+const JONGMAK_EX_NM_BAR3 = 5220500000000;   // 나메 2-3 전체 막대 5조 2205억 (실측)
+const jmBar3 = (hp1) => Math.round(hp1 * JONGMAK_EX_NM_BAR3 / JONGMAK_EX_NM_HP1);
+
+// hp1 = 2-1 체력 / hp2 = 2-2 본체 체력 / bar3 = 2-3 전체 막대 체력 / shield2 = 2-2 쉴드(현재 계산에서는 사용하지 않음)
+// supportPerSec: 서폿 2명 합산 초당 딜(원) - 택틱 정리 자료의 요구 피해량과 맞추기 위해 0 (차감하지 않음)
 export const JONGMAK_EX_BASE = {
-    nightmare: { hp1: 11124200336247, hp2: 5794751037908, shield2: 75331760729, supportPerSec: 10000000 },
-    hard:      { hp1: 3955211667283,  hp2: 2223536657594, shield2: 28985975488, supportPerSec: 8000000 },
-    normal:    { hp1: 1422084129012,  hp2: 874417129704,  shield2: 11367422269, supportPerSec: 6000000 }
+    nightmare: { hp1: JONGMAK_EX_NM_HP1,   hp2: 5794751037908, shield2: 75331760729, bar3: JONGMAK_EX_NM_BAR3,        supportPerSec: 0 },
+    hard:      { hp1: 3955211667283,       hp2: 2223536657594, shield2: 28985975488, bar3: jmBar3(3955211667283),     supportPerSec: 0 },
+    normal:    { hp1: 1422084129012,       hp2: 874417129704,  shield2: 11367422269, bar3: jmBar3(1422084129012),     supportPerSec: 0 }
 };
 
-// 나메 2-3 추정 근거: 클리어 시 4,182,178,322,107 딜러 피해량 = 전체 지분체력의 21%
-const JONGMAK_EX_NM_CLEAR_DAMAGE = 4182178322107;
-const JONGMAK_EX_NM_CLEAR_PCT = 0.21;
+/* =============================================
+   종막 에스더 스킬 / 사용 입력 (사용자가 팝업에서 직접 입력)
+   - pct: 2-1 체력 대비 고정 비율 (에스더 딜량 = pct x 각 난이도 2-1 체력)
+     나메 실측값(카단 3+1 3,563억 / 히든 카단 6,123억 / 공아만 3 1,851억 / 공아만 3+1 3,327억 / 히든 아만 4,176억)에 맞춰 보정.
+     카단 3칸/1칸은 합계(3+1)만 실측이라 기존 비율로 나눠 배분
+   - JONGMAK_ESTHER_GATE_LIST: 팝업 목록 / 상세보기 표시 순서
+   - JONGMAK_ESTHER_DEFAULT_USE: 기본값 = 마지막(발악)에 히든 아만을 사용한 클리어 기록 기준
+       2-1 카단 3+1 / 히든 카단, 2-2 공아만 3+1, 2-3 공아만 3 / 3+1, 발악 히든 아만 3
+   ============================================= */
+export const JONGMAK_ESTHER_SKILLS = {
+    // 카단 = 빨강 / 샨디 = 파랑 / 아만 = 보라. 같은 계열은 3칸 > 1칸 순으로 밝게, 히든은 채도 높게
+    kadan3:  { id: "kadan3",  name: "카단 3칸",      cells: 3, pct: 1.796, tone: "248,113,113" },
+    kadan1:  { id: "kadan1",  name: "카단 1칸",      cells: 1, pct: 1.407, tone: "252,165,165" },
+    hkadan3: { id: "hkadan3", name: "히든 카단 3칸", cells: 3, pct: 5.504, tone: "244,63,94" },
+    shandi3: { id: "shandi3", name: "샨디 3칸",      cells: 3, pct: 1.501, tone: "96,165,250" },
+    shandi1: { id: "shandi1", name: "샨디 1칸",      cells: 1, pct: 0.225, tone: "147,197,253" },
+    aman3:   { id: "aman3",   name: "공아만 3칸",    cells: 3, pct: 1.664, tone: "167,139,250" },
+    aman1:   { id: "aman1",   name: "공아만 1칸",    cells: 1, pct: 1.327, tone: "196,181,253" },
+    haman3:  { id: "haman3",  name: "히든 아만 3칸", cells: 3, pct: 3.754, tone: "232,121,249" }
+};
+// 발악 히든 아만은 풀딜이 다 들어가기 전에 유저 딜로 먼저 체력이 깎이므로, 실제로 보스 체력을 깎는 비율만 반영
+// (0.385 = 히든 아만 1회 딜량의 38.5%만 적용 -> 나메 발악 1인분 약 600억). 실측이 나오면 이 값만 바꾸면 됨. 히든 아만 외 스킬은 100%.
+export const JONGMAK_ES_EFFECT = { haman3: 0.385 };
+// 스킬 1회가 실제로 깎는 체력 비율(%) = pct x 반영 비율
+export function jongmakEffPct(id) {
+    const sk = JONGMAK_ESTHER_SKILLS[id];
+    if (!sk) return 0;
+    return Math.round(sk.pct * (JONGMAK_ES_EFFECT[id] === undefined ? 1 : JONGMAK_ES_EFFECT[id]) * 1000) / 1000;
+}
+export const JONGMAK_ESTHER_GATE_LIST = {
+    g1: ["kadan3", "kadan1", "hkadan3", "shandi3", "shandi1"],
+    g2: ["aman3", "aman1"],
+    g3: ["aman3", "aman1"],
+    g4: ["haman3", "aman3", "aman1"]
+};
+export const JONGMAK_ESTHER_DEFAULT_USE = {
+    g1: ["kadan3", "kadan1", "hkadan3"],             // 카단 3+1 / 히든 카단 3
+    g2: ["aman3", "aman1"],                          // 공아만 3+1
+    g3: ["aman3", "aman3", "aman1"],                 // 공아만 3 / 3+1
+    g4: ["haman3"]                                   // 발악 히든 아만 3 (사용 시 발악 25초)
+};
+export const JONGMAK_ESTHER_MAX_PER_GATE = 12;
+// 체력 줄 수 기준: 2-1 = 999줄(전체 체력), 2-2 = 777줄(쉴드 제외 본체), 2-3 / 발악 = 미확인
+export const JONGMAK_GATE_LINES = { g1: 999, g2: 777, g3: null, g4: null };
+export const JONGMAK_ES_STORE_KEY = "loaview.jongmak.esther.v1";
 
+// 기본 에스더 사용 기준 구간 데이터 (실제 화면은 extreme.js 의 getJongmakLive 가 사용자 입력을 반영해 다시 계산)
 export const JONGMAK_EX_DATA = (() => {
-    const gateCalc = (base, g, hp) => {
-        const esther = base.hp1 * g.estherPct / 100;
-        const support = base.supportPerSec * g.sec;
-        return { key: g.key, name: g.name, sec: g.sec, hp, esther, support, share: hp - esther - support };
-    };
-
-    const nm = JONGMAK_EX_BASE.nightmare;
-    const nm1 = gateCalc(nm, JONGMAK_EX_GATES[0], nm.hp1);
-    const nm2 = gateCalc(nm, JONGMAK_EX_GATES[1], nm.hp2 + nm.shield2);
-    const nmTotalShare = JONGMAK_EX_NM_CLEAR_DAMAGE / JONGMAK_EX_NM_CLEAR_PCT;
-    const nm3Share = nmTotalShare - nm1.share - nm2.share;
-    const nm3Hp = nm3Share + nm.hp1 * JONGMAK_EX_GATES[2].estherPct / 100 + nm.supportPerSec * JONGMAK_EX_GATES[2].sec;
-    const hp3Ratio = nm3Hp / nm.hp1; // 하드/노말 임시 추정용 (2-3 체력 / 2-1 체력)
-
+    const sumPct = (ids) => Math.round(ids.reduce((a, id) => a + jongmakEffPct(id), 0) * 1000) / 1000;
+    const useHidden = JONGMAK_ESTHER_DEFAULT_USE.g4.includes("haman3");
     const out = {};
     Object.keys(JONGMAK_EX_BASE).forEach(diff => {
         const b = JONGMAK_EX_BASE[diff];
-        const hps = [b.hp1, b.hp2 + b.shield2, diff === "nightmare" ? nm3Hp : b.hp1 * hp3Ratio];
-        const gates = JONGMAK_EX_GATES.map((g, i) => gateCalc(b, g, hps[i]));
+        const hps = [b.hp1, b.hp2, b.bar3 * JONGMAK_BAR3_RATIO.g3, b.bar3 * JONGMAK_BAR3_RATIO.g4];
+        const gates = JONGMAK_EX_GATES.map((g, i) => {
+            const sec = g.key === "g4" ? (useHidden ? JONGMAK_BOSS_SEC.hidden : JONGMAK_BOSS_SEC.noHidden) : g.sec;
+            const esther = b.hp1 * sumPct(JONGMAK_ESTHER_DEFAULT_USE[g.key]) / 100;
+            const support = b.supportPerSec * sec;
+            return { key: g.key, name: g.name, sec, hp: hps[i], esther, support, share: hps[i] - esther - support };
+        });
         const totalShareWon = gates.reduce((a, g) => a + g.share, 0);
         out[diff] = {
             gates,
-            totalSec: JONGMAK_EX_TOTAL_SEC,
+            totalSec: gates.reduce((a, g) => a + g.sec, 0),
             effectiveDamage: totalShareWon / 1e8, // 딜러 6인 실효 딜량 100% 풀 (억)
-            hp3Source: diff === "nightmare" ? "clear-record" : "nightmare-ratio",
+            hp3Source: diff === "nightmare" ? "measured" : "nightmare-ratio",
             shares: { tank: 15, one: 16.6, blood: 20 }
         };
     });
     return out;
 })();
-
-/* =============================================
-   종막 에스더 스킬 / 사용 입력 (사용자가 팝업에서 직접 입력)
-   - pct: 2-1 체력 대비 고정 비율 (에스더 딜량 = pct x 각 난이도 2-1 체력)
-   - JONGMAK_ESTHER_GATE_LIST: 팝업 목록 / 상세보기 표시 순서
-   - JONGMAK_ESTHER_DEFAULT_USE: 기본값 = 기존 계산 가정 (2-1 8.881% / 2-2 3.011% / 2-3 7.703%)
-   ============================================= */
-export const JONGMAK_ESTHER_SKILLS = {
-    // 카단 = 빨강 / 샨디 = 파랑 / 아만 = 보라. 같은 계열은 3칸 > 1칸 순으로 밝게, 히든은 채도 높게
-    kadan3:  { id: "kadan3",  name: "카단 3칸",      cells: 3, pct: 1.825, tone: "248,113,113" },
-    kadan1:  { id: "kadan1",  name: "카단 1칸",      cells: 1, pct: 1.429, tone: "252,165,165" },
-    hkadan3: { id: "hkadan3", name: "히든 카단 3칸", cells: 3, pct: 5.627, tone: "244,63,94" },
-    shandi3: { id: "shandi3", name: "샨디 3칸",      cells: 3, pct: 1.501, tone: "96,165,250" },
-    shandi1: { id: "shandi1", name: "샨디 1칸",      cells: 1, pct: 0.225, tone: "147,197,253" },
-    aman3:   { id: "aman3",   name: "공아만 3칸",    cells: 3, pct: 1.681, tone: "167,139,250" },
-    aman1:   { id: "aman1",   name: "공아만 1칸",    cells: 1, pct: 1.330, tone: "196,181,253" },
-    haman3:  { id: "haman3",  name: "히든 아만 3칸", cells: 3, pct: 3.397, tone: "232,121,249" }
-};
-export const JONGMAK_ESTHER_GATE_LIST = {
-    g1: ["kadan3", "kadan1", "hkadan3", "shandi3", "shandi1"],
-    g2: ["aman3", "aman1"],
-    g3: ["aman3", "aman1", "haman3"]
-};
-export const JONGMAK_ESTHER_DEFAULT_USE = {
-    g1: ["kadan3", "kadan1", "hkadan3"],
-    g2: ["aman3", "aman1"],
-    g3: ["aman3", "aman3", "aman1", "aman3", "aman1"]   // 공아만 3 / 3+1 / 3+1
-};
-export const JONGMAK_ESTHER_MAX_PER_GATE = 12;
-// 체력 줄 수 기준: 2-1 = 999줄(전체 체력), 2-2 = 777줄(쉴드 제외 본체), 2-3 = 미확인
-export const JONGMAK_GATE_LINES = { g1: 999, g2: 777, g3: null };
-export const JONGMAK_ES_STORE_KEY = "loaview.jongmak.esther.v1";
 
 /* =============================================
    모르둠 에스더 스킬 피해량 (원 단위, 제거 체력은 1페이즈 500줄 기준)

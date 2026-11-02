@@ -31,6 +31,7 @@ import {
     initJongmakEsEvents,
     initMordumTacticTooltip,
     getJongmakLive,
+    getJongmakDefaultTime,
     makeMordumLineCutTimelineHtml,
     setJongmakEsScrollLock,
     makeJongmakLineCutTimelineHtml,
@@ -332,7 +333,8 @@ function makeLineCutTimelineHtml(menu, gateKey, totalSec, fullTank, fullOne, ful
 export function buildSummaryAndDetailHtml(menu, gateKey, raidName, meta, tableRowsHtml, totalSec, rowTank, rowOne, rowBlood, getDamage, isSupport) {
     const timeBadge = `전분시간 : ${String(Math.floor(totalSec / 60)).padStart(2, "0")}분 ${String(totalSec % 60).padStart(2, "0")}초`;
     // 종막 EX: 2-3 체력이 추정값이라 합계 숫자에도 추정이 섞여 있음을 표시
-    const estBadgeHtml = menu === "jongmak" ? `<div class="precision-table-badge jm-est-badge" title="2-3 체력은 인게임에 표시되지 않아 클리어 기록으로 역산한 추정값입니다">2-3 추정 포함</div>` : "";
+    // (나메는 택틱 정리 자료의 실측 체력이라 배지 없음 / 하드·노말은 나메 비율로 추정한 값)
+    const estBadgeHtml = (menu === "jongmak" && meta && meta.diffKey !== "nightmare") ? `<div class="precision-table-badge jm-est-badge" title="하드/노말의 2-3·발악 체력은 인게임에 표시되지 않아 나메 비율로 추정한 값입니다">2-3·발악 추정 포함</div>` : "";
     const titleText = `${raidName} ${meta.title.replace(/\s*\(.+\)/, "")} ${meta.gateName}`;
     const sectionDivider = `<div class="precision-section-divider"><span>딜지분 상세보기</span></div>`;
 
@@ -832,9 +834,11 @@ export function setBaseTimeByMenu(menu, gateKey) {
         seconds.value = 0;
         label.textContent = "기본값: 13분(780초)";
     } else if (menu === "extreme" && currentExtremeRaid === "jongmak") {
-        minutes.value = 33;
-        seconds.value = 27;
-        label.textContent = "기본값: 33분 27초(2007초)";
+        // 기본 클리어 타임: 발악 히든 아만 미사용 33분 27초(2007초) / 사용 33분 2초(1982초)
+        const jm = getJongmakDefaultTime();
+        minutes.value = Math.floor(jm.sec / 60);
+        seconds.value = jm.sec % 60;
+        label.textContent = `기본값: ${Math.floor(jm.sec / 60)}분 ${jm.sec % 60}초(${jm.sec}초)${jm.hidden ? " · 발악 히든 아만 사용 기준" : ""}`;
     } else if (menu === "extreme") {
         minutes.value = 22;
         seconds.value = 0;
