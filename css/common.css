@@ -142,7 +142,7 @@ body.gnb-drawer-open .gnb-hamburger span:nth-child(3){
 .gnb-drawer-overlay{
   position:fixed;
   inset:0;
-  z-index:1900;
+  z-index:3500;
   background:rgba(4,5,10,.66);
   backdrop-filter:blur(3px);
   opacity:0;
@@ -161,7 +161,7 @@ body.gnb-drawer-open .gnb-drawer-overlay{
   bottom:0;
   width:280px;
   max-width:82vw;
-  z-index:2000;
+  z-index:3600;
   background:rgba(9,11,18,.98);
   border-right:1px solid rgba(255,255,255,.07);
   box-shadow:16px 0 40px rgba(0,0,0,.45);
