@@ -1121,6 +1121,10 @@ body.has-sticky-ad { padding-bottom: 120px; }
           .lvm-stats,.lvm-kicker,.lvm-div{display:none}
         }
 
+        /* 첫 방문(캐시 없음)에서 JS가 본문을 그리기 전에, 처음부터 HTML에 들어 있던 우측 CLEAR TIME 카드만 먼저 보이던 현상 →
+           본문(#mainContent)이 채워질 때까지 이 영역을 숨김(자리는 유지). 혹시 안 채워져도 4초 뒤에는 보이게 함(.lvs-show) */
+        body.standalone-dps-page:not(.lvs-show) .content-grid:has(> #mainContent:empty){visibility:hidden}
+
         /* 헤더(sticky)가 "헤더 + 검색창 + 광고 자리" 묶음(.lvs-top) 안에서만 따라오다가, 이 묶음이 끝나면 같이 올라가 사라짐 */
         .lvs-top{display:flow-root}
         .lvs-top + .app{margin-top:0!important}
