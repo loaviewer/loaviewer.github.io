@@ -272,6 +272,8 @@ export const JONGMAK_ESTHER_SKILLS = {
 // 발악 히든 아만은 풀딜이 다 들어가기 전에 유저 딜로 먼저 체력이 깎이므로, 실제로 보스 체력을 깎는 비율만 반영
 // (0.385 = 히든 아만 1회 딜량의 38.5%만 적용 -> 나메 발악 1인분 약 600억). 실측이 나오면 이 값만 바꾸면 됨. 히든 아만 외 스킬은 100%.
 export const JONGMAK_ES_EFFECT = { haman3: 0.385 };
+// 딜량 숫자가 낮아 보이지 않도록 덧붙이는 효과 표시 (히든 아만은 남은 체력을 확정으로 마무리). "클리어" 등으로 바꾸려면 이 문구만 수정
+export const JONGMAK_ES_FINISH = { haman3: "확정 킬" };
 // 스킬 1회가 실제로 깎는 체력 비율(%) = pct x 반영 비율
 export function jongmakEffPct(id) {
     const sk = JONGMAK_ESTHER_SKILLS[id];

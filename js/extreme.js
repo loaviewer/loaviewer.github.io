@@ -1,4 +1,8 @@
-
+/* =============================================
+   extreme.js — 익스트림 레이드(모르둠 EX / 종막 EX) 전용 로직
+   라인컷·타임라인, 에스더 입력 팝업, 종막/모르둠 UI 헬퍼, 모르둠 택틱 툴팁
+   index.js 에서 분리됨. (index.js 와 상호 import 하지만 함수 호출 시점에만 서로 참조하므로 안전)
+   ============================================= */
 import {
     raidMeta,
     MORDUM_EX_DATA,
@@ -11,6 +15,7 @@ import {
     JONGMAK_BAR3_RATIO,
     JONGMAK_ESTHER_SKILLS,
     JONGMAK_ES_EFFECT,
+    JONGMAK_ES_FINISH,
     jongmakEffPct,
     JONGMAK_ESTHER_GATE_LIST,
     JONGMAK_ESTHER_DEFAULT_USE,
@@ -56,6 +61,9 @@ import {
 const JONGMAK_GATE_KEYS = ["g1", "g2", "g3", "g4"];
 // 2-3 발악(4번째 칸)은 2-3(g3) 스타일을 그대로 쓰고 색만 바꾸기 위해 "g3 g4" 클래스를 같이 붙임
 const jmGateCls = (i) => (i === 3 ? "g3 g4" : `g${i + 1}`);
+// 히든 아만 딜량 옆에 붙는 "+ 확정 킬" 표시 (ids 중 하나라도 해당되면 표시)
+const jmFinishOf = (ids) => { const id = (ids || []).find(x => JONGMAK_ES_FINISH[x]); return id ? JONGMAK_ES_FINISH[id] : ""; };
+const jmFinishPill = (label) => (label ? `<i class="jm-finish">+ ${label}</i>` : "");
 
 function cloneJongmakEsDefault() {
     const o = {};
@@ -640,7 +648,7 @@ function makeJongmakUsageTagsHtml(ids) {
     ids.forEach(id => { if (!cnt[id]) { cnt[id] = 0; order.push(id); } cnt[id]++; });
     return order.map(id => {
         const sk = JONGMAK_ESTHER_SKILLS[id];
-        return `<span class="jm-tl-etag" style="--tone:${sk.tone}">${sk.name}${cnt[id] > 1 ? ` <b>x${cnt[id]}</b>` : ""}</span>`;
+        return `<span class="jm-tl-etag" style="--tone:${sk.tone}">${sk.name}${cnt[id] > 1 ? ` <b>x${cnt[id]}</b>` : ""}${jmFinishPill(JONGMAK_ES_FINISH[id])}</span>`;
     }).join("");
 }
 
@@ -671,7 +679,7 @@ function makeJongmakEstherList(diffKey) {
                     <span class="me-namebox">
                         <span class="me-name">${sk.name}</span>
                     </span>
-                    <span class="me-dmg">약 ${fmt(eok)}억</span>
+                    <span class="me-dmg">약 ${fmt(eok)}억${jmFinishPill(JONGMAK_ES_FINISH[id])}</span>
                     <span class="me-line">${lines === null ? "???" : `${lines.toFixed(2)}줄`}</span>
                 </div>
             `;
@@ -802,7 +810,7 @@ function jongmakEsAdd(gate, skillId) {
     if (!JONGMAK_ESTHER_GATE_LIST[gate].includes(skillId)) return;
     if (list.length >= JONGMAK_ESTHER_MAX_PER_GATE) return;
     list.push(skillId);
-    jongmakEsToast = `+ ${JONGMAK_ESTHER_SKILLS[skillId].name} · 약 ${fmt(jongmakEsSkillEok(skillId))}억 차감`;
+    jongmakEsToast = `+ ${JONGMAK_ESTHER_SKILLS[skillId].name} · 약 ${fmt(jongmakEsSkillEok(skillId))}억 차감${JONGMAK_ES_FINISH[skillId] ? ` + ${JONGMAK_ES_FINISH[skillId]}` : ""}`;
     jongmakEsChanged();
 }
 
@@ -818,7 +826,7 @@ function renderJongmakEsPopup() {
     const gateKeys = JONGMAK_GATE_KEYS;
     el.className = `jm-ep jm-ep-${diffKey}`;   // 난이도별 분위기: 나메=보라 / 하드=금색 / 노말=초록
     const pipsHtml = (n) => `<span class="me-pips">${Array.from({ length: n }, () => "<i></i>").join("")}</span>`;
-    const tipOf = (sk) => `${sk.name} · 약 ${fmt(Math.round(base.hp1 * jongmakEffPct(sk.id) / 100 / 1e8))}억 (2-1 체력의 ${jongmakEffPct(sk.id).toFixed(3)}%${JONGMAK_ES_EFFECT[sk.id] !== undefined ? ` · 풀딜의 ${Math.round(JONGMAK_ES_EFFECT[sk.id] * 1000) / 10}%만 반영` : ""})`;
+    const tipOf = (sk) => `${sk.name} · 약 ${fmt(Math.round(base.hp1 * jongmakEffPct(sk.id) / 100 / 1e8))}억 (2-1 체력의 ${jongmakEffPct(sk.id).toFixed(3)}%${JONGMAK_ES_EFFECT[sk.id] !== undefined ? ` · 풀딜의 ${Math.round(JONGMAK_ES_EFFECT[sk.id] * 1000) / 10}%만 반영${JONGMAK_ES_FINISH[sk.id] ? ` + ${JONGMAK_ES_FINISH[sk.id]}` : ""}` : ""})`;
 
     // 맨 위 난이도 버튼 (누르면 팝업 + 실제 페이지가 같이 바뀜)
     const diffBar = [["normal", "노말"], ["hard", "하드"], ["nightmare", "나메"]].map(([k, label]) =>
@@ -840,7 +848,7 @@ function renderJongmakEsPopup() {
             <div class="jm-ep-gate ${jmGateCls(i)}" data-gate="${gk}" style="--r:${i + 1}">
                 <div class="jm-ep-gate-head">
                     <span class="jm-ep-gate-name"><i class="mbi-dot ${jmGateCls(i)}"></i>${gateNames[gk]} 에스더 사용</span>
-                    <span class="jm-ep-sum">약 ${fmt(Math.round(live.gates[i].esther / 1e8))}억</span>
+                    <span class="jm-ep-sum">약 ${fmt(Math.round(live.gates[i].esther / 1e8))}억${jmFinishPill(jmFinishOf(ids))}</span>
                 </div>
                 <div class="jm-ep-zone" data-gate="${gk}">${chips}${slots}</div>
             </div>`;
@@ -1103,7 +1111,7 @@ function makeJongmakGateDetailHtml(g, o) {
             <div class="jm-dt-grid">
                 ${cell("구간 시간", formatJongmakSec(o.segSec), hiddenNote)}
                 ${cell("구간 체력", fmtJoEok(g.hp / 1e8), hpNote)}
-                ${cell("에스더 차감", fmtJoEok(g.esther / 1e8), g.usage && g.usage.length ? "" : "사용 없음")}
+                ${cell("에스더 차감", fmtJoEok(g.esther / 1e8) + jmFinishPill(jmFinishOf(g.usage)), g.usage && g.usage.length ? "" : "사용 없음")}
                 ${cell("요구 딜러 피해량", fmtJoEok(req), "딜러 6명 합산", true)}
                 ${cell("요구 DPS", reqDps.toFixed(1) + "억", "딜러 6명 합산 / 초", true)}
             </div>
@@ -1125,6 +1133,8 @@ function ensureJongmakExtraStyle() {
 .jm-es-gate.g3.g4,.jm-ep-gate.g3.g4{border-color:rgba(251,146,60,.42)}
 .jm-ep-pal.g3.g4 .jm-ep-pal-head{color:#fdba74}
 .mbi-sub.g3.g4 .mbi-label{color:#fdba74}
+/* 히든 에스더 "+ 확정 킬" 표시 */
+.jm-finish{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:999px;background:rgba(250,204,21,.16);border:1px solid rgba(250,204,21,.45);color:#fde68a;font-size:10.5px;font-weight:900;font-style:normal;white-space:nowrap;vertical-align:middle;line-height:1.5}
 /* 구간별 상세 열기 */
 .jm-tl-dt-btn{display:flex;align-items:center;justify-content:center;width:100%;margin-top:12px;padding:9px 0 3px;background:none;border:0;border-top:1px solid rgba(148,163,184,.16);color:#94a3b8;font-size:12px;font-weight:800;letter-spacing:.02em;cursor:pointer;font-family:inherit}
 .jm-tl-dt-btn:hover{color:#e2e8f0}
@@ -1229,7 +1239,7 @@ export function makeJongmakLineCutTimelineHtml(diffKey, totalSec) {
     return `
         <div class="jm-tl">
             <div class="jm-tl-guide">
-                <div class="jm-tl-guide-text"><b>2-1, 2-2, 2-3, 발악</b> 종료까지 <b>누적 딜량</b>, <b>누적 DPS</b>는 시작부터 그 구간까지 평균 · 구간별로 넣어야 하는 딜은 <b>상세 열기</b></div>
+                <div class="jm-tl-guide-text"><b>누적 딜량</b> , <b>누적 DPS</b> 는 시작부터 그 구간까지 평균 · 구간별로 넣어야 하는 딜은 <b>상세 열기 </b>에서 확인</div>
                 <div class="jm-tl-guide-actions">
                     ${custom ? '<span class="jm-tl-custom">에스더 사용값 수정됨</span>' : ""}
                     <button type="button" class="jm-es-open-btn mini" data-jm-open-es>✦ <span class="jm-es-full">에스더 사용 입력</span><span class="jm-es-short">에스더</span></button>
@@ -1328,9 +1338,13 @@ function makeJongmakBossInfoPanel(diffKey) {
             <b>${value}</b>
         </div>`;
 
-    const estNote = isEst
-        ? "하드/노말의 2-3·발악 체력은 확인 전이라 나메 비율(2-3 전체 막대 ÷ 2-1 체력)을 적용한 임시값입니다."
-        : "2-3·발악 체력은 택틱 정리 자료의 실측값(2-3 전체 막대 5조 2205억 중 2-3 70% · 발악 10%)입니다.";
+    // 안내 문구 (간단하게)
+    const hiddenPct = Math.round(JONGMAK_ES_EFFECT.haman3 * 1000) / 10;
+    const noteHtml = [
+        "총 체력은 실제로 깎는 구간의 합이에요. (2-3 70% + 발악 10%, 2-2는 쉴드 제외)",
+        `에스더만 차감해요. (서폿 딜 제외) 히든 아만은 딜량의 ${hiddenPct}%만 반영하고 ${JONGMAK_ES_FINISH.haman3}이 더해져요.`,
+        isEst ? "하드/노말 체력은 나메 비율로 추정한 값이에요." : "체력은 택틱 정리 자료의 실측값이에요."
+    ].join("<br>");
 
     const detailOpen = jongmakDetailOpen;
 
@@ -1360,7 +1374,7 @@ function makeJongmakBossInfoPanel(diffKey) {
 
                 ${makeJongmakEstherList(diffKey)}
 
-                <div class="jm-note-box">총 체력은 실제로 깎아야 하는 구간(2-3 70% + 발악 10%)의 합이고, 2-2는 본체 기준(쉴드 제외)이에요. 서폿 딜은 차감하지 않고 에스더만 뺀 값을 요구 딜러 피해량으로 봅니다. 발악 히든 아만은 풀딜이 다 들어가기 전에 유저 딜로 체력이 먼저 깎여서, 딜량의 ${Math.round(JONGMAK_ES_EFFECT.haman3 * 1000) / 10}%만 반영했어요. ${estNote}</div>
+                <div class="jm-note-box">${noteHtml}</div>
             </div>
         </div>
     `;
