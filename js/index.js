@@ -106,17 +106,18 @@ export function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtm
 
 
 
-// 가디언 토벌 이번주 로테이션 (Asia/Seoul, common.js와 동일)
+// 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
 const HG_BOSSES = [
   "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스",
   "드렉탈라스","소나벨","베스칼","쿤겔라니움","하누마탄",
   "데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
 ];
-const HG_ANCHOR_MS = Date.parse("2026-07-29T10:00:00+09:00");
+const HG_ANCHOR = new Date(2026, 6, 29, 10, 0, 0);
 const HG_ANCHOR_IDX = 13;
-function getHgWeekBoss(atMs) {
-  const nowMs = atMs != null ? atMs : Date.now();
-  const weeks = Math.floor((nowMs - HG_ANCHOR_MS) / (7 * 24 * 60 * 60 * 1000));
+function getHgWeekBoss() {
+  const now = new Date();
+  const diff = now.getTime() - HG_ANCHOR.getTime();
+  const weeks = Math.floor(diff / (7 * 24 * 60 * 60 * 1000));
   const idx = ((HG_ANCHOR_IDX + weeks) % HG_BOSSES.length + HG_BOSSES.length) % HG_BOSSES.length;
   return HG_BOSSES[idx];
 }
@@ -468,9 +469,8 @@ function getGuardianParsedRows(tier, boss) {
    유틸 함수
    ============================================= */
 export function makeBadge(text, cls) {
-    const emoji = getAttrEmoji(text, cls);
-    const finalText = emoji ? `${emoji} ${text}` : text;
-    return `<span class="badge ${cls}">${finalText}</span>`;
+    const icon = getAttrEmoji(text, cls);
+    return `<span class="badge ${cls}">${icon ? icon + " " : ""}${text}</span>`;
 }
 
 export function fmt(v) {
@@ -756,20 +756,49 @@ export function bindRoleToggle() {
 
 
 /* =============================================
-   속성 이모지
+   속성 아이콘 (/img/card-icon-*.png) — 이모지 대체
+   light=성, dark=암, fire=화, water=수, earth=토, lightning=뇌
    ============================================= */
+function attrIconBasePath() {
+    try {
+        return /\/dps(\/|$)/.test(location.pathname) ? "../img/" : "img/";
+    } catch (e) {
+        return "img/";
+    }
+}
+function attrIconHtml(key, extraClass) {
+    if (!key || key === "none") return "";
+    const src = attrIconBasePath() + "card-icon-" + key + ".png";
+    const cls = "attr-ico" + (extraClass ? " " + extraClass : "");
+    return '<img class="' + cls + '" src="' + src + '" alt="" width="14" height="14" decoding="async">';
+}
+function attrKeyFromText(text) {
+    if (!text) return "none";
+    if (text.includes("속성 없음") || text.includes("취약 없음")) return "none";
+    if (text.includes("암속성")) return "dark";
+    if (text.includes("성속성")) return "light";
+    if (text.includes("화속성")) return "fire";
+    if (text.includes("뇌속성")) return "lightning";
+    if (text.includes("토속성")) return "earth";
+    if (text.includes("수속성")) return "water";
+    return "none";
+}
+// 취약 속성 → 몬스터가 가진 속성 (반대)
+function attrKeyFromWeakness(attrText) {
+    if (!attrText) return "none";
+    if (attrText.includes("취약 없음") || attrText.includes("속성 없음")) return "none";
+    if (attrText.includes("암속성")) return "light";      // 암 취약 = 성 몬스터
+    if (attrText.includes("성속성")) return "dark";       // 성 취약 = 암 몬스터
+    if (attrText.includes("뇌속성")) return "water";
+    if (attrText.includes("수속성")) return "fire";
+    if (attrText.includes("토속성")) return "lightning";
+    if (attrText.includes("화속성")) return "earth";
+    return "none";
+}
+
 function getAttrEmoji(text, cls) {
     if (!cls || !cls.startsWith("attr-")) return "";
-
-    if (text.includes("속성 없음") || text.includes("취약 없음")) return "🔘";
-    if (text.includes("암속성")) return "👥​";
-    if (text.includes("성속성")) return "☀️​";
-    if (text.includes("화속성")) return "🔥";
-    if (text.includes("뇌속성")) return "⚡";
-    if (text.includes("토속성")) return "🧱​";
-    if (text.includes("수속성")) return "❄️​";
-
-    return "🔘";
+    return attrIconHtml(attrKeyFromText(text));
 }
 
 function getWeakAttrEmojiOnly(text, cls) {
@@ -779,27 +808,11 @@ function getWeakAttrEmojiOnly(text, cls) {
 }
 
 function getGuardianElementEmojiFromWeakness(attrText) {
-    if (!attrText) return "🔘";
-    if (attrText.includes("취약 없음") || attrText.includes("속성 없음")) return "🔘";
-    if (attrText.includes("암속성")) return "☀️​"; // 암속성 취약 = 성속성 몬스터
-    if (attrText.includes("성속성")) return "👥​"; // 성속성 취약 = 암속성 몬스터
-    if (attrText.includes("뇌속성")) return "❄️​"; // 뇌속성 취약 = 수속성 몬스터
-    if (attrText.includes("수속성")) return "🔥"; // 수속성 취약 = 화속성 몬스터
-    if (attrText.includes("토속성")) return "⚡"; // 토속성 취약 = 뇌속성 몬스터
-    if (attrText.includes("화속성")) return "🧱​"; // 화속성 취약 = 토속성 몬스터
-    return "🔘";
+    return attrIconHtml(attrKeyFromWeakness(attrText), "attr-ico-boss");
 }
 
 function getRaidElementEmojiFromAttr(attrText) {
-    if (!attrText) return "🔘";
-    if (attrText.includes("속성 없음") || attrText.includes("취약 없음")) return "🔘";
-    if (attrText.includes("암속성")) return "☀️​";
-    if (attrText.includes("성속성")) return "👥​";
-    if (attrText.includes("뇌속성")) return "❄️​";
-    if (attrText.includes("수속성")) return "🔥";
-    if (attrText.includes("토속성")) return "⚡";
-    if (attrText.includes("화속성")) return "🧱​";
-    return "🔘";
+    return attrIconHtml(attrKeyFromWeakness(attrText), "attr-ico-boss");
 }
 
 
@@ -2025,9 +2038,8 @@ function parseSimpleRangeParts(rangeText, cardTitle) {
 function simpleCardHtml(card) {
     const rows = card.rows.map(r => {
         const badges = (r.badges || []).map(b => {
-            const emoji = getAttrEmoji(b.text, b.cls);
-            const finalText = emoji ? `${emoji} ${b.text}` : b.text;
-            return `<span class="badge ${b.cls}">${finalText}</span>`;
+            const icon = getAttrEmoji(b.text, b.cls);
+            return `<span class="badge ${b.cls}">${icon ? icon + " " : ""}${b.text}</span>`;
         }).join("");
 
       
