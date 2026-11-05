@@ -8834,3 +8834,29 @@ body.jm-ep-dragging, body.jm-ep-dragging * { cursor: grabbing !important; user-s
     .jm-tile-main .jm-tile-cap { font-size: 8.5px; letter-spacing: .2px; }
     .jm-tile-main .jm-tile-unit { font-size: 10.5px; }
 }
+
+
+/* 속성 아이콘 (card-icon-*.png) — 뱃지/보스명 옆 */
+.badge .attr-ico,
+.element-emoji .attr-ico,
+.attr-ico {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+  margin-right: 2px;
+  display: inline-block;
+  object-fit: contain;
+}
+.gd-item-name-wrap .attr-ico,
+.gd-trigger-name-wrap .attr-ico,
+.element-emoji .attr-ico {
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  margin-right: 4px;
+}
+.p-badge.b-attr .attr-ico {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+}
