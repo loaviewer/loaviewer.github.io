@@ -1183,12 +1183,12 @@ function renderExpedition(siblings, currentProfile) {
       var bv = parseFloat(String(b.ItemAvgLevel || "0").replace(/,/g, "")) || 0;
       return bv - av;
     });
-    var cards = sorted.map(function(c) {
+    var cards = sorted.map(function(c, ci) {
       var isActive = c.CharacterName === currentProfile.CharacterName;
       var iconFile = JOB_ICON_FILE[c.CharacterClassName];
       var avatarHtml = iconFile ? '<img src="' + JOB_ICON_BASE + iconFile + '" alt="' + (c.CharacterClassName || "") + '">' : (c.CharacterName || "").slice(0, 2);
       return '<div class="exp-card ' + (isActive ? "active" : "") + '" data-name="' + (c.CharacterName || "") + '"><div class="exp-avatar">' + avatarHtml + '</div><div class="exp-info"><div class="exp-lv">Lv.' + (c.CharacterLevel != null ? c.CharacterLevel : "-") + ' ' + (c.CharacterClassName || "") + '</div><div class="exp-nick">' + (c.CharacterName || "-") + '</div><div class="exp-nums"><span class="exp-il">Lv.' + (c.ItemAvgLevel || "-") + '</span></div></div></div>';
-    }).join("");
+    }).map(function(h, ci, arr) { return h + ((ci % 6 === 5 && ci < arr.length - 1) ? '<div class="exp-divider"></div>' : ''); }).join("");
     return '<div class="exp-group"><div class="exp-group-head"><span class="server">' + server + '</span><span class="dot"></span><span class="cnt">보유 캐릭터 <b>' + list.length + '개</b></span></div><div class="exp-grid">' + cards + '</div></div>';
   }).join("");
   container.querySelectorAll(".exp-card").forEach(function(card) {
