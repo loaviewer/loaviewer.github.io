@@ -971,16 +971,16 @@ body.standalone-rank-page .app {
 }
 
 /* =============================================
-   하단 고정(스티키) 광고 (Ad Manager 970x90 / 728x90)
+   하단 고정(스티키) 광고 (AdSense 반응형 가로형 · 새로고침 없음 · 오른쪽 위 X 버튼)
    ============================================= */
 .loaview-sticky-ad {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0; /* 창 가장자리에 붙임 (Ad Manager 스티키 가이드: 가장자리에서 떠 있으면 안 됨) */
+    bottom: 0; /* 창 가장자리에 붙임 */
     margin: 0 auto;
-    width: max-content;
-    max-width: 100%;
+    width: min(982px, 100%);
+    box-sizing: border-box;
     z-index: 300; /* 본문 요소(토글 60·보상더보기 200 등)보다 위, 상단 메뉴(500)·모달(1000+)보다 아래 */
     display: none;
     padding: 6px;
@@ -993,7 +993,30 @@ body.standalone-rank-page .app {
 }
 .loaview-sticky-ad.is-on { display: block; }
 .loaview-sticky-ad.is-empty { visibility: hidden; } /* 광고 로드 전/빈 응답일 땐 안 보이게 */
-.loaview-sticky-ad-slot { min-width: 728px; min-height: 90px; }
+.loaview-sticky-ad-slot { width: 100%; min-height: 90px; }
+/* X 버튼: 광고 "바깥"(막대 위쪽 모서리)에 둬서 광고와 겹치지 않게 함 → 오클릭 방지 */
+.loaview-sticky-close {
+    position: absolute;
+    right: 10px;
+    top: -27px;
+    width: 30px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    background: rgba(10, 12, 22, 0.94);
+    color: #aeb7cc;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    font-family: inherit;
+    cursor: pointer;
+}
+.loaview-sticky-close:hover { color: #fff; background: rgba(40, 44, 66, 0.96); }
 /* 스티키가 본문/푸터를 가리지 않도록 페이지 맨 아래 여백 */
 body.has-sticky-ad { padding-bottom: 120px; }
 @media (max-width: 759px) {
@@ -1001,20 +1024,9 @@ body.has-sticky-ad { padding-bottom: 120px; }
     body.has-sticky-ad { padding-bottom: 0; }
 }
 
-/* 로컬 미리보기(is-preview): 광고가 비어도 970x90 자리를 점선 박스로 표시 */
-.loaview-sticky-ad.is-preview .loaview-sticky-ad-slot { min-width: 970px; min-height: 90px; }
-.loaview-sticky-ad.is-preview .loaview-sticky-ad-slot:empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px dashed rgba(255, 255, 255, 0.22);
-    border-radius: 6px;
-    color: #6b7280;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.2;
-}
-.loaview-sticky-ad.is-preview .loaview-sticky-ad-slot:empty::before { content: "광고 자리 (970x90) · 미리보기"; }
+/* 로컬 미리보기(is-preview): 광고가 비어도 자리를 점선 박스로 표시 */
+.loaview-sticky-ad.is-preview .loaview-sticky-ad-slot { border: 1px dashed rgba(255, 255, 255, 0.22); border-radius: 6px; }
+
 
 
 /* =============================================
@@ -1121,6 +1133,19 @@ body.has-sticky-ad { padding-bottom: 120px; }
           .lvm-stats,.lvm-kicker,.lvm-div{display:none}
         }
 
+        /* ===== 캐릭터/직각 티어: 헤더 + 상단 대형 수평 광고 (자리 미리 확보) ===== */
+        .lvs-gptslot{position:relative;width:100%;max-width:970px;height:250px;margin:20px auto 28px;box-sizing:border-box;
+          display:flex;align-items:center;justify-content:center}
+        .lvs-gptslot-ad{margin:0 auto;min-width:320px;min-height:50px;max-width:100%}
+        /* 캐릭터 조회(7개 탭) 페이지: 헤더가 스크롤을 따라 내려오지 않고 일반 위치에서 같이 올라감 */
+        body.lvs-topad-page .gnb{position:relative!important;top:auto!important}
+        body.lvs-topad-page .lv-banner{height:360px}
+        body.lvs-topad-page .ad-slot{display:none!important}   /* 하단 탭 광고 자리(#adSlot)는 쓰지 않음 → 빈 칸이 남지 않게 숨김 */
+        @media (max-width:760px){
+          .lvs-gptslot{height:100px;margin:14px auto 18px}
+          body.lvs-topad-page .lv-banner{height:210px}
+        }
+
         /* 첫 방문(캐시 없음)에서 JS가 본문을 그리기 전에, 처음부터 HTML에 들어 있던 우측 CLEAR TIME 카드만 먼저 보이던 현상 →
            본문(#mainContent)이 채워질 때까지 이 영역을 숨김(자리는 유지). 혹시 안 채워져도 4초 뒤에는 보이게 함(.lvs-show) */
         body.standalone-dps-page:not(.lvs-show) .content-grid:has(> #mainContent:empty){visibility:hidden}
@@ -1144,7 +1169,6 @@ body.has-sticky-ad { padding-bottom: 120px; }
           background:rgba(13,16,25,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14)}
         .lvs-search-row #recent{z-index:2500}
         .lvs-search-row .recent-list{z-index:30}
-        body > .page > .search-row{display:none!important}
         @media (max-width:760px){.lvs-search-row{flex-direction:column}.lvs-search-row #recent{flex-basis:auto}}
 
         /* 검색창 아래 광고 자리 (박스 밖, 메인과 동일). 광고 유무와 상관없이 크기 고정 */
