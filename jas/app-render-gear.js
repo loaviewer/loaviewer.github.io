@@ -1,4 +1,3 @@
-// ===== 장비 · 악세 · 아바타 · 보석 · 카드 · 각인 · 원정대 (app-render-gear.js) =====
 
 function getGradeColorClass(grade) {
   if (grade === "상") return { cls: "sang", color: "#FE9600" };
