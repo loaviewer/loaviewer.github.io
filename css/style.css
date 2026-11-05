@@ -2203,3 +2203,136 @@ img{display:block;max-width:100%;}
 #agCores.ag-theme-chaos{border-color:rgba(110,150,255,.55);}
 .arkgrid-panel:has(.ag-type-btn[data-type="order"].active) #agCores{border-top-left-radius:0;}
 .arkgrid-panel:has(.ag-type-btn[data-type="chaos"].active) #agCores{border-top-right-radius:0;}
+
+
+/* [AD-SLOT] 하단 728x90 반응형 광고 자리: 조회 결과가 보일 때만 표시, 화면이 좁으면 폭에 맞게 줄어듦 */
+.ad-slot{display:none;justify-content:center;margin:0}
+.main .ad-slot{display:flex;margin-top:28px}
+.ad-slot-inner{width:100%;max-width:728px;min-height:90px;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.ad-slot-inner > *{max-width:100%}
+.apt-row.pad{opacity:.28;border-style:dashed}
+
+/* [TAB-EMPHASIS] 정보/스텟/스킬… 탭 바: 박스가 아닌 '탭' 모양(아래 선 + 선택 탭이 솟아오름)으로 검색창과 구분 — style.css 맨 아래에 붙여넣기 */
+.char-tabs{
+  gap:6px;padding:0 6px;border-radius:0;background:none;box-shadow:none;border:0;
+  border-bottom:1px solid rgba(139,124,255,.45);
+}
+.char-tab{
+  padding:13px 20px 12px;font-size:14px;font-weight:800;color:#c3cbe0;
+  border-radius:10px 10px 0 0;transition:color .15s,background .15s;
+}
+.char-tab:hover{color:#fff;background:rgba(255,255,255,.06)}
+.char-tab.active{
+  color:#fff;
+  background:linear-gradient(180deg,rgba(124,108,255,0) 0%,rgba(124,108,255,.30) 100%);
+  box-shadow:0 -1px 0 rgba(139,124,255,.5) inset;
+}
+.char-tab.active::after{height:3px;left:0;right:0;bottom:-1px;border-radius:3px 3px 0 0;
+  background:linear-gradient(90deg,var(--purple,#8b7cff),var(--blue,#4d9bff));box-shadow:0 0 12px rgba(124,108,255,.7)}
+
+
+/* [SEARCH-GLASS] 조회 검색줄: 유리 질감 + Ctrl K 배지 + 그라데이션 조회 버튼 + 같은 질감의 최근 검색 */
+.search-row .search-bar{
+  position:relative;display:flex;align-items:center;gap:10px;min-height:56px;padding:0 8px 0 18px;border-radius:14px;
+  background:linear-gradient(180deg,rgba(40,46,66,.78),rgba(18,22,36,.82));
+  border:1px solid rgba(139,124,255,.38);
+  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 8px 26px rgba(0,0,0,.5),0 0 20px rgba(124,108,255,.12);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.search-row .search-bar:focus-within{border-color:rgba(139,124,255,.75);box-shadow:0 0 0 1px rgba(255,255,255,.05) inset,0 8px 26px rgba(0,0,0,.5),0 0 26px rgba(124,108,255,.3)}
+.search-row .search-bar input::placeholder{color:#8e97ad;font-weight:600}
+.search-row .search-bar button{border-radius:11px;font-weight:900;background:linear-gradient(135deg,#7c6cff,#4d9bff);box-shadow:0 4px 14px rgba(90,110,255,.45);transition:filter .12s,transform .12s}
+.search-row .search-bar button:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.search-row .recent .recent-btn{
+  min-height:56px;border-radius:14px;color:#aab3c8;font-weight:700;font-size:14px;letter-spacing:.2px;
+  background:linear-gradient(180deg,rgba(40,46,66,.62),rgba(18,22,36,.7));
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 0 1px rgba(255,255,255,.03) inset,0 8px 26px rgba(0,0,0,.45);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.search-row .recent .recent-btn:hover,.search-row .recent .recent-btn.open{color:#fff;border-color:rgba(139,124,255,.55);background:linear-gradient(180deg,rgba(48,54,78,.75),rgba(22,26,42,.8));box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 8px 26px rgba(0,0,0,.5),0 0 18px rgba(124,108,255,.2)}
+.search-row .recent .recent-list{border:1px solid rgba(139,124,255,.35);border-radius:14px;background:linear-gradient(180deg,rgba(26,30,48,.97),rgba(12,15,26,.98));box-shadow:0 16px 40px rgba(0,0,0,.65),0 0 20px rgba(124,108,255,.12)}
+.search-row .recent .rc-tab.active{color:#b9aeff;border-bottom-color:#8b7cff}
+@media (max-width:640px){
+/* ================= [MOBILE 시작] 모바일 대응 ================= */
+html{color-scheme:dark;}   /* 가로 스크롤바 등 기본 UI 를 어둡게 (흰 막대 방지) */
+@media (max-width:960px){
+  /* 정보 탭 외에는 왼쪽 열(프로필 · 각인 · 아크그리드 요약) 숨김 */
+  html:not([data-page="info"]) .main > .col:nth-child(1){display:none;}
+}
+@media (max-width:700px){
+  .page{padding-left:12px;padding-right:12px;}
+  .char-tab{padding:10px 13px;font-size:13px;}
+  /* 스킬 줄: 1) 스킬명·쿨타임·태그  2) 트라이포드 3칸  3) 보석 + 룬 */
+  .skill-list .row,.skill-list .row.sub{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"m m" "t t" "g r";gap:10px 12px;padding:12px 12px 12px 14px;}
+  .skill-list .row.sub{padding-left:34px;margin-top:-4px;}
+  .skill-list .row .sk-main{grid-area:m;}
+  .skill-list .row .tripods{grid-area:t;gap:8px;}
+  .skill-list .row .tripods .tp:nth-child(n){transform:none;}
+  .skill-list .tp-name{max-width:none;font-size:11px;}
+  .skill-list .row .sk-main .sk-cd{left:0;}
+  .skill-list .row .gems{grid-area:g;flex-direction:row;justify-content:flex-start;gap:18px;}
+  .skill-list .row .rune-wrap{grid-area:r;}
+  /* 아크그리드: 코어 카드·젬 줄을 한 열로 */
+  .ag-core-row,.ag-gem-section{grid-template-columns:1fr;}
+  .ag-gem-row{grid-template-columns:repeat(4,1fr);}
+}
+/* [MOBILE 끝] */
+
+/* ================= [MOBILE-2 시작] 스킬 요약 간소화 / 스킬 줄 / 젬 효율 / 탭 한눈에 ================= */
+@media (max-width:760px){
+  /* 스킬 요약: 스킬코드 · "기본 효과/재감 효과" 문구 숨기고, 링 오른쪽에 칩만 간단히 */
+  .skill-summary{flex-wrap:nowrap;gap:0;padding:10px 12px;align-items:center;}
+  .skill-summary .sum-code-box,.skill-summary .sum-sp{display:none;}
+  .skill-summary .sum-bar.sum-2row{flex:1 1 0;order:0;flex-basis:0;padding:0 0 0 10px;border:0;border-left:1px solid rgba(255,255,255,.12);gap:5px;}
+  .skill-summary .sum-2row .sum-r1,.skill-summary .sum-2row .sum-r2{flex-wrap:wrap;overflow:visible;gap:4px;}
+  .skill-summary .sum-2row .stag{font-size:10.5px;padding:2px 7px;border-radius:7px;}
+  .skill-summary .stag .chk{width:10px;height:10px;}
+  .skill-summary .sum-ring{width:70px;}
+}
+@media (max-width:700px){
+  /* 스킬 줄: PC처럼 [스킬 | 보석 | 룬] 한 줄 (트라이포드는 숨김 - 스킬을 누르면 툴팁) */
+  .skill-list .row,.skill-list .row.sub{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"m g r";gap:10px;padding:10px 10px 10px 14px;align-items:center;}
+  .skill-list .row.sub{padding-left:32px;}
+  .skill-list .row .tripods{display:none;}
+  .skill-list .row .gems{grid-area:g;flex-direction:column;gap:5px;align-items:flex-start;}
+  .skill-list .row .gem{width:66px;gap:5px;}
+  .skill-list .row .gem-circle{width:30px;height:30px;}
+  .skill-list .row .rune-wrap{grid-area:r;}
+  .skill-list .row .rune-cell{width:34px;height:34px;}
+  .skill-list .row .rune-name{max-width:48px;}
+
+  /* 상단 탭: 7개가 한 화면에 */
+  .char-tabs{overflow:visible;gap:0;}
+  .char-tab{flex:1 1 auto;padding:10px 2px;font-size:10.5px;letter-spacing:-.3px;text-align:center;white-space:nowrap;}
+
+  /* 아크그리드 젬 효율: 합계 카드 → 옵션 효율(3칩) → 포인트 효율 로 세로 정리 */
+  .ag-eff{flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:6px;padding:12px;}
+  .ag-eff-blk{width:100%;box-sizing:border-box;padding:10px 12px;}
+  .ag-eff-blk .k{font-size:11px;letter-spacing:.3px;}
+  .ag-eff-blk b{font-size:24px;}
+  .ag-eff-blk.tot{padding:12px;background:linear-gradient(135deg,rgba(255,184,77,.2),rgba(255,184,77,.04));box-shadow:inset 0 0 0 1px rgba(255,184,77,.45),0 0 18px rgba(255,184,77,.12);}
+  .ag-eff-blk.tot b{font-size:34px;}
+  .ag-eff-blk.opt{padding:10px;}
+  .ag-eff-blk.opt .ag-eff-opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;margin-top:6px;}
+  .ag-eff-o{min-width:0;padding:5px 3px;}
+  .ag-eff-o .n{font-size:10px;}
+  .ag-eff-o b{font-size:15px;}
+  .ag-eff-op{align-self:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;}
+}
+/* [MOBILE-2 끝] */
+
+/* ================= [MOBILE-3 시작] 보석 한눈에 / 카드 6장 한 줄 ================= */
+@media (max-width:700px){
+  .gem-wrap{flex-direction:column;align-items:stretch;gap:2px;overflow:visible;padding:0;}
+  .gem-group{flex-wrap:nowrap;gap:9px;padding:8px 2px 10px;}
+  .gem-group-label{padding:3px 7px;font-size:10.5px;min-width:30px;text-align:center;}
+  .gem{width:34px;height:34px;}
+  .gem img.gem-badge{width:20px;height:20px;top:-4px;right:-6px;border-radius:5px;}
+  .gem .lv{font-size:10px;min-width:16px;padding:0 4px;bottom:-5px;border-width:1px;}
+  .card-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;}
+  .card-cell{width:auto;min-width:0;}
+  .card-name-tag{font-size:6.5px;}
+  .card-gems{transform:translateX(-50%) scale(.68);transform-origin:50% 100%;}
+}
+/* [MOBILE-3 끝] */
