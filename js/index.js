@@ -106,18 +106,17 @@ export function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtm
 
 
 
-// 가디언 토벌 이번주 로테이션 계산용 (common.js와 동일한 로직)
+// 가디언 토벌 이번주 로테이션 (Asia/Seoul, common.js와 동일)
 const HG_BOSSES = [
   "루멘칼리고","가르가디스","스콜라키아","크라티오스","아게오로스",
   "드렉탈라스","소나벨","베스칼","쿤겔라니움","하누마탄",
   "데스칼루다","이그렉시온","벨가누스","아카테스","엘버하스틱"
 ];
-const HG_ANCHOR = new Date(2026, 6, 29, 10, 0, 0);
+const HG_ANCHOR_MS = Date.parse("2026-07-29T10:00:00+09:00");
 const HG_ANCHOR_IDX = 13;
-function getHgWeekBoss() {
-  const now = new Date();
-  const diff = now.getTime() - HG_ANCHOR.getTime();
-  const weeks = Math.floor(diff / (7 * 24 * 60 * 60 * 1000));
+function getHgWeekBoss(atMs) {
+  const nowMs = atMs != null ? atMs : Date.now();
+  const weeks = Math.floor((nowMs - HG_ANCHOR_MS) / (7 * 24 * 60 * 60 * 1000));
   const idx = ((HG_ANCHOR_IDX + weeks) % HG_BOSSES.length + HG_BOSSES.length) % HG_BOSSES.length;
   return HG_BOSSES[idx];
 }
