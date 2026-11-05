@@ -1141,6 +1141,39 @@ body.has-sticky-ad { padding-bottom: 120px; }
         body.lvs-topad-page .gnb{position:relative!important;top:auto!important}
         body.lvs-topad-page .lv-banner{height:360px}
         body.lvs-topad-page .ad-slot{display:none!important}   /* 하단 탭 광고 자리(#adSlot)는 쓰지 않음 → 빈 칸이 남지 않게 숨김 */
+
+/* [lvs-topad-pre-js-spacer] 탭(정보/스탯/…) 전환 시 JS가 .lvs-gptslot 만들기 전 높이 예약 */
+body.lvs-topad-page:not(:has(.lvs-gptslot)) #common-shell {
+  margin-bottom: 298px; /* margin 20+28 + slot 250 */
+}
+@media (max-width: 760px) {
+  body.lvs-topad-page:not(:has(.lvs-gptslot)) #common-shell {
+    margin-bottom: 132px; /* 14+18 + 100 */
+  }
+}
+/* 슬롯이 생긴 뒤에는 margin 제거(슬롯 높이가 대체). display:contents 여부와 무관하게 슬롯 박스 유지 */
+body.lvs-topad-page .lvs-gptslot {
+  min-height: 250px;
+  height: 250px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+@media (max-width: 760px) {
+  body.lvs-topad-page .lvs-gptslot {
+    min-height: 100px;
+    height: 100px;
+  }
+}
+
+        /* 탭/조회 시 상단 대형 광고 자리·배경이 한 프레임 접히지 않도록 높이 고정 */
+        body.lvs-topad-page .lvs-gptslot{min-height:250px;height:250px;flex-shrink:0}
+        body.lvs-topad-page .lvs-top{min-height:0}
+        body.lvs-topad-page .lv-banner{background:#07080f}
+        body.lvs-topad-page .lv-banner-layer{will-change:opacity}
+        @media (max-width:760px){
+          body.lvs-topad-page .lvs-gptslot{min-height:100px;height:100px}
+        }
+
         @media (max-width:760px){
           .lvs-gptslot{height:100px;margin:14px auto 18px}
           body.lvs-topad-page .lv-banner{height:210px}
@@ -1264,3 +1297,164 @@ body.standalone-dps-page:not(.lvs-ready):not([data-no-subhero]) #common-shell { 
 @media (max-width: 760px) {
   body.standalone-dps-page:not(.lvs-ready):not([data-no-subhero]) #common-shell { margin-bottom: 282px; }
 }
+
+
+/* =====================================================================
+   JS에서 이전하던 스타일 (최근검색 / 도장모달 / 광고 자리 고정)
+   ===================================================================== */
+
+/* --- 최근 검색 / 즐겨찾기 드롭다운 --- */
+.lvs-search-row{display:flex;gap:12px;align-items:stretch}
+.lvs-search-row .lvs-search,
+.lvs-search-row .lv-search{flex:1 1 0;min-width:0}
+.lvr{position:relative;z-index:2500;flex:0 0 220px}
+.lvr-btn{width:100%;height:52px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;
+  background:rgba(13,16,25,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);
+  color:#9aa3b5;font:600 13px/1 inherit;font-family:inherit;cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+.lvr-btn:hover,.lvr-btn.open{color:#fff;border-color:#3b4560;background:rgba(255,255,255,.06)}
+.lvr-caret{font-size:10px;transition:transform .15s}
+.lvr-btn.open .lvr-caret{transform:rotate(180deg)}
+.lvr-list{position:absolute;top:calc(100% + 10px);left:0;right:0;z-index:30;margin:0;padding:0;overflow:hidden;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,#121722,#0b0e15);border:1px solid #2a3248;border-radius:12px;
+  box-shadow:0 14px 34px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04)}
+.lvr-list[hidden]{display:none}
+.lvr-tabs{display:flex;align-items:center;justify-content:center;gap:4px;padding:6px 8px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.lvr-tabs i{width:1px;height:12px;background:rgba(255,255,255,.18)}
+.lvr-tab{flex:1;padding:9px 4px 10px;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;color:#9aa3b5;
+  font:800 12px/1 inherit;font-family:inherit;cursor:pointer;transition:color .15s,border-color .15s}
+.lvr-tab:hover{color:#fff}
+.lvr-tab.active{color:#ffd24a;border-bottom-color:#ffd24a}
+.lvr-items{list-style:none;margin:0;padding:4px 6px;max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#3b4560 transparent}
+.lvr-items li{display:flex;align-items:center;gap:8px;padding:9px 8px;font-size:13px;font-weight:600;color:#dfe4f0;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.06);border-radius:6px}
+.lvr-items li:last-child{border-bottom:0}
+.lvr-items li:hover{background:rgba(255,255,255,.06)}
+.lvr-items li.empty{justify-content:center;color:#9aa3b5;cursor:default;font-weight:400;padding:18px 8px}
+.lvr-items li.empty:hover{background:none}
+.lvr-nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lvr-emb{flex:none;width:20px;height:20px;background-size:contain;background-repeat:no-repeat;background-position:center}
+.lvr-star,.lvr-x{flex:none;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;padding:0;cursor:pointer;border-radius:6px;font-family:inherit}
+.lvr-star{font-size:16px;color:#6a738a;transition:color .12s,transform .12s}
+.lvr-star:hover{color:#ffd24a;transform:scale(1.18)}
+.lvr-star.on{color:#ffd24a;text-shadow:0 0 8px rgba(255,210,74,.55)}
+.lvr-x{font-size:12px;color:#6a738a;transition:color .12s,background .12s}
+.lvr-x:hover{color:#ff6b6b;background:rgba(255,107,107,.12)}
+.lvr-foot{display:flex;justify-content:flex-end;padding:6px 10px 8px;border-top:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.18)}
+.lvr-clear{background:none;border:1px solid rgba(255,107,107,.35);color:#ff8c8c;font:700 11px/1 inherit;font-family:inherit;padding:6px 10px;border-radius:7px;cursor:pointer}
+.lvr-clear:hover{background:rgba(255,107,107,.14);color:#fff}
+@media (max-width:760px){
+  .lvs-search-row{flex-direction:column}
+  .lvr{flex-basis:auto}
+}
+
+/* --- GNB 서브 CTA / 도장 안내 모달 --- */
+.gnb-cta-sub{
+  background:transparent;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.52);
+  padding:5px 10px;border-radius:7px;font-size:11px;line-height:1;cursor:pointer;
+  transition:all .18s ease;white-space:nowrap;
+}
+.gnb-cta-sub:hover{
+  border-color:rgba(255,255,255,0.28);color:rgba(255,255,255,0.82);background:rgba(255,255,255,0.05);
+}
+.gnb-cta-divider{color:rgba(255,255,255,0.14);font-size:14px;margin:0 6px;user-select:none}
+
+.stamp-modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:10000;
+  justify-content:center;align-items:flex-start;padding:28px 14px;
+  backdrop-filter:blur(4px);overflow-y:auto;
+}
+.stamp-modal-overlay.active{display:flex}
+.stamp-modal-combined{
+  background:#1a1f2e;border:1px solid rgba(255,255,255,0.08);border-radius:14px;
+  width:min(94vw,700px);margin:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5);overflow:hidden;
+}
+.stamp-modal-header{
+  display:flex;justify-content:space-between;align-items:center;padding:18px 22px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;background:#1a1f2e;z-index:2;
+}
+.stamp-modal-header h3{margin:0;font-size:16px;color:#fff;letter-spacing:-0.02em}
+.stamp-modal-close{
+  background:none;border:none;color:rgba(255,255,255,0.4);font-size:18px;cursor:pointer;
+  padding:4px 8px;border-radius:6px;transition:all 0.2s;
+}
+.stamp-modal-close:hover{color:#fff;background:rgba(255,255,255,0.1)}
+.stamp-modal-body{padding:18px 22px 24px}
+.stamp-modal-loading{text-align:center;color:rgba(255,255,255,0.42);padding:30px 0;font-size:13px}
+.stamp-guide-intro{font-size:12.5px;color:rgba(255,255,255,0.48);margin-bottom:18px;line-height:1.5}
+
+.grade-guide-table{width:100%;border-collapse:collapse;font-size:12px}
+.grade-guide-table th{
+  background:rgba(255,255,255,0.035);color:rgba(255,255,255,0.48);padding:8px 10px;
+  text-align:left;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:1;
+}
+.grade-guide-table td{
+  padding:7px 10px;color:rgba(255,255,255,0.62);border-bottom:1px solid rgba(255,255,255,0.035);
+  line-height:1.38;vertical-align:middle;
+}
+.guide-grade-cell{width:48px;font-weight:700;white-space:nowrap}
+.guide-ratio-cell{width:150px;min-width:150px}
+.guide-ratio-wrap{display:flex;align-items:center;gap:7px}
+.guide-ratio-pct{width:38px;text-align:right;font-size:11px;color:rgba(255,255,255,0.74);flex-shrink:0;font-variant-numeric:tabular-nums}
+.guide-mini-bar{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden}
+.guide-mini-fill{height:100%;border-radius:999px;transition:width .55s ease}
+.guide-mini-fill.ss{background:linear-gradient(90deg,#8c6eff,#b49aff)}
+.guide-mini-fill.s{background:linear-gradient(90deg,#ffd700,#ffe44d)}
+.guide-mini-fill.a{background:linear-gradient(90deg,#4dabf7,#74c0fc)}
+.guide-mini-fill.b{background:linear-gradient(90deg,#51cf66,#8ce99a)}
+.guide-mini-fill.c{background:linear-gradient(90deg,#868e96,#adb5bd)}
+.guide-mini-fill.d{background:linear-gradient(90deg,#ff922b,#ffa94d)}
+.guide-mini-fill.f{background:linear-gradient(90deg,#ff6b6b,#ff8787)}
+.gr-ss .guide-grade-cell{color:#b49aff}
+.gr-s .guide-grade-cell{color:#ffd700}
+.gr-a .guide-grade-cell{color:#74c0fc}
+.gr-b .guide-grade-cell{color:#8ce99a}
+.gr-c .guide-grade-cell{color:#adb5bd}
+.gr-d .guide-grade-cell{color:#ffa94d}
+.gr-f .guide-grade-cell{color:#ff8787}
+.grade-guide-note{margin-top:12px;font-size:11px;color:rgba(255,255,255,0.28);text-align:center;line-height:1.5}
+
+.gnb-drawer-nav button.gnb-drawer-link{
+  background:none;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.62);cursor:pointer;
+  text-align:center;font-size:13px;padding:10px 8px;border-radius:8px;transition:all 0.2s;width:100%;
+}
+.gnb-drawer-nav button.gnb-drawer-link:hover{
+  border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.04);
+}
+
+@media (max-width:760px){
+  .gnb-cta-sub,.gnb-cta-divider{display:none}
+  .stamp-modal-combined{width:100%;border-radius:12px}
+  .stamp-modal-header{padding:14px 16px 10px}
+  .stamp-modal-body{padding:14px 16px 20px}
+  .grade-guide-table{font-size:11px}
+  .grade-guide-table td,.grade-guide-table th{padding:6px 7px}
+  .guide-grade-cell{width:40px}
+  .guide-desc-cell{font-size:10.5px}
+  .guide-ratio-cell{width:110px;min-width:110px}
+  .guide-ratio-pct{width:34px;font-size:10px}
+}
+
+/* --- 반응형 광고 슬롯 높이 고정 + 중앙 배너 래퍼 --- */
+.ad-slot-responsive{
+  width:100%;max-width:728px;margin-left:auto;margin-right:auto;min-width:0;
+  height:100px;min-height:100px;overflow:visible;box-sizing:border-box;
+}
+.ad-slot-responsive.precision-slot{height:100px;min-height:100px}
+@media (min-width:761px){
+  .ad-slot-responsive,
+  .ad-slot-responsive.precision-slot{height:90px;min-height:90px}
+}
+
+#tourney-ad-wrapper{
+  width:100%!important;max-width:728px!important;height:90px!important;min-height:90px!important;
+  margin-left:auto!important;margin-right:auto!important;overflow:visible!important;box-sizing:border-box;
+}
+#tourney-ad-wrapper .loaview-center-ad{width:100%}
+.loaview-center-ad{text-align:center}
+@media (max-width:760px){
+  #tourney-ad-wrapper{height:100px!important;min-height:100px!important}
+}
+
+/* 서브히어로 마운트 시 shell이 레이아웃에서 빠지도록 (헤더 sticky 기준) */
+/* shell은 .lvs-top으로 감싼 뒤에만 contents — 그 전에 적용되면 캐릭터/티어 상단이 한 프레임 접힘 */
+.lvs-top > #common-shell:not(:empty){display:contents}
