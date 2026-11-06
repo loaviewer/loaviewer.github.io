@@ -80,7 +80,7 @@ export function setMainContentWithAdPreservation(heroHtml, miniHeroHtml, bodyHtm
         heroSlot.innerHTML = `
             <div id="precisionBigHeroSlot"></div>
             <!-- 대형 수평 광고판 (간편보기와 동일 여백 / PC 970x250 · 모바일 90px) -->
-            <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+            <div class="simple-top-ad-wrap" style="width:100%;max-width:970px;overflow:visible;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
                 ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
             </div>
             <div class="divider common-divider-bottom" style="margin-top:40px;margin-bottom:70px;"><hr class="divider-line"></div>
@@ -1405,7 +1405,7 @@ el.innerHTML = `
     ${simpleHeroHtml()}
     
     <!-- 대형 수평 광고판 (정밀계산과 동일 여백 / PC 970x250 · 모바일 90px) -->
-   <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+   <div class="simple-top-ad-wrap" style="width:100%;max-width:970px;overflow:visible;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
       ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
     </div>
     
@@ -1482,7 +1482,7 @@ el.innerHTML = `
     ${simpleRaidHeroHtml()}
     
     <!-- 대형 수평 광고판 (정밀계산과 동일 여백 / PC 970x250 · 모바일 90px) -->
-    <div class="simple-top-ad-wrap" style="width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
+    <div class="simple-top-ad-wrap" style="width:100%;max-width:970px;overflow:visible;display:flex;justify-content:center;align-items:center;margin:14px auto 40px;">
       ${window.loaviewCenterAdHtml ? window.loaviewCenterAdHtml() : ""}
     </div>
     
