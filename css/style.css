@@ -2336,3 +2336,68 @@ html{color-scheme:dark;}   /* 가로 스크롤바 등 기본 UI 를 어둡게 (�
   .card-gems{transform:translateX(-50%) scale(.68);transform-origin:50% 100%;}
 }
 /* [MOBILE-3 끝] */
+
+/* ================= [MOBILE-PERF] 모바일 스크롤 렉 완화 (아크그리드 등): 무거운 효과는 모바일에서만 줄임 ================= */
+@media (max-width:960px){
+  .ag-core-card{-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),inset 2px 2px 0 rgba(255,255,255,.05);}
+  .ag-core-card::before{box-shadow:none;}
+  .ag-core-icon-frame{box-shadow:0 0 0 1px rgba(0,0,0,.6);}
+  .ag-gem-icon{box-shadow:none;}
+  .ag-eff{box-shadow:inset 0 1px 0 rgba(255,255,255,.07);}
+  .ag-eff-blk.tot{box-shadow:inset 0 0 0 1px rgba(255,184,77,.45);}
+  .ag-core-ribbon.order,.ag-core-ribbon.chaos{box-shadow:none;}
+  /* 별 21겹 → 큰 빛 3겹만 */
+  #agCores.ag-theme-order::before{background:
+    radial-gradient(ellipse 60% 18% at 96% 0%,rgba(255,92,80,.28),transparent 66%),
+    radial-gradient(ellipse 55% 14% at 0% 100%,rgba(140,30,50,.26),transparent 70%);}
+  #agCores.ag-theme-chaos::before{background:
+    radial-gradient(ellipse 60% 18% at 96% 0%,rgba(90,140,255,.3),transparent 66%),
+    radial-gradient(ellipse 55% 14% at 0% 100%,rgba(40,50,150,.28),transparent 70%);}
+  /* 검색줄의 흐림 효과도 모바일에서는 끔 (모양 차이는 거의 없음) */
+  .search-row .search-bar,.search-row .recent .recent-btn{-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 0 0 1px rgba(255,255,255,.04) inset;}
+}
+/* [MOBILE-PERF 끝] */
+
+/* ================= [MOBILE-4 시작] 아크그리드/아크패시브 렉 완화 + 스킬 특수 카드 + 아크패시브 노드 맞춤 ================= */
+@media (max-width:700px){
+  /* --- 렉 완화: 스크롤마다 다시 그리는 무거운 효과를 모바일에서만 단순화 (PC 는 그대로) --- */
+  .ag-core-card{backdrop-filter:none;-webkit-backdrop-filter:none;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 3px 8px rgba(0,0,0,.35);}
+  .ag-core-card::before{box-shadow:none;}
+  .ag-core-icon-frame{box-shadow:0 0 0 1px rgba(0,0,0,.6);}
+  .ag-eff{box-shadow:inset 0 1px 0 rgba(255,255,255,.07);}
+  #agCores.ag-theme-order::before{background:
+    radial-gradient(ellipse 60% 30% at 96% 0%,rgba(255,92,80,.28),transparent 66%),
+    radial-gradient(ellipse 55% 25% at 0% 100%,rgba(140,30,50,.26),transparent 70%);}
+  #agCores.ag-theme-chaos::before{background:
+    radial-gradient(ellipse 60% 30% at 96% 0%,rgba(90,140,255,.30),transparent 66%),
+    radial-gradient(ellipse 55% 25% at 0% 100%,rgba(40,50,150,.28),transparent 70%);}
+  .apt-body.bg-evo::before{background:radial-gradient(ellipse 62% 40% at 94% 0%,rgba(255,150,40,.30),transparent 64%),radial-gradient(ellipse 50% 30% at 6% 100%,rgba(150,70,20,.18),transparent 70%);}
+  .apt-body.bg-enl::before{background:radial-gradient(ellipse 62% 40% at 94% 0%,rgba(70,150,255,.32),transparent 64%),radial-gradient(ellipse 60% 30% at 0% 100%,rgba(20,60,140,.26),transparent 70%);}
+  .apt-body.bg-leap::before{background:radial-gradient(ellipse 62% 40% at 94% 0%,rgba(110,255,90,.24),transparent 64%),radial-gradient(ellipse 55% 30% at 4% 100%,rgba(20,110,60,.22),transparent 70%);}
+  .apt-orb{box-shadow:none;}
+
+  /* --- 스킬 탭: 초각스킬은 채용 중인 1개만, 각성기/초각성기는 위아래로 --- */
+  .skill-list .sp-card.hyper:has(.sp-it:not(.off)) .sp-it.off{display:none;}
+  .skill-list .sp-card.hyper:has(.sp-it:not(.off)) .sp-grid{grid-template-columns:1fr !important;}
+  .skill-list .sp-card.awk .sp-grid{grid-template-columns:1fr;gap:10px;}
+  .skill-list .sp-card.awk .sp-it + .sp-it{padding-top:10px;border-top:1px dashed rgba(255,255,255,.1);}
+  .skill-list .sp-card{padding:12px;}
+}
+@media (max-width:560px){
+  /* --- 아크패시브: 진화/깨달음/도약 모두 같은 6칸 · 같은 크기 · 같은 줄 높이 --- */
+  .apt-body{padding:10px 8px 12px;}
+  .apt-tree{gap:6px;}
+  .apt-row{height:116px;min-height:116px;padding:8px 6px;gap:6px;overflow:hidden;}
+  .apt-tier-badge{width:26px;height:26px;}
+  .apt-tier-num{font-size:11px;}
+  .apt-nodes,.apt-nodes.grid{height:100%;min-height:0;align-items:start;gap:4px 2px;grid-template-columns:repeat(6,minmax(0,1fr)) !important;}
+  .apt-node{width:auto;min-width:0;padding:0;gap:3px;}
+  .apt-node[style*="--col"]{grid-column:calc(var(--col) + var(--off,0)) !important;}   /* 칸 위치대로, 칸 수가 6보다 적으면 가운데 정렬 */
+  .apt-orb{width:36px;height:36px;border-width:1.5px;}
+  .apt-orb img{width:28px;height:28px;}
+  .apt-lv{font-size:9px;padding:1px 4px;letter-spacing:-.3px;}
+  .apt-nm{font-size:9.5px;line-height:1.2;letter-spacing:-.3px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;}
+  .apt-row.pad{height:116px;min-height:116px;}
+}
+/* [MOBILE-4 끝] */
