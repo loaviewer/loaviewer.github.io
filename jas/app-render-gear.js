@@ -637,7 +637,7 @@ function calcAccessoryEfficiency(eq, cs) {
   if (!polish || !polish.body) return null;
   cs = cs || accCharStats();
   var isSup = typeof checkIsSupportMode === "function" ? checkIsSupportMode(window.__fullData, window.__charClass || "") : false;
-  var critRate = Math.min(cs.critRate || 75, 100) / 100, critDmg = (cs.critDmg || 200) / 100;
+  var critRate = (cs.critRate || 75), critDmg = (cs.critDmg || 200);   // % 단위 (100% 초과 = 다중 치명타, 뭉가 시 80% 제한 + 진피 전환은 calcCritAvgMul 이 처리)
   var W = (cs.weaponAtk && cs.weaponAtk > 50000) ? cs.weaponAtk : 265000;
   var S = (cs.mainStat && cs.mainStat > 10000) ? cs.mainStat : 500000;
   var baseED = cs.extraDmg || 39.5;
@@ -679,11 +679,9 @@ function calcAccessoryEfficiency(eq, cs) {
     else if (/무기\s*공격력/.test(name)) pct = isPct ? (Math.sqrt(1 + v / 100 / 1.065) - 1) * 100 : (Math.sqrt((W + v) / W) - 1) * 100;   // 무기 공격력 +3% → 1.40%
     else if (/^공격력$/.test(name)) pct = isPct ? v / 1.107 : v / 200000 * 100;   // 기준 연마 효과 화면: 공격력 +1.55% → 1.40%, +80 → 0.04%
     else if (/치명타\s*적중/.test(name)) {
-      var crNew = Math.min(critRate + v / 100, 1);
-      pct = ((1 + crNew * (critDmg - 1)) / (1 + critRate * (critDmg - 1)) - 1) * 100;
+      pct = (calcCritAvgMul(critRate + v, critDmg) / calcCritAvgMul(critRate, critDmg) - 1) * 100;
     } else if (/치명타\s*피해/.test(name)) {
-      var cd1 = critDmg + v / 100;
-      pct = ((1 + critRate * (cd1 - 1)) / (1 + critRate * (critDmg - 1)) - 1) * 100;
+      pct = (calcCritAvgMul(critRate, critDmg + v) / calcCritAvgMul(critRate, critDmg) - 1) * 100;
     } else return;
 
     if (pct != null && pct > 0 && !isSup) prod *= 1 + pct / 100;
