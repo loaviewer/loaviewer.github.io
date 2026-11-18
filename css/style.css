@@ -2302,7 +2302,9 @@ img{display:block;max-width:100%;}
 .ap-col h4 .ap-lv{color:var(--apc);font-size:11.5px;font-weight:900;}
 .ap-col .pts{font-size:10.5px;color:var(--apc);font-weight:900;}
 /* 정보 탭 아크 패시브 박스 위쪽 큰 제목은 숨김 */
-#main .box:has(#apGrid) > .box-title{display:none !important;}
+#main .box:has(#apGrid) > .box-title,
+#main .ap-in-dash .box-title,
+.ap-in-dash .box-title{display:none !important;}
 /* [TITLE-BADGE 끝] */
 
 /* ================= [AVATAR-TILE 시작] 아바타 탭: 장비와 같은 둥근 유리 타일 ================= */
