@@ -1543,15 +1543,17 @@ img{display:block;max-width:100%;}
 #main .box:not(.profile):not(:has(#gemList)):not(:has(#cardList)) > .box-hd .box-title::before,
 #main .box:not(.profile):not(:has(#gemList)):not(:has(#cardList)) > .box-title::before{content:"";position:absolute;left:0;top:50%;width:3px;height:11px;margin-top:-5.5px;border-radius:2px;
   background:linear-gradient(180deg,#b9a2ff,#6f55d6);box-shadow:0 0 8px rgba(155,126,240,.45);}
-/* 장비/악세 행: 가는 사선 해치 + 왼쪽 윗빛 */
+/* 장비/악세 행: 해치 무늬 없이 배경과 어울리는 반투명 유리 타일 */
 #main .item-row,#main .av-row{
-  background-image:
-    linear-gradient(120deg,rgba(255,255,255,.05),transparent 38%),
-    repeating-linear-gradient(135deg,rgba(255,255,255,.028) 0 1px,transparent 1px 5px);
-  border-color:rgba(255,255,255,.08);
-  box-shadow:0 1px 0 rgba(255,255,255,.04) inset;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.022));
+  border-color:rgba(255,255,255,.075);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+  transition:background .15s,border-color .15s;
 }
-#main .eng-item{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 1px,transparent 1px 5px);}
+#main .item-row:hover,#main .av-row:hover{
+  filter:none;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.04));border-color:rgba(255,255,255,.14);
+}
+#main .eng-item{background-image:none;}
 /* [BOX-DECO 끝] */
 
 /* ================= [STAT-DECO 시작] 스텟 보드 카드 디자인 (style.css 맨 아래에 붙여넣기) ================= */
@@ -1946,20 +1948,20 @@ img{display:block;max-width:100%;}
 /* [STAT-STONE 끝] */
 
 
-/* ================= [CARBON 시작] 타일: 장비 바깥 박스 / 각인 / 아크 그리드 / 아크 패시브 만 미세 격자 ================= */
+/* ================= [GLASS 시작] 장비 바깥 박스 / 각인 / 아크 그리드 / 아크 패시브 / 보석 / 카드: 격자 없이 배경과 어울리는 유리 패널 ================= */
 #main .box.eqacc,
 #main .box:has(#engList),
 #main .box:has(#arkgCore),
-#main .box:has(#apGrid){
+#main .box:has(#apGrid),
+#main .box:has(#gemList),
+#main .box:has(#cardList){
   background:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px) 0 0/22px 22px,
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px) 0 0/22px 22px,
-    radial-gradient(120% 90% at 0% 0%,rgba(130,150,255,.08),transparent 55%),
-    linear-gradient(180deg,#171b27,#0f121b);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 4px 18px rgba(0,0,0,.3);
+    linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018)),
+    rgba(12,15,24,.78);
+  border:1px solid rgba(255,255,255,.085);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 6px 22px rgba(0,0,0,.28);
 }
-/* [CARBON 끝] */
+/* [GLASS 끝] */
 
 /* [APT-OFF 시작] 아크패시브 탭: 안 찍은 노드(비활성) + 열 배치 */
 .apt-nodes.grid{display:grid;justify-items:center;align-items:center;gap:10px 6px;height:auto;min-height:106px;}
@@ -2253,6 +2255,81 @@ img{display:block;max-width:100%;}
 .search-row .recent .recent-btn:hover,.search-row .recent .recent-btn.open{color:#fff;border-color:rgba(139,124,255,.55);background:linear-gradient(180deg,rgba(48,54,78,.75),rgba(22,26,42,.8));box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 8px 26px rgba(0,0,0,.5),0 0 18px rgba(124,108,255,.2)}
 .search-row .recent .recent-list{border:1px solid rgba(139,124,255,.35);border-radius:14px;background:linear-gradient(180deg,rgba(26,30,48,.97),rgba(12,15,26,.98));box-shadow:0 16px 40px rgba(0,0,0,.65),0 0 20px rgba(124,108,255,.12)}
 .search-row .recent .rc-tab.active{color:#b9aeff;border-bottom-color:#8b7cff}
+/* ================= [TITLE-BADGE 시작] 섹션 제목을 색 배지로 (전투 특성 / 각인 / 아크 그리드 / 악세사리 / 보석 / 카드 / 아크 패시브) ================= */
+#main .box > .box-title,
+#main .box > .box-hd .box-title,
+#main .eqacc-side .box-title,
+#main .stats-box .st-title,
+#main .ap-in-dash .box-title{
+  --t1:#6b7894;--t2:#4d586f;--tb:rgba(255,255,255,.22);
+  display:inline-flex;align-items:center;width:fit-content;
+  padding:3px 8px 2px !important;margin-bottom:7px;border-radius:6px;
+  font-size:10.5px;font-weight:900;letter-spacing:.2px;line-height:1.2;color:#fff;
+  background:var(--t2);
+  border:1px solid var(--t2);
+  box-shadow:none;text-shadow:none;
+}
+#main .box > .box-title::before,
+#main .box > .box-hd .box-title::before,
+#main .eqacc-side .box-title::before{content:none !important;display:none !important;}
+#main .box-hd{margin-bottom:0;}
+#main .box-hd .box-title{margin-bottom:10px;}
+#main .stats-head{margin-bottom:8px;}
+#main .stats-box .st-title{margin-bottom:0;}
+/* 제목별 색 */
+#main .stats-box .st-title{--t1:#22b3a8;--t2:#15857c;--tb:rgba(70,220,205,.5);}                                   /* 전투 특성: 청록 */
+#main .box:has(#engList) .box-title{--t1:#e0555f;--t2:#b23842;--tb:rgba(255,120,128,.5);}                        /* 각인: 적색 */
+#main .box:has(#arkgCore) > .box-title{--t1:#8f74f5;--t2:#6a4fd6;--tb:rgba(180,160,255,.5);}                      /* 아크 그리드: 보라 */
+#main .eqacc-side .box-title{--t1:#dba523;--t2:#b17d0e;--tb:rgba(255,214,100,.5);}                                /* 악세사리: 금색 */
+#main .box:has(#gemList) .box-title{--t1:#de5fa3;--t2:#b43a80;--tb:rgba(255,140,200,.5);}                          /* 보석: 분홍 */
+#main .box:has(#cardList) > .box-title{--t1:#2fb0d6;--t2:#1b87aa;--tb:rgba(110,220,255,.5);}                      /* 카드: 하늘 */
+#main .box:has(#apGrid) > .box-title,#main .ap-in-dash .box-title{--t1:#7a88a6;--t2:#58647e;--tb:rgba(200,210,235,.4);}   /* 아크 패시브: 슬레이트 */
+
+/* 아크 패시브 열 머리글: 진화 = 주황 / 깨달음 = 파랑 / 도약 = 연두 */
+.ap-col{--apc:#ef8a1f;--apc2:#c96a0c;--apb:rgba(255,170,80,.55);}
+.ap-col:nth-child(2){--apc:#3d8bff;--apc2:#2563d4;--apb:rgba(120,175,255,.55);}
+.ap-col:nth-child(3){--apc:#7fd24a;--apc2:#59a82a;--apb:rgba(170,235,120,.55);}
+.ap-col h4{
+  display:flex;align-items:center;gap:6px;width:auto;margin-bottom:4px;
+  font-size:11.5px;font-weight:900;line-height:1.2;color:var(--apc);
+  background:none;border:0;padding:0;box-shadow:none;
+}
+.ap-col h4 .ap-bd{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:3px 8px 2px;border-radius:6px;background:var(--apc2);color:#fff;
+  font-size:10.5px;font-weight:900;line-height:1.2;
+}
+.ap-col h4 .ap-lv{color:var(--apc);font-size:11.5px;font-weight:900;}
+.ap-col .pts{font-size:10.5px;color:var(--apc);font-weight:900;}
+/* 정보 탭 아크 패시브 박스 위쪽 큰 제목은 숨김 */
+#main .box:has(#apGrid) > .box-title{display:none !important;}
+/* [TITLE-BADGE 끝] */
+
+/* ================= [AVATAR-TILE 시작] 아바타 탭: 장비와 같은 둥근 유리 타일 ================= */
+#main #avList,#main .av-list{display:flex;flex-direction:column;gap:6px;width:100%;box-sizing:border-box;overflow-x:hidden;}
+#main .av-row{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:center;
+  width:100%;box-sizing:border-box;padding:8px 12px;border:1px solid rgba(255,255,255,.075);border-radius:10px;
+}
+#main .av-row:last-child{border-bottom:1px solid rgba(255,255,255,.075);}
+#main .av-row .av-slot{min-width:0;gap:9px;}
+#main .av-row .av-slot > div:first-child:not(.meta):not(.sp-empty){
+  width:48px !important;flex-shrink:0;font-size:11px !important;font-weight:800;color:var(--muted);
+  white-space:nowrap;line-height:1.2;
+}
+#main .av-row .av-slot .opt{font-size:11px;}
+#main .av-row .av-slot .nm{font-size:11.5px;}
+#main .av-row .av-slot img,#main .av-row .av-slot .sp-empty{width:48px !important;height:48px !important;border-radius:9px;}
+#main .av-row{padding:9px 14px;}
+#main .av-row .av-slot{min-height:48px;gap:10px;}
+/* [AVATAR-TILE 끝] */
+
+/* ================= [BOX-GAP 시작] 장비 / 보석 / 카드 / 아크 패시브 박스 사이 간격 ================= */
+#main .box:has(#gemList),
+#main .box:has(#cardList),
+#main .box:has(#apGrid){margin-top:12px;}
+/* [BOX-GAP 끝] */
+
 @media (max-width:640px){
 /* ================= [MOBILE 시작] 모바일 대응 ================= */
 html{color-scheme:dark;}   /* 가로 스크롤바 등 기본 UI 를 어둡게 (흰 막대 방지) */
