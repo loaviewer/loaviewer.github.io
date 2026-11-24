@@ -856,7 +856,28 @@
 #igwanPanel .ig-w-chip .ig-sub { justify-content: center; margin-top: 6px; }
 #igwanPanel .ig-w-chip .ig-sub-b { margin-top: 7px; }
 #igwanPanel .ig-w-chip .ig-sub-t { font-size: 11px; font-weight: 700; color: #a9b3c9; margin-top: 7px; }
-.ig-chip-new { position: absolute; top: 7px; right: 7px; height: 17px; padding: 0 6px; font-size: 9.5px; }
+.ig-chip-new { position: absolute; top: 7px; right: 7px; height: 17px; padding: 0 6px; font-size: 9.5px; z-index: 2; }
+/* 엘라4 배지: NEW와 동일 위치·강조 (진한 시안 + 흰 글자) */
+.ig-chip-ella,
+.ig-bdg-ella {
+  position: absolute !important;
+  top: 7px !important;
+  right: 7px !important;
+  z-index: 2;
+  height: 18px !important;
+  padding: 0 8px !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  line-height: 18px !important;
+  border-radius: 5px !important;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .45);
+  background: linear-gradient(135deg, #3ecfff, #0a9ad8) !important;
+  border: 1px solid rgba(120, 220, 255, .95) !important;
+  box-shadow: 0 0 12px rgba(30, 170, 240, .55), inset 0 1px 0 rgba(255, 255, 255, .25) !important;
+}
 
 /* ---- 좌/우 컬럼 아래 끝 맞춤 ---- */
 #igwanPanel .ig-weapon { flex: 1; display: flex; flex-direction: column; }
@@ -909,12 +930,40 @@
   margin-bottom: 4px; font-size: 11px; font-weight: 900; letter-spacing: .04em; color: #9aa6c2;
 }
 .ig-m-sub em { font-style: normal; font-size: 10.5px; font-weight: 700; color: #7c88a5; letter-spacing: 0; }
-.ig-m-left .ig-kv .k { font-size: 12.5px; }
-.ig-m-same { font-size: 11.5px; font-weight: 700; color: #c8d0e0; margin-right: 2px; }
-.ig-m-slots { gap: 5px; }
+.ig-m-left .ig-kv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+.ig-m-left .ig-kv .k {
+  font-size: 12.5px;
+  flex: 0 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+}
+.ig-m-left .ig-kv .v {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+.ig-m-same {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c8d0e0;
+  margin-right: 2px;
+  white-space: nowrap;
+}
+.ig-m-slots { gap: 5px; flex-wrap: nowrap !important; }
 .ig-m-slots span {
   padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 800; color: #dfe4f0;
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  white-space: nowrap;
 }
 #igwanPanel .ig-merged .ig-note {
   margin-top: 14px; padding-top: 10px;
