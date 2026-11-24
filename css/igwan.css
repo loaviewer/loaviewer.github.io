@@ -579,6 +579,113 @@
 }
 .ig-slot-title { font-size: 11.5px; letter-spacing: .02em; }
 .ig-slot-item { font-size: 11.5px; padding: 4px 0; }
+/* 이관 전 장비 추천 말풍선 — 아이콘 위쪽, 한 줄 */
+.ig-side-rel { position: relative; overflow: visible !important; }
+.ig-hone-bubble {
+  position: absolute;
+  top: -11px;
+  left: 40px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 22px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: #3d9b72;
+  border: 1px solid rgba(160, 230, 190, .55);
+  box-shadow: none;
+  cursor: pointer;
+  white-space: nowrap;
+  animation: ig-hb-float 2.6s ease-in-out infinite;
+  pointer-events: auto;
+  user-select: none;
+  font-size: 11px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+.ig-hone-bubble b {
+  font-weight: 900;
+  color: #d8ffe8 !important;
+}
+.ig-hb-detail {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .82);
+  margin-left: 1px;
+}
+.ig-hone-bubble:hover {
+  background: #48ad81;
+  border-color: rgba(180, 240, 205, .7);
+}
+.ig-hone-bubble::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  bottom: -5px;
+  border: 5px solid transparent;
+  border-top-color: #3d9b72;
+}
+.ig-hb-전설, .ig-hb-유물, .ig-hb-고대 { border-color: rgba(160, 230, 190, .55); }
+@keyframes ig-hb-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+#igwanPanel .ig-w-from.ig-side-rel { position: relative; overflow: visible !important; }
+#igwanPanel .ig-w-from .ig-hone-bubble {
+  top: -12px;
+  left: 52px;
+}
+
+/* 클릭 시 미니 툴팁 팝업 */
+.ig-hone-pop {
+  position: absolute;
+  z-index: 20;
+  min-width: 180px;
+  max-width: 240px;
+  padding: 12px 14px 12px;
+  border-radius: 12px;
+  background: linear-gradient(165deg, #1c2436, #121826);
+  border: 1px solid rgba(60, 199, 140, .45);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255,255,255,.06);
+  color: #e7ecf6;
+  animation: ig-pop-in .15s ease-out;
+}
+@keyframes ig-pop-in {
+  from { opacity: 0; transform: translateY(-90%) scale(.96); }
+  to { opacity: 1; transform: translateY(-100%) scale(1); }
+}
+.ig-hone-pop-x {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255,255,255,.08);
+  color: #c8d0e0;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  font-weight: 700;
+}
+.ig-hone-pop-x:hover { background: rgba(224, 85, 95, .35); color: #fff; }
+.ig-hone-pop-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #7dffa0;
+  margin-bottom: 6px;
+  padding-right: 20px;
+}
+.ig-hone-pop-body {
+  font-size: 12px;
+  font-weight: 600;
+  color: #c8d0e0;
+  line-height: 1.45;
+}
 
 /* ---- 각인 ---- */
 .ig-eng-item {
