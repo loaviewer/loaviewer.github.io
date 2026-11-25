@@ -116,12 +116,13 @@
 
 .ig-text { min-width: 0; flex: 1; }
 .ig-name {
-  font-size: 12.5px; font-weight: 700; color: #e7ecf6;
+  font-size: 13px; font-weight: 800; color: #e7ecf6;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  line-height: 1.25;
 }
 .ig-sub {
-  font-size: 11px; color: var(--muted, #7c88a5); margin-top: 2px;
-  display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
+  font-size: 10.5px; color: var(--muted, #7c88a5); margin-top: 5px;
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
 }
 .ig-lv {
   font-size: 11px; font-weight: 800;
@@ -353,8 +354,12 @@
 
 /* 스톤 옵션 줄 */
 .ig-stone-opts {
-  display: flex; flex-wrap: wrap; gap: 4px;
-  margin-top: 3px;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin-top: 5px;
 }
 .ig-stone-opt {
   font-size: 10.5px; font-weight: 700;
@@ -441,8 +446,8 @@
 /* ---- 심볼(뱃지): [4연마] [1795] ---- */
 .ig-bdg {
   display: inline-flex; align-items: center; justify-content: center;
-  height: 20px; padding: 0 8px; border-radius: 6px;
-  font-size: 11px; font-weight: 900; letter-spacing: -0.01em;
+  height: 17px; padding: 0 6px; border-radius: 5px;
+  font-size: 10px; font-weight: 800; letter-spacing: -0.01em;
   line-height: 1; white-space: nowrap; flex-shrink: 0;
   margin-right: 0;
 }
@@ -461,7 +466,7 @@
   font-variant-numeric: tabular-nums;
 }
 .ig-bdg-grade {
-  height: 18px; padding: 0 7px; font-size: 10.5px;
+  height: 16px; padding: 0 6px; font-size: 9.5px;
   color: var(--gc);
   background: var(--gcb);
   border: 1px solid transparent;
@@ -1111,7 +1116,8 @@
 
 /* 슬롯 단계 뱃지 + 이름 줄 */
 .ig-name-row { display: flex; align-items: center; gap: 6px; white-space: nowrap; overflow: visible; }
-#igwanPanel .ig-after-item .ig-name { font-size: 13px; color: #e7ecf6; }
+#igwanPanel .ig-after-item .ig-name { font-size: 13.5px; color: #e7ecf6; font-weight: 800; }
+#igwanPanel .ig-after-item .ig-sub { margin-top: 5px; }
 .ig-bdg-slot {
   height: 18px; padding: 0 7px; font-size: 10.5px; font-weight: 800;
   color: #bcd4ff; background: rgba(91,156,245,.16);
