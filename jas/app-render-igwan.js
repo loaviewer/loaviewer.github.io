@@ -1,1 +1,1518 @@
-(function(_0x4b40a8,_0x4df3a1){var _0x2b4343=_0x4897,_0x184570=_0x4b40a8();while(!![]){try{var _0x5e217a=-parseInt(_0x2b4343(0x107))/0x1+-parseInt(_0x2b4343(0x137))/0x2+parseInt(_0x2b4343(0x1a8))/0x3*(-parseInt(_0x2b4343(0x1a2))/0x4)+-parseInt(_0x2b4343(0x150))/0x5+-parseInt(_0x2b4343(0x101))/0x6*(-parseInt(_0x2b4343(0x247))/0x7)+parseInt(_0x2b4343(0x259))/0x8+parseInt(_0x2b4343(0x15d))/0x9*(parseInt(_0x2b4343(0x117))/0xa);if(_0x5e217a===_0x4df3a1)break;else _0x184570['push'](_0x184570['shift']());}catch(_0x55693c){_0x184570['push'](_0x184570['shift']());}}}(_0x1a03,0x37c01),function(_0x24a104){"use strict";var _0x1ced14=_0x4897;var _0xcd7c41={'necklace':'https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_218.png','earring':_0x1ced14(0x244),'ring':_0x1ced14(0x148),'braceletAncient':_0x1ced14(0x207),'braceletRelic':_0x1ced14(0x156),'braceletLegend':_0x1ced14(0x274),'scroll':_0x1ced14(0x227),'waistband':_0x1ced14(0x218),'sacred':_0x1ced14(0x293),'seal':'img/seal.webp'},_0x3e2016={'투구':{'acc':_0x1ced14(0x26d),'icon':_0xcd7c41[_0x1ced14(0x210)]},'어깨':{'acc':_0x1ced14(0x193),'icon':_0xcd7c41[_0x1ced14(0x1e6)]},'상의':{'acc':_0x1ced14(0x193),'icon':_0xcd7c41[_0x1ced14(0x1e6)]},'하의':{'acc':'반지','icon':_0xcd7c41[_0x1ced14(0x26c)]},'장갑':{'acc':'반지','icon':_0xcd7c41['ring']}},_0x2e2ec5=[{'min':0x703,'max':0x708,'after':0x717,'grade':'고대','yeonma':0x3,'delta':0xf},{'min':0x6fe,'max':0x703,'after':0x712,'grade':'고대','yeonma':0x2,'delta':0xf},{'min':0x6f9,'max':0x6fe,'after':0x708,'grade':'고대','yeonma':0x0,'delta':0xa},{'min':0x6f4,'max':0x6f9,'after':0x703,'grade':'유물','yeonma':0x4,'delta':0xa},{'min':0x6ef,'max':0x6f4,'after':0x6fe,'grade':'유물','yeonma':0x3,'delta':0xa},{'min':0x6ea,'max':0x6ef,'after':0x6f9,'grade':'유물','yeonma':0x2,'delta':0xa},{'min':0x6e5,'max':0x6ea,'after':0x6ea,'grade':'전설','yeonma':0x4,'delta':0x0},{'min':0x6e0,'max':0x6e5,'after':0x6e5,'grade':'전설','yeonma':0x3,'delta':0x0},{'min':0x6db,'max':0x6e0,'after':0x6e0,'grade':'전설','yeonma':0x2,'delta':0x0},{'min':0x6d6,'max':0x6db,'after':0x6db,'grade':'전설','yeonma':0x1,'delta':0x0},{'min':0x6d1,'max':0x6d6,'after':0x6d6,'grade':'전설','yeonma':0x0,'delta':0x0},{'min':0x6cc,'max':0x6d1,'after':0x6d1,'grade':'영웅','yeonma':0x4,'delta':0x0},{'min':0x6c7,'max':0x6cc,'after':0x6cc,'grade':'영웅','yeonma':0x3,'delta':0x0},{'min':0x6c2,'max':0x6c7,'after':0x6c7,'grade':'영웅','yeonma':0x2,'delta':0x0},{'min':0x6bd,'max':0x6c2,'after':0x6c2,'grade':'영웅','yeonma':0x1,'delta':0x0},{'min':0x6b8,'max':0x6bd,'after':0x6bd,'grade':'영웅','yeonma':0x0,'delta':0x0},{'min':0x6b3,'max':0x6b8,'after':0x6b8,'grade':'희귀','yeonma':0x4,'delta':0x0},{'min':0x6ae,'max':0x6b3,'after':0x6b3,'grade':'희귀','yeonma':0x3,'delta':0x0},{'min':0x6a9,'max':0x6ae,'after':0x6ae,'grade':'희귀','yeonma':0x2,'delta':0x0},{'min':0x6a4,'max':0x6a9,'after':0x6a9,'grade':'희귀','yeonma':0x1,'delta':0x0},{'min':0x69f,'max':0x6a4,'after':0x6a4,'grade':'희귀','yeonma':0x0,'delta':0x0},{'min':0x69a,'max':0x69f,'after':0x69f,'grade':'고급','yeonma':0x4,'delta':0x0},{'min':0x695,'max':0x69a,'after':0x69a,'grade':'고급','yeonma':0x3,'delta':0x0},{'min':0x690,'max':0x695,'after':0x695,'grade':'고급','yeonma':0x2,'delta':0x0},{'min':0x68b,'max':0x690,'after':0x690,'grade':'고급','yeonma':0x1,'delta':0x0},{'min':0x640,'max':0x68b,'after':0x68b,'grade':'고급','yeonma':0x0,'delta':0x0}],_0x23e7de=['투구','어깨','상의','하의','장갑'],_0x401179=[_0x1ced14(0x26d),_0x1ced14(0x193),_0x1ced14(0x193),'반지','반지','어빌리티\x20스톤','팔찌'],_0x2ffda2={'고대':_0x1ced14(0x1a6),'유물':'#FA5D00','전설':_0x1ced14(0x129),'영웅':_0x1ced14(0x11d),'희귀':_0x1ced14(0x27f),'고급':_0x1ced14(0x284)};function _0x41e3a1(_0x48250a){var _0x13254a=_0x1ced14;(_0x48250a||[])[_0x13254a(0x103)](function(_0x14fc38){var _0x4c11ff=_0x13254a;try{if(!_0x14fc38||!_0x14fc38['Grade']||!_0x14fc38[_0x4c11ff(0x19f)]||!_0x2ffda2[_0x14fc38[_0x4c11ff(0x197)]])return;var _0x465032=typeof _0x14fc38[_0x4c11ff(0x19f)]===_0x4c11ff(0x12d)?_0x14fc38['Tooltip']:JSON[_0x4c11ff(0x1bd)](_0x14fc38[_0x4c11ff(0x19f)]),_0x389928=/Element_000[\s\S]{0,500}?COLOR\s*=\s*\\?['"]?(#[0-9A-Fa-f]{6})/i[_0x4c11ff(0x27d)](_0x465032);if(_0x389928)_0x2ffda2[_0x14fc38[_0x4c11ff(0x197)]]=_0x389928[0x1][_0x4c11ff(0x102)]();}catch(_0x4afad5){}});}function _0x5c04ea(_0x2f56df,_0x3d9c54){var _0x4bc077=_0x1ced14,_0x307a3a=parseInt(String(_0x2f56df)['replace']('#',''),0x10),_0x31258f=Math[_0x4bc077(0x175)]((_0x307a3a>>0x10&0xff)*_0x3d9c54),_0x34b60a=Math['round']((_0x307a3a>>0x8&0xff)*_0x3d9c54),_0x5a2ce6=Math[_0x4bc077(0x175)]((_0x307a3a&0xff)*_0x3d9c54);return'#'+[_0x31258f,_0x34b60a,_0x5a2ce6][_0x4bc077(0x214)](function(_0x305fd1){var _0x4039c8=_0x4bc077;return('0'+Math['max'](0x0,Math[_0x4039c8(0x25e)](0xff,_0x305fd1))['toString'](0x10))[_0x4039c8(0x1c4)](-0x2);})[_0x4bc077(0x179)]('');}function _0x439a23(_0x50c29c){var _0x5792ca=_0x1ced14;return String(_0x50c29c==null?'':_0x50c29c)[_0x5792ca(0x19e)](/&/g,_0x5792ca(0x20e))[_0x5792ca(0x19e)](/</g,_0x5792ca(0x26f))[_0x5792ca(0x19e)](/>/g,_0x5792ca(0x219))[_0x5792ca(0x19e)](/"/g,_0x5792ca(0x172));}function _0x43ba8b(_0x25ef62){var _0x823875=_0x1ced14;return _0x2ffda2[_0x25ef62]||_0x823875(0x25f);}var _0xb1d6ac={'유물':_0x1ced14(0x1ce),'전설':_0x1ced14(0x1fa),'영웅':_0x1ced14(0x17d),'희귀':_0x1ced14(0x1dc),'고급':_0x1ced14(0x260)};function _0x1a7b99(_0x4508d4){var _0x35f58b=_0x1ced14;if(_0xb1d6ac[_0x4508d4])return _0xb1d6ac[_0x4508d4];var _0x29b8ff=_0x2ffda2[_0x4508d4];if(!_0x29b8ff)return _0x35f58b(0x233);return'linear-gradient(135deg,'+_0x5c04ea(_0x29b8ff,0.28)+','+_0x5c04ea(_0x29b8ff,0.92)+')';}var _0x3bad20=0x12,_0x33cb52=0xb,_0x179a2a=0x1,_0x16f52a=_0x1ced14(0x246)+_0x1ced14(0x1fd)+_0x3bad20+'px)!important;min-height:0!important;padding:'+_0x179a2a+_0x1ced14(0x14f)+_0x1ced14(0x1a5)+_0x33cb52+_0x1ced14(0x1db)+'border-width:1px!important;border-style:solid!important;border-radius:5px!important;white-space:nowrap;vertical-align:middle;';function _0x1c923a(_0x528ca6){var _0x19fd2f=_0x1ced14;return _0x16f52a+'color:'+_0x528ca6+_0x19fd2f(0x155)+_0x528ca6+'!important;background:'+_0x528ca6+_0x19fd2f(0x106);}function _0x4282dc(_0x1f4dde,_0x5483fb,_0x3db177){var _0x441bb2=_0x1ced14,_0x466cff=_0x3db177||_0x43ba8b(_0x5483fb);return _0x441bb2(0x20f)+_0x1c923a(_0x466cff)+'\x22>'+_0x1f4dde+'연마</span>';}function _0x5b9a8a(_0x2d72da,_0x2a9909,_0x10cfee){var _0x4d280c=_0x1ced14,_0x9335d3=_0x10cfee||_0x43ba8b(_0x2a9909);return _0x4d280c(0x14d)+_0x1c923a(_0x9335d3)+'\x22>'+_0x2d72da+_0x4d280c(0x20b);}function _0x3650d2(_0x47d3b2,_0x250588){var _0x44fbbf=_0x1ced14,_0x146170=_0x250588||_0x43ba8b(_0x47d3b2);return _0x44fbbf(0x22d)+_0x1c923a(_0x146170)+'\x22>'+_0x439a23(_0x47d3b2)+_0x44fbbf(0x20b);}function _0x4bf315(_0x7f27de){var _0x178e1e=_0x1ced14;return _0x178e1e(0x114)+_0x16f52a+'\x22>'+_0x439a23(_0x7f27de)+_0x178e1e(0x20b);}function _0x177b8d(_0x367f31,_0x17eef3){var _0x220d3e=_0x1ced14;return _0x4282dc(_0x367f31['yeonma'],_0x367f31[_0x220d3e(0x211)],_0x17eef3)+_0x5b9a8a(_0x367f31[_0x220d3e(0x199)],_0x367f31[_0x220d3e(0x211)],_0x17eef3);}function _0xce7174(_0x2d2d2a){var _0xbac609=_0x1ced14;if(_0x2d2d2a==='고대')return _0xbac609(0x21e);if(_0x2d2d2a==='유물')return'relic';if(_0x2d2d2a==='전설')return _0xbac609(0x111);if(_0x2d2d2a==='영웅')return _0xbac609(0x18e);return'';}function _0x3c8469(_0x5116ed){var _0x548d3e=_0x1ced14;if(!_0x5116ed)return 0x0;var _0x4682c9=_0x5116ed[_0x548d3e(0x19f)]||'',_0x4aa64c=/아이템\s*레벨\s*([0-9]+(?:\.[0-9]+)?)/['exec'](_0x4682c9);if(_0x4aa64c)return parseFloat(_0x4aa64c[0x1]);if(_0x5116ed[_0x548d3e(0x235)]!=null)return Number(_0x5116ed[_0x548d3e(0x235)])||0x0;return 0x0;}function _0x3081cd(_0x5b393e){var _0x1766aa=_0x1ced14;return Math[_0x1766aa(0x17b)](_0x3c8469(_0x5b393e));}function _0x57869f(_0x2d7041){var _0x38a0ff=_0x1ced14,_0x36ad0c=String(_0x2d7041&&_0x2d7041[_0x38a0ff(0x262)]||'')['replace'](/<[^>]+>/g,''),_0x5857ef=/\+(\d+)/[_0x38a0ff(0x27d)](_0x36ad0c);return _0x5857ef?parseInt(_0x5857ef[0x1],0xa):0x0;}function _0x53fb8f(_0x186016,_0x47ef66){var _0x3d0110=_0x1ced14;_0x186016=_0x186016|0x0;if(_0x186016>=0x12&&_0x186016<0x14)return{'goal':0x14,'reason':'+20(1775)부터\x20이관\x20보정\x20+10.\x20보정\x20구간\x20진입\x20추천'};if(_0x186016===0x16)return{'goal':0x17,'reason':_0x3d0110(0x229)};if(_0x186016===0x18)return{'goal':0x19,'reason':_0x3d0110(0x202)};if(!_0x47ef66&&_0x186016===0x15)return{'goal':0x17,'reason':'+23(1790)→이관\x201800.\x20방어구는\x20비용\x20부담이\x20상대적으로\x20적어\x20+23\x20추천'};if(_0x47ef66&&_0x186016>=0xf&&_0x186016<0x12)return{'goal':0x14,'reason':_0x3d0110(0x161)};return null;}function _0x539e58(_0x3701a9){return 0x68b+(_0x3701a9|0x0)*0x5;}function _0x56e38d(_0x1c0a69,_0x2d0e68,_0x53af8c){var _0x5384a5=_0x1ced14,_0x35ee1a=_0x53fb8f(_0x1c0a69,_0x2d0e68);if(!_0x35ee1a)return'';var _0x242258=_0x53af8c||'h'+_0x1c0a69+(_0x2d0e68?'w':'a'),_0x58be2c=_0xf6187c(_0x539e58(_0x35ee1a[_0x5384a5(0x196)])),_0x1c86f9=_0x58be2c[_0x5384a5(0x211)]||'유물',_0x1a500e=_0x43ba8b(_0x1c86f9);return'<div\x20class=\x22ig-hone-bubble\x20ig-hb-'+_0x439a23(_0x1c86f9)+_0x5384a5(0x135)+_0x439a23(_0x242258)+'\x22\x20data-reason=\x22'+_0x439a23(_0x35ee1a[_0x5384a5(0x14a)])+_0x5384a5(0x166)+_0x35ee1a[_0x5384a5(0x196)]+_0x5384a5(0x271)+_0x439a23(_0x1c86f9)+'\x22>'+_0x5384a5(0x194)+_0x35ee1a['goal']+'강</b>\x20<span\x20class=\x22ig-hb-detail\x22>자세히</span>'+_0x5384a5(0x1a0);}function _0x246b83(_0xdb2473){var _0x4cfb20=_0x1ced14;if(!_0xdb2473)return;var _0x57b128=_0xdb2473[_0x4cfb20(0x1d6)](_0x4cfb20(0x24b))||_0xdb2473,_0x2bec4b=_0x57b128[_0x4cfb20(0x1d6)]('.ig-hone-pop');if(_0x2bec4b)_0x2bec4b[_0x4cfb20(0x23a)]();_0x57b128[_0x4cfb20(0x1d2)](_0x4cfb20(0x192))[_0x4cfb20(0x103)](function(_0x1ca642){var _0x26e4a0=_0x4cfb20;if(_0x1ca642[_0x26e4a0(0x290)])return;_0x1ca642[_0x26e4a0(0x290)]=!![],_0x1ca642[_0x26e4a0(0x1b4)](_0x26e4a0(0x1fb),function(_0x5297e8){var _0x1568ec=_0x26e4a0;_0x5297e8['preventDefault'](),_0x5297e8[_0x1568ec(0x162)]();var _0x9bb0e6=_0x57b128[_0x1568ec(0x1d6)](_0x1568ec(0x108));if(_0x9bb0e6)_0x9bb0e6['remove']();var _0x549528=_0x1ca642[_0x1568ec(0xfc)]('data-reason')||'',_0x35f972=_0x1ca642[_0x1568ec(0xfc)](_0x1568ec(0x1ef))||'',_0xbe11fb=document['createElement'](_0x1568ec(0x121));_0xbe11fb[_0x1568ec(0x243)]=_0x1568ec(0x16f),_0xbe11fb[_0x1568ec(0x1ae)]=_0x1568ec(0x1a1)+'<div\x20class=\x22ig-hone-pop-title\x22>추천\x20+'+_0x35f972+_0x1568ec(0x191)+'<div\x20class=\x22ig-hone-pop-body\x22>'+_0x549528+_0x1568ec(0x1a0);var _0x2159fd=_0x1ca642['getBoundingClientRect'](),_0x54e898=_0x1ca642[_0x1568ec(0x13e)]('.ig-side-rel')||_0x1ca642[_0x1568ec(0x1e8)];if(_0x54e898&&_0x54e898[_0x1568ec(0x188)])_0x54e898[_0x1568ec(0x188)][_0x1568ec(0x280)]=_0x54e898[_0x1568ec(0x188)][_0x1568ec(0x280)]||'relative';_0x54e898[_0x1568ec(0x198)](_0xbe11fb),_0xbe11fb[_0x1568ec(0x188)][_0x1568ec(0x21b)]='0',_0xbe11fb[_0x1568ec(0x188)]['right']='0',_0xbe11fb[_0x1568ec(0x188)][_0x1568ec(0x255)]=_0x1568ec(0x24f),_0xbe11fb['querySelector']('.ig-hone-pop-x')[_0x1568ec(0x1b4)](_0x1568ec(0x1fb),function(_0x528617){var _0x2f32c0=_0x1568ec;_0x528617[_0x2f32c0(0x1d8)](),_0x528617[_0x2f32c0(0x162)](),_0xbe11fb[_0x2f32c0(0x23a)](),_0x1ca642[_0x2f32c0(0x188)][_0x2f32c0(0x223)]=_0x2f32c0(0x28d);});});});}function _0x3be396(_0x2bb182){var _0x3e7ace=_0x1ced14;if(!_0x2bb182)return![];var _0x5bc491=String(_0x2bb182&&_0x2bb182[_0x3e7ace(0x262)]||'')[_0x3e7ace(0x19e)](/<[^>]+>/g,'');if(/에스더/['test'](_0x5bc491))return!![];var _0x5dca5e=String(_0x2bb182[_0x3e7ace(0x19f)]||'');if(/에스더/[_0x3e7ace(0x1f9)](_0x5dca5e))return!![];return![];}function _0x4ed258(_0x5566dd,_0x1792ff){var _0x1b096f=_0x1ced14;if(_0x1792ff)return 0x19;var _0x36ab0a=_0x57869f(_0x5566dd),_0x2db8e7=0x0;try{var _0x211697=_0x5566dd&&_0x5566dd[_0x1b096f(0x19f)]||'',_0x20ac53=/아이템\s*레벨\s*([0-9]+(?:\.[0-9]+)?)/[_0x1b096f(0x27d)](_0x211697);if(_0x20ac53)_0x2db8e7=Math[_0x1b096f(0x17b)](parseFloat(_0x20ac53[0x1]));else{if(_0x5566dd&&_0x5566dd[_0x1b096f(0x235)])_0x2db8e7=Math[_0x1b096f(0x17b)](Number(_0x5566dd[_0x1b096f(0x235)])||0x0);}}catch(_0x4206e2){}if(_0x3be396(_0x5566dd)&&(_0x2db8e7>=0x708||_0x36ab0a>=0x9))return 0x19;return Math[_0x1b096f(0x253)](0x0,_0x36ab0a);}function _0x2a8eeb(_0x35877b){var _0x436a23=_0x1ced14;if(typeof tipQuality==='function'&&_0x35877b&&_0x35877b[_0x436a23(0x19f)])try{var _0x48342c=typeof parseTip===_0x436a23(0xf8)?parseTip(_0x35877b[_0x436a23(0x19f)]):null;if(_0x48342c){var _0x151485=tipQuality(_0x48342c);if(_0x151485!=null&&!isNaN(_0x151485))return _0x151485|0x0;}}catch(_0x6459a3){}var _0x48342c=_0x35877b&&_0x35877b[_0x436a23(0x19f)]||'',_0xe5431c=/품질\s*([0-9]+)/[_0x436a23(0x27d)](_0x48342c);if(_0xe5431c)return parseInt(_0xe5431c[0x1],0xa);_0xe5431c=/"qualityValue"\s*:\s*([0-9]+)/i['exec'](_0x48342c);if(_0xe5431c)return parseInt(_0xe5431c[0x1],0xa);return 0x0;}function _0x17352b(_0x4775b){var _0x17f7a6=_0x1ced14;return String(_0x4775b&&_0x4775b['Name']||'')[_0x17f7a6(0x19e)](/<[^>]+>/g,'')[_0x17f7a6(0x292)]();}function _0x1a7657(_0xb6ec29,_0x7c408d){var _0x2628e8=_0x1ced14,_0x2db70c=_0x17352b(_0xb6ec29);if(!_0x2db70c)return _0x7c408d||'';if(_0x2db70c[_0x2628e8(0x1ff)]>0x10)_0x2db70c=_0x2db70c[_0x2628e8(0x1c4)](0x0,0xf)+'…';return _0x2db70c;}function _0x5c1b8b(_0x24d280,_0x5a891c){var _0x32647a=_0x57869f(_0x24d280),_0x3241de=_0x5a891c||_0xce314e(_0x24d280&&_0x24d280['Type']||'')||'';if(_0x32647a)return'+'+_0x32647a+'\x20'+_0x3241de;return _0x3241de||_0x1a7657(_0x24d280,_0x3241de);}function _0xce314e(_0xf3de53){return _0xf3de53==='어깨'?'견갑':_0xf3de53||'';}function _0x235853(_0x251e00){var _0x1d9748=_0x1ced14;if(_0x251e00==='어빌리티\x20스톤')return'스톤';if(_0x251e00===_0x1d9748(0x26d))return _0x1d9748(0x26d);if(_0x251e00===_0x1d9748(0x193))return _0x1d9748(0x193);if(_0x251e00==='반지')return'반지';if(_0x251e00==='팔찌')return'팔찌';return _0x251e00||'';}function _0x3c3efa(_0x14919e){var _0x3064e9=_0x1ced14;if(!_0x14919e)return'';var _0x53d0f8=_0x14919e[_0x3064e9(0x197)]||'고대',_0x156f8f=[_0x3650d2(_0x53d0f8)];try{if(typeof parseTip==='function'&&typeof parseStoneEngraves==='function'){var _0x2941dc=parseTip(_0x14919e[_0x3064e9(0x19f)]||''),_0x2bc39f=parseStoneEngraves(_0x2941dc)[_0x3064e9(0x18c)](function(_0x1e3459){return!_0x1e3459['bonus'];});_0x2bc39f[_0x3064e9(0x103)](function(_0x248d6a){var _0x19b52a=_0x3064e9,_0x308c48=_0x248d6a[_0x19b52a(0x1a4)]||_0x248d6a['Name']||'',_0x592f97=_0x248d6a['lv']!=null?_0x248d6a['lv']:_0x248d6a[_0x19b52a(0x1b5)]!=null?_0x248d6a[_0x19b52a(0x1b5)]:_0x248d6a['Level']!=null?_0x248d6a['Level']:_0x248d6a[_0x19b52a(0x1c0)];if(_0x308c48)_0x156f8f[_0x19b52a(0x1ca)](_0x19b52a(0x19b)+_0x439a23(_0x308c48)+'\x20'+_0x439a23(_0x592f97)+_0x19b52a(0x257));});}}catch(_0x201792){}return _0x156f8f[_0x3064e9(0x179)]('\x20');}function _0xf6187c(_0x472212,_0x147891){var _0x1c4baa=_0x1ced14;if(_0x147891){if(_0x472212>0x721)return{'min':0x721,'max':0x72b,'after':0x749,'grade':'고대','yeonma':0x5,'delta':0x23};if(_0x472212>0x708)return{'min':0x708,'max':0x721,'after':0x730,'grade':'고대','yeonma':0x0,'delta':0x28};}for(var _0x50885e=0x0;_0x50885e<_0x2e2ec5[_0x1c4baa(0x1ff)];_0x50885e++){var _0x3ab2d0=_0x2e2ec5[_0x50885e];if(_0x472212>_0x3ab2d0[_0x1c4baa(0x25e)]&&_0x472212<=_0x3ab2d0[_0x1c4baa(0x253)])return _0x3ab2d0;}if(_0x472212>0x708)return _0x2e2ec5[0x0];return _0x2e2ec5[_0x2e2ec5[_0x1c4baa(0x1ff)]-0x1];}function _0x295234(_0x1d8f76){var _0x2c21c5=_0x1ced14;_0x1d8f76=Math[_0x2c21c5(0x253)](0x0,Math[_0x2c21c5(0x25e)](0x64,_0x1d8f76|0x0));var _0x3cf0b9=_0x1d8f76>=0x64?0x64:Math[_0x2c21c5(0x253)](0x8,_0x1d8f76),_0x5df39a=_0x1d8f76>=0x64?_0x2c21c5(0x18f):_0x2c21c5(0x180);return _0x2c21c5(0x237)+_0x3cf0b9+_0x2c21c5(0x104)+_0x5df39a+_0x2c21c5(0x285)+_0x1d8f76+_0x2c21c5(0x240);}function _0xe1478(_0x42074c,_0x10c12e,_0x19007b,_0x20f0cf,_0x4f081c){var _0x3dc83d=_0x1ced14;_0x20f0cf=_0x20f0cf||'md',_0x4f081c=_0x4f081c||{};var _0x37c571=_0x4f081c[_0x3dc83d(0x231)]||_0x43ba8b(_0x10c12e),_0x4f0f82=_0x4f081c['bg']||_0x1a7b99(_0x10c12e),_0x15f5ad=_0x3dc83d(0x1be)+_0x20f0cf+(_0x10c12e?_0x3dc83d(0x14e)+_0xce7174(_0x10c12e):''),_0x2bf2ca='border:1px\x20solid\x20'+_0x37c571+_0x3dc83d(0x176)+_0x37c571+_0x3dc83d(0x151)+(_0x4f0f82||_0x3dc83d(0x1ec))+';';if(_0x42074c)return _0x3dc83d(0x168)+_0x15f5ad+_0x3dc83d(0x1c9)+_0x2bf2ca+'\x22><img\x20src=\x22'+_0x439a23(_0x42074c)+'\x22\x20alt=\x22\x22\x20loading=\x22lazy\x22\x20onerror=\x22this.style.display=\x27none\x27\x22></div>';return _0x3dc83d(0x168)+_0x15f5ad+_0x3dc83d(0x1c9)+_0x2bf2ca+_0x3dc83d(0x136)+_0x37c571+'\x22>'+_0x439a23(_0x19007b||'')+'</span></div>';}function _0x382a16(_0x32ca20){var _0x581971=_0x1ced14,_0x469a45=_0x32ca20?0x1a:0x12;return'<span\x20class=\x22ig-arrow\x22><svg\x20width=\x22'+_0x469a45+_0x581971(0x154)+_0x469a45+_0x581971(0x24e);}function _0x3b6fda(_0x3ae8c6){var _0x1f3568=_0x1ced14;return _0x1f3568(0x1cc)+(_0x3ae8c6?_0x1f3568(0x296):'')+_0x1f3568(0x164)+_0x1f3568(0x279)+_0x382a16()+_0x1f3568(0x228);}function _0x3b756c(_0x28b262,_0x7938b4,_0x5d784c){var _0x2add6a=_0x1ced14;_0x5d784c=_0x5d784c||0x0;var _0x3d6f84=0x0;for(var _0x1c0d82=0x0;_0x1c0d82<_0x28b262[_0x2add6a(0x1ff)];_0x1c0d82++){if(_0x28b262[_0x1c0d82][_0x2add6a(0x241)]===_0x7938b4){if(_0x3d6f84===_0x5d784c)return _0x28b262[_0x1c0d82];_0x3d6f84++;}}return null;}var _0x1f9a51={'목걸이':[[/추가\s*피해/,0x1],[/적에게\s*주는\s*피해/,0x1],[/공격력\s*\+/,0x3],[/무기\s*공격력\s*\+/,0x3]],'귀걸이':[[/공격력\s*%/,0x1],[/무기\s*공격력\s*%/,0x1],[/공격력\s*\+/,0x3],[/무기\s*공격력\s*\+/,0x3]],'반지':[[/치명타\s*적중/,0x1],[/치명타\s*피해/,0x1],[/공격력\s*\+/,0x3],[/무기\s*공격력\s*\+/,0x3]]},_0x2cac0b={'목걸이':[[/낙인력/,0x1],[/세레나데/,0x1],[/신앙/,0x1],[/조화\s*게이지/,0x1],[/무기\s*공격력\s*\+/,0x3],[/최대\s*생명력\s*\+/,0x3]],'귀걸이':[[/무기\s*공격력\s*%/,0x1],[/무기\s*공격력\s*\+/,0x1],[/최대\s*생명력\s*\+/,0x3],[/보호막/,0x3],[/회복\s*효과/,0x3]],'반지':[[/아군\s*공격력\s*강화/,0x1],[/아군\s*피해량\s*강화/,0x1],[/무기\s*공격력\s*\+/,0x3],[/최대\s*생명력\s*\+/,0x3]]};function _0x54f93e(_0x116797){var _0x436a03=_0x1ced14;try{var _0x476322=_0x116797&&_0x116797[_0x436a03(0x17e)]&&_0x116797[_0x436a03(0x17e)][_0x436a03(0x1d5)]||'';return/바드|도화가|홀리나이트|기상술사/[_0x436a03(0x1f9)](_0x476322);}catch(_0x23158f){return![];}}function _0x37c6b6(_0xefc937){var _0x45f26e=_0x1ced14,_0x459d12=[];if(!_0xefc937||!_0xefc937[_0x45f26e(0x19f)])return _0x459d12;try{var _0x4d17b6=typeof parseTip==='function'?parseTip(_0xefc937[_0x45f26e(0x19f)]):null;if(!_0x4d17b6)try{_0x4d17b6=JSON[_0x45f26e(0x1f8)](_0xefc937['Tooltip']);}catch(_0x5c203b){_0x4d17b6=null;}if(!_0x4d17b6)return _0x459d12;var _0x25f169='';if(typeof tipParts===_0x45f26e(0xf8)){var _0x555dd7=tipParts(_0x4d17b6),_0x341fbc=_0x555dd7[_0x45f26e(0x1c1)](function(_0x28df23){var _0x11852d=_0x45f26e;return/연마|추가 효과/[_0x11852d(0x1f9)](_0x28df23[_0x11852d(0x143)]||'');});if(_0x341fbc&&_0x341fbc[_0x45f26e(0x267)])_0x25f169=_0x341fbc[_0x45f26e(0x267)];}if(!_0x25f169)_0x25f169=typeof _0xefc937['Tooltip']===_0x45f26e(0x12d)?_0xefc937[_0x45f26e(0x19f)]:JSON[_0x45f26e(0x1bd)](_0x4d17b6);_0x25f169['split'](/<br\s*\/?>/i)[_0x45f26e(0x103)](function(_0x5972b){var _0x9477ac=_0x45f26e,_0x1b0583=String(_0x5972b||'')[_0x9477ac(0x19e)](/<[^>]+>/g,'\x20')[_0x9477ac(0x19e)](/\s+/g,'\x20')[_0x9477ac(0x292)]();if(!_0x1b0583||_0x1b0583[_0x9477ac(0x1ff)]<0x2)return;var _0x30a697=null,_0x5cad14=_0x1b0583,_0x483715=_0x1b0583['match'](/^(.+?)\s*\+\s*([0-9.]+)\s*(%?)/);_0x483715&&typeof gradeFromOptValue===_0x9477ac(0xf8)&&(_0x30a697=gradeFromOptValue(_0x483715[0x1][_0x9477ac(0x292)](),parseFloat(_0x483715[0x2])),_0x5cad14=_0x483715[0x1][_0x9477ac(0x292)]()+(_0x483715[0x3]==='%'?'\x20%':'\x20+'));if(!_0x30a697&&typeof tierFromColor===_0x9477ac(0xf8)){var _0x36c96f=tierFromColor(_0x5972b);_0x30a697=_0x36c96f===_0x9477ac(0x1ab)?'상':_0x36c96f===_0x9477ac(0x213)?'중':_0x36c96f==='ha'?'하':null;}if(!_0x30a697){if(/#?FE9600/i[_0x9477ac(0x1f9)](_0x5972b))_0x30a697='상';else{if(/#?A235FF/i[_0x9477ac(0x1f9)](_0x5972b))_0x30a697='중';else{if(/#?00B5FF/i[_0x9477ac(0x1f9)](_0x5972b))_0x30a697='하';}}}if(!_0x30a697)return;if(_0x483715)_0x5cad14=_0x483715[0x1][_0x9477ac(0x292)]()+(_0x483715[0x3]==='%'?'%':'+');_0x459d12['push']({'name':_0x5cad14,'badge':_0x30a697,'raw':_0x1b0583});});}catch(_0x48906b){}return _0x459d12;}function _0x257428(_0x292781,_0x20802e,_0x5d586b){var _0x357f3a=_0x1ced14,_0x52bde3=_0x5d586b?_0x2cac0b[_0x20802e]:_0x1f9a51[_0x20802e];if(!_0x52bde3)return!![];var _0x1fa4cf=String(_0x292781||'');for(var _0x6a73bb=0x0;_0x6a73bb<_0x52bde3[_0x357f3a(0x1ff)];_0x6a73bb++){if(_0x52bde3[_0x6a73bb][0x0][_0x357f3a(0x1f9)](_0x1fa4cf))return!![];}var _0x5be118=_0x1fa4cf['replace'](/\s+/g,'');for(var _0x190cff=0x0;_0x190cff<_0x52bde3[_0x357f3a(0x1ff)];_0x190cff++){if(_0x52bde3[_0x190cff][0x0]['test'](_0x5be118))return!![];}return![];}function _0x37f710(_0xdf3288,_0x1a27c4,_0x394136){var _0x352a79=_0x394136?_0x2cac0b[_0x1a27c4]:_0x1f9a51[_0x1a27c4];if(!_0x352a79)return 0x0;function _0x3504e7(_0x2e7a0d){var _0x32d6b1=_0x4897,_0x2c614b=String(_0x2e7a0d||''),_0x2178d5=_0x2c614b[_0x32d6b1(0x19e)](/\s+/g,'');for(var _0x28864b=0x0;_0x28864b<_0x352a79[_0x32d6b1(0x1ff)];_0x28864b++){if(_0x352a79[_0x28864b][0x0][_0x32d6b1(0x1f9)](_0x2c614b)||_0x352a79[_0x28864b][0x0]['test'](_0x2178d5))return _0x352a79[_0x28864b][0x1];}return 0x0;}return _0x3504e7(_0xdf3288['name'])||_0x3504e7(_0xdf3288['raw']);}function _0x5c3edd(_0x161244){var _0x26a28a=_0x1ced14,_0x40545d=_0x161244[0x2]||_0x161244[_0x161244[_0x26a28a(0x1ff)]-0x1];if(!_0x40545d)return null;var _0x5a0b77=_0x40545d[_0x26a28a(0x1a4)]||_0x40545d['raw']||'';if(/최대\s*생명력/[_0x26a28a(0x1f9)](_0x5a0b77))return _0x26a28a(0x22f);if(/보호막|회복/[_0x26a28a(0x1f9)](_0x5a0b77))return _0x26a28a(0x275);return null;}function _0x3e9218(_0x3e31ed,_0x33b88a,_0x425def,_0x4e4e58,_0x12c4e5){var _0x15454d=_0x1ced14,_0x5f1d11=0x0,_0x2b6894=0x0,_0x365840=0x0;_0x3e31ed[_0x15454d(0x103)](function(_0x3bd7e4){if(_0x3bd7e4==='상')_0x5f1d11++;else{if(_0x3bd7e4==='중')_0x2b6894++;else{if(_0x3bd7e4==='하')_0x365840++;}}});if(_0x3e31ed[_0x15454d(0x1ff)]<0x2)return 0x6;var _0xddfe1a=_0x5f1d11===0x2;if(_0x12c4e5==='유물'&&_0x4e4e58&&(_0x425def===_0x15454d(0x26d)||_0x425def==='반지'))return _0xddfe1a?0x5:0x6;if(_0x4e4e58&&_0x425def===_0x15454d(0x193)){if(!_0xddfe1a)return 0x6;if(_0x33b88a==='상')return null;if(_0x33b88a==='중')return 0x4;return 0x5;}if(_0xddfe1a){if(_0x33b88a==='상')return 0x1;if(_0x33b88a==='중')return 0x2;return 0x3;}if(_0x5f1d11===0x1&&_0x2b6894===0x1)return 0x4;if(_0x5f1d11===0x1&&_0x365840===0x1)return 0x5;return 0x6;}function _0x54b0a6(_0x3494cf,_0x4890e4){var _0xab4b02=_0x1ced14;if(!_0x3494cf)return{'slots':['-','-','-'],'grade':0x4};var _0x4706a7=_0x3494cf[_0xab4b02(0x241)]||'';if(_0x4706a7==='어빌리티\x20스톤'||_0x4706a7==='팔찌')return{'slots':['-','-','-'],'grade':0x1};var _0x301985=_0x54f93e(_0x4890e4),_0x300ed7=_0x37c6b6(_0x3494cf),_0x486853=[],_0x1c2bdf=null;_0x300ed7[_0xab4b02(0x103)](function(_0x2a15fe){var _0x32a6ff=_0xab4b02,_0x2cef6d=_0x37f710(_0x2a15fe,_0x4706a7,_0x301985);if(_0x2cef6d===0x1)_0x486853[_0x32a6ff(0x1ca)](_0x2a15fe);else{if(_0x2cef6d===0x3&&!_0x1c2bdf)_0x1c2bdf=_0x2a15fe;}});if(!_0x300ed7[_0xab4b02(0x1ff)]||!_0x300ed7['some'](function(_0x23999d){return _0x23999d['badge'];}))return{'slots':['-','-','-'],'grade':_0x3494cf['Grade']==='고대'?0x4:0x5};var _0x758feb=_0x486853[_0xab4b02(0x214)](function(_0x591528){var _0x4e74cf=_0xab4b02;return _0x591528[_0x4e74cf(0x123)];})[_0xab4b02(0x18c)](Boolean),_0x4b7f6a=_0x1c2bdf?_0x1c2bdf['badge']:null,_0x259cd5=_0x3e9218(_0x758feb,_0x4b7f6a,_0x4706a7,_0x301985,_0x3494cf[_0xab4b02(0x197)]||'');if(_0x259cd5==null){var _0x29340b=_0x5c3edd(_0x1c2bdf?[_0x1c2bdf]:[]);_0x259cd5=_0x29340b==='life'?0x2:0x3;}return{'slots':[_0x758feb[0x0]||'-',_0x758feb[0x1]||'-',_0x4b7f6a||'-'],'grade':_0x259cd5};}function _0x2854e1(_0x12d162,_0x58644f){var _0x27c361=_0x1ced14;return _0x54b0a6(_0x12d162,_0x58644f)[_0x27c361(0x211)];}var _0x22790b=_0x1ced14(0x246)+_0x1ced14(0x1dd);function _0x5808d8(_0x53dee0){var _0x56113b=_0x1ced14,_0x3f9409={'상':'q-sang','중':_0x56113b(0x12f),'하':_0x56113b(0x23f)},_0x74fa12='<span\x20class=\x22ig-acc-q\x22\x20style=\x22display:inline-flex;align-items:center;gap:3px;margin-left:6px;vertical-align:middle\x22>';return(_0x53dee0||[])['forEach'](function(_0x41f8f4){var _0x5383ba=_0x56113b;_0x74fa12+=_0x41f8f4&&_0x41f8f4!=='-'?_0x5383ba(0x252)+(_0x3f9409[_0x41f8f4]||'')+_0x5383ba(0x1c9)+_0x22790b+'\x22>'+_0x439a23(_0x41f8f4)+'</span>':'<span\x20class=\x22ig-br-q\x20none\x22\x20style=\x22'+_0x22790b+'\x22>-</span>';}),_0x74fa12+_0x56113b(0x20b);}function _0x139951(_0x1db250){if(_0x1db250<=0x1)return'전설';if(_0x1db250<=0x3)return'영웅';if(_0x1db250<=0x5)return'희귀';return'고급';}var _0x519329={0x1:{'하':0x5,'중':0x6,'상':0x7},0x2:{'하':0x4,'중':0x5,'상':0x6},2.5:{'하':0x4,'중':0x5,'상':0x6},0x3:{'하':0x3,'중':0x4,'상':0x5},3.5:{'하':0x3,'중':0x4,'상':0x5},0x4:{'하':0x2,'중':0x3,'상':0x4},0x5:{'하':0x1,'중':0x2,'상':0x3}},_0x2446ab={'하':0x1,'중':0x2,'상':0x3};function _0xc6613e(_0x3e5a14){_0x3e5a14=Number(_0x3e5a14)||0x0;if(_0x3e5a14>=0x3700)return'상';if(_0x3e5a14>=0x2f80)return'중';return'하';}function _0x5a3739(_0x143947){_0x143947=Number(_0x143947)||0x0;if(_0x143947>=0x67)return'상';if(_0x143947>=0x55)return'중';return'하';}function _0x18350d(_0x7f60e8,_0x1b3a0e){var _0x31199e=_0x1ced14,_0x142be8=String(_0x7f60e8||'')[_0x31199e(0x19e)](/\s+/g,'\x20');if(/무기\s*공격력|무공/[_0x31199e(0x1f9)](_0x142be8)){if(/생명력\s*50|50\s*%\s*이상|30\s*초|120\s*초/[_0x31199e(0x1f9)](_0x142be8))return 3.5;return 0x3;}if(/공이속|공격\s*및\s*이동\s*속도/[_0x31199e(0x1f9)](_0x142be8))return 0x0;if(/힘|민첩|지능/[_0x31199e(0x1f9)](_0x142be8))return _0x1b3a0e?0x4:0x5;if(_0x1b3a0e){if(/방깎|방어력\s*감소|치명타\s*저항|치저|치피저항|치명타\s*피해\s*저항|파티\s*보호|보호\s*효과/[_0x31199e(0x1f9)](_0x142be8))return 0x1;if(/아군\s*피해량|아피강|아군\s*공격력\s*강화|아공강/['test'](_0x142be8))return 0x2;return-0x1;}var _0x5be352=/치적|치명타\s*적중/['test'](_0x142be8),_0x187964=/치피|치명타\s*피해/[_0x31199e(0x1f9)](_0x142be8),_0x3c011f=/치명타\s*시/[_0x31199e(0x1f9)](_0x142be8),_0x4fe410=/추피|추가\s*피해/[_0x31199e(0x1f9)](_0x142be8),_0x1ffe82=/적에게\s*주는\s*피해|적주피/[_0x31199e(0x1f9)](_0x142be8);if(_0x5be352&&_0x3c011f)return 0x1;if(_0x187964&&_0x3c011f)return 0x1;if(_0x4fe410&&/악마/['test'](_0x142be8))return 0x1;if(/쿨|재사용/[_0x31199e(0x1f9)](_0x142be8)&&_0x1ffe82)return 0x1;if(_0x1ffe82&&/무력화/[_0x31199e(0x1f9)](_0x142be8))return 0x1;if(/방깎|방어력\s*감소|치명타\s*저항|치저|파티\s*보호/[_0x31199e(0x1f9)](_0x142be8))return 0x4;if(/방향성|백어택|헤드어택|타대/[_0x31199e(0x1f9)](_0x142be8))return 0x2;if(_0x4fe410||_0x1ffe82||_0x187964||_0x5be352)return 0x2;return-0x1;}function _0x540589(_0x556bb2){var _0x354868=_0x1ced14,_0x315af5=[],_0x382adf=[];if(!_0x556bb2||!_0x556bb2[_0x354868(0x19f)])return{'stats':_0x315af5,'options':_0x382adf};try{var _0x58524a=typeof parseTip===_0x354868(0xf8)?parseTip(_0x556bb2['Tooltip']):null;if(!_0x58524a)try{_0x58524a=JSON[_0x354868(0x1f8)](_0x556bb2[_0x354868(0x19f)]);}catch(_0x5550dd){_0x58524a=null;}if(!_0x58524a)return{'stats':_0x315af5,'options':_0x382adf};var _0x52ccf0='';if(typeof tipParts==='function'){var _0x4682b4=tipParts(_0x58524a),_0x598d70=_0x4682b4['find'](function(_0x617e00){var _0x4440a=_0x354868;return/팔찌\s*효과/[_0x4440a(0x1f9)](_0x617e00[_0x4440a(0x143)]||'');});if(_0x598d70&&_0x598d70[_0x354868(0x267)])_0x52ccf0=_0x598d70['body'];}if(!_0x52ccf0)for(var _0x21757d of Object[_0x354868(0x1f5)](_0x58524a)){var _0xe9e6b5=_0x58524a[_0x21757d];if(_0xe9e6b5&&_0xe9e6b5[_0x354868(0x195)]===_0x354868(0x1e7)&&_0xe9e6b5[_0x354868(0x1c0)]&&/팔찌\s*효과/[_0x354868(0x1f9)](String(_0xe9e6b5['value'][_0x354868(0x22a)]||''))){_0x52ccf0=_0xe9e6b5[_0x354868(0x1c0)][_0x354868(0x13d)]||'';break;}}if(!_0x52ccf0)return{'stats':_0x315af5,'options':_0x382adf};var _0x2b0af6=_0x556bb2['Grade']||'고대';if(typeof brSegments===_0x354868(0xf8)&&typeof brParseBody===_0x354868(0xf8)){var _0x2db146=brSegments(_0x52ccf0),_0x37ef37=brParseBody(_0x2db146,_0x2b0af6);return(_0x37ef37[_0x354868(0x1b3)]||[])['forEach'](function(_0x140da5){var _0xd0b5c4=_0x354868,_0x2ab118=String(_0x140da5)[_0xd0b5c4(0x19e)](/<[^>]+>/g,'\x20')['replace'](/\s+/g,'\x20')[_0xd0b5c4(0x292)](),_0x433fc9=_0x2ab118[_0xd0b5c4(0x116)](/^(치명|특화|신속|제압|인내|숙련|힘|민첩|지능)\s*\+?\s*([0-9,]+)/);if(_0x433fc9)_0x315af5[_0xd0b5c4(0x1ca)]({'name':_0x433fc9[0x1],'value':parseInt(_0x433fc9[0x2][_0xd0b5c4(0x19e)](/,/g,''),0xa)});}),(_0x37ef37[_0x354868(0x225)]||[])['forEach'](function(_0x237f9f){var _0x5f59e4=_0x354868,_0x315dd1=_0x237f9f[_0x5f59e4(0x27c)]||'';!_0x315dd1&&_0x237f9f[_0x5f59e4(0x100)]&&_0x237f9f[_0x5f59e4(0x100)]['length']&&(_0x315dd1=String(_0x237f9f['lines'][_0x5f59e4(0x179)]('\x20'))[_0x5f59e4(0x19e)](/<[^>]+>/g,'\x20')[_0x5f59e4(0x19e)](/\s+/g,'\x20')[_0x5f59e4(0x292)]());var _0x1f6cf0=_0x237f9f[_0x5f59e4(0x123)]||'';if(!_0x1f6cf0&&_0x237f9f[_0x5f59e4(0x100)]){var _0x1cd5db=_0x237f9f[_0x5f59e4(0x100)][_0x5f59e4(0x179)]('\x20');if(/#?FE9600/i[_0x5f59e4(0x1f9)](_0x1cd5db))_0x1f6cf0='상';else{if(/#?A235FF/i[_0x5f59e4(0x1f9)](_0x1cd5db))_0x1f6cf0='중';else{if(/#?00B5FF/i[_0x5f59e4(0x1f9)](_0x1cd5db))_0x1f6cf0='하';}}}if(!_0x315dd1)return;_0x382adf[_0x5f59e4(0x1ca)]({'badge':_0x1f6cf0||'중','label':_0x315dd1});}),{'stats':_0x315af5,'options':_0x382adf};}String(_0x52ccf0)[_0x354868(0x254)](/<br\s*\/?>/i)[_0x354868(0x103)](function(_0x90f064){var _0xb55b44=_0x354868,_0x21b18e=String(_0x90f064||'')[_0xb55b44(0x19e)](/<[^>]+>/g,'\x20')[_0xb55b44(0x19e)](/\s+/g,'\x20')[_0xb55b44(0x292)]();if(!_0x21b18e)return;var _0x585922=_0x21b18e[_0xb55b44(0x116)](/^(치명|특화|신속|제압|인내|숙련)\s*\+?\s*([0-9]+)/);if(_0x585922){_0x315af5[_0xb55b44(0x1ca)]({'name':_0x585922[0x1],'value':parseInt(_0x585922[0x2],0xa)});return;}var _0x207736=/#?FE9600/i[_0xb55b44(0x1f9)](_0x90f064)?'상':/#?A235FF/i['test'](_0x90f064)?'중':/#?00B5FF/i[_0xb55b44(0x1f9)](_0x90f064)?'하':'중';if(/품질|아이템/[_0xb55b44(0x1f9)](_0x21b18e))return;_0x382adf['push']({'badge':_0x207736,'label':_0x21b18e});});}catch(_0x88a2d){}return{'stats':_0x315af5,'options':_0x382adf};}function _0x4ebb63(_0x5b260a,_0x5e5f66){var _0x1c0ef5=_0x1ced14,_0x3adb47=_0x540589(_0x5b260a),_0x521bdf=_0x54f93e(_0x5e5f66),_0x19eb5e=[],_0x15b2c2=0x0,_0x591717=0x0,_0xa7f76a=0x0,_0x52b1d0=0x0,_0x2ac145=0x0,_0x2d201a=![];(_0x3adb47[_0x1c0ef5(0x1b3)]||[])[_0x1c0ef5(0x103)](function(_0x2656c7){var _0x42773c=_0x1c0ef5;if(/^(힘|민첩|지능)$/[_0x42773c(0x1f9)](_0x2656c7[_0x42773c(0x1a4)])){if(_0x2d201a)return;_0x2d201a=!![];var _0x103ade=_0xc6613e(_0x2656c7[_0x42773c(0x1c0)]),_0x237739=_0x2446ab[_0x103ade];_0xa7f76a+=_0x237739,_0x19eb5e[_0x42773c(0x1ca)]({'tier':_0x42773c(0x269),'badge':_0x103ade,'text':_0x2656c7[_0x42773c(0x1a4)]+'\x20+'+_0x2656c7[_0x42773c(0x1c0)],'pts':_0x237739});return;}if(_0x52b1d0>=0x2)return;if(!/^(치명|특화|신속|제압|인내|숙련)$/['test'](_0x2656c7[_0x42773c(0x1a4)]))return;var _0x564d06=_0x5a3739(_0x2656c7[_0x42773c(0x1c0)]),_0x3b1698=_0x519329[2.5][_0x564d06];_0x15b2c2+=_0x3b1698,_0x52b1d0++,_0x19eb5e[_0x42773c(0x1ca)]({'tier':_0x521bdf?'2티어':_0x42773c(0x126),'badge':_0x564d06,'text':_0x2656c7[_0x42773c(0x1a4)]+'\x20+'+_0x2656c7['value'],'pts':_0x3b1698});});if(_0x15b2c2>0xc)_0x15b2c2=0xc;(_0x3adb47[_0x1c0ef5(0x225)]||[])[_0x1c0ef5(0x103)](function(_0x473ba0){var _0x4e7ef1=_0x1c0ef5;if(_0x2ac145>=0x3)return;var _0x3bb8ab=_0x18350d(_0x473ba0['label'],_0x521bdf);if(_0x3bb8ab<=0x0){_0x19eb5e['push']({'tier':'-','badge':'','text':_0x473ba0['label'],'pts':0x0,'skip':!![]});return;}var _0xfca7b0=_0x473ba0['badge'];if(_0xfca7b0!=='상'&&_0xfca7b0!=='중'&&_0xfca7b0!=='하')_0xfca7b0='중';var _0x5901e3=_0x519329[_0x3bb8ab]&&_0x519329[_0x3bb8ab][_0xfca7b0]||0x0;_0x591717+=_0x5901e3,_0x2ac145++,_0x19eb5e[_0x4e7ef1(0x1ca)]({'tier':Math['floor'](_0x3bb8ab)+'티어'+(_0x3bb8ab%0x1?'+':''),'badge':_0xfca7b0,'text':_0x473ba0[_0x4e7ef1(0x27c)],'pts':_0x5901e3});});if(_0x591717>0x15)_0x591717=0x15;var _0x3db89d=_0x15b2c2+_0x591717+_0xa7f76a,_0x1f2e9e=0x24,_0x1f00b5=(_0x5b260a&&_0x5b260a['Grade']||'')==='유물',_0x490169=_0x1f00b5?_0x3db89d*0.92:_0x3db89d,_0x3620c5=_0x490169<=0x0?0x15:0x16-Math['max'](0x1,Math[_0x1c0ef5(0x25e)](0x15,Math[_0x1c0ef5(0x175)](_0x490169/_0x1f2e9e*0x15)));return{'rows':_0x19eb5e,'raw':_0x3db89d,'adj':_0x490169,'max':_0x1f2e9e,'relic':_0x1f00b5,'grade':_0x3620c5,'support':_0x521bdf};}function _0x33e2f7(_0x42c150,_0x1a0930){if(!_0x42c150)return 0x1;return _0x4ebb63(_0x42c150,_0x1a0930)['grade'];}function _0x41ece9(_0x31fcd3,_0x159616){var _0x2c0fc7=_0x1ced14;if(!_0x31fcd3)return'';var _0x4a80dc=_0x4ebb63(_0x31fcd3,_0x159616),_0x2485ad={'상':_0x2c0fc7(0xff),'중':_0x2c0fc7(0x12f),'하':_0x2c0fc7(0x23f)},_0x7bae54=_0x31fcd3[_0x2c0fc7(0x197)]||'고대',_0x2c931f=_0x2c0fc7(0x209);_0x2c931f+=_0x2c0fc7(0x22c)+_0xe1478(_0x31fcd3['Icon'],_0x7bae54,'팔찌','md'),_0x2c931f+=_0x2c0fc7(0x167)+_0x3650d2(_0x7bae54)+(_0x4a80dc['support']?_0x2c0fc7(0x282):_0x2c0fc7(0x110))+_0x2c0fc7(0x177)+_0x1c923a(_0x2c0fc7(0x181))+_0x2c0fc7(0x1c3)+_0x2c0fc7(0x18b),_0x2c931f+=_0x2c0fc7(0x1bb)+_0x4a80dc[_0x2c0fc7(0x211)]+_0x2c0fc7(0x283);!_0x4a80dc[_0x2c0fc7(0x276)][_0x2c0fc7(0x1ff)]?_0x2c931f+=_0x2c0fc7(0x250):(_0x2c931f+=_0x2c0fc7(0x21d),_0x4a80dc[_0x2c0fc7(0x276)][_0x2c0fc7(0x103)](function(_0x18aeae){var _0x7d15e9=_0x2c0fc7;_0x2c931f+=_0x7d15e9(0x15b)+(_0x18aeae[_0x7d15e9(0x1f2)]?_0x7d15e9(0x1af):'')+'\x22>',_0x2c931f+='<span\x20class=\x22ig-br-tier\x22>'+_0x439a23(_0x18aeae['tier'])+'</span>',_0x2c931f+=_0x18aeae['badge']?'<span\x20class=\x22ig-br-q\x20'+(_0x2485ad[_0x18aeae[_0x7d15e9(0x123)]]||'')+'\x22>'+_0x439a23(_0x18aeae[_0x7d15e9(0x123)])+_0x7d15e9(0x20b):_0x7d15e9(0x242),_0x2c931f+=_0x7d15e9(0x1c8)+_0x439a23(_0x18aeae[_0x7d15e9(0x1e5)])+'\x22>'+_0x439a23(_0x18aeae[_0x7d15e9(0x1e5)])+_0x7d15e9(0x20b),_0x2c931f+=_0x7d15e9(0x1fe)+(_0x18aeae[_0x7d15e9(0x1f2)]?'0':_0x18aeae[_0x7d15e9(0x222)])+_0x7d15e9(0x240);}),_0x2c931f+=_0x2c0fc7(0x1a0));var _0x4e0003=(0x15-_0x4a80dc[_0x2c0fc7(0x211)])/0x14*0x64;_0x2c931f+='<div\x20class=\x22ig-br-total\x22><div\x20class=\x22ig-br-sum\x22><span>합계\x20<b>'+(_0x4a80dc[_0x2c0fc7(0x261)]?_0x4a80dc[_0x2c0fc7(0x204)]['toFixed'](0x1):_0x4a80dc[_0x2c0fc7(0x264)])+_0x2c0fc7(0x23b)+_0x4a80dc['max']+'점</span>';if(_0x4a80dc[_0x2c0fc7(0x261)])_0x2c931f+='<em>유물\x20×0.92\x20적용</em>';return _0x2c931f+=_0x2c0fc7(0x1a0),_0x2c931f+=_0x2c0fc7(0x17c)+_0x4e0003['toFixed'](0x1)+_0x2c0fc7(0x1f4),_0x2c931f+=_0x2c0fc7(0x266),_0x2c931f;}var _0xf62000={'각성':'각성','강령술':_0x1ced14(0x15a),'강화방패':'강방','결투의대가':'결대','구슬동자':'구동','굳은의지':'굳의','급소타격':'급타','기습의대가':'기습','긴급구조':'긴구','달인의저력':'달인','돌격대장':'돌대','마나효율증가':_0x1ced14(0x133),'마나의흐름':'마흐','바리케이드':'바리','번개의분노':'번분','부러진뼈':'부껴','분쇄의주먹':'분주','불굴':'불굴','선수필승':'선필','속전속결':'속속','슈퍼차지':'슈차','승부사':_0x1ced14(0x12e),'시선집중':'시집','실드관통':'실관','아드레날린':'아드','안정된상태':'안상','약자무시':'약무','에테르포식자':'에포','여신의가호':'여신','예리한둔기':'예둔','원한':'원한','위기모면':'위모','저주받은인형':'저받','전문의':_0x1ced14(0x13a),'정기흡수':'정흡','정밀단도':'정단','중갑착용':'중갑','질량증가':'질증','최대마나증가':_0x1ced14(0x208),'추진력':_0x1ced14(0x200),'타격의대가':'타대','탈출의명수':'탈명','폭발물전문가':'폭전'};function _0x25fa1f(_0x20f26e){var _0x160f04=_0x1ced14,_0x50a48d=String(_0x20f26e||'')[_0x160f04(0x19e)](/\s+/g,'');return _0xf62000[_0x50a48d]||_0x20f26e;}function _0x46273f(_0x371102){var _0x4f32ec=_0x1ced14;return _0x4f32ec(0x1e1)+_0x439a23(_0x371102)+'\x22>'+_0x439a23(_0x25fa1f(_0x371102))+_0x4f32ec(0x20b);}function _0x2624e4(_0x5084a2){var _0x117d43=_0x1ced14,_0x627054=_0x5084a2&&_0x5084a2[_0x117d43(0x132)];return _0x627054!=null&&_0x627054!==''&&Number(_0x627054)>0x0;}function _0xcde9fe(_0x3af8cc){var _0x171a1b=_0x1ced14,_0x2dab78=_0x3af8cc&&_0x3af8cc[_0x171a1b(0x26a)];if(!_0x2dab78)return[];var _0x4e462f=_0x2dab78[_0x171a1b(0x25a)]||_0x2dab78[_0x171a1b(0x10b)]||_0x2dab78[_0x171a1b(0x13c)]||[];if(!_0x4e462f['length']&&_0x2dab78['Engrave'])_0x4e462f=_0x2dab78[_0x171a1b(0x217)];return _0x4e462f||[];}function _0x25fe6e(_0x253a03){var _0x4900da=_0x1ced14,_0x1bd3ee=document[_0x4900da(0x112)](_0x4900da(0x20c));if(!_0x1bd3ee)return;var _0x2556a5=_0x253a03&&_0x253a03['ArmoryEquipment']||[];_0x41e3a1(_0x2556a5);if(!_0x2556a5[_0x4900da(0x1ff)]){_0x1bd3ee['innerHTML']='<div\x20class=\x22ig-empty\x22>장비\x20데이터가\x20없습니다.\x20캐릭터를\x20조회해\x20주세요.</div>';return;}var _0x2fb303={};_0x23e7de[_0x4900da(0x103)](function(_0x26d9cd){_0x2fb303[_0x26d9cd]=_0x3b756c(_0x2556a5,_0x26d9cd,0x0);});var _0xe11ca3=_0x3b756c(_0x2556a5,'무기',0x0),_0x10f45b=_0x3b756c(_0x2556a5,'완갑',0x0),_0x1437a7={},_0x369e78=_0x401179[_0x4900da(0x214)](function(_0x549f5a){var _0x588ddf=_0x1437a7[_0x549f5a]||0x0;return _0x1437a7[_0x549f5a]=_0x588ddf+0x1,{'type':_0x549f5a,'item':_0x3b756c(_0x2556a5,_0x549f5a,_0x588ddf)};}),_0x14fad5=_0x23e7de[_0x4900da(0x214)](function(_0x2877a9){var _0x37e307=_0x2fb303[_0x2877a9],_0x286227=_0x3081cd(_0x37e307);return _0xf6187c(_0x286227||0x0);}),_0x59a2c1=_0x3081cd(_0xe11ca3)||0x0,_0x563ba5=_0x3c8469(_0xe11ca3)||0x0,_0x17dd7f=_0x3be396(_0xe11ca3),_0xfca6a9=_0xf6187c(_0x59a2c1||0x708,_0x17dd7f),_0x308da4=_0x17dd7f&&_0x59a2c1>=0x708?0x717:_0xfca6a9[_0x4900da(0x199)],_0xa87e88=0x0,_0x3a0b07=0x0;_0x23e7de[_0x4900da(0x103)](function(_0x4d0c6d){var _0x4798d6=_0x2fb303[_0x4d0c6d];if(!_0x4798d6||!_0x4798d6['Icon'])return;_0xa87e88+=_0x3c8469(_0x4798d6)||0x0,_0x3a0b07++;});_0xe11ca3&&_0xe11ca3['Icon']&&(_0xa87e88+=_0x563ba5,_0x3a0b07++);var _0x2860ea=_0x3a0b07?_0xa87e88/_0x3a0b07:0x0,_0xe7306f=[];_0xe7306f[_0x4900da(0x1ca)](_0xfca6a9[_0x4900da(0x199)]),_0x14fad5[_0x4900da(0x103)](function(_0x24ee13){var _0x5c5304=_0x4900da;_0xe7306f[_0x5c5304(0x1ca)](_0x24ee13[_0x5c5304(0x199)]);}),_0x14fad5[_0x4900da(0x103)](function(_0x3ebc8f){var _0x1f304f=_0x4900da;_0xe7306f[_0x1f304f(0x1ca)](_0x3ebc8f['after']);});for(var _0x591577=0x0;_0x591577<0x5;_0x591577++)_0xe7306f['push'](_0x308da4);var _0x511242=0x0;_0xe7306f['forEach'](function(_0x3b67a7){_0x511242+=_0x3b67a7;});var _0x1f3746=_0xe7306f['length']?_0x511242/_0xe7306f['length']:0x0,_0x470d82='';_0x470d82+='<div\x20class=\x22ig-summary\x22>',_0x470d82+='<div\x20class=\x22ig-sum-card\x22><div\x20class=\x22ig-sum-label\x22>아이템\x20레벨\x20변화</div>',_0x470d82+=_0x4900da(0x277)+_0x2860ea['toFixed'](0x2)+'\x20→\x20'+_0x1f3746['toFixed'](0x2),_0x470d82+=_0x4900da(0x1d9)+Math[_0x4900da(0x253)](0x0,_0x1f3746-_0x2860ea)[_0x4900da(0x288)](0x2)+_0x4900da(0x240),_0x470d82+=_0x4900da(0x20a),_0x470d82+=_0x4900da(0x10e),_0x470d82+=_0x4900da(0x10d),_0x470d82+=_0x4900da(0x173),_0x470d82+=_0x4900da(0x1cb)+_0x43ba8b(_0xfca6a9[_0x4900da(0x211)])+'\x22>'+_0xfca6a9[_0x4900da(0x199)]+_0x4900da(0x1a0),_0x470d82+=_0x4900da(0xf7)+_0x3650d2(_0xfca6a9[_0x4900da(0x211)])+_0x4282dc(_0xfca6a9[_0x4900da(0x221)],_0xfca6a9[_0x4900da(0x211)])+_0x4900da(0x125),_0x470d82+=_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x113),_0x470d82+=_0x4900da(0x278);var _0x527110='#5EC8FF',_0x4f6cf4=_0x4900da(0x212);_0x470d82+=_0x4900da(0x1c7)+_0x4f6cf4+';box-shadow:0\x200\x200\x201px\x20'+_0x527110+_0x4900da(0x1b2)+_0x527110+_0x4900da(0x122),['고대','유물','전설','영웅','희귀','고급']['forEach'](function(_0x38ef7e){var _0x1d4736=_0x4900da;_0x470d82+='<span\x20class=\x22ig-leg\x22><i\x20style=\x22background:'+_0x1a7b99(_0x38ef7e)+_0x1d4736(0x176)+_0x43ba8b(_0x38ef7e)+_0x1d4736(0x1b2)+_0x43ba8b(_0x38ef7e)+'\x22>'+_0x38ef7e+'</b></span>';}),_0x470d82+=_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x236),_0x470d82+=_0x4900da(0x287),_0x470d82+=_0x3b6fda(![]),_0x23e7de['forEach'](function(_0x419af5){var _0x399b1f=_0x4900da,_0x3c3467=_0x2fb303[_0x419af5],_0x21d811=_0x3081cd(_0x3c3467)||0x0,_0x15202f=_0x57869f(_0x3c3467),_0x27a107=_0x2a8eeb(_0x3c3467),_0x1780e3=_0xf6187c(_0x21d811||0x0),_0x5d8f04=_0x3e2016[_0x419af5],_0x46573d=_0xce314e(_0x419af5),_0x251511=_0x3c3467&&_0x3c3467['Grade']||'고대',_0x21dc61=_0x3c3467&&_0x3c3467[_0x399b1f(0x22e)]||'';_0x470d82+=_0x399b1f(0x1a3),_0x470d82+=_0x399b1f(0x18a),_0x470d82+=_0x56e38d(_0x15202f,![],_0x399b1f(0x182)+_0x419af5),_0x470d82+=_0x399b1f(0x134)+_0xe1478(_0x21dc61,_0x251511,_0x46573d,'lg')+_0x295234(_0x27a107)+_0x399b1f(0x1a0),_0x470d82+=_0x399b1f(0x1a7),_0x470d82+=_0x399b1f(0x1e2)+_0x43ba8b(_0x251511)+'\x22>'+_0x439a23(_0x5c1b8b(_0x3c3467,_0x46573d))+'</div>',_0x470d82+=_0x399b1f(0x216)+_0x3650d2(_0x251511)+_0x4bf315(_0x21d811||'-')+'</div></div></div>',_0x470d82+=_0x382a16(),_0x470d82+=_0x399b1f(0x258),_0x470d82+='<div\x20class=\x22ig-after-item\x22>',_0x470d82+=_0xe1478(_0x21dc61,_0x1780e3[_0x399b1f(0x211)],_0x1780e3['grade'],'md'),_0x470d82+='<div\x20class=\x22ig-text\x22><div\x20class=\x22ig-name\x20ig-name-row\x22><span>'+_0x439a23(_0x46573d)+'</span><span\x20class=\x22ig-slot-txt\x22>슬롯\x20'+_0x15202f+_0x399b1f(0x215),_0x470d82+=_0x399b1f(0x216)+_0x3650d2(_0x1780e3[_0x399b1f(0x211)])+_0x5b9a8a(_0x1780e3[_0x399b1f(0x199)],_0x1780e3['grade'])+_0x4282dc(_0x1780e3['yeonma'],_0x1780e3[_0x399b1f(0x211)])+_0x399b1f(0x268);if(_0x5d8f04){var _0x4746dd=null,_0x13c5cb=0x0;if(_0x419af5==='상의'||_0x419af5==='장갑')_0x13c5cb=0x1;_0x4746dd=_0x3b756c(_0x2556a5,_0x5d8f04[_0x399b1f(0x273)],_0x13c5cb),_0x470d82+=_0x399b1f(0x138),_0x470d82+=_0xe1478(_0x4746dd&&_0x4746dd['Icon']||_0x5d8f04[_0x399b1f(0x1b7)],_0x1780e3[_0x399b1f(0x211)],_0x5d8f04[_0x399b1f(0x273)],'md'),_0x470d82+=_0x399b1f(0x163)+_0x439a23(_0x5d8f04['acc'])+'</span></div>',_0x470d82+=_0x399b1f(0x216)+_0x3650d2(_0x1780e3[_0x399b1f(0x211)])+_0x5b9a8a(_0x1780e3['after'],_0x1780e3['grade'])+_0x4282dc(_0x1780e3[_0x399b1f(0x221)],_0x1780e3['grade'])+_0x399b1f(0x268);}_0x470d82+='</div></div>';}),_0x470d82+=_0x4900da(0x105),_0x470d82+=_0x4900da(0x1fc),_0x470d82+='<div\x20class=\x22ig-weapon-flow\x22>',_0x470d82+=_0x4900da(0x159),_0x470d82+=_0x4900da(0x23e);var _0x5ecc4a=_0xe11ca3&&_0xe11ca3['Grade']||'고대',_0x7561b7=_0x3be396(_0xe11ca3),_0x1b53ae=_0x4900da(0x18d),_0x1d0705=_0x57869f(_0xe11ca3),_0x14ba4a=_0x7561b7?{'color':_0x1b53ae,'bg':_0x4900da(0x212)}:null;if(!_0x7561b7)_0x470d82+=_0x56e38d(_0x1d0705,!![],_0x4900da(0x1cd));_0x470d82+='<div\x20class=\x22ig-ic-wrap\x20w-xl\x22>'+_0xe1478(_0xe11ca3&&_0xe11ca3[_0x4900da(0x22e)],_0x5ecc4a,'무기','xl',_0x14ba4a)+_0x295234(_0x2a8eeb(_0xe11ca3))+'</div>',_0x470d82+=_0x4900da(0x16a)+(_0x7561b7?_0x1b53ae:_0x43ba8b(_0x5ecc4a))+'\x22>'+_0x439a23(_0x5c1b8b(_0xe11ca3,'무기'))+_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x216);_0x7561b7?_0x470d82+=_0x4900da(0x142)+_0x1c923a(_0x1b53ae)+'\x22>에스더</span>':_0x470d82+=_0x3650d2(_0x5ecc4a);_0x470d82+=_0x4bf315(_0x59a2c1||'-')+'</div></div>',_0x470d82+='<div\x20class=\x22ig-w-meta\x22>',_0x470d82+='<div\x20class=\x22ig-w-meta-row\x22><span\x20class=\x22k\x22>레벨</span><span\x20class=\x22v\x22>'+(_0x59a2c1||'-')+_0x4900da(0x1e9)+_0x5b9a8a(_0xfca6a9['after'],_0xfca6a9['grade'])+(_0x59a2c1?_0x4900da(0x11a)+(_0xfca6a9[_0x4900da(0x199)]-_0x59a2c1)+'</span>':'')+_0x4900da(0x240);var _0x1f13af=_0x4ed258(_0xe11ca3);_0x470d82+=_0x4900da(0x16c)+_0x1d0705+_0x4900da(0x118)+(_0x1f13af>_0x1d0705?'#7dffa0':_0x4900da(0x16b))+'\x22>'+_0x1f13af+'단계</b></span></div>',_0x470d82+=_0x4900da(0x125),_0x470d82+=_0x4900da(0x16d)+_0x382a16(!![])+'<span\x20class=\x22ig-fh\x20ig-fh-after\x22>이관\x20후</span>'+_0x382a16(!![])+'</div>',_0x470d82+=_0x4900da(0x14c);var _0x5d2f19=_0xfca6a9[_0x4900da(0x211)],_0x13421a=_0x7561b7&&_0x59a2c1>=0x708?{'after':0x717,'grade':'고대','yeonma':0x3,'delta':0xf}:_0xfca6a9,_0x5d5d0d=_0x13421a[_0x4900da(0x211)],_0x42bf55=_0x4ed258(_0xe11ca3),_0x110415=_0x7561b7&&(_0x59a2c1>=0x708||_0x1d0705>=0x9)?0x19:_0x4ed258(_0x10f45b,_0x7561b7&&_0x59a2c1>=0x708),_0x96f5f7=_0x3b756c(_0x2556a5,'팔찌',0x0),_0xb0a061=_0x5d5d0d==='고대'?_0xcd7c41[_0x4900da(0x294)]:_0x5d5d0d==='유물'?_0xcd7c41[_0x4900da(0x184)]:_0xcd7c41['braceletLegend'],_0x11e4ca=[{'name':_0x7561b7?_0x4900da(0x16e):_0x5d2f19+'\x20무기','sub':_0x4900da(0x1ad)+_0x42bf55+'단계','icon':_0xe11ca3&&_0xe11ca3[_0x4900da(0x22e)],'fb':'무기','esther':_0x7561b7,'ella':_0x7561b7,'rule':_0xfca6a9},{'name':_0x5d5d0d+_0x4900da(0x1bf),'sub':'슬롯\x20'+_0x110415+'단계','icon':_0x10f45b&&_0x10f45b['Icon'],'fb':'완갑','rule':_0x13421a},{'name':_0x5d5d0d+'\x20허리띠','sub':_0x4900da(0x1ee),'icon':_0xcd7c41['waistband'],'fb':'허리','neu':!![],'rule':_0x13421a},{'name':_0x5d5d0d+_0x4900da(0x145),'subHtml':_0x4900da(0x28f)+_0x33e2f7(_0x96f5f7,_0x253a03)+_0x4900da(0x206),'icon':_0xb0a061,'fb':'팔찌','rule':_0x13421a},{'name':_0x5d5d0d+_0x4900da(0x153),'sub':_0x4900da(0x272),'icon':_0xcd7c41[_0x4900da(0x17a)],'fb':'성물','neu':!![],'rule':_0x13421a},{'name':_0x5d5d0d+_0x4900da(0x11b),'sub':'재련\x20슬롯\x20없음','icon':_0xcd7c41[_0x4900da(0x27a)],'fb':'인장','neu':!![],'rule':_0x13421a}];_0x11e4ca['forEach'](function(_0x407661){var _0x44763f=_0x4900da,_0xc7314f=_0x407661[_0x44763f(0x205)]||_0xfca6a9,_0x440523=_0xc7314f[_0x44763f(0x211)];_0x470d82+=_0x44763f(0x234)+(_0x407661[_0x44763f(0x230)]?_0x44763f(0xfd):'')+(_0x407661[_0x44763f(0x12b)]?_0x44763f(0x1f6):'')+'\x22>';if(_0x407661['neu'])_0x470d82+=_0x44763f(0x281);if(_0x407661[_0x44763f(0x12c)])_0x470d82+=_0x44763f(0x232);var _0x5cec28=_0x407661['esther']?{'color':_0x1b53ae,'bg':_0x44763f(0x212)}:null;_0x470d82+=_0xe1478(_0x407661['icon'],_0x440523,_0x407661['fb'],'md',_0x5cec28);var _0x5ed7c5=_0x407661[_0x44763f(0x12b)]?_0x1b53ae:_0x43ba8b(_0x440523);_0x470d82+='<div\x20class=\x22ig-text\x22><div\x20class=\x22ig-name\x22\x20style=\x22color:'+_0x5ed7c5+'\x22>'+_0x439a23(_0x407661[_0x44763f(0x1a4)])+'</div>',_0x470d82+=_0x44763f(0x152)+_0x177b8d(_0xc7314f,_0x407661[_0x44763f(0x12b)]?_0x1b53ae:null)+'</div>',_0x470d82+=_0x44763f(0x1aa)+(_0x407661[_0x44763f(0x265)]||_0x439a23(_0x407661[_0x44763f(0x21c)]))+_0x44763f(0x268);}),_0x470d82+=_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x125),_0x470d82+=_0x4900da(0x169),_0x470d82+=_0x3b6fda(!![]);var _0x174f2f='';_0x369e78[_0x4900da(0x103)](function(_0x133b16){var _0x27b0fa=_0x4900da,_0x3b6587=_0x133b16[_0x27b0fa(0x124)],_0x1800f6=_0x133b16[_0x27b0fa(0x195)];if(_0x1800f6==='팔찌')return;var _0x2b5178=_0x470d82;_0x470d82='';var _0x293669=_0x3b6587&&_0x3b6587[_0x27b0fa(0x197)]||'고대',_0x77bfbc=_0x2a8eeb(_0x3b6587),_0x45daba=_0x3b6587&&_0x3b6587[_0x27b0fa(0x22e)]||'',_0x38a9f9=_0x1800f6==='어빌리티\x20스톤'||_0x1800f6==='팔찌'?{'slots':[],'grade':0x1}:_0x54b0a6(_0x3b6587,_0x253a03);_0x470d82+='<div\x20class=\x22ig-row\x20acc\x22>',_0x470d82+=_0x27b0fa(0x10f),_0x470d82+=_0x27b0fa(0x134)+_0xe1478(_0x45daba,_0x293669,_0x1800f6[_0x27b0fa(0x19e)](_0x27b0fa(0x171),''),'lg');if(_0x1800f6!=='어빌리티\x20스톤'&&_0x1800f6!=='팔찌')_0x470d82+=_0x295234(_0x77bfbc);_0x470d82+=_0x27b0fa(0x26b),_0x470d82+=_0x27b0fa(0x1e2)+_0x43ba8b(_0x293669)+'\x22>'+_0x439a23(_0x235853(_0x1800f6))+_0x27b0fa(0x1a0);_0x1800f6===_0x27b0fa(0x19d)?_0x470d82+=_0x27b0fa(0x1de)+_0x3c3efa(_0x3b6587)+_0x27b0fa(0x1a0):_0x470d82+=_0x27b0fa(0x216)+_0x3650d2(_0x293669)+_0x5808d8(_0x38a9f9[_0x27b0fa(0x224)])+'</div>';_0x470d82+='</div></div>',_0x470d82+=_0x382a16();if(_0x1800f6===_0x27b0fa(0x19d))_0x470d82+=_0x27b0fa(0x10f),_0x470d82+=_0x27b0fa(0x134)+_0xe1478(_0x45daba,_0x293669,'스톤','lg')+_0x27b0fa(0x1a0),_0x470d82+=_0x27b0fa(0x16a)+_0x43ba8b(_0x293669)+'\x22>각인\x20슬롯\x20강화</div>',_0x470d82+=_0x27b0fa(0x174);else{var _0x5a685b=_0x1800f6==='팔찌'?_0x33e2f7(_0x3b6587,_0x253a03):_0x38a9f9[_0x27b0fa(0x211)],_0x5c0d91=_0x139951(_0x5a685b);_0x470d82+='<div\x20class=\x22ig-side\x22>',_0x470d82+='<div\x20class=\x22ig-ic-wrap\x20w-lg\x22>'+_0xe1478(_0xcd7c41[_0x27b0fa(0x15f)],_0x5c0d91,'주문','lg')+'</div>',_0x470d82+=_0x27b0fa(0x17f)+_0x27b0fa(0x248)+_0x1c923a(_0x43ba8b(_0x5c0d91))+'\x22>'+_0x5a685b+'등급</span><span>주문서</span></div></div></div>';}_0x470d82+=_0x27b0fa(0x1a0),_0x1800f6===_0x27b0fa(0x19d)?(_0x174f2f=_0x470d82,_0x470d82=_0x2b5178):_0x470d82=_0x2b5178+_0x470d82;}),_0x470d82+=_0x41ece9(_0x3b756c(_0x2556a5,'팔찌',0x0),_0x253a03),_0x470d82+=_0x4900da(0x24c)+_0x174f2f;var _0x2da89d=_0xcde9fe(_0x253a03);_0x470d82+='<div\x20class=\x22ig-eng\x22>',_0x470d82+=_0x4900da(0x13b);_0x2da89d[_0x4900da(0x1ff)]?(_0x470d82+=_0x4900da(0x28e),_0x470d82+=_0x4900da(0x11e),_0x2da89d[_0x4900da(0x1c4)](0x0,0x8)[_0x4900da(0x103)](function(_0x44e654){var _0xac0901=_0x4900da,_0x303d51=_0x44e654[_0xac0901(0x262)]||_0x44e654['EngravingName']||'?',_0x519a74=_0x44e654['Level']!=null?_0x44e654[_0xac0901(0x190)]:_0x44e654[_0xac0901(0x1b9)]!=null?_0x44e654[_0xac0901(0x1b9)]:'',_0x38f21d=typeof ENGRAVE_ICONS!==_0xac0901(0x1cf)&&ENGRAVE_ICONS[_0x303d51]?ENGRAVE_ICONS[_0x303d51]:null,_0x9333dc=_0x44e654[_0xac0901(0x132)];_0x470d82+=_0xac0901(0x1e4);if(_0x38f21d)_0x470d82+=_0xac0901(0x140)+_0x439a23(_0x38f21d)+'\x22\x20alt=\x22\x22\x20loading=\x22lazy\x22>';else _0x470d82+=_0xac0901(0x1a9)+_0x439a23(_0x303d51[_0xac0901(0x170)](0x0))+_0xac0901(0x20b);_0x470d82+=_0x46273f(_0x303d51);if(_0x2624e4(_0x44e654)){var _0x4d1ff7=typeof engBulletHtml==='function'?engBulletHtml(0x3,0x12,0xd):_0xac0901(0x15e);_0x470d82+=_0xac0901(0x158)+_0x4d1ff7+_0xac0901(0x10a)+_0x439a23(_0x9333dc)+_0xac0901(0x119);}_0x470d82+=_0xac0901(0x23c)+_0x439a23(_0x519a74)+'</span></div>';}),_0x470d82+='</div>',_0x470d82+=_0x4900da(0x115)+_0x382a16()+_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x11e),_0x2da89d['slice'](0x0,0x8)['forEach'](function(_0x17d2e2){var _0x4fbdd8=_0x4900da,_0x4cb279=_0x17d2e2[_0x4fbdd8(0x262)]||_0x17d2e2[_0x4fbdd8(0x120)]||'?',_0x536465=_0x17d2e2[_0x4fbdd8(0x190)]!=null?_0x17d2e2[_0x4fbdd8(0x190)]:_0x17d2e2[_0x4fbdd8(0x1b9)]!=null?_0x17d2e2[_0x4fbdd8(0x1b9)]:'',_0x273c6d=typeof ENGRAVE_ICONS!==_0x4fbdd8(0x1cf)&&ENGRAVE_ICONS[_0x4cb279]?ENGRAVE_ICONS[_0x4cb279]:null,_0x1e83d7=_0x2624e4(_0x17d2e2)?_0x4fbdd8(0xfa):'';_0x470d82+=_0x4fbdd8(0x1e4);if(_0x273c6d)_0x470d82+=_0x4fbdd8(0x140)+_0x439a23(_0x273c6d)+_0x4fbdd8(0x1b6);else _0x470d82+=_0x4fbdd8(0x1a9)+_0x439a23(_0x4cb279['charAt'](0x0))+_0x4fbdd8(0x20b);_0x470d82+=_0x46273f(_0x4cb279)+_0x1e83d7+_0x4fbdd8(0x23c)+_0x439a23(_0x536465)+_0x4fbdd8(0x240);}),_0x470d82+='</div></div>'):_0x470d82+=_0x4900da(0x26e);_0x470d82+=_0x4900da(0x1a0),_0x470d82+='</div>',_0x470d82+=_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x1a0);var _0x34a697=_0x14fad5[0x0]?_0x14fad5[0x0][_0x4900da(0x211)]:'유물',_0x3ec344=_0x14fad5[0x0]?_0x14fad5[0x0][_0x4900da(0x221)]:0x3,_0x39a0a5=_0x14fad5[0x0]?_0x14fad5[0x0][_0x4900da(0x199)]:0x6fe,_0x3aab9a=_0x14fad5[_0x4900da(0x249)]([_0xfca6a9]),_0x2c7927=0x8;_0x2e2ec5[_0x4900da(0x103)](function(_0x419695,_0x343c65){var _0x248d4b=_0x4900da;if(_0x3aab9a[_0x248d4b(0x28b)](_0x419695)>=0x0&&_0x343c65+0x1>_0x2c7927)_0x2c7927=_0x343c65+0x1;});var _0x12d55e=_0x3b756c(_0x2556a5,'팔찌',0x0),_0xa270b5=_0x33e2f7(_0x12d55e,_0x253a03),_0x1630d3=_0xcde9fe(_0x253a03)[_0x4900da(0x18c)](_0x2624e4)[_0x4900da(0x1ff)],_0x2141d0=_0x3be396(_0xe11ca3),_0x1eff2f=_0x4ed258(_0xe11ca3),_0x391b27=_0x2141d0&&(_0x59a2c1>=0x708||_0x57869f(_0xe11ca3)>=0x9)?0x19:_0x4ed258(_0x10f45b,_0x2141d0&&_0x59a2c1>=0x708),_0x557aeb=_0x2141d0&&_0x59a2c1>=0x708?{'after':0x717,'grade':'고대','yeonma':0x3,'delta':0xf}:_0xfca6a9;_0x470d82+=_0x4900da(0x185),_0x470d82+='<div\x20class=\x22ig-panel-title\x22><span\x20class=\x22ig-chip\x20chip-stat\x22>상세</span>\x20지급\x20상세\x20·\x20이관\x20기준</div>',_0x470d82+=_0x4900da(0x25d),_0x470d82+=_0x4900da(0x270),_0x470d82+=_0x4900da(0x1f7),_0x470d82+=_0x4900da(0x157)+_0x3650d2(_0x34a697)+_0x4282dc(_0x3ec344,_0x34a697)+_0x5b9a8a(_0x39a0a5,_0x34a697)+_0x4900da(0x240),_0x470d82+=_0x4900da(0x1e3)+(_0x2141d0?_0x4900da(0x21a)+_0x1c923a(_0x4900da(0x18d))+'\x22>에스더</span>':_0x3650d2(_0xfca6a9['grade']))+_0x177b8d(_0xfca6a9,_0x2141d0?'#5EC8FF':null)+'</span></div>',_0x470d82+=_0x4900da(0x291)+(_0x2141d0&&_0x59a2c1>=0x708?_0x4900da(0x14b):'완갑·허리띠·성물·인장·팔찌')+'</span><span\x20class=\x22v\x22>'+(_0x2141d0&&_0x59a2c1>=0x708?_0x4900da(0x297)+_0x4282dc(_0x557aeb[_0x4900da(0x221)],_0x557aeb[_0x4900da(0x211)])+_0x5b9a8a(_0x557aeb['after'],_0x557aeb[_0x4900da(0x211)]):_0x4900da(0x256)+_0x5b9a8a(_0xfca6a9[_0x4900da(0x199)],_0xfca6a9[_0x4900da(0x211)]))+_0x4900da(0x240),_0x470d82+=_0x4900da(0x25b)+_0x1eff2f+_0x4900da(0x1f3)+_0x391b27+_0x4900da(0x10c),_0x470d82+=_0x4900da(0x127),_0x470d82+=_0x4900da(0x186)+_0xa270b5+_0x4900da(0x160),_0x470d82+='<div\x20class=\x22ig-kv\x22><span\x20class=\x22k\x22>각인\x20슬롯\x20강화</span><span\x20class=\x22v\x20accent\x22>'+(_0x1630d3?'스톤\x20각인\x20'+_0x1630d3+_0x4900da(0x24d):_0x4900da(0x1ea))+_0x4900da(0x240),_0x470d82+=_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x1df),_0x470d82+=_0x4900da(0x178),_0x470d82+='<table\x20class=\x22ig-table\x22><thead><tr><th>기존\x20레벨</th><th>장비\x20등급</th><th\x20style=\x22text-align:right\x22>이관\x20레벨</th></tr></thead><tbody>',_0x2e2ec5[_0x4900da(0x1c4)](0x0,_0x2c7927)[_0x4900da(0x103)](function(_0x70f915){var _0x2c4f4c=_0x4900da,_0x50d90a=_0x3aab9a[_0x2c4f4c(0x28b)](_0x70f915)>=0x0;_0x470d82+='<tr\x20class=\x22'+(_0x50d90a?_0x2c4f4c(0x20d):'')+'\x22>',_0x470d82+=_0x2c4f4c(0x251)+_0x70f915[_0x2c4f4c(0x25e)]+_0x2c4f4c(0x12a)+_0x70f915[_0x2c4f4c(0x253)]+_0x2c4f4c(0x286),_0x470d82+=_0x2c4f4c(0x1b8)+_0x3650d2(_0x70f915[_0x2c4f4c(0x211)])+_0x4282dc(_0x70f915[_0x2c4f4c(0x221)],_0x70f915[_0x2c4f4c(0x211)])+_0x2c4f4c(0x286),_0x470d82+=_0x2c4f4c(0x1c6);if(_0x70f915['delta'])_0x470d82+=_0x2c4f4c(0x28c)+_0x70f915['delta']+'</span>\x20';_0x470d82+=_0x5b9a8a(_0x70f915['after'],_0x70f915[_0x2c4f4c(0x211)])+_0x2c4f4c(0x1f0);}),_0x470d82+=_0x4900da(0x1d0),_0x470d82+=_0x4900da(0x1a0),_0x470d82+=_0x4900da(0x27e),_0x470d82+=_0x4900da(0x1a0),_0x1165ef(),_0x1bd3ee[_0x4900da(0x1ae)]=_0x470d82,_0x246b83(_0x1bd3ee);}function _0x3e5ef5(){var _0x453cdb=_0x1ced14,_0xf1ccc=(_0x24a104[_0x453cdb(0x23d)]||[])[_0x453cdb(0x18c)](Boolean),_0x287874=_0x453cdb(0x130);if(_0xf1ccc['length'])_0x287874+=_0xf1ccc[_0x453cdb(0x179)](',')+_0x453cdb(0x1c2);return _0x287874+=_0x453cdb(0x1f1)+_0x453cdb(0x27b)+_0x453cdb(0x21f)+_0x453cdb(0x1b1)+_0x453cdb(0x220)+_0x453cdb(0x1ed)+'.ig-ic-md{width:32px!important;height:32px!important}'+_0x453cdb(0x19c)+_0x453cdb(0x1b0)+_0x453cdb(0x149)+_0x453cdb(0x15c)+'.ig-row\x20.ig-side-rel{overflow:visible}'+'.ig-weapon-flow{overflow:visible!important}'+_0x453cdb(0x203)+_0x453cdb(0x28a)+'.ig-row\x20.ig-side{gap:7px!important}'+_0x453cdb(0x1ba)+_0x453cdb(0x1d7)+'.ig-after{gap:6px!important}'+'.ig-after-item{gap:6px!important}'+_0x453cdb(0x183)+_0x453cdb(0x165)+_0x453cdb(0x144)+_0x453cdb(0xfe)+_0x453cdb(0x147)+_0x453cdb(0x1d4)+_0x453cdb(0xf9)+_0x453cdb(0x25c)+'.ig-merged\x20.ig-m-left,.ig-merged\x20.ig-m-right{width:100%!important;padding:12px!important}'+_0x453cdb(0x1ac)+'.ig-merged\x20.ig-kv{flex-wrap:wrap;gap:4px\x208px}'+_0x453cdb(0x201)+'}'+'@media\x20(max-width:380px){'+_0x453cdb(0x1da)+_0x453cdb(0x24a)+_0x453cdb(0x239)+'}',_0x287874;}function _0x1165ef(){var _0x51a1c2=_0x1ced14;if(document['getElementById'](_0x51a1c2(0x245)))return;var _0x9f1d6f=document['createElement']('style');_0x9f1d6f['id']=_0x51a1c2(0x245),_0x9f1d6f[_0x51a1c2(0xf6)]='.ig-w-chip{position:relative!important}'+_0x51a1c2(0x226)+_0x51a1c2(0x295)+_0x51a1c2(0x19a)+_0x51a1c2(0x22b)+_0x51a1c2(0x263)+_0x51a1c2(0x1d1)+_0x51a1c2(0x13f)+_0x51a1c2(0x139)+_0x51a1c2(0x131)+_0x51a1c2(0xfb)+_0x51a1c2(0x146)+_0x51a1c2(0x1d3)+_0x51a1c2(0x189)+_0x51a1c2(0x141)+'border-top:1px\x20solid\x20rgba(255,255,255,.12)!important;border-radius:0!important}'+_0x51a1c2(0x1eb)+'.ig-merged\x20.ig-merged-body{gap:14px}'+_0x51a1c2(0x109)+_0x51a1c2(0x1bc)+_0x51a1c2(0x128)+_0x51a1c2(0x1c5)+_0x51a1c2(0x11f)+_0x51a1c2(0x289)+'.ig-merged\x20.ig-table\x20td{border-bottom:1px\x20solid\x20rgba(255,255,255,.06)}'+_0x51a1c2(0x11c)+_0x51a1c2(0x187)+_0x3e5ef5(),document['head'][_0x51a1c2(0x198)](_0x9f1d6f);}_0x24a104[_0x1ced14(0x238)]=_0x25fe6e,_0x24a104[_0x1ced14(0x1e0)]=_0xcd7c41;}(window));function _0x4897(_0x23a1d2,_0x5a7831){_0x23a1d2=_0x23a1d2-0xf6;var _0x1a03f4=_0x1a03();var _0x4897c6=_0x1a03f4[_0x23a1d2];return _0x4897c6;}function _0x1a03(){var _0x501b16=['어빌리티\x20','&quot;','<div\x20class=\x22ig-sum-card\x22><div\x20class=\x22ig-sum-label\x22>무기\x20이관\x20후</div>','<div\x20class=\x22ig-sub\x22><span\x20class=\x22ig-scroll\x22>7단계\x20·\x207단계</span></div></div></div>','round',';box-shadow:0\x200\x200\x201px\x20','<span\x20class=\x22ig-bdg\x20ig-bdg-est\x22\x20title=\x22공개된\x20이관\x20기준을\x20바탕으로\x20한\x20추정\x20결과입니다.\x20실제\x20수치는\x20공식\x20이관\x20공지\x20후\x20정확히\x20반영됩니다.\x22\x20style=\x22','<div\x20class=\x22ig-m-sub\x22>이관\x20기준표\x20<em>내\x20장비\x20구간\x20강조</em></div>','join','sacred','floor','<div\x20class=\x22ig-br-scale\x22><i\x20style=\x22left:','linear-gradient(135deg,#2b1649,#4a2c70\x2055%,#1b0e30)','ArmoryProfile','<div\x20class=\x22ig-text\x22><div\x20class=\x22ig-name\x22\x20style=\x22display:flex;align-items:center;gap:6px\x22>','linear-gradient(90deg,#5b9cf5,#7eb6ff)','#8fa0c4','armor-','.ig-row>.ig-arrow\x20svg{width:14px!important;height:14px!important}','braceletRelic','<div\x20class=\x22ig-panel\x20ig-merged\x22>','<div\x20class=\x22ig-kv\x22><span\x20class=\x22k\x22>팔찌\x20→\x20인장\x20주문서</span><span\x20class=\x22v\x20accent\x22>','.ig-merged\x20.ig-note{margin-top:14px;padding-top:10px;border-top:1px\x20solid\x20rgba(255,255,255,.12)}','style','.ig-grp\x20.ig-row{background:transparent!important;border:none!important;box-shadow:none!important;padding-left:2px;padding-right:2px;margin:0!important}','<div\x20class=\x22ig-side\x20ig-side-rel\x22>','</small></div></div>','filter','#5EC8FF','hero','linear-gradient(90deg,#e8b84b,#ffd76a)','Level','강</div>','.ig-hone-bubble','귀걸이','추천\x20<b>+','type','goal','Grade','appendChild','after','.ig-br\x20.ig-br-head{display:flex!important;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px\x20solid\x20rgba(255,255,255,.1)}','<span\x20class=\x22ig-stone-opt\x22>[','.ig-ic-wrap.w-lg{width:40px!important}','어빌리티\x20스톤','replace','Tooltip','</div>','<button\x20type=\x22button\x22\x20class=\x22ig-hone-pop-x\x22\x20aria-label=\x22닫기\x22>×</button>','12bUJLTe','<div\x20class=\x22ig-row\x22>','name','font-size:var(--ig-bfs,','#E3C7A1','<div\x20class=\x22ig-text\x22>','425847dVNmoY','<span\x20class=\x22ig-eng-ic\x20fb\x22>','<div\x20class=\x22ig-sub\x20ig-sub-t\x22>','sang','.ig-merged\x20.ig-m-right{overflow-x:auto}','슬롯\x20','innerHTML','\x20skip','.ig-name{font-size:12.5px!important}','.ig-bdg{--ig-bh:16px;--ig-bfs:10px;--ig-bpx:5px}','\x22></i><b\x20style=\x22color:','stats','addEventListener','level','\x22\x20alt=\x22\x22\x20loading=\x22lazy\x22>','icon','<td>','Value','.ig-row\x20.ig-text{min-width:0}','<div\x20class=\x22ig-br-grade\x22><b>','box-shadow:inset\x200\x203px\x2012px\x20rgba(0,0,0,.65),inset\x200\x200\x200\x201px\x20rgba(0,0,0,.25),0\x201px\x200\x20rgba(255,255,255,.05)}','stringify','ig-ic\x20ig-ic-','\x20완갑','value','find','{display:none!important}','\x22>공개\x20기준\x20추정</span>','slice','.ig-merged\x20.ig-kv{padding-top:9px;padding-bottom:9px;border-bottom:1px\x20solid\x20rgba(255,255,255,.07)}','<td\x20style=\x22text-align:right\x22>','<span\x20class=\x22ig-leg\x22><i\x20style=\x22background:','<span\x20class=\x22ig-br-txt\x22\x20title=\x22','\x22\x20style=\x22','push','<div\x20class=\x22ig-sum-value\x22\x20style=\x22color:','<div\x20class=\x22ig-flow-head','weapon','linear-gradient(135deg,#4a1d0b,#7a3310\x2055%,#331409)','undefined','</tbody></table></div>','.ig-br\x20.ig-br-title>span{white-space:nowrap}','querySelectorAll','background:linear-gradient(160deg,rgba(38,44,68,.6),rgba(14,18,30,.82));box-shadow:inset\x200\x202px\x2010px\x20rgba(0,0,0,.5)}','.ig-br,.ig-grp{padding-left:10px!important;padding-right:10px!important}','CharacterClassName','querySelector','.ig-row\x20.ig-sub{gap:3px!important;flex-wrap:wrap}','preventDefault','\x20<span\x20class=\x22ig-delta\x22>+','.ig-row{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:6px!important}','px)!important;font-weight:400!important;line-height:1!important;','linear-gradient(135deg,#0f2840,#1c4568\x2055%,#0a1a2b)','width:var(--ig-sq,17px)!important;height:var(--ig-sq,17px)!important;min-width:0!important;padding:1px\x200\x200!important;font-size:var(--ig-sqfs,10px)!important;line-height:1!important;','<div\x20class=\x22ig-sub\x20ig-stone-opts\x22>','<div\x20class=\x22ig-m-right\x22>','IGWAN_ICONS','<span\x20class=\x22ig-eng-nm\x22\x20title=\x22','<div\x20class=\x22ig-name\x22\x20style=\x22color:','<div\x20class=\x22ig-kv\x22><span\x20class=\x22k\x22>무기\x20계열</span><span\x20class=\x22v\x22>','<div\x20class=\x22ig-eng-item\x22>','text','earring','ItemPartBox','parentNode','\x20→\x20','해당\x20없음','.ig-merged\x20.ig-panel-title{padding-bottom:10px;margin-bottom:14px;border-bottom:1px\x20solid\x20rgba(255,255,255,.14)}','#1a1f2e','.ig-ic-lg{width:40px!important;height:40px!important}','슬롯\x200단계','data-goal','</td></tr>','.ig-summary,.ig-sec-title,.ig-legend{display:none!important}','skip','</span><span>완갑\x20','%\x22></i></div>','keys','\x20esther','<div\x20class=\x22ig-m-sub\x22>지급\x20상세</div>','parse','test','linear-gradient(135deg,#46300a,#735013\x2055%,#2d1f08)','click','<div\x20class=\x22ig-weapon-label\x22><span\x20class=\x22ig-chip\x20chip-eq\x22>무기</span>\x20특수슬롯\x206종\x20지급</div>','height:var(--ig-bh,','<span\x20class=\x22ig-br-pts\x22>','length','추진력','.ig-table{min-width:320px}','+25(1800)→이관\x201815(+15).\x20표상\x20최상위\x20구간','.ig-w-from{overflow:visible!important;padding-top:6px}','adj','rule','등급\x20주문서</span>','https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_302.png','최마증','<div\x20class=\x22ig-br\x22>','<div\x20class=\x22ig-sum-sub\x22>이관\x20전\x206부위\x20·\x20이관\x20후\x2016부위</div></div>','</span>','igwanPanel','over','&amp;','<span\x20class=\x22ig-bdg\x20ig-bdg-yeon\x22\x20style=\x22','necklace','grade','linear-gradient(135deg,#1a3a55,#2a6a9a\x2050%,#163d5c)','jung','map','단계</span></div>','<div\x20class=\x22ig-sub\x22>','Engrave','img/waistband.webp','&gt;','<span\x20class=\x22ig-bdg\x22\x20style=\x22','top','sub','<div\x20class=\x22ig-br-rows\x22>','ancient','.ig-col{width:100%!important;max-width:100%!important;min-width:0!important}','.ig-acc-q{--ig-sq:15px;--ig-sqfs:9px;margin-left:4px!important}','yeonma','pts','display','slots','options','.ig-w-chip\x20.ig-chip-ella,.ig-w-chip\x20.ig-bdg-ella{position:absolute!important;top:7px!important;right:7px!important;z-index:2;height:18px!important;padding:0\x208px!important;font-size:10px!important;font-weight:900!important;line-height:18px!important;border-radius:5px!important;white-space:nowrap;letter-spacing:-0.02em;color:#fff!important;text-shadow:0\x201px\x202px\x20rgba(0,0,0,.45);background:linear-gradient(135deg,#3ecfff,#0a9ad8)!important;border:1px\x20solid\x20rgba(120,220,255,.95)!important;box-shadow:0\x200\x2012px\x20rgba(30,170,240,.55),inset\x200\x201px\x200\x20rgba(255,255,255,.25)!important}','https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_6.png','</span><span\x20class=\x22ig-fh\x20ig-fh-after\x22>이관\x20후</span></div>','+23(1790)→이관\x201800.\x201강으로\x20+10\x20보정\x20유지·레벨\x20상승','Element_000','.ig-br\x20.ig-br-id{display:flex!important;align-items:center;gap:10px;min-width:0;flex:1\x201\x20auto}','<div\x20class=\x22ig-br-head\x22><div\x20class=\x22ig-br-id\x22>','<span\x20class=\x22ig-bdg\x20ig-bdg-grade\x22\x20style=\x22','Icon','life','neu','color','<span\x20class=\x22ig-bdg\x20ig-bdg-ella\x20ig-chip-ella\x22>엘라4</span>','linear-gradient(145deg,#2a3148,#1a1f2e)','<div\x20class=\x22ig-w-chip','ItemLevel','<div\x20class=\x22ig-split\x22>','<div\x20class=\x22ig-qbar\x22><div\x20class=\x22ig-qfill\x22\x20style=\x22width:','renderIgwan','.ig-row\x20.ig-side,.ig-row\x20.ig-after{width:100%!important}','remove','</b>\x20/\x20','<span\x20class=\x22ig-eng-lv\x22>','IGWAN_HIDE_ON_MOBILE','<div\x20class=\x22ig-w-from\x20ig-side-rel\x22>','q-ha','</span></div>','Type','<span\x20class=\x22ig-br-q\x20none\x22>-</span>','className','https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_118.png','ig-extra-style','box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;','563444SvjirX','<span\x20class=\x22ig-bdg\x20ig-bdg-scroll\x22\x20style=\x22','concat','.ig-row>.ig-arrow{align-self:center;transform:rotate(90deg)}','#igwanPanel','<div\x20class=\x22ig-grp\x22>','개\x20→\x20슬롯\x20Lv.7','\x22\x20viewBox=\x220\x200\x2024\x2024\x22><path\x20fill=\x22#8b7cff\x22\x20d=\x22M8\x205\x20L15\x2012\x20L8\x2019\x20L10.5\x2019\x20L17.5\x2012\x20L10.5\x205\x20Z\x22/><path\x20fill=\x22#8b7cff\x22\x20opacity=\x22.45\x22\x20d=\x22M2\x205\x20L9\x2012\x20L2\x2019\x20L4.5\x2019\x20L11.5\x2012\x20L4.5\x205\x20Z\x22/></svg></span>','translateY(-100%)','<div\x20class=\x22ig-eng-empty\x22>팔찌\x20옵션\x20정보를\x20불러오지\x20못했어요</div>','<td\x20class=\x22lv\x22>','<span\x20class=\x22ig-br-q\x20','max','split','transform','<span\x20class=\x22ig-m-same\x22>무기와\x20동일</span>',']</span>','<div\x20class=\x22ig-after\x22>','2005208EEEVXO','ArkPassiveEffects','<div\x20class=\x22ig-kv\x22><span\x20class=\x22k\x22>슬롯\x20단계</span><span\x20class=\x22v\x20ig-m-slots\x22><span>무기\x20','.ig-merged-body{display:flex!important;flex-direction:column!important;gap:12px!important}','<div\x20class=\x22ig-merged-body\x22>','min','#9aa3b5','linear-gradient(135deg,#1b3310,#345621\x2055%,#112208)','relic','Name','.ig-br\x20.ig-br-title{display:flex!important;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}','raw','subHtml','<div\x20class=\x22ig-br-scale-lb\x22><span>21등급\x20·\x20최저</span><span>1등급\x20·\x20최고</span></div></div></div>','body','</div></div></div>','5티어','ArmoryEngraving','</div><div\x20class=\x22ig-text\x22>','ring','목걸이','<div\x20class=\x22ig-eng-empty\x22>각인\x20정보\x20없음</div>','&lt;','<div\x20class=\x22ig-m-left\x22>','\x22\x20data-grade=\x22','재련\x20슬롯\x20없음','acc','https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_300.png','shield','rows','<div\x20class=\x22ig-sum-value\x22>','<div\x20class=\x22ig-legend\x22>','<span\x20class=\x22ig-fh-mid\x22>','seal','.ig-split{display:flex!important;flex-direction:column!important;grid-template-columns:1fr!important;gap:12px!important}','label','exec','<div\x20class=\x22ig-note\x22>공개된\x20이관\x20기준을\x20바탕으로\x20한\x20추정\x20결과입니다.\x20실제\x20수치는\x20공식\x20이관\x20공지\x20후\x20정확히\x20반영됩니다.</div>','#00B0FA','position','<span\x20class=\x22ig-bdg\x20ig-bdg-new\x20ig-chip-new\x22>NEW</span>','<em>서폿\x20티어표</em>','</b><span>/\x2021등급</span></div></div>','#4FC93C','\x22></div><span\x20class=\x22ig-qnum\x22>','</td>','<div\x20class=\x22ig-col\x22><div\x20class=\x22ig-col-title\x22><span\x20class=\x22ig-chip\x20chip-eq\x22>장비</span>\x20방어구\x20(현재\x20→\x20이관\x20후)</div>','toFixed','.ig-merged\x20.ig-table\x20th{border-bottom:1px\x20solid\x20rgba(255,255,255,.14)}','.ig-row\x20.ig-side,.ig-row\x20.ig-after,.ig-row\x20.ig-after-item{min-width:0!important}','indexOf','<span\x20class=\x22ig-up\x22>+','none','<div\x20class=\x22ig-eng-split\x22>','<span\x20class=\x22ig-scroll\x22>','_igBound','<div\x20class=\x22ig-kv\x22><span\x20class=\x22k\x22>','trim','img/Sacredobject.webp','braceletAncient','.ig-w-chip\x20.ig-chip-new{position:absolute!important;top:7px!important;right:7px!important;z-index:2}','\x20acc','<span\x20class=\x22ig-m-same\x22>25단계\x20기준</span>','textContent','<div\x20class=\x22ig-sum-sub\x22>','function','.ig-eng-split{gap:6px!important}','<span\x20class=\x22ig-eng-slot\x22>슬롯\x20Lv.7</span>','.ig-br\x20.ig-br-grade\x20b,.ig-br\x20.ig-br-grade\x20span{white-space:nowrap}','getAttribute','\x20new','.ig-w-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}','q-sang','lines','18GwZZFw','toUpperCase','forEach','%;background:','<div\x20class=\x22ig-weapon\x22>','26!important;','216527WwoIZn','.ig-hone-pop','.ig-merged\x20.ig-m-left,.ig-merged\x20.ig-m-right{background:rgba(5,8,15,.6);border:1px\x20solid\x20rgba(255,255,255,.09);border-radius:12px;padding:14px\x2016px;','<span>Lv.','Effects','</span><span>허리띠\x200</span></span></div>','<div\x20class=\x22ig-sum-value\x22>16개</div><div\x20class=\x22ig-sum-sub\x22>장신구\x20주문서\x20포함</div></div>','<div\x20class=\x22ig-sum-card\x22><div\x20class=\x22ig-sum-label\x22>지급\x20장비\x20·\x20주문서</div>','<div\x20class=\x22ig-side\x22>','<em>딜러\x20티어표</em>','legend','getElementById','<div\x20class=\x22ig-sec-title\x22><span\x20class=\x22ig-dot\x22></span>\x20장비\x20·\x20장신구\x20이관</div>','<span\x20class=\x22ig-bdg\x20ig-bdg-before\x22\x20style=\x22','<div\x20class=\x22ig-eng-arrow\x22>','match','1370GLHCIe','단계\x20→\x20<b\x20style=\x22color:','</span></span>','\x20<span\x20class=\x22ig-up\x22>+','\x20인장','.ig-merged\x20.ig-table\x20tr:last-child\x20td{border-bottom:none}','#8045DD','<div\x20class=\x22ig-eng-col\x22>','.ig-merged\x20.ig-kv:last-child{border-bottom:none}','EngravingName','div','\x22>에스더</b></span>','badge','item','</div></div>','2티어+','<div\x20class=\x22ig-kv\x22><span\x20class=\x22k\x22>장신구\x20주문서</span><span\x20class=\x22v\x20accent\x22>옵션\x20기반\x20산출\x20×\x205장</span></div>','.ig-merged\x20.ig-m-sub{padding-bottom:9px;margin-bottom:6px;border-bottom:1px\x20solid\x20rgba(255,255,255,.14)}','#F99200','\x20~\x20','esther','ella','string','승부사','q-jung','@media\x20(max-width:768px){','.ig-br\x20.ig-br-grade{flex:0\x200\x20auto!important;white-space:nowrap!important}','AbilityStoneLevel','마효증','<div\x20class=\x22ig-ic-wrap\x20w-lg\x22>','\x22\x20data-ig-hone=\x22','\x22><span\x20class=\x22ig-ic-fb\x22\x20style=\x22color:','764352GwXnCm','<div\x20class=\x22ig-after-item\x22>','.ig-br\x20.ig-br-title\x20small\x20em{white-space:nowrap}','전문의','<div\x20class=\x22ig-eng-label\x22><span><span\x20class=\x22ig-chip\x20chip-eng\x22>각인</span>\x20이관</span><span\x20class=\x22ig-eng-res\x22>슬롯\x20강화</span></div>','Engravings','Element_001','closest','.ig-br\x20.ig-br-title\x20small{display:flex!important;flex-wrap:wrap;align-items:center;gap:4px\x205px;margin:0}','<img\x20class=\x22ig-eng-ic\x22\x20src=\x22','.ig-grp\x20.ig-eng{background:transparent!important;border:none!important;box-shadow:none!important;margin:8px\x200\x200!important;padding:12px\x200\x200!important;','<span\x20class=\x22ig-bdg\x20ig-bdg-esther\x22\x20style=\x22','title','.ig-weapon-flow{max-width:100%!important}','\x20팔찌','.ig-grp{margin-top:10px;padding:8px\x2012px\x2012px;border:1px\x20solid\x20rgba(255,214,140,.3);border-radius:14px;','.ig-w-from{flex-wrap:wrap!important;gap:10px!important}','https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_25.png','.ig-slot-txt{font-size:10px!important}','reason','관련\x20장비','<div\x20class=\x22ig-w-grid\x22>','<span\x20class=\x22ig-bdg\x20ig-bdg-lv\x22\x20style=\x22','\x20grade-','px\x20var(--ig-bpx,7px)\x200!important;margin-top:0!important;margin-bottom:0!important;','17735dzgPeb','44;background:','<div\x20class=\x22ig-sub\x20ig-sub-b\x22>','\x20성물','\x22\x20height=\x22','!important;border-color:','https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_301.png','<div\x20class=\x22ig-kv\x22><span\x20class=\x22k\x22>방어구\x205부위</span><span\x20class=\x22v\x22>','<span\x20class=\x22ig-eng-stone-lv\x22>','<div\x20class=\x22ig-w-lab\x22><span\x20class=\x22ig-fh\x20ig-fh-before\x22>이관\x20전</span></div>','강령술','<div\x20class=\x22ig-br-row','.ig-row{padding:14px\x208px\x208px!important;gap:4px!important;overflow:visible}','50211EYVCAL','<span\x20class=\x22ig-drop\x22>◆</span>','scroll','\x20/\x2021등급</span></div>','무기\x20최소\x20+20(1775)\x20권장.\x20이관\x20보정\x20+10\x20구간\x20진입','stopPropagation','<div\x20class=\x22ig-text\x22><div\x20class=\x22ig-name\x20ig-name-row\x22><span>','\x22><span\x20class=\x22ig-fh\x20ig-fh-before\x22>이관\x20전</span>','.ig-weapon{padding:10px!important}','\x22\x20data-goal=\x22','<div\x20class=\x22ig-br-title\x22><span>팔찌\x20옵션\x20·\x20등급점수</span><small>','<div\x20class=\x22','<div\x20class=\x22ig-col\x22><div\x20class=\x22ig-col-title\x20acc\x22><span\x20class=\x22ig-chip\x20chip-acc\x22>악세</span>\x20악세사리\x20(현재\x20→\x20주문서)</div>','<div\x20class=\x22ig-text\x22><div\x20class=\x22ig-name\x22\x20style=\x22color:','inherit','<div\x20class=\x22ig-w-meta-row\x22><span\x20class=\x22k\x22>슬롯</span><span\x20class=\x22v\x22>','<div\x20class=\x22ig-w-lab\x20ig-w-lab-mid\x22>','에스더\x20무기','ig-hone-pop','charAt'];_0x1a03=function(){return _0x501b16;};return _0x1a03();}
+/* ===== 이관 탭 렌더 (app-render-igwan.js) ===== */
+(function (global) {
+  "use strict";
+
+  var IGWAN_ICONS = {
+    necklace: "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_218.png",
+    earring:  "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_118.png",
+    ring:     "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_25.png",
+    braceletAncient: "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_302.png",
+    braceletRelic:   "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_301.png",
+    braceletLegend:  "https://cdn-lostark.game.onstove.com/efui_iconatlas/acc/acc_300.png",
+    scroll:   "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_6.png",
+    waistband: "img/waistband.webp",
+    sacred:    "img/Sacredobject.webp",
+    seal:      "img/seal.webp",
+    engravingSlot: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_115.png"
+  };
+
+  var ARMOR_TO_ACC = {
+    "투구": { acc: "목걸이", icon: IGWAN_ICONS.necklace },
+    "어깨": { acc: "귀걸이", icon: IGWAN_ICONS.earring },
+    "상의": { acc: "귀걸이", icon: IGWAN_ICONS.earring },
+    "하의": { acc: "반지",   icon: IGWAN_ICONS.ring },
+    "장갑": { acc: "반지",   icon: IGWAN_ICONS.ring }
+  };
+
+  // 공식 이관표 기준 (min 초과 ~ max 이하). delta = 이관 레벨 - max
+  // 일반: 1795~1800 → 1815 3연마
+  // 에스더는 lookupRule(ilvl, true)에서 별도 처리 (1830→1865 5연마 등)
+  var LEVEL_RULES = [
+    { min: 1795, max: 1800, after: 1815, grade: "고대", yeonma: 3, delta: 15 },
+    { min: 1790, max: 1795, after: 1810, grade: "고대", yeonma: 2, delta: 15 },
+    { min: 1785, max: 1790, after: 1800, grade: "고대", yeonma: 0, delta: 10 },
+    { min: 1780, max: 1785, after: 1795, grade: "유물", yeonma: 4, delta: 10 },
+    { min: 1775, max: 1780, after: 1790, grade: "유물", yeonma: 3, delta: 10 },
+    { min: 1770, max: 1775, after: 1785, grade: "유물", yeonma: 2, delta: 10 },
+    { min: 1765, max: 1770, after: 1770, grade: "전설", yeonma: 4, delta: 0 },
+    { min: 1760, max: 1765, after: 1765, grade: "전설", yeonma: 3, delta: 0 },
+    { min: 1755, max: 1760, after: 1760, grade: "전설", yeonma: 2, delta: 0 },
+    { min: 1750, max: 1755, after: 1755, grade: "전설", yeonma: 1, delta: 0 },
+    { min: 1745, max: 1750, after: 1750, grade: "전설", yeonma: 0, delta: 0 },
+    { min: 1740, max: 1745, after: 1745, grade: "영웅", yeonma: 4, delta: 0 },
+    { min: 1735, max: 1740, after: 1740, grade: "영웅", yeonma: 3, delta: 0 },
+    { min: 1730, max: 1735, after: 1735, grade: "영웅", yeonma: 2, delta: 0 },
+    { min: 1725, max: 1730, after: 1730, grade: "영웅", yeonma: 1, delta: 0 },
+    { min: 1720, max: 1725, after: 1725, grade: "영웅", yeonma: 0, delta: 0 },
+    { min: 1715, max: 1720, after: 1720, grade: "희귀", yeonma: 4, delta: 0 },
+    { min: 1710, max: 1715, after: 1715, grade: "희귀", yeonma: 3, delta: 0 },
+    { min: 1705, max: 1710, after: 1710, grade: "희귀", yeonma: 2, delta: 0 },
+    { min: 1700, max: 1705, after: 1705, grade: "희귀", yeonma: 1, delta: 0 },
+    { min: 1695, max: 1700, after: 1700, grade: "희귀", yeonma: 0, delta: 0 },
+    { min: 1690, max: 1695, after: 1695, grade: "고급", yeonma: 4, delta: 0 },
+    { min: 1685, max: 1690, after: 1690, grade: "고급", yeonma: 3, delta: 0 },
+    { min: 1680, max: 1685, after: 1685, grade: "고급", yeonma: 2, delta: 0 },
+    { min: 1675, max: 1680, after: 1680, grade: "고급", yeonma: 1, delta: 0 },
+    { min: 1600, max: 1675, after: 1675, grade: "고급", yeonma: 0, delta: 0 }
+  ];
+
+  var ARMOR_ORDER = ["투구", "어깨", "상의", "하의", "장갑"];
+  var ACC_ORDER = ["목걸이", "귀걸이", "귀걸이", "반지", "반지", "어빌리티 스톤", "팔찌"];
+
+  // 로아 API 등급색 (툴팁 아이템명 색상). 장비 툴팁에서 읽어오고, 없으면 공식 기본값 사용
+  var GRADE_COLOR = {
+    "고대": "#E3C7A1",
+    "유물": "#FA5D00",
+    "전설": "#F99200",
+    "영웅": "#8045DD",
+    "희귀": "#00B0FA",
+    "고급": "#4FC93C"
+  };
+
+  /** 장착 아이템 툴팁(이름 색상)에서 등급색을 읽어 덮어쓰기 */
+  function learnGradeColors(list) {
+    (list || []).forEach(function (it) {
+      try {
+        if (!it || !it.Grade || !it.Tooltip || !GRADE_COLOR[it.Grade]) return;
+        var tip = typeof it.Tooltip === "string" ? it.Tooltip : JSON.stringify(it.Tooltip);
+        var m = /Element_000[\s\S]{0,500}?COLOR\s*=\s*\\?['"]?(#[0-9A-Fa-f]{6})/i.exec(tip);
+        if (m) GRADE_COLOR[it.Grade] = m[1].toUpperCase();
+      } catch (e) {}
+    });
+  }
+
+  function shadeHex(hex, f) {
+    var n = parseInt(String(hex).replace("#", ""), 16);
+    var r = Math.round(((n >> 16) & 255) * f), g = Math.round(((n >> 8) & 255) * f), b = Math.round((n & 255) * f);
+    return "#" + [r, g, b].map(function (x) { return ("0" + Math.max(0, Math.min(255, x)).toString(16)).slice(-2); }).join("");
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function gradeColor(g) { return GRADE_COLOR[g] || "#9aa3b5"; }
+  // 아이템 아이콘 배경 (인게임 아이콘 배경색 참고, 한 톤 어둡게)
+  var GRADE_BG = {
+    "유물": "linear-gradient(135deg,#4a1d0b,#7a3310 55%,#331409)",
+    "전설": "linear-gradient(135deg,#46300a,#735013 55%,#2d1f08)",
+    "영웅": "linear-gradient(135deg,#2b1649,#4a2c70 55%,#1b0e30)",
+    "희귀": "linear-gradient(135deg,#0f2840,#1c4568 55%,#0a1a2b)",
+    "고급": "linear-gradient(135deg,#1b3310,#345621 55%,#112208)"
+  };
+  function gradeBg(g) {
+    if (GRADE_BG[g]) return GRADE_BG[g];
+    var c = GRADE_COLOR[g];
+    if (!c) return "linear-gradient(145deg,#2a3148,#1a1f2e)";
+    return "linear-gradient(135deg," + shadeHex(c, 0.28) + "," + shadeHex(c, 0.92) + ")";
+  }
+
+  /** 심볼(뱃지) 공통 규격: 등급/레벨/연마/장비레벨 심볼 모두 동일 크기·테두리·글자크기(볼드 없음)·세로 가운데 정렬. 아이템명보다 작게
+   *  BDG_NUDGE: 글자가 위로 쏠려 보이면 값을 키우고(1~3), 아래로 쏠리면 줄이세요 (px) */
+  var BDG_H = 18, BDG_FS = 11, BDG_NUDGE = 1;
+  var BDG_BASE = "box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;" +
+    "height:var(--ig-bh," + BDG_H + "px)!important;min-height:0!important;padding:" + BDG_NUDGE + "px var(--ig-bpx,7px) 0!important;margin-top:0!important;margin-bottom:0!important;" +
+    "font-size:var(--ig-bfs," + BDG_FS + "px)!important;font-weight:400!important;line-height:1!important;" +
+    "border-width:1px!important;border-style:solid!important;border-radius:5px!important;white-space:nowrap;vertical-align:middle;";
+  function bdgStyle(c) {
+    return BDG_BASE + "color:" + c + "!important;border-color:" + c + "!important;background:" + c + "26!important;";
+  }
+  function yeonBadge(n, grade, colorOverride) {
+    var c = colorOverride || gradeColor(grade);
+    return '<span class="ig-bdg ig-bdg-yeon" style="' + bdgStyle(c) + '">' + n + '연마</span>';
+  }
+  function lvBadge(lv, grade, colorOverride) {
+    var c = colorOverride || gradeColor(grade);
+    return '<span class="ig-bdg ig-bdg-lv" style="' + bdgStyle(c) + '">' + lv + '</span>';
+  }
+  function gradePill(g, colorOverride) {
+    var c = colorOverride || gradeColor(g);
+    return '<span class="ig-bdg ig-bdg-grade" style="' + bdgStyle(c) + '">' + esc(g) + '</span>';
+  }
+  /** 이관 전 장비레벨 심볼 (색은 기존 CSS 유지, 크기/테두리 두께만 통일) */
+  function beforeBadge(txt) {
+    return '<span class="ig-bdg ig-bdg-before" style="' + BDG_BASE + '">' + esc(txt) + '</span>';
+  }
+  /** 심볼 순서: 장비레벨 → 연마 (등급은 별도 gradePill) */
+  function ruleBadges(rule, colorOverride) {
+    return lvBadge(rule.after, rule.grade, colorOverride) + yeonBadge(rule.yeonma, rule.grade, colorOverride);
+  }
+
+  function gradeClass(g) {
+    if (g === "고대") return "ancient";
+    if (g === "유물") return "relic";
+    if (g === "전설") return "legend";
+    if (g === "영웅") return "hero";
+    return "";
+  }
+
+  /** 아이템 레벨 (소수점 유지, 평균용) */
+  function parseItemLevelFloat(item) {
+    if (!item) return 0;
+    var tip = item.Tooltip || "";
+    var m = /아이템\s*레벨\s*([0-9]+(?:\.[0-9]+)?)/.exec(tip);
+    if (m) return parseFloat(m[1]);
+    if (item.ItemLevel != null) return Number(item.ItemLevel) || 0;
+    return 0;
+  }
+  /** 아이템 레벨 (내림, 이관 구간 조회용) */
+  function parseItemLevel(item) {
+    return Math.floor(parseItemLevelFloat(item));
+  }
+
+  function parseUpgrade(item) {
+    var name = String((item && item.Name) || "").replace(/<[^>]+>/g, "");
+    var m = /\+(\d+)/.exec(name);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
+  /**
+   * 이관 전 강화 추천 (에스더 제외)
+   * 공식표 기준: +20(1775)부터 +10 보정, +24(1795)/+25(1800)는 +15 보정
+   * @returns {{ goal: number, reason: string }|null}
+   */
+  function honeRecommend(up, isWeapon) {
+    up = up | 0;
+    if (up >= 18 && up < 20) {
+      return { goal: 20, reason: "+20(1775)부터 이관 보정 +10. 보정 구간 진입 추천" };
+    }
+    if (up === 22) {
+      return { goal: 23, reason: "+23(1790)→이관 1800. 1강으로 +10 보정 유지·레벨 상승" };
+    }
+    if (up === 24) {
+      return { goal: 25, reason: "+25(1800)→이관 1815(+15). 표상 최상위 구간" };
+    }
+    if (!isWeapon && up === 21) {
+      return { goal: 23, reason: "+23(1790)→이관 1800. 방어구는 비용 부담이 상대적으로 적어 +23 추천" };
+    }
+    if (isWeapon && up >= 15 && up < 18) {
+      return { goal: 20, reason: "무기 최소 +20(1775) 권장. 이관 보정 +10 구간 진입" };
+    }
+    return null;
+  }
+
+  /** 추천 강 달성 시 예상 아이템 레벨 (1675 베이스 +5/강) */
+  function honeToIlvl(goal) {
+    return 1675 + (goal | 0) * 5;
+  }
+
+  /** 이관 전 장비 우측 상단 떠다니는 추천 말풍선 (클릭 시 미니 툴팁)
+   *  +N강 색상 = 해당 강 달성 후 이관 시 장비 등급색 (전설/유물/고대) */
+  function honeBubble(up, isWeapon, key) {
+    var rec = honeRecommend(up, isWeapon);
+    if (!rec) return "";
+    var k = key || ("h" + up + (isWeapon ? "w" : "a"));
+    var afterRule = lookupRule(honeToIlvl(rec.goal));
+    var g = afterRule.grade || "유물";
+    var col = gradeColor(g);
+    return '<div class="ig-hone-bubble ig-hb-' + esc(g) + '" data-ig-hone="' + esc(k) + '" data-reason="' + esc(rec.reason) + '" data-goal="' + rec.goal + '" data-grade="' + esc(g) + '">' +
+      '추천 <b>+' + rec.goal + '강</b> <span class="ig-hb-detail">자세히</span>' +
+      '</div>';
+  }
+
+  /** 추천 말풍선 클릭 → 미니 툴팁 / X로 해당 풍선 숨김 (새로고침 시 다시 표시) */
+  function bindHoneBubbles(root) {
+    if (!root) return;
+    var panel = root.querySelector("#igwanPanel") || root;
+    // 기존 팝업 제거
+    var old = panel.querySelector(".ig-hone-pop");
+    if (old) old.remove();
+
+    panel.querySelectorAll(".ig-hone-bubble").forEach(function (bub) {
+      if (bub._igBound) return;
+      bub._igBound = true;
+      bub.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // 다른 팝업 닫기
+        var exist = panel.querySelector(".ig-hone-pop");
+        if (exist) exist.remove();
+
+        var reason = bub.getAttribute("data-reason") || "";
+        var goal = bub.getAttribute("data-goal") || "";
+        var pop = document.createElement("div");
+        pop.className = "ig-hone-pop";
+        pop.innerHTML =
+          '<button type="button" class="ig-hone-pop-x" aria-label="닫기">×</button>' +
+          '<div class="ig-hone-pop-title">추천 +' + goal + '강</div>' +
+          '<div class="ig-hone-pop-body">' + reason + '</div>';
+        // 위치: 말풍선 근처
+        var rect = bub.getBoundingClientRect();
+        var host = bub.closest(".ig-side-rel") || bub.parentNode;
+        if (host && host.style) host.style.position = host.style.position || "relative";
+        host.appendChild(pop);
+        // 풍선 오른쪽에 맞춤
+        pop.style.top = "0";
+        pop.style.right = "0";
+        pop.style.transform = "translateY(-100%)";
+
+        pop.querySelector(".ig-hone-pop-x").addEventListener("click", function (ev) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          pop.remove();
+          bub.style.display = "none"; // 해당 풍선만 숨김 (재진입 시 다시 렌더되어 표시)
+        });
+      });
+    });
+  }
+
+  /** 에스더 무기 여부 (이름/툴팁에 에스더 포함) */
+  function isEstherWeapon(item) {
+    if (!item) return false;
+    var name = String((item && item.Name) || "").replace(/<[^>]+>/g, "");
+    if (/에스더/.test(name)) return true;
+    var tip = String(item.Tooltip || "");
+    if (/에스더/.test(tip)) return true;
+    return false;
+  }
+
+  /**
+   * 이관 후 재련(슬롯) 단계.
+   * 공식표: 진화10/엘라3 → +25, 진화9/엘라3 → +25 등.
+   * 1800+ 에스더 보유 시 완갑·허리띠·성물·인장·팔찌는 25단계 무기 기준으로 지급.
+   * forceEstherHigh=true 이면 (에스더 무기 기준) 무조건 25 반환.
+   */
+  /**
+   * 이관 후 재련(슬롯) 단계.
+   * - 에스더 1800+ (또는 forceEstherHigh): 25단계
+   * - 그 외 일반 무기/완갑: 현재 강화 단계 유지
+   */
+  function transferSlotStage(item, forceEstherHigh) {
+    if (forceEstherHigh) return 25;
+    var up = parseUpgrade(item);
+    var il = 0;
+    try {
+      var tip = (item && item.Tooltip) || "";
+      var m = /아이템\s*레벨\s*([0-9]+(?:\.[0-9]+)?)/.exec(tip);
+      if (m) il = Math.floor(parseFloat(m[1]));
+      else if (item && item.ItemLevel) il = Math.floor(Number(item.ItemLevel) || 0);
+    } catch (e) {}
+    // 에스더 무기 1800+ (또는 강화 9+) → 25단계
+    if (isEstherWeapon(item) && (il >= 1800 || up >= 9)) return 25;
+    // 일반: 현재 강화 단계 유지 (22강 → 22, 20강 → 20)
+    return Math.max(0, up);
+  }
+
+  function parseQuality(item) {
+    if (typeof tipQuality === "function" && item && item.Tooltip) {
+      try {
+        var tip = typeof parseTip === "function" ? parseTip(item.Tooltip) : null;
+        if (tip) {
+          var q = tipQuality(tip);
+          if (q != null && !isNaN(q)) return q | 0;
+        }
+      } catch (e) {}
+    }
+    var tip = (item && item.Tooltip) || "";
+    var m = /품질\s*([0-9]+)/.exec(tip);
+    if (m) return parseInt(m[1], 10);
+    m = /"qualityValue"\s*:\s*([0-9]+)/i.exec(tip);
+    if (m) return parseInt(m[1], 10);
+    return 0;
+  }
+
+  function cleanName(item) {
+    return String((item && item.Name) || "").replace(/<[^>]+>/g, "").trim();
+  }
+
+  function shortName(item, fallback) {
+    var n = cleanName(item);
+    if (!n) return fallback || "";
+    if (n.length > 16) n = n.slice(0, 15) + "…";
+    return n;
+  }
+
+  /** 표시용: "+24 투구" / "+25 무기" */
+  function slotTitle(item, typeLabel) {
+    var up = parseUpgrade(item);
+    var label = typeLabel || shortArmorLabel((item && item.Type) || "") || "";
+    if (up) return "+" + up + " " + label;
+    return label || shortName(item, label);
+  }
+
+  /** 이관 전 이름: 강화수(+N)는 등급색, 부위명(투구/무기 등)은 흰색 */
+  function slotTitleHtml(item, typeLabel, grade) {
+    var up = parseUpgrade(item);
+    var label = typeLabel || shortArmorLabel((item && item.Type) || "") || "";
+    var col = gradeColor(grade || (item && item.Grade) || "고대");
+    if (up) {
+      return '<span style="color:' + col + '">+' + up + '</span> <span style="color:#e8eef8">' + esc(label) + '</span>';
+    }
+    return '<span style="color:#e8eef8">' + esc(label || shortName(item, label)) + '</span>';
+  }
+
+  function shortArmorLabel(type) {
+    return type === "어깨" ? "견갑" : (type || "");
+  }
+  function accSlotLabel(type) {
+    if (type === "어빌리티 스톤") return "스톤";
+    if (type === "목걸이") return "목걸이";
+    if (type === "귀걸이") return "귀걸이";
+    if (type === "반지") return "반지";
+    if (type === "팔찌") return "팔찌";
+    return type || "";
+  }
+  function stoneOptsHtml(item) {
+    if (!item) return "";
+    var grade = item.Grade || "고대";
+    var parts = [gradePill(grade)];
+    try {
+      if (typeof parseTip === "function" && typeof parseStoneEngraves === "function") {
+        var tip = parseTip(item.Tooltip || "");
+        var engs = parseStoneEngraves(tip).filter(function (en) { return !en.bonus; });
+        engs.forEach(function (en) {
+          var nm = en.name || en.Name || "";
+          var lv = en.lv != null ? en.lv : (en.level != null ? en.level : (en.Level != null ? en.Level : en.value));
+          if (nm) parts.push('<span class="ig-stone-opt">[' + esc(nm) + ' ' + esc(lv) + ']</span>');
+        });
+      }
+    } catch (e) {}
+    return parts.join(" ");
+  }
+
+  /**
+   * 이관 레벨 규칙 조회.
+   * isEsther=true 이면 에스더 전용 고구간 적용:
+   *   1825+ → 1865 5연마 (진화10/엘라3)
+   *   1800~1824 → 1840 0연마 (진화9/엘라3)
+   * 일반 무기는 LEVEL_RULES만 사용 (1795~1800 → 1815 3연마)
+   */
+  function lookupRule(ilvl, isEsther) {
+    if (isEsther) {
+      if (ilvl > 1825) return { min: 1825, max: 1835, after: 1865, grade: "고대", yeonma: 5, delta: 35 };
+      if (ilvl > 1800) return { min: 1800, max: 1825, after: 1840, grade: "고대", yeonma: 0, delta: 40 };
+      // 에스더 1800 이하: 일반표와 동일 구간 사용
+    }
+    for (var i = 0; i < LEVEL_RULES.length; i++) {
+      var r = LEVEL_RULES[i];
+      if (ilvl > r.min && ilvl <= r.max) return r;
+    }
+    if (ilvl > 1800) return LEVEL_RULES[0]; // 일반 최고구간 (1815)
+    return LEVEL_RULES[LEVEL_RULES.length - 1];
+  }
+
+  function qualityBar(q) {
+    q = Math.max(0, Math.min(100, q | 0));
+    var w = q >= 100 ? 100 : Math.max(8, q);
+    var fill = q >= 100
+      ? "linear-gradient(90deg,#e8b84b,#ffd76a)"
+      : "linear-gradient(90deg,#5b9cf5,#7eb6ff)";
+    return '<div class="ig-qbar"><div class="ig-qfill" style="width:' + w + '%;background:' + fill + '"></div><span class="ig-qnum">' + q + '</span></div>';
+  }
+
+  /** 정보탭 스타일 아이콘: 등급 테두리 + 배경 */
+  function iconBox(src, grade, fallbackText, size, opts) {
+    size = size || "md";
+    opts = opts || {};
+    var col = opts.color || gradeColor(grade);
+    var bg = opts.bg || gradeBg(grade);
+    var cls = "ig-ic ig-ic-" + size + (grade ? (" grade-" + gradeClass(grade)) : "");
+    var style = "border:1px solid " + col + ";box-shadow:0 0 0 1px " + col + "44;background:" + (bg || "#1a1f2e") + ";";
+    if (src) {
+      return '<div class="' + cls + '" style="' + style + '"><img src="' + esc(src) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'"></div>';
+    }
+    return '<div class="' + cls + '" style="' + style + '"><span class="ig-ic-fb" style="color:' + col + '">' + esc(fallbackText || "") + "</span></div>";
+  }
+
+  function arrowSvg(big) {
+    var s = big ? 26 : 18;
+    return '<span class="ig-arrow"><svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24"><path fill="#8b7cff" d="M8 5 L15 12 L8 19 L10.5 19 L17.5 12 L10.5 5 Z"/><path fill="#8b7cff" opacity=".45" d="M2 5 L9 12 L2 19 L4.5 19 L11.5 12 L4.5 5 Z"/></svg></span>';
+  }
+
+  /** 컬럼 상단 "이관 전 → 이관 후" 구분 */
+  function flowHead(acc) {
+    return '<div class="ig-flow-head' + (acc ? ' acc' : '') + '"><span class="ig-fh ig-fh-before">이관 전</span>' +
+      '<span class="ig-fh-mid">' + arrowSvg() + '</span><span class="ig-fh ig-fh-after">이관 후</span></div>';
+  }
+
+  function findByType(list, type, nth) {
+    nth = nth || 0;
+    var n = 0;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].Type === type) {
+        if (n === nth) return list[i];
+        n++;
+      }
+    }
+    return null;
+  }
+
+  // ---- 주문서 등급: 공개 표 기준 (상/중/하 조합) ----
+  // 딜러 유효 옵션
+  var DEALER_VALID = {
+    "목걸이": [
+      [/추가\s*피해/, 1], [/적에게\s*주는\s*피해/, 1],
+      [/공격력\s*\+/, 3], [/무기\s*공격력\s*\+/, 3]
+    ],
+    "귀걸이": [
+      [/공격력\s*%/, 1], [/무기\s*공격력\s*%/, 1],
+      [/공격력\s*\+/, 3], [/무기\s*공격력\s*\+/, 3]
+    ],
+    "반지": [
+      [/치명타\s*적중/, 1], [/치명타\s*피해/, 1],
+      [/공격력\s*\+/, 3], [/무기\s*공격력\s*\+/, 3]
+    ]
+  };
+  // 서폿 유효 옵션
+  var SUPPORT_VALID = {
+    "목걸이": [
+      [/낙인력/, 1], [/세레나데/, 1], [/신앙/, 1], [/조화\s*게이지/, 1],
+      [/무기\s*공격력\s*\+/, 3], [/최대\s*생명력\s*\+/, 3]
+    ],
+    "귀걸이": [
+      [/무기\s*공격력\s*%/, 1], [/무기\s*공격력\s*\+/, 1],
+      [/최대\s*생명력\s*\+/, 3], [/보호막/, 3], [/회복\s*효과/, 3]
+    ],
+    "반지": [
+      [/아군\s*공격력\s*강화/, 1], [/아군\s*피해량\s*강화/, 1],
+      [/무기\s*공격력\s*\+/, 3], [/최대\s*생명력\s*\+/, 3]
+    ]
+  };
+
+  function isSupportClass(fullData) {
+    try {
+      var cls = (fullData && fullData.ArmoryProfile && fullData.ArmoryProfile.CharacterClassName) || "";
+      return /바드|도화가|홀리나이트|기상술사/.test(cls);
+    } catch (e) { return false; }
+  }
+
+  function parseAccOptList(item) {
+    var out = [];
+    if (!item || !item.Tooltip) return out;
+    try {
+      var tip = (typeof parseTip === "function") ? parseTip(item.Tooltip) : null;
+      if (!tip) {
+        try { tip = JSON.parse(item.Tooltip); } catch (e) { tip = null; }
+      }
+      if (!tip) return out;
+      var body = "";
+      if (typeof tipParts === "function") {
+        var parts = tipParts(tip);
+        var polish = parts.find(function (p) { return /연마|추가 효과/.test(p.title || ""); });
+        if (polish && polish.body) body = polish.body;
+      }
+      if (!body) body = typeof item.Tooltip === "string" ? item.Tooltip : JSON.stringify(tip);
+
+      body.split(/<br\s*\/?>/i).forEach(function (raw) {
+        var clean = String(raw || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+        if (!clean || clean.length < 2) return;
+        var badge = null;
+        var name = clean;
+        var om = clean.match(/^(.+?)\s*\+\s*([0-9.]+)\s*(%?)/);
+        if (om && typeof gradeFromOptValue === "function") {
+          badge = gradeFromOptValue(om[1].trim(), parseFloat(om[2]));
+          name = om[1].trim() + (om[3] === "%" ? " %" : " +");
+        }
+        if (!badge && typeof tierFromColor === "function") {
+          var tier = tierFromColor(raw);
+          badge = tier === "sang" ? "상" : tier === "jung" ? "중" : tier === "ha" ? "하" : null;
+        }
+        if (!badge) {
+          if (/#?FE9600/i.test(raw)) badge = "상";
+          else if (/#?A235FF/i.test(raw)) badge = "중";
+          else if (/#?00B5FF/i.test(raw)) badge = "하";
+        }
+        if (!badge) return;
+        if (om) name = om[1].trim() + (om[3] === "%" ? "%" : "+");
+        out.push({ name: name, badge: badge, raw: clean });
+      });
+    } catch (e) {}
+    return out;
+  }
+
+  function isValidOpt(optName, slotType, support) {
+    var table = support ? SUPPORT_VALID[slotType] : DEALER_VALID[slotType];
+    if (!table) return true;
+    var n = String(optName || "");
+    for (var i = 0; i < table.length; i++) {
+      if (table[i][0].test(n)) return true;
+    }
+    // 퍼센트/플러스 변형 매칭 완화
+    var n2 = n.replace(/\s+/g, "");
+    for (var j = 0; j < table.length; j++) {
+      if (table[j][0].test(n2)) return true;
+    }
+    return false;
+  }
+
+  /** 옵션의 공개표 슬롯 가중치: 1 = 1·2옵션(%류), 3 = 3옵션(고정수치), 0 = 표에 없음 */
+  function optWeight(opt, slotType, support) {
+    var table = support ? SUPPORT_VALID[slotType] : DEALER_VALID[slotType];
+    if (!table) return 0;
+    function w(str) {
+      var n = String(str || ""), n2 = n.replace(/\s+/g, "");
+      for (var i = 0; i < table.length; i++) {
+        if (table[i][0].test(n) || table[i][0].test(n2)) return table[i][1];
+      }
+      return 0;
+    }
+    // 이름(%/+ 구분 완료된 값)을 우선 보고, 매칭 안 될 때만 raw 사용
+    return w(opt.name) || w(opt.raw);
+  }
+
+  function supportEarringSpecial(opts) {
+    // 서폿 귀걸이 3옵션 특수: 최대 생명력 / 보호막 / 회복
+    var third = opts[2] || opts[opts.length - 1];
+    if (!third) return null;
+    var n = third.name || third.raw || "";
+    if (/최대\s*생명력/.test(n)) return "life";
+    if (/보호막|회복/.test(n)) return "shield";
+    return null;
+  }
+
+  /**
+   * 1·2옵션(%류) 조합 + 3옵션 → 주문서 등급 (공개표 기준)
+   * 딜러 전 부위 / 서폿 목걸이·반지:
+   *   상상+3옵션 상→1, 상상+중→2, 상상(3옵션 하/없음)→3, 상중/중상→4, 상하/하상→5, 그 외→6
+   * 서폿 귀걸이: 상상+3옵션 상(생명력)→2, 상상+상(보호막/회복)→3, 상상+중→4, 상상→5, 그 외→6
+   * 4티어 유물 서폿 목걸이/반지: 상상→5, 그 외→6
+   * pBadges = 1·2옵션 배지 배열, third = 3옵션 배지(없으면 null)
+   * 서폿 귀걸이 상상상은 null 반환 → 호출측에서 3옵션 종류 판별
+   */
+  function comboToGrade(pBadges, third, slotType, support, itemGrade) {
+    var s = 0, j = 0, h = 0;
+    pBadges.forEach(function (b) {
+      if (b === "상") s++;
+      else if (b === "중") j++;
+      else if (b === "하") h++;
+    });
+    if (pBadges.length < 2) return 6;
+    var bothSang = (s === 2);
+
+    // 유물 서폿 목걸이/반지
+    if (itemGrade === "유물" && support && (slotType === "목걸이" || slotType === "반지")) {
+      return bothSang ? 5 : 6;
+    }
+
+    // 서폿 귀걸이
+    if (support && slotType === "귀걸이") {
+      if (!bothSang) return 6;
+      if (third === "상") return null;
+      if (third === "중") return 4;
+      return 5;
+    }
+
+    // 기본 (딜러 전 부위 + 서폿 목걸이/반지)
+    if (bothSang) {
+      if (third === "상") return 1;
+      if (third === "중") return 2;
+      return 3;
+    }
+    if (s === 1 && j === 1) return 4; // 상중/중상
+    if (s === 1 && h === 1) return 5; // 상하/하상
+    return 6; // 중중 이하
+  }
+
+  /** 악세 분석: 1·2옵션/3옵션 상중하 슬롯 + 주문서 등급 */
+  function accAnalysis(item, fullData) {
+    if (!item) return { slots: ["-", "-", "-"], grade: 4 };
+    var slotType = item.Type || "";
+    if (slotType === "어빌리티 스톤" || slotType === "팔찌") return { slots: ["-", "-", "-"], grade: 1 };
+    var support = isSupportClass(fullData);
+    var opts = parseAccOptList(item);
+
+    // 1·2옵션(가중치 1) / 3옵션(가중치 3) 분리. 표에 없는 옵션은 무시
+    var primary = [], thirdOpt = null;
+    opts.forEach(function (o) {
+      var w = optWeight(o, slotType, support);
+      if (w === 1) primary.push(o);
+      else if (w === 3 && !thirdOpt) thirdOpt = o;
+    });
+
+    if (!opts.length || !opts.some(function (o) { return o.badge; })) {
+      // 파싱 실패 → 보수적
+      return { slots: ["-", "-", "-"], grade: (item.Grade === "고대") ? 4 : 5 };
+    }
+
+    var pBadges = primary.map(function (o) { return o.badge; }).filter(Boolean);
+    var third = thirdOpt ? thirdOpt.badge : null;
+
+    var g = comboToGrade(pBadges, third, slotType, support, item.Grade || "");
+    if (g == null) {
+      // 서폿 귀걸이 상상상: 3옵션 종류로 판별
+      var sp = supportEarringSpecial(thirdOpt ? [thirdOpt] : []);
+      g = (sp === "life") ? 2 : 3;
+    }
+    return {
+      slots: [pBadges[0] || "-", pBadges[1] || "-", third || "-"],
+      grade: g
+    };
+  }
+
+  function scrollGradeFromAcc(item, fullData) {
+    return accAnalysis(item, fullData).grade;
+  }
+
+  /**
+   * 장신구 이관 결과 (공지 기준)
+   * - 고대: 품질 67↑ + 유효 옵션 → 마력 주입 주문서 1~6
+   * - 유물: 서폿 상/상 목걸이·반지만 주문서, 그 외 파편
+   * - 품질 67 미만 / 유효 옵션 없음 → 영롱한 보석 파편
+   */
+  function accTransferResult(item, fullData) {
+    if (!item) return { type: "none", note: "-" };
+    var q = parseQuality(item);
+    var g = item.Grade || "";
+    var type = item.Type || "";
+    var info = accAnalysis(item, fullData);
+    var hasValid = (info.slots || []).some(function (s) { return s === "상" || s === "중" || s === "하"; });
+
+    if (g === "유물") {
+      var support = isSupportClass(fullData);
+      var topCnt = (info.slots || []).filter(function (s) { return s === "상"; }).length;
+      var neckRing = /목걸이|반지/.test(type);
+      if (!(support && neckRing && topCnt >= 2 && q >= 67 && hasValid)) {
+        return { type: "fragment", note: "영롱한 보석 파편", slots: info.slots };
+      }
+    } else if (q < 67 || !hasValid) {
+      return { type: "fragment", note: "영롱한 보석 파편", slots: info.slots, quality: q };
+    }
+    return { type: "scroll", grade: info.grade, slots: info.slots, quality: q };
+  }
+
+  /**
+   * 어빌리티 스톤 → 각인 슬롯 업그레이드 (공지 표)
+   * AbilityStoneLevel 합/분포 기준
+   */
+  function stoneSlotUpgrade(fullData) {
+    var engs = getEngravings(fullData).filter(hasStone);
+    if (!engs.length) return null;
+    var pts = engs.map(function (e) { return Number(e.AbilityStoneLevel) || 0; })
+      .filter(function (n) { return n > 0; })
+      .sort(function (a, b) { return b - a; });
+    var a = pts[0] || 0, b = pts[1] || 0;
+    var sum = a + b;
+    if (sum < 4) return { sum: sum, label: "미반영 (합계 4 미만)", detail: a + "+" + b };
+    if (sum === 4 && a === 2 && b === 2) return { sum: 4, slots: 1, stage: 3, label: "슬롯 1개 · 3단계", detail: "2+2" };
+    if (sum === 4) return { sum: 4, slots: 1, stage: 5, label: "슬롯 1개 · 5단계", detail: a + "+" + b };
+    if (sum === 5) return { sum: 5, slots: 2, stage: 7, label: "슬롯 2개 · 7단계", detail: a + "+" + b };
+    if (sum === 6 && a === 4 && b === 2) return { sum: 6, slots: 3, stage: 7, label: "슬롯 3개 · 7단계", detail: "4+2" };
+    if (sum === 6) return { sum: 6, slots: 4, stage: 7, label: "슬롯 4개 · 7단계", detail: a + "+" + b };
+    if (sum === 7) return { sum: 7, slots: 5, stage: 7, label: "슬롯 5개 · 7단계", detail: a + "+" + b };
+    if (sum >= 8) return { sum: sum, slots: 5, stage: 7, label: "슬롯 5개 · 7단계 + 추가 아이템", detail: a + "+" + b };
+    return { sum: sum, label: "합계 " + sum, detail: a + "+" + b };
+  }
+
+  var SLOT_Q = "box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;" +
+    "width:var(--ig-sq,17px)!important;height:var(--ig-sq,17px)!important;min-width:0!important;padding:1px 0 0!important;font-size:var(--ig-sqfs,10px)!important;line-height:1!important;";
+  /** 악세 옵션 상/중/하 심볼 (팔찌와 동일 디자인): [상][하][-] */
+  function accSlotsHtml(slots) {
+    var qcls = { "상": "q-sang", "중": "q-jung", "하": "q-ha" };
+    var h = '<span class="ig-acc-q" style="display:inline-flex;align-items:center;gap:3px;margin-left:6px;vertical-align:middle">';
+    (slots || []).forEach(function (b) {
+      h += b && b !== "-"
+        ? '<span class="ig-br-q ' + (qcls[b] || '') + '" style="' + SLOT_Q + '">' + esc(b) + '</span>'
+        : '<span class="ig-br-q none" style="' + SLOT_Q + '">-</span>';
+    });
+    return h + '</span>';
+  }
+
+  /** 주문서 등급 → 심볼 등급색: 1 전설 / 2~3 영웅 / 4~5 희귀 / 6 고급 */
+  function scrollTierGrade(n) {
+    if (n <= 1) return "전설";
+    if (n <= 3) return "영웅";
+    if (n <= 5) return "희귀";
+    return "고급";
+  }
+
+  // ---- 팔찌 → 인장 주문서 (1~21등급) ----
+  // 고정옵션(특성) 2개 최대 12점 + 부여옵션 3개 최대 21점 + 힘/민/지 최대 3점 = 36점 만점
+  // 등급 = round(점수/36*21)
+  // 티어×품질: 1=5/6/7, 2=4/5/6, 3=3/4/5
+  // 특성: 하≤84 · 중85~102 · 상≥103 → 2티어 점수
+  // 파싱: 사이트 brSegments + brParseBody (db.js 옵션 매칭)
+  var BR_SCORE = {
+    1:   { "하": 5, "중": 6, "상": 7 },
+    2:   { "하": 4, "중": 5, "상": 6 },
+    2.5: { "하": 4, "중": 5, "상": 6 },
+    3:   { "하": 3, "중": 4, "상": 5 },
+    3.5: { "하": 3, "중": 4, "상": 5 },
+    4:   { "하": 2, "중": 3, "상": 4 },
+    5:   { "하": 1, "중": 2, "상": 3 }
+  };
+
+  // 힘/민첩/지능 (5티어): 하 ≤12,159 · 중 12,160~14,079 · 상 ≥14,080 → 1/2/3점
+  var BR_MAIN_SCORE = { "하": 1, "중": 2, "상": 3 };
+  function brMainStatQuality(val) {
+    val = Number(val) || 0;
+    if (val >= 14080) return "상";
+    if (val >= 12160) return "중";
+    return "하";
+  }
+
+  function brStatQuality(val) {
+    val = Number(val) || 0;
+    if (val >= 103) return "상";
+    if (val >= 85) return "중";
+    return "하";
+  }
+
+  // 팔찌 부여옵션 티어 (공식 티어표 기준)
+  // 딜러: 1티어(치적&치피, 치피&치명타시, 추피&악마, 쿨&적주피, 적주피&무력화) / 2티어(방향성·백·헤드 적주피, 추피, 적주피, 치피, 치적)
+  //       3티어+(무공&생50% / 무공&30초120초) / 3티어(무공, 공격적중시 무공&공이속) / 4티어(방깎·치저·치피저항·파티보호 & 아공강) / 5티어(힘민지)
+  // 서폿: 1티어(방깎·치저·치피저항·파티보호 & 아공강) / 2티어(아피강, 아공강) / 3티어+ / 3티어 / 4티어(힘민지)
+  // 반환: 0·-1 = 점수 없음
+  function brGrantedTier(label, support) {
+    var n = String(label || "").replace(/\s+/g, " ");
+    if (/무기\s*공격력|무공/.test(n)) {
+      if (/생명력\s*50|50\s*%\s*이상|30\s*초|120\s*초/.test(n)) return 3.5;
+      return 3; // 공격 적중 시 무공 & 공이속 포함
+    }
+    if (/공이속|공격\s*및\s*이동\s*속도/.test(n)) return 0;
+    if (/힘|민첩|지능/.test(n)) return support ? 4 : 5;
+
+    if (support) {
+      if (/방깎|방어력\s*감소|치명타\s*저항|치저|치피저항|치명타\s*피해\s*저항|파티\s*보호|보호\s*효과/.test(n)) return 1;
+      if (/아군\s*피해량|아피강|아군\s*공격력\s*강화|아공강/.test(n)) return 2;
+      return -1;
+    }
+    var crit = /치적|치명타\s*적중/.test(n);
+    var critDmg = /치피|치명타\s*피해/.test(n);
+    var critHit = /치명타\s*시/.test(n);
+    var add = /추피|추가\s*피해/.test(n);
+    var enemy = /적에게\s*주는\s*피해|적주피/.test(n);
+    if (crit && critHit) return 1;
+    if (critDmg && critHit) return 1;
+    if (add && /악마/.test(n)) return 1;
+    if (/쿨|재사용/.test(n) && enemy) return 1;
+    if (enemy && /무력화/.test(n)) return 1;
+    if (/방깎|방어력\s*감소|치명타\s*저항|치저|파티\s*보호/.test(n)) return 4;
+    if (/방향성|백어택|헤드어택|타대/.test(n)) return 2;
+    if (add || enemy || critDmg || crit) return 2;
+    return -1;
+  }
+
+  /** 정보탭과 동일하게 팔찌 툴팁 파싱 */
+  function brParseEquipped(item) {
+    var stats = []; // [{name, value}]
+    var options = []; // [{badge, label}]
+    if (!item || !item.Tooltip) return { stats: stats, options: options };
+    try {
+      var tip = (typeof parseTip === "function") ? parseTip(item.Tooltip) : null;
+      if (!tip) { try { tip = JSON.parse(item.Tooltip); } catch (e) { tip = null; } }
+      if (!tip) return { stats: stats, options: options };
+
+      var bodyHtml = "";
+      if (typeof tipParts === "function") {
+        var parts = tipParts(tip);
+        var hit = parts.find(function (p) { return /팔찌\s*효과/.test(p.title || ""); });
+        if (hit && hit.body) bodyHtml = hit.body;
+      }
+      if (!bodyHtml) {
+        for (var k of Object.keys(tip)) {
+          var v = tip[k];
+          if (v && v.type === "ItemPartBox" && v.value && /팔찌\s*효과/.test(String(v.value.Element_000 || ""))) {
+            bodyHtml = v.value.Element_001 || "";
+            break;
+          }
+        }
+      }
+      if (!bodyHtml) return { stats: stats, options: options };
+
+      var gradeKey = item.Grade || "고대";
+      // 사이트 공용 파서 사용
+      if (typeof brSegments === "function" && typeof brParseBody === "function") {
+        var segs = brSegments(bodyHtml);
+        var parsed = brParseBody(segs, gradeKey);
+        (parsed.stats || []).forEach(function (html) {
+          var t = String(html).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+          var m = t.match(/^(치명|특화|신속|제압|인내|숙련|힘|민첩|지능)\s*\+?\s*([0-9,]+)/);
+          if (m) stats.push({ name: m[1], value: parseInt(m[2].replace(/,/g, ""), 10) });
+        });
+        (parsed.options || []).forEach(function (op) {
+          var label = op.label || "";
+          if (!label && op.lines && op.lines.length) {
+            label = String(op.lines.join(" ")).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+          }
+          var badge = op.badge || "";
+          if (!badge && op.lines) {
+            var raw = op.lines.join(" ");
+            if (/#?FE9600/i.test(raw)) badge = "상";
+            else if (/#?A235FF/i.test(raw)) badge = "중";
+            else if (/#?00B5FF/i.test(raw)) badge = "하";
+          }
+          if (!label) return;
+          // 공이속 제외는 점수에서
+          options.push({ badge: badge || "중", label: label });
+        });
+        return { stats: stats, options: options };
+      }
+
+      // fallback: 단순 줄 파싱
+      String(bodyHtml).split(/<br\s*\/?>/i).forEach(function (raw) {
+        var clean = String(raw || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+        if (!clean) return;
+        var sm = clean.match(/^(치명|특화|신속|제압|인내|숙련)\s*\+?\s*([0-9]+)/);
+        if (sm) { stats.push({ name: sm[1], value: parseInt(sm[2], 10) }); return; }
+        var badge = /#?FE9600/i.test(raw) ? "상" : /#?A235FF/i.test(raw) ? "중" : /#?00B5FF/i.test(raw) ? "하" : "중";
+        if (/품질|아이템/.test(clean)) return;
+        options.push({ badge: badge, label: clean });
+      });
+    } catch (e) {}
+    return { stats: stats, options: options };
+  }
+
+  /** 팔찌 옵션별 점수 내역 + 합계/등급. 등급은 1(최고) ~ 21(최저) */
+  function braceletBreakdown(item, fullData) {
+    var parsed = brParseEquipped(item);
+    var sup = isSupportClass(fullData);
+    var rows = [], fixed = 0, granted = 0, mainPts = 0, sn = 0, gn = 0, mainDone = false;
+    (parsed.stats || []).forEach(function (st) {
+      if (/^(힘|민첩|지능)$/.test(st.name)) {
+        if (mainDone) return;
+        mainDone = true;
+        var mq = brMainStatQuality(st.value), mp = BR_MAIN_SCORE[mq];
+        mainPts += mp;
+        rows.push({ tier: "5티어", badge: mq, text: st.name + " +" + st.value, pts: mp });
+        return;
+      }
+      if (sn >= 2) return;
+      if (!/^(치명|특화|신속|제압|인내|숙련)$/.test(st.name)) return;
+      var q = brStatQuality(st.value), pts = BR_SCORE[2.5][q];
+      fixed += pts; sn++;
+      rows.push({ tier: sup ? "2티어" : "2티어+", badge: q, text: st.name + " +" + st.value, pts: pts });
+    });
+    if (fixed > 12) fixed = 12;
+    (parsed.options || []).forEach(function (op) {
+      if (gn >= 3) return;
+      var tier = brGrantedTier(op.label, sup);
+      if (tier <= 0) { rows.push({ tier: "-", badge: "", text: op.label, pts: 0, skip: true }); return; }
+      var q = op.badge;
+      if (q !== "상" && q !== "중" && q !== "하") q = "중";
+      var pts = (BR_SCORE[tier] && BR_SCORE[tier][q]) || 0;
+      granted += pts; gn++;
+      rows.push({ tier: Math.floor(tier) + "티어" + (tier % 1 ? "+" : ""), badge: q, text: op.label, pts: pts });
+    });
+    if (granted > 21) granted = 21;
+    var raw = fixed + granted + mainPts;
+    var max = 36; // 특성 12 + 부여옵션 21 + 힘/민/지 3
+    var relic = ((item && item.Grade) || "") === "유물";
+    var adj = relic ? raw * 0.92 : raw;
+    // 점수가 높을수록 낮은 등급 번호 (만점 = 1등급, 0점 = 21등급)
+    var rank = adj <= 0 ? 21 : 22 - Math.max(1, Math.min(21, Math.round((adj / max) * 21)));
+    return { rows: rows, raw: raw, adj: adj, max: max, relic: relic, grade: rank, support: sup };
+  }
+
+  function scrollGradeFromBracelet(item, fullData) {
+    if (!item) return 1;
+    return braceletBreakdown(item, fullData).grade;
+  }
+
+  /** 팔찌 옵션·등급점수 요약 박스 (팔찌 행 대체) */
+  function braceletBoxHtml(item, fullData) {
+    if (!item) return "";
+    var br = braceletBreakdown(item, fullData);
+    var qcls = { "상": "q-sang", "중": "q-jung", "하": "q-ha" };
+    var g = item.Grade || "고대";
+    var h = '<div class="ig-br">';
+    h += '<div class="ig-br-head"><div class="ig-br-id">' + iconBox(item.Icon, g, "팔찌", "md");
+    h += '<div class="ig-br-title"><span>팔찌 → 인장 마력 주입 주문서</span><small>' + gradePill(g) + (br.support ? '<em>서폿 티어표</em>' : '<em>딜러 티어표</em>') +
+      '<span class="ig-bdg ig-bdg-est" title="캐릭터 보유 팔찌 중 최고 성능 1개만 인장 마력 주입 주문서(1~21등급)로 이관됩니다." style="' + bdgStyle("#8fa0c4") + '">최고 1개만</span>' +
+      '</small></div></div>';
+    h += '<div class="ig-br-grade"><b>' + br.grade + '</b><span>/ 21등급</span></div></div>';
+    if (!br.rows.length) {
+      h += '<div class="ig-eng-empty">팔찌 옵션 정보를 불러오지 못했어요</div>';
+    } else {
+      h += '<div class="ig-br-rows">';
+      br.rows.forEach(function (r) {
+        h += '<div class="ig-br-row' + (r.skip ? ' skip' : '') + '">';
+        h += '<span class="ig-br-tier">' + esc(r.tier) + '</span>';
+        h += r.badge ? '<span class="ig-br-q ' + (qcls[r.badge] || '') + '">' + esc(r.badge) + '</span>' : '<span class="ig-br-q none">-</span>';
+        h += '<span class="ig-br-txt" title="' + esc(r.text) + '">' + esc(r.text) + '</span>';
+        h += '<span class="ig-br-pts">' + (r.skip ? '0' : r.pts) + '</span></div>';
+      });
+      h += '</div>';
+    }
+    var pos = ((21 - br.grade) / 20) * 100;
+    h += '<div class="ig-br-total"><div class="ig-br-sum"><span>합계 <b>' + (br.relic ? br.adj.toFixed(1) : br.raw) + '</b> / ' + br.max + '점</span>';
+    if (br.relic) h += '<em>유물 ×0.92 적용</em>';
+    h += '</div>';
+    h += '<div class="ig-br-scale"><i style="left:' + pos.toFixed(1) + '%"></i></div>';
+    h += '<div class="ig-br-scale-lb"><span>21등급 · 최저</span><span>1등급 · 최고</span></div></div></div>';
+    return h;
+  }
+
+  // 각인 줄임말 (이관 탭 전용 표시용)
+  var ENG_SHORT = {
+    "각성": "각성", "강령술": "강령술", "강화방패": "강방", "결투의대가": "결대",
+    "구슬동자": "구동", "굳은의지": "굳의", "급소타격": "급타", "기습의대가": "기습",
+    "긴급구조": "긴구", "달인의저력": "달인", "돌격대장": "돌대", "마나효율증가": "마효증",
+    "마나의흐름": "마흐", "바리케이드": "바리", "번개의분노": "번분", "부러진뼈": "부껴",
+    "분쇄의주먹": "분주", "불굴": "불굴", "선수필승": "선필", "속전속결": "속속",
+    "슈퍼차지": "슈차", "승부사": "승부사", "시선집중": "시집", "실드관통": "실관",
+    "아드레날린": "아드", "안정된상태": "안상", "약자무시": "약무", "에테르포식자": "에포",
+    "여신의가호": "여신", "예리한둔기": "예둔", "원한": "원한", "위기모면": "위모",
+    "저주받은인형": "저받", "전문의": "전문의", "정기흡수": "정흡", "정밀단도": "정단",
+    "중갑착용": "중갑", "질량증가": "질증", "최대마나증가": "최마증", "추진력": "추진력",
+    "타격의대가": "타대", "탈출의명수": "탈명", "폭발물전문가": "폭전"
+  };
+  function engShort(nm) {
+    var key = String(nm || "").replace(/\s+/g, "");
+    return ENG_SHORT[key] || nm;
+  }
+  function engNameHtml(nm) {
+    return '<span class="ig-eng-nm" title="' + esc(nm) + '">' + esc(engShort(nm)) + '</span>';
+  }
+
+  /** 어빌리티 스톤이 붙은(물방울 Lv 있는) 각인인지 */
+  function hasStone(e) {
+    var v = e && e.AbilityStoneLevel;
+    return v != null && v !== "" && Number(v) > 0;
+  }
+
+  function getEngravings(fullData) {
+    var eng = fullData && fullData.ArmoryEngraving;
+    if (!eng) return [];
+    // 정보탭 renderEng 과 동일: ArkPassiveEffects 우선
+    var list = eng.ArkPassiveEffects || eng.Effects || eng.Engravings || [];
+    if (!list.length && eng.Engrave) list = eng.Engrave;
+    return list || [];
+  }
+
+  function renderIgwan(fullData) {
+    var root = document.getElementById("igwanPanel");
+    if (!root) return;
+    var list = (fullData && fullData.ArmoryEquipment) || [];
+    learnGradeColors(list);
+    if (!list.length) {
+      root.innerHTML = '<div class="ig-empty">장비 데이터가 없습니다. 캐릭터를 조회해 주세요.</div>';
+      return;
+    }
+
+    var armors = {};
+    ARMOR_ORDER.forEach(function (t) { armors[t] = findByType(list, t, 0); });
+    var weapon = findByType(list, "무기", 0);
+    var gauntlet = findByType(list, "완갑", 0); // 기존 장착 완갑
+
+    var accSeen = {};
+    var accs = ACC_ORDER.map(function (t) {
+      var nth = accSeen[t] || 0;
+      accSeen[t] = nth + 1;
+      return { type: t, item: findByType(list, t, nth) };
+    });
+
+    var armorRules = ARMOR_ORDER.map(function (t) {
+      var it = armors[t];
+      var il = parseItemLevel(it);
+      return lookupRule(il || 0);
+    });
+    var weaponIl = parseItemLevel(weapon) || 0;
+    var weaponIlF = parseItemLevelFloat(weapon) || 0;
+    var weaponIsEsther = isEstherWeapon(weapon);
+    // 에스더 무기는 전용 고구간, 일반 무기는 1795~1800 → 1815 3연마
+    var weaponRule = lookupRule(weaponIl || 1800, weaponIsEsther);
+    // 에스더 1800+: 완갑·허리띠·성물·인장·팔찌는 25단계(1800) 기준
+    var relatedAfter = (weaponIsEsther && weaponIl >= 1800) ? 1815 : weaponRule.after;
+
+    // ---- 이관 전: 무기+방어구 6부위 평균 (소수점 유지, 프로필과 동일) ----
+    var beforeSum = 0, beforeCnt = 0;
+    ARMOR_ORDER.forEach(function (t) {
+      var it = armors[t];
+      if (!it || !it.Icon) return;
+      beforeSum += parseItemLevelFloat(it) || 0;
+      beforeCnt++;
+    });
+    if (weapon && weapon.Icon) {
+      beforeSum += weaponIlF;
+      beforeCnt++;
+    }
+    var beforeAvg = beforeCnt ? beforeSum / beforeCnt : 0;
+
+    // ---- 이관 후: 16부위 평균 (공식 매핑) ----
+    // 투구→목걸이, 어깨→귀1, 상의→귀2, 하의→반1, 장갑→반2
+    // 무기→완갑·허리띠·인장·성물·팔찌
+    var afterLevels = [];
+    // 1~6: 무기 + 방어구 5
+    afterLevels.push(weaponRule.after);
+    armorRules.forEach(function (r) { afterLevels.push(r.after); });
+    // 7~11: 악세 5 (방어구 각 부위 after 매핑)
+    // ARMOR_ORDER = ["투구","어깨","상의","하의","장갑"]
+    armorRules.forEach(function (r) { afterLevels.push(r.after); });
+    // 12~16: 무기 계열 5 (완갑·허리띠·인장·성물·팔찌)
+    for (var ri = 0; ri < 5; ri++) afterLevels.push(relatedAfter);
+    var afterSum = 0;
+    afterLevels.forEach(function (v) { afterSum += v; });
+    var afterAvg = afterLevels.length ? afterSum / afterLevels.length : 0;
+
+    var html = "";
+
+    // 상단 요약
+    html += '<div class="ig-summary">';
+    html += '<div class="ig-sum-card"><div class="ig-sum-label">아이템 레벨 변화</div>';
+    html += '<div class="ig-sum-value">' + beforeAvg.toFixed(2) + ' → ' + afterAvg.toFixed(2);
+    html += ' <span class="ig-delta">+' + Math.max(0, afterAvg - beforeAvg).toFixed(2) + '</span></div>';
+    html += '<div class="ig-sum-sub">이관 전 6부위 · 이관 후 16부위</div></div>';
+    html += '<div class="ig-sum-card"><div class="ig-sum-label">지급 장비 · 주문서</div>';
+    html += '<div class="ig-sum-value">16개</div><div class="ig-sum-sub">장신구 주문서 포함</div></div>';
+    html += '<div class="ig-sum-card"><div class="ig-sum-label">무기 이관 후</div>';
+    html += '<div class="ig-sum-value" style="color:' + gradeColor(weaponRule.grade) + '">' + weaponRule.after + '</div>';
+    html += '<div class="ig-sum-sub">' + gradePill(weaponRule.grade) + yeonBadge(weaponRule.yeonma, weaponRule.grade) + '</div></div>';
+    html += '</div>';
+
+    html += '<div class="ig-sec-title"><span class="ig-dot"></span> 장비 · 장신구 이관</div>';
+    html += '<div class="ig-legend">';
+    // 에스더를 고대 왼쪽에 추가
+    var ESTHER_LEGEND_COLOR = "#5EC8FF";
+    var ESTHER_LEGEND_BG = "linear-gradient(135deg,#1a3a55,#2a6a9a 50%,#163d5c)";
+    html += '<span class="ig-leg"><i style="background:' + ESTHER_LEGEND_BG + ';box-shadow:0 0 0 1px ' + ESTHER_LEGEND_COLOR + '"></i><b style="color:' + ESTHER_LEGEND_COLOR + '">에스더</b></span>';
+    ["고대", "유물", "전설", "영웅", "희귀", "고급"].forEach(function (g) {
+      html += '<span class="ig-leg"><i style="background:' + gradeBg(g) + ';box-shadow:0 0 0 1px ' + gradeColor(g) + '"></i><b style="color:' + gradeColor(g) + '">' + g + '</b></span>';
+    });
+    html += '</div>';
+    html += '<div class="ig-split">';
+
+    // ===== 왼쪽 방어구 =====
+    html += '<div class="ig-col"><div class="ig-col-title"><span class="ig-chip chip-eq">장비</span> 방어구 (현재 → 이관 후)</div>';
+    html += flowHead(false);
+
+    ARMOR_ORDER.forEach(function (type) {
+      var it = armors[type];
+      var il = parseItemLevel(it) || 0;
+      var up = parseUpgrade(it);
+      var q = parseQuality(it);
+      var rule = lookupRule(il || 0);
+      var link = ARMOR_TO_ACC[type];
+      var label = shortArmorLabel(type);
+      var grade = (it && it.Grade) || "고대";
+      var icon = (it && it.Icon) || "";
+
+      html += '<div class="ig-row">';
+      // 현재 — 장착 아이템 (+ 추천 말풍선)
+      html += '<div class="ig-side ig-side-rel">';
+      html += honeBubble(up, false, "armor-" + type);
+      html += '<div class="ig-ic-wrap w-lg">' + iconBox(icon, grade, label, "lg") + qualityBar(q) + '</div>';
+      html += '<div class="ig-text">';
+      html += '<div class="ig-name">' + slotTitleHtml(it, label, grade) + '</div>';
+      html += '<div class="ig-sub">' + gradePill(grade) + beforeBadge(il || "-") + '</div></div></div>';
+
+      html += arrowSvg();
+
+      // 이관 후 — 같은 아이콘 + 이관 등급색 / 연동 악세
+      html += '<div class="ig-after">';
+      html += '<div class="ig-after-item">';
+      html += iconBox(icon, rule.grade, rule.grade, "md");
+      html += '<div class="ig-text"><div class="ig-name ig-name-row"><span>' + esc(label) + '</span><span class="ig-slot-txt">슬롯 ' + up + '단계</span></div>';
+      html += '<div class="ig-sub">' + gradePill(rule.grade) + lvBadge(rule.after, rule.grade) + yeonBadge(rule.yeonma, rule.grade) + '</div></div></div>';
+      if (link) {
+        // 이관 악세 주문서는 "해당 슬롯 장착 악세" 옵션으로 계산 (방어구 아님)
+        var linkedAccItem = null;
+        var linkNth = 0;
+        // 귀걸이/반지는 부위마다 짝: 투구→목걸이0, 어깨→귀0, 상의→귀1, 하의→반0, 장갑→반1
+        if (type === "상의" || type === "장갑") linkNth = 1;
+        linkedAccItem = findByType(list, link.acc, linkNth);
+        html += '<div class="ig-after-item">';
+        html += iconBox((linkedAccItem && linkedAccItem.Icon) || link.icon, rule.grade, link.acc, "md"); // 현재 장착 악세 아이콘 (없을 때만 기본 아이콘)
+        html += '<div class="ig-text"><div class="ig-name ig-name-row"><span>' + esc(link.acc) + '</span></div>';
+        html += '<div class="ig-sub">' + gradePill(rule.grade) + lvBadge(rule.after, rule.grade) + yeonBadge(rule.yeonma, rule.grade) + '</div></div></div>';
+      }
+      html += '</div></div>';
+    });
+
+    // 무기 블록
+    html += '<div class="ig-weapon">';
+    html += '<div class="ig-weapon-label"><span class="ig-chip chip-eq">무기</span> 특수슬롯 6종 지급</div>';
+    html += '<div class="ig-weapon-flow">';
+    html += '<div class="ig-w-lab"><span class="ig-fh ig-fh-before">이관 전</span></div>';
+    html += '<div class="ig-w-from ig-side-rel">';
+    var wGrade = (weapon && weapon.Grade) || "고대";
+    var isEsther = isEstherWeapon(weapon);
+    var ESTHER_COLOR = "#5EC8FF"; // 에스더 전용 심볼 색
+    var beforeSlot = parseUpgrade(weapon);
+    // 에스더 아이콘 배경을 더 밝게 (시안 계열)
+    var estherIconOpts = isEsther ? {
+      color: ESTHER_COLOR,
+      bg: "linear-gradient(135deg,#1a3a55,#2a6a9a 50%,#163d5c)"
+    } : null;
+    // 에스더가 아닐 때만 추천 말풍선
+    if (!isEsther) html += honeBubble(beforeSlot, true, "weapon");
+    html += '<div class="ig-ic-wrap w-xl">' + iconBox(weapon && weapon.Icon, wGrade, "무기", "xl", estherIconOpts) + qualityBar(parseQuality(weapon)) + '</div>';
+    html += '<div class="ig-text"><div class="ig-name">' + (isEsther
+      ? '<span style="color:' + ESTHER_COLOR + '">' + esc(slotTitle(weapon, "무기")) + '</span>'
+      : slotTitleHtml(weapon, "무기", wGrade)) + '</div>';
+    // 에스더면 색상 있는 에스더 배지만 표시 (중복·무색 제거)
+    html += '<div class="ig-sub">';
+    if (isEsther) {
+      html += '<span class="ig-bdg ig-bdg-esther" style="' + bdgStyle(ESTHER_COLOR) + '">에스더</span>';
+    } else {
+      html += gradePill(wGrade);
+    }
+    html += beforeBadge(weaponIl || "-") + '</div></div>';
+    html += '<div class="ig-w-meta">';
+    html += '<div class="ig-w-meta-row"><span class="k">레벨</span><span class="v">' + (weaponIl || "-") + ' → ' + lvBadge(weaponRule.after, weaponRule.grade) + (weaponIl ? ' <span class="ig-up">+' + (weaponRule.after - weaponIl) + '</span>' : '') + '</span></div>';
+    var afterSlot = transferSlotStage(weapon);
+    html += '<div class="ig-w-meta-row"><span class="k">슬롯</span><span class="v">' + beforeSlot + '단계 → <b style="color:' + (afterSlot > beforeSlot ? '#7dffa0' : 'inherit') + '">' + afterSlot + '단계</b></span></div>';
+    html += '</div></div>';
+    html += '<div class="ig-w-lab ig-w-lab-mid">' + arrowSvg(true) + '<span class="ig-fh ig-fh-after">이관 후</span>' + arrowSvg(true) + '</div>';
+    html += '<div class="ig-w-grid">';
+
+    var wg = weaponRule.grade;
+    // 에스더 무기: 강화·엘라 기준 에스더 이관표
+    // 완갑·허리띠·성물·인장·팔찌: 1800+ 에스더면 현 재련 25단계(1800) 무기 기준 → 1815 / 3연마
+    var relatedRule = (isEsther && weaponIl >= 1800)
+      ? { after: 1815, grade: "고대", yeonma: 3, delta: 15 }
+      : weaponRule;
+    var relatedGrade = relatedRule.grade;
+    var wUp = transferSlotStage(weapon);
+    var gUp = (isEsther && (weaponIl >= 1800 || beforeSlot >= 9))
+      ? 25
+      : transferSlotStage(gauntlet, isEsther && weaponIl >= 1800);
+    var brItemW = findByType(list, "팔찌", 0);
+    var brIcon = relatedGrade === "고대" ? IGWAN_ICONS.braceletAncient
+      : (relatedGrade === "유물" ? IGWAN_ICONS.braceletRelic : IGWAN_ICONS.braceletLegend);
+    // 이관 후 무기는 에스더면 "에스더 무기" + 엘라4, 나머지는 relatedRule 레벨
+    var wChips = [
+      { name: isEsther ? "에스더 무기" : (wg + " 무기"), sub: "슬롯 " + wUp + "단계", icon: weapon && weapon.Icon, fb: "무기", esther: isEsther, ella: isEsther, rule: weaponRule },
+      { name: relatedGrade + " 완갑", sub: "슬롯 " + gUp + "단계", icon: gauntlet && gauntlet.Icon, fb: "완갑", rule: relatedRule },
+      { name: relatedGrade + " 허리띠", sub: "슬롯 0단계", icon: IGWAN_ICONS.waistband, fb: "허리", neu: true, rule: relatedRule },
+      { name: relatedGrade + " 팔찌", subHtml: '<span class="ig-scroll">' + scrollGradeFromBracelet(brItemW, fullData) + '등급 주문서</span>', icon: brIcon, fb: "팔찌", rule: relatedRule },
+      { name: relatedGrade + " 성물", sub: "재련 슬롯 없음", icon: IGWAN_ICONS.sacred, fb: "성물", neu: true, rule: relatedRule },
+      { name: relatedGrade + " 인장", sub: "재련 슬롯 없음", icon: IGWAN_ICONS.seal, fb: "인장", neu: true, rule: relatedRule }
+    ];
+    wChips.forEach(function (w) {
+      var chipRule = w.rule || weaponRule;
+      var chipGrade = chipRule.grade;
+      html += '<div class="ig-w-chip' + (w.neu ? " new" : "") + (w.esther ? " esther" : "") + '">';
+      if (w.neu) html += '<span class="ig-bdg ig-bdg-new ig-chip-new">NEW</span>';
+      // 엘라4: NEW와 동일 위치·강조 (스타일은 CSS .ig-chip-ella)
+      if (w.ella) html += '<span class="ig-bdg ig-bdg-ella ig-chip-ella">엘라4</span>';
+      var chipIconOpts = w.esther ? { color: ESTHER_COLOR, bg: "linear-gradient(135deg,#1a3a55,#2a6a9a 50%,#163d5c)" } : null;
+      html += iconBox(w.icon, chipGrade, w.fb, "md", chipIconOpts);
+      var nameCol = w.esther ? ESTHER_COLOR : gradeColor(chipGrade);
+      html += '<div class="ig-text"><div class="ig-name" style="color:' + nameCol + '">' + esc(w.name) + '</div>';
+      // 에스더 무기: 5연마·1865 심볼도 에스더 색
+      html += '<div class="ig-sub ig-sub-b">' + ruleBadges(chipRule, w.esther ? ESTHER_COLOR : null) + '</div>';
+      html += '<div class="ig-sub ig-sub-t">' + (w.subHtml || esc(w.sub)) + '</div></div></div>';
+    });
+    html += '</div>';
+
+    html += '</div>'; // weapon-flow end
+
+    html += '</div></div>'; // weapon col
+
+    // ===== 오른쪽 악세 =====
+    html += '<div class="ig-col"><div class="ig-col-title acc"><span class="ig-chip chip-acc">악세</span> 악세사리 (현재 → 주문서)</div>';
+    html += flowHead(true);
+
+    var stoneHtml = "";
+    accs.forEach(function (slot) {
+      var it = slot.item;
+      var type = slot.type;
+      if (type === "팔찌") return; // 팔찌는 아래 옵션·등급점수 박스로 대체
+      var _prevHtml = html; html = "";
+      var grade = (it && it.Grade) || "고대";
+      var q = parseQuality(it);
+      var icon = (it && it.Icon) || "";
+      var accInfo = (type === "어빌리티 스톤" || type === "팔찌") ? { slots: [], grade: 1 } : accAnalysis(it, fullData);
+
+      html += '<div class="ig-row acc">';
+      html += '<div class="ig-side">';
+      html += '<div class="ig-ic-wrap w-lg">' + iconBox(icon, grade, type.replace("어빌리티 ", ""), "lg");
+      if (type !== "어빌리티 스톤" && type !== "팔찌") html += qualityBar(q);
+      html += '</div><div class="ig-text">';
+      html += '<div class="ig-name" style="color:#e8eef8">' + esc(accSlotLabel(type)) + '</div>';
+      var stUpEarly = (type === "어빌리티 스톤") ? stoneSlotUpgrade(fullData) : null;
+      if (type === "어빌리티 스톤") {
+        html += '<div class="ig-sub ig-stone-opts">' + gradePill(grade);
+        if (stUpEarly && stUpEarly.detail) {
+          html += beforeBadge(stUpEarly.detail);
+        }
+        html += '</div>';
+      } else {
+        html += '<div class="ig-sub">' + gradePill(grade) + accSlotsHtml(accInfo.slots) + '</div>';
+      }
+      html += '</div></div>';
+      html += arrowSvg();
+
+      if (type === "어빌리티 스톤") {
+        var stUp = stUpEarly;
+        var stLabel = "해당 없음";
+        if (stUp && stUp.stage) {
+          stLabel = "슬롯 Lv." + stUp.stage + (stUp.slots ? " + " + stUp.slots + "개" : "");
+        } else if (stUp && stUp.label) {
+          stLabel = stUp.label;
+        }
+        html += '<div class="ig-side">';
+        html += '<div class="ig-ic-wrap w-lg">' + iconBox(IGWAN_ICONS.engravingSlot, grade, "각인", "lg") + '</div>';
+        html += '<div class="ig-text"><div class="ig-name" style="color:#e8eef8">각인 슬롯 강화</div>';
+        html += '<div class="ig-sub"><span class="ig-scroll">' + esc(stLabel) + '</span></div></div></div>';
+      } else {
+        // 공지: 품질 67↑ + 유효옵션 → 마력 주입 주문서, 아니면 영롱한 보석 파편
+        var tr = accTransferResult(it, fullData);
+        if (tr.type === "fragment") {
+          html += '<div class="ig-side">';
+          html += '<div class="ig-ic-wrap w-lg">' + iconBox(IGWAN_ICONS.scroll, "희귀", "파편", "lg") + '</div>';
+          html += '<div class="ig-text"><div class="ig-name" style="color:#9aa3b5">영롱한 보석 파편</div>';
+          html += '<div class="ig-sub"><span class="ig-scroll">' +
+            (q < 67 ? '품질 ' + q + ' (&lt;67)' : '유효 옵션 없음') +
+            '</span></div></div></div>';
+        } else {
+          var sg = tr.grade || accInfo.grade;
+          var sgGrade = scrollTierGrade(sg);
+          html += '<div class="ig-side">';
+          html += '<div class="ig-ic-wrap w-lg">' + iconBox(IGWAN_ICONS.scroll, sgGrade, "주문", "lg") + '</div>';
+          html += '<div class="ig-text"><div class="ig-name">마력 주입 주문서</div>';
+          html += '<div class="ig-sub"><span class="ig-bdg ig-bdg-scroll" style="' + bdgStyle(gradeColor(sgGrade)) + '">' + sg + '등급</span></div></div></div>';
+        }
+      }
+      html += '</div>';
+      if (type === "어빌리티 스톤") { stoneHtml = html; html = _prevHtml; }
+      else { html = _prevHtml + html; }
+    });
+
+    html += braceletBoxHtml(findByType(list, "팔찌", 0), fullData);
+
+    // 스톤 + 각인 이관을 한 묶음 박스로
+    html += '<div class="ig-grp">' + stoneHtml;
+
+    // 각인 이관 — AbilityStoneLevel 물방울 심볼 (정보탭과 동일)
+    var engs = getEngravings(fullData);
+    html += '<div class="ig-eng">';
+    html += '<div class="ig-eng-label"><span><span class="ig-chip chip-eng">각인</span> 이관</span><span class="ig-eng-res">슬롯 강화</span></div>';
+    if (engs.length) {
+      html += '<div class="ig-eng-split">';
+      html += '<div class="ig-eng-col">';
+      engs.slice(0, 8).forEach(function (e) {
+        var nm = e.Name || e.EngravingName || "?";
+        var lv = e.Level != null ? e.Level : (e.Value != null ? e.Value : "");
+        var iconUrl = (typeof ENGRAVE_ICONS !== "undefined" && ENGRAVE_ICONS[nm]) ? ENGRAVE_ICONS[nm] : null;
+        var stoneLv = e.AbilityStoneLevel;
+        html += '<div class="ig-eng-item">';
+        if (iconUrl) html += '<img class="ig-eng-ic" src="' + esc(iconUrl) + '" alt="" loading="lazy">';
+        else html += '<span class="ig-eng-ic fb">' + esc(nm.charAt(0)) + '</span>';
+        html += engNameHtml(nm);
+        if (hasStone(e)) {
+          var bullet = (typeof engBulletHtml === "function") ? engBulletHtml(3, 18, 13) : '<span class="ig-drop">◆</span>';
+          html += '<span class="ig-eng-stone-lv">' + bullet + '<span>Lv.' + esc(stoneLv) + '</span></span>';
+        }
+        html += '<span class="ig-eng-lv">' + esc(lv) + '</span></div>';
+      });
+      html += '</div>';
+      html += '<div class="ig-eng-arrow">' + arrowSvg() + '</div>';
+      html += '<div class="ig-eng-col">';
+      // 공지 표: 스톤 합계에 따라 슬롯 N개 · M단계 — 하드코딩 Lv.7 금지
+      var stUpEng = stoneSlotUpgrade(fullData);
+      var upgradeNames = {};
+      if (stUpEng && stUpEng.slots && stUpEng.stage) {
+        var ranked = engs.filter(hasStone).slice().sort(function (a, b) {
+          return (Number(b.AbilityStoneLevel) || 0) - (Number(a.AbilityStoneLevel) || 0);
+        });
+        ranked.slice(0, stUpEng.slots).forEach(function (e) {
+          var n = e.Name || e.EngravingName || "";
+          if (n) upgradeNames[n] = true;
+        });
+      }
+      engs.slice(0, 8).forEach(function (e) {
+        var nm = e.Name || e.EngravingName || "?";
+        var lv = e.Level != null ? e.Level : (e.Value != null ? e.Value : "");
+        var iconUrl = (typeof ENGRAVE_ICONS !== "undefined" && ENGRAVE_ICONS[nm]) ? ENGRAVE_ICONS[nm] : null;
+        var slotMark = upgradeNames[nm]
+          ? '<span class="ig-eng-slot">슬롯 Lv.' + stUpEng.stage + '</span>'
+          : '';
+        html += '<div class="ig-eng-item">';
+        if (iconUrl) html += '<img class="ig-eng-ic" src="' + esc(iconUrl) + '" alt="" loading="lazy">';
+        else html += '<span class="ig-eng-ic fb">' + esc(nm.charAt(0)) + '</span>';
+        html += engNameHtml(nm) + slotMark + '<span class="ig-eng-lv">' + esc(lv) + '</span></div>';
+      });
+      html += '</div></div>';
+    } else {
+      html += '<div class="ig-eng-empty">각인 정보 없음</div>';
+    }
+    html += '</div>'; // ig-eng
+    html += '</div>'; // ig-grp (스톤 + 각인)
+    html += '</div>'; // eng col
+
+
+    html += '</div>'; // split
+
+    // 하단
+    var armorGrade = armorRules[0] ? armorRules[0].grade : "유물";
+    var armorYeon = armorRules[0] ? armorRules[0].yeonma : 3;
+    var armorAfter = armorRules[0] ? armorRules[0].after : 1790;
+
+    var armorActive = armorRules.concat([weaponRule]);
+    var showRows = 8;
+    LEVEL_RULES.forEach(function (r, i) { if (armorActive.indexOf(r) >= 0 && i + 1 > showRows) showRows = i + 1; });
+    var brItem = findByType(list, "팔찌", 0);
+    var brG = scrollGradeFromBracelet(brItem, fullData);
+    var stoneUp = stoneSlotUpgrade(fullData);
+    var isEstherDetail = isEstherWeapon(weapon);
+    // 장신구 주문서 개수 (목걸이·귀걸이×2·반지×2 중 scroll 대상)
+    var accScrollCnt = 0, accFragCnt = 0;
+    ["목걸이", "귀걸이", "귀걸이", "반지", "반지"].forEach(function (t, i) {
+      var it = findByType(list, t, t === "귀걸이" || t === "반지" ? (i === 2 || i === 4 ? 1 : 0) : 0);
+      // 위 forEach index는 부정확할 수 있어 아래에서 재계산
+    });
+    (function () {
+      var pairs = [
+        ["목걸이", 0], ["귀걸이", 0], ["귀걸이", 1], ["반지", 0], ["반지", 1]
+      ];
+      pairs.forEach(function (p) {
+        var it = findByType(list, p[0], p[1]);
+        if (!it || !it.Icon) return;
+        var tr = accTransferResult(it, fullData);
+        if (tr.type === "scroll") accScrollCnt++;
+        else if (tr.type === "fragment") accFragCnt++;
+      });
+    })();
+    var wUp2 = transferSlotStage(weapon);
+    var gUp2 = (isEstherDetail && (weaponIl >= 1800 || parseUpgrade(weapon) >= 9))
+      ? 25
+      : transferSlotStage(gauntlet, isEstherDetail && weaponIl >= 1800);
+    // 에스더 1800+: 완갑 등 관련 슬롯은 25단계(1800) 기준 → 1815 / 3연마
+    var relatedRuleDetail = (isEstherDetail && weaponIl >= 1800)
+      ? { after: 1815, grade: "고대", yeonma: 3, delta: 15 }
+      : weaponRule;
+
+    html += '<div class="ig-panel ig-merged">';
+    html += '<div class="ig-panel-title"><span class="ig-chip chip-stat">상세</span> 지급 상세 · 이관 기준</div>';
+    html += '<div class="ig-merged-body">';
+
+    // 왼쪽: 지급 상세
+    html += '<div class="ig-m-left">';
+    html += '<div class="ig-m-sub">지급 상세</div>';
+    html += '<div class="ig-kv"><span class="k">방어구 5부위</span><span class="v">' + gradePill(armorGrade) + lvBadge(armorAfter, armorGrade) + yeonBadge(armorYeon, armorGrade) + '</span></div>';
+    html += '<div class="ig-kv"><span class="k">무기 계열</span><span class="v">' +
+      (isEstherDetail ? '<span class="ig-bdg" style="' + bdgStyle("#5EC8FF") + '">에스더</span>' : gradePill(weaponRule.grade)) +
+      ruleBadges(weaponRule, isEstherDetail ? "#5EC8FF" : null) +
+      '</span></div>';
+    // 에스더 1800+: 관련 장비는 25단계 기준(1815/3연마) — 라벨 짧게, 배지 한 줄
+    html += '<div class="ig-kv"><span class="k">' +
+      (isEstherDetail && weaponIl >= 1800 ? '관련 장비' : '성물·인장·팔찌 등') +
+      '</span><span class="v">' +
+      (isEstherDetail && weaponIl >= 1800
+        ? '<span class="ig-m-same">무기 기준</span>' + lvBadge(relatedRuleDetail.after, relatedRuleDetail.grade) + yeonBadge(relatedRuleDetail.yeonma, relatedRuleDetail.grade)
+        : '<span class="ig-m-same">무기 기준</span>' + lvBadge(weaponRule.after, weaponRule.grade)) +
+      '</span></div>';
+    html += '<div class="ig-kv"><span class="k">슬롯 단계</span><span class="v ig-m-slots"><span>무기 ' + wUp2 + '</span><span>완갑 ' + gUp2 + '</span><span>허리띠 0</span></span></div>';
+    html += '<div class="ig-kv"><span class="k">악세5종 → 마력 주입 주문서</span><span class="v accent">' +
+      (accScrollCnt ? accScrollCnt + '장' : '0장') +
+      (accFragCnt ? ' · 파편 ' + accFragCnt + '부위' : '') +
+      '</span></div>';
+    html += '<div class="ig-kv"><span class="k">팔찌 → 인장 마력 주입 주문서</span><span class="v accent">' + brG + '등급 / 21 · 최고 1개</span></div>';
+    html += '<div class="ig-kv"><span class="k">각인 슬롯 강화</span><span class="v accent">' +
+      (stoneUp ? esc(stoneUp.label) + (stoneUp.detail ? ' (' + esc(stoneUp.detail) + ')' : '') : '해당 없음') +
+      '</span></div>';
+    html += '</div>';
+
+    // 오른쪽: 이관 기준표
+    html += '<div class="ig-m-right">';
+    html += '<div class="ig-m-sub">이관 기준표 <em>내 장비 구간 강조</em></div>';
+    html += '<table class="ig-table"><thead><tr><th>기존 레벨</th><th>장비 등급</th><th style="text-align:right">이관 레벨</th></tr></thead><tbody>';
+    LEVEL_RULES.slice(0, showRows).forEach(function (r) {
+      var over = armorActive.indexOf(r) >= 0;
+      html += '<tr class="' + (over ? "over" : "") + '">';
+      html += '<td class="lv">' + r.min + ' ~ ' + r.max + '</td>';
+      html += '<td>' + gradePill(r.grade) + yeonBadge(r.yeonma, r.grade) + '</td>';
+      html += '<td style="text-align:right">';
+      if (r.delta) html += '<span class="ig-up">+' + r.delta + '</span> ';
+      html += lvBadge(r.after, r.grade) + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    html += '</div>';
+    html += '<div class="ig-note">공개된 이관 기준을 바탕으로 한 추정 결과입니다. 실제 수치는 공식 이관 공지 후 정확히 반영됩니다.</div>';
+    html += '</div>';
+
+    ensureIgwanStyle();
+    root.innerHTML = html;
+    bindHoneBubbles(root);
+  }
+
+  /** 모바일 대응 CSS (폭 768px 이하)
+   *  window.IGWAN_HIDE_ON_MOBILE = [".프로필클래스", "#left-panel"]  처럼 지정하면 모바일에서 해당 영역을 숨김 */
+  function igwanMobileCss() {
+    var hide = (global.IGWAN_HIDE_ON_MOBILE || []).filter(Boolean);
+    var m = "@media (max-width:768px){";
+    if (hide.length) m += hide.join(",") + "{display:none!important}";
+    m +=
+      // 전체: 2단 → 1단
+      // 상단 요약 카드 / 섹션 제목 / 등급 범례는 모바일에서 숨김
+      ".ig-summary,.ig-sec-title,.ig-legend{display:none!important}" +
+      ".ig-split{display:flex!important;flex-direction:column!important;grid-template-columns:1fr!important;gap:12px!important}" +
+      ".ig-col{width:100%!important;max-width:100%!important;min-width:0!important}" +
+      // 심볼·아이콘 컴팩트
+      ".ig-bdg{--ig-bh:16px;--ig-bfs:10px;--ig-bpx:5px}" +
+      ".ig-acc-q{--ig-sq:15px;--ig-sqfs:9px;margin-left:4px!important}" +
+      ".ig-ic-lg{width:40px!important;height:40px!important}" +
+      ".ig-ic-md{width:32px!important;height:32px!important}" +
+      ".ig-ic-wrap.w-lg{width:40px!important}" +
+      ".ig-name{font-size:12.5px!important}" +
+      ".ig-slot-txt{font-size:10px!important}" +
+      // 장비/악세 행: 가로 한 줄 유지 (좌: 현재, 우: 이관 후)
+      ".ig-row{padding:14px 8px 8px!important;gap:4px!important;overflow:visible}" +
+      ".ig-row .ig-side-rel{overflow:visible}" +
+      ".ig-weapon-flow{overflow:visible!important}" +
+      ".ig-w-from{overflow:visible!important;padding-top:6px}" +
+      ".ig-row .ig-side,.ig-row .ig-after,.ig-row .ig-after-item{min-width:0!important}" +
+      ".ig-row .ig-side{gap:7px!important}" +
+      ".ig-row .ig-text{min-width:0}" +
+      ".ig-row .ig-sub{gap:3px!important;flex-wrap:wrap}" +
+      ".ig-after{gap:6px!important}" +
+      ".ig-after-item{gap:6px!important}" +
+      ".ig-row>.ig-arrow svg{width:14px!important;height:14px!important}" +
+      // 무기 블록
+      ".ig-weapon{padding:10px!important}" +
+      ".ig-weapon-flow{max-width:100%!important}" +
+      ".ig-w-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}" +
+      ".ig-w-from{flex-wrap:wrap!important;gap:10px!important}" +
+      // 팔찌 / 스톤+각인
+      ".ig-br,.ig-grp{padding-left:10px!important;padding-right:10px!important}" +
+      ".ig-eng-split{gap:6px!important}" +
+      // 하단 상세
+      ".ig-merged-body{display:flex!important;flex-direction:column!important;gap:12px!important}" +
+      ".ig-merged .ig-m-left,.ig-merged .ig-m-right{width:100%!important;padding:12px!important}" +
+      ".ig-merged .ig-m-right{overflow-x:auto}" +
+      ".ig-merged .ig-kv{flex-wrap:wrap;gap:4px 8px}" +
+      ".ig-table{min-width:320px}" +
+      "}" +
+      // 아주 좁은 화면(380px 이하): 현재 → 이관 후 를 위아래로
+      "@media (max-width:380px){" +
+      ".ig-row{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:6px!important}" +
+      ".ig-row>.ig-arrow{align-self:center;transform:rotate(90deg)}" +
+      ".ig-row .ig-side,.ig-row .ig-after{width:100%!important}" +
+      "}";
+    return m;
+  }
+
+  /** 하단 [상세] 패널: 움푹 들어간 효과 + 구분선 (한 번만 주입) */
+  function ensureIgwanStyle() {
+    if (document.getElementById("ig-extra-style")) return;
+    var st = document.createElement("style");
+    st.id = "ig-extra-style";
+    st.textContent =
+      // 엘라4 배지: NEW와 동일 위치·강조 (진한 시안 + 흰 글자)
+      ".ig-w-chip{position:relative!important}" +
+      ".ig-w-chip .ig-chip-ella,.ig-w-chip .ig-bdg-ella{position:absolute!important;top:7px!important;right:7px!important;z-index:2;height:18px!important;padding:0 8px!important;font-size:10px!important;font-weight:900!important;line-height:18px!important;border-radius:5px!important;white-space:nowrap;letter-spacing:-0.02em;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.45);background:linear-gradient(135deg,#3ecfff,#0a9ad8)!important;border:1px solid rgba(120,220,255,.95)!important;box-shadow:0 0 12px rgba(30,170,240,.55),inset 0 1px 0 rgba(255,255,255,.25)!important}" +
+      ".ig-w-chip .ig-chip-new{position:absolute!important;top:7px!important;right:7px!important;z-index:2}" +
+      ".ig-br .ig-br-head{display:flex!important;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,.1)}" +
+      ".ig-br .ig-br-id{display:flex!important;align-items:center;gap:10px;min-width:0;flex:1 1 auto}" +
+      ".ig-br .ig-br-title{display:flex!important;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}" +
+      ".ig-br .ig-br-title>span{white-space:nowrap}" +
+      ".ig-br .ig-br-title small{display:flex!important;flex-wrap:wrap;align-items:center;gap:4px 5px;margin:0}" +
+      ".ig-br .ig-br-title small em{white-space:nowrap}" +
+      ".ig-br .ig-br-grade{flex:0 0 auto!important;white-space:nowrap!important}" +
+      ".ig-br .ig-br-grade b,.ig-br .ig-br-grade span{white-space:nowrap}" +
+      ".ig-grp{margin-top:10px;padding:8px 12px 12px;border:1px solid rgba(255,214,140,.3);border-radius:14px;" +
+        "background:linear-gradient(160deg,rgba(38,44,68,.6),rgba(14,18,30,.82));box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}" +
+      ".ig-grp .ig-row{background:transparent!important;border:none!important;box-shadow:none!important;padding-left:2px;padding-right:2px;margin:0!important}" +
+      ".ig-grp .ig-eng{background:transparent!important;border:none!important;box-shadow:none!important;margin:8px 0 0!important;padding:12px 0 0!important;" +
+        "border-top:1px solid rgba(255,255,255,.12)!important;border-radius:0!important}" +
+      ".ig-merged .ig-panel-title{padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14)}" +
+      ".ig-merged .ig-merged-body{gap:14px}" +
+      ".ig-merged .ig-m-left,.ig-merged .ig-m-right{background:rgba(5,8,15,.6);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;" +
+        "box-shadow:inset 0 3px 12px rgba(0,0,0,.65),inset 0 0 0 1px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.05)}" +
+      ".ig-merged .ig-m-sub{padding-bottom:9px;margin-bottom:6px;border-bottom:1px solid rgba(255,255,255,.14)}" +
+      ".ig-merged .ig-kv{padding-top:9px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.07)}" +
+      ".ig-merged .ig-kv:last-child{border-bottom:none}" +
+      ".ig-merged .ig-table th{border-bottom:1px solid rgba(255,255,255,.14)}" +
+      ".ig-merged .ig-table td{border-bottom:1px solid rgba(255,255,255,.06)}" +
+      ".ig-merged .ig-table tr:last-child td{border-bottom:none}" +
+      ".ig-merged .ig-note{margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12)}" +
+      igwanMobileCss();
+    document.head.appendChild(st);
+  }
+
+  global.renderIgwan = renderIgwan;
+  global.IGWAN_ICONS = IGWAN_ICONS;
+})(window);
