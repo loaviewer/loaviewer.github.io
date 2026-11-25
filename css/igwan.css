@@ -781,7 +781,7 @@
   padding: 2px 8px 10px; margin: 0 -8px 2px;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
-#igwanPanel .ig-flow-head.acc { grid-template-columns: 1.3fr 36px 1fr; }
+#igwanPanel .ig-flow-head.acc { grid-template-columns: 1.15fr 28px 1.25fr; }
 .ig-fh {
   display: inline-flex; align-items: center; justify-self: start;
   height: 22px; padding: 0 12px; border-radius: 999px;
@@ -801,7 +801,7 @@
 
 /* ---- 행: 화살표/우측 영역을 오른쪽으로 이동 ---- */
 #igwanPanel .ig-row { grid-template-columns: 1.25fr 36px 1.2fr; }
-#igwanPanel .ig-row.acc { grid-template-columns: 1.3fr 36px 1fr; }
+#igwanPanel .ig-row.acc { grid-template-columns: 1.15fr 28px 1.25fr; }
 
 /* ---- 품질 게이지: 아이콘 가로와 동일 ---- */
 #igwanPanel .ig-ic-wrap { align-items: stretch; }
@@ -1216,3 +1216,35 @@
 }
 #igwanPanel .ig-w-lab .ig-fh { justify-self: auto; }
 #igwanPanel .ig-w-lab-mid { gap: 18px; margin: 4px 0; }
+
+/* 악세 이관 후 주문서: 한 줄 고정 + 살짝 왼쪽 */
+#igwanPanel .ig-row.acc > .ig-side:last-child {
+  margin-left: -4px;
+  min-width: 0;
+}
+#igwanPanel .ig-row.acc > .ig-side:last-child .ig-text {
+  min-width: 0;
+}
+#igwanPanel .ig-row.acc > .ig-side:last-child .ig-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#igwanPanel .ig-row.acc > .ig-side:last-child .ig-sub {
+  flex-wrap: nowrap !important;
+  white-space: nowrap;
+  gap: 4px !important;
+  margin-top: 4px;
+  overflow: visible;
+}
+#igwanPanel .ig-row.acc > .ig-side:last-child .ig-bdg {
+  flex-shrink: 0;
+}
+
+#igwanPanel .ig-row.acc > .ig-side:last-child .ig-sub .ig-bdg {
+  height: 17px !important;
+  padding: 0 6px !important;
+  font-size: 10px !important;
+  border-radius: 5px !important;
+  box-sizing: border-box !important;
+}
