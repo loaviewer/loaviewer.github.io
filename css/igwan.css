@@ -1248,3 +1248,39 @@
   border-radius: 5px !important;
   box-sizing: border-box !important;
 }
+
+
+/* ---- 탭 인기 심볼 (탭 안쪽, 아래 방향 둥실) ---- */
+@keyframes ig-pop-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+a.char-tab.ig-pop-host,
+.ig-pop-host {
+  position: relative !important;
+  overflow: visible !important;
+}
+.ig-pop-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  z-index: 99;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 13px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 13px;
+  letter-spacing: -0.02em;
+  color: #ffe6a8;
+  background: rgba(232, 184, 75, .22);
+  border: 1px solid rgba(232, 184, 75, .6);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  animation: ig-pop-float 2.6s ease-in-out infinite;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+}
