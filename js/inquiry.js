@@ -1,1 +1,1327 @@
-const _0x40d566=_0x5b4a;(function(_0x517d96,_0x2729d3){const _0xb3a9a4=_0x5b4a,_0x69cbe1=_0x517d96();while(!![]){try{const _0x550cb1=-parseInt(_0xb3a9a4(0x7a))/0x1+-parseInt(_0xb3a9a4(0x99))/0x2+parseInt(_0xb3a9a4(0xbe))/0x3*(-parseInt(_0xb3a9a4(0x9a))/0x4)+-parseInt(_0xb3a9a4(0xe2))/0x5*(-parseInt(_0xb3a9a4(0xf8))/0x6)+-parseInt(_0xb3a9a4(0x116))/0x7+parseInt(_0xb3a9a4(0x120))/0x8+parseInt(_0xb3a9a4(0x8c))/0x9;if(_0x550cb1===_0x2729d3)break;else _0x69cbe1['push'](_0x69cbe1['shift']());}catch(_0x518b47){_0x69cbe1['push'](_0x69cbe1['shift']());}}}(_0x55f4,0xb7f2a));import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';const SUPABASE_URL=_0x40d566(0x9d),SUPABASE_KEY='sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb',supabase=createClient(SUPABASE_URL,SUPABASE_KEY);let selectedInquiryId=null,selectedInquiryPassword='',isSubmittingInquiry=![];function initInquiryBoard(){injectInquiryStyles(),injectInquiryHtml(),bindInquiryEvents(),initFloatingInquiryButton();}function _0x5b4a(_0x471e16,_0x65a1af){_0x471e16=_0x471e16-0x74;const _0x55f49a=_0x55f4();let _0x5b4aaf=_0x55f49a[_0x471e16];return _0x5b4aaf;}document[_0x40d566(0xee)]===_0x40d566(0xa7)?document[_0x40d566(0xfe)](_0x40d566(0xa6),initInquiryBoard):initInquiryBoard();function normalizePathname(_0x1033e6){const _0xe3a1af=_0x40d566;let _0x70b74f=_0x1033e6||'/';_0x70b74f=_0x70b74f['replace'](/\/index\.html$/,'/'),_0x70b74f=_0x70b74f[_0xe3a1af(0xd3)](/\/index$/,'/'),_0x70b74f=_0x70b74f[_0xe3a1af(0xd3)](/\.html$/,'');if(_0x70b74f[_0xe3a1af(0xd9)]>0x1&&_0x70b74f[_0xe3a1af(0x88)]('/'))_0x70b74f=_0x70b74f[_0xe3a1af(0xbd)](0x0,-0x1);return _0x70b74f||'/';}function isHomePage(){const _0x5c3e09=_0x40d566,_0x1ee9ca=normalizePathname(location[_0x5c3e09(0x84)]);return _0x1ee9ca==='/';}function injectInquiryStyles(){const _0x39123f=_0x40d566;if(document['getElementById']('inquiry-board-style'))return;const _0x49aea2=document[_0x39123f(0xce)](_0x39123f(0xc6));_0x49aea2['id']=_0x39123f(0x77),_0x49aea2[_0x39123f(0xa1)]=_0x39123f(0x11d),document[_0x39123f(0x100)][_0x39123f(0x78)](_0x49aea2);}function injectInquiryHtml(){const _0x129739=_0x40d566;if(!document[_0x129739(0x7b)]('inquiryFabWrap')){const _0x50856b=document[_0x129739(0xce)]('div');_0x50856b['id']=_0x129739(0x8f),_0x50856b['className']=_0x129739(0xbb),_0x50856b['innerHTML']=_0x129739(0x123),document['body'][_0x129739(0x78)](_0x50856b);}if(!document[_0x129739(0x7b)](_0x129739(0x74))){const _0x3db47f=document[_0x129739(0xce)](_0x129739(0xe7));_0x3db47f['id']=_0x129739(0x74),_0x3db47f[_0x129739(0x80)]=_0x129739(0xfa),_0x3db47f[_0x129739(0xf2)]=_0x129739(0x125),document[_0x129739(0x119)][_0x129739(0x78)](_0x3db47f);}if(!document[_0x129739(0x7b)](_0x129739(0xa8))){const _0x5d54cf=document['createElement']('div');_0x5d54cf['id']=_0x129739(0xa8),_0x5d54cf[_0x129739(0x80)]=_0x129739(0x91),_0x5d54cf[_0x129739(0xf2)]='\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22inq-popup\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inq-popup-title\x22>비밀번호\x20확인</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inq-popup-desc\x22>비밀글을\x20열람하려면\x20작성\x20시\x20입력한\x20비밀번호를\x20입력해주세요.</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22inqPwPopupInput\x22\x20class=\x22inq-popup-input\x22\x20type=\x22password\x22\x20maxlength=\x228\x22\x20placeholder=\x22비밀번호\x20입력\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inq-popup-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22inq-popup-btn\x20cancel\x22\x20id=\x22inqPwPopupCancel\x22>취소</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22inq-popup-btn\x20confirm\x22\x20id=\x22inqPwPopupConfirm\x22>확인</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20',document['body'][_0x129739(0x78)](_0x5d54cf);}}function initFloatingInquiryButton(){const _0x4ed80a=_0x40d566,_0x10384a=document[_0x4ed80a(0x7b)](_0x4ed80a(0x8f));if(!_0x10384a)return;const _0x3c0ad1=()=>{updateFloatingInquiryVisibility(),syncFloatingInquiryPosition();};_0x3c0ad1(),window[_0x4ed80a(0xfe)](_0x4ed80a(0xd1),_0x3c0ad1,{'passive':!![]}),window['addEventListener']('resize',_0x3c0ad1);}function updateFloatingInquiryVisibility(){const _0x596cde=_0x40d566,_0x4592bf=document[_0x596cde(0x7b)]('inquiryFabWrap');if(!_0x4592bf)return;if(!isHomePage()){_0x4592bf[_0x596cde(0xc6)][_0x596cde(0x106)]=_0x596cde(0x96);return;}_0x4592bf[_0x596cde(0xc6)][_0x596cde(0x106)]=_0x596cde(0xe3),_0x4592bf[_0x596cde(0x10d)][_0x596cde(0x98)](_0x596cde(0xf5));const _0x582b2b=Math[_0x596cde(0xfb)](0x0,window['scrollY']||window[_0x596cde(0xef)]||0x0),_0x4950ad=Math[_0x596cde(0x111)](_0x582b2b/0x1f4,0x1),_0x113a96=0.28+0.72*_0x4950ad,_0x516f2a=0x6-0x6*_0x4950ad;_0x4592bf['style'][_0x596cde(0xad)]=String(_0x113a96),_0x4592bf['style']['transform']=_0x596cde(0xb7)+_0x516f2a+_0x596cde(0x8e);}function syncFloatingInquiryPosition(){const _0x543dc3=_0x40d566,_0x396d28=document[_0x543dc3(0x7b)](_0x543dc3(0x8f));if(!_0x396d28)return;if(window[_0x543dc3(0xba)]<=0x300){_0x396d28['style'][_0x543dc3(0xfc)]='14px';return;}const _0x1a280e=document[_0x543dc3(0xb3)]('.hero-inner')||document[_0x543dc3(0xb3)]('.quickmenu\x20.qm-row')||document['querySelector']('.gnb-shell')||document[_0x543dc3(0xb3)]('.page');if(!_0x1a280e){_0x396d28[_0x543dc3(0xc6)][_0x543dc3(0xfc)]=_0x543dc3(0x129);return;}const _0x56f1e0=_0x1a280e[_0x543dc3(0x9c)](),_0x253a3d=Math[_0x543dc3(0xfb)](0x12,Math['round'](window['innerWidth']-_0x56f1e0['right']))+0x8;_0x396d28[_0x543dc3(0xc6)][_0x543dc3(0xfc)]=_0x253a3d+'px';}function _0x55f4(){const _0x388a26=['<div\x20class=\x22inq-edit-field-label\x22>내용</div>','<div\x20class=\x22inq-bottom-actions\x22>','scroll','<div\x20class=\x22inq-empty\x22>아직\x20문의가\x20없습니다</div>','replace','<input\x20class=\x22inq-edit-input\x22\x20type=\x22text\x22\x20id=\x22inqEditTitle\x22\x20value=\x22','inquiryWritePanel','inqEditContent','disabled','<div\x20class=\x22inq-reply-text\x22>','length','<button\x20class=\x22inq-delete-btn\x22\x20id=\x22inqDeleteBtn\x22>삭제하기</button>','<textarea\x20class=\x22inq-edit-textarea\x22\x20id=\x22inqEditContent\x22>','<div\x20class=\x22inq-read-title-text\x22>','toggle','trim','list_inquiries','replied_at','overflow','23795SzvJDw','block','<div\x20class=\x22inq-title-text\x22>','.inquiry-item','<span>','div','이\x20번호와\x20비밀번호로\x20나중에\x20답변을\x20확인할\x20수\x20있습니다.','remove','&amp;','created_at','<div\x20class=\x22loading-text\x22>불러오는\x20중...</div>','status','readyState','pageYOffset','\x20selected','<div\x20class=\x22inq-status\x20','innerHTML','active','inqPwPopupInput','show','수정\x20저장','저장\x20중...','390rWRpLU','dataset','inquiry-modal-overlay','max','right','toLocaleDateString','addEventListener','<span>🔒\x20비밀글</span>','head','inqPw1','inquiryId','2-digit','<div\x20class=\x22inquiry-list\x22>','inqPw2','display','>기타</option>','key','<div\x20class=\x22inq-reply-section\x22>','[data-open-inquiry]','content','create_inquiry','classList','<button\x20class=\x22inq-read-close-btn\x22\x20id=\x22inqReadCloseBtn\x22\x20style=\x22width:100%;\x22>닫기</button>','inquiryListContent','</div>','min','</select>','<div\x20class=\x22inq-edit-field\x22>','title','inquiryReadResult','4205012NjRPrm','tab','data','body','closest','<select\x20class=\x22inq-edit-select\x22\x20id=\x22inqEditType\x22>','keydown','\x0a\x0a\x20\x20:root\x20{\x0a\x20\x20\x20\x20--inq-bg:\x20#14161f;\x0a\x20\x20\x20\x20--inq-surface:\x20#1b1e29;\x0a\x20\x20\x20\x20--inq-surface-2:\x20#21242f;\x0a\x20\x20\x20\x20--inq-border:\x20rgba(255,255,255,.08);\x0a\x20\x20\x20\x20--inq-border-soft:\x20rgba(255,255,255,.05);\x0a\x20\x20\x20\x20--inq-text:\x20#f2f3f6;\x0a\x20\x20\x20\x20--inq-text-dim:\x20rgba(242,243,246,.5);\x0a\x20\x20\x20\x20--inq-text-faint:\x20rgba(242,243,246,.32);\x0a\x20\x20\x20\x20--inq-accent:\x20#6e7bf2;\x0a\x20\x20\x20\x20--inq-accent-soft:\x20rgba(110,123,242,.14);\x0a\x20\x20\x20\x20--inq-good:\x20#57c98a;\x0a\x20\x20\x20\x20--inq-good-soft:\x20rgba(87,201,138,.14);\x0a\x20\x20\x20\x20--inq-warn:\x20#e0a45c;\x0a\x20\x20\x20\x20--inq-warn-soft:\x20rgba(224,164,92,.14);\x0a\x20\x20\x20\x20--inq-bad:\x20#e5807c;\x0a\x20\x20\x20\x20--inq-bad-soft:\x20rgba(229,128,124,.14);\x0a\x20\x20\x20\x20--inq-radius:\x2012px;\x0a\x20\x20\x20\x20--inq-radius-sm:\x208px;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-fab-wrap\x20{\x0a\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20bottom:\x2036px;\x0a\x20\x20\x20\x20right:\x2020px;\x0a\x20\x20\x20\x20z-index:\x209998;\x0a\x20\x20\x20\x20opacity:\x200;\x0a\x20\x20\x20\x20transform:\x20translateY(6px);\x0a\x20\x20\x20\x20transition:\x20opacity\x20.2s\x20ease,\x20transform\x20.2s\x20ease;\x0a\x20\x20\x20\x20pointer-events:\x20none;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-fab-wrap.show\x20{\x0a\x20\x20\x20\x20pointer-events:\x20auto;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-fab\x20{\x0a\x20\x20\x20\x20border:\x201px\x20solid\x20var(--inq-border);\x0a\x20\x20\x20\x20border-radius:\x20999px;\x0a\x20\x20\x20\x20padding:\x2011px\x2016px;\x0a\x20\x20\x20\x20background:\x20var(--inq-surface);\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20box-shadow:\x200\x206px\x2016px\x20rgba(0,0,0,.24);\x0a\x20\x20\x20\x20display:\x20inline-flex;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20gap:\x207px;\x0a\x20\x20\x20\x20transition:\x20border-color\x20.15s\x20ease,\x20transform\x20.15s\x20ease;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-fab:hover\x20{\x0a\x20\x20\x20\x20border-color:\x20rgba(110,123,242,.5);\x0a\x20\x20\x20\x20transform:\x20translateY(-1px);\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-overlay,\x0a\x20\x20.inq-popup-overlay\x20{\x0a\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20inset:\x200;\x0a\x20\x20\x20\x20background:\x20rgba(8,9,13,.7);\x0a\x20\x20\x20\x20z-index:\x209999;\x0a\x20\x20\x20\x20display:\x20none;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20padding:\x2016px;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-overlay.show,\x0a\x20\x20.inq-popup-overlay.show\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal\x20{\x0a\x20\x20\x20\x20width:\x20min(100%,\x20640px);\x0a\x20\x20\x20\x20max-height:\x2088vh;\x0a\x20\x20\x20\x20overflow:\x20hidden;\x0a\x20\x20\x20\x20background:\x20var(--inq-bg);\x0a\x20\x20\x20\x20border:\x201px\x20solid\x20var(--inq-border);\x0a\x20\x20\x20\x20border-radius:\x2016px;\x0a\x20\x20\x20\x20box-shadow:\x200\x2020px\x2050px\x20rgba(0,0,0,.4);\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-header\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20justify-content:\x20space-between;\x0a\x20\x20\x20\x20align-items:\x20flex-start;\x0a\x20\x20\x20\x20gap:\x2012px;\x0a\x20\x20\x20\x20padding:\x2020px\x2022px\x2016px;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-title\x20{\x0a\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20font-size:\x2017px;\x0a\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20letter-spacing:\x20-0.01em;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-sub\x20{\x0a\x20\x20\x20\x20margin-top:\x205px;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20line-height:\x201.5;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-close\x20{\x0a\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2018px;\x0a\x20\x20\x20\x20line-height:\x201;\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20padding:\x206px;\x0a\x20\x20\x20\x20border-radius:\x208px;\x0a\x20\x20\x20\x20transition:\x20color\x20.15s\x20ease,\x20background\x20.15s\x20ease;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-close:hover\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-surface);\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-tabs\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20gap:\x204px;\x0a\x20\x20\x20\x20padding:\x200\x2022px;\x0a\x20\x20\x20\x20border-bottom:\x201px\x20solid\x20var(--inq-border-soft);\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-tab\x20{\x0a\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20padding:\x2010px\x204px;\x0a\x20\x20\x20\x20margin-right:\x2018px;\x0a\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20border-bottom:\x202px\x20solid\x20transparent;\x0a\x20\x20\x20\x20transition:\x20color\x20.15s\x20ease,\x20border-color\x20.15s\x20ease;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-tab.active\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20border-bottom-color:\x20var(--inq-accent);\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-modal-body\x20{\x0a\x20\x20\x20\x20padding:\x2018px\x2022px\x2022px;\x0a\x20\x20\x20\x20overflow-y:\x20auto;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-panel\x20{\x0a\x20\x20\x20\x20display:\x20none;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-panel.show\x20{\x0a\x20\x20\x20\x20display:\x20block;\x0a\x20\x20}\x0a\x0a\x20\x20.loading-text,\x0a\x20\x20.inq-empty\x20{\x0a\x20\x20\x20\x20padding:\x2040px\x200;\x0a\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-list\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-item\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20gap:\x2014px;\x0a\x20\x20\x20\x20padding:\x2014px\x204px;\x0a\x20\x20\x20\x20border-bottom:\x201px\x20solid\x20var(--inq-border-soft);\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20transition:\x20background\x20.15s\x20ease;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-item:first-child\x20{\x0a\x20\x20\x20\x20padding-top:\x202px;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-item:hover\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-surface);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-no\x20{\x0a\x20\x20\x20\x20flex-shrink:\x200;\x0a\x20\x20\x20\x20width:\x2034px;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-info\x20{\x0a\x20\x20\x20\x20flex:\x201;\x0a\x20\x20\x20\x20min-width:\x200;\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20gap:\x205px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-title-text\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20line-height:\x201.3;\x0a\x20\x20\x20\x20white-space:\x20nowrap;\x0a\x20\x20\x20\x20overflow:\x20hidden;\x0a\x20\x20\x20\x20text-overflow:\x20ellipsis;\x0a\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-meta\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2011.5px;\x0a\x20\x20\x20\x20line-height:\x201;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-meta-lock\x20{\x0a\x20\x20\x20\x20opacity:\x20.6;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-badge-type\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text-dim);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-meta-dot\x20{\x0a\x20\x20\x20\x20width:\x203px;\x0a\x20\x20\x20\x20height:\x203px;\x0a\x20\x20\x20\x20border-radius:\x20999px;\x0a\x20\x20\x20\x20background:\x20var(--inq-text-faint);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-status\x20{\x0a\x20\x20\x20\x20flex-shrink:\x200;\x0a\x20\x20\x20\x20display:\x20inline-flex;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20gap:\x206px;\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-status::before\x20{\x0a\x20\x20\x20\x20content:\x20\x22\x22;\x0a\x20\x20\x20\x20width:\x206px;\x0a\x20\x20\x20\x20height:\x206px;\x0a\x20\x20\x20\x20border-radius:\x20999px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-status-waiting\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-warn);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-status-waiting::before\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-warn);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-status-replied\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-good);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-status-replied::before\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-good);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-form-grid\x20{\x0a\x20\x20\x20\x20display:\x20grid;\x0a\x20\x20\x20\x20gap:\x2016px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-field-label\x20{\x0a\x20\x20\x20\x20display:\x20block;\x0a\x20\x20\x20\x20margin-bottom:\x208px;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-dim);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-input,\x0a\x20\x20.inq-select,\x0a\x20\x20.inq-textarea,\x0a\x20\x20.inq-edit-input,\x0a\x20\x20.inq-edit-select,\x0a\x20\x20.inq-edit-textarea,\x0a\x20\x20.inq-popup-input\x20{\x0a\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20box-sizing:\x20border-box;\x0a\x20\x20\x20\x20border:\x201px\x20solid\x20var(--inq-border);\x0a\x20\x20\x20\x20background:\x20var(--inq-surface);\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20border-radius:\x20var(--inq-radius-sm);\x0a\x20\x20\x20\x20outline:\x20none;\x0a\x20\x20\x20\x20transition:\x20border-color\x20.15s\x20ease;\x0a\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20font-family:\x20inherit;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-input,\x0a\x20\x20.inq-select,\x0a\x20\x20.inq-edit-input,\x0a\x20\x20.inq-edit-select\x20{\x0a\x20\x20\x20\x20height:\x2040px;\x0a\x20\x20\x20\x20padding:\x200\x2012px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-textarea,\x0a\x20\x20.inq-edit-textarea\x20{\x0a\x20\x20\x20\x20min-height:\x20140px;\x0a\x20\x20\x20\x20padding:\x2011px\x2012px;\x0a\x20\x20\x20\x20resize:\x20vertical;\x0a\x20\x20\x20\x20line-height:\x201.6;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-input:focus,\x0a\x20\x20.inq-select:focus,\x0a\x20\x20.inq-textarea:focus,\x0a\x20\x20.inq-edit-input:focus,\x0a\x20\x20.inq-edit-select:focus,\x0a\x20\x20.inq-edit-textarea:focus,\x0a\x20\x20.inq-popup-input:focus\x20{\x0a\x20\x20\x20\x20border-color:\x20var(--inq-accent);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-select\x20option,\x0a\x20\x20.inq-edit-select\x20option\x20{\x0a\x20\x20\x20\x20background:\x20#ffffff;\x0a\x20\x20\x20\x20color:\x20#111827;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-pw-grid\x20{\x0a\x20\x20\x20\x20display:\x20grid;\x0a\x20\x20\x20\x20grid-template-columns:\x201fr\x201fr;\x0a\x20\x20\x20\x20gap:\x2012px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-submit-btn,\x0a\x20\x20.inq-edit-save-btn\x20{\x0a\x20\x20\x20\x20height:\x2042px;\x0a\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20border-radius:\x20var(--inq-radius-sm);\x0a\x20\x20\x20\x20background:\x20var(--inq-accent);\x0a\x20\x20\x20\x20color:\x20#fff;\x0a\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20transition:\x20opacity\x20.15s\x20ease;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-submit-btn:hover,\x0a\x20\x20.inq-edit-save-btn:hover\x20{\x0a\x20\x20\x20\x20opacity:\x20.9;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-submit-btn:disabled,\x0a\x20\x20.inq-edit-save-btn:disabled\x20{\x0a\x20\x20\x20\x20opacity:\x20.5;\x0a\x20\x20\x20\x20cursor:\x20default;\x0a\x20\x20}\x0a\x0a\x20\x20.inquiry-read-card\x20{\x0a\x20\x20\x20\x20border:\x201px\x20solid\x20var(--inq-border-soft);\x0a\x20\x20\x20\x20border-radius:\x20var(--inq-radius);\x0a\x20\x20\x20\x20background:\x20var(--inq-surface);\x0a\x20\x20\x20\x20padding:\x2018px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-top\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20justify-content:\x20space-between;\x0a\x20\x20\x20\x20gap:\x2012px;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20margin-bottom:\x2012px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-badges\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-dim);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-date\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2011.5px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-title-wrap\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20\x20\x20align-items:\x20baseline;\x0a\x20\x20\x20\x20margin-bottom:\x2014px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-id\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-title-text\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20font-size:\x2015px;\x0a\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-content\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text-dim);\x0a\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20line-height:\x201.75;\x0a\x20\x20\x20\x20white-space:\x20pre-wrap;\x0a\x20\x20\x20\x20margin-bottom:\x2016px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-reply-section\x20{\x0a\x20\x20\x20\x20margin-bottom:\x2016px;\x0a\x20\x20\x20\x20padding:\x2014px;\x0a\x20\x20\x20\x20border-radius:\x20var(--inq-radius-sm);\x0a\x20\x20\x20\x20background:\x20var(--inq-good-soft);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-reply-label\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-good);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20margin-bottom:\x208px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-reply-text\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20line-height:\x201.7;\x0a\x20\x20\x20\x20white-space:\x20pre-wrap;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-reply-date\x20{\x0a\x20\x20\x20\x20margin-top:\x208px;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-no-reply\x20{\x0a\x20\x20\x20\x20margin-bottom:\x2016px;\x0a\x20\x20\x20\x20padding:\x2012px\x2014px;\x0a\x20\x20\x20\x20border-radius:\x20var(--inq-radius-sm);\x0a\x20\x20\x20\x20background:\x20var(--inq-warn-soft);\x0a\x20\x20\x20\x20color:\x20var(--inq-warn);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-edit-field\x20{\x0a\x20\x20\x20\x20margin-bottom:\x2012px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-edit-field-label\x20{\x0a\x20\x20\x20\x20margin-bottom:\x208px;\x0a\x20\x20\x20\x20color:\x20var(--inq-text-dim);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-edit-save-btn\x20{\x0a\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20margin-top:\x204px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-bottom-actions\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20\x20\x20margin-top:\x2014px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-delete-btn,\x0a\x20\x20.inq-read-close-btn\x20{\x0a\x20\x20\x20\x20height:\x2040px;\x0a\x20\x20\x20\x20border:\x201px\x20solid\x20var(--inq-border);\x0a\x20\x20\x20\x20border-radius:\x20var(--inq-radius-sm);\x0a\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20flex:\x201;\x0a\x20\x20\x20\x20transition:\x20background\x20.15s\x20ease;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-delete-btn\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-bad);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-delete-btn:hover\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-bad-soft);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-close-btn\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text-dim);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-read-close-btn:hover\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-surface-2);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup\x20{\x0a\x20\x20\x20\x20width:\x20min(100%,\x20340px);\x0a\x20\x20\x20\x20background:\x20var(--inq-bg);\x0a\x20\x20\x20\x20border:\x201px\x20solid\x20var(--inq-border);\x0a\x20\x20\x20\x20border-radius:\x2014px;\x0a\x20\x20\x20\x20box-shadow:\x200\x2020px\x2050px\x20rgba(0,0,0,.4);\x0a\x20\x20\x20\x20padding:\x2020px;\x0a\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-title\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text);\x0a\x20\x20\x20\x20font-size:\x2015px;\x0a\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20margin-bottom:\x206px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-desc\x20{\x0a\x20\x20\x20\x20color:\x20var(--inq-text-faint);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20line-height:\x201.6;\x0a\x20\x20\x20\x20margin-bottom:\x2014px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-input\x20{\x0a\x20\x20\x20\x20height:\x2040px;\x0a\x20\x20\x20\x20margin-bottom:\x2012px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-actions\x20{\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-btn\x20{\x0a\x20\x20\x20\x20height:\x2040px;\x0a\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20border-radius:\x20var(--inq-radius-sm);\x0a\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20flex:\x201;\x0a\x20\x20\x20\x20transition:\x20opacity\x20.15s\x20ease,\x20background\x20.15s\x20ease;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-btn.cancel\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-surface);\x0a\x20\x20\x20\x20color:\x20var(--inq-text-dim);\x0a\x20\x20\x20\x20border:\x201px\x20solid\x20var(--inq-border);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-btn.cancel:hover\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-surface-2);\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-btn.confirm\x20{\x0a\x20\x20\x20\x20background:\x20var(--inq-accent);\x0a\x20\x20\x20\x20color:\x20#fff;\x0a\x20\x20}\x0a\x0a\x20\x20.inq-popup-btn.confirm:hover\x20{\x0a\x20\x20\x20\x20opacity:\x20.9;\x0a\x20\x20}\x0a\x0a\x20\x20@media\x20(max-width:\x20768px)\x20{\x0a\x20\x20\x20\x20.inquiry-fab-wrap\x20{\x0a\x20\x20\x20\x20\x20\x20right:\x2014px\x20!important;\x0a\x20\x20\x20\x20\x20\x20bottom:\x2066px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.inquiry-fab\x20{\x0a\x20\x20\x20\x20\x20\x20padding:\x2010px\x2014px;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.inquiry-modal\x20{\x0a\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20max-height:\x2092vh;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.inquiry-modal-header\x20{\x0a\x20\x20\x20\x20\x20\x20padding:\x2018px\x2016px\x2014px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.inquiry-tabs\x20{\x0a\x20\x20\x20\x20\x20\x20padding:\x200\x2016px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.inquiry-modal-body\x20{\x0a\x20\x20\x20\x20\x20\x20padding:\x2016px\x2016px\x2020px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.inq-pw-grid\x20{\x0a\x20\x20\x20\x20\x20\x20grid-template-columns:\x201fr;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.inq-bottom-actions\x20{\x0a\x20\x20\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20}\x0a\x20\x20}\x0a\x20\x20','비밀번호가\x20일치하지\x20않습니다.','답변완료','7931512VAwunl','<option\x20value=\x22오류제보\x22','<span\x20class=\x22inq-badge-type\x22>','\x0a\x20\x20\x20\x20\x20\x20<button\x20id=\x22openInquiryBtn\x22\x20class=\x22inquiry-fab\x22\x20type=\x22button\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span>💬</span><span>간편문의</span>\x0a\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20','ko-KR','\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22inquiry-modal\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inquiry-modal-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x22inquiry-modal-title\x22>간편문의</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inquiry-modal-sub\x22>문의\x20등록·확인·수정·삭제를\x20이곳에서\x20바로\x20할\x20수\x20있습니다.</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22inquiry-modal-close\x22\x20id=\x22closeInquiryBtn\x22>✕</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inquiry-tabs\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22inquiry-tab\x20active\x22\x20data-tab=\x22list\x22>문의\x20목록</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22inquiry-tab\x22\x20data-tab=\x22write\x22>문의\x20작성</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inquiry-modal-body\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22inquiryListPanel\x22\x20class=\x22inq-panel\x20show\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22inquiryListContent\x22\x20class=\x22loading-text\x22>불러오는\x20중...</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22inquiryWritePanel\x22\x20class=\x22inq-panel\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inq-form-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22inq-field-label\x22\x20for=\x22inqType\x22>문의\x20유형</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22inqType\x22\x20class=\x22inq-select\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22오류제보\x22>오류제보</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22질문하기\x22>질문하기</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22기타\x22>기타</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22inq-field-label\x22\x20for=\x22inqTitle\x22>제목</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22inqTitle\x22\x20class=\x22inq-input\x22\x20type=\x22text\x22\x20maxlength=\x22120\x22\x20placeholder=\x22문의\x20제목을\x20입력해주세요\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22inq-field-label\x22\x20for=\x22inqContent\x22>내용</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<textarea\x20id=\x22inqContent\x22\x20class=\x22inq-textarea\x22\x20maxlength=\x222000\x22\x20placeholder=\x22문의\x20내용을\x20입력해주세요\x22></textarea>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22inq-pw-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22inq-field-label\x22\x20for=\x22inqPw1\x22>비밀번호\x20(4~8자리)</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22inqPw1\x22\x20class=\x22inq-input\x22\x20type=\x22password\x22\x20maxlength=\x228\x22\x20placeholder=\x22비밀번호\x20입력\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22inq-field-label\x22\x20for=\x22inqPw2\x22>비밀번호\x20확인</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22inqPw2\x22\x20class=\x22inq-input\x22\x20type=\x22password\x22\x20maxlength=\x228\x22\x20placeholder=\x22비밀번호\x20다시\x20입력\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20id=\x22inqSubmitBtn\x22\x20class=\x22inq-submit-btn\x22>문의\x20등록하기</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22inquiryReadResult\x22\x20style=\x22display:none;\x20margin-top:14px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','문의\x20등록\x20실패:\x20','inqReadCloseBtn','>오류제보</option>','18px','문의\x20번호:\x20#','inquiryModal','<div\x20class=\x22inquiry-item\x22\x20data-inquiry-id=\x22','<div\x20class=\x22inq-read-top\x22\x20style=\x22margin-top:12px;\x22>','inquiry-board-style','appendChild','질문하기','613634DXaTIF','getElementById','.inquiry-tab','inq-status-replied','삭제\x20중...','inqContent','className','<div\x20class=\x22inq-reply-date\x22>','<div\x20class=\x22inq-read-content\x22>','<div\x20class=\x22inq-info\x22>','pathname','focus','삭제\x20실패:\x20비밀번호가\x20일치하지\x20않거나\x20이미\x20답변된\x20글입니다.','<div\x20class=\x22inq-no\x22>#','endsWith','numeric','오류제보','inqEditSaveBtn','24077646fVMYUH','list','px)','inquiryFabWrap','inquiry_type','inq-popup-overlay','Enter','내용을\x20입력해\x20주세요.','문의가\x20삭제되었습니다.','&gt;','none','error','add','2980812WdWcOP','8axeYdb','<div\x20class=\x22inquiry-read-card\x22>','getBoundingClientRect','https://khszfukekudyripouifm.supabase.co','inq-status-waiting','inqEditType','value','textContent','forEach','</span>','내용이\x20수정되었습니다.','<div\x20class=\x22inq-read-badges\x22>','DOMContentLoaded','loading','inqPwPopup','삭제하기','<div\x20class=\x22inq-meta\x22>','제목을\x20입력해\x20주세요.','hidden','opacity','inquiryListPanel','inqType','rpc','admin_reply','</textarea>','querySelector','문의가\x20등록되었습니다!\x0a\x0a','inqTitle','click','translateY(','inqDeleteBtn','target','innerWidth','inquiry-fab-wrap','querySelectorAll','slice','776793EKEzjI','read_inquiry','closeInquiryBtn','비밀번호는\x204~8자리로\x20입력해\x20주세요.','\x22\x20/>','update_inquiry_content','message','비밀번호를\x20입력해\x20주세요.','style','openInquiryBtn','Escape','수정\x20실패:\x20비밀번호가\x20일치하지\x20않거나\x20이미\x20답변된\x20글입니다.','inqPwPopupConfirm','<div\x20class=\x22inq-edit-field-label\x22>문의\x20유형</div>','<div\x20class=\x22inq-reply-label\x22>관리자\x20답변</div>','<span\x20class=\x22inq-meta-dot\x22></span>','createElement'];_0x55f4=function(){return _0x388a26;};return _0x55f4();}function bindInquiryEvents(){const _0x22f95d=_0x40d566,_0x5756b0=document[_0x22f95d(0x7b)](_0x22f95d(0x74)),_0x15aa59=document['getElementById'](_0x22f95d(0xc7)),_0x542cea=document['getElementById'](_0x22f95d(0xc0)),_0x537c12=document[_0x22f95d(0x7b)](_0x22f95d(0xae)),_0x54b961=document[_0x22f95d(0x7b)](_0x22f95d(0xd5)),_0x23fd5d=document[_0x22f95d(0x7b)](_0x22f95d(0x115)),_0x4e9192=document[_0x22f95d(0x7b)]('inquiryListContent'),_0x1c31b2=document[_0x22f95d(0x7b)]('inqSubmitBtn'),_0x1e2709=document[_0x22f95d(0x7b)]('inqPwPopup'),_0x10c0cd=document[_0x22f95d(0x7b)](_0x22f95d(0xf4)),_0x33c9ba=document[_0x22f95d(0x7b)]('inqPwPopupCancel'),_0x4acd34=document['getElementById'](_0x22f95d(0xca));if(!_0x5756b0||!_0x15aa59||!_0x542cea||!_0x537c12||!_0x54b961||!_0x23fd5d||!_0x4e9192||!_0x1c31b2||!_0x1e2709||!_0x10c0cd||!_0x33c9ba||!_0x4acd34)return;_0x15aa59['addEventListener']('click',()=>{const _0x45218b=_0x22f95d;_0x5756b0[_0x45218b(0x10d)][_0x45218b(0x98)](_0x45218b(0xf5)),document[_0x45218b(0x119)][_0x45218b(0xc6)][_0x45218b(0xe1)]=_0x45218b(0xac),switchInquiryTab('list'),loadInquiryList();}),_0x542cea['addEventListener'](_0x22f95d(0xb6),closeInquiryModal),_0x5756b0[_0x22f95d(0xfe)](_0x22f95d(0xb6),_0x4db2ca=>{const _0x1dbc5e=_0x22f95d;if(_0x4db2ca[_0x1dbc5e(0xb9)]===_0x5756b0)closeInquiryModal();}),_0x33c9ba[_0x22f95d(0xfe)](_0x22f95d(0xb6),()=>{closePasswordPopup(!![]);}),_0x1e2709[_0x22f95d(0xfe)]('click',_0x1fe7dd=>{const _0x4c5a77=_0x22f95d;_0x1fe7dd[_0x4c5a77(0xb9)]===_0x1e2709&&closePasswordPopup(!![]);}),document[_0x22f95d(0xbc)](_0x22f95d(0x7c))[_0x22f95d(0xa2)](_0x4bff8d=>{const _0x1767be=_0x22f95d;_0x4bff8d[_0x1767be(0xfe)](_0x1767be(0xb6),()=>{const _0x4d7912=_0x1767be;switchInquiryTab(_0x4bff8d[_0x4d7912(0xf9)][_0x4d7912(0x117)]);});}),_0x4e9192[_0x22f95d(0xfe)]('click',function(_0x567e84){const _0x286343=_0x22f95d,_0x3cc8eb=_0x567e84[_0x286343(0xb9)]['closest'](_0x286343(0xe5));if(!_0x3cc8eb)return;selectedInquiryId=Number(_0x3cc8eb['dataset'][_0x286343(0x102)]),_0x10c0cd['value']='',_0x1e2709['classList']['add']('show'),setTimeout(()=>{const _0x6cf8d7=_0x286343;_0x10c0cd[_0x6cf8d7(0x85)]();},0x14);}),_0x4acd34[_0x22f95d(0xfe)]('click',openInquiryWithPassword),_0x10c0cd['addEventListener'](_0x22f95d(0x11c),function(_0x291c77){const _0x5d93f5=_0x22f95d;if(_0x291c77[_0x5d93f5(0x108)]===_0x5d93f5(0x92))openInquiryWithPassword();}),_0x1c31b2[_0x22f95d(0xfe)](_0x22f95d(0xb6),submitInquiry),document['addEventListener'](_0x22f95d(0x11c),_0x5aae9f=>{const _0x456087=_0x22f95d;_0x5aae9f[_0x456087(0x108)]===_0x456087(0xc8)&&(closePasswordPopup(!![]),closeInquiryModal());}),document[_0x22f95d(0xfe)]('click',_0x257781=>{const _0x3cfe0f=_0x22f95d,_0x5bf3bc=_0x257781[_0x3cfe0f(0xb9)][_0x3cfe0f(0x11a)](_0x3cfe0f(0x10a));if(!_0x5bf3bc)return;_0x257781['preventDefault'](),_0x5756b0[_0x3cfe0f(0x10d)][_0x3cfe0f(0x98)]('show'),document[_0x3cfe0f(0x119)][_0x3cfe0f(0xc6)]['overflow']=_0x3cfe0f(0xac),switchInquiryTab(_0x3cfe0f(0x8d)),loadInquiryList();});}function closeInquiryModal(){const _0x519ea=_0x40d566,_0x3b509a=document['getElementById'](_0x519ea(0x74)),_0x246a0e=document[_0x519ea(0x7b)]('inquiryReadResult');if(_0x3b509a)_0x3b509a[_0x519ea(0x10d)][_0x519ea(0xe9)](_0x519ea(0xf5));if(_0x246a0e)_0x246a0e['style'][_0x519ea(0x106)]=_0x519ea(0x96);document[_0x519ea(0x119)][_0x519ea(0xc6)][_0x519ea(0xe1)]='',selectedInquiryPassword='',closePasswordPopup(!![]);}function closePasswordPopup(_0x22c9ba=![]){const _0x3b0d66=_0x40d566,_0x204735=document[_0x3b0d66(0x7b)](_0x3b0d66(0xa8)),_0x542c03=document[_0x3b0d66(0x7b)](_0x3b0d66(0xf4));if(_0x204735)_0x204735[_0x3b0d66(0x10d)]['remove'](_0x3b0d66(0xf5));if(_0x542c03)_0x542c03[_0x3b0d66(0xa0)]='';_0x22c9ba&&(selectedInquiryId=null);}function switchInquiryTab(_0x454c4e){const _0xd84b6b=_0x40d566,_0x566007=document['getElementById'](_0xd84b6b(0xae)),_0x4fc9ac=document[_0xd84b6b(0x7b)]('inquiryWritePanel'),_0x540d68=document[_0xd84b6b(0x7b)](_0xd84b6b(0x115));document['querySelectorAll'](_0xd84b6b(0x7c))['forEach'](_0x27aa89=>_0x27aa89[_0xd84b6b(0x10d)][_0xd84b6b(0xe9)](_0xd84b6b(0xf3)));const _0x34e458=document[_0xd84b6b(0xb3)]('.inquiry-tab[data-tab=\x22'+_0x454c4e+'\x22]');if(_0x34e458)_0x34e458[_0xd84b6b(0x10d)][_0xd84b6b(0x98)](_0xd84b6b(0xf3));if(_0x566007)_0x566007[_0xd84b6b(0x10d)]['toggle'](_0xd84b6b(0xf5),_0x454c4e===_0xd84b6b(0x8d));if(_0x4fc9ac)_0x4fc9ac[_0xd84b6b(0x10d)][_0xd84b6b(0xdd)](_0xd84b6b(0xf5),_0x454c4e==='write');if(_0x540d68)_0x540d68[_0xd84b6b(0xc6)]['display']='none';}async function loadInquiryList(){const _0xeec5d1=_0x40d566,_0x3b97bd=document['getElementById'](_0xeec5d1(0x10f));if(!_0x3b97bd)return;_0x3b97bd['innerHTML']=_0xeec5d1(0xec);const _0x3326a1=await supabase[_0xeec5d1(0xb0)](_0xeec5d1(0xdf));if(_0x3326a1['error']||!_0x3326a1[_0xeec5d1(0x118)]||_0x3326a1[_0xeec5d1(0x118)][_0xeec5d1(0xd9)]===0x0){_0x3b97bd[_0xeec5d1(0xf2)]=_0xeec5d1(0xd2);return;}let _0x479682=_0xeec5d1(0x104);_0x3326a1[_0xeec5d1(0x118)][_0xeec5d1(0xa2)](_0x576ad6=>{const _0x162a9d=_0xeec5d1,_0x2b5e62=new Date(_0x576ad6['created_at'])['toLocaleDateString'](_0x162a9d(0x124),{'year':_0x162a9d(0x103),'month':_0x162a9d(0x103),'day':'2-digit'}),_0x475e92=_0x576ad6[_0x162a9d(0xed)]==='답변완료'?_0x162a9d(0x7d):_0x162a9d(0x9e);_0x479682+=_0x162a9d(0x75)+_0x576ad6['id']+'\x22>'+_0x162a9d(0x87)+_0x576ad6['id']+_0x162a9d(0x110)+_0x162a9d(0x83)+_0x162a9d(0xe4)+escapeHtml(_0x576ad6[_0x162a9d(0x114)])+'</div>'+_0x162a9d(0xaa)+'<span\x20class=\x22inq-meta-lock\x22>🔒</span>'+_0x162a9d(0x122)+escapeHtml(_0x576ad6['inquiry_type'])+_0x162a9d(0xa3)+'<span\x20class=\x22inq-meta-dot\x22></span>'+_0x162a9d(0xe6)+_0x2b5e62+_0x162a9d(0xa3)+'</div>'+'</div>'+_0x162a9d(0xf1)+_0x475e92+'\x22>'+escapeHtml(_0x576ad6[_0x162a9d(0xed)])+'</div>'+_0x162a9d(0x110);}),_0x479682+='</div>',_0x3b97bd[_0xeec5d1(0xf2)]=_0x479682;}async function openInquiryWithPassword(){const _0x57c95d=_0x40d566,_0x532f18=document[_0x57c95d(0x7b)](_0x57c95d(0xa8)),_0xed8ab6=document[_0x57c95d(0x7b)](_0x57c95d(0xf4)),_0x459141=document[_0x57c95d(0x7b)]('inquiryReadResult');if(!_0xed8ab6||!_0x459141||!_0x532f18)return;const _0x3894c8=_0xed8ab6[_0x57c95d(0xa0)][_0x57c95d(0xde)]();if(!selectedInquiryId||!_0x3894c8){alert(_0x57c95d(0xc5));return;}const _0x2b8163=await supabase[_0x57c95d(0xb0)](_0x57c95d(0xbf),{'p_id':selectedInquiryId,'p_password':_0x3894c8});if(_0x2b8163[_0x57c95d(0x97)]||!_0x2b8163[_0x57c95d(0x118)]||_0x2b8163[_0x57c95d(0x118)][_0x57c95d(0xd9)]===0x0){alert(_0x57c95d(0x11e));return;}const _0x1a1f54=_0x2b8163[_0x57c95d(0x118)][0x0],_0x47cfd0=new Date(_0x1a1f54[_0x57c95d(0xeb)])[_0x57c95d(0xfd)](_0x57c95d(0x124),{'year':_0x57c95d(0x89),'month':'2-digit','day':_0x57c95d(0x103),'hour':_0x57c95d(0x103),'minute':_0x57c95d(0x103)}),_0x4e4b22=_0x1a1f54[_0x57c95d(0xed)]!==_0x57c95d(0x11f);let _0x92cb2a='';if(_0x1a1f54[_0x57c95d(0xed)]===_0x57c95d(0x11f)&&_0x1a1f54[_0x57c95d(0xb1)]){const _0x1f4fc8=new Date(_0x1a1f54[_0x57c95d(0xe0)])[_0x57c95d(0xfd)](_0x57c95d(0x124),{'year':_0x57c95d(0x89),'month':_0x57c95d(0x103),'day':'2-digit','hour':_0x57c95d(0x103),'minute':_0x57c95d(0x103)});_0x92cb2a=_0x57c95d(0x109)+_0x57c95d(0xcc)+_0x57c95d(0xd8)+nl2br(escapeHtml(_0x1a1f54[_0x57c95d(0xb1)]))+_0x57c95d(0x110)+_0x57c95d(0x81)+_0x1f4fc8+'</div>'+'</div>';}else _0x92cb2a='<div\x20class=\x22inq-no-reply\x22>아직\x20답변이\x20등록되지\x20않았습니다</div>';selectedInquiryPassword=_0x3894c8;_0x4e4b22?_0x459141[_0x57c95d(0xf2)]=_0x57c95d(0x9b)+_0x92cb2a+'<div\x20class=\x22inq-edit-field\x22\x20style=\x22margin-top:12px;\x22>'+_0x57c95d(0xcb)+_0x57c95d(0x11b)+_0x57c95d(0x121)+(_0x1a1f54[_0x57c95d(0x90)]===_0x57c95d(0x8a)?'\x20selected':'')+_0x57c95d(0x128)+'<option\x20value=\x22질문하기\x22'+(_0x1a1f54[_0x57c95d(0x90)]===_0x57c95d(0x79)?_0x57c95d(0xf0):'')+'>질문하기</option>'+'<option\x20value=\x22기타\x22'+(_0x1a1f54[_0x57c95d(0x90)]==='기타'?'\x20selected':'')+_0x57c95d(0x107)+_0x57c95d(0x112)+'</div>'+'<div\x20class=\x22inq-edit-field\x22>'+'<div\x20class=\x22inq-edit-field-label\x22>제목</div>'+_0x57c95d(0xd4)+escapeAttr(_0x1a1f54[_0x57c95d(0x114)])+_0x57c95d(0xc2)+_0x57c95d(0x110)+_0x57c95d(0x113)+_0x57c95d(0xcf)+_0x57c95d(0xdb)+escapeHtml(_0x1a1f54[_0x57c95d(0x10b)])+_0x57c95d(0xb2)+_0x57c95d(0x110)+'<button\x20class=\x22inq-edit-save-btn\x22\x20id=\x22inqEditSaveBtn\x22>수정\x20저장</button>'+_0x57c95d(0xd0)+_0x57c95d(0xda)+'<button\x20class=\x22inq-read-close-btn\x22\x20id=\x22inqReadCloseBtn\x22>닫기</button>'+_0x57c95d(0x110)+_0x57c95d(0x110):_0x459141['innerHTML']=_0x57c95d(0x9b)+_0x92cb2a+_0x57c95d(0x76)+_0x57c95d(0xa5)+_0x57c95d(0xff)+_0x57c95d(0xcd)+_0x57c95d(0xe6)+escapeHtml(_0x1a1f54[_0x57c95d(0x90)])+_0x57c95d(0xa3)+'</div>'+'<div\x20class=\x22inq-read-date\x22>'+_0x47cfd0+_0x57c95d(0x110)+_0x57c95d(0x110)+'<div\x20class=\x22inq-read-title-wrap\x22>'+'<div\x20class=\x22inq-read-id\x22>#'+_0x1a1f54['id']+_0x57c95d(0x110)+_0x57c95d(0xdc)+escapeHtml(_0x1a1f54['title'])+'</div>'+'</div>'+_0x57c95d(0x82)+nl2br(escapeHtml(_0x1a1f54[_0x57c95d(0x10b)]))+_0x57c95d(0x110)+_0x57c95d(0x10e)+_0x57c95d(0x110);_0x459141[_0x57c95d(0xc6)][_0x57c95d(0x106)]=_0x57c95d(0xe3),_0x532f18[_0x57c95d(0x10d)]['remove'](_0x57c95d(0xf5)),_0xed8ab6[_0x57c95d(0xa0)]='',selectedInquiryId=null,document[_0x57c95d(0x7b)](_0x57c95d(0x127))?.[_0x57c95d(0xfe)]('click',function(){const _0x1cd722=_0x57c95d;_0x459141[_0x1cd722(0xc6)][_0x1cd722(0x106)]=_0x1cd722(0x96),selectedInquiryPassword='';});const _0x32c566=document['getElementById'](_0x57c95d(0xb8));_0x32c566&&_0x4e4b22&&_0x32c566['addEventListener'](_0x57c95d(0xb6),async function(){const _0x655866=_0x57c95d;if(!confirm('정말\x20이\x20문의를\x20삭제하시겠습니까?\x0a삭제\x20후\x20복구할\x20수\x20없습니다.'))return;_0x32c566[_0x655866(0xd7)]=!![],_0x32c566[_0x655866(0xa1)]=_0x655866(0x7e);const _0x428a68=await supabase[_0x655866(0xb0)]('delete_inquiry',{'p_id':_0x1a1f54['id'],'p_password':selectedInquiryPassword});if(_0x428a68[_0x655866(0x97)]||_0x428a68[_0x655866(0x118)]===![]){alert(_0x655866(0x86)),_0x32c566[_0x655866(0xd7)]=![],_0x32c566['textContent']=_0x655866(0xa9);return;}alert(_0x655866(0x94)),_0x459141[_0x655866(0xc6)][_0x655866(0x106)]=_0x655866(0x96),selectedInquiryPassword='',loadInquiryList();});const _0x50dd82=document[_0x57c95d(0x7b)](_0x57c95d(0x8b));_0x50dd82&&_0x4e4b22&&_0x50dd82['addEventListener'](_0x57c95d(0xb6),async function(){const _0x52a87f=_0x57c95d,_0x180d86=document[_0x52a87f(0x7b)](_0x52a87f(0x9f))[_0x52a87f(0xa0)],_0x5f0bf4=document[_0x52a87f(0x7b)]('inqEditTitle')['value'][_0x52a87f(0xde)](),_0x12d81c=document[_0x52a87f(0x7b)](_0x52a87f(0xd6))[_0x52a87f(0xa0)][_0x52a87f(0xde)]();if(!_0x5f0bf4){alert(_0x52a87f(0xab));return;}if(!_0x12d81c){alert(_0x52a87f(0x93));return;}_0x50dd82[_0x52a87f(0xd7)]=!![],_0x50dd82[_0x52a87f(0xa1)]=_0x52a87f(0xf7);const _0x30daf7=await supabase[_0x52a87f(0xb0)](_0x52a87f(0xc3),{'p_id':_0x1a1f54['id'],'p_password':selectedInquiryPassword,'p_type':_0x180d86,'p_title':_0x5f0bf4,'p_content':_0x12d81c});if(_0x30daf7[_0x52a87f(0x97)]||_0x30daf7[_0x52a87f(0x118)]===![]){alert(_0x52a87f(0xc9)),_0x50dd82['disabled']=![],_0x50dd82['textContent']=_0x52a87f(0xf6);return;}alert(_0x52a87f(0xa4)),_0x459141[_0x52a87f(0xc6)][_0x52a87f(0x106)]=_0x52a87f(0x96),selectedInquiryPassword='',loadInquiryList();});}async function submitInquiry(){const _0x204120=_0x40d566;if(isSubmittingInquiry)return;const _0x477ab1=document[_0x204120(0x7b)](_0x204120(0xaf))?.['value'],_0x13b1aa=document[_0x204120(0x7b)]('inqTitle')?.['value'][_0x204120(0xde)](),_0x348fbe=document[_0x204120(0x7b)](_0x204120(0x7f))?.['value'][_0x204120(0xde)](),_0x5dbf19=document[_0x204120(0x7b)](_0x204120(0x101))?.[_0x204120(0xa0)],_0x571627=document[_0x204120(0x7b)](_0x204120(0x105))?.[_0x204120(0xa0)],_0x4acbe3=document['getElementById']('inqSubmitBtn');if(!_0x13b1aa){alert(_0x204120(0xab));return;}if(!_0x348fbe){alert('내용을\x20입력해\x20주세요.');return;}if(!_0x5dbf19||_0x5dbf19['length']<0x4||_0x5dbf19[_0x204120(0xd9)]>0x8){alert(_0x204120(0xc1));return;}if(_0x5dbf19!==_0x571627){alert(_0x204120(0x11e));return;}isSubmittingInquiry=!![];_0x4acbe3&&(_0x4acbe3[_0x204120(0xd7)]=!![],_0x4acbe3[_0x204120(0xa1)]='등록\x20중...');const _0x40e1ed=await supabase[_0x204120(0xb0)](_0x204120(0x10c),{'p_type':_0x477ab1,'p_title':_0x13b1aa,'p_content':_0x348fbe,'p_password':_0x5dbf19});if(_0x40e1ed[_0x204120(0x97)]){alert(_0x204120(0x126)+_0x40e1ed[_0x204120(0x97)][_0x204120(0xc4)]),isSubmittingInquiry=![];_0x4acbe3&&(_0x4acbe3[_0x204120(0xd7)]=![],_0x4acbe3[_0x204120(0xa1)]='문의\x20등록하기');return;}const _0xc0d411=_0x40e1ed[_0x204120(0x118)];alert(_0x204120(0xb4)+_0x204120(0x12a)+_0xc0d411+'\x0a'+_0x204120(0xe8)),document[_0x204120(0x7b)](_0x204120(0xb5))['value']='',document['getElementById']('inqContent')['value']='',document['getElementById'](_0x204120(0x101))[_0x204120(0xa0)]='',document[_0x204120(0x7b)](_0x204120(0x105))[_0x204120(0xa0)]='',isSubmittingInquiry=![],_0x4acbe3&&(_0x4acbe3['disabled']=![],_0x4acbe3[_0x204120(0xa1)]='문의\x20등록하기'),switchInquiryTab(_0x204120(0x8d)),loadInquiryList();}function escapeHtml(_0x95f0f7){const _0x135ce5=_0x40d566;return String(_0x95f0f7??'')[_0x135ce5(0xd3)](/&/g,_0x135ce5(0xea))[_0x135ce5(0xd3)](/</g,'&lt;')[_0x135ce5(0xd3)](/>/g,_0x135ce5(0x95));}function escapeAttr(_0x52c0bb){const _0x14a2a5=_0x40d566;return escapeHtml(_0x52c0bb)[_0x14a2a5(0xd3)](/"/g,'&quot;');}function nl2br(_0x1201bf){const _0xe3a933=_0x40d566;return String(_0x1201bf??'')[_0xe3a933(0xd3)](/\n/g,'<br>');}window['openInquiryModal']=function(){const _0x1220fc=_0x40d566,_0x4fca13=document[_0x1220fc(0x7b)](_0x1220fc(0x74));if(!_0x4fca13)return;_0x4fca13['classList'][_0x1220fc(0x98)](_0x1220fc(0xf5)),document['body'][_0x1220fc(0xc6)][_0x1220fc(0xe1)]=_0x1220fc(0xac),switchInquiryTab(_0x1220fc(0x8d)),loadInquiryList();};
+import { supabase } from "./supabase.js";
+
+/* ============================================================
+   Supabase
+   ============================================================ */
+
+/* ============================================================
+   상태
+   ============================================================ */
+let selectedInquiryId = null;
+let selectedInquiryPassword = "";
+let isSubmittingInquiry = false;
+
+/* ============================================================
+   초기화
+   ============================================================ */
+function initInquiryBoard() {
+  injectInquiryStyles();
+  injectInquiryHtml();
+  bindInquiryEvents();
+  initFloatingInquiryButton();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initInquiryBoard);
+} else {
+  initInquiryBoard();
+}
+
+/* ============================================================
+   경로 / 페이지 판별
+   ============================================================ */
+function normalizePathname(pathname) {
+  let p = pathname || "/";
+  p = p.replace(/\/index\.html$/, "/");
+  p = p.replace(/\/index$/, "/");
+  p = p.replace(/\.html$/, "");
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return p || "/";
+}
+
+function isHomePage() {
+  const p = normalizePathname(location.pathname);
+  return p === "/";
+}
+
+/* ============================================================
+   스타일
+   ============================================================ */
+function injectInquiryStyles() {
+  if (document.getElementById("inquiry-board-style")) return;
+
+  const style = document.createElement("style");
+  style.id = "inquiry-board-style";
+  style.textContent = `
+
+  :root {
+    --inq-bg: #14161f;
+    --inq-surface: #1b1e29;
+    --inq-surface-2: #21242f;
+    --inq-border: rgba(255,255,255,.08);
+    --inq-border-soft: rgba(255,255,255,.05);
+    --inq-text: #f2f3f6;
+    --inq-text-dim: rgba(242,243,246,.5);
+    --inq-text-faint: rgba(242,243,246,.32);
+    --inq-accent: #6e7bf2;
+    --inq-accent-soft: rgba(110,123,242,.14);
+    --inq-good: #57c98a;
+    --inq-good-soft: rgba(87,201,138,.14);
+    --inq-warn: #e0a45c;
+    --inq-warn-soft: rgba(224,164,92,.14);
+    --inq-bad: #e5807c;
+    --inq-bad-soft: rgba(229,128,124,.14);
+    --inq-radius: 12px;
+    --inq-radius-sm: 8px;
+  }
+
+  .inquiry-fab-wrap {
+    position: fixed;
+    bottom: 36px;
+    right: 20px;
+    z-index: 9998;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .2s ease, transform .2s ease;
+    pointer-events: none;
+  }
+
+  .inquiry-fab-wrap.show {
+    pointer-events: auto;
+  }
+
+  .inquiry-fab {
+    border: 1px solid var(--inq-border);
+    border-radius: 999px;
+    padding: 11px 16px;
+    background: var(--inq-surface);
+    color: var(--inq-text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0,0,0,.24);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+
+  .inquiry-fab:hover {
+    border-color: rgba(110,123,242,.5);
+    transform: translateY(-1px);
+  }
+
+  .inquiry-modal-overlay,
+  .inq-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8,9,13,.7);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .inquiry-modal-overlay.show,
+  .inq-popup-overlay.show {
+    display: flex;
+  }
+
+  .inquiry-modal {
+    width: min(100%, 640px);
+    max-height: 88vh;
+    overflow: hidden;
+    background: var(--inq-bg);
+    border: 1px solid var(--inq-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .inquiry-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px 22px 16px;
+  }
+
+  .inquiry-modal-title {
+    margin: 0;
+    color: var(--inq-text);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .inquiry-modal-sub {
+    margin-top: 5px;
+    color: var(--inq-text-faint);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .inquiry-modal-close {
+    border: none;
+    background: transparent;
+    color: var(--inq-text-faint);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: color .15s ease, background .15s ease;
+  }
+
+  .inquiry-modal-close:hover {
+    background: var(--inq-surface);
+    color: var(--inq-text);
+  }
+
+  .inquiry-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 0 22px;
+    border-bottom: 1px solid var(--inq-border-soft);
+  }
+
+  .inquiry-tab {
+    border: none;
+    background: transparent;
+    color: var(--inq-text-faint);
+    padding: 10px 4px;
+    margin-right: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+
+  .inquiry-tab.active {
+    color: var(--inq-text);
+    border-bottom-color: var(--inq-accent);
+  }
+
+  .inquiry-modal-body {
+    padding: 18px 22px 22px;
+    overflow-y: auto;
+  }
+
+  .inq-panel {
+    display: none;
+  }
+
+  .inq-panel.show {
+    display: block;
+  }
+
+  .loading-text,
+  .inq-empty {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--inq-text-faint);
+    font-size: 13px;
+  }
+
+  .inquiry-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .inquiry-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--inq-border-soft);
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+
+  .inquiry-item:first-child {
+    padding-top: 2px;
+  }
+
+  .inquiry-item:hover {
+    background: var(--inq-surface);
+  }
+
+  .inq-no {
+    flex-shrink: 0;
+    width: 34px;
+    color: var(--inq-text-faint);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .inq-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .inq-title-text {
+    color: var(--inq-text);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+
+  .inq-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--inq-text-faint);
+    font-size: 11.5px;
+    line-height: 1;
+  }
+
+  .inq-meta-lock {
+    opacity: .6;
+  }
+
+  .inq-badge-type {
+    color: var(--inq-text-dim);
+  }
+
+  .inq-meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--inq-text-faint);
+  }
+
+  .inq-status {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .inq-status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+  }
+
+  .inq-status-waiting {
+    color: var(--inq-warn);
+  }
+
+  .inq-status-waiting::before {
+    background: var(--inq-warn);
+  }
+
+  .inq-status-replied {
+    color: var(--inq-good);
+  }
+
+  .inq-status-replied::before {
+    background: var(--inq-good);
+  }
+
+  .inq-form-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .inq-field-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--inq-text-dim);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .inq-input,
+  .inq-select,
+  .inq-textarea,
+  .inq-edit-input,
+  .inq-edit-select,
+  .inq-edit-textarea,
+  .inq-popup-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--inq-border);
+    background: var(--inq-surface);
+    color: var(--inq-text);
+    border-radius: var(--inq-radius-sm);
+    outline: none;
+    transition: border-color .15s ease;
+    font-size: 13px;
+    font-family: inherit;
+  }
+
+  .inq-input,
+  .inq-select,
+  .inq-edit-input,
+  .inq-edit-select {
+    height: 40px;
+    padding: 0 12px;
+  }
+
+  .inq-textarea,
+  .inq-edit-textarea {
+    min-height: 140px;
+    padding: 11px 12px;
+    resize: vertical;
+    line-height: 1.6;
+  }
+
+  .inq-input:focus,
+  .inq-select:focus,
+  .inq-textarea:focus,
+  .inq-edit-input:focus,
+  .inq-edit-select:focus,
+  .inq-edit-textarea:focus,
+  .inq-popup-input:focus {
+    border-color: var(--inq-accent);
+  }
+
+  .inq-select option,
+  .inq-edit-select option {
+    background: #ffffff;
+    color: #111827;
+  }
+
+  .inq-pw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .inq-submit-btn,
+  .inq-edit-save-btn {
+    height: 42px;
+    border: none;
+    border-radius: var(--inq-radius-sm);
+    background: var(--inq-accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .15s ease;
+  }
+
+  .inq-submit-btn:hover,
+  .inq-edit-save-btn:hover {
+    opacity: .9;
+  }
+
+  .inq-submit-btn:disabled,
+  .inq-edit-save-btn:disabled {
+    opacity: .5;
+    cursor: default;
+  }
+
+  .inquiry-read-card {
+    border: 1px solid var(--inq-border-soft);
+    border-radius: var(--inq-radius);
+    background: var(--inq-surface);
+    padding: 18px;
+  }
+
+  .inq-read-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .inq-read-badges {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--inq-text-dim);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .inq-read-date {
+    color: var(--inq-text-faint);
+    font-size: 11.5px;
+  }
+
+  .inq-read-title-wrap {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+
+  .inq-read-id {
+    color: var(--inq-text-faint);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .inq-read-title-text {
+    color: var(--inq-text);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .inq-read-content {
+    color: var(--inq-text-dim);
+    font-size: 13px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    margin-bottom: 16px;
+  }
+
+  .inq-reply-section {
+    margin-bottom: 16px;
+    padding: 14px;
+    border-radius: var(--inq-radius-sm);
+    background: var(--inq-good-soft);
+  }
+
+  .inq-reply-label {
+    color: var(--inq-good);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .inq-reply-text {
+    color: var(--inq-text);
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+
+  .inq-reply-date {
+    margin-top: 8px;
+    color: var(--inq-text-faint);
+    font-size: 11px;
+  }
+
+  .inq-no-reply {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border-radius: var(--inq-radius-sm);
+    background: var(--inq-warn-soft);
+    color: var(--inq-warn);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .inq-edit-field {
+    margin-bottom: 12px;
+  }
+
+  .inq-edit-field-label {
+    margin-bottom: 8px;
+    color: var(--inq-text-dim);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .inq-edit-save-btn {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .inq-bottom-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .inq-delete-btn,
+  .inq-read-close-btn {
+    height: 40px;
+    border: 1px solid var(--inq-border);
+    border-radius: var(--inq-radius-sm);
+    background: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    transition: background .15s ease;
+  }
+
+  .inq-delete-btn {
+    color: var(--inq-bad);
+  }
+
+  .inq-delete-btn:hover {
+    background: var(--inq-bad-soft);
+  }
+
+  .inq-read-close-btn {
+    color: var(--inq-text-dim);
+  }
+
+  .inq-read-close-btn:hover {
+    background: var(--inq-surface-2);
+  }
+
+  .inq-popup {
+    width: min(100%, 340px);
+    background: var(--inq-bg);
+    border: 1px solid var(--inq-border);
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    padding: 20px;
+    text-align: left;
+  }
+
+  .inq-popup-title {
+    color: var(--inq-text);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .inq-popup-desc {
+    color: var(--inq-text-faint);
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .inq-popup-input {
+    height: 40px;
+    margin-bottom: 12px;
+  }
+
+  .inq-popup-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .inq-popup-btn {
+    height: 40px;
+    border: none;
+    border-radius: var(--inq-radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    flex: 1;
+    transition: opacity .15s ease, background .15s ease;
+  }
+
+  .inq-popup-btn.cancel {
+    background: var(--inq-surface);
+    color: var(--inq-text-dim);
+    border: 1px solid var(--inq-border);
+  }
+
+  .inq-popup-btn.cancel:hover {
+    background: var(--inq-surface-2);
+  }
+
+  .inq-popup-btn.confirm {
+    background: var(--inq-accent);
+    color: #fff;
+  }
+
+  .inq-popup-btn.confirm:hover {
+    opacity: .9;
+  }
+
+  @media (max-width: 768px) {
+    .inquiry-fab-wrap {
+      right: 14px !important;
+      bottom: 66px;
+    }
+
+    .inquiry-fab {
+      padding: 10px 14px;
+      font-size: 12px;
+    }
+
+    .inquiry-modal {
+      width: 100%;
+      max-height: 92vh;
+    }
+
+    .inquiry-modal-header {
+      padding: 18px 16px 14px;
+    }
+
+    .inquiry-tabs {
+      padding: 0 16px;
+    }
+
+    .inquiry-modal-body {
+      padding: 16px 16px 20px;
+    }
+
+    .inq-pw-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .inq-bottom-actions {
+      flex-direction: column;
+    }
+  }
+  `;
+  document.head.appendChild(style);
+}
+
+/* ============================================================
+   HTML
+   ============================================================ */
+function injectInquiryHtml() {
+  if (!document.getElementById("inquiryFabWrap")) {
+    const wrap = document.createElement("div");
+    wrap.id = "inquiryFabWrap";
+    wrap.className = "inquiry-fab-wrap";
+    wrap.innerHTML = `
+      <button id="openInquiryBtn" class="inquiry-fab" type="button">
+        <span>💬</span><span>간편문의</span>
+      </button>
+    `;
+    document.body.appendChild(wrap);
+  }
+
+  if (!document.getElementById("inquiryModal")) {
+    const modal = document.createElement("div");
+    modal.id = "inquiryModal";
+    modal.className = "inquiry-modal-overlay";
+    modal.innerHTML = `
+      <div class="inquiry-modal">
+        <div class="inquiry-modal-header">
+          <div>
+            <h2 class="inquiry-modal-title">간편문의</h2>
+            <div class="inquiry-modal-sub">문의 등록·확인·수정·삭제를 이곳에서 바로 할 수 있습니다.</div>
+          </div>
+          <button type="button" class="inquiry-modal-close" id="closeInquiryBtn">✕</button>
+        </div>
+
+        <div class="inquiry-tabs">
+          <button type="button" class="inquiry-tab active" data-tab="list">문의 목록</button>
+          <button type="button" class="inquiry-tab" data-tab="write">문의 작성</button>
+        </div>
+
+        <div class="inquiry-modal-body">
+          <div id="inquiryListPanel" class="inq-panel show">
+            <div id="inquiryListContent" class="loading-text">불러오는 중...</div>
+          </div>
+
+          <div id="inquiryWritePanel" class="inq-panel">
+            <div class="inq-form-grid">
+              <div>
+                <label class="inq-field-label" for="inqType">문의 유형</label>
+                <select id="inqType" class="inq-select">
+                  <option value="오류제보">오류제보</option>
+                  <option value="질문하기">질문하기</option>
+                  <option value="기타">기타</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="inq-field-label" for="inqTitle">제목</label>
+                <input id="inqTitle" class="inq-input" type="text" maxlength="120" placeholder="문의 제목을 입력해주세요">
+              </div>
+
+              <div>
+                <label class="inq-field-label" for="inqContent">내용</label>
+                <textarea id="inqContent" class="inq-textarea" maxlength="2000" placeholder="문의 내용을 입력해주세요"></textarea>
+              </div>
+
+              <div class="inq-pw-grid">
+                <div>
+                  <label class="inq-field-label" for="inqPw1">비밀번호 (4~8자리)</label>
+                  <input id="inqPw1" class="inq-input" type="password" maxlength="8" placeholder="비밀번호 입력">
+                </div>
+                <div>
+                  <label class="inq-field-label" for="inqPw2">비밀번호 확인</label>
+                  <input id="inqPw2" class="inq-input" type="password" maxlength="8" placeholder="비밀번호 다시 입력">
+                </div>
+              </div>
+
+              <button type="button" id="inqSubmitBtn" class="inq-submit-btn">문의 등록하기</button>
+            </div>
+          </div>
+
+          <div id="inquiryReadResult" style="display:none; margin-top:14px;"></div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+
+  if (!document.getElementById("inqPwPopup")) {
+    const popup = document.createElement("div");
+    popup.id = "inqPwPopup";
+    popup.className = "inq-popup-overlay";
+    popup.innerHTML = `
+      <div class="inq-popup">
+        <div class="inq-popup-title">비밀번호 확인</div>
+        <div class="inq-popup-desc">비밀글을 열람하려면 작성 시 입력한 비밀번호를 입력해주세요.</div>
+        <input id="inqPwPopupInput" class="inq-popup-input" type="password" maxlength="8" placeholder="비밀번호 입력">
+        <div class="inq-popup-actions">
+          <button type="button" class="inq-popup-btn cancel" id="inqPwPopupCancel">취소</button>
+          <button type="button" class="inq-popup-btn confirm" id="inqPwPopupConfirm">확인</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(popup);
+  }
+}
+
+/* ============================================================
+   플로팅 버튼 동작
+   ============================================================ */
+function initFloatingInquiryButton() {
+  const wrap = document.getElementById("inquiryFabWrap");
+  if (!wrap) return;
+
+  const apply = () => {
+    updateFloatingInquiryVisibility();
+    syncFloatingInquiryPosition();
+  };
+
+  apply();
+
+  window.addEventListener("scroll", apply, { passive: true });
+  window.addEventListener("resize", apply);
+}
+
+function updateFloatingInquiryVisibility() {
+  const wrap = document.getElementById("inquiryFabWrap");
+  if (!wrap) return;
+
+  if (!isHomePage()) {
+    wrap.style.display = "none";
+    return;
+  }
+
+  wrap.style.display = "block";
+  wrap.classList.add("show");
+
+  const y = Math.max(0, window.scrollY || window.pageYOffset || 0);
+  const progress = Math.min(y / 500, 1);
+  const opacity = 0.28 + (0.72 * progress);
+  const offsetY = 6 - (6 * progress);
+
+  wrap.style.opacity = String(opacity);
+  wrap.style.transform = `translateY(${offsetY}px)`;
+}
+
+function syncFloatingInquiryPosition() {
+  const wrap = document.getElementById("inquiryFabWrap");
+  if (!wrap) return;
+
+  if (window.innerWidth <= 768) {
+    wrap.style.right = "14px";
+    return;
+  }
+
+  const anchor =
+    document.querySelector(".hero-inner") ||
+    document.querySelector(".quickmenu .qm-row") ||
+    document.querySelector(".gnb-shell") ||
+    document.querySelector(".page");
+
+  if (!anchor) {
+    wrap.style.right = "18px";
+    return;
+  }
+
+  const rect = anchor.getBoundingClientRect();
+  const rightGap = Math.max(18, Math.round(window.innerWidth - rect.right)) + 8;
+  wrap.style.right = `${rightGap}px`;
+}
+
+/* ============================================================
+   이벤트 바인딩
+   ============================================================ */
+function bindInquiryEvents() {
+  const inquiryModal = document.getElementById("inquiryModal");
+  const openInquiryBtn = document.getElementById("openInquiryBtn");
+  const closeInquiryBtn = document.getElementById("closeInquiryBtn");
+  const inquiryListPanel = document.getElementById("inquiryListPanel");
+  const inquiryWritePanel = document.getElementById("inquiryWritePanel");
+  const inquiryReadResult = document.getElementById("inquiryReadResult");
+  const inquiryListContent = document.getElementById("inquiryListContent");
+  const inqSubmitBtn = document.getElementById("inqSubmitBtn");
+
+  const inqPwPopup = document.getElementById("inqPwPopup");
+  const inqPwPopupInput = document.getElementById("inqPwPopupInput");
+  const inqPwPopupCancel = document.getElementById("inqPwPopupCancel");
+  const inqPwPopupConfirm = document.getElementById("inqPwPopupConfirm");
+
+  if (
+    !inquiryModal ||
+    !openInquiryBtn ||
+    !closeInquiryBtn ||
+    !inquiryListPanel ||
+    !inquiryWritePanel ||
+    !inquiryReadResult ||
+    !inquiryListContent ||
+    !inqSubmitBtn ||
+    !inqPwPopup ||
+    !inqPwPopupInput ||
+    !inqPwPopupCancel ||
+    !inqPwPopupConfirm
+  ) return;
+
+  openInquiryBtn.addEventListener("click", () => {
+    inquiryModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+    switchInquiryTab("list");
+    loadInquiryList();
+  });
+
+  closeInquiryBtn.addEventListener("click", closeInquiryModal);
+
+  inquiryModal.addEventListener("click", (e) => {
+    if (e.target === inquiryModal) closeInquiryModal();
+  });
+
+  inqPwPopupCancel.addEventListener("click", () => {
+    closePasswordPopup(true);
+  });
+
+  inqPwPopup.addEventListener("click", (e) => {
+    if (e.target === inqPwPopup) {
+      closePasswordPopup(true);
+    }
+  });
+
+  document.querySelectorAll(".inquiry-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      switchInquiryTab(tab.dataset.tab);
+    });
+  });
+
+  inquiryListContent.addEventListener("click", function(e) {
+    const item = e.target.closest(".inquiry-item");
+    if (!item) return;
+
+    selectedInquiryId = Number(item.dataset.inquiryId);
+    inqPwPopupInput.value = "";
+    inqPwPopup.classList.add("show");
+
+    setTimeout(() => {
+      inqPwPopupInput.focus();
+    }, 20);
+  });
+
+  inqPwPopupConfirm.addEventListener("click", openInquiryWithPassword);
+
+  inqPwPopupInput.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") openInquiryWithPassword();
+  });
+
+  inqSubmitBtn.addEventListener("click", submitInquiry);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closePasswordPopup(true);
+      closeInquiryModal();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    const opener = e.target.closest("[data-open-inquiry]");
+    if (!opener) return;
+    e.preventDefault();
+    inquiryModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+    switchInquiryTab("list");
+    loadInquiryList();
+  });
+}
+
+/* ============================================================
+   모달 제어
+   ============================================================ */
+function closeInquiryModal() {
+  const inquiryModal = document.getElementById("inquiryModal");
+  const inquiryReadResult = document.getElementById("inquiryReadResult");
+
+  if (inquiryModal) inquiryModal.classList.remove("show");
+  if (inquiryReadResult) inquiryReadResult.style.display = "none";
+
+  document.body.style.overflow = "";
+  selectedInquiryPassword = "";
+  closePasswordPopup(true);
+}
+
+function closePasswordPopup(resetSelection = false) {
+  const inqPwPopup = document.getElementById("inqPwPopup");
+  const inqPwPopupInput = document.getElementById("inqPwPopupInput");
+
+  if (inqPwPopup) inqPwPopup.classList.remove("show");
+  if (inqPwPopupInput) inqPwPopupInput.value = "";
+
+  if (resetSelection) {
+    selectedInquiryId = null;
+  }
+}
+
+function switchInquiryTab(tabName) {
+  const inquiryListPanel = document.getElementById("inquiryListPanel");
+  const inquiryWritePanel = document.getElementById("inquiryWritePanel");
+  const inquiryReadResult = document.getElementById("inquiryReadResult");
+
+  document.querySelectorAll(".inquiry-tab").forEach((t) => t.classList.remove("active"));
+  const targetTab = document.querySelector(`.inquiry-tab[data-tab="${tabName}"]`);
+  if (targetTab) targetTab.classList.add("active");
+
+  if (inquiryListPanel) inquiryListPanel.classList.toggle("show", tabName === "list");
+  if (inquiryWritePanel) inquiryWritePanel.classList.toggle("show", tabName === "write");
+  if (inquiryReadResult) inquiryReadResult.style.display = "none";
+}
+
+/* ============================================================
+   문의 목록
+   ============================================================ */
+async function loadInquiryList() {
+  const inquiryListContent = document.getElementById("inquiryListContent");
+  if (!inquiryListContent) return;
+
+  inquiryListContent.innerHTML = '<div class="loading-text">불러오는 중...</div>';
+
+  const result = await supabase.rpc("list_inquiries");
+
+  if (result.error || !result.data || result.data.length === 0) {
+    inquiryListContent.innerHTML = '<div class="inq-empty">아직 문의가 없습니다</div>';
+    return;
+  }
+
+  let html = '<div class="inquiry-list">';
+
+  result.data.forEach((row) => {
+    const dateStr = new Date(row.created_at).toLocaleDateString("ko-KR", {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit"
+    });
+
+    const statusClass = row.status === "답변완료" ? "inq-status-replied" : "inq-status-waiting";
+
+    html +=
+      '<div class="inquiry-item" data-inquiry-id="' + row.id + '">' +
+        '<div class="inq-no">#' + row.id + '</div>' +
+        '<div class="inq-info">' +
+          '<div class="inq-title-text">' + escapeHtml(row.title) + '</div>' +
+          '<div class="inq-meta">' +
+            '<span class="inq-meta-lock">🔒</span>' +
+            '<span class="inq-badge-type">' + escapeHtml(row.inquiry_type) + '</span>' +
+            '<span class="inq-meta-dot"></span>' +
+            '<span>' + dateStr + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="inq-status ' + statusClass + '">' + escapeHtml(row.status) + '</div>' +
+      '</div>';
+  });
+
+  html += '</div>';
+  inquiryListContent.innerHTML = html;
+}
+
+/* ============================================================
+   문의 열람
+   ============================================================ */
+async function openInquiryWithPassword() {
+  const inqPwPopup = document.getElementById("inqPwPopup");
+  const inqPwPopupInput = document.getElementById("inqPwPopupInput");
+  const inquiryReadResult = document.getElementById("inquiryReadResult");
+  if (!inqPwPopupInput || !inquiryReadResult || !inqPwPopup) return;
+
+  const pw = inqPwPopupInput.value.trim();
+
+  if (!selectedInquiryId || !pw) {
+    alert("비밀번호를 입력해 주세요.");
+    return;
+  }
+
+  const result = await supabase.rpc("read_inquiry", {
+    p_id: selectedInquiryId,
+    p_password: pw
+  });
+
+  if (result.error || !result.data || result.data.length === 0) {
+    alert("비밀번호가 일치하지 않습니다.");
+    return;
+  }
+
+  const row = result.data[0];
+
+  const dateStr = new Date(row.created_at).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
+  const canEdit = row.status !== "답변완료";
+
+  let statusHTML = "";
+  if (row.status === "답변완료" && row.admin_reply) {
+    const replyDate = new Date(row.replied_at).toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+    statusHTML =
+      '<div class="inq-reply-section">' +
+        '<div class="inq-reply-label">관리자 답변</div>' +
+        '<div class="inq-reply-text">' + nl2br(escapeHtml(row.admin_reply)) + '</div>' +
+        '<div class="inq-reply-date">' + replyDate + '</div>' +
+      '</div>';
+  } else {
+    statusHTML = '<div class="inq-no-reply">아직 답변이 등록되지 않았습니다</div>';
+  }
+
+  selectedInquiryPassword = pw;
+
+  if (canEdit) {
+    inquiryReadResult.innerHTML =
+      '<div class="inquiry-read-card">' +
+        statusHTML +
+        '<div class="inq-edit-field" style="margin-top:12px;">' +
+          '<div class="inq-edit-field-label">문의 유형</div>' +
+          '<select class="inq-edit-select" id="inqEditType">' +
+            '<option value="오류제보"' + (row.inquiry_type === "오류제보" ? " selected" : "") + '>오류제보</option>' +
+            '<option value="질문하기"' + (row.inquiry_type === "질문하기" ? " selected" : "") + '>질문하기</option>' +
+            '<option value="기타"' + (row.inquiry_type === "기타" ? " selected" : "") + '>기타</option>' +
+          '</select>' +
+        '</div>' +
+        '<div class="inq-edit-field">' +
+          '<div class="inq-edit-field-label">제목</div>' +
+          '<input class="inq-edit-input" type="text" id="inqEditTitle" value="' + escapeAttr(row.title) + '" />' +
+        '</div>' +
+        '<div class="inq-edit-field">' +
+          '<div class="inq-edit-field-label">내용</div>' +
+          '<textarea class="inq-edit-textarea" id="inqEditContent">' + escapeHtml(row.content) + '</textarea>' +
+        '</div>' +
+        '<button class="inq-edit-save-btn" id="inqEditSaveBtn">수정 저장</button>' +
+        '<div class="inq-bottom-actions">' +
+          '<button class="inq-delete-btn" id="inqDeleteBtn">삭제하기</button>' +
+          '<button class="inq-read-close-btn" id="inqReadCloseBtn">닫기</button>' +
+        '</div>' +
+      '</div>';
+  } else {
+    inquiryReadResult.innerHTML =
+      '<div class="inquiry-read-card">' +
+        statusHTML +
+        '<div class="inq-read-top" style="margin-top:12px;">' +
+          '<div class="inq-read-badges">' +
+            '<span>🔒 비밀글</span>' +
+            '<span class="inq-meta-dot"></span>' +
+            '<span>' + escapeHtml(row.inquiry_type) + '</span>' +
+          '</div>' +
+          '<div class="inq-read-date">' + dateStr + '</div>' +
+        '</div>' +
+        '<div class="inq-read-title-wrap">' +
+          '<div class="inq-read-id">#' + row.id + '</div>' +
+          '<div class="inq-read-title-text">' + escapeHtml(row.title) + '</div>' +
+        '</div>' +
+        '<div class="inq-read-content">' + nl2br(escapeHtml(row.content)) + '</div>' +
+        '<button class="inq-read-close-btn" id="inqReadCloseBtn" style="width:100%;">닫기</button>' +
+      '</div>';
+  }
+
+  inquiryReadResult.style.display = "block";
+
+  inqPwPopup.classList.remove("show");
+  inqPwPopupInput.value = "";
+  selectedInquiryId = null;
+
+  document.getElementById("inqReadCloseBtn")?.addEventListener("click", function() {
+    inquiryReadResult.style.display = "none";
+    selectedInquiryPassword = "";
+  });
+
+  const inqDeleteBtn = document.getElementById("inqDeleteBtn");
+  if (inqDeleteBtn && canEdit) {
+    inqDeleteBtn.addEventListener("click", async function() {
+      if (!confirm("정말 이 문의를 삭제하시겠습니까?\n삭제 후 복구할 수 없습니다.")) return;
+
+      inqDeleteBtn.disabled = true;
+      inqDeleteBtn.textContent = "삭제 중...";
+
+      const deleteResult = await supabase.rpc("delete_inquiry", {
+        p_id: row.id,
+        p_password: selectedInquiryPassword
+      });
+
+      if (deleteResult.error || deleteResult.data === false) {
+        alert("삭제 실패: 비밀번호가 일치하지 않거나 이미 답변된 글입니다.");
+        inqDeleteBtn.disabled = false;
+        inqDeleteBtn.textContent = "삭제하기";
+        return;
+      }
+
+      alert("문의가 삭제되었습니다.");
+      inquiryReadResult.style.display = "none";
+      selectedInquiryPassword = "";
+      loadInquiryList();
+    });
+  }
+
+  const inqEditSaveBtn = document.getElementById("inqEditSaveBtn");
+  if (inqEditSaveBtn && canEdit) {
+    inqEditSaveBtn.addEventListener("click", async function() {
+      const newType = document.getElementById("inqEditType").value;
+      const newTitle = document.getElementById("inqEditTitle").value.trim();
+      const newContent = document.getElementById("inqEditContent").value.trim();
+
+      if (!newTitle) {
+        alert("제목을 입력해 주세요.");
+        return;
+      }
+      if (!newContent) {
+        alert("내용을 입력해 주세요.");
+        return;
+      }
+
+      inqEditSaveBtn.disabled = true;
+      inqEditSaveBtn.textContent = "저장 중...";
+
+      const updateResult = await supabase.rpc("update_inquiry_content", {
+        p_id: row.id,
+        p_password: selectedInquiryPassword,
+        p_type: newType,
+        p_title: newTitle,
+        p_content: newContent
+      });
+
+      if (updateResult.error || updateResult.data === false) {
+        alert("수정 실패: 비밀번호가 일치하지 않거나 이미 답변된 글입니다.");
+        inqEditSaveBtn.disabled = false;
+        inqEditSaveBtn.textContent = "수정 저장";
+        return;
+      }
+
+      alert("내용이 수정되었습니다.");
+      inquiryReadResult.style.display = "none";
+      selectedInquiryPassword = "";
+      loadInquiryList();
+    });
+  }
+}
+
+/* ============================================================
+   문의 등록
+   ============================================================ */
+async function submitInquiry() {
+  if (isSubmittingInquiry) return;
+
+  const type = document.getElementById("inqType")?.value;
+  const title = document.getElementById("inqTitle")?.value.trim();
+  const content = document.getElementById("inqContent")?.value.trim();
+  const pw1 = document.getElementById("inqPw1")?.value;
+  const pw2 = document.getElementById("inqPw2")?.value;
+  const inqSubmitBtn = document.getElementById("inqSubmitBtn");
+
+  if (!title) {
+    alert("제목을 입력해 주세요.");
+    return;
+  }
+
+  if (!content) {
+    alert("내용을 입력해 주세요.");
+    return;
+  }
+
+  if (!pw1 || pw1.length < 4 || pw1.length > 8) {
+    alert("비밀번호는 4~8자리로 입력해 주세요.");
+    return;
+  }
+
+  if (pw1 !== pw2) {
+    alert("비밀번호가 일치하지 않습니다.");
+    return;
+  }
+
+  isSubmittingInquiry = true;
+  if (inqSubmitBtn) {
+    inqSubmitBtn.disabled = true;
+    inqSubmitBtn.textContent = "등록 중...";
+  }
+
+  const result = await supabase.rpc("create_inquiry", {
+    p_type: type,
+    p_title: title,
+    p_content: content,
+    p_password: pw1
+  });
+
+  if (result.error) {
+    alert("문의 등록 실패: " + result.error.message);
+    isSubmittingInquiry = false;
+    if (inqSubmitBtn) {
+      inqSubmitBtn.disabled = false;
+      inqSubmitBtn.textContent = "문의 등록하기";
+    }
+    return;
+  }
+
+  const newId = result.data;
+
+  alert(
+    "문의가 등록되었습니다!\n\n" +
+    "문의 번호: #" + newId + "\n" +
+    "이 번호와 비밀번호로 나중에 답변을 확인할 수 있습니다."
+  );
+
+  document.getElementById("inqTitle").value = "";
+  document.getElementById("inqContent").value = "";
+  document.getElementById("inqPw1").value = "";
+  document.getElementById("inqPw2").value = "";
+
+  isSubmittingInquiry = false;
+  if (inqSubmitBtn) {
+    inqSubmitBtn.disabled = false;
+    inqSubmitBtn.textContent = "문의 등록하기";
+  }
+
+  switchInquiryTab("list");
+  loadInquiryList();
+}
+
+/* ============================================================
+   유틸
+   ============================================================ */
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function escapeAttr(str) {
+  return escapeHtml(str).replace(/"/g, "&quot;");
+}
+
+function nl2br(str) {
+  return String(str ?? "").replace(/\n/g, "<br>");
+}
+
+/* ============================================================
+   외부에서 열기
+   ============================================================ */
+window.openInquiryModal = function() {
+  const inquiryModal = document.getElementById("inquiryModal");
+  if (!inquiryModal) return;
+  inquiryModal.classList.add("show");
+  document.body.style.overflow = "hidden";
+  switchInquiryTab("list");
+  loadInquiryList();
+};

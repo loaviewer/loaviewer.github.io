@@ -1,1 +1,440 @@
-const _0x3b33c2=_0x586e;function _0xb4e6(){const _0x4d8298=['ceil','checked','getElementById','padStart','candidates\x20fetch\x20failed:\x20','clear','조회\x20중...','%</text>','1357768splyYb','<line\x20x1=\x22','빛의\x20기사','<tr><td><span\x20class=\x22color-chip\x22\x20style=\x22background:','historySummaryBody','시작일이\x20종료일보다\x20늦을\x20수\x20없어.','https://khszfukekudyripouifm.supabase.co','closest','</td><td\x20colspan=\x224\x22\x20style=\x22color:#7a8a9f;\x22>데이터\x20없음</td></tr>','</td><td>','#historyResetBtn','data-name','처단자','loadHistoryCandidates\x20error:','clientY','심판자','left','축복의\x20오라','div','createElement','\x20~\x20','win_rate','data-value','addEventListener','포식자','<text\x20x=\x22','#7effae','<div\x20class=\x22history-empty-state\x22>검색\x20결과\x20없음</div>','\x22\x20stroke=\x22rgba(255,255,255,0.10)\x22\x20stroke-width=\x221\x22/>','위</td>\x0a\x20\x20\x20\x20\x20\x20<td>','40;\x22>','개까지\x20선택할\x20수\x20있어요.','%</td>\x0a\x20\x20\x20\x20\x20\x20<td>','.history-unit-btn','values','right','historyUnitTabs','1158xiZamA',';\x20background:','<tr><td\x20colspan=\x226\x22\x20style=\x22color:#7a8a9f;\x22>조회\x20결과가\x20여기에\x20표시됩니다.</td></tr>','\x22\x20r=\x225\x22\x20fill=\x22','#d48fff','</text>','collapsed','active','reduce','<span\x20class=\x22history-selected-tag\x22\x20style=\x22color:#7a8a9f;\x22>선택\x20없음</span>','2026-04-07','total_matches','\x0a\x20\x20\x20\x20</div>','93254ftARfE','historyStartDate','historySelectedTags','\x22\x20fill=\x22none\x22\x20stroke=\x22','mousemove','\x22\x20height=\x22','date_key','\x22\x20stroke-width=\x223\x22\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22/>','class_name','add','push','toLocaleString','json','\x22\x20fill=\x22#0f1520\x22/><text\x20x=\x22','classList','2670mUqPlc','📊\x20승률\x20그래프\x20조회하기','wins','1008161epYIHV','\x0a\x20\x20\x20\x20\x20\x20<label\x20class=\x22history-engraving-item\x20','\x22\x20fill=\x22#0f1520\x22/>','disabled','</td>\x0a\x20\x20\x20\x20</tr>','18;\x20border-color:','1968rNslrg','\x22></span>\x0a\x20\x20\x20\x20\x20\x20','engraving_name','has','6RMbPCT','</span>','length','<div\x20class=\x22history-empty-state\x22>로딩\x20중...</div>','getAttribute','status','#historyApplyBtn','일까지\x20조회할\x20수\x20있어요.\x0a현재\x20선택:\x20','/rest/v1/candidates?select=class_name,engraving_name,enabled&order=class_name.asc,engraving_name.asc','forEach','stringify','join','.history-loading-overlay','trim','message','<path\x20d=\x22','application/json','시작일과\x20종료일을\x20입력해줘.','clientX','block','337874OutHfn','max','toggle','#8d6cff','data-label','delete','>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22history-engraving-short\x22>','getDate','Bearer\x20','\x22\x20text-anchor=\x22end\x22\x20fill=\x22#94a3b8\x22\x20font-size=\x2211\x22\x20font-weight=\x22700\x22>','이슬비','\x22\x20data-label=\x22','value','10143SgHxnf','<circle\x20cx=\x22','historyEndDate','setDate','round','map','getMonth','style','target','name','\x22></span>','data-unit','\x22\x20stroke=\x22rgba(255,255,255,0.07)\x22\x20stroke-width=\x221\x22/>','\x22\x20y=\x22','width','querySelectorAll','label','\x22\x20y1=\x22','error','최소\x201개\x20각인을\x20선택해줘.','\x22\x20x2=\x22','historyEngravingList','color','#historyToggleBtn','\x20·\x20','top','className','bottom','innerHTML','historyLegendBox','filter','\x22\x20cy=\x22','#ffb86b','/rest/v1/candidates?enabled=eq.true&select=class_name,engraving_name,enabled&order=class_name.asc,engraving_name.asc','toFixed','historyApplyBtn','</td>\x0a\x20\x20\x20\x20\x20\x20<td>','total','10232460PeSSDq','\x22\x20y2=\x22','entries','#ffd85c','historyChartWrap','win_count','date','remove','\x0a\x20\x20\x20\x20<div\x20class=\x22history-legend-item\x22>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22history-legend-dot\x22\x20style=\x22background:','getBoundingClientRect','조회\x20실패:\x20','#59c7ff','일\x20단위는\x20최대\x20','📋\x20직각\x20목록\x20접기','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22checkbox\x22\x20value=\x22','setAttribute','\x22\x20text-anchor=\x22middle\x22\x20fill=\x22#7a8a9f\x22\x20font-size=\x2215\x22\x20font-weight=\x22700\x22>선택한\x20기간에\x20데이터가\x20없습니다.</text>','textContent','display','find','includes','POST','.history-engraving-section\x20.history-section-head','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22history-engraving-class\x22>','change','contains',')<br>승률\x20','\x22\x20stroke=\x22#0f1520\x22\x20stroke-width=\x222.5\x22\x20data-name=\x22','history-loading-overlay','historyNoticeText','데이터\x20불러오는\x20중...','sort','split','slice','</span>\x0a\x20\x20\x20\x20\x20\x20</label>','indexOf','<rect\x20width=\x22','historyEngravingSection'];_0xb4e6=function(){return _0x4d8298;};return _0xb4e6();}(function(_0x316dce,_0x383f90){const _0x57e929=_0x586e,_0x534094=_0x316dce();while(!![]){try{const _0x34711e=-parseInt(_0x57e929(0x1e8))/0x1+-parseInt(_0x57e929(0x218))/0x2*(parseInt(_0x57e929(0x204))/0x3)+-parseInt(_0x57e929(0x279))/0x4+-parseInt(_0x57e929(0x1f7))/0x5*(-parseInt(_0x57e929(0x1db))/0x6)+parseInt(_0x57e929(0x1fa))/0x7+-parseInt(_0x57e929(0x200))/0x8*(parseInt(_0x57e929(0x225))/0x9)+parseInt(_0x57e929(0x24b))/0xa;if(_0x34711e===_0x383f90)break;else _0x534094['push'](_0x534094['shift']());}catch(_0x435a19){_0x534094['push'](_0x534094['shift']());}}}(_0xb4e6,0x36537));import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';const SUPABASE_URL=_0x3b33c2(0x1bc),SUPABASE_KEY='sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb',supabase=createClient(SUPABASE_URL,SUPABASE_KEY),SUPPORT_ENGRAVINGS=['절실한\x20구원','만개',_0x3b33c2(0x1c7),'해방자'],fullToShortMap={'고독한\x20기사':'고기','전투\x20태세':'전태','광기':'광기','광전사의\x20비기':'비기','분노의\x20망치':'분망','중력\x20수련':'중수','심판자':_0x3b33c2(0x1c5),'축복의\x20오라':'축오','처단자':_0x3b33c2(0x1c2),'포식자':_0x3b33c2(0x1ce),'빛의\x20기사':_0x3b33c2(0x27b),'해방자':'해방자','초심':'초심','오의\x20강화':'오의','충격\x20단련':'충단','체술':'체술','무상신공':'무상','역천지체':'역천','절정':'절정','절제':'절제','오의난무':'난무','일격필살':'일격','권왕파천무':'권왕','수라의\x20길':'수라','전술\x20탄환':'전탄','핸드\x20거너':'핸건','화력\x20강화':'화강','포격\x20강화':'포강','죽음의\x20습격':'죽습','두\x20번째\x20동료':'두동','진화의\x20유산':'유산','아르데타인의\x20기술':'기술','피스메이커':'피메','사냥의\x20시간':'사시','상급\x20소환사':'상소','넘치는\x20교감':'교감','황제의\x20칙령':'황제','황후의\x20은총':'황후','진실된\x20용맹':'진용','절실한\x20구원':'절구','점화':'점화','환류':'환류','버스트':'버스트','잔재된\x20기운':'잔재','멈출\x20수\x20없는\x20충동':'충동','완벽한\x20억제':'억제','달의\x20소리':'달소','갈증':'갈증','만월의\x20집행자':'만월','만개':'만개','그믐의\x20경계':'그믐','회귀':'회귀','이슬비':_0x3b33c2(0x222),'질풍노도':'질풍','환수\x20각성':'환각','야성':'야성','업화':'업화','드레드\x20로어':'드드','시간\x20관리자':'시간','공간\x20검사':'공간'},HISTORY_COLORS=[_0x3b33c2(0x1d0),_0x3b33c2(0x256),_0x3b33c2(0x245),_0x3b33c2(0x1df),_0x3b33c2(0x24e)],HISTORY_MAX_SELECT=0x4,HISTORY_UNIT_LIMITS={0x1:0x1e,0x2:0x3c,0x3:0x5a},$=_0x152049=>document[_0x3b33c2(0x273)](_0x152049);function getShortName(_0x5ad166){return fullToShortMap[_0x5ad166]||_0x5ad166;}let historyCandidates=[],historyCandidatesMode='';const historySelectedSet=new Set();let historySelectedOrder=[],historyCurrentUnit=0x1,engravingListCollapsed=![];const historyModeSelect=$('historyModeSelect'),historyStartDate=$(_0x3b33c2(0x1e9)),historyEndDate=$(_0x3b33c2(0x227)),historyEngravingList=$(_0x3b33c2(0x23a)),historyEngravingSection=$(_0x3b33c2(0x270)),historySelectedTags=$(_0x3b33c2(0x1ea)),historyApplyBtn=$(_0x3b33c2(0x248)),historyNoticeText=$(_0x3b33c2(0x268)),historyChartSvg=$('historyChartSvg'),historyChartWrap=$(_0x3b33c2(0x24f)),historyTooltip=$('historyTooltip'),historyLegendBox=$(_0x3b33c2(0x242)),historySummaryBody=$(_0x3b33c2(0x1ba));function initHistoryDates(){const _0x59f9a2=_0x3b33c2,_0x214deb=_0x42df35=>{const _0x49d5ce=_0x586e,_0x4d3f47=_0x42df35['getFullYear'](),_0x1ab910=String(_0x42df35[_0x49d5ce(0x22b)]()+0x1)[_0x49d5ce(0x274)](0x2,'0'),_0x369749=String(_0x42df35[_0x49d5ce(0x21f)]())['padStart'](0x2,'0');return _0x4d3f47+'-'+_0x1ab910+'-'+_0x369749;},_0x4dcd01=new Date(),_0x416c15=new Date(_0x4dcd01);_0x416c15[_0x59f9a2(0x228)](_0x4dcd01[_0x59f9a2(0x21f)]()-0x1);const _0x5164fe=new Date(_0x416c15);_0x5164fe[_0x59f9a2(0x228)](_0x416c15[_0x59f9a2(0x21f)]()-0x9);const _0x559d8b=new Date(_0x59f9a2(0x1e5)),_0x359aaa=_0x5164fe<_0x559d8b?_0x559d8b:_0x5164fe;historyStartDate[_0x59f9a2(0x224)]=_0x214deb(_0x359aaa),historyEndDate[_0x59f9a2(0x224)]=_0x214deb(_0x416c15),historyStartDate[_0x59f9a2(0x219)]=_0x214deb(_0x416c15),historyEndDate[_0x59f9a2(0x219)]=_0x214deb(_0x416c15);}function historyGetColor(_0x5e800f){const _0x2a29f0=_0x3b33c2,_0x5d5eb2=historySelectedOrder[_0x2a29f0(0x26e)](_0x5e800f);if(_0x5d5eb2===-0x1)return _0x2a29f0(0x21b);return HISTORY_COLORS[_0x5d5eb2%HISTORY_COLORS[_0x2a29f0(0x206)]];}function historyUpdateSelectedTags(){const _0x3cd806=_0x3b33c2,_0x134ff1=[...historySelectedOrder];if(!_0x134ff1[_0x3cd806(0x206)]){historySelectedTags['innerHTML']=_0x3cd806(0x1e4);return;}historySelectedTags[_0x3cd806(0x241)]=_0x134ff1['map'](_0x50438d=>{const _0x183b9e=_0x3cd806,_0x571e5a=historyGetColor(_0x50438d),_0x185b23=getShortName(_0x50438d);return'<span\x20class=\x22history-selected-tag\x22\x20style=\x22color:'+_0x571e5a+_0x183b9e(0x1dc)+_0x571e5a+_0x183b9e(0x1ff)+_0x571e5a+_0x183b9e(0x1d4)+_0x185b23+_0x183b9e(0x205);})[_0x3cd806(0x20f)]('');}function historyRenderEngravingList(_0x400896=''){const _0x27e0aa=_0x3b33c2,_0x5b5351=_0x400896[_0x27e0aa(0x211)](),_0x444c27=_0x5b5351?historyCandidates['filter'](_0x580a06=>{const _0x20ce2b=_0x27e0aa,_0x3cd1fa=getShortName(_0x580a06[_0x20ce2b(0x202)]);return _0x580a06[_0x20ce2b(0x202)][_0x20ce2b(0x25f)](_0x5b5351)||_0x580a06[_0x20ce2b(0x1f0)][_0x20ce2b(0x25f)](_0x5b5351)||_0x3cd1fa[_0x20ce2b(0x25f)](_0x5b5351);}):historyCandidates;if(!_0x444c27[_0x27e0aa(0x206)]){historyEngravingList[_0x27e0aa(0x241)]=_0x27e0aa(0x1d1);return;}historyEngravingList[_0x27e0aa(0x241)]=_0x444c27['map'](_0x2b11f1=>{const _0x2c3275=_0x27e0aa,_0x47d3c4=historySelectedSet[_0x2c3275(0x203)](_0x2b11f1['engraving_name'])?'checked':'',_0x1dfb52=getShortName(_0x2b11f1[_0x2c3275(0x202)]);return _0x2c3275(0x1fb)+(_0x47d3c4?'checked':'')+_0x2c3275(0x259)+_0x2b11f1[_0x2c3275(0x202)]+'\x22\x20data-class=\x22'+_0x2b11f1[_0x2c3275(0x1f0)]+'\x22\x20'+_0x47d3c4+_0x2c3275(0x21e)+_0x1dfb52+_0x2c3275(0x262)+_0x2b11f1['class_name']+_0x2c3275(0x26d);})[_0x27e0aa(0x20f)](''),historyEngravingList['querySelectorAll']('input[type=\x22checkbox\x22]')[_0x27e0aa(0x20d)](_0x3b4e26=>{const _0x44ec32=_0x27e0aa;_0x3b4e26[_0x44ec32(0x1cd)](_0x44ec32(0x263),historyOnCheckboxChange);});}function historyOnCheckboxChange(_0x414fe3){const _0x1e9e73=_0x3b33c2,_0x2e84d6=_0x414fe3[_0x1e9e73(0x22d)][_0x1e9e73(0x224)];if(_0x414fe3['target']['checked']){if(historySelectedSet['size']>=HISTORY_MAX_SELECT){_0x414fe3['target']['checked']=![],alert('최대\x20'+HISTORY_MAX_SELECT+_0x1e9e73(0x1d5));return;}historySelectedSet[_0x1e9e73(0x1f1)](_0x2e84d6),historySelectedOrder[_0x1e9e73(0x1f2)](_0x2e84d6);}else historySelectedSet[_0x1e9e73(0x21d)](_0x2e84d6),historySelectedOrder=historySelectedOrder[_0x1e9e73(0x243)](_0x5865df=>_0x5865df!==_0x2e84d6);const _0x49f23c=_0x414fe3[_0x1e9e73(0x22d)][_0x1e9e73(0x1bd)]('.history-engraving-item');if(_0x49f23c)_0x49f23c[_0x1e9e73(0x1f6)]['toggle'](_0x1e9e73(0x272),_0x414fe3[_0x1e9e73(0x22d)][_0x1e9e73(0x272)]);historyUpdateSelectedTags();}async function loadHistoryCandidates(){const _0x2cf3f2=_0x3b33c2,_0x1fe1a8=historyModeSelect?historyModeSelect[_0x2cf3f2(0x224)]:'op';if(historyCandidates[_0x2cf3f2(0x206)]&&historyCandidatesMode===_0x1fe1a8){historyRenderEngravingList('');return;}historyEngravingList[_0x2cf3f2(0x241)]=_0x2cf3f2(0x207);try{let _0x3b7edf=SUPABASE_URL+_0x2cf3f2(0x20c);if(_0x1fe1a8==='op')_0x3b7edf=SUPABASE_URL+_0x2cf3f2(0x246);const _0x2448e7=await fetch(_0x3b7edf,{'headers':{'apikey':SUPABASE_KEY,'Authorization':_0x2cf3f2(0x220)+SUPABASE_KEY}});if(!_0x2448e7['ok'])throw new Error(_0x2cf3f2(0x275)+_0x2448e7[_0x2cf3f2(0x209)]);historyCandidates=await _0x2448e7[_0x2cf3f2(0x1f4)](),historyCandidatesMode=_0x1fe1a8,historyRenderEngravingList('');}catch(_0x46f3b5){console[_0x2cf3f2(0x237)](_0x2cf3f2(0x1c3),_0x46f3b5),historyEngravingList[_0x2cf3f2(0x241)]='<div\x20class=\x22history-empty-state\x22>각인\x20목록\x20로드\x20실패</div>';}}function _0x586e(_0x2416c5,_0x5e72c2){_0x2416c5=_0x2416c5-0x1ba;const _0xb4e624=_0xb4e6();let _0x586ee8=_0xb4e624[_0x2416c5];return _0x586ee8;}function resetHistoryChart(){const _0x415ded=_0x3b33c2;historyChartSvg['innerHTML']='\x0a\x20\x20\x20\x20<rect\x20width=\x221000\x22\x20height=\x22380\x22\x20fill=\x22#0f1520\x22></rect>\x0a\x20\x20\x20\x20<text\x20x=\x22500\x22\x20y=\x22190\x22\x20text-anchor=\x22middle\x22\x20fill=\x22#7a8a9f\x22\x20font-size=\x2215\x22\x20font-weight=\x22700\x22>\x0a\x20\x20\x20\x20\x20\x20각인을\x20선택하고\x20조회\x20버튼을\x20눌러주세요.\x0a\x20\x20\x20\x20</text>',historyLegendBox['innerHTML']='',historySummaryBody['innerHTML']=_0x415ded(0x1dd);}function historyShowTooltip(_0x1c8122,_0x3aa783){const _0x215a0a=_0x3b33c2,_0x1de352=historyChartWrap[_0x215a0a(0x254)]();historyTooltip[_0x215a0a(0x22c)][_0x215a0a(0x25d)]=_0x215a0a(0x217),historyTooltip[_0x215a0a(0x241)]=_0x3aa783;let _0x27f768=_0x1c8122[_0x215a0a(0x216)]-_0x1de352[_0x215a0a(0x1c6)]+0x10,_0x49e2fb=_0x1c8122[_0x215a0a(0x1c4)]-_0x1de352[_0x215a0a(0x23e)]-0xc;if(_0x27f768+0xb4>_0x1de352[_0x215a0a(0x233)])_0x27f768=_0x1c8122['clientX']-_0x1de352['left']-0xb4;if(_0x49e2fb<0x0)_0x49e2fb=0xa;historyTooltip['style'][_0x215a0a(0x1c6)]=_0x27f768+'px',historyTooltip[_0x215a0a(0x22c)]['top']=_0x49e2fb+'px';}function historyHideTooltip(){const _0x3acb3c=_0x3b33c2;historyTooltip['style'][_0x3acb3c(0x25d)]='none';}function historyRenderLegend(_0x3ae495){const _0x159c36=_0x3b33c2;historyLegendBox[_0x159c36(0x241)]=_0x3ae495[_0x159c36(0x22a)](_0x259e64=>_0x159c36(0x253)+_0x259e64['color']+_0x159c36(0x201)+_0x259e64['shortName']+_0x159c36(0x1e7))[_0x159c36(0x20f)]('');}function historyRenderSummaryTable(_0x378ff4,_0x1adad1){const _0x2cce34=_0x3b33c2;if(!_0x378ff4[_0x2cce34(0x206)]){historySummaryBody[_0x2cce34(0x241)]='<tr><td\x20colspan=\x226\x22\x20style=\x22color:#7a8a9f;\x22>선택된\x20각인이\x20없습니다.</td></tr>';return;}const _0x5f2c98={};_0x1adad1['forEach'](_0x573ffe=>{const _0x530a58=_0x2cce34;if(!_0x5f2c98[_0x573ffe['engraving_name']])_0x5f2c98[_0x573ffe[_0x530a58(0x202)]]={'wins':0x0,'total':0x0};_0x5f2c98[_0x573ffe['engraving_name']][_0x530a58(0x1f9)]+=parseInt(_0x573ffe[_0x530a58(0x250)])||0x0,_0x5f2c98[_0x573ffe['engraving_name']][_0x530a58(0x24a)]+=parseInt(_0x573ffe[_0x530a58(0x1e6)])||0x0;});const _0x141f8c=Object[_0x2cce34(0x24d)](_0x5f2c98)[_0x2cce34(0x243)](([_0x4f2287,_0x9801d6])=>_0x9801d6[_0x2cce34(0x24a)]>0x0)[_0x2cce34(0x22a)](([_0x3cfcba,_0x471063])=>({'engraving_name':_0x3cfcba,'win_rate':_0x471063[_0x2cce34(0x1f9)]/_0x471063['total']*0x64}))[_0x2cce34(0x26a)]((_0x37a9f6,_0x9a43b7)=>_0x9a43b7[_0x2cce34(0x1cb)]-_0x37a9f6['win_rate']),_0x54498d={};_0x141f8c['forEach']((_0x3a0afe,_0x462c4d)=>{const _0x2fbf5e=_0x2cce34;_0x54498d[_0x3a0afe[_0x2fbf5e(0x202)]]=_0x462c4d+0x1;}),historySummaryBody[_0x2cce34(0x241)]=_0x378ff4[_0x2cce34(0x22a)](_0x13a659=>{const _0x401b40=_0x2cce34,_0x5c8367=_0x13a659[_0x401b40(0x1d8)][_0x401b40(0x243)](_0x4c2493=>_0x4c2493!==null);if(!_0x5c8367[_0x401b40(0x206)])return _0x401b40(0x27c)+_0x13a659[_0x401b40(0x23b)]+'\x22></span>'+_0x13a659['shortName']+_0x401b40(0x1bf)+_0x13a659['class_name']+_0x401b40(0x1be);return'<tr>\x0a\x20\x20\x20\x20\x20\x20<td><span\x20class=\x22color-chip\x22\x20style=\x22background:'+_0x13a659[_0x401b40(0x23b)]+_0x401b40(0x22f)+_0x13a659['shortName']+'</td>\x0a\x20\x20\x20\x20\x20\x20<td>'+_0x13a659[_0x401b40(0x1f0)]+_0x401b40(0x249)+_0x5c8367[0x0][_0x401b40(0x247)](0x1)+_0x401b40(0x1d6)+_0x5c8367[_0x5c8367[_0x401b40(0x206)]-0x1]['toFixed'](0x1)+'%</td>\x0a\x20\x20\x20\x20\x20\x20<td>'+(_0x54498d[_0x13a659[_0x401b40(0x22e)]]||'-')+_0x401b40(0x1d3)+_0x13a659['totalMatches'][_0x401b40(0x1f3)]()+_0x401b40(0x1fe);})['join']('');}function historyRenderSvgChart(_0x1eae4d,_0x447b62,_0x52528c){const _0x5b6cba=_0x3b33c2,_0x1b85a1=0x3e8,_0x40d1ee=0x17c,_0x4d27ba={'top':0x1c,'right':0x1e,'bottom':0x2e,'left':0x3c},_0x53f429=_0x1b85a1-_0x4d27ba['left']-_0x4d27ba[_0x5b6cba(0x1d9)],_0x3f6a17=_0x40d1ee-_0x4d27ba['top']-_0x4d27ba[_0x5b6cba(0x240)];let _0x2678c5=[];_0x1eae4d['forEach'](_0x3c276b=>{const _0x4e4ab2=_0x5b6cba;_0x3c276b[_0x4e4ab2(0x1d8)]['forEach'](_0x967f4b=>{const _0x3a30c0=_0x4e4ab2;if(_0x967f4b!==null)_0x2678c5[_0x3a30c0(0x1f2)](_0x967f4b);});});if(!_0x2678c5[_0x5b6cba(0x206)]){historyChartSvg['innerHTML']='<rect\x20width=\x22'+_0x1b85a1+_0x5b6cba(0x1ed)+_0x40d1ee+_0x5b6cba(0x1f5)+_0x1b85a1/0x2+_0x5b6cba(0x232)+_0x40d1ee/0x2+_0x5b6cba(0x25b);return;}const _0x979d14=0x0,_0xbc2844=0x64,_0x4f74ae=[0x0,0x14,0x28,0x3c,0x50,0x64],_0x1d7789=_0x1c7b13=>_0x447b62['length']===0x1?_0x4d27ba[_0x5b6cba(0x1c6)]+_0x53f429/0x2:_0x4d27ba[_0x5b6cba(0x1c6)]+_0x53f429*_0x1c7b13/(_0x447b62[_0x5b6cba(0x206)]-0x1),_0x4c9149=_0x133256=>_0x4d27ba[_0x5b6cba(0x23e)]+(_0xbc2844-_0x133256)/(_0xbc2844-_0x979d14)*_0x3f6a17;let _0x3f5c5d=_0x5b6cba(0x26f)+_0x1b85a1+_0x5b6cba(0x1ed)+_0x40d1ee+_0x5b6cba(0x1fc);_0x4f74ae[_0x5b6cba(0x20d)](_0x2f59b1=>{const _0x25ac77=_0x5b6cba,_0x104c36=_0x4c9149(_0x2f59b1);_0x3f5c5d+=_0x25ac77(0x27a)+_0x4d27ba[_0x25ac77(0x1c6)]+_0x25ac77(0x236)+_0x104c36+'\x22\x20x2=\x22'+(_0x1b85a1-_0x4d27ba[_0x25ac77(0x1d9)])+_0x25ac77(0x24c)+_0x104c36+_0x25ac77(0x231),_0x3f5c5d+='<text\x20x=\x22'+(_0x4d27ba['left']-0xa)+_0x25ac77(0x232)+(_0x104c36+0x4)+_0x25ac77(0x221)+_0x2f59b1+_0x25ac77(0x278);}),_0x3f5c5d+='<line\x20x1=\x22'+_0x4d27ba[_0x5b6cba(0x1c6)]+'\x22\x20y1=\x22'+_0x4d27ba[_0x5b6cba(0x23e)]+'\x22\x20x2=\x22'+_0x4d27ba['left']+'\x22\x20y2=\x22'+(_0x40d1ee-_0x4d27ba[_0x5b6cba(0x240)])+'\x22\x20stroke=\x22rgba(255,255,255,0.10)\x22\x20stroke-width=\x221\x22/>',_0x3f5c5d+=_0x5b6cba(0x27a)+_0x4d27ba[_0x5b6cba(0x1c6)]+'\x22\x20y1=\x22'+(_0x40d1ee-_0x4d27ba['bottom'])+_0x5b6cba(0x239)+(_0x1b85a1-_0x4d27ba[_0x5b6cba(0x1d9)])+'\x22\x20y2=\x22'+(_0x40d1ee-_0x4d27ba['bottom'])+_0x5b6cba(0x1d2);const _0x936a1d=0x14,_0x393655=_0x447b62[_0x5b6cba(0x206)]<=_0x936a1d?0x1:Math[_0x5b6cba(0x271)](_0x447b62[_0x5b6cba(0x206)]/_0x936a1d);_0x447b62['forEach']((_0x254e27,_0x4b8464)=>{const _0x242361=_0x5b6cba;if(_0x4b8464%_0x393655!==0x0&&_0x4b8464!==_0x447b62[_0x242361(0x206)]-0x1)return;_0x3f5c5d+=_0x242361(0x1cf)+_0x1d7789(_0x4b8464)+_0x242361(0x232)+(_0x40d1ee-0x12)+'\x22\x20text-anchor=\x22middle\x22\x20fill=\x22#94a3b8\x22\x20font-size=\x2211\x22\x20font-weight=\x22700\x22>'+_0x254e27+_0x242361(0x1e0);}),_0x1eae4d[_0x5b6cba(0x20d)](_0x295e98=>{const _0x537d58=_0x5b6cba,_0x47219c=[];_0x295e98[_0x537d58(0x1d8)][_0x537d58(0x20d)]((_0x38c065,_0x25eb0e)=>{const _0x1a6074=_0x537d58;if(_0x38c065!==null)_0x47219c[_0x1a6074(0x1f2)]({'x':_0x1d7789(_0x25eb0e),'y':_0x4c9149(_0x38c065),'label':_0x447b62[_0x25eb0e],'value':_0x38c065,'date':_0x52528c[_0x25eb0e]});});if(_0x47219c[_0x537d58(0x206)]>0x1){const _0x35b63b=_0x47219c[_0x537d58(0x22a)]((_0x10b844,_0x1a803b)=>_0x1a803b===0x0?'M\x20'+_0x10b844['x']+'\x20'+_0x10b844['y']:'L\x20'+_0x10b844['x']+'\x20'+_0x10b844['y'])[_0x537d58(0x20f)]('\x20');_0x3f5c5d+=_0x537d58(0x213)+_0x35b63b+_0x537d58(0x1eb)+_0x295e98[_0x537d58(0x23b)]+_0x537d58(0x1ef);}_0x47219c[_0x537d58(0x20d)](_0x1c737e=>{const _0x522cb0=_0x537d58,_0x1b09f2=_0x295e98[_0x522cb0(0x22e)]['replace'](/"/g,'&quot;');_0x3f5c5d+=_0x522cb0(0x226)+_0x1c737e['x']+_0x522cb0(0x244)+_0x1c737e['y']+_0x522cb0(0x1de)+_0x295e98[_0x522cb0(0x23b)]+_0x522cb0(0x266)+_0x1b09f2+_0x522cb0(0x223)+_0x1c737e[_0x522cb0(0x235)]+'\x22\x20data-value=\x22'+_0x1c737e[_0x522cb0(0x224)]+'\x22\x20data-date=\x22'+_0x1c737e[_0x522cb0(0x251)]+'\x22\x20style=\x22cursor:pointer\x22/>';});}),historyChartSvg[_0x5b6cba(0x241)]=_0x3f5c5d,historyChartSvg[_0x5b6cba(0x234)]('circle[data-name]')[_0x5b6cba(0x20d)](_0x4f530b=>{const _0x3f7ca2=_0x5b6cba;_0x4f530b[_0x3f7ca2(0x1cd)](_0x3f7ca2(0x1ec),_0x583396=>{const _0xdb96b0=_0x3f7ca2;historyShowTooltip(_0x583396,'<strong>'+_0x4f530b['getAttribute'](_0xdb96b0(0x1c1))+'</strong><br>'+_0x4f530b['getAttribute'](_0xdb96b0(0x21c))+'\x20('+_0x4f530b['getAttribute']('data-date')+_0xdb96b0(0x265)+_0x4f530b[_0xdb96b0(0x208)](_0xdb96b0(0x1cc))+'%');}),_0x4f530b[_0x3f7ca2(0x1cd)]('mouseleave',()=>{historyHideTooltip(),_0x4f530b['setAttribute']('r','5');}),_0x4f530b[_0x3f7ca2(0x1cd)]('mouseenter',()=>{const _0x1e2e8c=_0x3f7ca2;_0x4f530b[_0x1e2e8c(0x25a)]('r','7');});});}function toggleEngravingSection(){const _0x562cf0=_0x3b33c2;engravingListCollapsed=!engravingListCollapsed,historyEngravingSection&&historyEngravingSection[_0x562cf0(0x1f6)][_0x562cf0(0x21a)](_0x562cf0(0x1e1),engravingListCollapsed),updateToggleBtnText();}function updateToggleBtnText(){const _0x3d6aa2=_0x3b33c2,_0x5b4445=$('historyToggleBtn');if(!_0x5b4445)return;_0x5b4445[_0x3d6aa2(0x25c)]=engravingListCollapsed?'📋\x20직각\x20목록\x20펼치기':_0x3d6aa2(0x258);}async function historyFetchAndRender(){const _0x41c21e=_0x3b33c2,_0x29e24f=[...historySelectedOrder],_0x7edff4=historyStartDate[_0x41c21e(0x224)],_0x483b51=historyEndDate[_0x41c21e(0x224)],_0x2f0239=historyModeSelect[_0x41c21e(0x224)];if(!_0x7edff4||!_0x483b51)return alert(_0x41c21e(0x215));if(_0x7edff4>_0x483b51)return alert(_0x41c21e(0x1bb));if(!_0x29e24f['length'])return alert(_0x41c21e(0x238));const _0x2884e7=Math[_0x41c21e(0x271)]((new Date(_0x483b51)-new Date(_0x7edff4))/(0x3e8*0x3c*0x3c*0x18))+0x1,_0x5a24d2=HISTORY_UNIT_LIMITS[historyCurrentUnit]||0x1e;if(_0x2884e7>_0x5a24d2){alert(historyCurrentUnit+_0x41c21e(0x257)+_0x5a24d2+_0x41c21e(0x20b)+_0x2884e7+'일');return;}historyApplyBtn[_0x41c21e(0x1fd)]=!![],historyApplyBtn['textContent']=_0x41c21e(0x277);if(!engravingListCollapsed)toggleEngravingSection();const _0x172094=document[_0x41c21e(0x1c9)](_0x41c21e(0x1c8));_0x172094[_0x41c21e(0x23f)]=_0x41c21e(0x267),_0x172094[_0x41c21e(0x25c)]=_0x41c21e(0x269),historyChartWrap['appendChild'](_0x172094);try{const _0x2a287a=await fetch(SUPABASE_URL+'/rest/v1/rpc/get_daily_winrate_history',{'method':_0x41c21e(0x260),'headers':{'Content-Type':_0x41c21e(0x214),'apikey':SUPABASE_KEY,'Authorization':_0x41c21e(0x220)+SUPABASE_KEY},'body':JSON[_0x41c21e(0x20e)]({'p_type':_0x2f0239,'p_start':_0x7edff4,'p_end':_0x483b51})});if(!_0x2a287a['ok'])throw new Error('RPC\x20실패:\x20'+_0x2a287a[_0x41c21e(0x209)]);const _0x48ac01=await _0x2a287a[_0x41c21e(0x1f4)](),_0x2d8d35=_0x48ac01['filter'](_0x45f504=>_0x29e24f[_0x41c21e(0x25f)](_0x45f504['engraving_name'])),_0xfc3737=[...new Set(_0x48ac01['map'](_0x3d998a=>_0x3d998a['date_key']))]['sort'](),_0x220e74=[],_0x19b9e5=[];for(let _0x49af7e=0x0;_0x49af7e<_0xfc3737[_0x41c21e(0x206)];_0x49af7e+=historyCurrentUnit){const _0x264b32=_0xfc3737[_0x41c21e(0x26c)](_0x49af7e,_0x49af7e+historyCurrentUnit);_0x19b9e5[_0x41c21e(0x1f2)](_0x264b32),_0x220e74['push'](_0x264b32[_0x264b32['length']-0x1]);}const _0x17751c=_0x29e24f['map']((_0x31ab47,_0x536157)=>{const _0x46ca2c=_0x41c21e,_0x137883=_0x2d8d35[_0x46ca2c(0x243)](_0x11d2a3=>_0x11d2a3[_0x46ca2c(0x202)]===_0x31ab47),_0x5572f4=historyCandidates[_0x46ca2c(0x25e)](_0x1fcf34=>_0x1fcf34['engraving_name']===_0x31ab47),_0x45b765=_0x19b9e5[_0x46ca2c(0x22a)](_0x2d5455=>{const _0x19c523=_0x46ca2c;let _0x30cfa5=0x0,_0x461e36=0x0;_0x2d5455[_0x19c523(0x20d)](_0xba30a=>{const _0x6ed23f=_0x19c523,_0x419e50=_0x137883[_0x6ed23f(0x25e)](_0x137977=>_0x137977[_0x6ed23f(0x1ee)]===_0xba30a);_0x419e50&&(_0x30cfa5+=parseInt(_0x419e50['win_count'])||0x0,_0x461e36+=parseInt(_0x419e50['total_matches'])||0x0);});if(_0x461e36===0x0)return null;return Math[_0x19c523(0x229)](_0x30cfa5/_0x461e36*0x3e8)/0xa;});return{'name':_0x31ab47,'shortName':getShortName(_0x31ab47),'class_name':_0x5572f4?_0x5572f4[_0x46ca2c(0x1f0)]:'','color':HISTORY_COLORS[_0x536157%HISTORY_COLORS[_0x46ca2c(0x206)]],'values':_0x45b765,'totalMatches':_0x137883[_0x46ca2c(0x1e3)]((_0x4a2bda,_0xa11ac3)=>_0x4a2bda+(parseInt(_0xa11ac3[_0x46ca2c(0x1e6)])||0x0),0x0)};}),_0x2c2b73=_0x220e74[_0x41c21e(0x22a)](_0x29365c=>{const _0x546634=_0x41c21e,_0x4d0ec8=_0x29365c[_0x546634(0x26b)]('-');return parseInt(_0x4d0ec8[0x1])+'/'+parseInt(_0x4d0ec8[0x2]);});historyRenderSvgChart(_0x17751c,_0x2c2b73,_0x220e74),historyRenderLegend(_0x17751c),historyRenderSummaryTable(_0x17751c,_0x48ac01),historyNoticeText['textContent']=(_0x2f0239==='op'?'OP':'호감')+_0x41c21e(0x23d)+_0x7edff4+_0x41c21e(0x1ca)+_0x483b51+_0x41c21e(0x23d)+_0x29e24f['length']+'개\x20각인\x20조회\x20완료';}catch(_0x4d96e8){alert(_0x41c21e(0x255)+_0x4d96e8[_0x41c21e(0x212)]),console[_0x41c21e(0x237)](_0x4d96e8);}finally{historyApplyBtn[_0x41c21e(0x1fd)]=![],historyApplyBtn[_0x41c21e(0x25c)]=_0x41c21e(0x1f8);const _0x416316=historyChartWrap['querySelector'](_0x41c21e(0x210));if(_0x416316)_0x416316[_0x41c21e(0x252)]();}}document[_0x3b33c2(0x1cd)]('change',_0x54ed55=>{const _0x2aa7c6=_0x3b33c2;if(!_0x54ed55[_0x2aa7c6(0x22d)]||_0x54ed55[_0x2aa7c6(0x22d)]['id']!=='historyModeSelect')return;historySelectedSet[_0x2aa7c6(0x276)](),historySelectedOrder=[],historyUpdateSelectedTags(),resetHistoryChart(),historyCandidates=[],historyCandidatesMode='',loadHistoryCandidates();}),document[_0x3b33c2(0x1cd)]('click',_0x4b02a3=>{const _0x4d8d89=_0x3b33c2;if(_0x4b02a3['target']['closest'](_0x4d8d89(0x1c0))){historySelectedSet[_0x4d8d89(0x276)](),historySelectedOrder=[],historyUpdateSelectedTags(),historyRenderEngravingList(''),resetHistoryChart();return;}if(_0x4b02a3[_0x4d8d89(0x22d)][_0x4d8d89(0x1bd)](_0x4d8d89(0x20a))){historyFetchAndRender();return;}const _0x5f5777=_0x4b02a3[_0x4d8d89(0x22d)][_0x4d8d89(0x1bd)](_0x4d8d89(0x1d7));if(_0x5f5777){const _0x42cb37=$(_0x4d8d89(0x1da));if(!_0x42cb37||!_0x42cb37[_0x4d8d89(0x264)](_0x5f5777))return;_0x42cb37['querySelectorAll'](_0x4d8d89(0x1d7))[_0x4d8d89(0x20d)](_0x341d28=>_0x341d28[_0x4d8d89(0x1f6)][_0x4d8d89(0x252)](_0x4d8d89(0x1e2))),_0x5f5777['classList'][_0x4d8d89(0x1f1)](_0x4d8d89(0x1e2)),historyCurrentUnit=parseInt(_0x5f5777[_0x4d8d89(0x208)](_0x4d8d89(0x230)),0xa);return;}const _0x46faaa=_0x4b02a3[_0x4d8d89(0x22d)]['closest'](_0x4d8d89(0x261));_0x46faaa&&toggleEngravingSection();if(_0x4b02a3[_0x4d8d89(0x22d)]['closest'](_0x4d8d89(0x23c))){toggleEngravingSection();return;}});async function init(){initHistoryDates(),historyUpdateSelectedTags(),resetHistoryChart(),await loadHistoryCandidates();}init();
+import { supabase, SUPABASE_URL, SUPABASE_KEY } from "./supabase.js";
+
+
+const SUPPORT_ENGRAVINGS = ["절실한 구원", "만개", "축복의 오라", "해방자"];
+
+const fullToShortMap = {
+  "고독한 기사":"고기","전투 태세":"전태","광기":"광기","광전사의 비기":"비기",
+  "분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
+  "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자",
+  "초심":"초심","오의 강화":"오의","충격 단련":"충단","체술":"체술",
+  "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제",
+  "오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
+  "전술 탄환":"전탄","핸드 거너":"핸건","화력 강화":"화강","포격 강화":"포강",
+  "죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
+  "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시",
+  "상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
+  "진실된 용맹":"진용","절실한 구원":"절구","점화":"점화","환류":"환류",
+  "버스트":"버스트","잔재된 기운":"잔재","멈출 수 없는 충동":"충동",
+  "완벽한 억제":"억제","달의 소리":"달소","갈증":"갈증",
+  "만월의 집행자":"만월","만개":"만개","그믐의 경계":"그믐","회귀":"회귀","이슬비":"이슬비",
+  "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화":"업화","드레드 로어":"드드",
+  "시간 관리자":"시간","공간 검사":"공간"
+};
+
+const HISTORY_COLORS = ["#7effae", "#59c7ff", "#ffb86b", "#d48fff", "#ffd85c"];
+const HISTORY_MAX_SELECT = 4;
+const HISTORY_UNIT_LIMITS = { 1: 30, 2: 60, 3: 90 };
+
+const $ = (id) => document.getElementById(id);
+function getShortName(full) { return fullToShortMap[full] || full; }
+
+let historyCandidates = [];
+let historyCandidatesMode = "";
+const historySelectedSet = new Set();
+let historySelectedOrder = [];
+let historyCurrentUnit = 1;
+let engravingListCollapsed = false;
+
+const historyModeSelect = $("historyModeSelect");
+const historyStartDate = $("historyStartDate");
+const historyEndDate = $("historyEndDate");
+const historyEngravingList = $("historyEngravingList");
+const historyEngravingSection = $("historyEngravingSection");
+const historySelectedTags = $("historySelectedTags");
+const historyApplyBtn = $("historyApplyBtn");
+const historyNoticeText = $("historyNoticeText");
+const historyChartSvg = $("historyChartSvg");
+const historyChartWrap = $("historyChartWrap");
+const historyTooltip = $("historyTooltip");
+const historyLegendBox = $("historyLegendBox");
+const historySummaryBody = $("historySummaryBody");
+
+function initHistoryDates() {
+  const fmt = (d) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${dd}`;
+  };
+
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+
+  const tenDaysAgo = new Date(yesterday);
+  tenDaysAgo.setDate(yesterday.getDate() - 9);
+
+  const minDate = new Date("2026-04-07");
+  const start = tenDaysAgo < minDate ? minDate : tenDaysAgo;
+
+  historyStartDate.value = fmt(start);
+  historyEndDate.value = fmt(yesterday);
+  historyStartDate.max = fmt(yesterday);
+  historyEndDate.max = fmt(yesterday);
+}
+
+function historyGetColor(name) {
+  const idx = historySelectedOrder.indexOf(name);
+  if (idx === -1) return "#8d6cff";
+  return HISTORY_COLORS[idx % HISTORY_COLORS.length];
+}
+
+function historyUpdateSelectedTags() {
+  const selected = [...historySelectedOrder];
+  if (!selected.length) {
+    historySelectedTags.innerHTML = '<span class="history-selected-tag" style="color:#7a8a9f;">선택 없음</span>';
+    return;
+  }
+  historySelectedTags.innerHTML = selected.map(name => {
+    const color = historyGetColor(name);
+    const short = getShortName(name);
+    return `<span class="history-selected-tag" style="color:${color}; background:${color}18; border-color:${color}40;">${short}</span>`;
+  }).join("");
+}
+
+function historyRenderEngravingList(filter = "") {
+  const keyword = filter.trim();
+  const filtered = keyword
+    ? historyCandidates.filter(c => {
+        const short = getShortName(c.engraving_name);
+        return c.engraving_name.includes(keyword) || c.class_name.includes(keyword) || short.includes(keyword);
+      })
+    : historyCandidates;
+
+  if (!filtered.length) {
+    historyEngravingList.innerHTML = '<div class="history-empty-state">검색 결과 없음</div>';
+    return;
+  }
+
+  historyEngravingList.innerHTML = filtered.map(c => {
+    const checked = historySelectedSet.has(c.engraving_name) ? "checked" : "";
+    const short = getShortName(c.engraving_name);
+    return `
+      <label class="history-engraving-item ${checked ? 'checked' : ''}">
+        <input type="checkbox" value="${c.engraving_name}" data-class="${c.class_name}" ${checked}>
+        <span class="history-engraving-short">${short}</span>
+        <span class="history-engraving-class">${c.class_name}</span>
+      </label>`;
+  }).join("");
+
+  historyEngravingList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener("change", historyOnCheckboxChange);
+  });
+}
+
+function historyOnCheckboxChange(e) {
+  const name = e.target.value;
+  if (e.target.checked) {
+    if (historySelectedSet.size >= HISTORY_MAX_SELECT) {
+      e.target.checked = false;
+      alert(`최대 ${HISTORY_MAX_SELECT}개까지 선택할 수 있어요.`);
+      return;
+    }
+    historySelectedSet.add(name);
+    historySelectedOrder.push(name);
+  } else {
+    historySelectedSet.delete(name);
+    historySelectedOrder = historySelectedOrder.filter(v => v !== name);
+  }
+  const item = e.target.closest(".history-engraving-item");
+  if (item) item.classList.toggle("checked", e.target.checked);
+  historyUpdateSelectedTags();
+}
+
+async function loadHistoryCandidates() {
+  const mode = historyModeSelect ? historyModeSelect.value : "op";
+  if (historyCandidates.length && historyCandidatesMode === mode) {
+    historyRenderEngravingList("");
+    return;
+  }
+  historyEngravingList.innerHTML = '<div class="history-empty-state">로딩 중...</div>';
+  try {
+    let url = `${SUPABASE_URL}/rest/v1/candidates?select=class_name,engraving_name,enabled&order=class_name.asc,engraving_name.asc`;
+    if (mode === "op") url = `${SUPABASE_URL}/rest/v1/candidates?enabled=eq.true&select=class_name,engraving_name,enabled&order=class_name.asc,engraving_name.asc`;
+    const res = await fetch(url, { headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` } });
+    if (!res.ok) throw new Error(`candidates fetch failed: ${res.status}`);
+    historyCandidates = await res.json();
+    historyCandidatesMode = mode;
+    historyRenderEngravingList("");
+  } catch (err) {
+    console.error("loadHistoryCandidates error:", err);
+    historyEngravingList.innerHTML = '<div class="history-empty-state">각인 목록 로드 실패</div>';
+  }
+}
+
+function resetHistoryChart() {
+  historyChartSvg.innerHTML = `
+    <rect width="1000" height="380" fill="#0f1520"></rect>
+    <text x="500" y="190" text-anchor="middle" fill="#7a8a9f" font-size="15" font-weight="700">
+      각인을 선택하고 조회 버튼을 눌러주세요.
+    </text>`;
+  historyLegendBox.innerHTML = "";
+  historySummaryBody.innerHTML = '<tr><td colspan="6" style="color:#7a8a9f;">조회 결과가 여기에 표시됩니다.</td></tr>';
+}
+
+function historyShowTooltip(event, html) {
+  const rect = historyChartWrap.getBoundingClientRect();
+  historyTooltip.style.display = "block";
+  historyTooltip.innerHTML = html;
+  let left = event.clientX - rect.left + 16;
+  let top = event.clientY - rect.top - 12;
+  if (left + 180 > rect.width) left = event.clientX - rect.left - 180;
+  if (top < 0) top = 10;
+  historyTooltip.style.left = left + "px";
+  historyTooltip.style.top = top + "px";
+}
+
+function historyHideTooltip() { historyTooltip.style.display = "none"; }
+
+function historyRenderLegend(datasets) {
+  historyLegendBox.innerHTML = datasets.map(ds => `
+    <div class="history-legend-item">
+      <span class="history-legend-dot" style="background:${ds.color}"></span>
+      ${ds.shortName}
+    </div>`).join("");
+}
+
+function historyRenderSummaryTable(datasets, allData) {
+  if (!datasets.length) {
+    historySummaryBody.innerHTML = '<tr><td colspan="6" style="color:#7a8a9f;">선택된 각인이 없습니다.</td></tr>';
+    return;
+  }
+  const stats = {};
+  allData.forEach(r => {
+    if (!stats[r.engraving_name]) stats[r.engraving_name] = { wins: 0, total: 0 };
+    stats[r.engraving_name].wins += parseInt(r.win_count) || 0;
+    stats[r.engraving_name].total += parseInt(r.total_matches) || 0;
+  });
+  const rankList = Object.entries(stats).filter(([_, s]) => s.total > 0)
+    .map(([name, s]) => ({ engraving_name: name, win_rate: (s.wins / s.total) * 100 }))
+    .sort((a, b) => b.win_rate - a.win_rate);
+  const rankMap = {};
+  rankList.forEach((item, idx) => { rankMap[item.engraving_name] = idx + 1; });
+
+  historySummaryBody.innerHTML = datasets.map(ds => {
+    const valid = ds.values.filter(v => v !== null);
+    if (!valid.length) return `<tr><td><span class="color-chip" style="background:${ds.color}"></span>${ds.shortName}</td><td>${ds.class_name}</td><td colspan="4" style="color:#7a8a9f;">데이터 없음</td></tr>`;
+    return `<tr>
+      <td><span class="color-chip" style="background:${ds.color}"></span>${ds.shortName}</td>
+      <td>${ds.class_name}</td>
+      <td>${valid[0].toFixed(1)}%</td>
+      <td>${valid[valid.length - 1].toFixed(1)}%</td>
+      <td>${rankMap[ds.name] || "-"}위</td>
+      <td>${ds.totalMatches.toLocaleString()}</td>
+    </tr>`;
+  }).join("");
+}
+
+function historyRenderSvgChart(datasets, labels, dates) {
+  const W = 1000, H = 380;
+  const pad = { top: 28, right: 30, bottom: 46, left: 60 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  let allValues = [];
+  datasets.forEach(ds => { ds.values.forEach(v => { if (v !== null) allValues.push(v); }); });
+
+  if (!allValues.length) {
+    historyChartSvg.innerHTML = `<rect width="${W}" height="${H}" fill="#0f1520"/><text x="${W/2}" y="${H/2}" text-anchor="middle" fill="#7a8a9f" font-size="15" font-weight="700">선택한 기간에 데이터가 없습니다.</text>`;
+    return;
+  }
+
+  const yMin = 0, yMax = 100;
+  const yTicks = [0, 20, 40, 60, 80, 100];
+  const xScale = (i) => labels.length === 1 ? pad.left + plotW / 2 : pad.left + (plotW * i / (labels.length - 1));
+  const yScale = (v) => pad.top + ((yMax - v) / (yMax - yMin)) * plotH;
+
+  let svg = `<rect width="${W}" height="${H}" fill="#0f1520"/>`;
+  yTicks.forEach(val => {
+    const y = yScale(val);
+    svg += `<line x1="${pad.left}" y1="${y}" x2="${W - pad.right}" y2="${y}" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>`;
+    svg += `<text x="${pad.left - 10}" y="${y + 4}" text-anchor="end" fill="#94a3b8" font-size="11" font-weight="700">${val}%</text>`;
+  });
+  svg += `<line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${H - pad.bottom}" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>`;
+  svg += `<line x1="${pad.left}" y1="${H - pad.bottom}" x2="${W - pad.right}" y2="${H - pad.bottom}" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>`;
+
+  const maxLabels = 20;
+  const labelStep = labels.length <= maxLabels ? 1 : Math.ceil(labels.length / maxLabels);
+  labels.forEach((label, i) => {
+    if (i % labelStep !== 0 && i !== labels.length - 1) return;
+    svg += `<text x="${xScale(i)}" y="${H - 18}" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">${label}</text>`;
+  });
+
+  datasets.forEach(ds => {
+    const points = [];
+    ds.values.forEach((v, i) => { if (v !== null) points.push({ x: xScale(i), y: yScale(v), label: labels[i], value: v, date: dates[i] }); });
+    if (points.length > 1) {
+      const pathD = points.map((p, i) => (i === 0 ? `M ${p.x} ${p.y}` : `L ${p.x} ${p.y}`)).join(" ");
+      svg += `<path d="${pathD}" fill="none" stroke="${ds.color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+    points.forEach(pt => {
+      const safeName = ds.name.replace(/"/g, '&quot;');
+      svg += `<circle cx="${pt.x}" cy="${pt.y}" r="5" fill="${ds.color}" stroke="#0f1520" stroke-width="2.5" data-name="${safeName}" data-label="${pt.label}" data-value="${pt.value}" data-date="${pt.date}" style="cursor:pointer"/>`;
+    });
+  });
+
+  historyChartSvg.innerHTML = svg;
+
+  historyChartSvg.querySelectorAll("circle[data-name]").forEach(circle => {
+    circle.addEventListener("mousemove", (e) => {
+      historyShowTooltip(e, `<strong>${circle.getAttribute("data-name")}</strong><br>${circle.getAttribute("data-label")} (${circle.getAttribute("data-date")})<br>승률 ${circle.getAttribute("data-value")}%`);
+    });
+    circle.addEventListener("mouseleave", () => { historyHideTooltip(); circle.setAttribute("r", "5"); });
+    circle.addEventListener("mouseenter", () => { circle.setAttribute("r", "7"); });
+  });
+}
+
+
+
+function toggleEngravingSection() {
+  engravingListCollapsed = !engravingListCollapsed;
+  if (historyEngravingSection) {
+    historyEngravingSection.classList.toggle("collapsed", engravingListCollapsed);
+  }
+  updateToggleBtnText();
+}
+
+function updateToggleBtnText() {
+  const toggleBtn = $("historyToggleBtn");
+  if (!toggleBtn) return;
+  toggleBtn.textContent = engravingListCollapsed ? "📋 직각 목록 펼치기" : "📋 직각 목록 접기";
+}
+
+
+async function historyFetchAndRender() {
+  const selected = [...historySelectedOrder];
+  const startStr = historyStartDate.value;
+  const endStr = historyEndDate.value;
+  const mode = historyModeSelect.value;
+
+  if (!startStr || !endStr) return alert("시작일과 종료일을 입력해줘.");
+  if (startStr > endStr) return alert("시작일이 종료일보다 늦을 수 없어.");
+  if (!selected.length) return alert("최소 1개 각인을 선택해줘.");
+
+  const dayDiff = Math.ceil((new Date(endStr) - new Date(startStr)) / (1000 * 60 * 60 * 24)) + 1;
+  const maxDays = HISTORY_UNIT_LIMITS[historyCurrentUnit] || 30;
+  if (dayDiff > maxDays) {
+    alert(`${historyCurrentUnit}일 단위는 최대 ${maxDays}일까지 조회할 수 있어요.\n현재 선택: ${dayDiff}일`);
+    return;
+  }
+
+  historyApplyBtn.disabled = true;
+  historyApplyBtn.textContent = "조회 중...";
+
+  // 직각 목록 접기
+  if (!engravingListCollapsed) toggleEngravingSection();
+
+  const loadingDiv = document.createElement("div");
+  loadingDiv.className = "history-loading-overlay";
+  loadingDiv.textContent = "데이터 불러오는 중...";
+  historyChartWrap.appendChild(loadingDiv);
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_daily_winrate_history`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` },
+      body: JSON.stringify({ p_type: mode, p_start: startStr, p_end: endStr })
+    });
+    if (!res.ok) throw new Error(`RPC 실패: ${res.status}`);
+
+    const data = await res.json();
+    const filteredData = data.filter(row => selected.includes(row.engraving_name));
+    const allDates = [...new Set(data.map(r => r.date_key))].sort();
+
+    const dates = [];
+    const dateGroups = [];
+    for (let i = 0; i < allDates.length; i += historyCurrentUnit) {
+      const group = allDates.slice(i, i + historyCurrentUnit);
+      dateGroups.push(group);
+      dates.push(group[group.length - 1]);
+    }
+
+    const datasets = selected.map((name, idx) => {
+      const rows = filteredData.filter(r => r.engraving_name === name);
+      const found = historyCandidates.find(c => c.engraving_name === name);
+      const values = dateGroups.map(group => {
+        let wins = 0, total = 0;
+        group.forEach(d => { const match = rows.find(r => r.date_key === d); if (match) { wins += parseInt(match.win_count) || 0; total += parseInt(match.total_matches) || 0; } });
+        if (total === 0) return null;
+        return Math.round((wins / total) * 1000) / 10;
+      });
+      return { name, shortName: getShortName(name), class_name: found ? found.class_name : "", color: HISTORY_COLORS[idx % HISTORY_COLORS.length], values, totalMatches: rows.reduce((sum, r) => sum + (parseInt(r.total_matches) || 0), 0) };
+    });
+
+    const labels = dates.map(d => { const parts = d.split("-"); return `${parseInt(parts[1])}/${parseInt(parts[2])}`; });
+    historyRenderSvgChart(datasets, labels, dates);
+    historyRenderLegend(datasets);
+    historyRenderSummaryTable(datasets, data);
+    historyNoticeText.textContent = `${mode === "op" ? "OP" : "호감"} · ${startStr} ~ ${endStr} · ${selected.length}개 각인 조회 완료`;
+  } catch (err) {
+    alert("조회 실패: " + err.message);
+    console.error(err);
+  } finally {
+    historyApplyBtn.disabled = false;
+    historyApplyBtn.textContent = "📊 승률 그래프 조회하기";
+    const overlay = historyChartWrap.querySelector(".history-loading-overlay");
+    if (overlay) overlay.remove();
+  }
+}
+
+/* 이벤트 */
+document.addEventListener("change", (e) => {
+  if (!e.target || e.target.id !== "historyModeSelect") return;
+  historySelectedSet.clear();
+  historySelectedOrder = [];
+  historyUpdateSelectedTags();
+  resetHistoryChart();
+  historyCandidates = [];
+  historyCandidatesMode = "";
+  loadHistoryCandidates();
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.closest("#historyResetBtn")) {
+    historySelectedSet.clear();
+    historySelectedOrder = [];
+    historyUpdateSelectedTags();
+    historyRenderEngravingList("");
+    resetHistoryChart();
+    return;
+  }
+
+  if (e.target.closest("#historyApplyBtn")) {
+    historyFetchAndRender();
+    return;
+  }
+
+  const unitBtn = e.target.closest(".history-unit-btn");
+  if (unitBtn) {
+    const tabs = $("historyUnitTabs");
+    if (!tabs || !tabs.contains(unitBtn)) return;
+    tabs.querySelectorAll(".history-unit-btn").forEach(b => b.classList.remove("active"));
+    unitBtn.classList.add("active");
+    historyCurrentUnit = parseInt(unitBtn.getAttribute("data-unit"), 10);
+    return;
+  }
+
+  // 직각 목록 섹션 헤더 클릭 시 토글
+  const sectionHead = e.target.closest(".history-engraving-section .history-section-head");
+  if (sectionHead) {
+    toggleEngravingSection();
+  }
+
+  if (e.target.closest("#historyToggleBtn")) {
+    toggleEngravingSection();
+    return;
+  }
+
+
+});
+
+/* 초기화 */
+async function init() {
+  initHistoryDates();
+  historyUpdateSelectedTags();
+  resetHistoryChart();
+  await loadHistoryCandidates();
+}
+
+init();

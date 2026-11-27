@@ -1,1 +1,1969 @@
-const _0x2a5cfd=_0x1802;(function(_0xe085f2,_0x58d381){const _0x544b68=_0x1802,_0x40cd2b=_0xe085f2();while(!![]){try{const _0x2ac53a=parseInt(_0x544b68(0x103))/0x1+-parseInt(_0x544b68(0x165))/0x2*(parseInt(_0x544b68(0x27f))/0x3)+parseInt(_0x544b68(0x195))/0x4*(-parseInt(_0x544b68(0x1a7))/0x5)+-parseInt(_0x544b68(0x1c0))/0x6*(-parseInt(_0x544b68(0x1b3))/0x7)+-parseInt(_0x544b68(0x27d))/0x8*(parseInt(_0x544b68(0x1ab))/0x9)+parseInt(_0x544b68(0xf2))/0xa*(-parseInt(_0x544b68(0x13d))/0xb)+parseInt(_0x544b68(0x15c))/0xc;if(_0x2ac53a===_0x58d381)break;else _0x40cd2b['push'](_0x40cd2b['shift']());}catch(_0x320b4e){_0x40cd2b['push'](_0x40cd2b['shift']());}}}(_0x301d,0x1ab61));import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';const SUPABASE_URL=_0x2a5cfd(0xdd),SUPABASE_KEY=_0x2a5cfd(0xe1),supabase=createClient(SUPABASE_URL,SUPABASE_KEY),TEST_MODE_DISABLE_SAVE=![],SUPPORT_ENGRAVINGS=[_0x2a5cfd(0x212),'만개',_0x2a5cfd(0x27a),'해방자'],FAVOR_ONLY_IDS=[0x8,0xc,0x28,0x34],GRADE_TABLE=[{'grade':_0x2a5cfd(0x125),'min':0x60,'max':0x64},{'grade':'SS','min':0x5d,'max':0x5f},{'grade':_0x2a5cfd(0x262),'min':0x5a,'max':0x5c},{'grade':'S+','min':0x57,'max':0x59},{'grade':'S','min':0x54,'max':0x56},{'grade':'S-','min':0x51,'max':0x53},{'grade':'A+','min':0x4e,'max':0x50},{'grade':'A','min':0x4b,'max':0x4d},{'grade':'A-','min':0x48,'max':0x4a},{'grade':'B+','min':0x45,'max':0x47},{'grade':'B','min':0x42,'max':0x44},{'grade':'B-','min':0x3f,'max':0x41},{'grade':'C+','min':0x3b,'max':0x3e},{'grade':'C','min':0x37,'max':0x3a},{'grade':'C-','min':0x33,'max':0x36},{'grade':'D+','min':0x2e,'max':0x32},{'grade':'D','min':0x29,'max':0x2d},{'grade':'D-','min':0x24,'max':0x28},{'grade':'E+','min':0x1f,'max':0x23},{'grade':'E','min':0x1a,'max':0x1e},{'grade':'E-','min':0x15,'max':0x19},{'grade':'F+','min':0x10,'max':0x14},{'grade':'F','min':0xb,'max':0xf},{'grade':'F-','min':0x0,'max':0xa}],GRADE_COLORS={'SS+':_0x2a5cfd(0x160),'SS':_0x2a5cfd(0x160),'SS-':_0x2a5cfd(0x160),'S+':'#7fc6ff','S':_0x2a5cfd(0x117),'S-':'#7fc6ff','A+':_0x2a5cfd(0x1bf),'A':_0x2a5cfd(0x1bf),'A-':'#ff7755','B+':'#ffb060','B':_0x2a5cfd(0xeb),'B-':_0x2a5cfd(0xeb),'C+':_0x2a5cfd(0x16e),'C':_0x2a5cfd(0x16e),'C-':_0x2a5cfd(0x16e),'D+':_0x2a5cfd(0xb8),'D':'#a9dfff','D-':_0x2a5cfd(0xb8),'E+':_0x2a5cfd(0x199),'E':_0x2a5cfd(0x199),'E-':'#8ee8b0','F+':_0x2a5cfd(0x210),'F':'#999999','F-':_0x2a5cfd(0x210)},GRADE_COMMENTS={'SS+':[_0x2a5cfd(0x277),'100%\x20달성!\x20전설급\x20결과입니다.'],'SS':[_0x2a5cfd(0x1e5),_0x2a5cfd(0x108)],'SS-':[_0x2a5cfd(0x145),'충분히\x20인상적인\x20결과입니다.'],'S+':[_0x2a5cfd(0x1e2),'상당히\x20높은\x20완성도로\x20풀었습니다.'],'S':[_0x2a5cfd(0x19c),_0x2a5cfd(0x127)],'S-':[_0x2a5cfd(0x297),'상위권\x20진입\x20직전의\x20흐름이\x20보였습니다.'],'A+':[_0x2a5cfd(0x200),'중상위권\x20판정입니다.'],'A':['평균\x20이상은\x20확실히\x20했습니다.','기본기는\x20잘\x20살렸습니다.'],'A-':[_0x2a5cfd(0x1fc),_0x2a5cfd(0x25c)],'B+':[_0x2a5cfd(0x10f)],'B':[_0x2a5cfd(0x249)],'B-':['아쉬움이\x20조금\x20남는\x20결과입니다.'],'C+':[_0x2a5cfd(0xbd)],'C':[_0x2a5cfd(0x1e9)],'C-':[_0x2a5cfd(0xf3)],'D+':[_0x2a5cfd(0x205)],'D':[_0x2a5cfd(0xc6)],'D-':[_0x2a5cfd(0xf9)],'E+':[_0x2a5cfd(0x1ad)],'E':[_0x2a5cfd(0x22a)],'E-':[_0x2a5cfd(0x12f)],'F+':[_0x2a5cfd(0x1cf)],'F':['토너먼트\x20흐름을\x20따라가기\x20어려웠던\x20판정입니다.'],'F-':[_0x2a5cfd(0x1eb)]},fullToShortMap={'고독한\x20기사':'고기','전투\x20태세':'전태','광기':'광기','광전사의\x20비기':'비기','분노의\x20망치':'분망','중력\x20수련':'중수','심판자':_0x2a5cfd(0x150),'축복의\x20오라':'축오','처단자':_0x2a5cfd(0x241),'포식자':_0x2a5cfd(0x192),'빛의\x20기사':_0x2a5cfd(0x240),'해방자':'해방자','초심':'초심','오의\x20강화':'오의','충격\x20단련':'충단','체술':'체술','무상신공':'무상','역천지체':'역천','절정':'절정','절제':'절제','오의난무':'난무','일격필살':'일격','권왕파천무':'권왕','수라의\x20길':'수라','전술\x20탄환':'전탄','핸드\x20거너':'핸건','화력\x20강화':'화강','포격\x20강화':'포강','죽음의\x20습격':'죽습','두\x20번째\x20동료':'두동','진화의\x20유산':'유산','아르데타인의\x20기술':'기술','피스메이커':'피메','사냥의\x20시간':'사시','상급\x20소환사':'상소','넘치는\x20교감':'교감','황제의\x20칙령':'황제','황후의\x20은총':'황후','진실된\x20용맹':'진용','절실한\x20구원':'절구','점화':'점화','환류':'환류','버스트':_0x2a5cfd(0x12b),'잔재된\x20기운':'잔재','멈출\x20수\x20없는\x20충동':'충동','완벽한\x20억제':'억제','달의\x20소리':'달소','갈증':'갈증','만월의\x20집행자':'만월','만개':'만개','그믐의\x20경계':'그믐','회귀':'회귀','이슬비':_0x2a5cfd(0x251),'질풍노도':'질풍','환수\x20각성':'환각','야성':'야성','업화':'업화','드레드\x20로어':'드드','시간\x20관리자':'시간','공간\x20검사':'공간'},classGroups={'전사':[_0x2a5cfd(0x139),_0x2a5cfd(0x19e),'디스트로이어','홀리나이트',_0x2a5cfd(0x26a),_0x2a5cfd(0x16d)],'무도가':['배틀마스터','인파이터','기공사',_0x2a5cfd(0x123),'스트라이커',_0x2a5cfd(0x1a5)],'헌터':[_0x2a5cfd(0x167),_0x2a5cfd(0x288),_0x2a5cfd(0x194),_0x2a5cfd(0x179),_0x2a5cfd(0x280)],'마법사':[_0x2a5cfd(0x254),_0x2a5cfd(0x19f),'바드',_0x2a5cfd(0x236)],'암살자':[_0x2a5cfd(0x218),_0x2a5cfd(0x215),'리퍼',_0x2a5cfd(0x164)],'스페셜리스트':['도화가','기상술사',_0x2a5cfd(0x23c),_0x2a5cfd(0x13e)],'가디언나이트':[_0x2a5cfd(0xd7)]},classColorMap={'워로드':_0x2a5cfd(0x23a),'버서커':_0x2a5cfd(0x23a),'디스트로이어':_0x2a5cfd(0x23a),'홀리나이트':_0x2a5cfd(0x23a),'슬레이어':'engr-warrior','발키리':_0x2a5cfd(0x23a),'배틀마스터':'engr-fighter','인파이터':_0x2a5cfd(0x11e),'기공사':_0x2a5cfd(0x11e),'창술사':_0x2a5cfd(0x11e),'스트라이커':_0x2a5cfd(0x11e),'브레이커':'engr-fighter','데빌헌터':'engr-hunter','블래스터':_0x2a5cfd(0x250),'호크아이':_0x2a5cfd(0x250),'스카우터':_0x2a5cfd(0x250),'건슬링어':'engr-hunter','서머너':_0x2a5cfd(0x1b6),'아르카나':'engr-mage','바드':_0x2a5cfd(0x1b6),'소서리스':_0x2a5cfd(0x1b6),'블레이드':'engr-assassin','데모닉':'engr-assassin','리퍼':_0x2a5cfd(0x152),'소울이터':_0x2a5cfd(0x152),'도화가':_0x2a5cfd(0x293),'기상술사':_0x2a5cfd(0x293),'환수사':'engr-specialist','차원술사':_0x2a5cfd(0x293),'가디언나이트':_0x2a5cfd(0xde)},OP_LINES=['어느\x20직각이\x20더\x20강할까?',_0x2a5cfd(0x17b),_0x2a5cfd(0x25b),'더\x20높은\x20티어를\x20골라주세요',_0x2a5cfd(0xc3),_0x2a5cfd(0x1b5),_0x2a5cfd(0x1d7),'실전에서\x20더\x20강한\x20직각은?',_0x2a5cfd(0x257)],FAVOR_LINES=[_0x2a5cfd(0xee),_0x2a5cfd(0x1fb),_0x2a5cfd(0x104),'마음이\x20가는\x20쪽을\x20골라주세요',_0x2a5cfd(0x255),'성능보다\x20마음이\x20먼저','나만의\x20원픽\x20직각은?'],$=_0x3688b2=>document['getElementById'](_0x3688b2);function getShortName(_0x18828d){return fullToShortMap[_0x18828d]||_0x18828d;}function getIconPath(_0x594c37){const _0x469689=_0x2a5cfd;return _0x469689(0x11b)+getShortName(_0x594c37)['replace'](/\s+/g,'')+_0x469689(0xe5);}function getColorClass(_0x3104bc){return classColorMap[_0x3104bc]||'';}function shuffle(_0x3c8f5d){const _0x2dcf2e=_0x2a5cfd,_0x522025=[..._0x3c8f5d];for(let _0x182eaa=_0x522025[_0x2dcf2e(0x223)]-0x1;_0x182eaa>0x0;_0x182eaa--){const _0xc06bd7=Math[_0x2dcf2e(0x292)](Math[_0x2dcf2e(0x190)]()*(_0x182eaa+0x1));[_0x522025[_0x182eaa],_0x522025[_0xc06bd7]]=[_0x522025[_0xc06bd7],_0x522025[_0x182eaa]];}return _0x522025;}function calcGrade(_0xdc5ded,_0x29c64d){const _0x1f0fba=_0x2a5cfd;if(!_0x29c64d)return'F-';const _0x1b38fe=Math[_0x1f0fba(0x18c)](_0xdc5ded/_0x29c64d*0x64);for(const _0x424e58 of GRADE_TABLE){if(_0x1b38fe>=_0x424e58[_0x1f0fba(0xd1)]&&_0x1b38fe<=_0x424e58['max'])return _0x424e58[_0x1f0fba(0x238)];}return'F-';}function getRandomComment(_0x936f0){const _0x45ea06=_0x2a5cfd,_0x3205a1=GRADE_COMMENTS[_0x936f0]||['잘\x20하셨습니다!'];return _0x3205a1[Math[_0x45ea06(0x292)](Math[_0x45ea06(0x190)]()*_0x3205a1['length'])];}function getStampClass(_0x5efc0f){const _0x246446=_0x2a5cfd;if(!_0x5efc0f)return'';const _0x45f586=_0x5efc0f['replace']('+','')[_0x246446(0x16b)]('-','');return _0x246446(0x294)+_0x45f586[_0x246446(0x116)]();}function getNow(){return new Date();}function getDateKey(){const _0xce31ef=_0x2a5cfd,_0x95b6f2=getNow();return _0x95b6f2[_0xce31ef(0x1d4)]()+'-'+String(_0x95b6f2[_0xce31ef(0x28c)]()+0x1)[_0xce31ef(0x1da)](0x2,'0')+'-'+String(_0x95b6f2[_0xce31ef(0x1e1)]())['padStart'](0x2,'0');}function getMonthKey(){const _0x54d861=_0x2a5cfd,_0xc7fd02=getNow();return _0xc7fd02[_0x54d861(0x1d4)]()+'-'+String(_0xc7fd02[_0x54d861(0x28c)]()+0x1)['padStart'](0x2,'0');}function getWeekKey(){const _0x3c64a9=_0x2a5cfd,_0xd6829a=getNow(),_0x3bd176=new Date(_0xd6829a['getFullYear'](),0x0,0x1),_0x19f259=Math[_0x3c64a9(0x292)]((_0xd6829a-_0x3bd176)/0x5265c00);return _0xd6829a['getFullYear']()+'-W'+String(Math['ceil']((_0x19f259+_0x3bd176[_0x3c64a9(0x178)]()+0x1)/0x7))['padStart'](0x2,'0');}function formatStampDate(_0x33d3aa){const _0xede4b3=_0x2a5cfd,[_0x5283ac,_0x2bfb6b,_0x3d3d96]=_0x33d3aa[_0xede4b3(0x129)]('-');return _0x5283ac[_0xede4b3(0x149)](0x2)+'\x20'+_0x2bfb6b+'\x20'+_0x3d3d96;}function formatUpdatedAt(_0x33cfed){const _0x3314cc=_0x2a5cfd;if(!_0x33cfed)return'-';const _0x368a4d=new Date(_0x33cfed);return _0x368a4d[_0x3314cc(0x1d4)]()+'.'+String(_0x368a4d[_0x3314cc(0x28c)]()+0x1)[_0x3314cc(0x1da)](0x2,'0')+'.'+String(_0x368a4d['getDate']())['padStart'](0x2,'0')+'\x20'+String(_0x368a4d[_0x3314cc(0xc4)]())[_0x3314cc(0x1da)](0x2,'0')+':'+String(_0x368a4d[_0x3314cc(0xca)]())[_0x3314cc(0x1da)](0x2,'0');}function getRoundLabel(_0x37e9ff){const _0x4b4b1f=_0x2a5cfd;if(_0x37e9ff<=0x2)return _0x4b4b1f(0x1c2);if(_0x37e9ff===0x4)return'4강';if(_0x37e9ff===0x8)return'8강';if(_0x37e9ff===0x10)return _0x4b4b1f(0x24b);if(_0x37e9ff===0x20)return'32강';return'예선';}function getBattleLine(_0xadb908){const _0x2ecf48=_0x2a5cfd,_0x11ab19=_0xadb908==='op'?_0x2ecf48(0x1f8):_0x2ecf48(0x268),_0x578db8=_0xadb908==='op'?OP_LINES:FAVOR_LINES;let _0x3c9242=[];try{_0x3c9242=JSON[_0x2ecf48(0x14a)](localStorage[_0x2ecf48(0x290)](_0x11ab19)||'[]');}catch{_0x3c9242=[];}if(!_0x3c9242[_0x2ecf48(0x223)])_0x3c9242=shuffle([..._0x578db8]);const _0x3eaa3e=_0x3c9242[_0x2ecf48(0x1f3)]();return localStorage[_0x2ecf48(0x266)](_0x11ab19,JSON[_0x2ecf48(0x120)](_0x3c9242)),_0x3eaa3e||_0x578db8[0x0];}function getAuraClass(_0x339a23){const _0x21b43e=_0x2a5cfd;if([_0x21b43e(0x139),_0x21b43e(0x19e),'디스트로이어','슬레이어'][_0x21b43e(0x11c)](_0x339a23))return'aura-power';if([_0x21b43e(0x1df),_0x21b43e(0x1f6),_0x21b43e(0x28f),'창술사',_0x21b43e(0x158),_0x21b43e(0x1a5)]['includes'](_0x339a23))return _0x21b43e(0xc1);if(['데빌헌터',_0x21b43e(0x288),_0x21b43e(0x194),_0x21b43e(0x179),_0x21b43e(0x280)][_0x21b43e(0x11c)](_0x339a23))return _0x21b43e(0x18a);if([_0x21b43e(0x218),'데모닉','리퍼',_0x21b43e(0x164)][_0x21b43e(0x11c)](_0x339a23))return'aura-dark';if([_0x21b43e(0x254),'아르카나',_0x21b43e(0x236),_0x21b43e(0xd7)][_0x21b43e(0x11c)](_0x339a23))return _0x21b43e(0x1e0);if(['환수사',_0x21b43e(0x220),_0x21b43e(0x1ce),'차원술사']['includes'](_0x339a23))return _0x21b43e(0x1d2);if(['바드','홀리나이트',_0x21b43e(0x16d)][_0x21b43e(0x11c)](_0x339a23))return _0x21b43e(0x114);return'aura-holy';}function getStageColor(_0x5e9b5e){const _0x5095f0=_0x2a5cfd;if(_0x5e9b5e<=0x2)return _0x5095f0(0x1c7);if(_0x5e9b5e<=0x4)return'stage-yellow';if(_0x5e9b5e<=0x8)return _0x5095f0(0x19b);if(_0x5e9b5e<=0x10)return _0x5095f0(0x216);return _0x5095f0(0x185);}function getVisitorKey(){const _0x3e80da=_0x2a5cfd;let _0x16f78d=localStorage[_0x3e80da(0x290)](_0x3e80da(0x1fd));return!_0x16f78d&&(_0x16f78d=_0x3e80da(0x16f)+crypto[_0x3e80da(0x15b)](),localStorage[_0x3e80da(0x266)](_0x3e80da(0x1fd),_0x16f78d)),_0x16f78d;}async function getClientIP(){const _0x5616d7=_0x2a5cfd,_0x39c8a5=[()=>fetch(_0x5616d7(0x21c),{'signal':AbortSignal[_0x5616d7(0x11d)](0xbb8)})[_0x5616d7(0xdf)](_0x35ffa8=>_0x35ffa8['json']())[_0x5616d7(0xdf)](_0x14985a=>_0x14985a['ip']),()=>fetch(_0x5616d7(0x138),{'signal':AbortSignal[_0x5616d7(0x11d)](0xbb8)})[_0x5616d7(0xdf)](_0x437fc4=>_0x437fc4[_0x5616d7(0x174)]())[_0x5616d7(0xdf)](_0x39989a=>_0x39989a['ip'])];for(const _0x4559ff of _0x39c8a5){try{const _0x17c931=await _0x4559ff();if(_0x17c931&&typeof _0x17c931===_0x5616d7(0x1f5)&&_0x17c931[_0x5616d7(0x11c)]('.'))return _0x17c931;}catch{}}return null;}function getWeeklyWinnerResetKey(){const _0x1841f6=_0x2a5cfd,_0x4c83d6=new Date(),_0x1a0dad=new Date(_0x4c83d6);_0x1a0dad[_0x1841f6(0xf1)](0x0,0x0,0x0,0x0);const _0x2c2783=_0x1a0dad['getDay'](),_0x1673de=_0x2c2783>=0x3?_0x2c2783-0x3:_0x2c2783+0x4;_0x1a0dad[_0x1841f6(0x27c)](_0x1a0dad[_0x1841f6(0x1e1)]()-_0x1673de);const _0x4da22a=_0x1a0dad['getFullYear'](),_0x536d7c=String(_0x1a0dad[_0x1841f6(0x28c)]()+0x1)[_0x1841f6(0x1da)](0x2,'0'),_0x5e5832=String(_0x1a0dad[_0x1841f6(0x1e1)]())[_0x1841f6(0x1da)](0x2,'0');return _0x4da22a+'-'+_0x536d7c+'-'+_0x5e5832;}async function loadRecentWinnerExclusions(_0x40c4ee){const _0x4bcfa8=_0x2a5cfd,_0x320f01=await getClientIP(),_0x33988e=getWeeklyWinnerResetKey();let _0x4e78d4=supabase[_0x4bcfa8(0x183)](_0x4bcfa8(0x182))[_0x4bcfa8(0xc9)]('winner_engraving')['eq'](_0x4bcfa8(0x17d),_0x40c4ee)[_0x4bcfa8(0x225)](_0x4bcfa8(0x226),_0x33988e);_0x4e78d4=_0x320f01?_0x4e78d4['or'](_0x4bcfa8(0x1ec)+visitorKey+_0x4bcfa8(0x193)+_0x320f01):_0x4e78d4['eq'](_0x4bcfa8(0x274),visitorKey);const {data:_0x18bd11,error:_0x34df10}=await _0x4e78d4;if(_0x34df10||!_0x18bd11)return[];return[...new Set(_0x18bd11['map'](_0x4db094=>_0x4db094[_0x4bcfa8(0x157)]))];}function showCustomAlert(_0xaae1f8,_0x30dd58,_0x3a1b9b){const _0x83c17e=_0x2a5cfd,_0x462ce5=document[_0x83c17e(0x16c)](_0x83c17e(0x276)),_0x271606=document['getElementById']('customAlertIcon'),_0x4a6d5e=document[_0x83c17e(0x16c)](_0x83c17e(0x24a)),_0x3643db=document[_0x83c17e(0x16c)](_0x83c17e(0x1d3));if(!_0x462ce5||!_0x271606||!_0x4a6d5e||!_0x3643db){alert(_0x3a1b9b);return;}_0x271606['textContent']=_0xaae1f8||'ℹ️',_0x4a6d5e['textContent']=_0x30dd58||'알림',_0x3643db[_0x83c17e(0x28e)]=_0x3a1b9b||'',_0x462ce5[_0x83c17e(0x206)]['add'](_0x83c17e(0x26d));}function hideCustomAlert(){const _0x3e6305=_0x2a5cfd,_0xba74cb=document[_0x3e6305(0x16c)]('customAlertOverlay');if(_0xba74cb)_0xba74cb[_0x3e6305(0x206)]['remove'](_0x3e6305(0x26d));}const shutter=$('tournamentShutter'),arenaIdle=$(_0x2a5cfd(0x14d)),arenaZone=$(_0x2a5cfd(0x1e3)),stageWrap=$(_0x2a5cfd(0x243)),phaseClass=$(_0x2a5cfd(0x191)),phaseBattle=$(_0x2a5cfd(0x282)),phaseWinner=$(_0x2a5cfd(0x1c9)),arenaLoadingOverlay=$(_0x2a5cfd(0x142)),arenaLoadingText=$(_0x2a5cfd(0x121)),classPhaseBadge=$(_0x2a5cfd(0x1d5)),classSelectGrid=$('classSelectGrid'),classCancelBtn=$(_0x2a5cfd(0x1c6)),battleProgressPct=$(_0x2a5cfd(0x1e8)),battleProgressFill=$(_0x2a5cfd(0x133)),leftFighter=$(_0x2a5cfd(0x15d)),rightFighter=$(_0x2a5cfd(0x188)),leftAura=$(_0x2a5cfd(0x1f0)),rightAura=$(_0x2a5cfd(0x1ca)),leftIcon=$(_0x2a5cfd(0x1bd)),rightIcon=$('rightIcon'),leftFighterName=$(_0x2a5cfd(0x20c)),leftFighterClass=$('leftFighterClass'),rightFighterName=$(_0x2a5cfd(0x1c1)),rightFighterClass=$(_0x2a5cfd(0xef)),battleQuitBtn=$(_0x2a5cfd(0x126)),winnerBadge=$(_0x2a5cfd(0xfe)),winnerEngrName=$(_0x2a5cfd(0x217)),winnerEngrClass=$(_0x2a5cfd(0x275)),winnerStampArea=$(_0x2a5cfd(0x21f)),winnerStamp=$(_0x2a5cfd(0xfa)),winnerStampDate=$('winnerStampDate'),winnerStampGrade=$(_0x2a5cfd(0x1f7)),winnerGradeInfo=$(_0x2a5cfd(0x14c)),winnerComment=$(_0x2a5cfd(0x186)),winnerConfirmBtn=$(_0x2a5cfd(0x227)),opStartBtn=$(_0x2a5cfd(0x235)),favorStartBtn=$(_0x2a5cfd(0xf7)),opShutterStamp=$('opShutterStamp'),favorShutterStamp=$(_0x2a5cfd(0x264)),rankingSection=$('rankingSection'),rankingLock=$(_0x2a5cfd(0x296)),rankingInner=$(_0x2a5cfd(0x258)),rankingTitle=$('rankingTitle'),rankingSub=$(_0x2a5cfd(0x11a)),rankingSummary=$(_0x2a5cfd(0xbc)),rankingList=$(_0x2a5cfd(0xd9)),rankingFooter=$('rankingFooter'),modeOpBtn=$(_0x2a5cfd(0x265)),modeFavorBtn=$(_0x2a5cfd(0x107)),periodAllBtn=$('periodAllBtn'),periodWeekBtn=$(_0x2a5cfd(0x17f)),periodMonthBtn=$('periodMonthBtn'),quitOverlay=$(_0x2a5cfd(0xc5)),quitCancelBtn=$('quitCancelBtn'),quitConfirmBtn=$('quitConfirmBtn'),guideModal=$(_0x2a5cfd(0x1d0)),closeGuideBtn=$('closeGuideBtn'),gradeGrid=$(_0x2a5cfd(0x1dd)),winnerAudio=$(_0x2a5cfd(0x29a)),flipAudio=$(_0x2a5cfd(0x283)),soundIcon=$('soundIcon'),soundSlider=$('soundSlider'),soundValue=$(_0x2a5cfd(0x10e));let visitorKey=null,completedState={'op':![],'favor':![]},todayOpGrade=null,currentBoardMode=null;const S_BENEFIT_GRADES=['S+','S','S-'],SS_BENEFIT_GRADES=['SS+','SS','SS-'];let gradeBenefitState={'sActive':![],'ssActive':![],'sExpireAt':null,'ssExpireAt':null},allCandidates=[],rankingCache={},winRateCache={},currentTournamentType=null,selectedClass=null,currentRoundCandidates=[],nextRoundCandidates=[],currentIndex=0x0,currentLeft=null,currentRight=null,totalMatches=0x0,completedMatches=0x0,battleLogs=[],pendingWinner=null,opScore=0x0,opMaxScore=0x0,isChoosing=![],isFinalizingTournament=![],gradeDistStatsCache=null;async function loadGradeDistStats(){const _0x3da8be=_0x2a5cfd;if(gradeDistStatsCache)return gradeDistStatsCache;try{const _0x1f68a8=await fetch(SUPABASE_URL+_0x3da8be(0x1a0),{'method':_0x3da8be(0x102),'headers':{'Content-Type':_0x3da8be(0x221),'apikey':SUPABASE_KEY,'Authorization':_0x3da8be(0x166)+SUPABASE_KEY},'body':JSON['stringify']({'p_type':'op','p_start_date':_0x3da8be(0x208)})});if(!_0x1f68a8['ok'])return null;const _0x207b52=await _0x1f68a8[_0x3da8be(0x174)](),_0x152e5f={};let _0x476447=0x0;return GRADE_TABLE[_0x3da8be(0x16a)](_0x16bd0a=>_0x152e5f[_0x16bd0a['grade']]=0x0),Array['isArray'](_0x207b52)&&_0x207b52['forEach'](_0x5e8ece=>{const _0x419807=_0x3da8be,_0x2c6838=parseInt(_0x5e8ece[_0x419807(0xc0)],0xa)||0x0;_0x152e5f[_0x5e8ece[_0x419807(0x238)]]=_0x2c6838,_0x476447+=_0x2c6838;}),gradeDistStatsCache={'counts':_0x152e5f,'total':_0x476447},gradeDistStatsCache;}catch{return null;}}function getGradeDistributionInfo(_0x20b9a9,_0x577a72){const _0xc587cd=_0x2a5cfd;if(!_0x577a72||!_0x577a72[_0xc587cd(0x1f4)])return null;const _0x277724=_0x577a72['counts'],_0x258557=_0x577a72[_0xc587cd(0x1f4)],_0x1ce966=GRADE_TABLE[_0xc587cd(0x19a)](_0x2c3db7=>_0x2c3db7['grade']===_0x20b9a9);if(_0x1ce966===-0x1)return null;let _0x225aad=0x0;for(let _0x20c928=0x0;_0x20c928<_0x1ce966;_0x20c928++){_0x225aad+=_0x277724[GRADE_TABLE[_0x20c928]['grade']]||0x0;}const _0x1b6fb2=_0x277724[_0x20b9a9]||0x0;let _0x132fb4=Number((_0x225aad/_0x258557*0x64)['toFixed'](0x1));if(_0x1ce966===0x0)_0x132fb4=0.1;return{'topPct':_0x132fb4,'samePct':Number((_0x1b6fb2/_0x258557*0x64)[_0xc587cd(0x231)](0x1)),'sameCount':_0x1b6fb2,'total':_0x258557};}const GROUP_NAMES=['A','B','C','D'],GROUP_COLORS={'A':_0x2a5cfd(0x185),'B':_0x2a5cfd(0x216),'C':_0x2a5cfd(0x19b),'D':_0x2a5cfd(0x163)};let subgroupQueue=[],currentGroupIndex=0x0,groupResults={'A':[],'B':[],'C':[],'D':[]},isQualifierPhase=!![],mainRoundCandidates=[],recentWinnerCount=0x0,currentBigGroupRoster=[],currentBigGroupName=null,bigGroupStatus={},bigGroupMatchLog=[],bigGroupMatchCounter=0x0,currentMatchLogIndex=null,groupLogExpanded=![];const GROUP_LOG_COLLAPSED_COUNT=0x5;let soundEnabled=!![],masterVolume=0x32;function updateSoundUI(){const _0x268b5b=_0x2a5cfd;if(!soundSlider||!soundValue||!soundIcon)return;soundSlider[_0x268b5b(0xb9)]=masterVolume,soundValue[_0x268b5b(0x1d9)]=soundEnabled?masterVolume+'%':_0x268b5b(0x1ea);if(!soundEnabled||masterVolume===0x0)soundIcon[_0x268b5b(0x1d9)]='🔇';else{if(masterVolume<=0x32)soundIcon[_0x268b5b(0x1d9)]='🔉';else soundIcon[_0x268b5b(0x1d9)]='🔊';}}function applySoundVolume(){const _0x5d61e3=_0x2a5cfd,_0x28390c=soundEnabled?masterVolume/0x64:0x0;if(winnerAudio)winnerAudio[_0x5d61e3(0x1ff)]=_0x28390c;if(flipAudio)flipAudio['volume']=_0x28390c;}soundSlider&&soundSlider[_0x2a5cfd(0x12e)](_0x2a5cfd(0xc8),_0x44f4d4=>{const _0x2009f5=_0x2a5cfd;masterVolume=Number(_0x44f4d4[_0x2009f5(0x12d)]['value']);if(masterVolume>0x0)soundEnabled=!![];updateSoundUI(),applySoundVolume();});soundIcon&&soundIcon['addEventListener'](_0x2a5cfd(0x228),()=>{soundEnabled=!soundEnabled;if(!soundEnabled)masterVolume=0x0;else{if(masterVolume===0x0)masterVolume=0x32;}updateSoundUI(),applySoundVolume();});function playFlip(){const _0x2ea92d=_0x2a5cfd;if(!soundEnabled||masterVolume<=0x0)return;try{flipAudio[_0x2ea92d(0x230)]=0x0,flipAudio[_0x2ea92d(0x1ff)]=masterVolume/0x64,flipAudio[_0x2ea92d(0x146)]()['catch'](()=>{});}catch{}}function playWinner(){const _0x543bbf=_0x2a5cfd;if(!soundEnabled||masterVolume<=0x0)return;try{winnerAudio[_0x543bbf(0x230)]=0x0,winnerAudio[_0x543bbf(0x1ff)]=masterVolume/0x64,winnerAudio[_0x543bbf(0x146)]()[_0x543bbf(0x260)](()=>{});}catch{}}async function loadCandidates(){const _0x3af6fe=_0x2a5cfd,{data:_0x41255c,error:_0x2bce10}=await supabase['from']('candidates')[_0x3af6fe(0xc9)](_0x3af6fe(0x1ef))[_0x3af6fe(0x17c)]('id',{'ascending':!![]});if(_0x2bce10||!_0x41255c){console['error'](_0x3af6fe(0xdc),_0x2bce10);return;}allCandidates=_0x41255c;}async function loadRecentWinRates(_0x274712){const _0x2a836d=_0x2a5cfd;winRateCache={};const {data:_0x1d75d0,error:_0x43a83c}=await supabase['rpc'](_0x2a836d(0x141),{'p_type':_0x274712,'p_days':0xf});if(_0x43a83c||!_0x1d75d0)return;for(const _0x2d40b6 of _0x1d75d0){winRateCache[_0x2d40b6[_0x2a836d(0xcb)]]=Number(_0x2d40b6[_0x2a836d(0x189)]);}}function getWinRate(_0x4f22ed){return winRateCache[_0x4f22ed]!==undefined?winRateCache[_0x4f22ed]:0.5;}async function preloadIcons(){const _0x1e9924=_0x2a5cfd;if(!allCandidates[_0x1e9924(0x223)])return;const _0xddbb3c=[...new Set(allCandidates[_0x1e9924(0x234)](_0xb6327=>getIconPath(_0xb6327['engraving_name'])))];await Promise['all'](_0xddbb3c[_0x1e9924(0x234)](_0x21f7ae=>new Promise(_0xcc5f87=>{const _0x444e34=_0x1e9924,_0x4fa24f=new Image();_0x4fa24f[_0x444e34(0x159)]=_0x4fa24f[_0x444e34(0x222)]=_0xcc5f87,_0x4fa24f[_0x444e34(0x1a2)]=_0x21f7ae;})));}function parseDateKeyToDate(_0x4f4dc2){const _0x33a567=_0x2a5cfd;if(!_0x4f4dc2)return null;const [_0x2071c6,_0x488b37,_0x1a026d]=_0x4f4dc2[_0x33a567(0x129)]('-')[_0x33a567(0x234)](Number);return new Date(_0x2071c6,_0x488b37-0x1,_0x1a026d,0x0,0x0,0x0,0x0);}function getMonthEndExpireAt(_0x2d987c){const _0x52dc99=_0x2a5cfd;if(!_0x2d987c)return null;return new Date(_0x2d987c[_0x52dc99(0x1d4)](),_0x2d987c[_0x52dc99(0x28c)]()+0x1,0x0,0x17,0x3b,0x3b,0x3e7);}function _0x1802(_0x40ee1a,_0x35ca3d){_0x40ee1a=_0x40ee1a-0xb7;const _0x301db2=_0x301d();let _0x180282=_0x301db2[_0x40ee1a];return _0x180282;}function getSBenefitExpireAt(_0x394c79){const _0x9d1c6b=parseDateKeyToDate(_0x394c79);return getMonthEndExpireAt(_0x9d1c6b);}function getSSBenefitExpireAt(_0xae12cd){const _0x4d503c=_0x2a5cfd,_0xa217a5=parseDateKeyToDate(_0xae12cd);if(!_0xa217a5)return null;return new Date(_0xa217a5[_0x4d503c(0x1d4)](),_0xa217a5[_0x4d503c(0x28c)]()+0x3,0x0,0x17,0x3b,0x3b,0x3e7);}async function loadGradeBenefitState(){const _0x3799b5=_0x2a5cfd;gradeBenefitState={'sActive':![],'ssActive':![],'sExpireAt':null,'ssExpireAt':null};const {data:_0x35eafc,error:_0x8af58b}=await supabase[_0x3799b5(0x183)]('sessions')[_0x3799b5(0xc9)](_0x3799b5(0x1c8))['eq'](_0x3799b5(0x274),visitorKey)[_0x3799b5(0x21e)](_0x3799b5(0x238),'is',null);if(_0x8af58b||!_0x35eafc||!_0x35eafc['length'])return;const _0x1e7265=new Date();let _0x434813=null,_0x4aa948=null;_0x35eafc[_0x3799b5(0x16a)](_0x3e90b4=>{const _0x34f82d=_0x3799b5;if(!_0x3e90b4['grade']||!_0x3e90b4['date_key'])return;if(S_BENEFIT_GRADES[_0x34f82d(0x11c)](_0x3e90b4[_0x34f82d(0x238)])){const _0x3677bb=getSBenefitExpireAt(_0x3e90b4['date_key']);_0x3677bb&&_0x3677bb>=_0x1e7265&&((!_0x434813||_0x3677bb>_0x434813)&&(_0x434813=_0x3677bb));}if(SS_BENEFIT_GRADES[_0x34f82d(0x11c)](_0x3e90b4[_0x34f82d(0x238)])){const _0x46de10=getSSBenefitExpireAt(_0x3e90b4[_0x34f82d(0x226)]);_0x46de10&&_0x46de10>=_0x1e7265&&((!_0x4aa948||_0x46de10>_0x4aa948)&&(_0x4aa948=_0x46de10));}}),gradeBenefitState['sActive']=!!_0x434813,gradeBenefitState[_0x3799b5(0xb7)]=!!_0x4aa948,gradeBenefitState[_0x3799b5(0x128)]=_0x434813,gradeBenefitState[_0x3799b5(0x18b)]=_0x4aa948;}function applyTournamentEntryState(){const _0x478535=_0x2a5cfd,_0x1d0601=gradeBenefitState[_0x478535(0xb7)];opStartBtn&&(opStartBtn['disabled']=_0x1d0601,opStartBtn[_0x478535(0x206)][_0x478535(0x180)](_0x478535(0x23b),_0x1d0601),opStartBtn[_0x478535(0x1d9)]=_0x1d0601?'🏅\x20SS\x20혜택\x20활성\x20·\x20OP\x20토너먼트\x20면제':_0x478535(0x26f)),favorStartBtn&&(favorStartBtn[_0x478535(0xe2)]=_0x1d0601,favorStartBtn['classList']['toggle'](_0x478535(0x23b),_0x1d0601),favorStartBtn[_0x478535(0x1d9)]=_0x1d0601?_0x478535(0xcd):_0x478535(0x261));}async function loadTodayParticipation(){const _0x2d1bea=_0x2a5cfd;visitorKey=getVisitorKey();const {data:_0x42e1c5,error:_0x565efa}=await supabase['from'](_0x2d1bea(0x182))[_0x2d1bea(0xc9)]('tournament_type,date_key,grade')['eq'](_0x2d1bea(0x274),visitorKey)['eq'](_0x2d1bea(0x226),getDateKey());if(_0x565efa)return;completedState['op']=!!_0x42e1c5[_0x2d1bea(0x23e)](_0x39ddbe=>_0x39ddbe[_0x2d1bea(0x17d)]==='op'),completedState[_0x2d1bea(0x286)]=!!_0x42e1c5[_0x2d1bea(0x23e)](_0x230134=>_0x230134['tournament_type']===_0x2d1bea(0x286));if(completedState['op']){const _0x1e4fa9=_0x42e1c5[_0x2d1bea(0x23e)](_0xe30edf=>_0xe30edf['tournament_type']==='op');todayOpGrade=_0x1e4fa9?.['grade']||null,renderShutterStamp('op',todayOpGrade);}completedState[_0x2d1bea(0x286)]&&renderShutterStamp(_0x2d1bea(0x286),null),await loadGradeBenefitState(),applyTournamentEntryState(),updateRankingLockState();}function hasGradeBenefitAllAccess(){const _0x19dc74=_0x2a5cfd;return gradeBenefitState[_0x19dc74(0x203)]||gradeBenefitState['ssActive'];}function getRankingRevealLimit(){const _0x21a46b=_0x2a5cfd;if(hasGradeBenefitAllAccess())return Infinity;if(completedState['op']&&completedState[_0x21a46b(0x286)])return Infinity;if(completedState['op']||completedState[_0x21a46b(0x286)])return 0x14;return 0x5;}function getRankingStatusText(){const _0xc74356=_0x2a5cfd;if(gradeBenefitState[_0xc74356(0xb7)])return _0xc74356(0x1a1);if(gradeBenefitState[_0xc74356(0x203)])return'S\x20혜택\x20활성\x20·\x20전체\x20랭킹\x20공개\x20중';if(completedState['op']&&completedState[_0xc74356(0x286)])return _0xc74356(0x295);if(completedState['op']||completedState[_0xc74356(0x286)])return _0xc74356(0x172);return _0xc74356(0x1c3);}function renderShutterStamp(_0x4305b0,_0x1a3661){const _0x1d1087=_0x2a5cfd,_0x5007c6=_0x4305b0==='op'?opShutterStamp:favorShutterStamp;if(!_0x5007c6)return;_0x4305b0==='op'&&_0x1a3661?_0x5007c6[_0x1d1087(0x28e)]=_0x1d1087(0xba)+getStampClass(_0x1a3661)+_0x1d1087(0x1d1)+formatStampDate(getDateKey())+_0x1d1087(0x202)+_0x1a3661+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22shutter-stamp-done\x22>참여완료</div>\x0a\x20\x20\x20\x20\x20\x20</div>':_0x5007c6[_0x1d1087(0x28e)]=_0x1d1087(0x26c)+formatStampDate(getDateKey())+_0x1d1087(0x10d);}function buildClassSelectGrid(){const _0x3569c8=_0x2a5cfd;classSelectGrid[_0x3569c8(0x28e)]=Object[_0x3569c8(0x22f)](classGroups)[_0x3569c8(0x234)](([_0x51d9f4,_0x4ae2f9])=>_0x3569c8(0x18f)+_0x51d9f4+_0x3569c8(0xd4)+_0x4ae2f9[_0x3569c8(0x234)](_0x461949=>'<button\x20class=\x22class-pick-btn\x22\x20data-class=\x22'+_0x461949+'\x22>'+_0x461949+_0x3569c8(0x134))[_0x3569c8(0x184)]('')+_0x3569c8(0x111))[_0x3569c8(0x184)](''),classSelectGrid[_0x3569c8(0x122)]('.class-pick-btn')[_0x3569c8(0x16a)](_0x115c98=>{const _0x1c4999=_0x3569c8;_0x115c98[_0x1c4999(0x12e)](_0x1c4999(0x228),()=>startBattle(_0x115c98[_0x1c4999(0x1fe)][_0x1c4999(0x18d)]));});}function showPhase(_0x1015bd){const _0x1a52b0=_0x2a5cfd;phaseClass['classList'][_0x1a52b0(0x171)](_0x1a52b0(0x1ac)),phaseBattle[_0x1a52b0(0x206)][_0x1a52b0(0x171)](_0x1a52b0(0x1ac)),phaseWinner['classList']['remove']('active');const _0x31c949=$(_0x1a52b0(0x113));if(_0x31c949)_0x31c949['classList']['remove'](_0x1a52b0(0x1ac));_0x1015bd[_0x1a52b0(0x206)][_0x1a52b0(0x27e)](_0x1a52b0(0x1ac));}function openArena(_0x1bdd4d){const _0x53d17d=_0x2a5cfd;currentTournamentType=_0x1bdd4d,shutter[_0x53d17d(0x206)][_0x53d17d(0x27e)]('rolled-up'),arenaIdle['classList']['add'](_0x53d17d(0x252)),arenaZone[_0x53d17d(0x206)][_0x53d17d(0x27e)](_0x53d17d(0x197)),stageWrap['classList'][_0x53d17d(0x27e)](_0x53d17d(0x1d6)),stageWrap['classList'][_0x53d17d(0x171)](_0x53d17d(0x1b1),_0x53d17d(0x168)),stageWrap[_0x53d17d(0x206)][_0x53d17d(0x27e)](_0x1bdd4d==='op'?'mode-op':'mode-favor'),classPhaseBadge[_0x53d17d(0x1d9)]=_0x1bdd4d==='op'?_0x53d17d(0x11f):'FAVOR\x20TOURNAMENT',classPhaseBadge['className']=_0x53d17d(0x175)+(_0x1bdd4d==='op'?_0x53d17d(0x155):_0x53d17d(0x256)),buildClassSelectGrid(),showPhase(phaseClass),setTimeout(()=>{const _0x50aca9=_0x53d17d;arenaZone['scrollIntoView']({'behavior':_0x50aca9(0x273),'block':_0x50aca9(0x1e4)});},0x154);}function showArenaLoading(_0x1d51b6=_0x2a5cfd(0x22c)){const _0x3830cb=_0x2a5cfd;if(arenaLoadingText)arenaLoadingText[_0x3830cb(0x1d9)]=_0x1d51b6;if(arenaLoadingOverlay)arenaLoadingOverlay[_0x3830cb(0x206)][_0x3830cb(0x27e)](_0x3830cb(0x26d));}function hideArenaLoading(){const _0x251827=_0x2a5cfd;if(arenaLoadingOverlay)arenaLoadingOverlay[_0x251827(0x206)]['remove'](_0x251827(0x26d));}function closeArena(){const _0x11cb3a=_0x2a5cfd;hideArenaLoading(),shutter[_0x11cb3a(0x206)][_0x11cb3a(0x171)](_0x11cb3a(0xd6)),arenaIdle['classList']['remove'](_0x11cb3a(0x252)),arenaZone['classList'][_0x11cb3a(0x171)](_0x11cb3a(0x197)),stageWrap[_0x11cb3a(0x206)][_0x11cb3a(0x171)](_0x11cb3a(0x1d6),_0x11cb3a(0x1b1),_0x11cb3a(0x168)),currentTournamentType=null,selectedClass=null,currentIndex=0x0,currentLeft=null,currentRight=null,totalMatches=0x0,completedMatches=0x0,battleLogs=[],pendingWinner=null,opScore=0x0,opMaxScore=0x0,isChoosing=![],subgroupQueue=[],groupResults={'A':[],'B':[],'C':[],'D':[]},currentGroupIndex=0x0,isQualifierPhase=!![],mainRoundCandidates=[],resetGroupPanel();}async function handleStart(_0x55ee6c){const _0x2654a9=_0x2a5cfd;if(gradeBenefitState[_0x2654a9(0xb7)]){showCustomAlert('🏅','SS\x20혜택\x20활성',_0x2654a9(0x1dc));return;}if(_0x55ee6c==='op'&&completedState['op']){showCustomAlert('✅',_0x2654a9(0x20a),_0x2654a9(0x13f));return;}if(_0x55ee6c===_0x2654a9(0x286)&&completedState[_0x2654a9(0x286)]){showCustomAlert('✅',_0x2654a9(0x20a),_0x2654a9(0x28a));return;}openArena(_0x55ee6c);}function buildSubgroupQueue(_0x2754a3){const _0x5eae30=_0x2a5cfd,_0x3e0f8b={'A':[],'B':[],'C':[],'D':[]};_0x2754a3[_0x5eae30(0x16a)]((_0x1fd13c,_0x5648ea)=>_0x3e0f8b[GROUP_NAMES[_0x5648ea%0x4]]['push'](_0x1fd13c));const _0x3f2ba3=[];return GROUP_NAMES[_0x5eae30(0x16a)](_0x712a80=>{const _0x12ba9f=_0x5eae30,_0x21a7af=shuffle(_0x3e0f8b[_0x712a80]),_0x4595fa=[[],[],[],[]];_0x21a7af[_0x12ba9f(0x16a)]((_0x53df87,_0x565e6a)=>_0x4595fa[_0x565e6a%0x4][_0x12ba9f(0x1af)](_0x53df87)),_0x4595fa[_0x12ba9f(0x16a)](_0x2dee14=>_0x3f2ba3[_0x12ba9f(0x1af)]({'displayGroup':_0x712a80,'pool':_0x2dee14}));}),_0x3f2ba3;}function pickByeCandidate(_0x429e5f){const _0x50309f=_0x2a5cfd;if(currentTournamentType==='op'){let _0x3a454e=_0x429e5f[0x0],_0x5c225e=getWinRate(_0x3a454e[_0x50309f(0xcb)]);for(let _0x37d5e3=0x1;_0x37d5e3<_0x429e5f['length'];_0x37d5e3++){const _0x1f568b=getWinRate(_0x429e5f[_0x37d5e3][_0x50309f(0xcb)]);_0x1f568b>_0x5c225e&&(_0x3a454e=_0x429e5f[_0x37d5e3],_0x5c225e=_0x1f568b);}return _0x3a454e;}return _0x429e5f[Math[_0x50309f(0x292)](Math[_0x50309f(0x190)]()*_0x429e5f[_0x50309f(0x223)])];}function startNewRound(_0x2305db){const _0x4b0341=_0x2a5cfd;currentRoundCandidates=[..._0x2305db],nextRoundCandidates=[],currentIndex=0x0;if(currentRoundCandidates[_0x4b0341(0x223)]>0x1&&currentRoundCandidates[_0x4b0341(0x223)]%0x2===0x1){const _0x3d6dfa=pickByeCandidate(currentRoundCandidates);currentRoundCandidates=currentRoundCandidates['filter'](_0x2d7ecb=>_0x2d7ecb!==_0x3d6dfa),nextRoundCandidates[_0x4b0341(0x1af)](_0x3d6dfa),isQualifierPhase&&(bigGroupMatchCounter++,bigGroupMatchLog[_0x4b0341(0x1af)]({'num':bigGroupMatchCounter,'type':'bye','name':_0x3d6dfa[_0x4b0341(0xcb)]}),renderGroupPanel());}}function getMatchPhaseLabel(_0x4bb248,_0x1dcd3a){const _0x225358=_0x2a5cfd,_0x917921=currentBigGroupRoster[_0x225358(0x223)]-0x1,_0x4618fc=Math['ceil'](_0x917921/0x2);if(_0x1dcd3a<=_0x4618fc)return _0x4bb248+_0x225358(0xe6);return _0x4bb248+'조\x20본선\x20선발전';}function updateBattleStageUI(){const _0x24a6a=_0x2a5cfd,_0x3c2c9e=$(_0x24a6a(0x15a));if(!_0x3c2c9e)return;if(isQualifierPhase&&currentBigGroupName)_0x3c2c9e[_0x24a6a(0x1d9)]=getMatchPhaseLabel(currentBigGroupName,bigGroupMatchCounter);else{if(!isQualifierPhase){const _0x1656ab=currentRoundCandidates[_0x24a6a(0x223)];if(_0x1656ab<=0x2)_0x3c2c9e[_0x24a6a(0x1d9)]=_0x24a6a(0x187);else{if(_0x1656ab<=0x4)_0x3c2c9e[_0x24a6a(0x1d9)]='4강';else{if(_0x1656ab<=0x8)_0x3c2c9e[_0x24a6a(0x1d9)]='8강';else _0x3c2c9e[_0x24a6a(0x1d9)]='16강';}}}}}function renderProgressSegments(_0x37f13b){const _0x3abad1=_0x2a5cfd,_0x411003=$(_0x3abad1(0xfb));if(!_0x411003)return;if(_0x37f13b<=0x10){_0x411003['innerHTML']='';return;}const _0x5beada=_0x37f13b-0x1,_0x26014e=[{'label':'예선','matches':_0x37f13b-0x10},{'label':'16강','matches':0x8},{'label':'8강','matches':0x4},{'label':'4강','matches':0x2},{'label':'결승','matches':0x1}];let _0x324ad4=0x0;_0x411003['innerHTML']=_0x26014e[_0x3abad1(0x234)](_0x155162=>{const _0x5a226d=_0x3abad1,_0x51cdf7=_0x324ad4/_0x5beada*0x64;_0x324ad4+=_0x155162[_0x5a226d(0x112)];const _0x2653ca=_0x324ad4/_0x5beada*0x64;return _0x5a226d(0xe4)+_0x51cdf7+_0x5a226d(0x209)+(_0x2653ca-_0x51cdf7)+_0x5a226d(0x287)+_0x155162[_0x5a226d(0x13b)]+_0x5a226d(0x1bb);})[_0x3abad1(0x184)]('');}function initGroupPanel(_0x3f88a2,_0x5883fc){const _0x5ceac4=_0x2a5cfd,_0x1b3294=_0x5883fc-_0x5883fc%0x4;let _0x1ff71f=[];for(let _0x5487d9=_0x1b3294;_0x5487d9<_0x1b3294+0x4;_0x5487d9++){if(subgroupQueue[_0x5487d9])_0x1ff71f=_0x1ff71f[_0x5ceac4(0x242)](subgroupQueue[_0x5487d9][_0x5ceac4(0x1aa)]);}currentBigGroupRoster=_0x1ff71f,currentBigGroupName=_0x3f88a2,bigGroupStatus={},_0x1ff71f[_0x5ceac4(0x16a)](_0x589ea7=>{const _0x2384cd=_0x5ceac4;bigGroupStatus[_0x589ea7[_0x2384cd(0xcb)]]=_0x2384cd(0xdb);}),bigGroupMatchLog=[],bigGroupMatchCounter=0x0,groupLogExpanded=![];}function resetGroupPanel(){currentBigGroupRoster=[],currentBigGroupName=null,bigGroupStatus={},bigGroupMatchLog=[],bigGroupMatchCounter=0x0,currentMatchLogIndex=null,groupLogExpanded=![],renderGroupPanel();}function renderGroupPanel(){const _0x2d904e=_0x2a5cfd,_0x357989=$(_0x2d904e(0x20b));if(!_0x357989)return;if(!isQualifierPhase||!currentBigGroupRoster[_0x2d904e(0x223)]){_0x357989[_0x2d904e(0x28e)]='',_0x357989[_0x2d904e(0xd8)][_0x2d904e(0x181)]=_0x2d904e(0x1be);return;}_0x357989['style'][_0x2d904e(0x181)]=_0x2d904e(0x21b);const _0x430b38=currentBigGroupRoster[_0x2d904e(0x18e)](_0x34cd97=>bigGroupStatus[_0x34cd97[_0x2d904e(0xcb)]]!=='eliminated'),_0x5db52a=currentBigGroupRoster[_0x2d904e(0x18e)](_0x44bcf6=>bigGroupStatus[_0x44bcf6[_0x2d904e(0xcb)]]===_0x2d904e(0xea)),_0x1bdefa=_0x430b38['map'](_0x48bd20=>_0x2d904e(0x214)+getShortName(_0x48bd20[_0x2d904e(0xcb)])+_0x2d904e(0x22b))[_0x2d904e(0x184)](''),_0x531ab4=_0x5db52a[_0x2d904e(0x234)](_0x4696ec=>_0x2d904e(0x1e7)+getShortName(_0x4696ec[_0x2d904e(0xcb)])+_0x2d904e(0x22b))['join'](''),_0x141415=bigGroupMatchLog[_0x2d904e(0x18e)](_0x4b9d43=>_0x4b9d43[_0x2d904e(0x270)]===_0x2d904e(0x156)||_0x4b9d43['status']===_0x2d904e(0xbf)),_0x2b6afb=[..._0x141415]['reverse'](),_0x22cdc9=groupLogExpanded?_0x2b6afb:_0x2b6afb[_0x2d904e(0x149)](0x0,GROUP_LOG_COLLAPSED_COUNT),_0x19a2d1=_0x40fd99=>{const _0xb28179=_0x2d904e;if(_0x40fd99[_0xb28179(0x270)]===_0xb28179(0x156))return'<div\x20class=\x22match-ticker-row\x20bye\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-num\x22>'+_0x40fd99[_0xb28179(0x1f9)]+'경기</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-body\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-bye-name\x22>'+getShortName(_0x40fd99['name'])+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-bye-tag\x22>부전승</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20</div>';const _0x4b9ebe=_0x40fd99[_0xb28179(0x15e)]===_0x40fd99[_0xb28179(0x23f)],_0x26ebae=_0x4b9ebe?_0x40fd99['leftName']:_0x40fd99['rightName'],_0x11be06=_0x4b9ebe?_0x40fd99[_0xb28179(0xe9)]:_0x40fd99[_0xb28179(0x23f)];return'<div\x20class=\x22match-ticker-row\x22>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-num\x22>'+_0x40fd99[_0xb28179(0x1f9)]+_0xb28179(0xfd)+getShortName(_0x26ebae)+_0xb28179(0x26b)+getShortName(_0x11be06)+_0xb28179(0xd3);},_0x45f254=_0x22cdc9['map'](_0x19a2d1)[_0x2d904e(0x184)](''),_0x3b89b7=_0x2b6afb['length']>GROUP_LOG_COLLAPSED_COUNT,_0x73b1bc=_0x3b89b7?_0x2d904e(0x13a)+(groupLogExpanded?_0x2d904e(0x1ba):'전체\x20기록\x20보기\x20('+_0x2b6afb[_0x2d904e(0x223)]+_0x2d904e(0x26e))+'</button>':'',_0x3432c7=_0x430b38['length'],_0x405278=_0x5db52a['length'];_0x357989[_0x2d904e(0x28e)]=_0x2d904e(0x281)+currentBigGroupName+_0x2d904e(0x151)+_0x3432c7+_0x2d904e(0xe7)+_0x405278+_0x2d904e(0x25f)+currentBigGroupRoster[_0x2d904e(0x223)]+_0x2d904e(0xd2)+(_0x1bdefa||_0x2d904e(0x21d))+_0x2d904e(0x207)+(_0x405278>0x0?_0x2d904e(0x285)+_0x531ab4+'</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20':'')+_0x2d904e(0x22d)+(_0x45f254||_0x2d904e(0xf0))+_0x2d904e(0x1b8)+_0x73b1bc+'\x0a\x20\x20\x20\x20</div>\x0a\x20\x20';}async function startBattle(_0xb9f863){const _0x4caa97=_0x2a5cfd;selectedClass=_0xb9f863,showArenaLoading('경기장을\x20불러오는\x20중입니다...');try{let _0x4a57e0=currentTournamentType===_0x4caa97(0x286)?allCandidates['filter'](_0xa59151=>_0xa59151[_0x4caa97(0x135)]||FAVOR_ONLY_IDS['includes'](_0xa59151['id'])):allCandidates[_0x4caa97(0x18e)](_0x5e34b2=>_0x5e34b2[_0x4caa97(0x135)]);const _0x1b3c96=loadRecentWinnerExclusions(currentTournamentType),_0x12a13c=currentTournamentType==='op'?loadRecentWinRates('op'):Promise['resolve'](),[_0x1f8e76]=await Promise[_0x4caa97(0x232)]([_0x1b3c96,_0x12a13c]);recentWinnerCount=_0x1f8e76['length'];const _0x3d416c=_0x4a57e0[_0x4caa97(0x18e)](_0x497c11=>_0x497c11['class_name']!==_0xb9f863&&!_0x1f8e76[_0x4caa97(0x11c)](_0x497c11[_0x4caa97(0xcb)]));subgroupQueue=buildSubgroupQueue(_0x3d416c),groupResults={'A':[],'B':[],'C':[],'D':[]},currentGroupIndex=0x0,isQualifierPhase=!![],mainRoundCandidates=[],battleLogs=[],pendingWinner=null,opScore=0x0,opMaxScore=0x0,isChoosing=![],completedMatches=0x0,totalMatches=_0x3d416c['length']-0x1,renderProgressSegments(_0x3d416c['length']),showPhase(phaseBattle),requestAnimationFrame(()=>{const _0x1592b2=_0x4caa97,_0x192c21=Math[_0x1592b2(0x13c)](0x0,phaseBattle[_0x1592b2(0x196)]()[_0x1592b2(0x25a)]+window[_0x1592b2(0x19d)]-0x6e);window[_0x1592b2(0x1b7)]({'top':_0x192c21,'behavior':_0x1592b2(0x273)});});const _0x542c8c=$(_0x4caa97(0x144));if(_0x542c8c)_0x542c8c[_0x4caa97(0x206)][_0x4caa97(0x27e)](_0x4caa97(0x1d8));setTimeout(()=>{const _0x5c93e3=_0x4caa97;if(_0x542c8c)_0x542c8c['classList'][_0x5c93e3(0x171)](_0x5c93e3(0x1d8));startGroupQualifier(0x0),hideArenaLoading();},0x78);}catch(_0x5b187f){console[_0x4caa97(0xce)](_0x4caa97(0x15f),_0x5b187f),hideArenaLoading(),showCustomAlert('⚠️',_0x4caa97(0xcf),'경기장\x20데이터를\x20불러오지\x20못했습니다.<br>잠시\x20후\x20다시\x20시도해주세요.');}}function startGroupQualifier(_0x274252){const _0x24b966=_0x2a5cfd,_0x2d7878=subgroupQueue[_0x274252];if(!_0x2d7878)return;const {displayGroup:_0x2df394,pool:_0x56bd0b}=_0x2d7878;if(_0x274252%0x4===0x0)initGroupPanel(_0x2df394,_0x274252);if(!_0x56bd0b||!_0x56bd0b['length']){handleSubgroupComplete(null);return;}startNewRound(_0x56bd0b);const _0x5347ef=$(_0x24b966(0x224)),_0x38f78c=$('battleHeroTitle'),_0x565959=$(_0x24b966(0x132)),_0x482a2f=$('battleHeroBanner'),_0x25897b=$(_0x24b966(0x22e));if(_0x5347ef)_0x5347ef[_0x24b966(0x1d9)]=currentTournamentType==='op'?_0x24b966(0x11f):'FAVOR\x20TOURNAMENT';if(_0x38f78c)_0x38f78c[_0x24b966(0x1d9)]=currentTournamentType==='op'?_0x24b966(0x1c4):_0x24b966(0x176);if(_0x565959)_0x565959[_0x24b966(0x1d9)]=getBattleLine(currentTournamentType);if(_0x25897b){const _0x142a9b=recentWinnerCount>0x0?_0x24b966(0x140)+recentWinnerCount+_0x24b966(0x298):'';_0x25897b[_0x24b966(0x1d9)]=_0x24b966(0x173)+selectedClass+_0x24b966(0x1ae)+_0x142a9b;}_0x482a2f&&(_0x482a2f[_0x24b966(0x206)][_0x24b966(0x171)](_0x24b966(0x24f),_0x24b966(0x161),'banner-group-a',_0x24b966(0x213),_0x24b966(0x1cd),'banner-group-d'),_0x482a2f[_0x24b966(0x206)][_0x24b966(0x27e)](currentTournamentType==='op'?_0x24b966(0x24f):'banner-favor'),_0x482a2f['classList'][_0x24b966(0x27e)]('banner-group-'+_0x2df394[_0x24b966(0x116)]()));const _0x5320e8=$(_0x24b966(0x133));_0x5320e8&&(_0x5320e8['classList'][_0x24b966(0x171)](_0x24b966(0x185),_0x24b966(0x216),_0x24b966(0x19b),'stage-yellow','stage-red'),_0x5320e8[_0x24b966(0x206)]['add'](GROUP_COLORS[_0x2df394])),updateBattleStageUI(),renderGroupPanel(),renderNextBattle();}function handleSubgroupComplete(_0x52ac7f){const _0x18b05d=_0x2a5cfd,{displayGroup:_0x593bec}=subgroupQueue[currentGroupIndex];if(_0x52ac7f)groupResults[_0x593bec][_0x18b05d(0x1af)](_0x52ac7f);currentGroupIndex++;if(currentGroupIndex<subgroupQueue[_0x18b05d(0x223)]){if(currentGroupIndex%0x4===0x0)resetGroupPanel();const _0x2dad0d=$(_0x18b05d(0x144));if(_0x2dad0d)_0x2dad0d['classList']['add'](_0x18b05d(0x1d8));setTimeout(()=>{const _0x299eb5=_0x18b05d;if(_0x2dad0d)_0x2dad0d[_0x299eb5(0x206)][_0x299eb5(0x171)](_0x299eb5(0x1d8));startGroupQualifier(currentGroupIndex);},0xc8);}else resetGroupPanel(),showQualifiedPhase();}function finishStage(_0x503671){isQualifierPhase?handleSubgroupComplete(_0x503671):(pendingWinner=_0x503671,showWinnerPhase(_0x503671));}function renderNextBattle(){const _0x6b4efd=_0x2a5cfd;if(currentRoundCandidates['length']===0x1){finishStage(currentRoundCandidates[0x0]);return;}if(currentIndex>=currentRoundCandidates[_0x6b4efd(0x223)]){if(nextRoundCandidates['length']===0x1){finishStage(nextRoundCandidates[0x0]);return;}if(nextRoundCandidates[_0x6b4efd(0x223)]===0x0)return;startNewRound(nextRoundCandidates),renderNextBattle();return;}currentLeft=currentRoundCandidates[currentIndex],currentRight=currentRoundCandidates[currentIndex+0x1];if(!currentRight){nextRoundCandidates[_0x6b4efd(0x1af)](currentLeft),currentIndex++,renderNextBattle();return;}leftFighter[_0x6b4efd(0x206)][_0x6b4efd(0x171)](_0x6b4efd(0x24d),_0x6b4efd(0x14b)),rightFighter['classList']['remove'](_0x6b4efd(0x24d),_0x6b4efd(0x14b)),leftFighter[_0x6b4efd(0xe2)]=![],rightFighter[_0x6b4efd(0xe2)]=![],leftAura[_0x6b4efd(0x10a)]=_0x6b4efd(0x211)+getAuraClass(currentLeft[_0x6b4efd(0x21a)]),leftIcon['src']=getIconPath(currentLeft[_0x6b4efd(0xcb)]),leftIcon[_0x6b4efd(0x263)]=currentLeft[_0x6b4efd(0xcb)],leftIcon['onerror']=()=>{const _0x5eb0fa=_0x6b4efd;leftIcon['style'][_0x5eb0fa(0x137)]='0.2';},leftIcon[_0x6b4efd(0xd8)][_0x6b4efd(0x137)]='1',leftFighterName[_0x6b4efd(0x1d9)]=getShortName(currentLeft['engraving_name']),leftFighterName['className']=_0x6b4efd(0x148)+getColorClass(currentLeft[_0x6b4efd(0x21a)]),leftFighterClass['textContent']=currentLeft[_0x6b4efd(0x21a)],rightAura[_0x6b4efd(0x10a)]=_0x6b4efd(0x211)+getAuraClass(currentRight[_0x6b4efd(0x21a)]),rightIcon[_0x6b4efd(0x1a2)]=getIconPath(currentRight[_0x6b4efd(0xcb)]),rightIcon['alt']=currentRight[_0x6b4efd(0xcb)],rightIcon[_0x6b4efd(0x222)]=()=>{const _0x385a14=_0x6b4efd;rightIcon[_0x385a14(0xd8)]['opacity']=_0x385a14(0x154);},rightIcon[_0x6b4efd(0xd8)][_0x6b4efd(0x137)]='1',rightFighterName[_0x6b4efd(0x1d9)]=getShortName(currentRight[_0x6b4efd(0xcb)]),rightFighterName[_0x6b4efd(0x10a)]='card-engr-name\x20'+getColorClass(currentRight[_0x6b4efd(0x21a)]),rightFighterClass[_0x6b4efd(0x1d9)]=currentRight[_0x6b4efd(0x21a)];let _0x53503c,_0x2dfe4c;if(isQualifierPhase){const {displayGroup:_0x273ce1}=subgroupQueue[currentGroupIndex],_0x32316f=currentRoundCandidates[_0x6b4efd(0x223)];if(_0x32316f<=0x2)_0x53503c=_0x273ce1+_0x6b4efd(0x24c);else{if(_0x32316f<=0x4)_0x53503c=_0x273ce1+'조\x204강';else _0x53503c=_0x273ce1+_0x6b4efd(0x29b);}_0x2dfe4c=_0x6b4efd(0x185);}else{_0x53503c=getRoundLabel(currentRoundCandidates[_0x6b4efd(0x223)]);const _0x481f66=currentRoundCandidates[_0x6b4efd(0x223)];if(_0x481f66<=0x2)_0x2dfe4c='stage-red';else{if(_0x481f66<=0x4)_0x2dfe4c=_0x6b4efd(0x163);else{if(_0x481f66<=0x8)_0x2dfe4c='stage-purple';else{if(_0x481f66<=0x10)_0x2dfe4c=_0x6b4efd(0x216);else _0x2dfe4c=_0x6b4efd(0x185);}}}}const _0x14f30a=$('battleHeroSub');if(_0x14f30a)_0x14f30a[_0x6b4efd(0x1d9)]=getBattleLine(currentTournamentType);const _0x360412=$(_0x6b4efd(0x133));_0x360412&&(_0x360412[_0x6b4efd(0x206)][_0x6b4efd(0x171)](_0x6b4efd(0x185),_0x6b4efd(0x216),'stage-purple',_0x6b4efd(0x163),_0x6b4efd(0x1c7)),_0x360412[_0x6b4efd(0x206)][_0x6b4efd(0x27e)](_0x2dfe4c));const _0x38a40c=totalMatches>0x0?Math[_0x6b4efd(0x292)](completedMatches/totalMatches*0x64):0x0;battleProgressPct['textContent']=_0x38a40c+'%',battleProgressFill['style']['width']=_0x38a40c+'%',isQualifierPhase?(bigGroupMatchLog[_0x6b4efd(0x1af)]({'num':bigGroupMatchCounter+0x1,'type':'match','leftName':currentLeft[_0x6b4efd(0xcb)],'rightName':currentRight[_0x6b4efd(0xcb)],'status':_0x6b4efd(0x291),'winnerName':null}),currentMatchLogIndex=bigGroupMatchLog[_0x6b4efd(0x223)]-0x1,updateBattleStageUI(),renderGroupPanel()):updateBattleStageUI();}function chooseBattleWinner(_0x528a28){const _0x4f87f6=_0x2a5cfd;if(!currentLeft||!currentRight||isChoosing)return;isChoosing=!![],playFlip();const _0x19fe2b=_0x528a28===_0x4f87f6(0xf4)?currentLeft:currentRight,_0x4694d1=_0x528a28===_0x4f87f6(0xf4)?currentRight:currentLeft,_0xbce448=_0x528a28===_0x4f87f6(0xf4)?leftFighter:rightFighter,_0x11395e=_0x528a28===_0x4f87f6(0xf4)?rightFighter:leftFighter;if(currentTournamentType==='op'){const _0x182bd4=getWinRate(_0x19fe2b['engraving_name']),_0xfa9f22=getWinRate(_0x4694d1[_0x4f87f6(0xcb)]);opMaxScore++;if(_0x182bd4>=_0xfa9f22)opScore++;}leftFighter['disabled']=!![],rightFighter[_0x4f87f6(0xe2)]=!![],battleLogs['push']({'left_engraving':currentLeft['engraving_name'],'right_engraving':currentRight['engraving_name'],'winner_engraving':_0x19fe2b[_0x4f87f6(0xcb)],'loser_engraving':_0x4694d1[_0x4f87f6(0xcb)],'round_label':getRoundLabel(currentRoundCandidates[_0x4f87f6(0x223)])});if(isQualifierPhase&&currentMatchLogIndex!==null){bigGroupMatchCounter++;const _0x4c2072=bigGroupMatchLog[currentMatchLogIndex];_0x4c2072&&(_0x4c2072[_0x4f87f6(0xc2)]=_0x4f87f6(0xbf),_0x4c2072[_0x4f87f6(0x15e)]=_0x19fe2b[_0x4f87f6(0xcb)]),bigGroupStatus[_0x4694d1[_0x4f87f6(0xcb)]]=_0x4f87f6(0xea),currentMatchLogIndex=null,renderGroupPanel();}nextRoundCandidates[_0x4f87f6(0x1af)](_0x19fe2b),completedMatches++,currentIndex+=0x2;const _0x4bb25b=window[_0x4f87f6(0x10b)](_0x4f87f6(0x198))['matches'];if(_0x4bb25b){_0xbce448['classList'][_0x4f87f6(0x27e)]('card-win'),_0x11395e[_0x4f87f6(0x206)][_0x4f87f6(0x27e)]('card-lose'),setTimeout(()=>{isChoosing=![],renderNextBattle();},0x78);return;}_0xbce448[_0x4f87f6(0x206)][_0x4f87f6(0x27e)](_0x4f87f6(0x24d)),_0x11395e[_0x4f87f6(0x206)][_0x4f87f6(0x27e)](_0x4f87f6(0x14b)),setTimeout(()=>{isChoosing=![],renderNextBattle();},0x1c2);}function showQualifiedPhase(){isQualifierPhase=![],GROUP_NAMES['forEach'](_0x54d192=>{const _0xecb754=_0x1802,_0xcdb3f2=$(_0xecb754(0x1b0)+_0x54d192);if(!_0xcdb3f2)return;const _0x1c5a20=groupResults[_0x54d192];if(!_0x1c5a20[_0xecb754(0x223)]){_0xcdb3f2[_0xecb754(0x28e)]=_0xecb754(0x248);return;}_0xcdb3f2['innerHTML']=_0x1c5a20[_0xecb754(0x234)](_0x535d99=>{const _0x18c243=_0xecb754,_0x15eb7d=getShortName(_0x535d99[_0x18c243(0xcb)]),_0x150a63=getIconPath(_0x535d99[_0x18c243(0xcb)]),_0x351142=getColorClass(_0x535d99['class_name']);return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22qualified-chip\x20'+_0x351142+_0x18c243(0x269)+_0x150a63+_0x18c243(0xd0)+_0x15eb7d+_0x18c243(0x105)+_0x15eb7d+_0x18c243(0x219);})[_0xecb754(0x184)]('');});const _0x4158e4=$('phaseQualified');showPhase(_0x4158e4),createConfetti();}function startMainRound(){const _0x258072=_0x2a5cfd;mainRoundCandidates=[],GROUP_NAMES['forEach'](_0x539d16=>{const _0x5c890c=_0x1802;groupResults[_0x539d16][_0x5c890c(0x16a)](_0x5afce8=>mainRoundCandidates[_0x5c890c(0x1af)](_0x5afce8));}),mainRoundCandidates=shuffle(mainRoundCandidates);const _0x2ec821=$('battleHeroBanner');if(_0x2ec821)_0x2ec821[_0x258072(0x206)]['remove'](_0x258072(0x1a4),_0x258072(0x213),_0x258072(0x1cd),_0x258072(0x17e));const _0x4ce385=$(_0x258072(0x133));_0x4ce385&&(_0x4ce385[_0x258072(0x206)][_0x258072(0x171)](_0x258072(0x185),_0x258072(0x216),_0x258072(0x19b),_0x258072(0x163)),_0x4ce385[_0x258072(0x206)]['add'](_0x258072(0x216)));showPhase(phaseBattle);const _0x3c1de1=$(_0x258072(0x144));if(_0x3c1de1)_0x3c1de1[_0x258072(0x206)][_0x258072(0x27e)](_0x258072(0x1d8));setTimeout(()=>{const _0x2aed55=_0x258072;if(_0x3c1de1)_0x3c1de1['classList'][_0x2aed55(0x171)]('field-entering');startNewRound(mainRoundCandidates),renderNextBattle();},0xc8);}function createConfetti(){const _0x4dd7bc=_0x2a5cfd,_0x41e779=$(_0x4dd7bc(0xe3));if(!_0x41e779)return;const _0x34c386=['#ff7070',_0x4dd7bc(0x162),_0x4dd7bc(0x239),_0x4dd7bc(0xff),_0x4dd7bc(0x246)];for(let _0x136edf=0x0;_0x136edf<0x1c;_0x136edf++){const _0x3018bd=document['createElement']('div');_0x3018bd[_0x4dd7bc(0x10a)]=_0x4dd7bc(0x237),_0x3018bd[_0x4dd7bc(0xd8)][_0x4dd7bc(0xf4)]=Math['random']()*0x64+'%',_0x3018bd[_0x4dd7bc(0xd8)][_0x4dd7bc(0x14f)]=_0x34c386[Math[_0x4dd7bc(0x292)](Math[_0x4dd7bc(0x190)]()*_0x34c386[_0x4dd7bc(0x223)])],_0x3018bd[_0x4dd7bc(0xd8)]['animationDelay']=Math['random']()*0.4+'s',_0x41e779['appendChild'](_0x3018bd),setTimeout(()=>_0x3018bd[_0x4dd7bc(0x171)](),0xc80);}}function createEntryConfetti(){const _0x593afa=_0x2a5cfd,_0x4186f5=$(_0x593afa(0x12c));if(!_0x4186f5)return;_0x4186f5[_0x593afa(0x28e)]='';const _0x1fc9f3=[_0x593afa(0xec),'#ffb36b',_0x593afa(0x239),_0x593afa(0xff),_0x593afa(0x246),'#7effae'];for(let _0x552da9=0x0;_0x552da9<0x14;_0x552da9++){const _0x147d8e=document['createElement']('div');_0x147d8e[_0x593afa(0x10a)]=_0x593afa(0x169),_0x147d8e[_0x593afa(0xd8)][_0x593afa(0xf4)]=Math['random']()*0x64+'%',_0x147d8e['style'][_0x593afa(0x14f)]=_0x1fc9f3[Math[_0x593afa(0x292)](Math['random']()*_0x1fc9f3[_0x593afa(0x223)])],_0x147d8e[_0x593afa(0xd8)][_0x593afa(0x1de)]=Math[_0x593afa(0x190)]()*0.5+'s',_0x147d8e[_0x593afa(0xd8)][_0x593afa(0x20e)]=1.5+Math['random']()*0x1+'s',_0x4186f5[_0x593afa(0x1bc)](_0x147d8e),setTimeout(()=>_0x147d8e[_0x593afa(0x171)](),0xbb8);}}function showWinnerPhase(_0x19976b){const _0x180cab=_0x2a5cfd;playWinner(),battleProgressPct['textContent']='100%',battleProgressFill[_0x180cab(0xd8)][_0x180cab(0x23d)]=_0x180cab(0xda),winnerBadge[_0x180cab(0x1d9)]=currentTournamentType==='op'?_0x180cab(0x25e):_0x180cab(0x29c),winnerEngrName['textContent']=getShortName(_0x19976b[_0x180cab(0xcb)]),winnerEngrClass[_0x180cab(0x1d9)]='우승\x20직각\x20·\x20'+_0x19976b[_0x180cab(0x21a)];if(currentTournamentType==='op'){const _0x1a248b=calcGrade(opScore,opMaxScore),_0x4ac76d=GRADE_COLORS[_0x1a248b]||_0x180cab(0x119);winnerStampArea[_0x180cab(0xd8)][_0x180cab(0x181)]=_0x180cab(0x21b),winnerStampDate[_0x180cab(0x1d9)]=formatStampDate(getDateKey()),winnerStampGrade[_0x180cab(0x1d9)]=_0x1a248b,winnerStamp['className']='winner-stamp\x20'+getStampClass(_0x1a248b),winnerGradeInfo[_0x180cab(0x28e)]=_0x180cab(0x147)+_0x4ac76d+_0x180cab(0x204),winnerComment[_0x180cab(0x28e)]='<div\x20style=\x22color:#8fa3bf;\x20font-size:13px;\x20line-height:1.7;\x22>'+getRandomComment(_0x1a248b)+_0x180cab(0x271),loadGradeDistStats()['then'](_0x2cee1f=>{const _0x3b9ac3=_0x180cab,_0x4b0471=getGradeDistributionInfo(_0x1a248b,_0x2cee1f);if(!_0x4b0471){winnerGradeInfo[_0x3b9ac3(0x28e)]=_0x3b9ac3(0x115)+_0x4ac76d+_0x3b9ac3(0xed);return;}winnerGradeInfo[_0x3b9ac3(0x28e)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:'+_0x4ac76d+_0x3b9ac3(0x1cb)+_0x4b0471[_0x3b9ac3(0x24e)]+_0x3b9ac3(0x1b2),winnerComment[_0x3b9ac3(0x28e)]=_0x3b9ac3(0x136)+_0x4ac76d+';\x22>'+_0x1a248b+_0x3b9ac3(0x27b)+_0x4b0471[_0x3b9ac3(0x106)]+'%</strong>입니다.<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+getRandomComment(_0x1a248b)+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>';});}else winnerStampArea[_0x180cab(0xd8)][_0x180cab(0x181)]='none',winnerGradeInfo[_0x180cab(0x28e)]='',winnerComment[_0x180cab(0x1d9)]=_0x180cab(0x284);showPhase(phaseWinner),createConfetti();}function _0x301d(){const _0x2aebd3=['value','\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22shutter-stamp-circle\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22top3-val\x22>','rankingSummary','아쉽지만\x20가능성은\x20충분합니다.','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','done','grade_count','aura-ki','status','성능으로\x20압도하라','getHours','quitOverlay','판단이\x20자주\x20빗나갔어요.','left_engraving','input','select','getMinutes','engraving_name','저장\x20실패','🏅\x20SS\x20혜택\x20활성\x20·\x20호감\x20토너먼트\x20면제','error','불러오기\x20실패','\x22\x20alt=\x22','min','명</div>\x0a\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22group-roster-section\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22group-roster-label\x22>생존</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22group-roster-list\x22>','</span>\x0a\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20</div>','</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22class-group-btns\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','호감\x20직각\x20랭킹\x20보드','rolled-up','가디언나이트','style','rankingList','100%','alive','loadCandidates\x20error','https://khszfukekudyripouifm.supabase.co','engr-guardian','then','beforebegin','sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb','disabled','winnerConfettiZone','<div\x20class=\x22progress-segment\x22\x20style=\x22left:','.png','조\x20예선\x20진행\x20중','명\x20·\x20탈락\x20','\x22\x20onerror=\x22this.style.opacity=\x270.2\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-name\x22>','rightName','eliminated','#ffb060','#ff7070',';\x20font-weight:700;\x20font-size:15px;\x20margin-bottom:8px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20📊\x20실제\x20유저\x20분포\x20데이터가\x20아직\x20부족합니다\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>','어느\x20직각이\x20더\x20끌릴까?','rightFighterClass','<div\x20class=\x22match-ticker-empty\x22>아직\x20완료된\x20경기가\x20없습니다.</div>','setHours','1023740oXtLyz','선택이\x20자주\x20빗나갔어요.','left','win_count','<div\x20class=\x22ranking-empty\x22>데이터\x20없음\x20·\x20집계\x20후\x20자동\x20반영됩니다.</div>','favorStartBtn','tournament_type,class_name,engraving_name,champion_count,unique_winner_count,participant_ratio,win_count,lose_count,total_matches,win_rate,updated_at','많이\x20흔들렸습니다.','winnerStamp','battleProgressSegments','match_logs','경기</span>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-body\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-winner\x22>','winnerBadge','#8bd0ff','log',';margin-bottom:4px;\x22>','POST','191143qGuANY','당신의\x20취향\x20저격은?','\x22\x20onerror=\x22this.style.opacity=\x270.2\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22qualified-chip-name\x22>','samePct','modeFavorBtn','정석적인\x20최고의\x20선택들이었습니다.','rank-2nd','className','matchMedia','패</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22shutter-stamp-done\x22>참여완료</div>\x0a\x20\x20\x20\x20\x20\x20</div>','soundValue','무난한\x20편이지만\x20다듬을\x20여지가\x20있습니다.','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-num\x22>','\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20','matches','phaseQualified','aura-holy','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:','toLowerCase','#7fc6ff','insert','#ccc','rankingSub','./icon/','includes','timeout','engr-fighter','OP\x20TOURNAMENT','stringify','arenaLoadingText','querySelectorAll','창술사','lose_count','SS+','battleQuitBtn','판단이\x20꽤\x20괜찮았습니다.','sExpireAt','split','closest','버스트','battleEntryConfetti','target','addEventListener','메타\x20파악이\x20더\x20필요한\x20것\x20같습니다.','%</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-stat-detail\x22>','[TEST\x20MODE]\x20Supabase\x20저장\x20생략됨\x20→','battleHeroSub','battleProgressFill','</button>','enabled','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:#8fa3bf;\x20font-size:13px;\x20line-height:1.7;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20같은\x20등급(<strong\x20style=\x22color:','opacity','https://api64.ipify.org?format=json','워로드','<button\x20type=\x22button\x22\x20class=\x22group-log-toggle-btn\x22\x20id=\x22groupLogToggleBtn\x22>','label','max','11gENGEv','차원술사','OP\x20토너먼트는\x20오늘\x20이미\x20완료했습니다.<br>내일\x20다시\x20참여할\x20수\x20있어요.','\x20·\x20이번\x20주\x20우승\x20','get_recent_winrates','arenaLoadingOverlay','key','battleField','아주\x20강한\x20판단이었어요.','play','\x0a\x20\x20\x20\x20\x20\x20<div\x20style=\x22color:','card-engr-name\x20','slice','parse','card-lose','winnerGradeInfo','arenaIdle','🔒\x20토너먼트\x201회\x20완료\x20시\x20<strong>20위까지</strong>,\x20OP\x20+\x20호감\x20완료\x20또는\x20<strong>S/SS\x20혜택</strong>\x20시\x20전체\x20랭킹이\x20공개됩니다!','background','심판자','조\x20대진\x20현황</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22group-panel-sub\x22>생존\x20','engr-assassin','rank-3rd','0.2','badge-op','bye','winner_engraving','스트라이커','onload','battleStageBadge','randomUUID','5437764CQaBYC','leftFighter','winnerName','startBattle\x20error:','#ffd700','banner-favor','#ffb36b','stage-yellow','소울이터','4hwFEGd','Bearer\x20','데빌헌터','mode-favor','entry-confetti-piece','forEach','replace','getElementById','발키리','#c79cff','loa_tournament_user_','round_label','remove','토너먼트\x201회\x20완료\x20·\x2020위까지\x20공개','⚔️\x20','json','arena-phase-badge\x20','호감\x20직각\x20토너먼트','\x0a\x20\x20\x20\x20<div\x20class=\x22grade-cell\x20','getDay','스카우터','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22ranking-lock-notice\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','최강\x20직각\x20월드컵','order','tournament_type','banner-group-d','periodWeekBtn','toggle','display','sessions','from','join','stage-green','winnerComment','결승전','rightFighter','win_rate','aura-gun','ssExpireAt','round','class','filter','\x0a\x20\x20\x20\x20<div\x20class=\x22class-group-row\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22class-group-tag\x22>','random','phaseClass','포식자',',client_ip.eq.','호크아이','4lVnqmM','getBoundingClientRect','open','(max-width:\x20768px)','#8ee8b0','findIndex','stage-purple','무난하게\x20좋은\x20결과입니다.','scrollY','버서커','아르카나','/rest/v1/rpc/get_grade_distribution','SS\x20혜택\x20활성\x20·\x20전체\x20랭킹\x20공개\x20중','src','all_','banner-group-a','브레이커','message','1070735AtmDEG','\x0a\x20\x20\x20\x20</div>','주간\x20랭킹\x20조회\x20실패','pool','1062FuqdbB','active','선택이\x20대부분\x20빗나갔어요.','\x20제외','push','qualifiedGroup','mode-op','%</span>\x20수준의\x20선택입니다\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>','7oNmyTK','champion_count','진검승부','engr-mage','scrollTo','</div>\x0a\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22top3-card\x20top3-','접기\x20▲','</span>\x0a\x20\x20\x20\x20</div>','appendChild','leftIcon','none','#ff7755','343428cSojfx','rightFighterName','FINAL','기본\x20열람\x20·\x205위까지\x20공개','OP\x20직각\x20토너먼트','qualifiedStartBtn','classCancelBtn','stage-red','grade,date_key','phaseWinner','rightAura',';\x20font-weight:700;\x20font-size:15px;\x20margin-bottom:8px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20📊\x20전체\x20유저\x20중\x20<span\x20style=\x22font-size:18px;\x20font-weight:900;\x22>상위\x20','loser_engraving','banner-group-c','기상술사','집중이\x20필요합니다.','guideModal','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22shutter-stamp-date\x22>','aura-flower','customAlertDesc','getFullYear','classPhaseBadge','arena-active','딜킹을\x20가려보자','field-entering','textContent','padStart','\x22\x20onerror=\x22this.style.opacity=\x270.2\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22top3-name\x22>','SS\x20등급\x20혜택이\x20활성화되어\x20있어<br>토너먼트가\x20면제됩니다.','gradeGrid','animationDelay','배틀마스터','aura-element','getDate','매우\x20좋은\x20결과입니다.','arenaZone','start','거의\x20완벽에\x20가까운\x20판단이었어요.','.rank-hidden','<span\x20class=\x22group-roster-chip\x20eliminated\x22>','battleProgressPct','선택이\x20많이\x20갈렸어요.','OFF','이번엔\x20흐름이\x20맞지\x20않았어요.\x20다시\x20도전!','visitor_key.eq.','위</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22top3-icon-wrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','※\x20전체\x20랭킹은\x20매시간\x20정각\x20집계됩니다.\x20최근\x20집계:\x20','id,class_name,engraving_name,enabled','leftAura','#groupLogToggleBtn','rpc','pop','total','string','인파이터','winnerStampGrade','loa_line_pool_op','num','Escape','최애\x20직각\x20월드컵','나쁘지\x20않은\x20결과입니다.','loa_tournament_visitor_key','dataset','volume','꽤\x20괜찮은\x20결과입니다.','customAlertCloseBtn','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22shutter-stamp-grade\x22>','sActive',';\x20font-weight:700;\x20font-size:15px;\x20margin-bottom:8px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20📊\x20실제\x20유저\x20분포를\x20계산\x20중입니다...\x0a\x20\x20\x20\x20\x20\x20</div>','선택이\x20많이\x20엇갈렸어요.','classList','</div>\x0a\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20','2026-04-07','%;\x20width:','이미\x20완료!','battleGroupPanel','leftFighterName','right_engraving','animationDuration','rank-hidden','#999999','card-aura\x20','절실한\x20구원','banner-group-b','<span\x20class=\x22group-roster-chip\x22>','데모닉','stage-blue','winnerEngrName','블레이드','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</span>','class_name','block','https://api.ipify.org?format=json','<span\x20class=\x22group-roster-chip\x20eliminated\x22>없음</span>','not','winnerStampArea','도화가','application/json','onerror','length','battleHeroKicker','gte','date_key','winnerConfirmBtn','click','scrollIntoView','거의\x20대부분\x20엇갈렸습니다.','</span>','경기장을\x20불러오는\x20중입니다...','\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22group-match-section\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22group-match-label\x22>경기\x20기록</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22match-ticker-list\x22>','battleExcluded','entries','currentTime','toFixed','all','월간\x20랭킹\x20조회\x20실패','map','opStartBtn','소서리스','confetti-piece','grade','#ffd76b','engr-warrior','exempt-disabled','환수사','width','find','leftName','빛의\x20기사','처단자','concat','tournamentStageWrap','pointerEvents','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>','#c48bff','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-class\x22>','<span\x20class=\x22qualified-chip\x20empty\x22>-</span>','평범한\x20결과입니다.','customAlertTitle','16강','조\x20결승','card-win','topPct','banner-op','engr-hunter','이슬비','hidden','</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:11px;color:#94a3b8;\x22>','서머너','가장\x20애정하는\x20직각은?','badge-favor','최종\x20승자는\x20누구?','rankingInner','keydown','top','현재\x20메타의\x20승자는?','무난한\x20편이지만\x20아쉬움이\x20남습니다.','\x0a\x20\x20\x20\x20<div\x20class=\x22ranking-top3\x22>\x0a\x20\x20\x20\x20\x20\x20','OP\x20TOURNAMENT\x20COMPLETE','명\x20·\x20총\x20','catch','💗\x20호감\x20토너먼트\x20시작','SS-','alt','favorShutterStamp','modeOpBtn','setItem','total_matches','loa_line_pool_favor','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20class=\x22qualified-chip-icon\x22\x20src=\x22','슬레이어','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-vs\x22>승</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22ticker-loser\x22>','\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22shutter-stamp-circle\x20stamp-favor\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22shutter-stamp-date\x22>','show',')\x20▼','🔥\x20OP\x20토너먼트\x20시작','type','</div>','\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-row\x20','smooth','visitor_key','winnerEngrClass','customAlertOverlay','완벽한\x20판단입니다!\x20모든\x20선택이\x20정확했어요.','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22top3-rank\x22>','매치\x20로그를\x20저장하지\x20못했습니다.<br>','축복의\x20오라','</strong>)을\x20받은\x20유저는\x20전체의\x20<strong>','setDate','12184ulBTZg','add','143826kpZqmc','건슬링어','\x0a\x20\x20\x20\x20<div\x20class=\x22group-panel-header\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22group-panel-title\x22>','phaseBattle','flipAudio','토너먼트가\x20완료되었습니다.\x20확인을\x20누르면\x20결과가\x20저장됩니다.','\x0a\x20\x20\x20\x20<div\x20class=\x22group-roster-section\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22group-roster-label\x22>탈락</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22group-roster-list\x22>','favor','%;\x22>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22progress-segment-label\x22>','블래스터','OP\x20직각\x20랭킹\x20보드','호감\x20토너먼트는\x20오늘\x20이미\x20완료했습니다.<br>내일\x20다시\x20참여할\x20수\x20있어요.','updated_at','getMonth','ranking-title-favor','innerHTML','기공사','getItem','pending','floor','engr-specialist','stamp-','OP\x20+\x20호감\x20완료\x20·\x20전체\x20랭킹\x20공개','rankingLock','좋은\x20편의\x20결과입니다.','개\x20제외','isFinite','winnerAudio','조\x20예선','FAVOR\x20TOURNAMENT\x20COMPLETE','ssActive','#a9dfff'];_0x301d=function(){return _0x2aebd3;};return _0x301d();}async function finalizeTournament(){const _0xec55bb=_0x2a5cfd;if(!pendingWinner||isFinalizingTournament)return;isFinalizingTournament=!![],winnerConfirmBtn[_0xec55bb(0xe2)]=!![];if(TEST_MODE_DISABLE_SAVE){console[_0xec55bb(0x100)](_0xec55bb(0x131),{'selectedClass':selectedClass,'winner':pendingWinner[_0xec55bb(0xcb)],'tournamentType':currentTournamentType,'grade':currentTournamentType==='op'?calcGrade(opScore,opMaxScore):null,'opScore':opScore,'opMaxScore':opMaxScore});currentTournamentType==='op'?(completedState['op']=!![],todayOpGrade=calcGrade(opScore,opMaxScore),renderShutterStamp('op',todayOpGrade)):(completedState[_0xec55bb(0x286)]=!![],renderShutterStamp(_0xec55bb(0x286),null));currentBoardMode=currentTournamentType,closeArena(),updateRankingLockState(),setTimeout(()=>{const _0x41b62e=_0xec55bb;rankingSection&&rankingSection['scrollIntoView']({'behavior':_0x41b62e(0x273),'block':_0x41b62e(0x1e4)});},0x190),isFinalizingTournament=![],winnerConfirmBtn[_0xec55bb(0xe2)]=![];return;}const _0x4ad6b2=await getClientIP(),_0x15d114=currentTournamentType==='op'?calcGrade(opScore,opMaxScore):null,_0x231574=currentTournamentType==='op'?opScore:0x0,_0x9ed67d=currentTournamentType==='op'?opMaxScore:0x0,_0x150614={'visitor_key':visitorKey,'client_ip':_0x4ad6b2,'selected_class':selectedClass,'winner_engraving':pendingWinner['engraving_name'],'tournament_type':currentTournamentType,'date_key':getDateKey(),'week_key':getWeekKey(),'month_key':getMonthKey(),'grade':_0x15d114,'score':_0x231574,'max_score':_0x9ed67d},{data:_0x59c696,error:_0x17933f}=await supabase['from']('sessions')[_0xec55bb(0x118)]([_0x150614])[_0xec55bb(0xc9)]();if(_0x17933f){showCustomAlert('❌',_0xec55bb(0xcc),'결과를\x20저장하지\x20못했습니다.<br>'+_0x17933f[_0xec55bb(0x1a6)]),isFinalizingTournament=![],winnerConfirmBtn[_0xec55bb(0xe2)]=![];return;}const _0x2fa52a=_0x59c696[0x0]['id'];if(battleLogs[_0xec55bb(0x223)]>0x0){const _0x39fde9=battleLogs['map'](_0x53fe54=>({'session_id':_0x2fa52a,'left_engraving':_0x53fe54[_0xec55bb(0xc7)],'right_engraving':_0x53fe54[_0xec55bb(0x20d)],'winner_engraving':_0x53fe54['winner_engraving'],'loser_engraving':_0x53fe54[_0xec55bb(0x1cc)],'round_label':_0x53fe54[_0xec55bb(0x170)],'tournament_type':currentTournamentType,'date_key':getDateKey(),'week_key':getWeekKey(),'month_key':getMonthKey()})),{error:_0x5203c4}=await supabase['from'](_0xec55bb(0xfc))[_0xec55bb(0x118)](_0x39fde9);if(_0x5203c4){showCustomAlert('❌',_0xec55bb(0xcc),_0xec55bb(0x279)+_0x5203c4[_0xec55bb(0x1a6)]),isFinalizingTournament=![],winnerConfirmBtn[_0xec55bb(0xe2)]=![];return;}}currentTournamentType==='op'?(completedState['op']=!![],todayOpGrade=_0x15d114,renderShutterStamp('op',_0x15d114)):(completedState['favor']=!![],renderShutterStamp(_0xec55bb(0x286),null)),currentBoardMode=currentTournamentType,closeArena(),updateRankingLockState(),setTimeout(()=>{const _0x47f74f=_0xec55bb;rankingSection&&rankingSection[_0x47f74f(0x229)]({'behavior':'smooth','block':_0x47f74f(0x1e4)});},0x190),isFinalizingTournament=![],winnerConfirmBtn[_0xec55bb(0xe2)]=![];}function updateRankingLockState(){const _0x330747=_0x2a5cfd;if(!rankingSection||!rankingLock||!rankingInner)return;rankingLock[_0x330747(0xd8)][_0x330747(0x181)]=_0x330747(0x1be),rankingInner[_0x330747(0xd8)][_0x330747(0x18e)]='',rankingInner[_0x330747(0xd8)][_0x330747(0x244)]='',modeOpBtn?.[_0x330747(0x206)][_0x330747(0x171)](_0x330747(0x1ac),'disabled'),modeFavorBtn?.['classList']['remove']('active','disabled');!currentBoardMode&&(currentBoardMode='op');if(currentBoardMode==='op')modeOpBtn?.['classList']['add'](_0x330747(0x1ac));else modeFavorBtn?.[_0x330747(0x206)][_0x330747(0x27e)](_0x330747(0x1ac));loadRankingData(currentBoardMode);}async function loadRankingData(_0x3238af){const _0x5da2d2=_0x2a5cfd,_0x381360=_0x5da2d2(0x1a3)+_0x3238af;if(rankingCache[_0x381360]){renderRanking(rankingCache[_0x381360],_0x3238af);return;}const {data:_0x51af85,error:_0x5d6e9d}=await supabase['from']('ranking_overall')[_0x5da2d2(0xc9)](_0x5da2d2(0xf8))['eq'](_0x5da2d2(0x17d),_0x3238af);if(_0x5d6e9d){alert('랭킹\x20조회\x20실패');return;}rankingCache[_0x381360]=_0x51af85,renderRanking(_0x51af85,_0x3238af);}function renderRanking(_0x2029dc,_0x3e6dc1){const _0x2f82be=_0x2a5cfd;let _0x3d4c15=_0x2029dc;if(_0x3e6dc1==='op')_0x3d4c15=_0x2029dc[_0x2f82be(0x18e)](_0x621df2=>!SUPPORT_ENGRAVINGS['includes'](_0x621df2[_0x2f82be(0xcb)]));const _0x568523=[..._0x3d4c15]['sort']((_0x2e552b,_0x1bb783)=>{const _0x2e785a=_0x2f82be;if(_0x1bb783[_0x2e785a(0x1b4)]!==_0x2e552b[_0x2e785a(0x1b4)])return _0x1bb783[_0x2e785a(0x1b4)]-_0x2e552b[_0x2e785a(0x1b4)];if(Number(_0x1bb783[_0x2e785a(0x189)])!==Number(_0x2e552b[_0x2e785a(0x189)]))return Number(_0x1bb783[_0x2e785a(0x189)])-Number(_0x2e552b[_0x2e785a(0x189)]);return _0x1bb783['win_count']-_0x2e552b['win_count'];}),_0x2d54c6=getRankingRevealLimit();rankingTitle[_0x2f82be(0x1d9)]=_0x3e6dc1==='op'?_0x2f82be(0x289):_0x2f82be(0xd5),rankingTitle['className']='ranking-title\x20'+(_0x3e6dc1==='op'?'ranking-title-op':_0x2f82be(0x28d)),rankingSub[_0x2f82be(0x1d9)]=getRankingStatusText();const _0x122230=_0x568523[_0x2f82be(0x149)](0x0,0x3);rankingSummary[_0x2f82be(0x28e)]=_0x2f82be(0x25d)+_0x122230[_0x2f82be(0x234)]((_0x442d44,_0x208bde)=>_0x2f82be(0x1b9)+(_0x208bde+0x1)+_0x2f82be(0x278)+(_0x208bde+0x1)+_0x2f82be(0x1ed)+getIconPath(_0x442d44[_0x2f82be(0xcb)])+'\x22\x20alt=\x22'+_0x442d44['engraving_name']+_0x2f82be(0x1db)+getShortName(_0x442d44[_0x2f82be(0xcb)])+_0x2f82be(0xbb)+_0x442d44[_0x2f82be(0x1b4)]+'회\x20우승</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20')[_0x2f82be(0x184)]('')+_0x2f82be(0x1a8);if(!_0x568523['length']){rankingList[_0x2f82be(0x28e)]=_0x2f82be(0xf6);return;}rankingList[_0x2f82be(0x28e)]=_0x568523['map']((_0x49fc6f,_0x370a2d)=>{const _0x15f1d6=_0x2f82be,_0x1b3908=_0x370a2d>=_0x2d54c6,_0x33e01f=_0x370a2d===0x0?'rank-1st':_0x370a2d===0x1?_0x15f1d6(0x109):_0x370a2d===0x2?_0x15f1d6(0x153):'';return _0x15f1d6(0x272)+_0x33e01f+'\x20'+(_0x1b3908?_0x15f1d6(0x20f):'')+_0x15f1d6(0x110)+(_0x370a2d+0x1)+_0x15f1d6(0xbe)+getIconPath(_0x49fc6f['engraving_name'])+_0x15f1d6(0xd0)+_0x49fc6f[_0x15f1d6(0xcb)]+_0x15f1d6(0xe8)+_0x49fc6f[_0x15f1d6(0xcb)]+_0x15f1d6(0x247)+_0x49fc6f[_0x15f1d6(0x21a)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-stats\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-stat-main\x22>'+_0x49fc6f[_0x15f1d6(0x1b4)]+'회</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-stat-sub\x22>승률\x20'+Number(_0x49fc6f['win_rate'])['toFixed'](0x1)+_0x15f1d6(0x130)+_0x49fc6f[_0x15f1d6(0x267)]+'전\x20'+_0x49fc6f[_0x15f1d6(0xf5)]+'승\x20'+_0x49fc6f[_0x15f1d6(0x124)]+_0x15f1d6(0x10c);})['join']('');if(Number[_0x2f82be(0x299)](_0x2d54c6)&&_0x568523[_0x2f82be(0x223)]>_0x2d54c6){const _0x553626=rankingList[_0x2f82be(0x122)](_0x2f82be(0x1e6));if(_0x553626['length']>0x0){const _0x492772=_0x2d54c6===0x5?_0x2f82be(0x14e):'🔒\x20OP\x20+\x20호감\x20완료\x20또는\x20<strong>S/SS\x20혜택</strong>\x20시\x20전체\x20랭킹이\x20공개됩니다!';_0x553626[0x0]['insertAdjacentHTML'](_0x2f82be(0xe0),_0x2f82be(0x17a)+_0x492772+_0x2f82be(0x245));}}const _0x436ac1=_0x3d4c15['length']>0x0?_0x3d4c15[0x0][_0x2f82be(0x28b)]:null;rankingFooter[_0x2f82be(0x1d9)]=_0x2f82be(0x1ee)+formatUpdatedAt(_0x436ac1);}function clearPeriodActive(){const _0x2e8a99=_0x2a5cfd;periodAllBtn[_0x2e8a99(0x206)][_0x2e8a99(0x171)](_0x2e8a99(0x1ac)),periodWeekBtn['classList']['remove'](_0x2e8a99(0x1ac)),periodMonthBtn[_0x2e8a99(0x206)][_0x2e8a99(0x171)](_0x2e8a99(0x1ac));}async function loadWeeklyRanking(_0x315fd1){const _0x42fcc3=_0x2a5cfd,_0x16ec14=new Date(),_0x2aefa4=new Date(_0x16ec14);_0x2aefa4[_0x42fcc3(0x27c)](_0x2aefa4[_0x42fcc3(0x1e1)]()-0x6);const _0x28f7a2=_0x3052c4=>_0x3052c4[_0x42fcc3(0x1d4)]()+'-'+String(_0x3052c4[_0x42fcc3(0x28c)]()+0x1)[_0x42fcc3(0x1da)](0x2,'0')+'-'+String(_0x3052c4[_0x42fcc3(0x1e1)]())['padStart'](0x2,'0'),{data:_0x2c1ee0,error:_0x173d77}=await supabase[_0x42fcc3(0x1f2)]('get_recent_ranking',{'p_type':_0x315fd1,'p_start':_0x28f7a2(_0x2aefa4),'p_end':_0x28f7a2(_0x16ec14)});if(_0x173d77){alert(_0x42fcc3(0x1a9));return;}renderRanking(_0x2c1ee0,_0x315fd1);}async function loadMonthlyRanking(_0x58ca25){const _0xf4d601=_0x2a5cfd,{data:_0x2fe730,error:_0x3217e9}=await supabase[_0xf4d601(0x1f2)]('get_monthly_ranking',{'p_type':_0x58ca25,'p_month':getMonthKey()});if(_0x3217e9){alert(_0xf4d601(0x233));return;}renderRanking(_0x2fe730,_0x58ca25);}function buildGradeGrid(){const _0x6af646=_0x2a5cfd;if(!gradeGrid)return;gradeGrid['innerHTML']=GRADE_TABLE[_0x6af646(0x234)](_0x233a53=>_0x6af646(0x177)+getStampClass(_0x233a53['grade'])+'\x22\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20border:1px\x20solid\x20rgba(255,255,255,.08);\x20border-radius:12px;\x20padding:10px\x208px;\x0a\x20\x20\x20\x20\x20\x20text-align:center;\x20background:rgba(255,255,255,.03);\x0a\x20\x20\x20\x20\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:16px;font-weight:900;color:'+GRADE_COLORS[_0x233a53[_0x6af646(0x238)]]+_0x6af646(0x101)+_0x233a53['grade']+_0x6af646(0x253)+_0x233a53[_0x6af646(0xd1)]+'~'+_0x233a53[_0x6af646(0x13c)]+'%</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20')[_0x6af646(0x184)]('');}if(opStartBtn)opStartBtn[_0x2a5cfd(0x12e)]('click',()=>handleStart('op'));if(favorStartBtn)favorStartBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>handleStart(_0x2a5cfd(0x286)));if(classCancelBtn)classCancelBtn['addEventListener'](_0x2a5cfd(0x228),closeArena);if(leftFighter)leftFighter['addEventListener'](_0x2a5cfd(0x228),()=>chooseBattleWinner(_0x2a5cfd(0xf4)));if(rightFighter)rightFighter[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>chooseBattleWinner('right'));if(battleQuitBtn)battleQuitBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>{const _0x22b475=_0x2a5cfd;quitOverlay['classList'][_0x22b475(0x27e)](_0x22b475(0x26d));});if(quitCancelBtn)quitCancelBtn[_0x2a5cfd(0x12e)]('click',()=>{const _0x32eec3=_0x2a5cfd;quitOverlay[_0x32eec3(0x206)][_0x32eec3(0x171)](_0x32eec3(0x26d));});if(quitConfirmBtn)quitConfirmBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>{const _0x13f879=_0x2a5cfd;quitOverlay[_0x13f879(0x206)][_0x13f879(0x171)]('show'),closeArena();});const qualifiedStartBtn=$(_0x2a5cfd(0x1c5));if(qualifiedStartBtn)qualifiedStartBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),startMainRound);if(winnerConfirmBtn)winnerConfirmBtn['addEventListener'](_0x2a5cfd(0x228),finalizeTournament);const battleGroupPanelEl=$(_0x2a5cfd(0x20b));battleGroupPanelEl&&battleGroupPanelEl[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),_0x2dcf78=>{const _0x3af817=_0x2a5cfd;_0x2dcf78['target'][_0x3af817(0x12a)](_0x3af817(0x1f1))&&(groupLogExpanded=!groupLogExpanded,renderGroupPanel());});if(modeOpBtn)modeOpBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>{const _0x53cea9=_0x2a5cfd;currentBoardMode='op',modeOpBtn[_0x53cea9(0x206)][_0x53cea9(0x27e)](_0x53cea9(0x1ac)),modeFavorBtn[_0x53cea9(0x206)][_0x53cea9(0x171)]('active');if(periodWeekBtn[_0x53cea9(0x206)]['contains'](_0x53cea9(0x1ac)))loadWeeklyRanking('op');else{if(periodMonthBtn[_0x53cea9(0x206)]['contains'](_0x53cea9(0x1ac)))loadMonthlyRanking('op');else loadRankingData('op');}});if(modeFavorBtn)modeFavorBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>{const _0x56a505=_0x2a5cfd;currentBoardMode=_0x56a505(0x286),modeFavorBtn[_0x56a505(0x206)]['add'](_0x56a505(0x1ac)),modeOpBtn['classList'][_0x56a505(0x171)](_0x56a505(0x1ac));if(periodWeekBtn['classList']['contains'](_0x56a505(0x1ac)))loadWeeklyRanking('favor');else{if(periodMonthBtn['classList']['contains'](_0x56a505(0x1ac)))loadMonthlyRanking(_0x56a505(0x286));else loadRankingData('favor');}});if(periodAllBtn)periodAllBtn[_0x2a5cfd(0x12e)]('click',()=>{const _0x1df543=_0x2a5cfd;if(!completedState['op']&&!completedState[_0x1df543(0x286)])return;clearPeriodActive(),periodAllBtn[_0x1df543(0x206)]['add'](_0x1df543(0x1ac)),loadRankingData(currentBoardMode||'op');});if(periodWeekBtn)periodWeekBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>{const _0x13cba3=_0x2a5cfd;if(!completedState['op']&&!completedState[_0x13cba3(0x286)])return;clearPeriodActive(),periodWeekBtn[_0x13cba3(0x206)]['add'](_0x13cba3(0x1ac)),loadWeeklyRanking(currentBoardMode||'op');});if(periodMonthBtn)periodMonthBtn[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),()=>{const _0x256be5=_0x2a5cfd;if(!completedState['op']&&!completedState[_0x256be5(0x286)])return;clearPeriodActive(),periodMonthBtn['classList'][_0x256be5(0x27e)](_0x256be5(0x1ac)),loadMonthlyRanking(currentBoardMode||'op');});if(closeGuideBtn)closeGuideBtn['addEventListener'](_0x2a5cfd(0x228),()=>{const _0x2e16ad=_0x2a5cfd;guideModal?.[_0x2e16ad(0x206)][_0x2e16ad(0x171)](_0x2e16ad(0x26d));});if(guideModal)guideModal[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),_0x4949fb=>{const _0xf19d4=_0x2a5cfd;if(_0x4949fb[_0xf19d4(0x12d)]===guideModal)guideModal[_0xf19d4(0x206)][_0xf19d4(0x171)](_0xf19d4(0x26d));});document['addEventListener'](_0x2a5cfd(0x259),_0x4574ff=>{const _0x286b7b=_0x2a5cfd;_0x4574ff[_0x286b7b(0x143)]===_0x286b7b(0x1fa)&&(quitOverlay?.['classList'][_0x286b7b(0x171)](_0x286b7b(0x26d)),guideModal?.[_0x286b7b(0x206)]['remove'](_0x286b7b(0x26d)),hideCustomAlert());}),document[_0x2a5cfd(0x16c)](_0x2a5cfd(0x201))?.[_0x2a5cfd(0x12e)](_0x2a5cfd(0x228),hideCustomAlert),document[_0x2a5cfd(0x16c)](_0x2a5cfd(0x276))?.['addEventListener'](_0x2a5cfd(0x228),_0x3301f6=>{const _0xc6e05a=_0x2a5cfd;if(_0x3301f6['target']['id']===_0xc6e05a(0x276))hideCustomAlert();});async function init(){visitorKey=getVisitorKey(),buildGradeGrid(),updateSoundUI(),applySoundVolume(),await loadCandidates(),await preloadIcons(),await loadTodayParticipation();}init();
+import { supabase, SUPABASE_URL, SUPABASE_KEY } from "./supabase.js";
+
+/* ============================================================
+   Supabase
+   ============================================================ */
+
+const TEST_MODE_DISABLE_SAVE = false;
+
+/* ============================================================
+   공통 상수
+   ============================================================ */
+const SUPPORT_ENGRAVINGS = ["절실한 구원", "만개", "축복의 오라", "해방자"];
+const FAVOR_ONLY_IDS = [8, 12, 40, 52];
+
+// 등급 구간: 유저가 몰리는 중상위(약 70~90%)를 잘게 나눠 한쪽으로 치우치지 않게 조정
+//  · SS+는 100만 아니라 상위권(96~) 포함
+//  · 기존 A/A-에 몰리던 75~84%대를 S- ~ A- 여러 칸으로 분산
+const GRADE_TABLE = [
+  { grade: "SS+", min: 96, max: 100 }, { grade: "SS", min: 93, max: 95 }, { grade: "SS-", min: 90, max: 92 },
+  { grade: "S+", min: 87, max: 89 }, { grade: "S", min: 84, max: 86 }, { grade: "S-", min: 81, max: 83 },
+  { grade: "A+", min: 78, max: 80 }, { grade: "A", min: 75, max: 77 }, { grade: "A-", min: 72, max: 74 },
+  { grade: "B+", min: 69, max: 71 }, { grade: "B", min: 66, max: 68 }, { grade: "B-", min: 63, max: 65 },
+  { grade: "C+", min: 59, max: 62 }, { grade: "C", min: 55, max: 58 }, { grade: "C-", min: 51, max: 54 },
+  { grade: "D+", min: 46, max: 50 }, { grade: "D", min: 41, max: 45 }, { grade: "D-", min: 36, max: 40 },
+  { grade: "E+", min: 31, max: 35 }, { grade: "E", min: 26, max: 30 }, { grade: "E-", min: 21, max: 25 },
+  { grade: "F+", min: 16, max: 20 }, { grade: "F", min: 11, max: 15 }, { grade: "F-", min: 0, max: 10 }
+];
+
+const GRADE_COLORS = {
+  "SS+": "#ffd700", "SS": "#ffd700", "SS-": "#ffd700",
+  "S+": "#7fc6ff", "S": "#7fc6ff", "S-": "#7fc6ff",
+  "A+": "#ff7755", "A": "#ff7755", "A-": "#ff7755",
+  "B+": "#ffb060", "B": "#ffb060", "B-": "#ffb060",
+  "C+": "#c79cff", "C": "#c79cff", "C-": "#c79cff",
+  "D+": "#a9dfff", "D": "#a9dfff", "D-": "#a9dfff",
+  "E+": "#8ee8b0", "E": "#8ee8b0", "E-": "#8ee8b0",
+  "F+": "#999999", "F": "#999999", "F-": "#999999"
+};
+
+const GRADE_COMMENTS = {
+  "SS+": ["완벽한 판단입니다! 모든 선택이 정확했어요.", "100% 달성! 전설급 결과입니다."],
+  "SS": ["거의 완벽에 가까운 판단이었어요.", "정석적인 최고의 선택들이었습니다."],
+  "SS-": ["아주 강한 판단이었어요.", "충분히 인상적인 결과입니다."],
+  "S+": ["매우 좋은 결과입니다.", "상당히 높은 완성도로 풀었습니다."],
+  "S": ["무난하게 좋은 결과입니다.", "판단이 꽤 괜찮았습니다."],
+  "S-": ["좋은 편의 결과입니다.", "상위권 진입 직전의 흐름이 보였습니다."],
+  "A+": ["꽤 괜찮은 결과입니다.", "중상위권 판정입니다."],
+  "A": ["평균 이상은 확실히 했습니다.", "기본기는 잘 살렸습니다."],
+  "A-": ["나쁘지 않은 결과입니다.", "무난한 편이지만 아쉬움이 남습니다."],
+  "B+": ["무난한 편이지만 다듬을 여지가 있습니다."],
+  "B": ["평범한 결과입니다."],
+  "B-": ["아쉬움이 조금 남는 결과입니다."],
+  "C+": ["아쉽지만 가능성은 충분합니다."],
+  "C": ["선택이 많이 갈렸어요."],
+  "C-": ["선택이 자주 빗나갔어요."],
+  "D+": ["선택이 많이 엇갈렸어요."],
+  "D": ["판단이 자주 빗나갔어요."],
+  "D-": ["많이 흔들렸습니다."],
+  "E+": ["선택이 대부분 빗나갔어요."],
+  "E": ["거의 대부분 엇갈렸습니다."],
+  "E-": ["메타 파악이 더 필요한 것 같습니다."],
+  "F+": ["집중이 필요합니다."],
+  "F": ["토너먼트 흐름을 따라가기 어려웠던 판정입니다."],
+  "F-": ["이번엔 흐름이 맞지 않았어요. 다시 도전!"]
+};
+
+const fullToShortMap = {
+  "고독한 기사":"고기","전투 태세":"전태","광기":"광기","광전사의 비기":"비기",
+  "분노의 망치":"분망","중력 수련":"중수","심판자":"심판자","축복의 오라":"축오",
+  "처단자":"처단자","포식자":"포식자","빛의 기사":"빛의 기사","해방자":"해방자",
+  "초심":"초심","오의 강화":"오의","충격 단련":"충단","체술":"체술",
+  "무상신공":"무상","역천지체":"역천","절정":"절정","절제":"절제",
+  "오의난무":"난무","일격필살":"일격","권왕파천무":"권왕","수라의 길":"수라",
+  "전술 탄환":"전탄","핸드 거너":"핸건","화력 강화":"화강","포격 강화":"포강",
+  "죽음의 습격":"죽습","두 번째 동료":"두동","진화의 유산":"유산",
+  "아르데타인의 기술":"기술","피스메이커":"피메","사냥의 시간":"사시",
+  "상급 소환사":"상소","넘치는 교감":"교감","황제의 칙령":"황제","황후의 은총":"황후",
+  "진실된 용맹":"진용","절실한 구원":"절구","점화":"점화","환류":"환류",
+  "버스트":"버스트","잔재된 기운":"잔재","멈출 수 없는 충동":"충동",
+  "완벽한 억제":"억제","달의 소리":"달소","갈증":"갈증",
+  "만월의 집행자":"만월","만개":"만개","그믐의 경계":"그믐","회귀":"회귀","이슬비":"이슬비",
+  "질풍노도":"질풍","환수 각성":"환각","야성":"야성","업화":"업화","드레드 로어":"드드",
+  "시간 관리자":"시간","공간 검사":"공간"
+};
+
+const classGroups = {
+  "전사":["워로드","버서커","디스트로이어","홀리나이트","슬레이어","발키리"],
+  "무도가":["배틀마스터","인파이터","기공사","창술사","스트라이커","브레이커"],
+  "헌터":["데빌헌터","블래스터","호크아이","스카우터","건슬링어"],
+  "마법사":["서머너","아르카나","바드","소서리스"],
+  "암살자":["블레이드","데모닉","리퍼","소울이터"],
+  "스페셜리스트":["도화가","기상술사","환수사","차원술사"],
+  "가디언나이트":["가디언나이트"]
+};
+
+const classColorMap = {
+  "워로드":"engr-warrior","버서커":"engr-warrior","디스트로이어":"engr-warrior","홀리나이트":"engr-warrior","슬레이어":"engr-warrior","발키리":"engr-warrior",
+  "배틀마스터":"engr-fighter","인파이터":"engr-fighter","기공사":"engr-fighter","창술사":"engr-fighter","스트라이커":"engr-fighter","브레이커":"engr-fighter",
+  "데빌헌터":"engr-hunter","블래스터":"engr-hunter","호크아이":"engr-hunter","스카우터":"engr-hunter","건슬링어":"engr-hunter",
+  "서머너":"engr-mage","아르카나":"engr-mage","바드":"engr-mage","소서리스":"engr-mage",
+  "블레이드":"engr-assassin","데모닉":"engr-assassin","리퍼":"engr-assassin","소울이터":"engr-assassin",
+  "도화가":"engr-specialist","기상술사":"engr-specialist","환수사":"engr-specialist","차원술사":"engr-specialist",
+  "가디언나이트":"engr-guardian"
+};
+
+const OP_LINES = [
+  "어느 직각이 더 강할까?","최강 직각 월드컵","현재 메타의 승자는?",
+  "더 높은 티어를 골라주세요","성능으로 압도하라","진검승부",
+  "딜킹을 가려보자","실전에서 더 강한 직각은?","최종 승자는 누구?"
+];
+
+const FAVOR_LINES = [
+  "어느 직각이 더 끌릴까?","최애 직각 월드컵","당신의 취향 저격은?",
+  "마음이 가는 쪽을 골라주세요","가장 애정하는 직각은?",
+  "성능보다 마음이 먼저","나만의 원픽 직각은?"
+];
+
+/* ============================================================
+   유틸
+   ============================================================ */
+const $ = (id) => document.getElementById(id);
+
+function getShortName(full) { return fullToShortMap[full] || full; }
+function getIconPath(name) { return `./icon/${getShortName(name).replace(/\s+/g, "")}.png`; }
+function getColorClass(cls) { return classColorMap[cls] || ""; }
+
+function shuffle(arr) {
+  const c = [...arr];
+  for (let i = c.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [c[i], c[j]] = [c[j], c[i]];
+  }
+  return c;
+}
+
+function calcGrade(score, total) {
+  if (!total) return "F-";
+  const rate = Math.round((score / total) * 100);
+  for (const row of GRADE_TABLE) {
+    if (rate >= row.min && rate <= row.max) return row.grade;
+  }
+  return "F-";
+}
+
+function getRandomComment(grade) {
+  const list = GRADE_COMMENTS[grade] || ["잘 하셨습니다!"];
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+function getStampClass(grade) {
+  if (!grade) return "";
+  const g = grade.replace("+", "").replace("-", "");
+  return "stamp-" + g.toLowerCase();
+}
+
+function getNow() { return new Date(); }
+
+function getDateKey() {
+  const n = getNow();
+  return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`;
+}
+
+function getMonthKey() {
+  const n = getNow();
+  return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function getWeekKey() {
+  const n = getNow();
+  const f = new Date(n.getFullYear(), 0, 1);
+  const p = Math.floor((n - f) / 86400000);
+  return `${n.getFullYear()}-W${String(Math.ceil((p + f.getDay() + 1) / 7)).padStart(2, "0")}`;
+}
+
+function formatStampDate(dk) {
+  const [y, m, d] = dk.split("-");
+  return `${y.slice(2)} ${m} ${d}`;
+}
+
+function formatUpdatedAt(v) {
+  if (!v) return "-";
+  const d = new Date(v);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+}
+
+function getRoundLabel(count) {
+  if (count <= 2) return "FINAL";
+  if (count === 4) return "4강";
+  if (count === 8) return "8강";
+  if (count === 16) return "16강";
+  if (count === 32) return "32강";
+  return "예선";
+}
+
+function getBattleLine(type) {
+  const key = type === "op" ? "loa_line_pool_op" : "loa_line_pool_favor";
+  const source = type === "op" ? OP_LINES : FAVOR_LINES;
+  let pool = [];
+  try { pool = JSON.parse(localStorage.getItem(key) || "[]"); } catch { pool = []; }
+  if (!pool.length) pool = shuffle([...source]);
+  const picked = pool.pop();
+  localStorage.setItem(key, JSON.stringify(pool));
+  return picked || source[0];
+}
+
+function getAuraClass(cls) {
+  if (["워로드","버서커","디스트로이어","슬레이어"].includes(cls)) return "aura-power";
+  if (["배틀마스터","인파이터","기공사","창술사","스트라이커","브레이커"].includes(cls)) return "aura-ki";
+  if (["데빌헌터","블래스터","호크아이","스카우터","건슬링어"].includes(cls)) return "aura-gun";
+  if (["블레이드","데모닉","리퍼","소울이터"].includes(cls)) return "aura-dark";
+  if (["서머너","아르카나","소서리스","가디언나이트"].includes(cls)) return "aura-element";
+  if (["환수사","도화가","기상술사","차원술사"].includes(cls)) return "aura-flower";
+  if (["바드","홀리나이트","발키리"].includes(cls)) return "aura-holy";
+  return "aura-holy";
+}
+
+function getStageColor(count) {
+  if (count <= 2) return "stage-red";
+  if (count <= 4) return "stage-yellow";
+  if (count <= 8) return "stage-purple";
+  if (count <= 16) return "stage-blue";
+  return "stage-green";
+}
+
+function getVisitorKey() {
+  let k = localStorage.getItem("loa_tournament_visitor_key");
+  if (!k) {
+    k = "loa_tournament_user_" + crypto.randomUUID();
+    localStorage.setItem("loa_tournament_visitor_key", k);
+  }
+  return k;
+}
+
+async function getClientIP() {
+  const sources = [
+    () => fetch("https://api.ipify.org?format=json", { signal: AbortSignal.timeout(3000) }).then(r => r.json()).then(d => d.ip),
+    () => fetch("https://api64.ipify.org?format=json", { signal: AbortSignal.timeout(3000) }).then(r => r.json()).then(d => d.ip)
+  ];
+  for (const source of sources) {
+    try {
+      const ip = await source();
+      if (ip && typeof ip === "string" && ip.includes(".")) return ip;
+    } catch {}
+  }
+  return null;
+}
+
+function getWeeklyWinnerResetKey() {
+  const now = new Date();
+  const reset = new Date(now);
+  reset.setHours(0, 0, 0, 0);
+
+  const day = reset.getDay(); // 0=일요일, 3=수요일
+  const diff = day >= 3 ? day - 3 : day + 4; // 가장 최근 수요일까지 차이
+  reset.setDate(reset.getDate() - diff);
+
+  const y = reset.getFullYear();
+  const m = String(reset.getMonth() + 1).padStart(2, "0");
+  const d = String(reset.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+async function loadRecentWinnerExclusions(type) {
+  const clientIP = await getClientIP();
+  const startKey = getWeeklyWinnerResetKey();
+
+  let query = supabase
+    .from("sessions")
+    .select("winner_engraving")
+    .eq("tournament_type", type)
+    .gte("date_key", startKey);
+
+  query = clientIP
+    ? query.or(`visitor_key.eq.${visitorKey},client_ip.eq.${clientIP}`)
+    : query.eq("visitor_key", visitorKey);
+
+  const { data, error } = await query;
+  if (error || !data) return [];
+  return [...new Set(data.map(r => r.winner_engraving))];
+}
+
+
+
+
+
+
+/* ============================================================
+   커스텀 알림
+   ============================================================ */
+function showCustomAlert(icon, title, desc) {
+  const overlay = document.getElementById("customAlertOverlay");
+  const iconEl = document.getElementById("customAlertIcon");
+  const titleEl = document.getElementById("customAlertTitle");
+  const descEl = document.getElementById("customAlertDesc");
+
+  if (!overlay || !iconEl || !titleEl || !descEl) {
+    alert(desc);
+    return;
+  }
+
+  iconEl.textContent = icon || "ℹ️";
+  titleEl.textContent = title || "알림";
+  descEl.innerHTML = desc || "";
+  overlay.classList.add("show");
+}
+
+function hideCustomAlert() {
+  const overlay = document.getElementById("customAlertOverlay");
+  if (overlay) overlay.classList.remove("show");
+}
+
+
+
+
+
+
+
+/* ============================================================
+   DOM
+   ============================================================ */
+const shutter = $("tournamentShutter");
+const arenaIdle = $("arenaIdle");
+const arenaZone = $("arenaZone");
+const stageWrap = $("tournamentStageWrap");
+
+const phaseClass = $("phaseClass");
+const phaseBattle = $("phaseBattle");
+const phaseWinner = $("phaseWinner");
+const arenaLoadingOverlay = $("arenaLoadingOverlay");
+const arenaLoadingText = $("arenaLoadingText");
+
+const classPhaseBadge = $("classPhaseBadge");
+const classSelectGrid = $("classSelectGrid");
+const classCancelBtn = $("classCancelBtn");
+
+const battleProgressPct = $("battleProgressPct");
+const battleProgressFill = $("battleProgressFill");
+
+const leftFighter = $("leftFighter");
+const rightFighter = $("rightFighter");
+const leftAura = $("leftAura");
+const rightAura = $("rightAura");
+const leftIcon = $("leftIcon");
+const rightIcon = $("rightIcon");
+const leftFighterName = $("leftFighterName");
+const leftFighterClass = $("leftFighterClass");
+const rightFighterName = $("rightFighterName");
+const rightFighterClass = $("rightFighterClass");
+const battleQuitBtn = $("battleQuitBtn");
+
+const winnerBadge = $("winnerBadge");
+const winnerEngrName = $("winnerEngrName");
+const winnerEngrClass = $("winnerEngrClass");
+const winnerStampArea = $("winnerStampArea");
+const winnerStamp = $("winnerStamp");
+const winnerStampDate = $("winnerStampDate");
+const winnerStampGrade = $("winnerStampGrade");
+const winnerGradeInfo = $("winnerGradeInfo");
+const winnerComment = $("winnerComment");
+const winnerConfirmBtn = $("winnerConfirmBtn");
+
+const opStartBtn = $("opStartBtn");
+const favorStartBtn = $("favorStartBtn");
+const opShutterStamp = $("opShutterStamp");
+const favorShutterStamp = $("favorShutterStamp");
+
+const rankingSection = $("rankingSection");
+const rankingLock = $("rankingLock");
+const rankingInner = $("rankingInner");
+const rankingTitle = $("rankingTitle");
+const rankingSub = $("rankingSub");
+const rankingSummary = $("rankingSummary");
+const rankingList = $("rankingList");
+const rankingFooter = $("rankingFooter");
+const modeOpBtn = $("modeOpBtn");
+const modeFavorBtn = $("modeFavorBtn");
+const periodAllBtn = $("periodAllBtn");
+const periodWeekBtn = $("periodWeekBtn");
+const periodMonthBtn = $("periodMonthBtn");
+
+const quitOverlay = $("quitOverlay");
+const quitCancelBtn = $("quitCancelBtn");
+const quitConfirmBtn = $("quitConfirmBtn");
+
+const guideModal = $("guideModal");
+const closeGuideBtn = $("closeGuideBtn");
+const gradeGrid = $("gradeGrid");
+
+const winnerAudio = $("winnerAudio");
+const flipAudio = $("flipAudio");
+const soundIcon = $("soundIcon");
+const soundSlider = $("soundSlider");
+const soundValue = $("soundValue");
+
+/* ============================================================
+   상태
+   ============================================================ */
+
+let visitorKey = null;
+let completedState = { op: false, favor: false };
+let todayOpGrade = null;
+let currentBoardMode = null;
+
+const S_BENEFIT_GRADES = ["S+", "S", "S-"];
+const SS_BENEFIT_GRADES = ["SS+", "SS", "SS-"];
+
+let gradeBenefitState = {
+  sActive: false,
+  ssActive: false,
+  sExpireAt: null,
+  ssExpireAt: null
+};
+
+let allCandidates = [];
+let rankingCache = {};
+let winRateCache = {};
+
+let currentTournamentType = null;
+let selectedClass = null;
+let currentRoundCandidates = [];
+let nextRoundCandidates = [];
+let currentIndex = 0;
+let currentLeft = null;
+let currentRight = null;
+let totalMatches = 0;
+let completedMatches = 0;
+let battleLogs = [];
+let pendingWinner = null;
+let opScore = 0;
+let opMaxScore = 0;
+let isChoosing = false;
+let isFinalizingTournament = false;
+
+
+/* ============================================================
+   등급 분포 통계
+   ============================================================ */
+let gradeDistStatsCache = null;
+
+async function loadGradeDistStats() {
+  if (gradeDistStatsCache) return gradeDistStatsCache;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_grade_distribution`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`
+      },
+      body: JSON.stringify({ p_type: "op", p_start_date: "2026-04-07" })
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const counts = {};
+    let total = 0;
+    GRADE_TABLE.forEach(g => counts[g.grade] = 0);
+    if (Array.isArray(data)) {
+      data.forEach(row => {
+        const c = parseInt(row.grade_count, 10) || 0;
+        counts[row.grade] = c;
+        total += c;
+      });
+    }
+    gradeDistStatsCache = { counts, total };
+    return gradeDistStatsCache;
+  } catch {
+    return null;
+  }
+}
+
+function getGradeDistributionInfo(grade, stats) {
+  if (!stats || !stats.total) return null;
+  const counts = stats.counts;
+  const total = stats.total;
+  const idx = GRADE_TABLE.findIndex(g => g.grade === grade);
+  if (idx === -1) return null;
+
+  let betterCount = 0;
+  for (let i = 0; i < idx; i++) {
+    betterCount += counts[GRADE_TABLE[i].grade] || 0;
+  }
+  const sameCount = counts[grade] || 0;
+  let topPct = Number(((betterCount / total) * 100).toFixed(1));
+  if (idx === 0) topPct = 0.1;
+
+  return {
+    topPct,
+    samePct: Number(((sameCount / total) * 100).toFixed(1)),
+    sameCount,
+    total
+  };
+}
+
+
+
+/* 조별 예선 상태 */
+const GROUP_NAMES = ["A", "B", "C", "D"];
+const GROUP_COLORS = { A: "stage-green", B: "stage-blue", C: "stage-purple", D: "stage-yellow" };
+
+let subgroupQueue = [];
+let currentGroupIndex = 0;
+let groupResults = { A: [], B: [], C: [], D: [] };
+let isQualifierPhase = true;
+let mainRoundCandidates = [];
+let recentWinnerCount = 0;
+
+// 조 대진 현황판
+let currentBigGroupRoster = [];
+let currentBigGroupName = null;
+let bigGroupStatus = {};
+let bigGroupMatchLog = [];
+let bigGroupMatchCounter = 0;
+let currentMatchLogIndex = null;
+let groupLogExpanded = false;
+const GROUP_LOG_COLLAPSED_COUNT = 5;
+
+
+/* ============================================================
+   사운드
+   ============================================================ */
+let soundEnabled = true;
+let masterVolume = 50;
+
+function updateSoundUI() {
+  if (!soundSlider || !soundValue || !soundIcon) return;
+  soundSlider.value = masterVolume;
+  soundValue.textContent = soundEnabled ? `${masterVolume}%` : "OFF";
+  if (!soundEnabled || masterVolume === 0) soundIcon.textContent = "🔇";
+  else if (masterVolume <= 50) soundIcon.textContent = "🔉";
+  else soundIcon.textContent = "🔊";
+}
+
+function applySoundVolume() {
+  const vol = soundEnabled ? masterVolume / 100 : 0;
+  if (winnerAudio) winnerAudio.volume = vol;
+  if (flipAudio) flipAudio.volume = vol;
+}
+
+if (soundSlider) {
+  soundSlider.addEventListener("input", (e) => {
+    masterVolume = Number(e.target.value);
+    if (masterVolume > 0) soundEnabled = true;
+    updateSoundUI();
+    applySoundVolume();
+  });
+}
+
+if (soundIcon) {
+  soundIcon.addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+    if (!soundEnabled) masterVolume = 0;
+    else if (masterVolume === 0) masterVolume = 50;
+    updateSoundUI();
+    applySoundVolume();
+  });
+}
+
+function playFlip() {
+  if (!soundEnabled || masterVolume <= 0) return;
+  try { flipAudio.currentTime = 0; flipAudio.volume = masterVolume / 100; flipAudio.play().catch(() => {}); } catch {}
+}
+
+function playWinner() {
+  if (!soundEnabled || masterVolume <= 0) return;
+  try { winnerAudio.currentTime = 0; winnerAudio.volume = masterVolume / 100; winnerAudio.play().catch(() => {}); } catch {}
+}
+
+/* ============================================================
+   데이터 로드
+   ============================================================ */
+async function loadCandidates() {
+  const { data, error } = await supabase
+    .from("candidates")
+    .select("id,class_name,engraving_name,enabled")
+    .order("id", { ascending: true });
+  if (error || !data) { console.error("loadCandidates error", error); return; }
+  allCandidates = data;
+}
+
+async function loadRecentWinRates(type) {
+  winRateCache = {};
+  const { data, error } = await supabase.rpc("get_recent_winrates", { p_type: type, p_days: 15 });
+  if (error || !data) return;
+  for (const row of data) { winRateCache[row.engraving_name] = Number(row.win_rate); }
+}
+
+function getWinRate(name) {
+  return winRateCache[name] !== undefined ? winRateCache[name] : 0.5;
+}
+
+async function preloadIcons() {
+  if (!allCandidates.length) return;
+  const paths = [...new Set(allCandidates.map(c => getIconPath(c.engraving_name)))];
+  await Promise.all(paths.map(src => new Promise(resolve => {
+    const img = new Image();
+    img.onload = img.onerror = resolve;
+    img.src = src;
+  })));
+}
+
+
+function parseDateKeyToDate(dateKey) {
+  if (!dateKey) return null;
+  const [y, m, d] = dateKey.split("-").map(Number);
+  return new Date(y, m - 1, d, 0, 0, 0, 0);
+}
+
+function getMonthEndExpireAt(baseDate) {
+  if (!baseDate) return null;
+  return new Date(
+    baseDate.getFullYear(),
+    baseDate.getMonth() + 1,
+    0,
+    23,
+    59,
+    59,
+    999
+  );
+}
+
+function getSBenefitExpireAt(dateKey) {
+  const baseDate = parseDateKeyToDate(dateKey);
+  return getMonthEndExpireAt(baseDate);
+}
+
+function getSSBenefitExpireAt(dateKey) {
+  const baseDate = parseDateKeyToDate(dateKey);
+  if (!baseDate) return null;
+
+  return new Date(
+    baseDate.getFullYear(),
+    baseDate.getMonth() + 3,
+    0,
+    23,
+    59,
+    59,
+    999
+  );
+}
+
+async function loadGradeBenefitState() {
+  gradeBenefitState = {
+    sActive: false,
+    ssActive: false,
+    sExpireAt: null,
+    ssExpireAt: null
+  };
+
+  const { data, error } = await supabase
+    .from("sessions")
+    .select("grade,date_key")
+    .eq("visitor_key", visitorKey)
+    .not("grade", "is", null);
+
+  if (error || !data || !data.length) return;
+
+  const now = new Date();
+  let latestSExpire = null;
+  let latestSSExpire = null;
+
+  data.forEach(row => {
+    if (!row.grade || !row.date_key) return;
+
+    if (S_BENEFIT_GRADES.includes(row.grade)) {
+      const expireAt = getSBenefitExpireAt(row.date_key);
+      if (expireAt && expireAt >= now) {
+        if (!latestSExpire || expireAt > latestSExpire) {
+          latestSExpire = expireAt;
+        }
+      }
+    }
+
+    if (SS_BENEFIT_GRADES.includes(row.grade)) {
+      const expireAt = getSSBenefitExpireAt(row.date_key);
+      if (expireAt && expireAt >= now) {
+        if (!latestSSExpire || expireAt > latestSSExpire) {
+          latestSSExpire = expireAt;
+        }
+      }
+    }
+  });
+
+  gradeBenefitState.sActive = !!latestSExpire;
+  gradeBenefitState.ssActive = !!latestSSExpire;
+  gradeBenefitState.sExpireAt = latestSExpire;
+  gradeBenefitState.ssExpireAt = latestSSExpire;
+}
+
+
+
+
+
+
+function applyTournamentEntryState() {
+  const isSSExempt = gradeBenefitState.ssActive;
+
+  if (opStartBtn) {
+    opStartBtn.disabled = isSSExempt;
+    opStartBtn.classList.toggle("exempt-disabled", isSSExempt);
+    opStartBtn.textContent = isSSExempt
+      ? "🏅 SS 혜택 활성 · OP 토너먼트 면제"
+      : "🔥 OP 토너먼트 시작";
+  }
+
+  if (favorStartBtn) {
+    favorStartBtn.disabled = isSSExempt;
+    favorStartBtn.classList.toggle("exempt-disabled", isSSExempt);
+    favorStartBtn.textContent = isSSExempt
+      ? "🏅 SS 혜택 활성 · 호감 토너먼트 면제"
+      : "💗 호감 토너먼트 시작";
+  }
+}
+
+
+
+async function loadTodayParticipation() {
+  visitorKey = getVisitorKey();
+
+  const { data, error } = await supabase
+    .from("sessions")
+    .select("tournament_type,date_key,grade")
+    .eq("visitor_key", visitorKey)
+    .eq("date_key", getDateKey());
+
+  if (error) return;
+
+  completedState.op = !!data.find(r => r.tournament_type === "op");
+  completedState.favor = !!data.find(r => r.tournament_type === "favor");
+
+  if (completedState.op) {
+    const opRow = data.find(r => r.tournament_type === "op");
+    todayOpGrade = opRow?.grade || null;
+    renderShutterStamp("op", todayOpGrade);
+  }
+
+  if (completedState.favor) {
+    renderShutterStamp("favor", null);
+  }
+
+  await loadGradeBenefitState();
+  applyTournamentEntryState();
+  updateRankingLockState();
+}
+
+
+
+
+function hasGradeBenefitAllAccess() {
+  return gradeBenefitState.sActive || gradeBenefitState.ssActive;
+}
+
+function getRankingRevealLimit() {
+  if (hasGradeBenefitAllAccess()) return Infinity;
+  if (completedState.op && completedState.favor) return Infinity;
+  if (completedState.op || completedState.favor) return 20;
+  return 5;
+}
+
+function getRankingStatusText() {
+  if (gradeBenefitState.ssActive) {
+    return "SS 혜택 활성 · 전체 랭킹 공개 중";
+  }
+  if (gradeBenefitState.sActive) {
+    return "S 혜택 활성 · 전체 랭킹 공개 중";
+  }
+  if (completedState.op && completedState.favor) {
+    return "OP + 호감 완료 · 전체 랭킹 공개";
+  }
+  if (completedState.op || completedState.favor) {
+    return "토너먼트 1회 완료 · 20위까지 공개";
+  }
+  return "기본 열람 · 5위까지 공개";
+}
+
+
+
+
+
+/* ============================================================
+   셔터 도장
+   ============================================================ */
+function renderShutterStamp(type, grade) {
+  const el = type === "op" ? opShutterStamp : favorShutterStamp;
+  if (!el) return;
+
+  if (type === "op" && grade) {
+    el.innerHTML = `
+      <div class="shutter-stamp-circle ${getStampClass(grade)}">
+        <div class="shutter-stamp-date">${formatStampDate(getDateKey())}</div>
+        <div class="shutter-stamp-grade">${grade}</div>
+        <div class="shutter-stamp-done">참여완료</div>
+      </div>`;
+  } else {
+    el.innerHTML = `
+      <div class="shutter-stamp-circle stamp-favor">
+        <div class="shutter-stamp-date">${formatStampDate(getDateKey())}</div>
+        <div class="shutter-stamp-done">참여완료</div>
+      </div>`;
+  }
+}
+
+/* ============================================================
+   클래스 선택 UI
+   ============================================================ */
+function buildClassSelectGrid() {
+  classSelectGrid.innerHTML = Object.entries(classGroups).map(([group, classes]) => `
+    <div class="class-group-row">
+      <div class="class-group-tag">${group}</div>
+      <div class="class-group-btns">
+        ${classes.map(c => `<button class="class-pick-btn" data-class="${c}">${c}</button>`).join("")}
+      </div>
+    </div>
+  `).join("");
+
+  classSelectGrid.querySelectorAll(".class-pick-btn").forEach(btn => {
+    btn.addEventListener("click", () => startBattle(btn.dataset.class));
+  });
+}
+
+/* ============================================================
+   경기장 열기/닫기
+   ============================================================ */
+function showPhase(p) {
+  phaseClass.classList.remove("active");
+  phaseBattle.classList.remove("active");
+  phaseWinner.classList.remove("active");
+  const phaseQualified = $("phaseQualified");
+  if (phaseQualified) phaseQualified.classList.remove("active");
+  p.classList.add("active");
+}
+
+function openArena(mode) {
+  currentTournamentType = mode;
+  shutter.classList.add("rolled-up");
+  arenaIdle.classList.add("hidden");
+  arenaZone.classList.add("open");
+  stageWrap.classList.add("arena-active");
+  stageWrap.classList.remove("mode-op", "mode-favor");
+  stageWrap.classList.add(mode === "op" ? "mode-op" : "mode-favor");
+
+  classPhaseBadge.textContent = mode === "op" ? "OP TOURNAMENT" : "FAVOR TOURNAMENT";
+  classPhaseBadge.className = "arena-phase-badge " + (mode === "op" ? "badge-op" : "badge-favor");
+
+  buildClassSelectGrid();
+  showPhase(phaseClass);
+
+  setTimeout(() => { arenaZone.scrollIntoView({ behavior: "smooth", block: "start" }); }, 340);
+}
+
+
+
+function showArenaLoading(message = "경기장을 불러오는 중입니다...") {
+  if (arenaLoadingText) arenaLoadingText.textContent = message;
+  if (arenaLoadingOverlay) arenaLoadingOverlay.classList.add("show");
+}
+
+function hideArenaLoading() {
+  if (arenaLoadingOverlay) arenaLoadingOverlay.classList.remove("show");
+}
+
+
+
+
+function closeArena() {
+  hideArenaLoading();
+
+  shutter.classList.remove("rolled-up");
+  arenaIdle.classList.remove("hidden");
+  arenaZone.classList.remove("open");
+  stageWrap.classList.remove("arena-active", "mode-op", "mode-favor");
+
+  currentTournamentType = null;
+  selectedClass = null;
+  currentIndex = 0;
+  currentLeft = null;
+  currentRight = null;
+  totalMatches = 0;
+  completedMatches = 0;
+  battleLogs = [];
+  pendingWinner = null;
+  opScore = 0;
+  opMaxScore = 0;
+  isChoosing = false;
+
+  subgroupQueue = [];
+  groupResults = { A: [], B: [], C: [], D: [] };
+  currentGroupIndex = 0;
+  isQualifierPhase = true;
+  mainRoundCandidates = [];
+  resetGroupPanel();
+}
+
+
+
+
+
+
+/* ============================================================
+   시작하기
+   ============================================================ */
+async function handleStart(type) {
+  if (gradeBenefitState.ssActive) {
+        showCustomAlert("🏅", "SS 혜택 활성", "SS 등급 혜택이 활성화되어 있어<br>토너먼트가 면제됩니다.");
+    return;
+  }
+
+  if (type === "op" && completedState.op) {
+        showCustomAlert("✅", "이미 완료!", "OP 토너먼트는 오늘 이미 완료했습니다.<br>내일 다시 참여할 수 있어요.");
+    return;
+  }
+
+  if (type === "favor" && completedState.favor) {
+        showCustomAlert("✅", "이미 완료!", "호감 토너먼트는 오늘 이미 완료했습니다.<br>내일 다시 참여할 수 있어요.");
+    return;
+  }
+
+  openArena(type);
+}
+/* ============================================================
+   미니 조 큐 생성
+   ============================================================ */
+function buildSubgroupQueue(filtered) {
+  const displayPools = { A: [], B: [], C: [], D: [] };
+  filtered.forEach((c, idx) => displayPools[GROUP_NAMES[idx % 4]].push(c));
+
+  const queue = [];
+  GROUP_NAMES.forEach(g => {
+    const members = shuffle(displayPools[g]);
+    const subPools = [[], [], [], []];
+    members.forEach((c, idx) => subPools[idx % 4].push(c));
+    subPools.forEach(sp => queue.push({ displayGroup: g, pool: sp }));
+  });
+  return queue;
+}
+
+/* ============================================================
+   부전승 + 라운드 시작
+   ============================================================ */
+function pickByeCandidate(list) {
+  if (currentTournamentType === "op") {
+    let best = list[0];
+    let bestRate = getWinRate(best.engraving_name);
+    for (let i = 1; i < list.length; i++) {
+      const r = getWinRate(list[i].engraving_name);
+      if (r > bestRate) { best = list[i]; bestRate = r; }
+    }
+    return best;
+  }
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+function startNewRound(candidates) {
+  currentRoundCandidates = [...candidates];
+  nextRoundCandidates = [];
+  currentIndex = 0;
+
+  if (currentRoundCandidates.length > 1 && currentRoundCandidates.length % 2 === 1) {
+    const bye = pickByeCandidate(currentRoundCandidates);
+    currentRoundCandidates = currentRoundCandidates.filter(c => c !== bye);
+    nextRoundCandidates.push(bye);
+
+    if (isQualifierPhase) {
+      bigGroupMatchCounter++;
+      bigGroupMatchLog.push({ num: bigGroupMatchCounter, type: "bye", name: bye.engraving_name });
+      renderGroupPanel();
+    }
+  }
+}
+
+/* ============================================================
+   진행 단계 배지
+   ============================================================ */
+function getMatchPhaseLabel(groupName, matchNum) {
+  const totalInGroup = currentBigGroupRoster.length - 1;
+  const half = Math.ceil(totalInGroup / 2);
+  if (matchNum <= half) return `${groupName}조 예선 진행 중`;
+  return `${groupName}조 본선 선발전`;
+}
+
+function updateBattleStageUI() {
+  const stageBadge = $("battleStageBadge");
+  if (!stageBadge) return;
+
+  if (isQualifierPhase && currentBigGroupName) {
+    stageBadge.textContent = getMatchPhaseLabel(currentBigGroupName, bigGroupMatchCounter);
+  } else if (!isQualifierPhase) {
+    const count = currentRoundCandidates.length;
+    if (count <= 2) stageBadge.textContent = "결승전";
+    else if (count <= 4) stageBadge.textContent = "4강";
+    else if (count <= 8) stageBadge.textContent = "8강";
+    else stageBadge.textContent = "16강";
+  }
+}
+
+
+/* ============================================================
+   진행바 구간 렌더
+   ============================================================ */
+function renderProgressSegments(n) {
+  const wrap = $("battleProgressSegments");
+  if (!wrap) return;
+  if (n <= 16) { wrap.innerHTML = ""; return; }
+
+  const total = n - 1;
+  const bounds = [
+    { label: "예선", matches: n - 16 },
+    { label: "16강", matches: 8 },
+    { label: "8강", matches: 4 },
+    { label: "4강", matches: 2 },
+    { label: "결승", matches: 1 }
+  ];
+
+  let cum = 0;
+  wrap.innerHTML = bounds.map(b => {
+    const startPct = (cum / total) * 100;
+    cum += b.matches;
+    const endPct = (cum / total) * 100;
+    return `<div class="progress-segment" style="left:${startPct}%; width:${endPct - startPct}%;">
+      <span class="progress-segment-label">${b.label}</span>
+    </div>`;
+  }).join("");
+}
+
+/* ============================================================
+   조 대진 현황판
+   ============================================================ */
+function initGroupPanel(displayGroup, subgroupIdx) {
+  const startIdx = subgroupIdx - (subgroupIdx % 4);
+  let roster = [];
+  for (let i = startIdx; i < startIdx + 4; i++) {
+    if (subgroupQueue[i]) roster = roster.concat(subgroupQueue[i].pool);
+  }
+  currentBigGroupRoster = roster;
+  currentBigGroupName = displayGroup;
+  bigGroupStatus = {};
+  roster.forEach(c => { bigGroupStatus[c.engraving_name] = "alive"; });
+  bigGroupMatchLog = [];
+  bigGroupMatchCounter = 0;
+  groupLogExpanded = false;
+}
+
+function resetGroupPanel() {
+  currentBigGroupRoster = [];
+  currentBigGroupName = null;
+  bigGroupStatus = {};
+  bigGroupMatchLog = [];
+  bigGroupMatchCounter = 0;
+  currentMatchLogIndex = null;
+  groupLogExpanded = false;
+  renderGroupPanel();
+}
+
+function renderGroupPanel() {
+  const panel = $("battleGroupPanel");
+  if (!panel) return;
+
+  if (!isQualifierPhase || !currentBigGroupRoster.length) {
+    panel.innerHTML = "";
+    panel.style.display = "none";
+    return;
+  }
+  panel.style.display = "block";
+
+  const aliveList = currentBigGroupRoster.filter(c => bigGroupStatus[c.engraving_name] !== "eliminated");
+  const eliminatedList = currentBigGroupRoster.filter(c => bigGroupStatus[c.engraving_name] === "eliminated");
+
+  const aliveHtml = aliveList.map(c => `<span class="group-roster-chip">${getShortName(c.engraving_name)}</span>`).join("");
+  const eliminatedHtml = eliminatedList.map(c => `<span class="group-roster-chip eliminated">${getShortName(c.engraving_name)}</span>`).join("");
+
+  // 완료된 경기만 노출 (pending 제외)
+  const finishedLogs = bigGroupMatchLog.filter(e => e.type === "bye" || e.status === "done");
+  const reversedLogs = [...finishedLogs].reverse();
+
+  const visibleLogs = groupLogExpanded ? reversedLogs : reversedLogs.slice(0, GROUP_LOG_COLLAPSED_COUNT);
+
+  const renderTickerRow = (entry) => {
+    if (entry.type === "bye") {
+      return `<div class="match-ticker-row bye">
+        <span class="ticker-num">${entry.num}경기</span>
+        <span class="ticker-body">
+          <span class="ticker-bye-name">${getShortName(entry.name)}</span>
+          <span class="ticker-bye-tag">부전승</span>
+        </span>
+      </div>`;
+    }
+
+    const isLeftWinner = entry.winnerName === entry.leftName;
+    const winName = isLeftWinner ? entry.leftName : entry.rightName;
+    const loseName = isLeftWinner ? entry.rightName : entry.leftName;
+
+    return `<div class="match-ticker-row">
+      <span class="ticker-num">${entry.num}경기</span>
+      <span class="ticker-body">
+        <span class="ticker-winner">${getShortName(winName)}</span>
+        <span class="ticker-vs">승</span>
+        <span class="ticker-loser">${getShortName(loseName)}</span>
+      </span>
+    </div>`;
+  };
+
+  const logHtml = visibleLogs.map(renderTickerRow).join("");
+
+  const hasMore = reversedLogs.length > GROUP_LOG_COLLAPSED_COUNT;
+  const toggleHtml = hasMore
+    ? `<button type="button" class="group-log-toggle-btn" id="groupLogToggleBtn">${groupLogExpanded ? "접기 ▲" : `전체 기록 보기 (${reversedLogs.length}) ▼`}</button>`
+    : "";
+
+  const aliveCount = aliveList.length;
+  const eliminatedCount = eliminatedList.length;
+
+  panel.innerHTML = `
+    <div class="group-panel-header">
+      <div class="group-panel-title">${currentBigGroupName}조 대진 현황</div>
+      <div class="group-panel-sub">생존 ${aliveCount}명 · 탈락 ${eliminatedCount}명 · 총 ${currentBigGroupRoster.length}명</div>
+    </div>
+
+    <div class="group-roster-section">
+      <div class="group-roster-label">생존</div>
+      <div class="group-roster-list">${aliveHtml || '<span class="group-roster-chip eliminated">없음</span>'}</div>
+    </div>
+
+    ${eliminatedCount > 0 ? `
+    <div class="group-roster-section">
+      <div class="group-roster-label">탈락</div>
+      <div class="group-roster-list">${eliminatedHtml}</div>
+    </div>
+    ` : ""}
+
+    <div class="group-match-section">
+      <div class="group-match-label">경기 기록</div>
+      <div class="match-ticker-list">${logHtml || '<div class="match-ticker-empty">아직 완료된 경기가 없습니다.</div>'}</div>
+      ${toggleHtml}
+    </div>
+  `;
+}
+
+/* ============================================================
+   대진 시작
+   ============================================================ */
+
+
+
+async function startBattle(className) {
+  selectedClass = className;
+  showArenaLoading("경기장을 불러오는 중입니다...");
+
+  try {
+    let pool = currentTournamentType === "favor"
+      ? allCandidates.filter(i => i.enabled || FAVOR_ONLY_IDS.includes(i.id))
+      : allCandidates.filter(i => i.enabled);
+
+    const recentWinnersPromise = loadRecentWinnerExclusions(currentTournamentType);
+    const winRatePromise = currentTournamentType === "op"
+      ? loadRecentWinRates("op")
+      : Promise.resolve();
+
+    const [recentWinners] = await Promise.all([recentWinnersPromise, winRatePromise]);
+    recentWinnerCount = recentWinners.length;
+
+    const filtered = pool.filter(i =>
+      i.class_name !== className && !recentWinners.includes(i.engraving_name)
+    );
+
+    subgroupQueue = buildSubgroupQueue(filtered);
+    groupResults = { A: [], B: [], C: [], D: [] };
+    currentGroupIndex = 0;
+    isQualifierPhase = true;
+    mainRoundCandidates = [];
+    battleLogs = [];
+    pendingWinner = null;
+    opScore = 0;
+    opMaxScore = 0;
+    isChoosing = false;
+    completedMatches = 0;
+    totalMatches = filtered.length - 1;
+
+    renderProgressSegments(filtered.length);
+
+    showPhase(phaseBattle);
+
+    requestAnimationFrame(() => {
+      const targetTop = Math.max(
+        0,
+        phaseBattle.getBoundingClientRect().top + window.scrollY - 110
+      );
+      window.scrollTo({ top: targetTop, behavior: "smooth" });
+    });
+
+    const battleField = $("battleField");
+    if (battleField) battleField.classList.add("field-entering");
+
+    setTimeout(() => {
+      if (battleField) battleField.classList.remove("field-entering");
+      startGroupQualifier(0);
+      hideArenaLoading();
+    }, 120);
+  } catch (error) {
+    console.error("startBattle error:", error);
+    hideArenaLoading();
+        showCustomAlert("⚠️", "불러오기 실패", "경기장 데이터를 불러오지 못했습니다.<br>잠시 후 다시 시도해주세요.");
+  }
+}
+
+
+
+
+/* ============================================================
+   조별 예선
+   ============================================================ */
+function startGroupQualifier(subgroupIdx) {
+  const item = subgroupQueue[subgroupIdx];
+  if (!item) return;
+  const { displayGroup, pool } = item;
+
+  if (subgroupIdx % 4 === 0) initGroupPanel(displayGroup, subgroupIdx);
+  if (!pool || !pool.length) { handleSubgroupComplete(null); return; }
+
+  startNewRound(pool);
+
+  const heroKicker = $("battleHeroKicker");
+  const heroTitle = $("battleHeroTitle");
+  const heroSub = $("battleHeroSub");
+  const banner = $("battleHeroBanner");
+  const excluded = $("battleExcluded");
+
+  if (heroKicker) heroKicker.textContent = currentTournamentType === "op" ? "OP TOURNAMENT" : "FAVOR TOURNAMENT";
+  if (heroTitle) heroTitle.textContent = currentTournamentType === "op" ? "OP 직각 토너먼트" : "호감 직각 토너먼트";
+  if (heroSub) heroSub.textContent = getBattleLine(currentTournamentType);
+  if (excluded) {
+    const extra = recentWinnerCount > 0 ? ` · 이번 주 우승 ${recentWinnerCount}개 제외` : "";
+    excluded.textContent = "⚔️ " + selectedClass + " 제외" + extra;
+  }
+
+  if (banner) {
+    banner.classList.remove("banner-op", "banner-favor", "banner-group-a", "banner-group-b", "banner-group-c", "banner-group-d");
+    banner.classList.add(currentTournamentType === "op" ? "banner-op" : "banner-favor");
+    banner.classList.add("banner-group-" + displayGroup.toLowerCase());
+  }
+
+  const fill = $("battleProgressFill");
+  if (fill) {
+    fill.classList.remove("stage-green", "stage-blue", "stage-purple", "stage-yellow", "stage-red");
+    fill.classList.add(GROUP_COLORS[displayGroup]);
+  }
+
+  updateBattleStageUI();
+  renderGroupPanel();
+  renderNextBattle();
+}
+
+/* ============================================================
+   조별 예선 종료 처리
+   ============================================================ */
+function handleSubgroupComplete(winner) {
+  const { displayGroup } = subgroupQueue[currentGroupIndex];
+  if (winner) groupResults[displayGroup].push(winner);
+
+  currentGroupIndex++;
+
+  if (currentGroupIndex < subgroupQueue.length) {
+    if (currentGroupIndex % 4 === 0) resetGroupPanel();
+
+    const battleField = $("battleField");
+    if (battleField) battleField.classList.add("field-entering");
+    setTimeout(() => {
+      if (battleField) battleField.classList.remove("field-entering");
+      startGroupQualifier(currentGroupIndex);
+    }, 200);
+  } else {
+    resetGroupPanel();
+    showQualifiedPhase();
+  }
+}
+
+function finishStage(winner) {
+  if (isQualifierPhase) {
+    handleSubgroupComplete(winner);
+  } else {
+    pendingWinner = winner;
+    showWinnerPhase(winner);
+  }
+}
+
+/* ============================================================
+   대진 렌더
+   ============================================================ */
+function renderNextBattle() {
+  if (currentRoundCandidates.length === 1) { finishStage(currentRoundCandidates[0]); return; }
+
+  if (currentIndex >= currentRoundCandidates.length) {
+    if (nextRoundCandidates.length === 1) { finishStage(nextRoundCandidates[0]); return; }
+    if (nextRoundCandidates.length === 0) return;
+    startNewRound(nextRoundCandidates);
+    renderNextBattle();
+    return;
+  }
+
+  currentLeft = currentRoundCandidates[currentIndex];
+  currentRight = currentRoundCandidates[currentIndex + 1];
+
+  if (!currentRight) { nextRoundCandidates.push(currentLeft); currentIndex++; renderNextBattle(); return; }
+
+  leftFighter.classList.remove("card-win", "card-lose");
+  rightFighter.classList.remove("card-win", "card-lose");
+  leftFighter.disabled = false;
+  rightFighter.disabled = false;
+
+  leftAura.className = "card-aura " + getAuraClass(currentLeft.class_name);
+  leftIcon.src = getIconPath(currentLeft.engraving_name);
+  leftIcon.alt = currentLeft.engraving_name;
+  leftIcon.onerror = () => { leftIcon.style.opacity = "0.2"; };
+  leftIcon.style.opacity = "1";
+  leftFighterName.textContent = getShortName(currentLeft.engraving_name);
+  leftFighterName.className = "card-engr-name " + getColorClass(currentLeft.class_name);
+  leftFighterClass.textContent = currentLeft.class_name;
+
+  rightAura.className = "card-aura " + getAuraClass(currentRight.class_name);
+  rightIcon.src = getIconPath(currentRight.engraving_name);
+  rightIcon.alt = currentRight.engraving_name;
+  rightIcon.onerror = () => { rightIcon.style.opacity = "0.2"; };
+  rightIcon.style.opacity = "1";
+  rightFighterName.textContent = getShortName(currentRight.engraving_name);
+  rightFighterName.className = "card-engr-name " + getColorClass(currentRight.class_name);
+  rightFighterClass.textContent = currentRight.class_name;
+
+  let roundLabel, stageColor;
+  if (isQualifierPhase) {
+    const { displayGroup } = subgroupQueue[currentGroupIndex];
+    const count = currentRoundCandidates.length;
+    if (count <= 2) roundLabel = displayGroup + "조 결승";
+    else if (count <= 4) roundLabel = displayGroup + "조 4강";
+    else roundLabel = displayGroup + "조 예선";
+    stageColor = "stage-green";
+  } else {
+    roundLabel = getRoundLabel(currentRoundCandidates.length);
+    const count = currentRoundCandidates.length;
+    if (count <= 2) stageColor = "stage-red";
+    else if (count <= 4) stageColor = "stage-yellow";
+    else if (count <= 8) stageColor = "stage-purple";
+    else if (count <= 16) stageColor = "stage-blue";
+    else stageColor = "stage-green";
+  }
+
+
+
+  const heroSub = $("battleHeroSub");
+  if (heroSub) heroSub.textContent = getBattleLine(currentTournamentType);
+
+  const fill = $("battleProgressFill");
+  if (fill) {
+    fill.classList.remove("stage-green", "stage-blue", "stage-purple", "stage-yellow", "stage-red");
+    fill.classList.add(stageColor);
+  }
+
+  const pct = totalMatches > 0 ? Math.floor((completedMatches / totalMatches) * 100) : 0;
+  battleProgressPct.textContent = pct + "%";
+  battleProgressFill.style.width = pct + "%";
+
+  if (isQualifierPhase) {
+    bigGroupMatchLog.push({
+      num: bigGroupMatchCounter + 1, type: "match",
+      leftName: currentLeft.engraving_name, rightName: currentRight.engraving_name,
+      status: "pending", winnerName: null
+    });
+    currentMatchLogIndex = bigGroupMatchLog.length - 1;
+    updateBattleStageUI();
+    renderGroupPanel();
+  } else {
+    updateBattleStageUI();
+  }
+}
+
+/* ============================================================
+   선택 처리
+   ============================================================ */
+function chooseBattleWinner(side) {
+  if (!currentLeft || !currentRight || isChoosing) return;
+  isChoosing = true;
+  playFlip();
+
+  const winner = side === "left" ? currentLeft : currentRight;
+  const loser = side === "left" ? currentRight : currentLeft;
+  const winCard = side === "left" ? leftFighter : rightFighter;
+  const loseCard = side === "left" ? rightFighter : leftFighter;
+
+  if (currentTournamentType === "op") {
+    const wrW = getWinRate(winner.engraving_name);
+    const wrL = getWinRate(loser.engraving_name);
+    opMaxScore++;
+    if (wrW >= wrL) opScore++;
+  }
+
+  leftFighter.disabled = true;
+  rightFighter.disabled = true;
+
+  battleLogs.push({
+    left_engraving: currentLeft.engraving_name,
+    right_engraving: currentRight.engraving_name,
+    winner_engraving: winner.engraving_name,
+    loser_engraving: loser.engraving_name,
+    round_label: getRoundLabel(currentRoundCandidates.length)
+  });
+
+  if (isQualifierPhase && currentMatchLogIndex !== null) {
+    bigGroupMatchCounter++;
+    const entry = bigGroupMatchLog[currentMatchLogIndex];
+    if (entry) { entry.status = "done"; entry.winnerName = winner.engraving_name; }
+    bigGroupStatus[loser.engraving_name] = "eliminated";
+    currentMatchLogIndex = null;
+    renderGroupPanel();
+  }
+
+  nextRoundCandidates.push(winner);
+  completedMatches++;
+  currentIndex += 2;
+
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  if (isMobile) {
+    winCard.classList.add("card-win");
+    loseCard.classList.add("card-lose");
+    setTimeout(() => { isChoosing = false; renderNextBattle(); }, 120);
+    return;
+  }
+
+  winCard.classList.add("card-win");
+  loseCard.classList.add("card-lose");
+  setTimeout(() => { isChoosing = false; renderNextBattle(); }, 450);
+}
+
+/* ============================================================
+   16강 진출자 화면
+   ============================================================ */
+function showQualifiedPhase() {
+  isQualifierPhase = false;
+
+  GROUP_NAMES.forEach(groupName => {
+    const el = $("qualifiedGroup" + groupName);
+    if (!el) return;
+
+    const winners = groupResults[groupName];
+    if (!winners.length) {
+      el.innerHTML = '<span class="qualified-chip empty">-</span>';
+      return;
+    }
+
+    el.innerHTML = winners.map(w => {
+      const short = getShortName(w.engraving_name);
+      const iconSrc = getIconPath(w.engraving_name);
+      const colorCls = getColorClass(w.class_name);
+      return `
+        <span class="qualified-chip ${colorCls}">
+          <img class="qualified-chip-icon" src="${iconSrc}" alt="${short}" onerror="this.style.opacity='0.2'">
+          <span class="qualified-chip-name">${short}</span>
+        </span>`;
+    }).join("");
+  });
+
+  const phaseQualified = $("phaseQualified");
+  showPhase(phaseQualified);
+  createConfetti();
+}
+
+/* ============================================================
+   본선 시작
+   ============================================================ */
+function startMainRound() {
+  mainRoundCandidates = [];
+  GROUP_NAMES.forEach(g => { groupResults[g].forEach(w => mainRoundCandidates.push(w)); });
+  mainRoundCandidates = shuffle(mainRoundCandidates);
+
+  const banner = $("battleHeroBanner");
+  if (banner) banner.classList.remove("banner-group-a", "banner-group-b", "banner-group-c", "banner-group-d");
+
+  const fill = $("battleProgressFill");
+  if (fill) {
+    fill.classList.remove("stage-green", "stage-blue", "stage-purple", "stage-yellow");
+    fill.classList.add("stage-blue");
+  }
+
+  showPhase(phaseBattle);
+
+  const battleField = $("battleField");
+  if (battleField) battleField.classList.add("field-entering");
+
+  setTimeout(() => {
+    if (battleField) battleField.classList.remove("field-entering");
+    startNewRound(mainRoundCandidates);
+    renderNextBattle();
+  }, 200);
+}
+
+
+
+/* ============================================================
+   우승 화면
+   ============================================================ */
+function createConfetti() {
+  const zone = $("winnerConfettiZone");
+  if (!zone) return;
+  const colors = ["#ff7070", "#ffb36b", "#ffd76b", "#8bd0ff", "#c48bff"];
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement("div");
+    p.className = "confetti-piece";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.animationDelay = (Math.random() * 0.4) + "s";
+    zone.appendChild(p);
+    setTimeout(() => p.remove(), 3200);
+  }
+}
+
+function createEntryConfetti() {
+  const zone = $("battleEntryConfetti");
+  if (!zone) return;
+  zone.innerHTML = "";
+  const colors = ["#ff7070", "#ffb36b", "#ffd76b", "#8bd0ff", "#c48bff", "#7effae"];
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement("div");
+    p.className = "entry-confetti-piece";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.animationDelay = (Math.random() * 0.5) + "s";
+    p.style.animationDuration = (1.5 + Math.random() * 1.0) + "s";
+    zone.appendChild(p);
+    setTimeout(() => p.remove(), 3000);
+  }
+}
+
+
+function showWinnerPhase(winner) {
+  playWinner();
+
+  battleProgressPct.textContent = "100%";
+  battleProgressFill.style.width = "100%";
+
+  winnerBadge.textContent = currentTournamentType === "op" ? "OP TOURNAMENT COMPLETE" : "FAVOR TOURNAMENT COMPLETE";
+  winnerEngrName.textContent = getShortName(winner.engraving_name);
+  winnerEngrClass.textContent = "우승 직각 · " + winner.class_name;
+
+  if (currentTournamentType === "op") {
+    const grade = calcGrade(opScore, opMaxScore);
+    const color = GRADE_COLORS[grade] || "#ccc";
+
+    winnerStampArea.style.display = "block";
+    winnerStampDate.textContent = formatStampDate(getDateKey());
+    winnerStampGrade.textContent = grade;
+    winnerStamp.className = "winner-stamp " + getStampClass(grade);
+
+    winnerGradeInfo.innerHTML = `
+      <div style="color:${color}; font-weight:700; font-size:15px; margin-bottom:8px;">
+        📊 실제 유저 분포를 계산 중입니다...
+      </div>`;
+    winnerComment.innerHTML = `<div style="color:#8fa3bf; font-size:13px; line-height:1.7;">${getRandomComment(grade)}</div>`;
+
+    loadGradeDistStats().then(stats => {
+      const info = getGradeDistributionInfo(grade, stats);
+      if (!info) {
+        winnerGradeInfo.innerHTML = `
+          <div style="color:${color}; font-weight:700; font-size:15px; margin-bottom:8px;">
+            📊 실제 유저 분포 데이터가 아직 부족합니다
+          </div>`;
+        return;
+      }
+      winnerGradeInfo.innerHTML = `
+        <div style="color:${color}; font-weight:700; font-size:15px; margin-bottom:8px;">
+          📊 전체 유저 중 <span style="font-size:18px; font-weight:900;">상위 ${info.topPct}%</span> 수준의 선택입니다
+        </div>`;
+      winnerComment.innerHTML = `
+        <div style="color:#8fa3bf; font-size:13px; line-height:1.7;">
+          같은 등급(<strong style="color:${color};">${grade}</strong>)을 받은 유저는 전체의 <strong>${info.samePct}%</strong>입니다.<br>
+          ${getRandomComment(grade)}
+        </div>`;
+    });
+  } else {
+    winnerStampArea.style.display = "none";
+    winnerGradeInfo.innerHTML = "";
+    winnerComment.textContent = "토너먼트가 완료되었습니다. 확인을 누르면 결과가 저장됩니다.";
+  }
+
+  showPhase(phaseWinner);
+  createConfetti();
+}
+
+
+/* ============================================================
+   저장
+   ============================================================ */
+async function finalizeTournament() {
+  if (!pendingWinner || isFinalizingTournament) return;
+  isFinalizingTournament = true;
+  winnerConfirmBtn.disabled = true;
+
+  if (TEST_MODE_DISABLE_SAVE) {
+    console.log("[TEST MODE] Supabase 저장 생략됨 →", {
+      selectedClass,
+      winner: pendingWinner.engraving_name,
+      tournamentType: currentTournamentType,
+      grade: currentTournamentType === "op" ? calcGrade(opScore, opMaxScore) : null,
+      opScore, opMaxScore
+    });
+
+    if (currentTournamentType === "op") {
+      completedState.op = true;
+      todayOpGrade = calcGrade(opScore, opMaxScore);
+      renderShutterStamp("op", todayOpGrade);
+    } else {
+      completedState.favor = true;
+      renderShutterStamp("favor", null);
+    }
+
+    currentBoardMode = currentTournamentType;
+    closeArena();
+    updateRankingLockState();
+    setTimeout(() => {
+  if (rankingSection) {
+    rankingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}, 400);
+
+    isFinalizingTournament = false;
+    winnerConfirmBtn.disabled = false;
+    return;
+  }
+
+  const clientIP = await getClientIP();
+  const grade = currentTournamentType === "op" ? calcGrade(opScore, opMaxScore) : null;
+  const score = currentTournamentType === "op" ? opScore : 0;
+  const maxScore = currentTournamentType === "op" ? opMaxScore : 0;
+
+  const sessionPayload = {
+    visitor_key: visitorKey,
+    client_ip: clientIP,
+    selected_class: selectedClass,
+    winner_engraving: pendingWinner.engraving_name,
+    tournament_type: currentTournamentType,
+    date_key: getDateKey(),
+    week_key: getWeekKey(),
+    month_key: getMonthKey(),
+    grade, score, max_score: maxScore
+  };
+
+  const { data: sessionData, error: sessionError } = await supabase
+    .from("sessions").insert([sessionPayload]).select();
+
+  if (sessionError) {
+        showCustomAlert("❌", "저장 실패", "결과를 저장하지 못했습니다.<br>" + sessionError.message);
+    isFinalizingTournament = false;
+    winnerConfirmBtn.disabled = false;
+    return;
+  }
+
+  const sessionId = sessionData[0].id;
+
+  if (battleLogs.length > 0) {
+    const matchPayload = battleLogs.map(log => ({
+      session_id: sessionId,
+      left_engraving: log.left_engraving,
+      right_engraving: log.right_engraving,
+      winner_engraving: log.winner_engraving,
+      loser_engraving: log.loser_engraving,
+      round_label: log.round_label,
+      tournament_type: currentTournamentType,
+      date_key: getDateKey(),
+      week_key: getWeekKey(),
+      month_key: getMonthKey()
+    }));
+
+    const { error: matchError } = await supabase.from("match_logs").insert(matchPayload);
+    if (matchError) {
+          showCustomAlert("❌", "저장 실패", "매치 로그를 저장하지 못했습니다.<br>" + matchError.message);
+      isFinalizingTournament = false;
+      winnerConfirmBtn.disabled = false;
+      return;
+    }
+  }
+
+  if (currentTournamentType === "op") {
+    completedState.op = true;
+    todayOpGrade = grade;
+    renderShutterStamp("op", grade);
+  } else {
+    completedState.favor = true;
+    renderShutterStamp("favor", null);
+  }
+
+  currentBoardMode = currentTournamentType;
+  closeArena();
+  updateRankingLockState();
+ setTimeout(() => {
+  if (rankingSection) {
+    rankingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}, 400);
+
+  isFinalizingTournament = false;
+  winnerConfirmBtn.disabled = false;
+}
+
+/* ============================================================
+   랭킹보드
+   ============================================================ */
+
+function updateRankingLockState() {
+  if (!rankingSection || !rankingLock || !rankingInner) return;
+
+  rankingLock.style.display = "none";
+  rankingInner.style.filter = "";
+  rankingInner.style.pointerEvents = "";
+
+  modeOpBtn?.classList.remove("active", "disabled");
+  modeFavorBtn?.classList.remove("active", "disabled");
+
+  if (!currentBoardMode) {
+    currentBoardMode = "op";
+  }
+
+  if (currentBoardMode === "op") modeOpBtn?.classList.add("active");
+  else modeFavorBtn?.classList.add("active");
+
+  loadRankingData(currentBoardMode);
+}
+
+
+
+async function loadRankingData(mode) {
+  const cacheKey = "all_" + mode;
+  if (rankingCache[cacheKey]) { renderRanking(rankingCache[cacheKey], mode); return; }
+
+  const { data, error } = await supabase
+    .from("ranking_overall")
+    .select("tournament_type,class_name,engraving_name,champion_count,unique_winner_count,participant_ratio,win_count,lose_count,total_matches,win_rate,updated_at")
+    .eq("tournament_type", mode);
+
+  if (error) { alert("랭킹 조회 실패"); return; }
+  rankingCache[cacheKey] = data;
+  renderRanking(data, mode);
+}
+
+
+
+function renderRanking(rows, mode) {
+  let filtered = rows;
+  if (mode === "op") filtered = rows.filter(r => !SUPPORT_ENGRAVINGS.includes(r.engraving_name));
+
+  const sorted = [...filtered].sort((a, b) => {
+    if (b.champion_count !== a.champion_count) return b.champion_count - a.champion_count;
+    if (Number(b.win_rate) !== Number(a.win_rate)) return Number(b.win_rate) - Number(a.win_rate);
+    return b.win_count - a.win_count;
+  });
+
+  const revealLimit = getRankingRevealLimit();
+
+  rankingTitle.textContent = mode === "op" ? "OP 직각 랭킹 보드" : "호감 직각 랭킹 보드";
+  rankingTitle.className = "ranking-title " + (mode === "op" ? "ranking-title-op" : "ranking-title-favor");
+  rankingSub.textContent = getRankingStatusText();
+
+  const top3 = sorted.slice(0, 3);
+  rankingSummary.innerHTML = `
+    <div class="ranking-top3">
+      ${top3.map((r, i) => `
+        <div class="top3-card top3-${i + 1}">
+          <div class="top3-rank">${i + 1}위</div>
+          <div class="top3-icon-wrap">
+            <img src="${getIconPath(r.engraving_name)}" alt="${r.engraving_name}" onerror="this.style.opacity='0.2'">
+          </div>
+          <div class="top3-name">${getShortName(r.engraving_name)}</div>
+          <div class="top3-val">${r.champion_count}회 우승</div>
+        </div>
+      `).join("")}
+    </div>`;
+
+  if (!sorted.length) {
+    rankingList.innerHTML = `<div class="ranking-empty">데이터 없음 · 집계 후 자동 반영됩니다.</div>`;
+    return;
+  }
+
+  rankingList.innerHTML = sorted.map((row, idx) => {
+    const hidden = idx >= revealLimit;
+    const rankCls = idx === 0 ? "rank-1st" : idx === 1 ? "rank-2nd" : idx === 2 ? "rank-3rd" : "";
+    return `
+      <div class="rank-row ${rankCls} ${hidden ? "rank-hidden" : ""}">
+        <div class="rank-num">${idx + 1}</div>
+        <div class="rank-icon">
+          <img src="${getIconPath(row.engraving_name)}" alt="${row.engraving_name}" onerror="this.style.opacity='0.2'">
+        </div>
+        <div class="rank-info">
+          <div class="rank-name">${row.engraving_name}</div>
+          <div class="rank-class">${row.class_name}</div>
+        </div>
+        <div class="rank-stats">
+          <div class="rank-stat-main">${row.champion_count}회</div>
+          <div class="rank-stat-sub">승률 ${Number(row.win_rate).toFixed(1)}%</div>
+          <div class="rank-stat-detail">${row.total_matches}전 ${row.win_count}승 ${row.lose_count}패</div>
+        </div>
+      </div>`;
+  }).join("");
+
+  if (Number.isFinite(revealLimit) && sorted.length > revealLimit) {
+    const hiddenRows = rankingList.querySelectorAll(".rank-hidden");
+    if (hiddenRows.length > 0) {
+      const noticeText = revealLimit === 5
+        ? "🔒 토너먼트 1회 완료 시 <strong>20위까지</strong>, OP + 호감 완료 또는 <strong>S/SS 혜택</strong> 시 전체 랭킹이 공개됩니다!"
+        : "🔒 OP + 호감 완료 또는 <strong>S/SS 혜택</strong> 시 전체 랭킹이 공개됩니다!";
+
+      hiddenRows[0].insertAdjacentHTML("beforebegin", `
+        <div class="ranking-lock-notice">
+          ${noticeText}
+        </div>`);
+    }
+  }
+
+  const latestUpdated = filtered.length > 0 ? filtered[0].updated_at : null;
+  rankingFooter.textContent = "※ 전체 랭킹은 매시간 정각 집계됩니다. 최근 집계: " + formatUpdatedAt(latestUpdated);
+}
+
+
+
+/* ============================================================
+   주간 / 월간 랭킹
+   ============================================================ */
+function clearPeriodActive() {
+  periodAllBtn.classList.remove("active");
+  periodWeekBtn.classList.remove("active");
+  periodMonthBtn.classList.remove("active");
+}
+
+async function loadWeeklyRanking(mode) {
+  const now = new Date();
+  const start = new Date(now);
+  start.setDate(start.getDate() - 6);
+  const fmt = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
+  const { data, error } = await supabase.rpc("get_recent_ranking", {
+    p_type: mode, p_start: fmt(start), p_end: fmt(now)
+  });
+  if (error) { alert("주간 랭킹 조회 실패"); return; }
+  renderRanking(data, mode);
+}
+
+async function loadMonthlyRanking(mode) {
+  const { data, error } = await supabase.rpc("get_monthly_ranking", {
+    p_type: mode, p_month: getMonthKey()
+  });
+  if (error) { alert("월간 랭킹 조회 실패"); return; }
+  renderRanking(data, mode);
+}
+
+/* ============================================================
+   등급 가이드 모달
+   ============================================================ */
+function buildGradeGrid() {
+  if (!gradeGrid) return;
+  gradeGrid.innerHTML = GRADE_TABLE.map(row => `
+    <div class="grade-cell ${getStampClass(row.grade)}" style="
+      border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px 8px;
+      text-align:center; background:rgba(255,255,255,.03);
+    ">
+      <div style="font-size:16px;font-weight:900;color:${GRADE_COLORS[row.grade]};margin-bottom:4px;">${row.grade}</div>
+      <div style="font-size:11px;color:#94a3b8;">${row.min}~${row.max}%</div>
+    </div>
+  `).join("");
+}
+
+/* ============================================================
+   이벤트
+   ============================================================ */
+if (opStartBtn) opStartBtn.addEventListener("click", () => handleStart("op"));
+if (favorStartBtn) favorStartBtn.addEventListener("click", () => handleStart("favor"));
+if (classCancelBtn) classCancelBtn.addEventListener("click", closeArena);
+if (leftFighter) leftFighter.addEventListener("click", () => chooseBattleWinner("left"));
+if (rightFighter) rightFighter.addEventListener("click", () => chooseBattleWinner("right"));
+
+if (battleQuitBtn) battleQuitBtn.addEventListener("click", () => { quitOverlay.classList.add("show"); });
+if (quitCancelBtn) quitCancelBtn.addEventListener("click", () => { quitOverlay.classList.remove("show"); });
+if (quitConfirmBtn) quitConfirmBtn.addEventListener("click", () => { quitOverlay.classList.remove("show"); closeArena(); });
+
+const qualifiedStartBtn = $("qualifiedStartBtn");
+if (qualifiedStartBtn) qualifiedStartBtn.addEventListener("click", startMainRound);
+
+if (winnerConfirmBtn) winnerConfirmBtn.addEventListener("click", finalizeTournament);
+
+const battleGroupPanelEl = $("battleGroupPanel");
+if (battleGroupPanelEl) {
+  battleGroupPanelEl.addEventListener("click", (e) => {
+    if (e.target.closest("#groupLogToggleBtn")) {
+      groupLogExpanded = !groupLogExpanded;
+      renderGroupPanel();
+    }
+  });
+}
+
+
+if (modeOpBtn) modeOpBtn.addEventListener("click", () => {
+  currentBoardMode = "op";
+  modeOpBtn.classList.add("active");
+  modeFavorBtn.classList.remove("active");
+  if (periodWeekBtn.classList.contains("active")) loadWeeklyRanking("op");
+  else if (periodMonthBtn.classList.contains("active")) loadMonthlyRanking("op");
+  else loadRankingData("op");
+});
+
+if (modeFavorBtn) modeFavorBtn.addEventListener("click", () => {
+  currentBoardMode = "favor";
+  modeFavorBtn.classList.add("active");
+  modeOpBtn.classList.remove("active");
+  if (periodWeekBtn.classList.contains("active")) loadWeeklyRanking("favor");
+  else if (periodMonthBtn.classList.contains("active")) loadMonthlyRanking("favor");
+  else loadRankingData("favor");
+});
+
+
+if (periodAllBtn) periodAllBtn.addEventListener("click", () => {
+  if (!completedState.op && !completedState.favor) return;
+  clearPeriodActive();
+  periodAllBtn.classList.add("active");
+  loadRankingData(currentBoardMode || "op");
+});
+
+if (periodWeekBtn) periodWeekBtn.addEventListener("click", () => {
+  if (!completedState.op && !completedState.favor) return;
+  clearPeriodActive();
+  periodWeekBtn.classList.add("active");
+  loadWeeklyRanking(currentBoardMode || "op");
+});
+
+if (periodMonthBtn) periodMonthBtn.addEventListener("click", () => {
+  if (!completedState.op && !completedState.favor) return;
+  clearPeriodActive();
+  periodMonthBtn.classList.add("active");
+  loadMonthlyRanking(currentBoardMode || "op");
+});
+
+if (closeGuideBtn) closeGuideBtn.addEventListener("click", () => { guideModal?.classList.remove("show"); });
+if (guideModal) guideModal.addEventListener("click", (e) => { if (e.target === guideModal) guideModal.classList.remove("show"); });
+
+
+
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    quitOverlay?.classList.remove("show");
+    guideModal?.classList.remove("show");
+    hideCustomAlert();
+  }
+});
+
+document.getElementById("customAlertCloseBtn")?.addEventListener("click", hideCustomAlert);
+
+document.getElementById("customAlertOverlay")?.addEventListener("click", (e) => {
+  if (e.target.id === "customAlertOverlay") hideCustomAlert();
+});
+
+
+
+/* ============================================================
+   초기화
+   ============================================================ */
+async function init() {
+  visitorKey = getVisitorKey();
+  buildGradeGrid();
+  updateSoundUI();
+  applySoundVolume();
+  await loadCandidates();
+  await preloadIcons();
+  await loadTodayParticipation();
+}
+
+init();
