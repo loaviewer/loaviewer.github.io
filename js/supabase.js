@@ -1,7 +1,1 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.2/+esm";
-
-export const SUPABASE_URL = "https://khszfukekudyripouifm.supabase.co";
-export const SUPABASE_KEY = "sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb";
-
-// 사이트 전체에서 이 클라이언트 1개만 공유합니다. (다른 파일에서 createClient 호출 금지)
-export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+function _0x1eae(){const _0x517b7f=['6445DEmLZn','496xBeONp','3342792YgzcvP','52363QLxjzy','130TVgYNr','1461444NPBJvj','sb_publishable_XjCVKOZRq1aERqzOGj_tHw_eC4uCXEb','https://khszfukekudyripouifm.supabase.co','1449243RlYvzk','3526327bJJYzF','2332227WqRKsg','28CmJZOp'];_0x1eae=function(){return _0x517b7f;};return _0x1eae();}const _0x14893a=_0x2e2c;(function(_0x17b484,_0x570ff6){const _0x47bd6d=_0x2e2c,_0x210ba8=_0x17b484();while(!![]){try{const _0x44095c=-parseInt(_0x47bd6d(0xfa))/0x1*(parseInt(_0x47bd6d(0x102))/0x2)+-parseInt(_0x47bd6d(0x101))/0x3+-parseInt(_0x47bd6d(0xf8))/0x4*(-parseInt(_0x47bd6d(0xf7))/0x5)+-parseInt(_0x47bd6d(0xfc))/0x6+-parseInt(_0x47bd6d(0x100))/0x7+parseInt(_0x47bd6d(0xf9))/0x8+parseInt(_0x47bd6d(0xff))/0x9*(parseInt(_0x47bd6d(0xfb))/0xa);if(_0x44095c===_0x570ff6)break;else _0x210ba8['push'](_0x210ba8['shift']());}catch(_0x3d99e2){_0x210ba8['push'](_0x210ba8['shift']());}}}(_0x1eae,0x64e1a));import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.2/+esm';export const SUPABASE_URL=_0x14893a(0xfe);export const SUPABASE_KEY=_0x14893a(0xfd);function _0x2e2c(_0x15565f,_0xe73398){_0x15565f=_0x15565f-0xf7;const _0x1eae0d=_0x1eae();let _0x2e2c2f=_0x1eae0d[_0x15565f];return _0x2e2c2f;}export const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
